@@ -1,407 +1,346 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/TamperProtection_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-Infrastructure_CheckNonUxWDRootConfig = function()
-  -- function num : 0_0
-  local l_1_0 = "hklm\\software\\microsoft\\windows defender"
-  local l_1_1 = "hklm\\software\\policies\\microsoft\\windows defender"
-  local l_1_2 = {}
-  l_1_2.disableantivirus = 0
-  l_1_2.disableantispyware = 0
-  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, l_1_0, l_1_2) then
+local L0_0, L1_1
+function L0_0()
+  local L0_2, L1_3, L2_4
+  L0_2 = "hklm\\software\\microsoft\\windows defender"
+  L1_3 = "hklm\\software\\policies\\microsoft\\windows defender"
+  L2_4 = {}
+  L2_4.disableantivirus = 0
+  L2_4.disableantispyware = 0
+  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, L0_2, L2_4) then
     return true
   end
-  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, l_1_1, l_1_2) then
+  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, L1_3, L2_4) then
     return true
   end
 end
-
-Infrastructure_CheckNonUxRealTimeProtections = function()
-  -- function num : 0_1
-  local l_2_0 = "hklm\\software\\microsoft\\windows defender\\real-time protection"
-  local l_2_1 = "hklm\\software\\policies\\microsoft\\windows defender\\real-time protection"
-  local l_2_2 = {}
-  l_2_2.DisableBehaviorMonitoring = 0
-  l_2_2.DisableIOAVProtection = 0
-  l_2_2.DisableOnAccessProtection = 0
-  l_2_2.DisableScanOnRealtimeEnable = 0
-  l_2_2.DisableScriptScanning = 0
-  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, l_2_0, l_2_2) then
+Infrastructure_CheckNonUxWDRootConfig = L0_0
+function L0_0()
+  local L0_5, L1_6, L2_7
+  L0_5 = "hklm\\software\\microsoft\\windows defender\\real-time protection"
+  L1_6 = "hklm\\software\\policies\\microsoft\\windows defender\\real-time protection"
+  L2_7 = {}
+  L2_7.DisableBehaviorMonitoring = 0
+  L2_7.DisableIOAVProtection = 0
+  L2_7.DisableOnAccessProtection = 0
+  L2_7.DisableScanOnRealtimeEnable = 0
+  L2_7.DisableScriptScanning = 0
+  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, L0_5, L2_7) then
     return true
   end
-  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, l_2_1, l_2_2) then
+  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, L1_6, L2_7) then
     return true
   end
 end
-
-Infrastructure_CheckNonUxThreatActions = function()
-  -- function num : 0_2
-  local l_3_0 = "hklm\\software\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
-  local l_3_1 = "hklm\\software\\policies\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
-  local l_3_2 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager\\ThreatSeverityDefaultAction"
-  local l_3_3 = {}
-  -- DECOMPILER ERROR at PC8: No list found for R3 , SetList fails
-
-  local l_3_4 = {}
-  -- DECOMPILER ERROR at PC10: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC11: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC12: No list found for R4 , SetList fails
-
-  local l_3_5 = {}
-  -- DECOMPILER ERROR at PC14: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC15: Overwrote pending register: R7 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC17: No list found for R5 , SetList fails
-
-  -- DECOMPILER ERROR at PC18: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC19: Overwrote pending register: R7 in 'AssignReg'
-
-  for l_3_9,l_3_10 in ("4")("5") do
-    if Infrastructure_ReportFirstRegistryValueIfValueArrMatch(3449, l_3_10, l_3_3, l_3_4) then
-      return true
+Infrastructure_CheckNonUxRealTimeProtections = L0_0
+function L0_0()
+  local L0_8, L1_9, L2_10, L3_11, L4_12, L5_13, L6_14, L7_15, L8_16, L9_17, L10_18, L11_19, L12_20, L13_21
+  L0_8 = "hklm\\software\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
+  L1_9 = "hklm\\software\\policies\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
+  L2_10 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager\\ThreatSeverityDefaultAction"
+  L3_11 = {
+    L4_12,
+    L5_13,
+    L6_14,
+    L7_15
+  }
+  L4_12 = "1"
+  L5_13 = "2"
+  L4_12 = {L5_13, L6_14}
+  L5_13 = 6
+  L5_13 = {
+    L6_14,
+    L7_15,
+    L8_16
+  }
+  for L9_17, L10_18 in L6_14(L7_15) do
+    L12_20 = 3449
+    L13_21 = L10_18
+    if L11_19 then
+      return L11_19
     end
   end
-  local l_3_11 = "hklm\\software\\microsoft\\windows defender\\threats\\ThreatTypeDefaultAction"
-  local l_3_12 = "hklm\\software\\policies\\microsoft\\windows defender\\threats\\ThreatTypeDefaultAction"
-  local l_3_13 = {}
-  -- DECOMPILER ERROR at PC39: No list found for R8 , SetList fails
-
-  local l_3_14 = {}
-  -- DECOMPILER ERROR at PC41: Overwrote pending register: R10 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC43: No list found for R9 , SetList fails
-
-  -- DECOMPILER ERROR at PC46: Overwrote pending register: R10 in 'AssignReg'
-
-  for l_3_18,i_2 in l_3_14 do
-    if Infrastructure_ReportFirstRegistryValueIfValueArrMatch(3449, l_3_18, l_3_13, l_3_4) then
-      return true
-    end
-  end
-  -- DECOMPILER ERROR at PC61: Confused about usage of register R9 for local variables in 'ReleaseLocals'
-
-end
-
-Infrastructure_CheckNonUxSpynet = function()
-  -- function num : 0_3
-  local l_4_0 = "hklm\\software\\microsoft\\windows defender\\spynet"
-  local l_4_1 = "hklm\\software\\policies\\microsoft\\windows defender\\spynet"
-  local l_4_2 = {}
-  l_4_2.DisableBlockAtFirstSeen = 0
-  local l_4_3 = {}
-  -- DECOMPILER ERROR at PC7: No list found for R3 , SetList fails
-
-  -- DECOMPILER ERROR at PC8: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC9: Overwrote pending register: R5 in 'AssignReg'
-
-  for l_4_7,l_4_8 in l_4_0(l_4_1) do
-    if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, l_4_8, l_4_2) then
+  L5_13 = L9_17
+  for L12_20, L13_21 in L9_17(L10_18) do
+    if Infrastructure_ReportFirstRegistryValueIfValueArrMatch(3449, L13_21, L8_16, L4_12) then
       return true
     end
   end
 end
-
-Infrastructure_CheckNonUxPolicyManager = function()
-  -- function num : 0_4
-  local l_5_0 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager"
-  local l_5_1 = {}
-  l_5_1.AllowBehaviorMonitoring = 1
-  l_5_1.AllowIOAVProtection = 1
-  l_5_1.AllowOnAccessProtection = 1
-  l_5_1.AllowScriptScanning = 1
-  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, l_5_0, l_5_1) then
+Infrastructure_CheckNonUxThreatActions = L0_0
+function L0_0()
+  local L0_22, L1_23, L2_24, L3_25, L4_26, L5_27, L6_28, L7_29, L8_30
+  L0_22 = "hklm\\software\\microsoft\\windows defender\\spynet"
+  L1_23 = "hklm\\software\\policies\\microsoft\\windows defender\\spynet"
+  L2_24 = {}
+  L2_24.DisableBlockAtFirstSeen = 0
+  L3_25 = {L4_26, L5_27}
+  for L7_29, L8_30 in L4_26(L5_27) do
+    if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, L8_30, L2_24) then
+      return true
+    end
+  end
+end
+Infrastructure_CheckNonUxSpynet = L0_0
+function L0_0()
+  local L0_31, L1_32
+  L0_31 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager"
+  L1_32 = {}
+  L1_32.AllowBehaviorMonitoring = 1
+  L1_32.AllowIOAVProtection = 1
+  L1_32.AllowOnAccessProtection = 1
+  L1_32.AllowScriptScanning = 1
+  if Infrastructure_ReportFirstRegistryValueCheckDefaultDW(3449, L0_31, L1_32) then
     return true
   end
 end
-
-Infrastructure_CheckNonUxControlledWDDefaults = function()
-  -- function num : 0_5
+Infrastructure_CheckNonUxPolicyManager = L0_0
+function L0_0()
   if Infrastructure_CheckNonUxWDRootConfig() or Infrastructure_CheckNonUxRealTimeProtections() or Infrastructure_CheckNonUxThreatActions() or Infrastructure_CheckNonUxSpynet() or Infrastructure_CheckNonUxPolicyManager() then
     return true
   end
 end
-
-Infrastructure_ShouldRunAntiTamperingRepair = function()
-  -- function num : 0_6
-  local l_7_0 = {}
-  -- DECOMPILER ERROR at PC2: No list found for R0 , SetList fails
-
-  -- DECOMPILER ERROR at PC3: Overwrote pending register: R1 in 'AssignReg'
-
-  do
-    if not (("5fe1bc3b-41bf-4197-8ffe-da2311848f06").IsServer)() then
-      local l_7_1 = Infrastructure_HasAnyPartnerGuid(l_7_0)
-    end
-    -- DECOMPILER ERROR at PC11: Confused about usage of register: R1 in 'UnsetPending'
-
-    if l_7_1 then
-      return false
-    end
-    if (MpCommon.GetGlobalMpAttribute)("IsMSRTProduct") then
-      return false
-    end
-    local l_7_2 = nil
-    local l_7_3 = Infrastructure_IsE5()
-    if not Infrastructure_IsE3() then
-      local l_7_4 = nil
-    else
-      do
-        do
-          do
-            local l_7_5, l_7_7 = , false
-            -- DECOMPILER ERROR at PC37: Confused about usage of register: R4 in 'UnsetPending'
-
-            do return Info.Offline or not l_7_7 or Info.OSMajorVersion == 10 end
-            -- DECOMPILER ERROR at PC46: freeLocal<0 in 'ReleaseLocals'
-
-            -- DECOMPILER ERROR: 2 unprocessed JMP targets
-          end
-        end
-      end
-    end
+Infrastructure_CheckNonUxControlledWDDefaults = L0_0
+function L0_0()
+  local L0_33
+  L0_33 = {
+    "5fe1bc3b-41bf-4197-8ffe-da2311848f06"
+  }
+  if versioning.IsServer() or Infrastructure_HasAnyPartnerGuid(L0_33) then
+    return false
   end
+  if MpCommon.GetGlobalMpAttribute("IsMSRTProduct") then
+    return false
+  end
+  return Info.Offline or not Infrastructure_IsE3() and not Infrastructure_IsE5() and Info.OSMajorVersion == 10
 end
-
-Infrastructure_AntiTamperingCheckAndRepair = function()
-  -- function num : 0_7
+Infrastructure_ShouldRunAntiTamperingRepair = L0_0
+function L0_0()
   if Infrastructure_ShouldRunAntiTamperingRepair() then
     Infrastructure_CheckNonUxControlledWDDefaults()
   end
-  return 
+  return
 end
-
-Infrastructure_MSRTDASTelemetry = function()
-  -- function num : 0_8
-  if (MpCommon.GetGlobalMpAttribute)("IsMSRTProduct") then
-    local l_9_0 = {}
-    -- DECOMPILER ERROR at PC9: No list found for R0 , SetList fails
-
-    local l_9_1 = {}
-    -- DECOMPILER ERROR at PC11: Overwrote pending register: R2 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC13: No list found for R1 , SetList fails
-
-    -- DECOMPILER ERROR at PC14: Overwrote pending register: R2 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC15: Overwrote pending register: R3 in 'AssignReg'
-
-    for l_9_5,l_9_6 in ("hklm\\software\\policies\\microsoft\\windows defender")("DisableAntispyware") do
-      local l_9_7 = (sysio.RegOpenKey)(l_9_6)
-      if l_9_7 then
-        for l_9_11,l_9_12 in ipairs(l_9_1) do
-          local l_9_13 = (sysio.GetRegValueAsDword)(l_9_7, l_9_12)
-          if l_9_13 and bitand(l_9_13, 1) == 1 then
-            (MpCommon.SetGlobalMpAttribute)("DefenderTamperingCheckRegKeyScan")
-            ;
-            (MpDetection.ScanResource)((string.format)("regkeyvalue://%s\\\\%s", l_9_6, l_9_12))
-            ;
-            (MpCommon.DeleteGlobalMpAttribute)("DefenderTamperingCheckRegKeyScan")
-            return 
+Infrastructure_AntiTamperingCheckAndRepair = L0_0
+function L0_0()
+  local L0_34, L1_35, L2_36, L3_37, L4_38, L5_39, L6_40, L7_41, L8_42, L9_43, L10_44, L11_45, L12_46, L13_47
+  L0_34 = MpCommon
+  L0_34 = L0_34.GetGlobalMpAttribute
+  L1_35 = "IsMSRTProduct"
+  L0_34 = L0_34(L1_35)
+  if L0_34 then
+    L0_34 = {L1_35, L2_36}
+    L1_35 = "hklm\\software\\microsoft\\windows defender"
+    L1_35 = {L2_36, L3_37}
+    for L5_39, L6_40 in L2_36(L3_37) do
+      L7_41 = sysio
+      L7_41 = L7_41.RegOpenKey
+      L7_41 = L7_41(L8_42)
+      if L7_41 then
+        for L11_45, L12_46 in L8_42(L9_43) do
+          L13_47 = sysio
+          L13_47 = L13_47.GetRegValueAsDword
+          L13_47 = L13_47(L7_41, L12_46)
+          if L13_47 and bitand(L13_47, 1) == 1 then
+            MpCommon.SetGlobalMpAttribute("DefenderTamperingCheckRegKeyScan")
+            MpDetection.ScanResource(string.format("regkeyvalue://%s\\\\%s", L6_40, L12_46))
+            MpCommon.DeleteGlobalMpAttribute("DefenderTamperingCheckRegKeyScan")
+            return
           end
         end
       end
     end
   end
-  do
-    return 
+  return
+end
+Infrastructure_MSRTDASTelemetry = L0_0
+function L0_0()
+  local L0_48, L1_49, L2_50, L3_51, L4_52
+  L0_48 = "hklm\\software\\policies\\microsoft\\windows defender"
+  L1_49 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager"
+  L2_50 = sysio
+  L2_50 = L2_50.RegOpenKey
+  L3_51 = L0_48
+  L2_50 = L2_50(L3_51)
+  if L2_50 then
+    L3_51 = sysio
+    L3_51 = L3_51.GetRegValueAsDword
+    L4_52 = L2_50
+    L3_51 = L3_51(L4_52, "DisableSpecialRunningModes")
+    if L3_51 and L3_51 ~= 0 then
+      L4_52 = string
+      L4_52 = L4_52.format
+      L4_52 = L4_52("MpCfgScanDisableSpecialRunningModes%s", L3_51)
+      MpCommon.SetGlobalMpAttribute(L4_52)
+      MpDetection.ScanResource(string.format("regkeyvalue://%s\\\\DisableSpecialRunningModes", L0_48))
+      MpCommon.DeleteGlobalMpAttribute(L4_52)
+      return
+    end
+  end
+  L3_51 = sysio
+  L3_51 = L3_51.RegOpenKey
+  L4_52 = L1_49
+  L3_51 = L3_51(L4_52)
+  L2_50 = L3_51
+  if L2_50 then
+    L3_51 = sysio
+    L3_51 = L3_51.GetRegValueAsDword
+    L4_52 = L2_50
+    L3_51 = L3_51(L4_52, "DisableSpecialRunningModes")
+    if L3_51 and L3_51 ~= 0 then
+      L4_52 = string
+      L4_52 = L4_52.format
+      L4_52 = L4_52("MpCfgScanDisableSpecialRunningModes%s", L3_51)
+      MpCommon.SetGlobalMpAttribute(L4_52)
+      MpDetection.ScanResource(string.format("regkeyvalue://%s\\\\DisableSpecialRunningModes", L1_49))
+      MpCommon.DeleteGlobalMpAttribute(L4_52)
+    end
   end
 end
-
-Infrastructure_ScanMpCfgDefaults = function()
-  -- function num : 0_9
-  local l_10_0 = "hklm\\software\\policies\\microsoft\\windows defender"
-  local l_10_1 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager"
-  local l_10_2 = (sysio.RegOpenKey)(l_10_0)
-  if l_10_2 then
-    local l_10_3 = (sysio.GetRegValueAsDword)(l_10_2, "DisableSpecialRunningModes")
-    if l_10_3 and l_10_3 ~= 0 then
-      local l_10_4 = (string.format)("MpCfgScanDisableSpecialRunningModes%s", l_10_3)
-      ;
-      (MpCommon.SetGlobalMpAttribute)(l_10_4)
-      ;
-      (MpDetection.ScanResource)((string.format)("regkeyvalue://%s\\\\DisableSpecialRunningModes", l_10_0))
-      ;
-      (MpCommon.DeleteGlobalMpAttribute)(l_10_4)
-      return 
+Infrastructure_ScanMpCfgDefaults = L0_0
+function L0_0(A0_53)
+  local L1_54, L2_55, L3_56, L4_57
+  L1_54 = 60
+  L2_55 = "MpTamperProtectionState"
+  if A0_53 == nil then
+    A0_53 = true
+  end
+  if A0_53 then
+    L3_56 = MpCommon
+    L3_56 = L3_56.QueryPersistContextNoPath
+    L4_57 = L2_55
+    L3_56 = L3_56(L4_57, "off")
+    if L3_56 then
+      L3_56 = false
+      return L3_56
+    end
+    L3_56 = MpCommon
+    L3_56 = L3_56.QueryPersistContextNoPath
+    L4_57 = L2_55
+    L3_56 = L3_56(L4_57, "on")
+    if L3_56 then
+      L3_56 = true
+      return L3_56
     end
   end
-  do
-    l_10_2 = (sysio.RegOpenKey)(l_10_1)
-    if l_10_2 then
-      local l_10_5 = (sysio.GetRegValueAsDword)(l_10_2, "DisableSpecialRunningModes")
-      if l_10_5 and l_10_5 ~= 0 then
-        local l_10_6 = (string.format)("MpCfgScanDisableSpecialRunningModes%s", l_10_5)
-        ;
-        (MpCommon.SetGlobalMpAttribute)(l_10_6)
-        ;
-        (MpDetection.ScanResource)((string.format)("regkeyvalue://%s\\\\DisableSpecialRunningModes", l_10_1))
-        ;
-        (MpCommon.DeleteGlobalMpAttribute)(l_10_6)
-      end
-    end
-  end
-end
-
-isTamperProtectionOn = function(l_11_0)
-  -- function num : 0_10
-  local l_11_1 = 60
-  local l_11_2 = "MpTamperProtectionState"
-  if l_11_0 == nil then
-    l_11_0 = true
-  end
-  if l_11_0 then
-    if (MpCommon.QueryPersistContextNoPath)(l_11_2, "off") then
-      return false
-    end
-    if (MpCommon.QueryPersistContextNoPath)(l_11_2, "on") then
-      return true
-    end
-  end
-  local l_11_3 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features")
-  if l_11_3 then
-    local l_11_4 = (sysio.GetRegValueAsDword)(l_11_3, "TamperProtection")
-    if l_11_4 then
-      if (crypto.bitand)(l_11_4, 1) == 1 then
-        local l_11_5 = MpCommon.SetPersistContextNoPath
-        local l_11_6 = l_11_2
-        local l_11_7 = {}
-        -- DECOMPILER ERROR at PC50: No list found for R7 , SetList fails
-
-        -- DECOMPILER ERROR at PC51: Overwrote pending register: R8 in 'AssignReg'
-
-        l_11_5(l_11_6, l_11_7, "on")
-        return l_11_4
+  L3_56 = sysio
+  L3_56 = L3_56.RegOpenKey
+  L4_57 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features"
+  L3_56 = L3_56(L4_57)
+  if L3_56 then
+    L4_57 = sysio
+    L4_57 = L4_57.GetRegValueAsDword
+    L4_57 = L4_57(L3_56, "TamperProtection")
+    if L4_57 then
+      if crypto.bitand(L4_57, 1) == 1 then
+        MpCommon.SetPersistContextNoPath(L2_55, {"on"}, L1_54)
+        return L4_57
       else
-        do
-          local l_11_8 = MpCommon.SetPersistContextNoPath
-          local l_11_9 = l_11_2
-          do
-            local l_11_10 = {}
-            -- DECOMPILER ERROR at PC60: No list found for R7 , SetList fails
-
-            -- DECOMPILER ERROR at PC61: Overwrote pending register: R8 in 'AssignReg'
-
-            l_11_8(l_11_9, l_11_10, "off")
-            l_11_8 = false
-            do return l_11_8 end
-            return false
-          end
-        end
+        MpCommon.SetPersistContextNoPath(L2_55, {"off"}, L1_54)
+        return false
       end
     end
+  end
+  L4_57 = false
+  return L4_57
+end
+isTamperProtectionOn = L0_0
+function L0_0()
+  local L0_58, L1_59, L2_60, L3_61, L4_62, L5_63, L6_64
+  L0_58 = isTamperProtectionOn
+  L0_58 = L0_58()
+  if L0_58 == false then
+    return
+  end
+  L0_58 = false
+  L1_59 = false
+  L2_60 = false
+  L3_61 = false
+  L4_62 = sysio
+  L4_62 = L4_62.RegOpenKey
+  L5_63 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender"
+  L4_62 = L4_62(L5_63)
+  if L4_62 then
+    L5_63 = sysio
+    L5_63 = L5_63.GetRegValueAsDword
+    L6_64 = L4_62
+    L5_63 = L5_63(L6_64, "ManagedDefenderProductType")
+    if L5_63 and L5_63 == 6 then
+      L0_58 = true
+    end
+  end
+  L5_63 = sysio
+  L5_63 = L5_63.RegOpenKey
+  L6_64 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features"
+  L5_63 = L5_63(L6_64)
+  if L5_63 then
+    L6_64 = sysio
+    L6_64 = L6_64.GetRegValueAsDword
+    L6_64 = L6_64(L5_63, "SenseEnabled")
+    if L6_64 and L6_64 == 1 then
+      L1_59 = true
+    end
+    L6_64 = sysio.GetRegValueAsDword(L5_63, "TPExclusions")
+    if L6_64 and L6_64 == 1 then
+      L3_61 = true
+    end
+  end
+  L6_64 = sysio
+  L6_64 = L6_64.RegOpenKey
+  L6_64 = L6_64("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Policy Manager")
+  if L6_64 and sysio.GetRegValueAsDword(L6_64, "DisableLocalAdminMerge") and sysio.GetRegValueAsDword(L6_64, "DisableLocalAdminMerge") == 1 then
+    L2_60 = true
+  end
+  if L0_58 and L1_59 and L2_60 and L3_61 then
+    MpCommon.SetGlobalMpAttribute("EnableTPExclusions")
+    MpDetection.ScanResource("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\TPExclusions")
+    MpCommon.DeleteGlobalMpAttribute("EnableTPExclusions")
+  end
+  if L0_58 and L1_59 and L2_60 then
+    MpCommon.SetGlobalMpAttribute("EnableDLAM")
+    MpDetection.ScanResource("regkeyvalue://HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Policy Manager\\\\DisableLocalAdminMerge")
+    MpCommon.DeleteGlobalMpAttribute("EnableDLAM")
+    return true
   end
 end
-
-Infrastructure_DLAMTelemetry = function()
-  -- function num : 0_11
-  if isTamperProtectionOn() == false then
-    return 
+Infrastructure_DLAMTelemetry = L0_0
+function L0_0()
+  local L0_65
+  L0_65 = versioning
+  L0_65 = L0_65.IsSeville
+  L0_65 = L0_65()
+  if not L0_65 then
+    return
   end
-  local l_12_0 = false
-  local l_12_1 = false
-  local l_12_2 = false
-  local l_12_3 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender")
-  do
-    if l_12_3 then
-      local l_12_4 = (sysio.GetRegValueAsDword)(l_12_3, "ManagedDefenderProductType")
-      if l_12_4 and l_12_4 == 6 then
-        l_12_0 = true
-      end
-    end
-    local l_12_5 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features")
-    do
-      if l_12_5 then
-        local l_12_6 = (sysio.GetRegValueAsDword)(l_12_5, "SenseEnabled")
-        if l_12_6 and l_12_6 == 1 then
-          l_12_1 = true
-        end
-      end
-      local l_12_7 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Policy Manager")
-      do
-        if l_12_7 then
-          local l_12_8 = (sysio.GetRegValueAsDword)(l_12_7, "DisableLocalAdminMerge")
-          if l_12_8 and l_12_8 == 1 then
-            l_12_2 = true
-          end
-        end
-        if l_12_0 and l_12_1 and l_12_2 then
-          (MpCommon.SetGlobalMpAttribute)("EnableDLAM")
-          ;
-          (MpDetection.ScanResource)("regkeyvalue://HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Policy Manager\\\\DisableLocalAdminMerge")
-          ;
-          (MpCommon.DeleteGlobalMpAttribute)("EnableDLAM")
-          return true
-        end
-      end
-    end
+  L0_65 = sysio
+  L0_65 = L0_65.RegOpenKey
+  L0_65 = L0_65("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\Extensions")
+  if L0_65 and sysio.RegEnumValues(L0_65) then
+    MpCommon.SetGlobalMpAttribute("ExclusionSet")
+    MpDetection.ScanResource("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
+    MpCommon.DeleteGlobalMpAttribute("ExclusionSet")
+    return true
   end
+  L0_65 = sysio.RegOpenKey("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Extensions")
+  if L0_65 and sysio.RegEnumValues(L0_65) then
+    MpCommon.SetGlobalMpAttribute("ExclusionSet")
+    MpDetection.ScanResource("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
+    MpCommon.DeleteGlobalMpAttribute("ExclusionSet")
+    return true
+  end
+  L0_65 = sysio.RegOpenKey("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\Paths")
+  if L0_65 and sysio.RegEnumValues(L0_65) then
+    MpCommon.SetGlobalMpAttribute("ExclusionSet")
+    MpDetection.ScanResource("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
+    MpCommon.DeleteGlobalMpAttribute("ExclusionSet")
+    return true
+  end
+  L0_65 = sysio.RegOpenKey("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Paths")
+  if L0_65 and sysio.RegEnumValues(L0_65) then
+    MpCommon.SetGlobalMpAttribute("ExclusionSet")
+    MpDetection.ScanResource("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
+    MpCommon.DeleteGlobalMpAttribute("ExclusionSet")
+    return true
+  end
+  return true
 end
-
-Infrastructure_ExclusionTelemetry = function()
-  -- function num : 0_12
-  if not (versioning.IsSeville)() then
-    return 
-  end
-  local l_13_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\Extensions")
-  do
-    if l_13_0 then
-      local l_13_1 = (sysio.RegEnumValues)(l_13_0)
-      if l_13_1 then
-        (MpCommon.SetGlobalMpAttribute)("ExclusionSet")
-        ;
-        (MpDetection.ScanResource)("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
-        ;
-        (MpCommon.DeleteGlobalMpAttribute)("ExclusionSet")
-      end
-    end
-    l_13_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Extensions")
-    do
-      if l_13_0 then
-        local l_13_2 = (sysio.RegEnumValues)(l_13_0)
-        if l_13_2 then
-          (MpCommon.SetGlobalMpAttribute)("ExclusionSet")
-          ;
-          (MpDetection.ScanResource)("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
-          ;
-          (MpCommon.DeleteGlobalMpAttribute)("ExclusionSet")
-        end
-      end
-      l_13_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\Paths")
-      do
-        if l_13_0 then
-          local l_13_3 = (sysio.RegEnumValues)(l_13_0)
-          if l_13_3 then
-            (MpCommon.SetGlobalMpAttribute)("ExclusionSet")
-            ;
-            (MpDetection.ScanResource)("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
-            ;
-            (MpCommon.DeleteGlobalMpAttribute)("ExclusionSet")
-          end
-        end
-        l_13_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Paths")
-        do
-          if l_13_0 then
-            local l_13_4 = (sysio.RegEnumValues)(l_13_0)
-            if l_13_4 then
-              (MpCommon.SetGlobalMpAttribute)("ExclusionSet")
-              ;
-              (MpDetection.ScanResource)("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features\\\\SenseEnabled")
-              ;
-              (MpCommon.DeleteGlobalMpAttribute)("ExclusionSet")
-            end
-          end
-          return true
-        end
-      end
-    end
-  end
-end
-
-
+Infrastructure_ExclusionTelemetry = L0_0

@@ -1,10 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1b8925610229 
-
--- params : ...
--- function num : 0
-if pevars.sigaddr == pehdr.ImageBase + pehdr.AddressOfEntryPoint and (pe.get_api_id)((mp.readu_u32)((pe.mmap_va)((mp.readu_u32)((pe.mmap_va)(pevars.sigaddr + 18, 4), 1), 4), 1)) == 1467596470 and (pe.get_api_id)((mp.readu_u32)((pe.mmap_va)((mp.readu_u32)((pe.mmap_va)(pevars.sigaddr + 24, 4), 1), 4), 1)) == 3909456120 then
-  return mp.INFECTED
+local L0_0
+L0_0 = pevars
+L0_0 = L0_0.sigaddr
+if L0_0 == pehdr.ImageBase + pehdr.AddressOfEntryPoint then
+  L0_0 = pe
+  L0_0 = L0_0.get_api_id
+  L0_0 = L0_0(mp.readu_u32(pe.mmap_va(mp.readu_u32(pe.mmap_va(pevars.sigaddr + 18, 4), 1), 4), 1))
+  if L0_0 == 1467596470 and pe.get_api_id(mp.readu_u32(pe.mmap_va(mp.readu_u32(pe.mmap_va(pevars.sigaddr + 24, 4), 1), 4), 1)) == 3909456120 then
+    return mp.INFECTED
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

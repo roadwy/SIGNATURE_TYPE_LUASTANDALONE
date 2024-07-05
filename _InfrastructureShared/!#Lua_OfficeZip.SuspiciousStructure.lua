@@ -1,118 +1,177 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_OfficeZip.SuspiciousStructure 
-
--- params : ...
--- function num : 0
-if mp.HEADERPAGE_SZ < 128 or mp.FOOTERPAGE_SZ < 22 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if not (L0_0 < 128) then
+  L0_0 = mp
+  L0_0 = L0_0.FOOTERPAGE_SZ
+elseif L0_0 < 22 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u32)(headerpage, 1) ~= 67324752 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= 67324752 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.getfilesize)()
-local l_0_1 = mp.FOOTERPAGE_SZ - 21
-if (mp.readu_u32)(footerpage, l_0_1) ~= 101010256 then
-  local l_0_2 = 276
-  local l_0_3 = (mp.readfile)(l_0_0 - l_0_2, l_0_2)
-  if l_0_3 == nil then
-    return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.FOOTERPAGE_SZ
+L1_1 = L1_1 - 21
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = footerpage
+L4_4 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= 101010256 then
+  L2_2 = 276
+  L3_3 = mp
+  L3_3 = L3_3.readfile
+  L4_4 = L0_0 - L2_2
+  L5_5 = L2_2
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 == nil then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  l_0_1 = (string.find)(l_0_3, "PK\005\006", 1, true)
-  if l_0_1 == nil then
-    return mp.CLEAN
+  L4_4 = string
+  L4_4 = L4_4.find
+  L5_5 = L3_3
+  L6_6 = "PK\005\006"
+  L7_7 = 1
+  L8_8 = true
+  L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8)
+  L1_1 = L4_4
+  if L1_1 == nil then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  l_0_1 = l_0_1 + mp.FOOTERPAGE_SZ - l_0_2
+  L4_4 = mp
+  L4_4 = L4_4.FOOTERPAGE_SZ
+  L4_4 = L1_1 + L4_4
+  L1_1 = L4_4 - L2_2
 end
-do
-  local l_0_4 = (mp.readu_u32)(footerpage, l_0_1 + 12)
-  local l_0_5 = (mp.readu_u32)(footerpage, l_0_1 + 16)
-  if l_0_4 >= 5000 then
-    return mp.CLEAN
-  end
-  local l_0_6 = (mp.readfile)(l_0_5, l_0_4)
-  if l_0_6 == nil then
-    return mp.CLEAN
-  end
-  local l_0_7 = 0
-  local l_0_8 = 0
-  local l_0_9 = 0
-  local l_0_10 = false
-  local l_0_11 = false
-  local l_0_12 = false
-  local l_0_13 = false
-  local l_0_14 = 0
-  local l_0_15 = 0
-  local l_0_16 = 1
-  if (mp.readu_u32)(l_0_6, l_0_16) ~= 33639248 then
-    return mp.CLEAN
-  end
-  while 1 do
-    if l_0_16 ~= nil then
-      local l_0_17 = (mp.readu_u16)(l_0_6, l_0_16 + 28)
-      local l_0_18 = (string.sub)(l_0_6, l_0_16 + 46, l_0_16 + 46 + l_0_17 - 1)
-      local l_0_19 = (mp.readu_u32)(l_0_6, l_0_16 + 24)
-      if l_0_17 >= 6 and l_0_18 ~= nil then
-        if (string.find)(l_0_18, "word/media/image", 1, true) == 1 then
-          l_0_8 = l_0_8 + 1
-          l_0_9 = l_0_9 + l_0_19
-          local l_0_20 = (string.sub)(l_0_18, 18)
-          if l_0_20 == ".jpeg" then
-            l_0_12 = true
-          else
-            if l_0_20 == ".jpg" then
-              l_0_13 = true
-            else
-              if l_0_20 == ".png" then
-                l_0_10 = true
-              else
-                if l_0_20 == ".emf" then
-                  l_0_11 = true
-                end
-              end
-            end
-          end
-        else
-          do
-            if (string.find)(l_0_18, "word/vbaProject.bin", 1, true) == 1 then
-              l_0_14 = l_0_14 + 1
-              l_0_15 = l_0_15 + l_0_19
-            end
-            l_0_7 = l_0_7 + 1
-            do
-              local l_0_21 = l_0_16 + 46 + l_0_17
-              l_0_16 = nil
-              if l_0_21 >= l_0_4 or (mp.readu_u32)(l_0_6, l_0_21) == 33639248 then
-                l_0_16 = l_0_21
-              end
-              -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-              -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_STMT
-
-              -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_STMT
-
-              -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
-        end
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = footerpage
+L4_4 = L1_1 + 12
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = footerpage
+L5_5 = L1_1 + 16
+L3_3 = L3_3(L4_4, L5_5)
+if L2_2 >= 5000 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.readfile
+L5_5 = L3_3
+L6_6 = L2_2
+L4_4 = L4_4(L5_5, L6_6)
+if L4_4 == nil then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = 0
+L6_6 = 0
+L7_7 = 0
+L8_8 = false
+L9_9 = false
+L10_10 = false
+L11_11 = false
+L12_12 = 0
+L13_13 = 0
+L14_14 = 1
+L15_15 = mp
+L15_15 = L15_15.readu_u32
+L16_16 = L4_4
+L17_17 = L14_14
+L15_15 = L15_15(L16_16, L17_17)
+if L15_15 ~= 33639248 then
+  L15_15 = mp
+  L15_15 = L15_15.CLEAN
+  return L15_15
+end
+while L14_14 ~= nil do
+  L15_15 = mp
+  L15_15 = L15_15.readu_u16
+  L16_16 = L4_4
+  L17_17 = L14_14 + 28
+  L15_15 = L15_15(L16_16, L17_17)
+  L16_16 = string
+  L16_16 = L16_16.sub
+  L17_17 = L4_4
+  L18_18 = L14_14 + 46
+  L16_16 = L16_16(L17_17, L18_18, L14_14 + 46 + L15_15 - 1)
+  L17_17 = mp
+  L17_17 = L17_17.readu_u32
+  L18_18 = L4_4
+  L17_17 = L17_17(L18_18, L14_14 + 24)
+  if L15_15 >= 6 and L16_16 ~= nil then
+    L18_18 = string
+    L18_18 = L18_18.find
+    L18_18 = L18_18(L16_16, "word/media/image", 1, true)
+    if L18_18 == 1 then
+      L6_6 = L6_6 + 1
+      L7_7 = L7_7 + L17_17
+      L18_18 = string
+      L18_18 = L18_18.sub
+      L18_18 = L18_18(L16_16, 18)
+      if L18_18 == ".jpeg" then
+        L10_10 = true
+      elseif L18_18 == ".jpg" then
+        L11_11 = true
+      elseif L18_18 == ".png" then
+        L8_8 = true
+      elseif L18_18 == ".emf" then
+        L9_9 = true
+      end
+    else
+      L18_18 = string
+      L18_18 = L18_18.find
+      L18_18 = L18_18(L16_16, "word/vbaProject.bin", 1, true)
+      if L18_18 == 1 then
+        L12_12 = L12_12 + 1
+        L13_13 = L13_13 + L17_17
       end
     end
   end
-  if ((l_0_9 >= 22000 and l_0_9 <= 25000) or l_0_9 < 34000 or l_0_9 <= 47000) and ((l_0_15 >= 32000 and l_0_15 <= 48000) or l_0_15 < 10000 or l_0_15 <= 25000) then
-    (mp.set_mpattribute)("//Lua:OfficeZip.SuspiciousStructure.A")
-  else
-    if l_0_8 == 4 and l_0_14 == 0 and l_0_12 and l_0_11 and l_0_7 >= 20 and l_0_7 <= 23 and l_0_9 >= 65000 and l_0_9 <= 70000 and l_0_0 >= 75000 and l_0_0 <= 80000 then
-      (mp.set_mpattribute)("//Lua:OfficeZip.SuspiciousStructure.B")
-    end
+  L5_5 = L5_5 + 1
+  L18_18 = L14_14 + 46
+  L18_18 = L18_18 + L15_15
+  L14_14 = nil
+  if L2_2 > L18_18 and mp.readu_u32(L4_4, L18_18) == 33639248 then
+    L14_14 = L18_18
   end
-  return mp.CLEAN
 end
-
+if L6_6 == 1 and L12_12 == 1 and L8_8 and L5_5 == 16 and L0_0 >= 56000 and L0_0 <= 80000 and (L7_7 >= 22000 and L7_7 <= 25000 or L7_7 >= 34000 and L7_7 <= 47000) and (L13_13 >= 32000 and L13_13 <= 48000 or L13_13 >= 10000 and L13_13 <= 25000) then
+  L15_15 = mp
+  L15_15 = L15_15.set_mpattribute
+  L16_16 = "//Lua:OfficeZip.SuspiciousStructure.A"
+  L15_15(L16_16)
+elseif L6_6 == 4 and L12_12 == 0 and L10_10 and L9_9 and L5_5 >= 20 and L5_5 <= 23 and L7_7 >= 65000 and L7_7 <= 70000 and L0_0 >= 75000 and L0_0 <= 80000 then
+  L15_15 = mp
+  L15_15 = L15_15.set_mpattribute
+  L16_16 = "//Lua:OfficeZip.SuspiciousStructure.B"
+  L15_15(L16_16)
+end
+L15_15 = mp
+L15_15 = L15_15.CLEAN
+return L15_15

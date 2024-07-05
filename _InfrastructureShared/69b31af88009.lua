@@ -1,65 +1,76 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b31af88009 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).wp2 ~= nil then
-    local l_0_0, l_0_1, l_0_2 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.wp2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L0_0 = L1_1[1]
   end
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).wp2 ~= nil then
-    do return mp.CLEAN end
-    local l_0_3 = nil
-    for l_0_7,l_0_8 in ipairs((mp.GetExecutablesFromCommandLine)((this_sigattrlog[2]).utf8p2)) do
-      local l_0_4 = nil
-      -- DECOMPILER ERROR at PC39: Confused about usage of register: R6 in 'UnsetPending'
-
-      R6_PC39 = (mp.ContextualExpandEnvironmentVariables)(R6_PC39)
-      if (string.lower)((string.sub)(R6_PC39, -14)) == "\\litetouch.wsf" then
-        return mp.CLEAN
-      end
-      if (sysio.IsFileExists)(l_0_9) and not (mp.IsKnownFriendlyFile)(l_0_9, true, false) then
-        (bm.add_related_file)(l_0_9)
-      end
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.wp2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L0_0 = L1_1[2]
     end
-    local l_0_10 = nil
-    -- DECOMPILER ERROR at PC87: Overwrote pending register: R2 in 'AssignReg'
-
-    if not (this_sigattrlog[3]).matched or not nil then
-      return mp.CLEAN
-    end
-    local l_0_11 = nil
-    for l_0_15,l_0_16 in ipairs(l_0_11) do
-      local l_0_12 = false
-      -- DECOMPILER ERROR at PC102: Confused about usage of register: R8 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC117: Confused about usage of register: R8 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC126: Confused about usage of register: R8 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC135: Confused about usage of register: R8 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC144: Confused about usage of register: R8 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC150: Confused about usage of register: R8 in 'UnsetPending'
-
-      if not (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(bm.add_related_file)), "\\windows\\system32\\", 1, true) and ((string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(bm.add_related_file)), "\\appdata\\", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(bm.add_related_file)), "\\temp\\", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(bm.add_related_file)), "\\public\\", 1, true)) and (sysio.IsFileExists)((string.lower)((mp.ContextualExpandEnvironmentVariables)(bm.add_related_file))) and not (mp.IsKnownFriendlyFile)((string.lower)((mp.ContextualExpandEnvironmentVariables)(bm.add_related_file)), true, false) then
-        l_0_12 = true
-        -- DECOMPILER ERROR at PC159: Confused about usage of register: R8 in 'UnsetPending'
-
-        ;
-        (bm.add_related_file)((string.lower)((mp.ContextualExpandEnvironmentVariables)(bm.add_related_file)))
-      end
-    end
-    -- DECOMPILER ERROR at PC163: Confused about usage of register: R3 in 'UnsetPending'
-
-    if l_0_12 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+  else
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.GetExecutablesFromCommandLine
+L1_1 = L1_1(L2_2)
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = mp
+  L7_7 = L7_7.ContextualExpandEnvironmentVariables
+  L8_8 = L6_6
+  L7_7 = L7_7(L8_8)
+  L7_7 = string
+  L7_7 = L7_7.lower
+  L8_8 = string
+  L8_8 = L8_8.sub
+  L8_8 = L8_8(L6_6, -14)
+  L7_7 = L7_7(L8_8, L8_8(L6_6, -14))
+  if L7_7 == "\\litetouch.wsf" then
+    L8_8 = mp
+    L8_8 = L8_8.CLEAN
+    return L8_8
+  end
+  L8_8 = sysio
+  L8_8 = L8_8.IsFileExists
+  L8_8 = L8_8(L6_6)
+  if L8_8 then
+    L8_8 = mp
+    L8_8 = L8_8.IsKnownFriendlyFile
+    L8_8 = L8_8(L6_6, true, false)
+    if not L8_8 then
+      L8_8 = bm
+      L8_8 = L8_8.add_related_file
+      L8_8(L6_6)
+    end
+  end
+end
+if not L2_2 then
+  return L3_3
+end
+for L7_7, L8_8 in L4_4(L5_5) do
+  L8_8 = string.lower(mp.ContextualExpandEnvironmentVariables(L8_8))
+  if not string.find(L8_8, "\\windows\\system32\\", 1, true) and (string.find(L8_8, "\\appdata\\", 1, true) or string.find(L8_8, "\\temp\\", 1, true) or string.find(L8_8, "\\public\\", 1, true)) and sysio.IsFileExists(L8_8) and not mp.IsKnownFriendlyFile(L8_8, true, false) then
+    bm.add_related_file(L8_8)
+  end
+end
+if L3_3 then
+  return L4_4
+end
+return L4_4

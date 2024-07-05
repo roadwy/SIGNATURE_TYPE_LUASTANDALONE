@@ -1,74 +1,184 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Trojan_Win32_Adclicker.M 
-
--- params : ...
--- function num : 0
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasexports ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.Subsystem ~= 2 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.Subsystem
+if L0_0 ~= 2 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[1]).RVA <= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.RVA
+if L0_0 <= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[1]).Size < 32 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.Size
+if L0_0 < 32 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[1]).Size > 256 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.Size
+if L0_0 > 256 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[5]).RVA ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[5]
+L0_0 = L0_0.RVA
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[5]).Size ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[5]
+L0_0 = L0_0.Size
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[10]).RVA ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[10]
+L0_0 = L0_0.RVA
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[10]).Size ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[10]
+L0_0 = L0_0.Size
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[12]).RVA ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[12]
+L0_0 = L0_0.RVA
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[12]).Size ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[12]
+L0_0 = L0_0.Size
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)((pe.foffset_rva)(((pehdr.DataDirectory)[1]).RVA), 32)
-if (mp.readu_u32)(l_0_0, 1) ~= 0 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L1_1 = pe
+L1_1 = L1_1.foffset_rva
+L1_1 = L1_1(pehdr.DataDirectory[1].RVA)
+L0_0 = L0_0(L1_1, 32)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 1)
+if L1_1 ~= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 5) <= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 5)
+if L1_1 <= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 9) ~= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 9)
+if L1_1 ~= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 13) <= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 13)
+if L1_1 <= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 17) ~= 1 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 17)
+if L1_1 ~= 1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 21) ~= 5 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 21)
+if L1_1 ~= 5 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 25) ~= 5 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 25)
+if L1_1 ~= 5 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 29) <= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 29)
+if L1_1 <= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.readfile)((pe.foffset_rva)((mp.readu_u32)(l_0_0, 13)), 18)
-if (mp.crc32)(-1, l_0_1, 1, 10) ~= 3287701648 then
+L1_1 = mp
+L1_1 = L1_1.readfile
+L1_1 = L1_1(pe.foffset_rva(mp.readu_u32(L0_0, 13)), 18)
+if mp.crc32(-1, L1_1, 1, 10) ~= 3287701648 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

@@ -1,200 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/151b32a14f1cd_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((bm.get_current_process_startup_info)())
-local l_0_1 = nil
-local l_0_2 = {}
-local l_0_3 = {}
--- DECOMPILER ERROR at PC8: No list found for R3 , SetList fails
-
-local l_0_4 = {}
--- DECOMPILER ERROR at PC10: Overwrote pending register: R5 in 'AssignReg'
-
--- DECOMPILER ERROR at PC12: No list found for R4 , SetList fails
-
--- DECOMPILER ERROR at PC13: No list found for R2 , SetList fails
-
--- DECOMPILER ERROR at PC15: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC16: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC19: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC20: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC21: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC24: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC25: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC28: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC29: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC30: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC33: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC34: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC35: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC38: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC39: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC40: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC42: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC43: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC44: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC47: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC48: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC49: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC52: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC53: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC54: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC56: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC57: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC58: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC61: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC62: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC63: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC66: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC67: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC68: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC70: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC71: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC72: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC75: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC76: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC77: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC80: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC81: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC82: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC84: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC85: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC86: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC89: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC90: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC91: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC94: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC95: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC96: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC98: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC99: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC100: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC103: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC104: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC105: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC108: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC109: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC110: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC112: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC113: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC114: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC117: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC118: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC119: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC122: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC123: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC124: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC125: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC130: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC136: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC137: Overwrote pending register: R4 in 'AssignReg'
-
--- DECOMPILER ERROR at PC139: Overwrote pending register: R6 in 'AssignReg'
-
--- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P3
-
-if ((((((((l_0_3 and l_0_3 ~= nil and not l_0_3) or l_0_3) and not l_0_3) or l_0_3) and not l_0_3) or l_0_3) and not l_0_3) or l_0_3) and l_0_1 and not l_0_3 then
-  l_0_3 = l_0_3(l_0_4, l_0_2, "")
-  if not l_0_3 then
-    l_0_3 = isTainted
-    -- DECOMPILER ERROR at PC144: Overwrote pending register: R4 in 'AssignReg'
-
-    l_0_3 = l_0_3(l_0_4, "remote_file_created_taint")
-  end
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = nil
+L2_2 = {
+  {
+    "/usr/bin/make",
+    ""
+  },
+  {
+    "/usr/bin/ninja",
+    ""
+  }
+}
+if this_sigattrlog[1].matched and this_sigattrlog[1].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[1].utf8p1
+elseif this_sigattrlog[2].matched and this_sigattrlog[2].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[2].utf8p1
+elseif this_sigattrlog[3].matched and this_sigattrlog[3].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[3].utf8p1
+elseif this_sigattrlog[4].matched and this_sigattrlog[4].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[4].utf8p1
+elseif this_sigattrlog[5].matched and this_sigattrlog[5].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[5].utf8p1
+elseif this_sigattrlog[6].matched and this_sigattrlog[6].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[6].utf8p1
+elseif this_sigattrlog[7].matched and this_sigattrlog[7].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[7].utf8p1
+elseif this_sigattrlog[8].matched and this_sigattrlog[8].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[8].utf8p1
 end
-if not l_0_3 then
-  l_0_3 = mp
-  l_0_3 = l_0_3.CLEAN
-  return l_0_3
+if not L0_0.ppid or not L1_1 or isParentPackageManager(L0_0.ppid, true) or checkParentCmdline(L0_0.ppid, L2_2, 3) or not isTainted(L1_1, "remote_file_created_taint") then
+  return mp.CLEAN
 end
-l_0_3 = mp
-l_0_3 = l_0_3.INFECTED
-return l_0_3
-
+return mp.INFECTED

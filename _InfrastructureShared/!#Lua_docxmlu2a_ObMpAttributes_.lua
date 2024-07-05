@@ -1,39 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_docxmlu2a_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if not l_0_0:find("->word/_rels/", 1, true) and not l_0_0:find("/drawings/_rels/", 1, true) and not l_0_0:find("/worksheets/_rels/", 1, true) then
-  return mp.CLEAN
-end
-if mp.HEADERPAGE_SZ < 1024 then
-  return mp.CLEAN
-end
-local l_0_1 = (tostring(headerpage)):lower()
-l_0_1 = (string.gsub)(l_0_1, "&#x(%x%x);", function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = string.char
-  do
-    local l_1_2, l_1_3, l_1_4 = tonumber(l_1_0, 16), .end
-    do return l_1_1(l_1_2, l_1_3, l_1_4) end
-    -- DECOMPILER ERROR at PC8: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L1_1 = L1_1(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)
+L0_0 = L0_0(L1_1, L1_1(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+L1_1 = L0_0.find
+L1_1 = L1_1(L0_0, "->word/_rels/", 1, true)
+if not L1_1 then
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L0_0, "/drawings/_rels/", 1, true)
+  if not L1_1 then
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L0_0, "/worksheets/_rels/", 1, true)
+    if not L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
   end
 end
-)
-l_0_1 = (string.gsub)(l_0_1, "&#(%d%d?%d?);", function(l_2_0)
-  -- function num : 0_1
-  local l_2_1 = string.char
-  do
-    local l_2_2, l_2_3, l_2_4 = tonumber(l_2_0, 10), .end
-    do return l_2_1(l_2_2, l_2_3, l_2_4) end
-    -- DECOMPILER ERROR at PC8: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+L1_1 = mp
+L1_1 = L1_1.HEADERPAGE_SZ
+if L1_1 < 1024 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-)
-;
-(mp.vfo_add_buffer)(l_0_1, "[docxmlu2a]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L1_1 = tostring
+L1_1 = L1_1(headerpage)
+L1_1 = L1_1.lower
+L1_1 = L1_1(L1_1)
+L1_1 = string.gsub(L1_1, "&#x(%x%x);", function(A0_2)
+  return string.char(tonumber(A0_2, 16))
+end)
+L1_1 = string.gsub(L1_1, "&#(%d%d?%d?);", function(A0_3)
+  return string.char(tonumber(A0_3, 10))
+end)
+mp.vfo_add_buffer(L1_1, "[docxmlu2a]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

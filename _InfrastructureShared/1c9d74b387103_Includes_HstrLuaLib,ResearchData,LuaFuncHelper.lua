@@ -1,34 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c9d74b387103_Includes_HstrLuaLib,ResearchData,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-local l_0_1 = false
-_ = pcall(MpCommon.QuerySessionInformation, l_0_0, MpCommon.WTSIsRemoteSession)
-do
-  if l_0_1 then
-    local l_0_2 = MpCommon.WTSClientProtocolType
-    if l_0_2 == 2 then
-      set_research_data("Protocol", "RDP", false)
-      return mp.LOWFI
-    end
-  end
-  local l_0_3 = GetRollingQueueKeys("ThreatsOnMachine_Lua")
-  if l_0_3 ~= nil and type(l_0_3) == "table" then
-    local l_0_4 = 0
-    local l_0_5 = "["
-    for l_0_9,l_0_10 in ipairs(l_0_3) do
-      l_0_5 = l_0_5 .. "|" .. l_0_10
-      l_0_4 = l_0_4 + 1
-    end
-    if l_0_4 > 0 then
-      set_research_data("ThreatsOnMachine", l_0_5, false)
-      return mp.LOWFI
-    end
-  end
-  do
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+L1_1 = false
+L2_2 = pcall
+L3_3 = MpCommon
+L3_3 = L3_3.QuerySessionInformation
+L4_4 = L0_0
+L3_3 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L3_3
+_ = L2_2
+if L1_1 then
+  L2_2 = MpCommon
+  L2_2 = L2_2.WTSClientProtocolType
+  if L2_2 == 2 then
+    L3_3 = set_research_data
+    L4_4 = "Protocol"
+    L3_3(L4_4, L5_5, L6_6)
+    L3_3 = mp
+    L3_3 = L3_3.LOWFI
+    return L3_3
   end
 end
-
+L2_2 = GetRollingQueueKeys
+L3_3 = "ThreatsOnMachine_Lua"
+L2_2 = L2_2(L3_3)
+if L2_2 ~= nil then
+  L3_3 = type
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4)
+  if L3_3 == "table" then
+    L3_3 = 0
+    L4_4 = "["
+    for L8_8, L9_9 in L5_5(L6_6) do
+      L4_4 = L4_4 .. "|" .. L9_9
+      L3_3 = L3_3 + 1
+    end
+    if L3_3 > 0 then
+      L8_8 = false
+      L5_5(L6_6, L7_7, L8_8)
+      return L5_5
+    end
+  end
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

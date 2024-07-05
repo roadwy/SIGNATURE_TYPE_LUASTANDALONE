@@ -1,83 +1,133 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2f9b3529c2f42 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.utf8p2
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.utf8p2
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   else
-  end
-  -- DECOMPILER ERROR at PC37: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[3]).matched or (this_sigattrlog[4]).matched then
-      local l_0_1 = (string.lower)((this_sigattrlog[3]).utf8p2)
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L2_2 = L2_2.utf8p2
+      L1_1 = L1_1(L2_2)
+      L0_0 = L1_1
     else
-    end
-    -- DECOMPILER ERROR at PC63: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if not (this_sigattrlog[5]).matched or (this_sigattrlog[6]).matched then
-        local l_0_2, l_0_3, l_0_4 = (string.lower)((this_sigattrlog[5]).utf8p2)
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[5]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.lower
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[5]
+        L2_2 = L2_2.utf8p2
+        L1_1 = L1_1(L2_2)
+        L0_0 = L1_1
       else
-      end
-      if (this_sigattrlog[7]).matched then
-        local l_0_5 = (string.lower)((this_sigattrlog[7]).utf8p2)
-        -- DECOMPILER ERROR at PC86: Confused about usage of register: R1 in 'UnsetPending'
-
-        if l_0_5 and (this_sigattrlog[1]).utf8p1 then
-          local l_0_6 = nil
-          if (string.find)(l_0_5, (string.lower)((this_sigattrlog[1]).utf8p1), 1, true) then
-            if (string.find)((string.lower)((this_sigattrlog[1]).utf8p1), ":\\programdata\\", 1, true) then
-              local l_0_7, l_0_8 = , (string.match)((string.lower)((this_sigattrlog[1]).utf8p1), "(.+\\)([^\\]+)$")
-              if l_0_8 then
-                if (string.sub)(l_0_8, -14) == ":\\programdata\\" then
-                  (mp.ReportLowfi)(l_0_6, 3958098698)
-                  return mp.INFECTED
-                else
-                  if (string.sub)(l_0_8, -24) == ":\\programdata\\microsoft\\" then
-                    (mp.ReportLowfi)(l_0_6, 1927453360)
-                    return mp.INFECTED
-                  end
-                end
-              end
-            else
-              do
-                -- DECOMPILER ERROR at PC147: Confused about usage of register: R2 in 'UnsetPending'
-
-                -- DECOMPILER ERROR at PC156: Confused about usage of register: R2 in 'UnsetPending'
-
-                do
-                  if (string.find)(l_0_7, "\\appdata\\", 1, true) then
-                    local l_0_9, l_0_10 = , (string.match)(l_0_7, "(.+\\)([^\\]+)$")
-                    if l_0_10 then
-                      if (string.sub)(l_0_10, -17) == "\\appdata\\roaming\\" then
-                        (mp.ReportLowfi)(l_0_6, 98937382)
-                        return mp.INFECTED
-                      else
-                        if (string.sub)(l_0_10, -15) == "\\appdata\\local\\" then
-                          (mp.ReportLowfi)(l_0_6, 2608938885)
-                          return mp.INFECTED
-                        else
-                          if (string.sub)(l_0_10, -18) == "\\appdata\\locallow\\" then
-                            (mp.ReportLowfi)(l_0_6, 3968208659)
-                            return mp.INFECTED
-                          end
-                        end
-                      end
-                    end
-                  end
-                  return mp.CLEAN
-                end
-              end
-            end
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[6]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.lower
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[6]
+          L2_2 = L2_2.utf8p2
+          L1_1 = L1_1(L2_2)
+          L0_0 = L1_1
+        else
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[7]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.lower
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[7]
+            L2_2 = L2_2.utf8p2
+            L1_1 = L1_1(L2_2)
+            L0_0 = L1_1
           end
         end
       end
     end
   end
 end
-
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.utf8p1
+if L0_0 and L1_1 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  L3_3 = string
+  L3_3 = L3_3.find
+  L3_3 = L3_3(L0_0, L2_2, 1, true)
+  if L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.find
+    L3_3 = L3_3(L2_2, ":\\programdata\\", 1, true)
+    if L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.match
+      L3_3 = L3_3(L2_2, "(.+\\)([^\\]+)$")
+      if L3_3 then
+        if string.sub(L3_3, -14) == ":\\programdata\\" then
+          mp.ReportLowfi(L1_1, 3958098698)
+          return mp.INFECTED
+        elseif string.sub(L3_3, -24) == ":\\programdata\\microsoft\\" then
+          mp.ReportLowfi(L1_1, 1927453360)
+          return mp.INFECTED
+        end
+      end
+    else
+      L3_3 = string
+      L3_3 = L3_3.find
+      L3_3 = L3_3(L2_2, "\\appdata\\", 1, true)
+      if L3_3 then
+        L3_3 = string
+        L3_3 = L3_3.match
+        L3_3 = L3_3(L2_2, "(.+\\)([^\\]+)$")
+        if L3_3 then
+          if string.sub(L3_3, -17) == "\\appdata\\roaming\\" then
+            mp.ReportLowfi(L1_1, 98937382)
+            return mp.INFECTED
+          elseif string.sub(L3_3, -15) == "\\appdata\\local\\" then
+            mp.ReportLowfi(L1_1, 2608938885)
+            return mp.INFECTED
+          elseif string.sub(L3_3, -18) == "\\appdata\\locallow\\" then
+            mp.ReportLowfi(L1_1, 3968208659)
+            return mp.INFECTED
+          end
+        end
+      end
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

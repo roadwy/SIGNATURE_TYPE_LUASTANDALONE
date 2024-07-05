@@ -1,18 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/112780d8eea01 
-
--- params : ...
--- function num : 0
-do
-  local l_0_0, l_0_1 = (hstrlog[3]).matched and 1 or 0
-  do
-    local l_0_2 = nil
-    -- DECOMPILER ERROR at PC20: Confused about usage of register: R0 in 'UnsetPending'
-
-    if (mp.bitxor)(l_0_2, (hstrlog[2]).matched and 1 or 0) == 1 and (mp.bitxor)((hstrlog[6]).matched and 1 or 0, (hstrlog[7]).matched and 1 or 0) == 1 and (peattributes.epscn_writable or peattributes.hasappendeddata) then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = 1
+else
+  L0_0 = L0_0 or 0
 end
-
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = 1
+else
+  L1_1 = L1_1 or 0
+end
+L0_0 = hstrlog[6].matched and 1 or 0
+L1_1 = hstrlog[7].matched and 1 or 0
+if mp.bitxor(L0_0, L1_1) == 1 and mp.bitxor(L0_0, L1_1) == 1 and (peattributes.epscn_writable or peattributes.hasappendeddata) then
+  return mp.INFECTED
+end
+return mp.CLEAN

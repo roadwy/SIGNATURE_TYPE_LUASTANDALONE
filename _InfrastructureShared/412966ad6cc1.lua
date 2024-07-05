@@ -1,24 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/412966ad6cc1 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("//RPF:IS_Pdf") then
-  local l_0_0 = (mp.getfilesize)()
-  if l_0_0 < 20000 then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("//RPF:IS_Pdf")
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+  if L0_0 < 20000 then
     return mp.CLEAN
   end
-  if l_0_0 > 50000 then
+  if L0_0 > 50000 then
     return mp.CLEAN
   end
-  ;
-  (mp.readprotection)(false)
-  local l_0_1 = (mp.readfile)(0, l_0_0)
-  if l_0_1:match("/URI %(http%://usaa%.com%-sec%-inet%-auth%-logon%-ent%-logon%-logon%-") then
+  mp.readprotection(false)
+  if mp.readfile(0, L0_0):match("/URI %(http%://usaa%.com%-sec%-inet%-auth%-logon%-ent%-logon%-logon%-") then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

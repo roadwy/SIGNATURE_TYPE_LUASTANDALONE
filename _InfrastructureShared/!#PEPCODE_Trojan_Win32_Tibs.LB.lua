@@ -1,37 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Trojan_Win32_Tibs.LB 
-
--- params : ...
--- function num : 0
-if (pesecs[pehdr.NumberOfSections]).VirtualSize ~= 8192 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.VirtualSize
+if L0_0 ~= 8192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).SizeOfRawData ~= 8192 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 ~= 8192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).NameDW ~= 2019914798 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 2019914798 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).Characteristics ~= 1610612768 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 1610612768 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).Characteristics ~= 3758096448 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 3758096448 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfImage ~= 24576 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfImage
+if L0_0 ~= 24576 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 3 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[2]).Size ~= 80 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 ~= 80 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[3]).Size ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[3]
+L0_0 = L0_0.Size
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[6]).Size ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[6]
+L0_0 = L0_0.Size
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

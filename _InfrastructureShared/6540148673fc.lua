@@ -1,30 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6540148673fc 
-
--- params : ...
--- function num : 0
-if peattributes.isdll and not peattributes.no_exports then
-  local l_0_0 = {}
-  l_0_0["rsasec.dll"] = true
-  l_0_0["secctp.dll"] = true
-  l_0_0["module_ls.dll"] = true
-  l_0_0["deploy.dll"] = true
-  l_0_0["deplay.dll"] = true
-  l_0_0["jpicom.dll"] = true
-  l_0_0["nbdcom.dll"] = true
-  local l_0_1 = (string.lower)((mp.getfilename)(mp.FILEPATH_QUERY_FNAME))
-  if l_0_1 and l_0_0[l_0_1] then
-    return mp.INFECTED
-  end
-  local l_0_2 = (pe.get_versioninfo)()
-  if l_0_2 then
-    local l_0_3 = l_0_2.OriginalFilename
-    if l_0_3 and l_0_0[(string.lower)(l_0_3)] then
-      return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.no_exports
+  if not L0_0 then
+    L0_0 = {}
+    L0_0["rsasec.dll"] = true
+    L0_0["secctp.dll"] = true
+    L0_0["module_ls.dll"] = true
+    L0_0["deploy.dll"] = true
+    L0_0["deplay.dll"] = true
+    L0_0["jpicom.dll"] = true
+    L0_0["nbdcom.dll"] = true
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = mp
+    L2_2 = L2_2.getfilename
+    L3_3 = mp
+    L3_3 = L3_3.FILEPATH_QUERY_FNAME
+    L3_3 = L2_2(L3_3)
+    L1_1 = L1_1(L2_2, L3_3, L2_2(L3_3))
+    if L1_1 then
+      L2_2 = L0_0[L1_1]
+      if L2_2 then
+        L2_2 = mp
+        L2_2 = L2_2.INFECTED
+        return L2_2
+      end
+    end
+    L2_2 = pe
+    L2_2 = L2_2.get_versioninfo
+    L2_2 = L2_2()
+    if L2_2 then
+      L3_3 = L2_2.OriginalFilename
+      if L3_3 and L0_0[string.lower(L3_3)] then
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

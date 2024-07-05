@@ -1,43 +1,110 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ContextualInstGamarueMsCc 
-
--- params : ...
--- function num : 0
-if not peattributes.isexe then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  if l_0_1 ~= "svchost.exe" or l_0_1 ~= "wuauclt.exe" then
-    return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_FILENAME
+  L8_8 = L2_2(L3_3)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2(L3_3))
+  if L1_1 ~= "svchost.exe" or L1_1 ~= "wuauclt.exe" then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  if l_0_2:sub(-17) == "\\windows\\system32" then
-    local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-    local l_0_4 = (string.lower)(l_0_3)
-    if #l_0_4 < 9 or #l_0_4 > 16 then
-      return mp.CLEAN
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = mp
+  L3_3 = L3_3.get_contextdata
+  L4_4 = mp
+  L4_4 = L4_4.CONTEXT_DATA_FILEPATH
+  L8_8 = L3_3(L4_4)
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L3_3(L4_4))
+  L4_4 = L2_2
+  L3_3 = L2_2.sub
+  L5_5 = -17
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 == "\\windows\\system32" then
+    L3_3 = mp
+    L3_3 = L3_3.get_contextdata
+    L4_4 = mp
+    L4_4 = L4_4.CONTEXT_DATA_PROCESSNAME
+    L3_3 = L3_3(L4_4)
+    L4_4 = string
+    L4_4 = L4_4.lower
+    L5_5 = L3_3
+    L4_4 = L4_4(L5_5)
+    L5_5 = #L4_4
+    if not (L5_5 < 9) then
+      L5_5 = #L4_4
+    elseif L5_5 > 16 then
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
     end
-    local l_0_5 = {}
-    l_0_5[".exe"] = ""
-    l_0_5[".cmd"] = ""
-    l_0_5[".bat"] = ""
-    l_0_5[".com"] = ""
-    l_0_5[".pif"] = ""
-    l_0_5[".scr"] = ""
-    if l_0_5[l_0_4:sub(-4)] and (l_0_4:match("^ms%l%l%l+%.%l%l%l$") ~= nil or l_0_4:match("^cc%l%l%l+%.%l%l%l$") ~= nil) then
-      local l_0_6 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-      local l_0_7 = (string.lower)(l_0_6)
-      if l_0_7:sub(-11) == "\\local\\temp" or l_0_7:sub(-20) == "\\local settings\\temp" then
-        local l_0_8 = (MpCommon.PathToWin32Path)(l_0_6) .. "\\" .. l_0_4
-        ;
-        (mp.ReportLowfi)(l_0_8, 2487859005)
+    L5_5 = {}
+    L5_5[".exe"] = ""
+    L5_5[".cmd"] = ""
+    L5_5[".bat"] = ""
+    L5_5[".com"] = ""
+    L5_5[".pif"] = ""
+    L5_5[".scr"] = ""
+    L7_7 = L4_4
+    L6_6 = L4_4.sub
+    L8_8 = -4
+    L6_6 = L6_6(L7_7, L8_8)
+    L6_6 = L5_5[L6_6]
+    if L6_6 then
+      L7_7 = L4_4
+      L6_6 = L4_4.match
+      L8_8 = "^ms%l%l%l+%.%l%l%l$"
+      L6_6 = L6_6(L7_7, L8_8)
+      if L6_6 == nil then
+        L7_7 = L4_4
+        L6_6 = L4_4.match
+        L8_8 = "^cc%l%l%l+%.%l%l%l$"
+        L6_6 = L6_6(L7_7, L8_8)
+      elseif L6_6 ~= nil then
+        L6_6 = mp
+        L6_6 = L6_6.get_contextdata
+        L7_7 = mp
+        L7_7 = L7_7.CONTEXT_DATA_PROCESSDEVICEPATH
+        L6_6 = L6_6(L7_7)
+        L7_7 = string
+        L7_7 = L7_7.lower
+        L8_8 = L6_6
+        L7_7 = L7_7(L8_8)
+        L8_8 = L7_7.sub
+        L8_8 = L8_8(L7_7, -11)
+        if L8_8 ~= "\\local\\temp" then
+          L8_8 = L7_7.sub
+          L8_8 = L8_8(L7_7, -20)
+        elseif L8_8 == "\\local settings\\temp" then
+          L8_8 = MpCommon
+          L8_8 = L8_8.PathToWin32Path
+          L8_8 = L8_8(L6_6)
+          L8_8 = L8_8 .. "\\" .. L4_4
+          mp.ReportLowfi(L8_8, 2487859005)
+        end
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,26 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/66d7da63779c_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2, l_0_3 = nil
-if pcall(mp.GetParentProcInfo) and mp.GetParentProcInfo ~= nil then
-  l_0_2 = (mp.GetParentProcInfo).ppid
-  l_0_3 = (mp.GetParentProcInfo).image_path
-  local l_0_4 = nil
-  local l_0_5 = nil
-  if (string.find)(((string.lower)(l_0_3)):match("([^\\]+)$"), "fusioninventory-agent_windows", 1, true) or (string.find)(((string.lower)(l_0_3)):match("([^\\]+)$"), "ledkeeper2.exe", 1, true) or (string.find)(((string.lower)(l_0_3)):match("([^\\]+)$"), "remote access.exe", 1, true) or (string.find)(((string.lower)(l_0_3)):match("([^\\]+)$"), "skype.exe", 1, true) and (string.find)((string.lower)(l_0_3), ":\\program files", 1, true) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L2_2 = pcall
+L3_3 = mp
+L3_3 = L3_3.GetParentProcInfo
+L3_3 = L2_2(L3_3)
+if L2_2 and L3_3 ~= nil then
+  L0_0 = L3_3.ppid
+  L1_1 = L3_3.image_path
+  L4_4 = string
+  L4_4 = L4_4.lower
+  L5_5 = L1_1
+  L4_4 = L4_4(L5_5)
+  L5_5 = L4_4.match
+  L5_5 = L5_5(L4_4, "([^\\]+)$")
+  if string.find(L5_5, "fusioninventory-agent_windows", 1, true) or string.find(L5_5, "ledkeeper2.exe", 1, true) or string.find(L5_5, "remote access.exe", 1, true) or string.find(L5_5, "skype.exe", 1, true) and string.find(L4_4, ":\\program files", 1, true) then
     return mp.CLEAN
   end
-  if l_0_2 ~= nil and l_0_3 ~= nil then
-    TrackPidAndTechnique(l_0_2, "T1562.004", "disablefirewall")
-    if IsDetectionThresholdMet(l_0_2) then
+  if L0_0 ~= nil and L1_1 ~= nil then
+    TrackPidAndTechnique(L0_0, "T1562.004", "disablefirewall")
+    if IsDetectionThresholdMet(L0_0) then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.LOWFI
-end
-
+L4_4 = mp
+L4_4 = L4_4.LOWFI
+return L4_4

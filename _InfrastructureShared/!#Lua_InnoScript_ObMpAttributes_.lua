@@ -1,19 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_InnoScript_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 800000 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 800000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = nil
-l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_LOWERCASE, mp.FILEPATH_QUERY_FNAME))
-if l_0_1 ~= nil and (string.sub)(l_0_1, -17) == "->(innosetupdata)" then
-  (mp.readprotection)(false)
-  if (mp.readu_u32)((mp.readfile)(0, 4), 1) < 256 then
+L1_1 = nil
+L1_1 = mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_LOWERCASE, mp.FILEPATH_QUERY_FNAME))
+if L1_1 ~= nil and string.sub(L1_1, -17) == "->(innosetupdata)" then
+  mp.readprotection(false)
+  if mp.readu_u32(mp.readfile(0, 4), 1) < 256 then
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

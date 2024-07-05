@@ -1,18 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1ae615b934692 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC57: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC57: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC57: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC57: Unhandled construct in 'MakeBoolean' P3
-
-if ((not (hstrlog[7]).matched and not (hstrlog[8]).matched and not (hstrlog[9]).matched and not (hstrlog[10]).matched and (hstrlog[12]).matched) or (hstrlog[11]).matched) and (hstrlog[17]).matched then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2
+L0_0 = hstrlog
+L0_0 = L0_0[7]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[8]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[9]
+    L0_0 = L0_0.matched
+    if not L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[10]
+      L0_0 = L0_0.matched
+      if not L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[11]
+        L0_0 = L0_0.matched
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L1_1 = hstrlog
+L1_1 = L1_1[12]
+L1_1 = L1_1.matched
+if not L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[13]
+  L1_1 = L1_1.matched
+  if not L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[14]
+    L1_1 = L1_1.matched
+    if not L1_1 then
+      L1_1 = hstrlog
+      L1_1 = L1_1[15]
+      L1_1 = L1_1.matched
+      if not L1_1 then
+        L1_1 = hstrlog
+        L1_1 = L1_1[16]
+        L1_1 = L1_1.matched
+        if not L1_1 then
+          L1_1 = hstrlog
+          L1_1 = L1_1[17]
+          L1_1 = L1_1.matched
+        end
+      end
+    end
+  end
+end
+if L0_0 and L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

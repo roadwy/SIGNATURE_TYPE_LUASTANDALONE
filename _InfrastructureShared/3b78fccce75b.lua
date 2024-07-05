@@ -1,26 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3b78fccce75b 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (pe.get_exports)()
-if l_0_0 < 4 then
+local L0_0
+L0_0 = pe
+L0_0 = L0_0.get_exports
+L0_0 = L0_0()
+if L0_0 < 4 then
   return mp.CLEAN
 end
-local l_0_2 = {}
-l_0_2.ExecutePatch = 1
-l_0_2["Main@12"] = 1
-l_0_2.MakeUuid = 1
-l_0_2.kAiCode = 1
-local l_0_3 = 0
-for l_0_7 = 1, l_0_0 do
-  local l_0_8 = (pe.mmap_string_rva)((l_0_1[l_0_7]).namerva, 64)
-  if l_0_2[l_0_8] then
-    l_0_3 = l_0_3 + l_0_2[l_0_8]
-  end
+for _FORV_7_ = 1, L0_0 do
 end
-if l_0_3 == 4 then
+if 0 + ({
+  ["ExecutePatch"] = 1,
+  ["Main@12"] = 1,
+  ["MakeUuid"] = 1,
+  ["kAiCode"] = 1
+})[pe.mmap_string_rva(L0_0()[_FORV_7_].namerva, 64)] == 4 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

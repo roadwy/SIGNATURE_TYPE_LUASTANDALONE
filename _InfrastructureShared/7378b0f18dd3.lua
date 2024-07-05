@@ -1,29 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7378b0f18dd3 
-
--- params : ...
--- function num : 0
-local l_0_0 = 3
-local l_0_1 = pevars.epsec
-if (hstrlog[1]).matched and mp.HSTR_WEIGHT >= 2 then
+local L0_0, L1_1
+L0_0 = 3
+L1_1 = pevars
+L1_1 = L1_1.epsec
+if hstrlog[1].matched and mp.HSTR_WEIGHT >= 2 then
   return mp.INFECTED
 end
-if (mp.getfilesize)() < 40960 or pehdr.NumberOfSections < l_0_0 then
+if mp.getfilesize() < 40960 or L0_0 > pehdr.NumberOfSections then
   return mp.CLEAN
 end
-local l_0_2 = (hstrlog[1]).VA - pehdr.ImageBase
-local l_0_3 = (pesecs[l_0_0]).VirtualAddress
-local l_0_4 = (pesecs[l_0_0]).VirtualSize
-local l_0_5 = (pesecs[l_0_1]).VirtualAddress
-local l_0_6 = (pesecs[l_0_1]).VirtualSize
-if (l_0_3 <= l_0_2 and l_0_2 <= l_0_3 + l_0_4) or l_0_5 <= l_0_2 and l_0_2 <= l_0_5 + l_0_6 then
+if hstrlog[1].VA - pehdr.ImageBase >= pesecs[L0_0].VirtualAddress and hstrlog[1].VA - pehdr.ImageBase <= pesecs[L0_0].VirtualAddress + pesecs[L0_0].VirtualSize or hstrlog[1].VA - pehdr.ImageBase >= pesecs[L1_1].VirtualAddress and hstrlog[1].VA - pehdr.ImageBase <= pesecs[L1_1].VirtualAddress + pesecs[L1_1].VirtualSize then
   return mp.INFECTED
 end
-if peattributes.epscn_islast == true and peattributes.lastscn_executable == true and (mp.bitand)((pesecs[pehdr.NumberOfSections]).Characteristics, 3758096384) == 3758096384 then
-  (mp.set_mpattribute)("do_exhaustivehstr_rescan")
-  ;
-  (pe.reemulate)()
+if peattributes.epscn_islast == true and peattributes.lastscn_executable == true and mp.bitand(pesecs[pehdr.NumberOfSections].Characteristics, 3758096384) == 3758096384 then
+  mp.set_mpattribute("do_exhaustivehstr_rescan")
+  pe.reemulate()
   return mp.CLEAN
 end
 return mp.CLEAN
-

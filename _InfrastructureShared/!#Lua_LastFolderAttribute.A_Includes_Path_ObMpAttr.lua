@@ -1,54 +1,107 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_LastFolderAttribute.A_Includes_Path_ObMpAttr 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 == nil or #l_0_0 <= 2 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_PATH
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L12_12 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L1_1(L2_2, L3_3))
+if L0_0 ~= nil then
+  L1_1 = #L0_0
+elseif L1_1 <= 1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-l_0_0 = normalize_path(l_0_0)
-if l_0_0 == nil then
-  return mp.CLEAN
+L1_1 = normalize_path
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L0_0 = L1_1
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (string.gsub)(l_0_0, "\\", "")
-if l_0_2 == nil or l_0_2 < 1 or l_0_2 >= 12 then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.gsub
+L2_2 = L0_0
+L3_3 = "\\"
+L4_4 = ""
+L2_2 = L1_1(L2_2, L3_3, L4_4)
+if L2_2 == nil or L2_2 >= 12 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-l_0_0 = l_0_0:gsub("%s", "/x20")
-local l_0_3 = (string.gmatch)(l_0_0, "[^\\]+")
-local l_0_4 = "Lua:LastFolder"
-local l_0_5 = (string.format)("%sCount!%s", l_0_4, tostring(l_0_2))
-local l_0_6 = false
-for l_0_10 in l_0_3 do
-  if l_0_2 >= 0 and l_0_2 <= 5 and #l_0_10 >= 1 then
-    local l_0_11 = (string.format)("%s%s!", l_0_4, tostring(l_0_2))
-    if l_0_11 ~= nil then
-      l_0_6 = true
-      local l_0_12 = l_0_11 .. l_0_10
-      if #l_0_12 <= 63 then
-        (mp.set_mpattribute)(l_0_12)
-      else
-        ;
-        (mp.set_mpattribute)(l_0_12:sub(1, 63))
-        ;
-        (mp.set_mpattribute)(l_0_11 .. ":longfolder")
+L3_3 = "Lua:LastFolder"
+L4_4 = string
+L4_4 = L4_4.format
+L5_5 = "%sCount!%s"
+L6_6 = L3_3
+L12_12 = L7_7(L8_8)
+L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L7_7(L8_8))
+if L2_2 == 0 then
+  L5_5 = #L0_0
+  if L5_5 == 2 then
+    L5_5 = string
+    L5_5 = L5_5.sub
+    L6_6 = L0_0
+    L5_5 = L5_5(L6_6, L7_7)
+    if L5_5 == ":" then
+      L5_5 = mp
+      L5_5 = L5_5.set_mpattribute
+      L6_6 = L3_3
+      L6_6 = L6_6 .. L7_7 .. L8_8
+      L5_5(L6_6)
+      L5_5 = mp
+      L5_5 = L5_5.set_mpattribute
+      L6_6 = L4_4
+      L5_5(L6_6)
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
+    end
+  end
+end
+L6_6 = L0_0
+L5_5 = L0_0.gsub
+L5_5 = L5_5(L6_6, L7_7, L8_8)
+L0_0 = L5_5
+L5_5 = string
+L5_5 = L5_5.gmatch
+L6_6 = L0_0
+L5_5 = L5_5(L6_6, L7_7)
+L6_6 = false
+for L10_10 in L5_5, nil, nil do
+  if L2_2 >= 0 and L2_2 <= 5 then
+    L11_11 = #L10_10
+    if L11_11 >= 1 then
+      L11_11 = string
+      L11_11 = L11_11.format
+      L12_12 = "%s%s!"
+      L11_11 = L11_11(L12_12, L3_3, tostring(L2_2))
+      if L11_11 ~= nil then
+        L6_6 = true
+        L12_12 = L11_11
+        L12_12 = L12_12 .. L10_10
+        if #L12_12 <= 63 then
+          mp.set_mpattribute(L12_12)
+        else
+          mp.set_mpattribute(L12_12:sub(1, 63))
+          mp.set_mpattribute(L11_11 .. ":longfolder")
+        end
       end
     end
   end
-  do
-    do
-      l_0_2 = l_0_2 - 1
-      if l_0_2 < 0 then
-        break
-      end
-      -- DECOMPILER ERROR at PC111: LeaveBlock: unexpected jumping out DO_STMT
-
-    end
+  L2_2 = L2_2 - 1
+  if L2_2 < 0 then
+    break
   end
 end
-if l_0_6 == true then
-  (mp.set_mpattribute)(l_0_5)
+if L6_6 == true then
+  L7_7(L8_8)
 end
-return mp.CLEAN
-
+return L7_7

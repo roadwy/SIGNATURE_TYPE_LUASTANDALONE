@@ -1,33 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3f5fb0fef 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC31: Confused about usage of register: R0 in 'UnsetPending'
-
-  if not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_4 = nil
-    for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)((this_sigattrlog[2]).utf8p2)) do
-      local l_0_5 = nil
-      -- DECOMPILER ERROR at PC39: Confused about usage of register: R6 in 'UnsetPending'
-
-      R6_PC39 = (mp.ContextualExpandEnvironmentVariables)(R6_PC39)
-      R6_PC39 = (string.lower)(R6_PC39)
-      if (string.find)(R6_PC39, "control.exe$") == nil and (sysio.IsFileExists)(R6_PC39) and (string.find)(R6_PC39, "\\windows\\.*%.cpl$") == nil and (string.find)(R6_PC39, "\\windows\\.*%.dll$") == nil then
-        (bm.add_related_file)(R6_PC39)
-        return mp.INFECTED
-      end
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
     end
   end
-  do
-    return mp.CLEAN
+end
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    L6_6 = string.lower(L6_6)
+    if string.find(L6_6, "control.exe$") == nil and sysio.IsFileExists(L6_6) and string.find(L6_6, "\\windows\\.*%.cpl$") == nil and string.find(L6_6, "\\windows\\.*%.dll$") == nil then
+      bm.add_related_file(L6_6)
+      return mp.INFECTED
+    end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

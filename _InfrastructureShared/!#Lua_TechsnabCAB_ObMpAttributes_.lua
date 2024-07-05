@@ -1,68 +1,167 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_TechsnabCAB_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if mp.HEADERPAGE_SZ < 1024 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if L0_0 < 1024 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u32)(headerpage, 1) ~= 1178817357 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= 1178817357 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u16)(headerpage, 27) ~= 1 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u16
+L1_1 = headerpage
+L2_2 = 27
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= 1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u16)(headerpage, 29) == 1 then
-  (mp.set_mpattribute)("Lua:TopLevelSingleFileCAB")
+L0_0 = mp
+L0_0 = L0_0.readu_u16
+L1_1 = headerpage
+L2_2 = 29
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 == 1 then
+  L0_0 = mp
+  L0_0 = L0_0.set_mpattribute
+  L1_1 = "Lua:TopLevelSingleFileCAB"
+  L0_0(L1_1)
 else
-  if (mp.readu_u16)(headerpage, 29) == 2 then
-    (mp.set_mpattribute)("Lua:TopLevelDoubleFileCAB")
+  L0_0 = mp
+  L0_0 = L0_0.readu_u16
+  L1_1 = headerpage
+  L2_2 = 29
+  L0_0 = L0_0(L1_1, L2_2)
+  if L0_0 == 2 then
+    L0_0 = mp
+    L0_0 = L0_0.set_mpattribute
+    L1_1 = "Lua:TopLevelDoubleFileCAB"
+    L0_0(L1_1)
   else
-    return mp.CLEAN
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
   end
 end
-if (mp.readu_u32)(headerpage, 5) ~= 0 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 5
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.readu_u32)(headerpage, 9)
-if l_0_0 < 65536 or l_0_0 > 786432 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 9
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 < 65536 or L0_0 > 786432 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 17) ~= 44 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 17
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= 44 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u16)(headerpage, 31) ~= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u16
+L2_2 = headerpage
+L3_3 = 31
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u16)(headerpage, 33) ~= 1234 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u16
+L2_2 = headerpage
+L3_3 = 33
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= 1234 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u16)(headerpage, 35) ~= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u16
+L2_2 = headerpage
+L3_3 = 35
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.readu_u32)(headerpage, 37)
-if l_0_1 > 1008 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 37
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 > 1008 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(headerpage, l_0_1 + 1) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = headerpage
+L4_4 = L1_1 + 1
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(mp.set_mpattribute)("Lua:PossibleTechsnabCAB")
-if mp.ENGINEBUILD > 12140 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.set_mpattribute
+L3_3 = "Lua:PossibleTechsnabCAB"
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.ENGINEBUILD
+if L2_2 > 12140 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = l_0_1 + 8
-local l_0_3 = nil
-if (mp.getfilesize)() < l_0_0 then
-  l_0_3 = (mp.getfilesize)() - l_0_2
+L2_2 = L1_1 + 8
+L3_3 = nil
+L4_4 = mp
+L4_4 = L4_4.getfilesize
+L4_4 = L4_4()
+if L0_0 > L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.getfilesize
+  L4_4 = L4_4()
+  L3_3 = L4_4 - L2_2
 else
-  l_0_3 = l_0_0 - l_0_2
+  L3_3 = L0_0 - L2_2
 end
-;
-(mp.readprotection)(false)
-local l_0_4 = (mp.readfile)(l_0_2, l_0_3)
-;
-(mp.vfo_add_buffer)(l_0_4, "[CABDATA]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L4_4 = mp
+L4_4 = L4_4.readprotection
+L4_4(false)
+L4_4 = mp
+L4_4 = L4_4.readfile
+L4_4 = L4_4(L2_2, L3_3)
+mp.vfo_add_buffer(L4_4, "[CABDATA]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

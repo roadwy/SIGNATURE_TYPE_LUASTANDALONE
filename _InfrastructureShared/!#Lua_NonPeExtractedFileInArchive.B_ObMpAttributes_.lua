@@ -1,49 +1,113 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_NonPeExtractedFileInArchive.B_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-if l_0_0 == nil or (string.len)(l_0_0) < 22 or (string.find)(l_0_0, "\\appdata\\local\\temp\\", 1, true) == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILEPATH
+L11_11 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L1_1(L2_2))
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  if not (L1_1 < 22) then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L3_3 = "\\appdata\\local\\temp\\"
+    L4_4 = 1
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  end
+elseif L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_1 == nil or (string.len)(l_0_1) < 5 then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_FILENAME
+L11_11 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L2_2(L3_3))
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+elseif L2_2 < 5 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (string.sub)(l_0_1, -4)
-if l_0_2 == nil or (string.len)(l_0_2) < 4 then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.sub
+L3_3 = L1_1
+L4_4 = -4
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.len
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4)
+elseif L3_3 < 4 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = {}
-l_0_3[".cmd"] = true
-l_0_3[".jar"] = true
-l_0_3[".bat"] = true
-l_0_3[".lnk"] = true
-if l_0_3[l_0_2] ~= true then
-  return mp.CLEAN
+L3_3 = {}
+L3_3[".cmd"] = true
+L3_3[".jar"] = true
+L3_3[".bat"] = true
+L3_3[".lnk"] = true
+L4_4 = L3_3[L2_2]
+if L4_4 ~= true then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (string.match)(l_0_0, "\\appdata\\local\\temp\\(.+)")
-if l_0_4 == nil or (string.len)(l_0_4) < 4 then
-  return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.match
+L5_5 = L0_0
+L4_4 = L4_4(L5_5, L6_6)
+if L4_4 ~= nil then
+  L5_5 = string
+  L5_5 = L5_5.len
+  L5_5 = L5_5(L6_6)
+elseif L5_5 < 4 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-if (string.find)(l_0_4, "\\", 1, true) == nil then
-  return mp.CLEAN
+L5_5 = string
+L5_5 = L5_5.find
+L9_9 = true
+L5_5 = L5_5(L6_6, L7_7, L8_8, L9_9)
+if L5_5 == nil then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_5 = {}
-l_0_5.zip = "temp%x_.+%.zip"
-l_0_5.rar = "rar$.+"
-l_0_5["7zip"] = "7z.+"
-l_0_5.wzip = "wz.+"
-for l_0_9,l_0_10 in pairs(l_0_5) do
-  if (string.match)(l_0_4, l_0_10) ~= nil then
-    local l_0_11 = (string.sub)(l_0_2, -3)
-    ;
-    (mp.set_mpattribute)("Lua:NonPeExtractedFileInArchive.B!" .. l_0_11)
-    ;
-    (mp.set_mpattribute)("Lua:NonPeExtractedFileInArchive.B!" .. l_0_11 .. "_" .. l_0_9)
+L5_5 = {}
+L5_5.zip = "temp%x_.+%.zip"
+L5_5.rar = "rar$.+"
+L5_5["7zip"] = "7z.+"
+L5_5.wzip = "wz.+"
+for L9_9, L10_10 in L6_6(L7_7) do
+  L11_11 = string
+  L11_11 = L11_11.match
+  L11_11 = L11_11(L4_4, L10_10)
+  if L11_11 ~= nil then
+    L11_11 = string
+    L11_11 = L11_11.sub
+    L11_11 = L11_11(L2_2, -3)
+    mp.set_mpattribute("Lua:NonPeExtractedFileInArchive.B!" .. L11_11)
+    mp.set_mpattribute("Lua:NonPeExtractedFileInArchive.B!" .. L11_11 .. "_" .. L9_9)
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L6_6

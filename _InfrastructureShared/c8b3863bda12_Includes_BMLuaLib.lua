@@ -1,42 +1,85 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c8b3863bda12_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = 30000000
-local l_0_1 = (bm.GetSignatureMatchDuration)()
-if l_0_0 < l_0_1 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = 30000000
+L1_1 = bm
+L1_1 = L1_1.GetSignatureMatchDuration
+L1_1 = L1_1()
+if L0_0 < L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = nil
-if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).wp2 ~= nil then
-  l_0_2 = (string.lower)((this_sigattrlog[6]).utf8p2)
+L2_2 = nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[6]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[6]
+  L3_3 = L3_3.wp2
+  if L3_3 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(L4_4)
+    L2_2 = L3_3
+  end
 else
-  if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).wp2 ~= nil then
-    l_0_2 = (string.lower)((this_sigattrlog[7]).utf8p2)
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[7]
+  L3_3 = L3_3.matched
+  if L3_3 then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[7]
+    L3_3 = L3_3.wp2
+    if L3_3 ~= nil then
+      L3_3 = string
+      L3_3 = L3_3.lower
+      L3_3 = L3_3(L4_4)
+      L2_2 = L3_3
+    end
   else
-    if (this_sigattrlog[8]).matched and (this_sigattrlog[8]).wp2 ~= nil then
-      l_0_2 = (string.lower)((this_sigattrlog[8]).utf8p2)
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[8]
+    L3_3 = L3_3.matched
+    if L3_3 then
+      L3_3 = this_sigattrlog
+      L3_3 = L3_3[8]
+      L3_3 = L3_3.wp2
+      if L3_3 ~= nil then
+        L3_3 = string
+        L3_3 = L3_3.lower
+        L3_3 = L3_3(L4_4)
+        L2_2 = L3_3
+      end
     end
   end
 end
-if l_0_2 ~= nil then
-  local l_0_3 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-  for l_0_7,l_0_8 in ipairs(l_0_3) do
-    l_0_8 = (mp.ContextualExpandEnvironmentVariables)(l_0_8)
-    if (sysio.IsFileExists)(l_0_8) then
+if L2_2 ~= nil then
+  L3_3 = mp
+  L3_3 = L3_3.GetExecutablesFromCommandLine
+  L3_3 = L3_3(L4_4)
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+    if sysio.IsFileExists(L8_8) then
       return mp.CLEAN
     end
   end
-  do
-    do
-      if (string.find)(l_0_2, ".py", 1, true) or (string.find)(l_0_2, ".pl", 1, true) or (string.find)(l_0_2, ".rb", 1, true) then
-        return mp.CLEAN
-      end
-      reportRelatedBmHits()
-      addRelatedProcess()
-      return mp.INFECTED
+  L7_7 = 1
+  L8_8 = true
+  if not L4_4 then
+    L7_7 = 1
+    L8_8 = true
+    if not L4_4 then
+      L7_7 = 1
+      L8_8 = true
     end
+  elseif L4_4 then
+    return L4_4
   end
 end
-
+L3_3 = reportRelatedBmHits
+L3_3()
+L3_3 = addRelatedProcess
+L3_3()
+L3_3 = mp
+L3_3 = L3_3.INFECTED
+return L3_3

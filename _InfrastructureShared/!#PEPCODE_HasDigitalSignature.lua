@@ -1,22 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_HasDigitalSignature 
-
--- params : ...
--- function num : 0
-if ((pehdr.DataDirectory)[5]).RVA <= 0 then
+local L0_0
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[5]
+L0_0 = L0_0.RVA
+if L0_0 <= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[5]
+L0_0 = L0_0.Size
+if L0_0 <= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L0_0 = L0_0(pehdr.DataDirectory[5].RVA, 9)
+if mp.readu_u32(L0_0, 5) ~= 131584 then
   return mp.CLEAN
 end
-if ((pehdr.DataDirectory)[5]).Size <= 0 then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)(((pehdr.DataDirectory)[5]).RVA, 9)
-if (mp.readu_u32)(l_0_0, 5) ~= 131584 then
-  return mp.CLEAN
-end
-if l_0_0:byte(9) ~= 48 then
+if L0_0:byte(9) ~= 48 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

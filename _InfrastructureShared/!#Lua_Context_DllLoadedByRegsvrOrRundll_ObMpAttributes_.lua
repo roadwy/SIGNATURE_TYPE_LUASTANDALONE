@@ -1,21 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_DllLoadedByRegsvrOrRundll_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_0 ~= "regsvr32.exe" and l_0_0 ~= "rundll32.exe" then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if (MpCommon.QueryPersistContext)(l_0_1, "DllLoadedViaLnk") then
-  if l_0_0 == "regsvr32.exe" then
-    (mp.set_mpattribute)("Lua:Context/DllViaLnkRegsvrLoad")
-  else
-    if l_0_0 == "rundll32.exe" then
-      (mp.set_mpattribute)("Lua:Context/DllviaLnkRundllLoad")
-    end
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(L0_0)
+L0_0 = L1_1
+if L0_0 ~= "regsvr32.exe" and L0_0 ~= "rundll32.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L1_1 = L1_1(mp.FILEPATH_QUERY_LOWERCASE)
+if MpCommon.QueryPersistContext(L1_1, "DllLoadedViaLnk") then
+  if L0_0 == "regsvr32.exe" then
+    mp.set_mpattribute("Lua:Context/DllViaLnkRegsvrLoad")
+  elseif L0_0 == "rundll32.exe" then
+    mp.set_mpattribute("Lua:Context/DllviaLnkRundllLoad")
   end
 end
 return mp.CLEAN
-

@@ -1,25 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b32d4051a0 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(bm.get_current_process_startup_info)
-if l_0_0 then
-  local l_0_2 = l_0_1.command_line
-  if l_0_2 ~= nil then
-    l_0_2 = (string.lower)(l_0_2)
-    local l_0_3 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-    for l_0_7,l_0_8 in ipairs(l_0_3) do
-      l_0_8 = (mp.ContextualExpandEnvironmentVariables)(l_0_8)
-      if (sysio.IsFileExists)(l_0_8) then
-        (bm.add_related_file)(l_0_8)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = pcall
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L0_0(L1_1)
+if L0_0 then
+  L2_2 = L1_1.command_line
+  if L2_2 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(L4_4)
+    L2_2 = L3_3
+    L3_3 = mp
+    L3_3 = L3_3.GetExecutablesFromCommandLine
+    L3_3 = L3_3(L4_4)
+    for L7_7, L8_8 in L4_4(L5_5) do
+      L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+      if sysio.IsFileExists(L8_8) then
+        bm.add_related_file(L8_8)
       end
     end
   end
 end
-do
-  l_0_2 = mp
-  l_0_2 = l_0_2.INFECTED
-  return l_0_2
-end
-
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

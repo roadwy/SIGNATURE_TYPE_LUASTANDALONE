@@ -1,43 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3346761dd 
-
--- params : ...
--- function num : 0
-if (mp.IsHipsRuleEnabled)("c1db55ab-c21a-4637-bb3f-a12568109d35") ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.IsHipsRuleEnabled
+L1_1 = "c1db55ab-c21a-4637-bb3f-a12568109d35"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.IsKnownFriendlyFile)((MpCommon.PathToWin32Path)(l_0_0), true, true) == true then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.IsKnownFriendlyFile
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L3_3 = L0_0
+L2_2 = L2_2(L3_3)
+L3_3 = true
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+if L1_1 == true then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (MpCommon.QueryPersistContext)(l_0_0, "RansomExtensionParentBlock") then
-  return mp.INFECTED
+L1_1 = MpCommon
+L1_1 = L1_1.QueryPersistContext
+L2_2 = L0_0
+L3_3 = "RansomExtensionParentBlock"
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
 end
-if not (MpCommon.QueryPersistContext)(l_0_0, "RansomExtensionParent") then
-  return mp.CLEAN
+L1_1 = MpCommon
+L1_1 = L1_1.QueryPersistContext
+L2_2 = L0_0
+L3_3 = "RansomExtensionParent"
+L1_1 = L1_1(L2_2, L3_3)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = -1
-local l_0_2 = -1
-local l_0_3 = (MpCommon.GetPersistContext)(l_0_0)
-if l_0_3 ~= nil then
-  for l_0_7,l_0_8 in ipairs(l_0_3) do
-    local l_0_9 = tonumber((string.match)(l_0_8, "^Age:([0-9]+)$"))
-    if l_0_9 ~= nil and l_0_1 < l_0_9 then
-      l_0_1 = l_0_9
+L1_1 = -1
+L2_2 = -1
+L3_3 = MpCommon
+L3_3 = L3_3.GetPersistContext
+L3_3 = L3_3(L4_4)
+if L3_3 ~= nil then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if tonumber(string.match(L8_8, "^Age:([0-9]+)$")) ~= nil and L1_1 < tonumber(string.match(L8_8, "^Age:([0-9]+)$")) then
+      L1_1 = tonumber(string.match(L8_8, "^Age:([0-9]+)$"))
     end
-    local l_0_10 = tonumber((string.match)(l_0_8, "^Prevalence:([0-9]+)$"))
-    if l_0_10 ~= nil and l_0_2 < l_0_10 then
-      l_0_2 = l_0_10
+    if tonumber(string.match(L8_8, "^Prevalence:([0-9]+)$")) ~= nil and L2_2 < tonumber(string.match(L8_8, "^Prevalence:([0-9]+)$")) then
+      L2_2 = tonumber(string.match(L8_8, "^Prevalence:([0-9]+)$"))
     end
   end
 end
-do
-  if l_0_1 > -1 and l_0_1 <= 1 and l_0_2 > -1 and l_0_2 <= 100 then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
+if L1_1 > -1 and L1_1 <= 1 and L2_2 > -1 and L2_2 <= 100 then
+  return L4_4
 end
-
+return L4_4

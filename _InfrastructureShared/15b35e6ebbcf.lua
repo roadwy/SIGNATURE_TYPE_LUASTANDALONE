@@ -1,32 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b35e6ebbcf 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  local l_0_1 = ((string.lower)((string.sub)(l_0_0, -18))):match("\\([^\\]+%.exe)$")
-  local l_0_2 = {}
-  l_0_2["explorer.exe"] = true
-  l_0_2["chrome.exe"] = true
-  l_0_2["microsoftedge.exe"] = true
-  l_0_2["iexplore.exe"] = true
-  l_0_2["firefox.exe"] = true
-  l_0_2["cmd.exe"] = true
-  l_0_2["net.exe"] = true
-  l_0_2["winword.exe"] = true
-  l_0_2["excel.exe"] = true
-  l_0_2["onenote.exe"] = true
-  l_0_2["powerpnt.exe"] = true
-  l_0_2["teams.exe"] = true
-  l_0_2["notepad++.exe"] = true
-  l_0_2["powershell.exe"] = true
-  if l_0_2[l_0_1] then
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  if ({
+    ["explorer.exe"] = true,
+    ["chrome.exe"] = true,
+    ["microsoftedge.exe"] = true,
+    ["iexplore.exe"] = true,
+    ["firefox.exe"] = true,
+    ["cmd.exe"] = true,
+    ["net.exe"] = true,
+    ["winword.exe"] = true,
+    ["excel.exe"] = true,
+    ["onenote.exe"] = true,
+    ["powerpnt.exe"] = true,
+    ["teams.exe"] = true,
+    ["notepad++.exe"] = true,
+    ["powershell.exe"] = true
+  })[string.lower(string.sub(L0_0, -18)):match("\\([^\\]+%.exe)$")] then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

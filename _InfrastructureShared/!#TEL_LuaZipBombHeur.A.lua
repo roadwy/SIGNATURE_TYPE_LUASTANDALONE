@@ -1,30 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_LuaZipBombHeur.A 
-
--- params : ...
--- function num : 0
-if mp.HEADERPAGE_SZ < 128 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if L0_0 < 128 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u32)(headerpage, 1) ~= 67324752 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L0_0 = L0_0(L1_1, 1)
+if L0_0 ~= 67324752 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = 10
-local l_0_1 = 1
-local l_0_2 = 1
-while l_0_2 < l_0_0 and l_0_1 + 30 < mp.HEADERPAGE_SZ do
-  if (mp.readu_u32)(headerpage, l_0_1) ~= 67324752 then
+L0_0 = 10
+L1_1 = 1
+while L0_0 > 1 and L1_1 + 30 < mp.HEADERPAGE_SZ do
+  if mp.readu_u32(headerpage, L1_1) ~= 67324752 then
     return mp.CLEAN
   end
-  local l_0_3 = (mp.readu_u32)(headerpage, l_0_1 + 18)
-  local l_0_4 = (mp.readu_u32)(headerpage, l_0_1 + 22)
-  if l_0_3 > 0 and l_0_3 < l_0_4 and l_0_4 > 10485760 and l_0_4 / l_0_3 > 11000 then
+  if mp.readu_u32(headerpage, L1_1 + 18) > 0 and mp.readu_u32(headerpage, L1_1 + 18) < mp.readu_u32(headerpage, L1_1 + 22) and mp.readu_u32(headerpage, L1_1 + 22) > 10485760 and mp.readu_u32(headerpage, L1_1 + 22) / mp.readu_u32(headerpage, L1_1 + 18) > 11000 then
     return mp.INFECTED
   end
-  l_0_1 = l_0_1 + 30 + (mp.readu_u16)(headerpage, l_0_1 + 26) + l_0_3 + (mp.readu_u16)(headerpage, l_0_1 + 28)
-  l_0_2 = l_0_2 + 1
+  L1_1 = L1_1 + 30 + mp.readu_u16(headerpage, L1_1 + 26) + mp.readu_u32(headerpage, L1_1 + 18) + mp.readu_u16(headerpage, L1_1 + 28)
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

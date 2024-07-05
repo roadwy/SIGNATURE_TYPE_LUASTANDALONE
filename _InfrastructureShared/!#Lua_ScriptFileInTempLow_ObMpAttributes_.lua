@@ -1,24 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ScriptFileInTempLow_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-if l_0_0:len() < 24 then
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+L2_2 = L0_0
+L1_1 = L0_0.len
+L1_1 = L1_1(L2_2)
+if L1_1 < 24 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L2_2 = L0_0
+L1_1 = L0_0.match
+L2_2 = L1_1(L2_2, "(.+\\)([^\\]+)$")
+if L1_1 == nil or L2_2 == nil then
   return mp.CLEAN
 end
-local l_0_1, l_0_2 = l_0_0:match("(.+\\)([^\\]+)$")
-if l_0_1 == nil or l_0_2 == nil then
-  return mp.CLEAN
-end
-if l_0_1:len() > 20 and l_0_2:len() > 3 and (string.sub)(l_0_1, -10) == "\\temp\\low\\" then
-  if (string.sub)(l_0_2, -3) == ".js" then
-    (mp.set_mpattribute)("Lua:ContextJSFileInTempLow")
-  else
-    if (string.sub)(l_0_2, -4) == ".vbs" then
-      (mp.set_mpattribute)("Lua:ContextVBSFileInTempLow")
-    end
+if L1_1:len() > 20 and L2_2:len() > 3 and string.sub(L1_1, -10) == "\\temp\\low\\" then
+  if string.sub(L2_2, -3) == ".js" then
+    mp.set_mpattribute("Lua:ContextJSFileInTempLow")
+  elseif string.sub(L2_2, -4) == ".vbs" then
+    mp.set_mpattribute("Lua:ContextVBSFileInTempLow")
   end
 end
 return mp.CLEAN
-

@@ -1,0 +1,2 @@
+updateDomainInfo()
+return mp.CLEAN

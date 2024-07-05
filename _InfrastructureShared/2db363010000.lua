@@ -1,29 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db363010000 
-
--- params : ...
--- function num : 0
-add_related_file_wrapper = function(l_1_0)
-  -- function num : 0_0
-  if l_1_0 ~= nil then
-    local l_1_1 = (mp.GetExecutablesFromCommandLine)(l_1_0)
-    for l_1_5,l_1_6 in ipairs(l_1_1) do
-      l_1_6 = (mp.ContextualExpandEnvironmentVariables)(l_1_6)
-      if (string.find)(l_1_6, "cmstp.exe$") == nil and (sysio.IsFileExists)(l_1_6) then
-        (bm.add_related_file)(l_1_6)
+function add_related_file_wrapper(A0_0)
+  local L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+  if A0_0 ~= nil then
+    L1_1 = mp
+    L1_1 = L1_1.GetExecutablesFromCommandLine
+    L1_1 = L1_1(L2_2)
+    for L5_5, L6_6 in L2_2(L3_3) do
+      L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+      if string.find(L6_6, "cmstp.exe$") == nil and sysio.IsFileExists(L6_6) then
+        bm.add_related_file(L6_6)
       end
     end
   end
 end
-
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  add_related_file_wrapper((this_sigattrlog[1]).utf8p2)
+if this_sigattrlog[1].matched and this_sigattrlog[1].utf8p2 ~= nil then
+  add_related_file_wrapper(this_sigattrlog[1].utf8p2)
 end
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-  add_related_file_wrapper((this_sigattrlog[2]).utf8p1)
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p1 ~= nil then
+  add_related_file_wrapper(this_sigattrlog[2].utf8p1)
 end
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-  add_related_file_wrapper((this_sigattrlog[2]).utf8p2)
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p2 ~= nil then
+  add_related_file_wrapper(this_sigattrlog[2].utf8p2)
 end
 return mp.INFECTED
-

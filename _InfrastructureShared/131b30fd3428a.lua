@@ -1,30 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/131b30fd3428a 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[11]).matched then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC15: Overwrote pending register: R1 in 'AssignReg'
-
-  do
-    if (this_sigattrlog[12]).matched then
-      local l_0_1 = nil
-    end
-    -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC20: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC20: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_1 ~= nil and nil ~= nil and l_0_1 == nil then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[11]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[11]
+  L0_0 = L2_2.utf8p1
 end
-
+L2_2 = this_sigattrlog
+L2_2 = L2_2[12]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[12]
+  L1_1 = L2_2.utf8p1
+end
+if L0_0 ~= nil and L1_1 ~= nil and L0_0 == L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

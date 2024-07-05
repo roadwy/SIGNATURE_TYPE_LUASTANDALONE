@@ -1,76 +1,73 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ebb3cfb24c8b 
-
--- params : ...
--- function num : 0
-local l_0_4 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0, l_0_1, l_0_2, l_0_3 = 0
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = 0
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p2
+  end
 else
-  do
-    -- DECOMPILER ERROR at PC27: Overwrote pending register: R0 in 'AssignReg'
-
-    if not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or l_0_4 ~= nil then
-      local l_0_5 = nil
-      for l_0_9,l_0_10 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_4)) do
-        local l_0_6 = nil
-        -- DECOMPILER ERROR at PC40: Confused about usage of register: R7 in 'UnsetPending'
-
-        R7_PC40 = (mp.ContextualExpandEnvironmentVariables)(R7_PC40)
-        R7_PC40 = (string.lower)(R7_PC40)
-        if (string.find)(R7_PC40, "programdata", 1, true) == nil then
-          return mp.CLEAN
-        else
-          if (string.find)(R7_PC40, "program files", 1, true) == nil then
-            return mp.CLEAN
-          else
-            if (string.find)(R7_PC40, "\\windowsazure\\.-\\waappagent.exe") == nil then
-              return mp.CLEAN
-            else
-              if (string.find)(R7_PC40, "\\windowsazure.-\\windowsazurenetagent.exe") == nil then
-                return mp.CLEAN
-              else
-                if (string.find)(R7_PC40, "c:\\progra~", 1, true) == nil then
-                  return mp.CLEAN
-                else
-                  if (string.find)(R7_PC40, "\\windows\\", 1, true) then
-                    if (string.find)(R7_PC40, "windows\\system", 1, true) == nil then
-                      return mp.CLEAN
-                    else
-                      if (string.find)(R7_PC40, "\\syswow64", 1, true) == nil then
-                        return mp.CLEAN
-                      else
-                        if (string.find)(R7_PC40, "\\assembly\\nativeimages", 1, true) == nil then
-                          return mp.CLEAN
-                        else
-                          if (string.find)(R7_PC40, "\\winsxs", 1, true) == nil then
-                            return mp.CLEAN
-                          else
-                            if (string.find)(R7_PC40, "\\servicing", 1, true) == nil then
-                              return mp.CLEAN
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-        if (sysio.IsFileExists)(R7_PC40) then
-          (bm.add_related_file)(R7_PC40)
-          l_0_5 = l_0_5 + 1
-        end
-      end
-    end
-    do
-      if l_0_5 > 0 then
-        return mp.INFECTED
-      end
-      return mp.CLEAN
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.utf8p2
     end
   end
 end
-
+if L0_0 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    L7_7 = string.lower(L7_7)
+    if string.find(L7_7, "programdata", 1, true) == nil then
+      return mp.CLEAN
+    elseif string.find(L7_7, "program files", 1, true) == nil then
+      return mp.CLEAN
+    elseif string.find(L7_7, "\\windowsazure\\.-\\waappagent.exe") == nil then
+      return mp.CLEAN
+    elseif string.find(L7_7, "\\windowsazure.-\\windowsazurenetagent.exe") == nil then
+      return mp.CLEAN
+    elseif string.find(L7_7, "c:\\progra~", 1, true) == nil then
+      return mp.CLEAN
+    elseif string.find(L7_7, "\\windows\\", 1, true) then
+      if string.find(L7_7, "windows\\system", 1, true) == nil then
+        return mp.CLEAN
+      elseif string.find(L7_7, "\\syswow64", 1, true) == nil then
+        return mp.CLEAN
+      elseif string.find(L7_7, "\\assembly\\nativeimages", 1, true) == nil then
+        return mp.CLEAN
+      elseif string.find(L7_7, "\\winsxs", 1, true) == nil then
+        return mp.CLEAN
+      elseif string.find(L7_7, "\\servicing", 1, true) == nil then
+        return mp.CLEAN
+      end
+    end
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
+      L1_1 = L1_1 + 1
+    end
+  end
+end
+if L1_1 > 0 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

@@ -1,47 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/159b3bc71c99f_Includes_BMLuaLib,Tech 
-
--- params : ...
--- function num : 0
-local l_0_0 = mp.SIGATTR_LOG_SZ
-local l_0_1 = {}
-local l_0_2 = 150000000
-local l_0_3 = (bm.GetSignatureMatchDuration)()
-if l_0_2 < l_0_3 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = mp
+L0_0 = L0_0.SIGATTR_LOG_SZ
+L1_1 = {}
+L2_2 = 150000000
+L3_3 = bm
+L3_3 = L3_3.GetSignatureMatchDuration
+L3_3 = L3_3()
+if L2_2 < L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).wp2 ~= nil then
-    local l_0_4 = (string.lower)((this_sigattrlog[2]).utf8p2)
-    if l_0_4 and (this_sigattrlog[2]).matched and (string.find)(l_0_4, "copy-as-is", 1, true) and (string.find)(l_0_4, "/usr/share/rear", 1, true) then
-      return mp.CLEAN
-    end
-  end
-  local l_0_5 = 0
-  for l_0_9 = 1, l_0_0 do
-    local l_0_10 = (sigattr_tail[l_0_9]).attribute
-    if l_0_10 == 16388 then
-      local l_0_11 = (sigattr_tail[l_0_9]).utf8p1
-      if l_0_11 ~= nil and l_0_11 ~= "" and l_0_1[l_0_11] == nil and (isSensitiveFileForLinux(l_0_11) or (string.find)(l_0_11, ".pfx", -4, true) or (string.find)(l_0_11, ".key", -4, true) or (string.find)(l_0_11, ".ppk", -4, true) or (string.find)(l_0_11, ".keytab", 1, true) or (string.find)(l_0_11, ".htpasswd", 1, true) or (string.find)(l_0_11, "/private-keys-v1.d", 1, true) or (string.find)(l_0_11, "/secring.gpg", 1, true)) then
-        l_0_1[l_0_11] = true
-        ;
-        (bm.add_related_file)(l_0_11)
-        l_0_5 = l_0_5 + 1
+L4_4 = this_sigattrlog
+L4_4 = L4_4[2]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[2]
+  L4_4 = L4_4.wp2
+  if L4_4 ~= nil then
+    L4_4 = string
+    L4_4 = L4_4.lower
+    L4_4 = L4_4(L5_5)
+    if L4_4 then
+      if L5_5 then
+        L8_8 = 1
+        L9_9 = true
+        if L5_5 then
+          L8_8 = 1
+          L9_9 = true
+          if L5_5 then
+            return L5_5
+          end
+        end
       end
     end
   end
-  if l_0_5 >= 10 then
-    TrackPidAndTechniqueBM("BM", "T1560", "Collection_SensitiveFilesOpen")
-    TrackPidAndTechniqueBM("BM", "T1552", "CredentialAccess")
-    addRelatedProcess()
-    reportRelatedBmHits()
-    local l_0_12 = json_encode(l_0_1)
-    ;
-    (bm.add_related_string)("file_metadata", l_0_12, bm.RelatedStringBMReport)
-    return mp.INFECTED
-  end
-  do
-    return mp.CLEAN
+end
+L4_4 = 0
+for L8_8 = 1, L0_0 do
+  L9_9 = sigattr_tail
+  L9_9 = L9_9[L8_8]
+  L9_9 = L9_9.attribute
+  if L9_9 == 16388 then
+    L10_10 = sigattr_tail
+    L10_10 = L10_10[L8_8]
+    L10_10 = L10_10.utf8p1
+    if L10_10 ~= nil and L10_10 ~= "" and L1_1[L10_10] == nil and (isSensitiveFileForLinux(L10_10) or string.find(L10_10, ".pfx", -4, true) or string.find(L10_10, ".key", -4, true) or string.find(L10_10, ".ppk", -4, true) or string.find(L10_10, ".keytab", 1, true) or string.find(L10_10, ".htpasswd", 1, true) or string.find(L10_10, "/private-keys-v1.d", 1, true) or string.find(L10_10, "/secring.gpg", 1, true)) then
+      L1_1[L10_10] = true
+      bm.add_related_file(L10_10)
+      L4_4 = L4_4 + 1
+    end
   end
 end
-
+if L4_4 >= 10 then
+  L8_8 = "Collection_SensitiveFilesOpen"
+  L5_5(L6_6, L7_7, L8_8)
+  L8_8 = "CredentialAccess"
+  L5_5(L6_6, L7_7, L8_8)
+  L5_5()
+  L5_5()
+  L8_8 = L5_5
+  L9_9 = bm
+  L9_9 = L9_9.RelatedStringBMReport
+  L6_6(L7_7, L8_8, L9_9)
+  return L6_6
+end
+return L5_5

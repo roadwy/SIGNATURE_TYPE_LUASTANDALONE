@@ -1,26 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b3deee65b3 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.match)((this_sigattrlog[1]).utf8p1, "\\([%x]+)$")
-if l_0_0 and (string.len)(l_0_0) > 31 then
-  local l_0_1 = (mp.GetMachineGUID)()
-  if l_0_1 and l_0_1 == "E7000F4C-E95C-400D-8EAB-37FF728B4EF2" then
-    do
-      do
-        if (this_sigattrlog[1]).matched then
-          local l_0_2 = (this_sigattrlog[1]).utf8p1
-          if l_0_2 then
-            l_0_2 = (mp.ContextualExpandEnvironmentVariables)(l_0_2)
-            ;
-            (bm.add_related_file)(l_0_2)
-          end
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.match
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.utf8p1
+L2_2 = "\\([%x]+)$"
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  if L1_1 > 31 then
+    L1_1 = mp
+    L1_1 = L1_1.GetMachineGUID
+    L1_1 = L1_1()
+    if L1_1 and L1_1 == "E7000F4C-E95C-400D-8EAB-37FF728B4EF2" then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[1]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[1]
+        L2_2 = L2_2.utf8p1
+        if L2_2 then
+          L2_2 = mp.ContextualExpandEnvironmentVariables(L2_2)
+          bm.add_related_file(L2_2)
         end
-        do return mp.INFECTED end
-        return mp.CLEAN
       end
+      L2_2 = mp
+      L2_2 = L2_2.INFECTED
+      return L2_2
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

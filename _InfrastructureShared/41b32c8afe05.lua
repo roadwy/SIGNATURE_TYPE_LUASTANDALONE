@@ -1,28 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b32c8afe05 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[2]).matched then
-  local l_0_0 = (this_sigattrlog[2]).utf8p1
-  if l_0_0 == nil and (string.len)(l_0_0) < 3 then
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.utf8p1
+  if L0_0 == nil then
+    L1_1 = string
+    L1_1 = L1_1.len
+    L1_1 = L1_1(L0_0)
+    if L1_1 < 3 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
+  end
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(mp.ContextualExpandEnvironmentVariables(L0_0))
+  L0_0 = L1_1
+  L1_1 = string
+  L1_1 = L1_1.match
+  L1_1 = L1_1(L0_0, "(.-)[^\\]-[^\\%.]+$")
+  if L1_1 == nil and string.len(L1_1) < 3 then
     return mp.CLEAN
   end
-  l_0_0 = (string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_0))
-  local l_0_1 = (string.match)(l_0_0, "(.-)[^\\]-[^\\%.]+$")
-  if l_0_1 == nil and (string.len)(l_0_1) < 3 then
-    return mp.CLEAN
-  end
-  local l_0_2 = {}
-  l_0_2[(string.lower)((mp.ContextualExpandEnvironmentVariables)("%localappdata%\\microsoft\\windows\\"))] = true
-  l_0_2[(string.lower)((mp.ContextualExpandEnvironmentVariables)("%system%\\"))] = true
-  l_0_2[(string.lower)((mp.ContextualExpandEnvironmentVariables)("%system%\\config\\systemprofile\\appdata\\local\\microsoftwindows\\"))] = true
-  if l_0_2[l_0_1] then
-    (bm.add_threat_file)(l_0_0)
+  if ({
+    [string.lower(mp.ContextualExpandEnvironmentVariables("%localappdata%\\microsoft\\windows\\"))] = true,
+    [string.lower(MpCommon.ExpandEnvironmentVariables("%system%\\"))] = true,
+    [string.lower(MpCommon.ExpandEnvironmentVariables("%system%\\config\\systemprofile\\appdata\\local\\microsoftwindows\\"))] = true
+  })[L1_1] then
+    bm.add_threat_file(L0_0)
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,37 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_OleFileOverlayExtractor.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_mpattributevalue)("RPF:OleFileHasOverlay")
-if l_0_0 == nil or l_0_0 <= 80 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_mpattributevalue
+L1_1 = "RPF:OleFileHasOverlay"
+L0_0 = L0_0(L1_1)
+if L0_0 == nil or L0_0 <= 80 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = false
-local l_0_2 = (mp.GetCertificateInfo)()
-for l_0_6,l_0_7 in pairs(l_0_2) do
-  if l_0_7.Signers ~= nil then
-    l_0_1 = true
+L1_1 = false
+L2_2 = mp
+L2_2 = L2_2.GetCertificateInfo
+L2_2 = L2_2()
+for _FORV_6_, _FORV_7_ in L3_3(L4_4) do
+  if _FORV_7_.Signers ~= nil then
+    L1_1 = true
     break
   end
 end
-do
-  if l_0_1 == false then
-    (mp.set_mpattribute)("Lua:OleFileOverlayNoCert.A")
-    return mp.CLEAN
-  end
-  local l_0_8 = (mp.getfilesize)()
-  if l_0_8 == nil or l_0_8 <= l_0_0 then
-    return mp.CLEAN
-  end
-  local l_0_9 = l_0_8 - l_0_0
-  if l_0_9 <= 5120000 then
-    (mp.vfo_add_filechunk)(l_0_0, l_0_9, "[OleFileOverlay]", 1)
-    return mp.INFECTED
-  else
-    ;
-    (mp.set_mpattribute)("Lua:OleFileOverlayOverSizeLimit.A")
-  end
-  return mp.CLEAN
+if L1_1 == false then
+  L3_3(L4_4)
+  return L3_3
 end
-
+if L3_3 == nil or L0_0 >= L3_3 then
+  return L4_4
+end
+if L4_4 <= 5120000 then
+  mp.vfo_add_filechunk(L0_0, L4_4, "[OleFileOverlay]", 1)
+  return mp.INFECTED
+else
+  mp.set_mpattribute("Lua:OleFileOverlayOverSizeLimit.A")
+end
+return mp.CLEAN

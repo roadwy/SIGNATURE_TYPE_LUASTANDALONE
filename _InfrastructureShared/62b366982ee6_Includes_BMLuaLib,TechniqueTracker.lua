@@ -1,58 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/62b366982ee6_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = 150000000
-local l_0_1 = (bm.GetSignatureMatchDuration)()
-if l_0_0 < l_0_1 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = 150000000
+L1_1 = bm
+L1_1 = L1_1.GetSignatureMatchDuration
+L1_1 = L1_1()
+if L0_0 < L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).wp1 ~= nil then
-  local l_0_2 = (this_sigattrlog[2]).utf8p1
-  local l_0_3, l_0_4, l_0_5 = l_0_2:match("[^>](.-)([^\\/]-%.?([^%.\\/]*))$")
-  if l_0_4 == nil then
-    return mp.CLEAN
-  end
-  local l_0_6 = {}
-  -- DECOMPILER ERROR at PC45: No list found for R6 , SetList fails
-
-  -- DECOMPILER ERROR at PC46: Overwrote pending register: R7 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC47: Overwrote pending register: R8 in 'AssignReg'
-
-  for l_0_10,l_0_11 in ("wget")("curl") do
-    -- DECOMPILER ERROR at PC50: Overwrote pending register: R12 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC52: Overwrote pending register: R13 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC53: Overwrote pending register: R14 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC54: Overwrote pending register: R15 in 'AssignReg'
-
-    if (("ccrypt").find)("gpg", "shred", "dd", true) then
-      return mp.CLEAN
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.wp1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p1
+    L4_4 = L2_2
+    L3_3 = L2_2.match
+    L5_5 = "[^>](.-)([^\\/]-%.?([^%.\\/]*))$"
+    L5_5 = L3_3(L4_4, L5_5)
+    if L4_4 == nil then
+      L6_6 = mp
+      L6_6 = L6_6.CLEAN
+      return L6_6
+    end
+    L6_6 = {
+      L7_7,
+      L8_8,
+      L9_9,
+      L10_10,
+      L11_11,
+      "ccrypt",
+      "gpg",
+      "shred",
+      "dd",
+      "bash",
+      "tcsh",
+      "ksh",
+      "dash",
+      "zsh"
+    }
+    L10_10 = "sshd"
+    L11_11 = "openssl"
+    for L10_10, L11_11 in L7_7(L8_8) do
+      if string.find(L4_4, L11_11, 1, true) then
+        return mp.CLEAN
+      end
     end
   end
 end
-do
-  do
-    l_0_2()
-    -- DECOMPILER ERROR at PC66: Overwrote pending register: R2 in 'AssignReg'
-
-    l_0_2()
-    -- DECOMPILER ERROR at PC68: Overwrote pending register: R2 in 'AssignReg'
-
-    l_0_2(l_0_3, l_0_4, l_0_5)
-    -- DECOMPILER ERROR at PC73: Overwrote pending register: R2 in 'AssignReg'
-
-    l_0_2()
-    -- DECOMPILER ERROR at PC75: Overwrote pending register: R2 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC76: Overwrote pending register: R2 in 'AssignReg'
-
-    do return l_0_2 end
-    -- WARNING: undefined locals caused missing assignments!
-  end
-end
-
+L2_2 = addRelatedProcess
+L2_2()
+L2_2 = reportRelatedBmHits
+L2_2()
+L2_2 = TrackPidAndTechniqueBM
+L3_3 = "BM"
+L4_4 = "T1036.003"
+L5_5 = "CopyLolbin_DefenseEvasion"
+L2_2(L3_3, L4_4, L5_5)
+L2_2 = RemediateProcessTreeForLinux
+L2_2()
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

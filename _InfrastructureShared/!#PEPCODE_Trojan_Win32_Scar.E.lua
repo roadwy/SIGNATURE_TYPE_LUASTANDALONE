@@ -1,40 +1,93 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Trojan_Win32_Scar.E 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfImage < 106496 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfImage
+if L0_0 < 106496 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfImage > 131072 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfImage
+if L0_0 > 131072 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 5 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).NameDW ~= 2019914798 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 2019914798 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < pevars.epsec then
-  return mp.CLEAN
+L0_0 = pevars
+L0_0 = L0_0.epsec
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+if L0_0 > L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).NameDW ~= 2019914798 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 2019914798 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).VirtualSize < 20992 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.VirtualSize
+if L0_0 < 20992 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).VirtualSize > 23040 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.VirtualSize
+if L0_0 > 23040 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.AddressOfEntryPoint < 5888 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.AddressOfEntryPoint
+if L0_0 < 5888 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.AddressOfEntryPoint > 6144 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.AddressOfEntryPoint
+if L0_0 > 6144 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

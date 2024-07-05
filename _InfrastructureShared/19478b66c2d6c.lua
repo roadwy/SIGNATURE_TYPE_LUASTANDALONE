@@ -1,13 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19478b66c2d6c 
-
--- params : ...
--- function num : 0
-if not peattributes.isexe then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not peattributes.isvbnative then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.isvbnative
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

@@ -1,18 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/442904d10eee 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("MpIsPowerShellAMSIScan") then
-  local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_AMSI_OPERATION_PPID)
-  if l_0_0 then
-    local l_0_1 = (MpCommon.GetProcessElevationAndIntegrityLevel)(l_0_0)
-    if l_0_1 and l_0_1.IntegrityLevel < MpCommon.SECURITY_MANDATORY_HIGH_RID then
-      return mp.INFECTED
-    end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("MpIsPowerShellAMSIScan")
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L0_0 = L0_0(mp.CONTEXT_DATA_AMSI_OPERATION_PPID)
+  if L0_0 and MpCommon.GetProcessElevationAndIntegrityLevel(L0_0) and MpCommon.GetProcessElevationAndIntegrityLevel(L0_0).IntegrityLevel < MpCommon.SECURITY_MANDATORY_HIGH_RID then
+    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

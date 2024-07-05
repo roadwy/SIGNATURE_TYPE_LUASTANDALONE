@@ -1,59 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#999970_Last_VulnerableThirdParty 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_CONTROL_GUID)
-local l_0_2, l_0_3 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_SCANREASON)
-local l_0_4, l_0_5 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_CONTROL_VERSION)
-if l_0_0 and l_0_4 then
-  local l_0_6 = (mp.shr64)(l_0_5, 48)
-  local l_0_7 = (mp.bitand)((mp.shr64)(l_0_5, 32), 65535)
-  local l_0_8 = (mp.bitand)(l_0_5, 65535)
-  if (string.match)(l_0_1, "08b0e5c0%-4fcb%-11cf%-aaa5%-00401c608501") or (string.match)(l_0_1, "8ad9c840%-044e%-11d1%-b3e9%-00805f499d93") or (string.sub)(l_0_1, 1, 9) == "cafeefac-" then
-    if l_0_6 == 6 then
-      if l_0_2 and l_0_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
-        (mp.aggregate_mpattribute)("Context:MSJVM")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = pcall
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_CONTROL_GUID
+L1_1 = L0_0(L1_1, L2_2)
+L2_2 = pcall
+L3_3 = mp
+L3_3 = L3_3.get_contextdata
+L4_4 = mp
+L4_4 = L4_4.CONTEXT_DATA_SCANREASON
+L3_3 = L2_2(L3_3, L4_4)
+L4_4 = pcall
+L5_5 = mp
+L5_5 = L5_5.get_contextdata
+L5_5 = L4_4(L5_5, mp.CONTEXT_DATA_CONTROL_VERSION)
+if L0_0 and L4_4 then
+  if string.match(L1_1, "08b0e5c0%-4fcb%-11cf%-aaa5%-00401c608501") or string.match(L1_1, "8ad9c840%-044e%-11d1%-b3e9%-00805f499d93") or string.sub(L1_1, 1, 9) == "cafeefac-" then
+    if mp.shr64(L5_5, 48) == 6 then
+      if L2_2 and L3_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
+        mp.aggregate_mpattribute("Context:MSJVM")
       end
-      ;
-      (mp.aggregate_mpattribute)("//MpIsIEVScan")
+      mp.aggregate_mpattribute("//MpIsIEVScan")
       return mp.TRUE
     end
-    if l_0_6 == 10 and l_0_7 < 75 then
-      if l_0_2 and l_0_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
-        (mp.aggregate_mpattribute)("Context:MSJVM.B")
+    if mp.shr64(L5_5, 48) == 10 and mp.bitand(mp.shr64(L5_5, 32), 65535) < 75 then
+      if L2_2 and L3_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
+        mp.aggregate_mpattribute("Context:MSJVM.B")
       end
-      ;
-      (mp.aggregate_mpattribute)("//MpIsIEVScan")
+      mp.aggregate_mpattribute("//MpIsIEVScan")
       return mp.TRUE
     end
-    if l_0_6 == 11 and l_0_7 < 161 then
-      if l_0_2 and l_0_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
-        (mp.aggregate_mpattribute)("Context:MSJVM.B")
+    if mp.shr64(L5_5, 48) == 11 and mp.bitand(mp.shr64(L5_5, 32), 65535) < 161 then
+      if L2_2 and L3_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
+        mp.aggregate_mpattribute("Context:MSJVM.B")
       end
-      ;
-      (mp.aggregate_mpattribute)("//MpIsIEVScan")
+      mp.aggregate_mpattribute("//MpIsIEVScan")
       return mp.TRUE
     end
   end
-  if (string.match)(l_0_1, "d27cdb6e%-ae6d%-11cf%-96b8%-444553540000") and (l_0_6 < 28 or l_0_6 ~= 28 or l_0_8 < 161) then
-    if l_0_2 and l_0_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
-      (mp.aggregate_mpattribute)("Context:ShockwaveFlash")
+  if string.match(L1_1, "d27cdb6e%-ae6d%-11cf%-96b8%-444553540000") and (mp.shr64(L5_5, 48) < 28 or mp.shr64(L5_5, 48) == 28 and mp.bitand(L5_5, 65535) < 161) then
+    if L2_2 and L3_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
+      mp.aggregate_mpattribute("Context:ShockwaveFlash")
     end
-    ;
-    (mp.aggregate_mpattribute)("//MpIsIEVScan")
+    mp.aggregate_mpattribute("//MpIsIEVScan")
     return mp.TRUE
   end
-  if (string.match)(l_0_1, "ca8a9780%-280d%-11cf%-a24d%-444553540000") and l_0_6 < 11 then
-    if l_0_2 and l_0_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
-      (mp.aggregate_mpattribute)("Context:AcroPDF")
+  if string.match(L1_1, "ca8a9780%-280d%-11cf%-a24d%-444553540000") and mp.shr64(L5_5, 48) < 11 then
+    if L2_2 and L3_3 ~= mp.SCANREASON_VALIDATION_PRESCAN then
+      mp.aggregate_mpattribute("Context:AcroPDF")
     end
-    ;
-    (mp.aggregate_mpattribute)("//MpIsIEVScan")
+    mp.aggregate_mpattribute("//MpIsIEVScan")
     return mp.TRUE
   end
 end
-do
-  return mp.FALSE
-end
-
+return mp.FALSE

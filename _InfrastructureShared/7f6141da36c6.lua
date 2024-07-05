@@ -1,25 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7f6141da36c6 
-
--- params : ...
--- function num : 0
 if peattributes.ismsil then
-  local l_0_0 = (pe.get_versioninfo)()
-  if l_0_0 == nil then
+  if pe.get_versioninfo() == nil then
     return mp.CLEAN
   end
-  local l_0_1 = {}
-  -- DECOMPILER ERROR at PC14: No list found for R1 , SetList fails
-
-  -- DECOMPILER ERROR at PC15: Overwrote pending register: R2 in 'AssignReg'
-
-  for l_0_5 = "KnowBe4 Ransomware Simulator", #l_0_1 do
-    if l_0_0.ProductName == l_0_1[l_0_5] then
+  for _FORV_5_ = 1, #{
+    "KnowBe4 Ransomware Simulator"
+  } do
+    if pe.get_versioninfo().ProductName == ({
+      "KnowBe4 Ransomware Simulator"
+    })[_FORV_5_] then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

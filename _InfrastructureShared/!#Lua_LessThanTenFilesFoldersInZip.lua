@@ -1,46 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_LessThanTenFilesFoldersInZip 
-
--- params : ...
--- function num : 0
-if mp.HEADERPAGE_SZ < 128 or mp.FOOTERPAGE_SZ < 22 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if not (L0_0 < 128) then
+  L0_0 = mp
+  L0_0 = L0_0.FOOTERPAGE_SZ
+elseif L0_0 < 22 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u32)(headerpage, 1) ~= 67324752 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= 67324752 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 <= 276 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 <= 276 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = 276
-local l_0_2 = (mp.readfile)((mp.getfilesize)() - l_0_1, l_0_1)
-;
-(mp.readprotection)(true)
-if l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = 276
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = mp
+L3_3 = L3_3.getfilesize
+L3_3 = L3_3()
+L3_3 = L3_3 - L1_1
+L2_2 = L2_2(L3_3, L1_1)
+L3_3 = mp
+L3_3 = L3_3.readprotection
+L3_3(true)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = mp.FOOTERPAGE_SZ - 21
-if (mp.readu_u32)(footerpage, l_0_3) ~= 101010256 then
-  l_0_3 = (string.find)(l_0_2, "PK\005\006", 1, true)
-  if l_0_3 == nil then
+L3_3 = mp
+L3_3 = L3_3.FOOTERPAGE_SZ
+L3_3 = L3_3 - 21
+if mp.readu_u32(footerpage, L3_3) ~= 101010256 then
+  L3_3 = string.find(L2_2, "PK\005\006", 1, true)
+  if L3_3 == nil then
     return mp.CLEAN
   end
-  l_0_3 = l_0_3 + mp.FOOTERPAGE_SZ - l_0_1
+  L3_3 = L3_3 + mp.FOOTERPAGE_SZ - L1_1
 end
-;
-(mp.UfsSetMetadataBool)("Lua:FileInZip", true)
-local l_0_4 = (mp.readu_u16)(footerpage, l_0_3 + 10)
-if l_0_4 > 100 then
-  (mp.set_mpattribute)("//Lua:MoreThan100FilesFoldersInZip")
+mp.UfsSetMetadataBool("Lua:FileInZip", true)
+if mp.readu_u16(footerpage, L3_3 + 10) > 100 then
+  mp.set_mpattribute("//Lua:MoreThan100FilesFoldersInZip")
   return mp.CLEAN
 end
-if l_0_4 > 10 then
+if 10 < mp.readu_u16(footerpage, L3_3 + 10) then
   return mp.CLEAN
 end
-;
-(mp.set_mpattribute)("//Lua:LessThanTenFilesFoldersInZip")
+mp.set_mpattribute("//Lua:LessThanTenFilesFoldersInZip")
 return mp.INFECTED
-

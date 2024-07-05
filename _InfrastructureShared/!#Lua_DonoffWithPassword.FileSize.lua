@@ -1,16 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_DonoffWithPassword.FileSize 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-do
-  if l_0_0 == 47104 or l_0_0 == 47574 or l_0_0 == 48128 then
-    local l_0_1 = (string.lower)((mp.getfilename)())
-    if (string.find)(l_0_1, "%-%>%(ole stream") ~= nil then
-      return mp.INFECTED
-    end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 == 47104 or L0_0 == 47574 or L0_0 == 48128 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(mp.getfilename())
+  if string.find(L1_1, "%-%>%(ole stream") ~= nil then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,26 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_Jumplump.G!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0:find("applicationframe", 1, true) or l_0_0:find("wmiprvsd", 1, true) or l_0_0:find("wuapi", 1, true) or l_0_0:find("propsys", 1, true) or l_0_0:find("wbemprox", 1, true) or l_0_0:find("actioncenter", 1, true) then
-  local l_0_1 = {}
-  l_0_1.ShareProviderInitialize = ""
-  l_0_1.ShareProviderUninitialize = ""
-  l_0_1.ShareProviderShareAdd = ""
-  l_0_1.ShareProviderShareSetInfo = ""
-  l_0_1.ShareProviderShareDel = ""
-  local l_0_2, l_0_3 = (pe.get_exports)()
-  if l_0_2 > 3 then
-    for l_0_7 = 1, l_0_2 do
-      if l_0_1[(pe.mmap_string_rva)((l_0_3[l_0_7]).namerva, 64)] then
-        return mp.INFECTED
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L2_2 = L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE)
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE))
+if L0_0 ~= nil then
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L2_2, "applicationframe", 1, true)
+  if not L1_1 then
+    L2_2 = L0_0
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L2_2, "wmiprvsd", 1, true)
+    if not L1_1 then
+      L2_2 = L0_0
+      L1_1 = L0_0.find
+      L1_1 = L1_1(L2_2, "wuapi", 1, true)
+      if not L1_1 then
+        L2_2 = L0_0
+        L1_1 = L0_0.find
+        L1_1 = L1_1(L2_2, "propsys", 1, true)
+        if not L1_1 then
+          L2_2 = L0_0
+          L1_1 = L0_0.find
+          L1_1 = L1_1(L2_2, "wbemprox", 1, true)
+          if not L1_1 then
+            L2_2 = L0_0
+            L1_1 = L0_0.find
+            L1_1 = L1_1(L2_2, "actioncenter", 1, true)
+          end
+        end
+      end
+    end
+  elseif L1_1 then
+    L1_1 = {}
+    L1_1.ShareProviderInitialize = ""
+    L1_1.ShareProviderUninitialize = ""
+    L1_1.ShareProviderShareAdd = ""
+    L1_1.ShareProviderShareSetInfo = ""
+    L1_1.ShareProviderShareDel = ""
+    L2_2 = pe
+    L2_2 = L2_2.get_exports
+    L2_2 = L2_2()
+    if L2_2 > 3 then
+      for _FORV_7_ = 1, L2_2 do
+        if L1_1[pe.mmap_string_rva(L2_2()[_FORV_7_].namerva, 64)] then
+          return mp.INFECTED
+        end
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,23 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PE_SignedAndSubPageSectionAligned 
-
--- params : ...
--- function num : 0
-if pehdr.Machine ~= 332 and pehdr.Machine ~= 34404 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = pehdr
+L0_0 = L0_0.Machine
+if L0_0 ~= 332 then
+  L0_0 = pehdr
+  L0_0 = L0_0.Machine
+  if L0_0 ~= 34404 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if pehdr.SectionAlignment >= 4096 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SectionAlignment
+if L0_0 >= 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_SECURITY]).RVA
-local l_0_1 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_SECURITY]).Size
-if l_0_0 == 0 or l_0_1 == 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L1_1 = pe
+L1_1 = L1_1.IMAGE_DIRECTORY_ENTRY_SECURITY
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.RVA
+L1_1 = pehdr
+L1_1 = L1_1.DataDirectory
+L2_2 = pe
+L2_2 = L2_2.IMAGE_DIRECTORY_ENTRY_SECURITY
+L1_1 = L1_1[L2_2]
+L1_1 = L1_1.Size
+if L0_0 == 0 or L1_1 == 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = pehdr.AddressOfEntryPoint
-local l_0_3 = (pe.foffset_rva)(l_0_2)
-if l_0_0 < l_0_3 and l_0_3 < l_0_0 + l_0_1 then
-  (mp.set_mpattribute)("Lua:PE:SignedAndSubPageSectionAligned_EPInCert")
+L2_2 = pehdr
+L2_2 = L2_2.AddressOfEntryPoint
+if L0_0 < pe.foffset_rva(L2_2) and pe.foffset_rva(L2_2) < L0_0 + L1_1 then
+  mp.set_mpattribute("Lua:PE:SignedAndSubPageSectionAligned_EPInCert")
 end
 return mp.INFECTED
-

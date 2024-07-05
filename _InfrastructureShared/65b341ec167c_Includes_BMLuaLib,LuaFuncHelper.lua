@@ -1,41 +1,62 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/65b341ec167c_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcallEx("get_startup_info", bm.get_current_process_startup_info)
-do
-  local l_0_2, l_0_3 = l_0_0 and l_0_1 ~= nil and l_0_1.ppid ~= nil and l_0_1.ppid or ""
-  do
-    pcallEx("maceSendConfig", maceSendConfig, "mace_atosev")
-    pcallEx("reportRelatedBmHits", reportRelatedBmHits)
-    pcallEx("triggerMemoryScanOnProcessTree", triggerMemoryScanOnProcessTree, false, true, "SMS_H", 5000, "Behavior:Win32/CobaltStrike.D!sms")
-    pcallEx("addChildrenAsThreat", addChildrenAsThreat)
-    pcallEx("reportPatch", function()
-  -- function num : 0_1 , upvalues : l_0_4
-  local l_2_0 = GetRollingQueueKeys("82e27b72_" .. l_0_4)
-  if l_2_0 ~= nil and type(l_2_0) == "table" then
-    for l_2_4,l_2_5 in ipairs(l_2_0) do
-      (bm.add_related_string)("mace_82e27b72", l_2_5, bm.RelatedStringBMReport)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = pcallEx
+L1_1 = "get_startup_info"
+L2_2 = bm
+L2_2 = L2_2.get_current_process_startup_info
+L1_1 = L0_0(L1_1, L2_2)
+if L0_0 and L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L2_2 = L1_1.ppid
+  end
+else
+  L2_2 = L2_2 or ""
+end
+function L3_3()
+  local L0_6, L1_7, L2_8, L3_9, L4_10, L5_11
+  L0_6 = GetRollingQueueKeys
+  L0_6 = L0_6(L1_7)
+  if L0_6 ~= nil then
+    if L1_7 == "table" then
+      for L4_10, L5_11 in L1_7(L2_8) do
+        bm.add_related_string("mace_015b9d6d", L5_11, bm.RelatedStringBMReport)
+      end
     end
   end
 end
-)
-    pcallEx("reportHosts", function()
-  -- function num : 0_0 , upvalues : l_0_4
-  local l_1_0 = GetRollingQueueKeys("015b9d6d_" .. l_0_4)
-  if l_1_0 ~= nil and type(l_1_0) == "table" then
-    for l_1_4,l_1_5 in ipairs(l_1_0) do
-      (bm.add_related_string)("mace_015b9d6d", l_1_5, bm.RelatedStringBMReport)
+function L4_4()
+  local L0_12, L1_13, L2_14, L3_15, L4_16, L5_17
+  L0_12 = GetRollingQueueKeys
+  L0_12 = L0_12(L1_13)
+  if L0_12 ~= nil then
+    if L1_13 == "table" then
+      for L4_16, L5_17 in L1_13(L2_14) do
+        bm.add_related_string("mace_82e27b72", L5_17, bm.RelatedStringBMReport)
+      end
     end
   end
 end
-)
-    reportPcallEx()
-    reportRdTrace()
-    do return mp.INFECTED end
-    -- DECOMPILER ERROR at PC57: freeLocal<0 in 'ReleaseLocals'
-
+function L5_5()
+  local L0_18, L1_19
+  L0_18 = string
+  L0_18 = L0_18.format
+  L1_19 = "ScanBeaconing.A:%s"
+  L0_18 = L0_18(L1_19, _UPVALUE0_)
+  L1_19 = MpCommon
+  L1_19 = L1_19.AtomicCounterValue
+  L1_19 = L1_19(L0_18)
+  if L1_19 ~= nil then
+    bm.add_related_string("mace_7d0d767b", string.format("%d", L1_19), bm.RelatedStringBMReport)
   end
 end
-
+pcallEx("BlockC2Connection", BlockC2Connection, "cobaltstrike_e")
+pcallEx("maceSendConfig", maceSendConfig, "mace_atosev")
+pcallEx("reportRelatedBmHits", reportRelatedBmHits)
+pcallEx("triggerMemoryScanOnProcessTree", triggerMemoryScanOnProcessTree, false, true, "SMS_H", 5000, "Behavior:Win32/CobaltStrike.D!sms")
+pcallEx("addChildrenAsThreat", addChildrenAsThreat)
+pcallEx("reportPatch", L4_4)
+pcallEx("reportHosts", L3_3)
+pcallEx("reportBeaconing", L5_5)
+reportPcallEx()
+reportRdTrace()
+return mp.INFECTED

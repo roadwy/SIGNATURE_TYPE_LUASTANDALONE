@@ -1,20 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b3926d67eb 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if (string.find)(l_0_0, "\\atbroker.exe") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, "\\atbroker.exe")
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\atbroker.exe")
-do
-  if l_0_1 ~= nil then
-    local l_0_2 = (sysio.GetRegValueAsString)(l_0_1, "Debugger")
-    if l_0_2 ~= nil and (string.len)(l_0_2) >= 1 then
-      return mp.INFECTED
-    end
+L1_1 = sysio
+L1_1 = L1_1.RegOpenKey
+L2_2 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\atbroker.exe"
+L1_1 = L1_1(L2_2)
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.GetRegValueAsString
+  L2_2 = L2_2(L1_1, "Debugger")
+  if L2_2 ~= nil and string.len(L2_2) >= 1 then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

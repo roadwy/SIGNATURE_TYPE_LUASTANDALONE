@@ -1,14 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LuaContextualVBAOfficeCheckAMSIOriginalFileTrust_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if not (mp.IsHipsRuleEnabled)("92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b") then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.IsHipsRuleEnabled
+L1_1 = "92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0, l_0_1 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME)
-if l_0_0 and (sysio.IsPathAVExcluded)(l_0_1, false) then
-  (mp.set_mpattribute)("Lua:OfficeVBASkipKnownCleanOriginalFile")
+L0_0 = pcall
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L0_0(L1_1, mp.CONTEXT_DATA_AMSI_CONTENTNAME)
+if L0_0 and sysio.IsPathAVExcluded(L1_1, false) then
+  mp.set_mpattribute("Lua:OfficeVBASkipKnownCleanOriginalFile")
 end
 return mp.CLEAN
-

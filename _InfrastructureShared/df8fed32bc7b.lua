@@ -1,89 +1,204 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/df8fed32bc7b 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("AGGR:XlsHasMacroSheet") ~= true and (mp.get_mpattribute)("MpExcelFormulaRoutines") ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "AGGR:XlsHasMacroSheet"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "MpExcelFormulaRoutines"
+  L0_0 = L0_0(L1_1)
+  if L0_0 ~= true then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-local l_0_0 = 0
-local l_0_1 = (hstrlog[6]).hitcount + (hstrlog[5]).hitcount
-if l_0_1 >= 5 then
-  (mp.set_mpattribute)("XlmMacro/FormulaFuncGTE5")
-  ;
-  (mp.set_mpattribute)("XlmMacro/FormulaFunc:" .. l_0_1)
-  l_0_0 = l_0_0 + 1
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.hitcount
+L2_2 = hstrlog
+L2_2 = L2_2[5]
+L2_2 = L2_2.hitcount
+L1_1 = L1_1 + L2_2
+if L1_1 >= 5 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/FormulaFuncGTE5"
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/FormulaFunc:"
+  L3_3 = L3_3 .. L1_1
+  L2_2(L3_3)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[1]).hitcount >= 30 then
-  (mp.set_mpattribute)("XlmMacro/CharConcatGTE30")
-  ;
-  (mp.set_mpattribute)("XlmMacro/CharConcat:" .. (hstrlog[1]).hitcount)
-  l_0_0 = l_0_0 + 1
+L2_2 = hstrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.hitcount
+if L2_2 >= 30 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/CharConcatGTE30"
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/CharConcat:"
+  L3_3 = L3_3 .. hstrlog[1].hitcount
+  L2_2(L3_3)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[2]).hitcount >= 1 then
-  (mp.set_mpattribute)("XlmMacro/CharAdditionGTE10")
-  ;
-  (mp.set_mpattribute)("XlmMacro/CharAddition:" .. (hstrlog[2]).hitcount)
-  l_0_0 = l_0_0 + 1
+L2_2 = hstrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.hitcount
+if L2_2 >= 1 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/CharAdditionGTE10"
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/CharAddition:"
+  L3_3 = L3_3 .. hstrlog[2].hitcount
+  L2_2(L3_3)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[3]).hitcount >= 1 then
-  (mp.set_mpattribute)("XlmMacro/CharSubtractGTE10")
-  ;
-  (mp.set_mpattribute)("XlmMacro/CharSubtract:" .. (hstrlog[3]).hitcount)
-  l_0_0 = l_0_0 + 1
+L2_2 = hstrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.hitcount
+if L2_2 >= 1 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/CharSubtractGTE10"
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/CharSubtract:"
+  L3_3 = L3_3 .. hstrlog[3].hitcount
+  L2_2(L3_3)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[7]).hitcount >= 5 then
-  (mp.set_mpattribute)("XlmMacro/runFuncGTE5")
-  ;
-  (mp.set_mpattribute)("XlmMacro/runFunc:" .. (hstrlog[7]).hitcount)
-  l_0_0 = l_0_0 + 1
+L2_2 = hstrlog
+L2_2 = L2_2[7]
+L2_2 = L2_2.hitcount
+if L2_2 >= 5 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/runFuncGTE5"
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/runFunc:"
+  L3_3 = L3_3 .. hstrlog[7].hitcount
+  L2_2(L3_3)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[8]).hitcount >= 1 then
-  (mp.set_mpattribute)("XlmMacro/execFuncGTE1")
-  ;
-  (mp.set_mpattribute)("XlmMacro/execFunc:" .. (hstrlog[8]).hitcount)
-  l_0_0 = l_0_0 + 1
+L2_2 = hstrlog
+L2_2 = L2_2[8]
+L2_2 = L2_2.hitcount
+if L2_2 >= 1 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/execFuncGTE1"
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/execFunc:"
+  L3_3 = L3_3 .. hstrlog[8].hitcount
+  L2_2(L3_3)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[9]).hitcount >= 1 then
-  (mp.set_mpattribute)("XlmMacro/registerFuncGTE1")
-  ;
-  (mp.set_mpattribute)("XlmMacro/registerFunc:" .. (hstrlog[9]).hitcount)
-  l_0_0 = l_0_0 + 1
+L2_2 = hstrlog
+L2_2 = L2_2[9]
+L2_2 = L2_2.hitcount
+if L2_2 >= 1 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/registerFuncGTE1"
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L3_3 = "XlmMacro/registerFunc:"
+  L3_3 = L3_3 .. hstrlog[9].hitcount
+  L2_2(L3_3)
+  L0_0 = L0_0 + 1
 end
-local l_0_2 = (hstrlog[10]).hitcount + (hstrlog[11]).hitcount + (hstrlog[12]).hitcount + (hstrlog[13]).hitcount
-if l_0_2 >= 1 then
-  (mp.set_mpattribute)("XlmMacro/callFuncGTE1")
-  ;
-  (mp.set_mpattribute)("XlmMacro/callFunc:" .. l_0_2)
-  l_0_0 = l_0_0 + 1
+L2_2 = hstrlog
+L2_2 = L2_2[10]
+L2_2 = L2_2.hitcount
+L3_3 = hstrlog
+L3_3 = L3_3[11]
+L3_3 = L3_3.hitcount
+L2_2 = L2_2 + L3_3
+L3_3 = hstrlog
+L3_3 = L3_3[12]
+L3_3 = L3_3.hitcount
+L2_2 = L2_2 + L3_3
+L3_3 = hstrlog
+L3_3 = L3_3[13]
+L3_3 = L3_3.hitcount
+L2_2 = L2_2 + L3_3
+if L2_2 >= 1 then
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/callFuncGTE1")
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/callFunc:" .. L2_2)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[14]).hitcount >= 1 then
-  (mp.set_mpattribute)("XlmMacro/evalConcatFuncGTE1")
-  ;
-  (mp.set_mpattribute)("XlmMacro/evalConcatFunc:" .. (hstrlog[14]).hitcount)
-  l_0_0 = l_0_0 + 1
+L3_3 = hstrlog
+L3_3 = L3_3[14]
+L3_3 = L3_3.hitcount
+if L3_3 >= 1 then
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/evalConcatFuncGTE1")
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/evalConcatFunc:" .. hstrlog[14].hitcount)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[4]).hitcount >= 1 then
-  (mp.set_mpattribute)("XlmMacro/fileDeleteFuncGTE1")
-  ;
-  (mp.set_mpattribute)("XlmMacro/fileDeleteFunc:" .. (hstrlog[4]).hitcount)
-  l_0_0 = l_0_0 + 1
+L3_3 = hstrlog
+L3_3 = L3_3[4]
+L3_3 = L3_3.hitcount
+if L3_3 >= 1 then
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/fileDeleteFuncGTE1")
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/fileDeleteFunc:" .. hstrlog[4].hitcount)
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[15]).hitcount >= 1 then
-  (mp.set_mpattribute)("XlmMacro/concatOperatorX5")
-  ;
-  (mp.set_mpattribute)("XlmMacro/concatOperatorX5:" .. (hstrlog[15]).hitcount)
-  l_0_0 = l_0_0 + 1
+L3_3 = hstrlog
+L3_3 = L3_3[15]
+L3_3 = L3_3.hitcount
+if L3_3 >= 1 then
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/concatOperatorX5")
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("XlmMacro/concatOperatorX5:" .. hstrlog[15].hitcount)
+  L0_0 = L0_0 + 1
 end
-local l_0_3 = (hstrlog[16]).hitcount + (hstrlog[17]).hitcount + (hstrlog[18]).hitcount + (hstrlog[19]).hitcount + (hstrlog[20]).hitcount + (hstrlog[21]).hitcount + (hstrlog[22]).hitcount
-if l_0_3 >= 4 then
-  (mp.set_mpattribute)("XlmMacro/concatenateFuncGTE4")
-  ;
-  (mp.set_mpattribute)("XlmMacro/concatenateFunc:" .. l_0_3)
-  l_0_0 = l_0_0 + 1
+L3_3 = hstrlog
+L3_3 = L3_3[16]
+L3_3 = L3_3.hitcount
+L3_3 = L3_3 + hstrlog[17].hitcount
+L3_3 = L3_3 + hstrlog[18].hitcount
+L3_3 = L3_3 + hstrlog[19].hitcount
+L3_3 = L3_3 + hstrlog[20].hitcount
+L3_3 = L3_3 + hstrlog[21].hitcount
+L3_3 = L3_3 + hstrlog[22].hitcount
+if L3_3 >= 4 then
+  mp.set_mpattribute("XlmMacro/concatenateFuncGTE4")
+  mp.set_mpattribute("XlmMacro/concatenateFunc:" .. L3_3)
+  L0_0 = L0_0 + 1
 end
-if l_0_0 >= 4 then
+if L0_0 >= 4 then
   return mp.LOWFI
 end
 return mp.CLEAN
-

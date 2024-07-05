@@ -1,38 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1f5b3a095c938_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = mp.SIGATTR_LOG_SZ
-local l_0_1 = {}
-local l_0_2 = 0
-local l_0_3 = 150000000
-if l_0_3 < (bm.GetSignatureMatchDuration)() then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.SIGATTR_LOG_SZ
+L1_1 = {}
+L2_2 = 0
+L3_3 = 150000000
+if L3_3 < L4_4 then
+  return L4_4
 end
-if IsProcessExcludedFromRansomwareAnalysis() == true then
-  return mp.CLEAN
+if L4_4 == true then
+  return L4_4
 end
-for l_0_7 = 1, l_0_0 do
-  local l_0_8 = (sigattr_tail[l_0_7]).attribute
-  if l_0_8 == 16385 and (sigattr_tail[l_0_7]).utf8p1 ~= nil then
-    local l_0_9 = (sigattr_tail[l_0_7]).utf8p1
-    if l_0_1[l_0_9] == nil then
-      l_0_1[l_0_9] = true
-      ;
-      (bm.add_related_file)(l_0_9)
-      if l_0_9:match("%.[^/%.]+$") == ".cpt" then
-        l_0_2 = l_0_2 + 1
+for L7_7 = 1, L0_0 do
+  L8_8 = sigattr_tail
+  L8_8 = L8_8[L7_7]
+  L8_8 = L8_8.attribute
+  if L8_8 == 16385 then
+    L9_9 = sigattr_tail
+    L9_9 = L9_9[L7_7]
+    L9_9 = L9_9.utf8p1
+    if L9_9 ~= nil then
+      L9_9 = sigattr_tail
+      L9_9 = L9_9[L7_7]
+      L9_9 = L9_9.utf8p1
+      if L1_1[L9_9] == nil then
+        L1_1[L9_9] = true
+        bm.add_related_file(L9_9)
+        if L9_9:match("%.[^/%.]+$") == ".cpt" then
+          L2_2 = L2_2 + 1
+        end
       end
     end
   end
 end
-if l_0_2 >= 10 then
-  addRelatedProcess()
-  reportRelatedBmHits()
-  TrackPidAndTechniqueBM("BM", "T1486", "Impact_CcryptEncryption")
-  RemediateProcessTreeForLinux()
-  return mp.INFECTED
+if L2_2 >= 10 then
+  L4_4()
+  L4_4()
+  L7_7 = "Impact_CcryptEncryption"
+  L4_4(L5_5, L6_6, L7_7)
+  return L4_4
 end
-return mp.CLEAN
-
+return L4_4

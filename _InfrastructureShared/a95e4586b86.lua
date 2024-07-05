@@ -1,17 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a95e4586b86 
-
--- params : ...
--- function num : 0
-if (pe.isdynamic_va)(pevars.sigaddr) then
-  local l_0_0 = (pe.get_regval)(pe.REG_EAX) + 8
-  local l_0_1 = (pe.mmap_va)(l_0_0, 4)
-  local l_0_2 = (mp.readu_u32)(l_0_1, 1)
-  if l_0_2 == 1334098973 then
-    (mp.set_mpattribute)("PEBMPAT:AntiEmuTimeStampREAD")
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.isdynamic_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = pe
+  L0_0 = L0_0.get_regval
+  L1_1 = pe
+  L1_1 = L1_1.REG_EAX
+  L0_0 = L0_0(L1_1)
+  L0_0 = L0_0 + 8
+  L1_1 = pe
+  L1_1 = L1_1.mmap_va
+  L1_1 = L1_1(L0_0, 4)
+  if mp.readu_u32(L1_1, 1) == 1334098973 then
+    mp.set_mpattribute("PEBMPAT:AntiEmuTimeStampREAD")
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

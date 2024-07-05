@@ -1,61 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/83b3d4b74256_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_2 = nil
-    for l_0_6,l_0_7 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_0)) do
-      local l_0_3 = nil
-      -- DECOMPILER ERROR at PC29: Confused about usage of register: R6 in 'UnsetPending'
-
-      R6_PC29 = (mp.ContextualExpandEnvironmentVariables)(R6_PC29)
-      if (sysio.IsFileExists)(R6_PC29) then
-        if (mp.IsKnownFriendlyFile)(R6_PC29, true, false) then
-          local l_0_9 = {["mpksldrv.sys"] = true, ["ccmsetup.exe"] = true, ["svchost.exe"] = true, ["mbamswissarmy.sys"] = true, ["cyclorama64.sys"] = true}
-          if not l_0_9[(string.lower)(l_0_8:match("\\([^\\]+)$"))] then
-            (mp.ReportLowfi)(l_0_8, 1394183950)
-          end
-        else
-          do
-            do
-              -- DECOMPILER ERROR at PC69: Confused about usage of register: R6 in 'UnsetPending'
-
-              ;
-              (mp.ReportLowfi)(l_0_8, 3656319915)
-              -- DECOMPILER ERROR at PC73: Confused about usage of register: R6 in 'UnsetPending'
-
-              TrackFileAndTechnique(l_0_8, "T1543.003:exec_service_binary", 1000)
-              -- DECOMPILER ERROR at PC79: Confused about usage of register: R6 in 'UnsetPending'
-
-              ;
-              (bm.add_related_file)(l_0_8)
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_STMT
-
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
+end
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    if sysio.IsFileExists(L6_6) then
+      if mp.IsKnownFriendlyFile(L6_6, true, false) then
+        if not ({
+          ["mpksldrv.sys"] = true,
+          ["ccmsetup.exe"] = true,
+          ["svchost.exe"] = true,
+          ["mbamswissarmy.sys"] = true,
+          ["cyclorama64.sys"] = true
+        })[string.lower(L6_6:match("\\([^\\]+)$"))] then
+          mp.ReportLowfi(L6_6, 1394183950)
         end
+      else
+        mp.ReportLowfi(L6_6, 3656319915)
+        TrackFileAndTechnique(L6_6, "T1543.003:exec_service_binary", 1000)
       end
+      bm.add_related_file(L6_6)
     end
   end
-  return mp.INFECTED
 end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

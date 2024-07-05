@@ -1,16 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75414098be95 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-for l_0_4 = 1, mp.SIGATTR_LOG_SZ do
-  if (sigattr_head[l_0_4]).matched and (sigattr_head[l_0_4]).attribute == 28769 then
-    local l_0_5 = (sigattr_head[l_0_4]).utf8p1
-    l_0_0.TlsJa3SHash = l_0_5
-    ;
-    (nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), l_0_0)
+local L0_0, L3_1, L4_2, L5_3
+L0_0 = {}
+for _FORV_4_ = 1, L4_2.SIGATTR_LOG_SZ do
+  if sigattr_head[_FORV_4_].matched and sigattr_head[_FORV_4_].attribute == 28769 then
+    L0_0.TlsJa3SHash = sigattr_head[_FORV_4_].utf8p1
+    nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L0_0)
   end
 end
-return mp.INFECTED
-
+return L3_1

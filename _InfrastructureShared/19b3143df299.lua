@@ -1,17 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19b3143df299 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[1]).utf8p1)
-  local l_0_1 = (mp.GetMotwHostUrlForFile)(l_0_0)
-  if l_0_1 then
-    (bm.add_related_string)("bmurl", l_0_1, bm.RelatedStringBMReport)
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.ContextualExpandEnvironmentVariables
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p1
+  L0_0 = L0_0(L1_1)
+  L1_1 = mp
+  L1_1 = L1_1.GetMotwHostUrlForFile
+  L1_1 = L1_1(L0_0)
+  if L1_1 then
+    bm.add_related_string("bmurl", L1_1, bm.RelatedStringBMReport)
   end
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

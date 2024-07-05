@@ -1,32 +1,38 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Kilim 
-
--- params : ...
--- function num : 0
-GetFolderPathFromFile = function(l_1_0)
-  -- function num : 0_0
-  if not l_1_0 then
-    return nil
+local L0_0, L1_1
+function L0_0(A0_2)
+  local L1_3, L2_4
+  if not A0_2 then
+    L1_3 = nil
+    return L1_3
   end
-  local l_1_1 = (string.len)(l_1_0)
-  local l_1_2 = (string.reverse)(l_1_0)
-  if l_1_2 and (string.find)(l_1_2, "\\", 1, true) then
-    l_1_2 = (string.sub)(l_1_0, 1, l_1_1 - l_1_2 + 1)
-    return l_1_2
+  L1_3 = string
+  L1_3 = L1_3.len
+  L2_4 = A0_2
+  L1_3 = L1_3(L2_4)
+  L2_4 = string
+  L2_4 = L2_4.reverse
+  L2_4 = L2_4(A0_2)
+  if L2_4 and string.find(L2_4, "\\", 1, true) then
+    L2_4 = string.sub(A0_2, 1, L1_3 - string.find(L2_4, "\\", 1, true) + 1)
+    return L2_4
   end
   return nil
 end
-
-local l_0_0 = (MpDetection.GetCurrentThreat)()
-if (string.match)(l_0_0.Name, "Kilim") then
-  local l_0_1 = nil
-  for l_0_5,l_0_6 in pairs(l_0_0.Resources) do
-    if l_0_6.Schema == "file" then
-      l_0_1 = GetFolderPathFromFile(l_0_6.Path)
-      if l_0_1 and (sysio.IsFolderExists)(l_0_1) then
-        (MpDetection.ScanResource)("folder://" .. l_0_1)
+GetFolderPathFromFile = L0_0
+L0_0 = MpDetection
+L0_0 = L0_0.GetCurrentThreat
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.match
+L1_1 = L1_1(L0_0.Name, "Kilim")
+if L1_1 then
+  L1_1 = nil
+  for _FORV_5_, _FORV_6_ in pairs(L0_0.Resources) do
+    if _FORV_6_.Schema == "file" then
+      L1_1 = GetFolderPathFromFile(_FORV_6_.Path)
+      if L1_1 and sysio.IsFolderExists(L1_1) then
+        MpDetection.ScanResource("folder://" .. L1_1)
       end
     end
   end
 end
-

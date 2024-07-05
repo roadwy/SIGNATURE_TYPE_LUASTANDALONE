@@ -1,29 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19b381c43ecb 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-  local l_0_0 = "file://" .. (this_sigattrlog[1]).utf8p1
-  local l_0_1 = (MpCommon.PathToWin32Path)((this_sigattrlog[1]).utf8p1)
-  if l_0_1 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p1
+  if L0_0 ~= nil then
+    L0_0 = "file://"
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p1
+    L0_0 = L0_0 .. L1_1
+    L1_1 = MpCommon
+    L1_1 = L1_1.PathToWin32Path
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.utf8p1
+    L1_1 = L1_1(L2_2)
+    if L1_1 == nil then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
+    end
+    L2_2 = "autoruninf://"
+    L3_3 = string
+    L3_3 = L3_3.sub
+    L3_3 = L3_3(L1_1, 2)
+    L1_1 = L2_2 .. L3_3
+    L2_2 = #L0_0
+    if L2_2 > 1 then
+      L2_2 = string
+      L2_2 = L2_2.sub
+      L3_3 = L0_0
+      L2_2 = L2_2(L3_3, -1)
+      if L2_2 ~= "\\" then
+        L2_2 = L0_0
+        L3_3 = "\\"
+        L0_0 = L2_2 .. L3_3
+      end
+    end
+    L2_2 = #L1_1
+    if L2_2 > 1 then
+      L2_2 = string
+      L2_2 = L2_2.sub
+      L3_3 = L1_1
+      L2_2 = L2_2(L3_3, -1)
+      if L2_2 ~= "\\" then
+        L2_2 = L1_1
+        L3_3 = "\\"
+        L1_1 = L2_2 .. L3_3
+      end
+    end
+    L2_2 = L1_1
+    L3_3 = "autorun.inf"
+    L2_2 = L2_2 .. L3_3
+    L3_3 = L0_0
+    L3_3 = L3_3 .. "System Volume Information\\MountMgrRemoteDatabase"
+    mp.TriggerScanResource("file", L2_2)
+    mp.TriggerScanResource("file", L3_3)
   end
-  l_0_1 = "autoruninf://" .. (string.sub)(l_0_1, 2)
-  if #l_0_0 > 1 and (string.sub)(l_0_0, -1) ~= "\\" then
-    l_0_0 = l_0_0 .. "\\"
-  end
-  if #l_0_1 > 1 and (string.sub)(l_0_1, -1) ~= "\\" then
-    l_0_1 = l_0_1 .. "\\"
-  end
-  local l_0_2 = l_0_1 .. "autorun.inf"
-  local l_0_3 = l_0_0 .. "System Volume Information\\MountMgrRemoteDatabase"
-  ;
-  (mp.TriggerScanResource)("file", l_0_2)
-  ;
-  (mp.TriggerScanResource)("file", l_0_3)
 end
-do
-  return mp.INFECTED
-end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

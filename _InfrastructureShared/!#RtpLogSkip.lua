@@ -1,582 +1,1156 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#RtpLogSkip 
-
--- params : ...
--- function num : 0
-local l_0_0 = function(l_1_0, l_1_1, l_1_2)
-  -- function num : 0_0
-  if type(l_1_1) == "table" then
-    if l_1_2 == nil then
-      l_1_2 = 4
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15
+function L0_0(A0_16, A1_17, A2_18)
+  if type(A1_17) == "table" then
+    if A2_18 == nil then
+      A2_18 = 4
     end
-    return l_1_0 ~= nil and l_1_1 ~= nil and l_1_2 <= #l_1_0 and l_1_1[(string.sub)(l_1_0, -l_1_2)] ~= nil
+    return A0_16 ~= nil and A1_17 ~= nil and A2_18 <= #A0_16 and A1_17[string.sub(A0_16, -A2_18)] ~= nil
   end
-  do return l_1_1 == "" or (string.sub)(l_1_0, -(string.len)(l_1_1)) == l_1_1 end
-  -- DECOMPILER ERROR: 3 unprocessed JMP targets
+  return A1_17 == "" or string.sub(A0_16, -string.len(A1_17)) == A1_17
 end
-
-local l_0_1 = function(l_2_0, l_2_1)
-  -- function num : 0_1
-  do return (string.sub)(l_2_0, 1, (string.len)(l_2_1)) == l_2_1 end
-  -- DECOMPILER ERROR: 1 unprocessed JMP targets
+function L1_1(A0_19, A1_20)
+  local L2_21, L3_22, L4_23
+  L2_21 = string
+  L2_21 = L2_21.sub
+  L3_22 = A0_19
+  L4_23 = 1
+  L2_21 = L2_21(L3_22, L4_23, string.len(A1_20))
+  L2_21 = L2_21 == A1_20
+  return L2_21
 end
-
-local l_0_2 = (skip.get_contextdata)(skip.CONTEXT_DATA_SCANREASON)
-if l_0_2 == 12 then
-  local l_0_3 = (string.lower)((skip.get_contextdata)(32))
-  if l_0_3 == "exchange server 2019" or l_0_3 == "exchange server 2016" then
-    local l_0_4 = (string.lower)((skip.get_contextdata)(34))
-    if l_0_1(l_0_4, "urlpath:/mapi/emsmdb") or l_0_1(l_0_4, "urlpath:/rpc/rpcproxy.dll") or l_0_1(l_0_4, "urlpath:/owa/service.svc") then
+L2_2 = skip
+L2_2 = L2_2.get_contextdata
+L3_3 = skip
+L3_3 = L3_3.CONTEXT_DATA_SCANREASON
+L2_2 = L2_2(L3_3)
+if L2_2 == 12 then
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L4_4 = skip
+  L4_4 = L4_4.get_contextdata
+  L5_5 = 32
+  L15_15 = L4_4(L5_5)
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L4_4(L5_5))
+  if L3_3 == "exchange server 2019" or L3_3 == "exchange server 2016" then
+    L4_4 = string
+    L4_4 = L4_4.lower
+    L5_5 = skip
+    L5_5 = L5_5.get_contextdata
+    L6_6 = 34
+    L15_15 = L5_5(L6_6)
+    L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L5_5(L6_6))
+    L5_5 = L1_1
+    L6_6 = L4_4
+    L7_7 = "urlpath:/mapi/emsmdb"
+    L5_5 = L5_5(L6_6, L7_7)
+    if not L5_5 then
+      L5_5 = L1_1
+      L6_6 = L4_4
+      L7_7 = "urlpath:/rpc/rpcproxy.dll"
+      L5_5 = L5_5(L6_6, L7_7)
+      if not L5_5 then
+        L5_5 = L1_1
+        L6_6 = L4_4
+        L7_7 = "urlpath:/owa/service.svc"
+        L5_5 = L5_5(L6_6, L7_7)
+      end
+    elseif L5_5 then
+      L5_5 = true
+      return L5_5
+    end
+  end
+end
+L3_3 = skip
+L3_3 = L3_3.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L2_2 ~= L3_3 then
+  L3_3 = skip
+  L3_3 = L3_3.SCANREASON_ONOPEN
+  if L2_2 ~= L3_3 and L2_2 ~= 1 then
+    L3_3 = 0
+    return L3_3
+  end
+end
+L3_3 = skip
+L3_3 = L3_3.get_contextdata
+L4_4 = skip
+L4_4 = L4_4.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+L3_3 = L3_3(L4_4)
+if L3_3 then
+  L3_3 = 0
+  return L3_3
+end
+function L3_3(A0_24, A1_25)
+  if A0_24 == "excel.exe" or A0_24 == "winword.exe" or A0_24 == "powerpnt.exe" or A0_24 == "outlook.exe" or A0_24 == "msaccess.exe" or A0_24 == "mspub.exe" or A0_24 == "onenote.exe" then
+    if A1_25:find("^\\device\\harddiskvolume%d*\\program files\\microsoft office\\root\\office") ~= nil then
       return true
     end
-  end
-end
-do
-  if l_0_2 ~= skip.SCANREASON_ONMODIFIEDHANDLECLOSE and l_0_2 ~= skip.SCANREASON_ONOPEN then
-    return 0
-  end
-  if (skip.get_contextdata)(skip.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) then
-    return 0
-  end
-  local l_0_5 = function(l_3_0, l_3_1)
-  -- function num : 0_2
-  if l_3_0 == "excel.exe" or l_3_0 == "winword.exe" or l_3_0 == "powerpnt.exe" or l_3_0 == "outlook.exe" or l_3_0 == "msaccess.exe" or l_3_0 == "mspub.exe" then
-    if l_3_1:find("^\\device\\harddiskvolume%d*\\program files\\microsoft office\\root\\office") ~= nil then
+    if A1_25:find("^\\device\\harddiskvolume%d*\\program files %(x86%)\\microsoft office\\root\\office") ~= nil then
       return true
     end
-    if l_3_1:find("^\\device\\harddiskvolume%d*\\program files %(x86%)\\microsoft office\\root\\office") ~= nil then
-      return true
-    end
-    if l_3_1:find("^\\device\\harddiskvolume%d*\\program files\\windowsapps\\microsoft%.office%.desktop%.") ~= nil then
+    if A1_25:find("^\\device\\harddiskvolume%d*\\program files\\windowsapps\\microsoft%.office%.desktop%.") ~= nil then
       return true
     end
   end
   return false
 end
-
-  local l_0_6 = (string.lower)((skip.get_contextdata)(skip.CONTEXT_DATA_FILEPATH))
-  local l_0_7 = (skip.get_contextdata)(skip.CONTEXT_DATA_PROCESS_ID)
-  if l_0_7 == 4 and l_0_2 == skip.SCANREASON_ONMODIFIEDHANDLECLOSE and l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs\\") ~= nil and l_0_6 ~= nil and "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs\\" ~= nil then
-    return 1
-  end
-  local l_0_8 = (string.lower)((skip.get_contextdata)(skip.CONTEXT_DATA_FILENAME))
-  if l_0_8 == "pagefile.sys" or l_0_8 == "hiberfil.sys" or l_0_8 == "swapfile.sys" then
-    if l_0_6:match("^\\device\\harddiskvolumeshadowcopy%d*$") ~= nil then
-      return 1
+L4_4 = string
+L4_4 = L4_4.lower
+L5_5 = skip
+L5_5 = L5_5.get_contextdata
+L6_6 = skip
+L6_6 = L6_6.CONTEXT_DATA_FILEPATH
+L15_15 = L5_5(L6_6)
+L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L5_5(L6_6))
+L5_5 = skip
+L5_5 = L5_5.get_contextdata
+L6_6 = skip
+L6_6 = L6_6.CONTEXT_DATA_PROCESS_ID
+L5_5 = L5_5(L6_6)
+if L5_5 == 4 then
+  L6_6 = skip
+  L6_6 = L6_6.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L2_2 == L6_6 then
+    L7_7 = L4_4
+    L6_6 = L4_4.match
+    L8_8 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs"
+    L8_8 = L6_6(L7_7, L8_8)
+    if L6_6 ~= nil and L7_7 ~= nil and L8_8 ~= nil then
+      L9_9 = 1
+      return L9_9
     end
-    if l_0_6:match("^\\device\\harddiskvolume%d*$") ~= nil then
-      return 1
+  end
+end
+L6_6 = string
+L6_6 = L6_6.lower
+L7_7 = skip
+L7_7 = L7_7.get_contextdata
+L8_8 = skip
+L8_8 = L8_8.CONTEXT_DATA_FILENAME
+L15_15 = L7_7(L8_8)
+L6_6 = L6_6(L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L7_7(L8_8))
+if L6_6 == "pagefile.sys" or L6_6 == "hiberfil.sys" or L6_6 == "swapfile.sys" then
+  L8_8 = L4_4
+  L7_7 = L4_4.match
+  L9_9 = "^\\device\\harddiskvolumeshadowcopy%d*$"
+  L7_7 = L7_7(L8_8, L9_9)
+  if L7_7 ~= nil then
+    L8_8 = 1
+    return L8_8
+  end
+  L9_9 = L4_4
+  L8_8 = L4_4.match
+  L10_10 = "^\\device\\harddiskvolume%d*$"
+  L8_8 = L8_8(L9_9, L10_10)
+  if L8_8 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+end
+L7_7 = string
+L7_7 = L7_7.lower
+L8_8 = skip
+L8_8 = L8_8.get_contextdata
+L9_9 = skip
+L9_9 = L9_9.CONTEXT_DATA_PROCESSNAME
+L15_15 = L8_8(L9_9)
+L7_7 = L7_7(L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L8_8(L9_9))
+if L7_7 == "rundll32.exe" or L7_7 == "dllhost.exe" or L7_7 == "regsvr32.exe" or L7_7 == "cscript.exe" or L7_7 == "jscript.exe" or L7_7 == "cmd.exe" or L7_7 == "curl.exe" or L7_7 == "powershell.exe" or L7_7 == "powershell_ise.exe" or L7_7 == "wscript.exe" or L7_7 == "mshta.exe" or L7_7 == "csc.exe" or L7_7 == "jsc.exe" or L7_7 == "vbc.exe" then
+  L8_8 = 0
+  return L8_8
+end
+L8_8 = string
+L8_8 = L8_8.lower
+L9_9 = skip
+L9_9 = L9_9.get_contextdata
+L10_10 = skip
+L10_10 = L10_10.CONTEXT_DATA_PROCESSDEVICEPATH
+L15_15 = L9_9(L10_10)
+L8_8 = L8_8(L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L9_9(L10_10))
+if L2_2 == 1 then
+  if L7_7 == "wmiprvse.exe" then
+    L10_10 = L8_8
+    L9_9 = L8_8.match
+    L11_11 = "^\\device\\harddiskvolume(.*)\\windows"
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 ~= nil then
+      L11_11 = L6_6
+      L10_10 = L6_6.match
+      L12_12 = "^dr%d*$"
+      L10_10 = L10_10(L11_11, L12_12)
+      if L10_10 then
+        L10_10 = 1
+        return L10_10
+      end
     end
   end
-  local l_0_9 = (string.lower)((skip.get_contextdata)(skip.CONTEXT_DATA_PROCESSNAME))
-  if l_0_9 == "rundll32.exe" or l_0_9 == "dllhost.exe" or l_0_9 == "regsvr32.exe" or l_0_9 == "cscript.exe" or l_0_9 == "jscript.exe" or l_0_9 == "cmd.exe" or l_0_9 == "curl.exe" or l_0_9 == "powershell.exe" or l_0_9 == "powershell_ise.exe" or l_0_9 == "wscript.exe" or l_0_9 == "mshta.exe" or l_0_9 == "csc.exe" or l_0_9 == "jsc.exe" or l_0_9 == "vbc.exe" then
-    return 0
+  L9_9 = 0
+  return L9_9
+end
+if L7_7 == "software_reporter_tool.exe" then
+  L10_10 = L8_8
+  L9_9 = L8_8.find
+  L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\google\\chrome\\user data\\swreporter"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
   end
-  local l_0_10 = (string.lower)((skip.get_contextdata)(skip.CONTEXT_DATA_PROCESSDEVICEPATH))
-  if l_0_9 == "software_reporter_tool.exe" and l_0_10:find("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\google\\chrome\\user data\\swreporter\\") ~= nil then
-    return 1
+end
+L9_9 = skip
+L9_9 = L9_9.SCANREASON_ONOPEN
+if L2_2 == L9_9 and L7_7 == "idwutil_600.exe" then
+  L9_9 = L0_0
+  L10_10 = L8_8
+  L11_11 = "\\program files (x86)\\idrivewindows\\cmd_dutil"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = 1
+    return L9_9
   end
-  if l_0_9 == "wmiprvse.exe" and l_0_10:match("^\\device\\harddiskvolume(.*)\\windows\\") ~= nil and l_0_8:match("^dr%d*$") then
-    return 1
-  end
-  if l_0_2 == skip.SCANREASON_ONOPEN and l_0_9 == "idwutil_600.exe" and l_0_0(l_0_10, "\\program files (x86)\\idrivewindows\\cmd_dutil") then
-    return 1
-  end
-  if l_0_2 == skip.SCANREASON_ONMODIFIEDHANDLECLOSE then
-    if l_0_5(l_0_9, l_0_10) and not (skip.IsHipsRuleEnabled)("3b576869-a4ec-4529-8536-b80a7769e899") and not (skip.IsHipsRuleEnabled)("92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B") and not (skip.IsHipsRuleEnabled)("be9ba2d9-53ea-4cdc-84e5-9b1eeee46550") and not (skip.IsHipsRuleEnabled)("c28bf0fb-388c-438b-a41d-8688461af900") and not l_0_0(l_0_8, ".xoml") then
-      return 1
-    end
-    if l_0_9 == "winrar.exe" or (string.sub)(l_0_9, 1, 2) == "7z" and (l_0_9 == "7z.exe" or l_0_9 == "7za.exe" or l_0_9 == "7zfm.exe" or l_0_9 == "7zg.exe" or (string.find)(l_0_9, "7z%d%d%d%d%-x64%.exe") ~= nil or (string.find)(l_0_9, "7z%d%d%d%d%.exe") ~= nil) then
-      local l_0_11 = {}
-      l_0_11[".exe"] = true
-      l_0_11[".scr"] = true
-      l_0_11[".com"] = true
-      l_0_11[".bat"] = true
-      l_0_11[".cmd"] = true
-      l_0_11[".pif"] = true
-      l_0_11[".jar"] = true
-      l_0_11[".lnk"] = true
-      l_0_11[".jse"] = true
-      l_0_11[".vbs"] = true
-      l_0_11[".vbe"] = true
-      l_0_11[".wsf"] = true
-      l_0_11[".hta"] = true
-      l_0_11[".wsh"] = true
-      l_0_11[".ps1"] = true
-      local l_0_12 = {}
-      l_0_12[".xls"] = true
-      l_0_12.xlsx = true
-      l_0_12.xlsm = true
-      l_0_12.xlsb = true
-      l_0_12.xltx = true
-      l_0_12.xltm = true
-      l_0_12[".xlt"] = true
-      l_0_12.xlam = true
-      l_0_12[".xla"] = true
-      l_0_12[".doc"] = true
-      l_0_12.docx = true
-      l_0_12.docm = true
-      l_0_12.dotx = true
-      l_0_12.dotm = true
-      l_0_12[".rtf"] = true
-      l_0_12[".ppt"] = true
-      l_0_12.pptm = true
-      l_0_12[".pps"] = true
-      l_0_12.pptx = true
-      l_0_12.ppsx = true
-      l_0_12[".odt"] = true
-      local l_0_13 = {}
-      l_0_13[".iso"] = true
-      l_0_13[".img"] = true
-      l_0_13[".dmg"] = true
-      if not (skip.IsHipsRuleEnabled)("be9ba2d9-53ea-4cdc-84e5-9b1eeee46550") and not l_0_0(l_0_8, l_0_11) and (not l_0_0(l_0_8, l_0_12) or l_0_0(l_0_8, l_0_13) or (string.len)(l_0_6) <= 25 or (string.find)(l_0_6, "\\appdata\\local\\temp\\rar$", 1, true) ~= nil or (string.find)(l_0_6, "\\appdata\\local\\temp\\7z", 1, true) == nil) then
-        return 1
-      end
-    end
-    do
-      if (string.find)(l_0_9, "setup", 1, true) ~= nil or (string.find)(l_0_9, "install", 1, true) ~= nil then
-        return 1
-      end
-      if (string.find)(l_0_6, "\\program files", 1, true) ~= nil then
-        if l_0_6:match("^\\device\\harddiskvolume%d*\\program files\\") ~= nil then
-          return 1
-        end
-        if l_0_6:match("^\\device\\harddiskvolume%d*\\program files %(x86%)\\") ~= nil then
-          return 1
-        end
-      end
-      if l_0_1(l_0_6, "\\device\\mup\\") then
-        return 1
-      end
-      if (string.find)(l_0_10, "\\programdata\\ul\\pcmark", 1, true) ~= nil then
-        return 1
-      end
-      if (string.find)(l_0_10, "\\program files\\windowsapps\\", 1, true) ~= nil or (string.find)(l_0_10, "\\windows\\systemapps\\", 1, true) ~= nil then
-        return 1
-      end
-      if l_0_0(l_0_9, ".tmp") then
-        if l_0_0(l_0_8, ".tmp") then
-          return 1
-        end
-        if l_0_6:match("^\\device\\harddiskvolume%d*\\program files\\") ~= nil then
-          return 1
-        end
-        if l_0_6:match("^\\device\\harddiskvolume%d*\\program files %(x86%)\\") ~= nil then
-          return 1
-        end
-      end
-      if (string.sub)(l_0_9, 1, 4) == "npp." and (l_0_0(l_0_9, ".installer.x64.exe") or l_0_0(l_0_9, ".installer.exe")) then
-        return 1
-      end
-      if (string.sub)(l_0_9, 1, 7) == "rstudio" and (string.find)(l_0_9, "rstudio%d%.exe") ~= nil then
-        return 1
-      end
-      if l_0_0(l_0_8, ".html") or l_0_0(l_0_8, ".js") or l_0_0(l_0_8, ".css") then
-        if (string.find)(l_0_6, "\\doc\\", 1, true) ~= nil then
-          return 1
-        end
-        if (string.find)(l_0_6, "\\docs\\", 1, true) ~= nil then
-          return 1
-        end
-      end
-      do
-        local l_0_14, l_0_15 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\")
-        if l_0_14 ~= nil and l_0_15 ~= nil and l_0_14 == l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\") and l_0_15 == l_0_10 then
-          return 1
-        end
-        if (string.sub)(l_0_9, 1, 4) == "npp." then
-          if l_0_0(l_0_9, ".installer.exe") and (string.find)(l_0_6, "^\\device\\harddiskvolume%d*\\program files %(x86%)\\notepad%+%+") ~= nil then
-            return 1
-          end
-          if l_0_0(l_0_9, ".installer.x64.exe") and (string.find)(l_0_6, "^\\device\\harddiskvolume%d*\\program files\\notepad%+%+") ~= nil then
-            return 1
-          end
-        end
-        if (l_0_0(l_0_10, "\\windows\\system32") or (string.find)(l_0_10, "\\program files\\windowsapps\\", 1, true) ~= nil) and (string.find)(l_0_6, "microsoft\\cryptneturlcache\\", 1, true) ~= nil then
-          return 1
-        end
-        if l_0_9 == "runtimebroker.exe" and l_0_0(l_0_10, "\\windows\\system32") and (string.find)(l_0_6, "appdata\\roaming\\microsoft\\systemcertificates\\my\\certificates", 1, true) ~= nil then
-          return 1
-        end
-        if l_0_9 == "waworkerhost.exe" then
-          if (string.find)(l_0_6, "microsoft\\cryptneturlcache\\", 1, true) ~= nil then
-            return 1
-          end
-          if l_0_8:match("^%d*$") then
-            return 1
-          end
-        end
-        if l_0_9 == "microsoft.office.web.certificatemanager.exe" and l_0_6:match("^\\device\\harddiskvolume(.*)\\programdata\\microsoft\\crypto\\rsa\\machinekeys") ~= nil then
-          return 1
-        end
-        if l_0_9 == "pingsender.exe" and l_0_0(l_0_10, "\\program files\\mozilla firefox") and (string.find)(l_0_6, "microsoft\\cryptneturlcache\\", 1, true) ~= nil then
-          return 1
-        end
-        if l_0_9 == "chrome.exe" then
-          if l_0_0(l_0_10, "\\google\\chrome\\application") and (string.find)(l_0_6, "microsoft\\cryptneturlcache\\", 1, true) ~= nil then
-            return 1
-          end
-          local l_0_16 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\google\\chrome\\user data")
-          if l_0_6 ~= nil and l_0_16 ~= nil and l_0_16 == l_0_10:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)\\google\\chrome\\application") then
-            return 1
-          end
-        end
-        do
-          if l_0_9 == "msedge.exe" or l_0_9 == "msedgewebview2.exe" then
-            if l_0_0(l_0_10, "\\application") and (string.find)(l_0_6, "microsoft\\cryptneturlcache\\", 1, true) ~= nil then
-              return 1
-            end
-            local l_0_17, l_0_18 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\user data")
-            local l_0_20, l_0_21, l_0_22 = , l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\application")
-            if l_0_18 ~= nil and l_0_17 ~= nil and l_0_17 == l_0_21 and l_0_18 == l_0_22 and l_0_20 == "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\application" then
-              return 1
-            end
-            local l_0_19 = nil
-            l_0_17 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\application")
-            if l_0_18 ~= nil and l_0_17 ~= nil and l_0_17 == l_0_21 and l_0_18 == l_0_22 and l_0_20 == l_0_19 then
-              return 1
-            end
-            -- DECOMPILER ERROR at PC805: Overwrote pending register: R10 in 'AssignReg'
-
-            l_0_17 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\")
-            if l_0_18 ~= nil and l_0_17 ~= nil and l_0_17 == l_0_21 and l_0_18 == l_0_22 and l_0_19 ~= nil then
-              return 1
-            end
-            -- DECOMPILER ERROR at PC822: Overwrote pending register: R10 in 'AssignReg'
-
-            l_0_17 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\")
-            if l_0_18 ~= nil and l_0_17 ~= nil and l_0_17 == l_0_21 and l_0_18 == l_0_22 and l_0_19 ~= nil then
-              return 1
-            end
-            l_0_17 = l_0_6:match("^\\device\\harddiskvolume(.*)\\windows\\fonts\\")
-            if l_0_17 ~= nil and l_0_17 == l_0_21 and l_0_22 ~= nil and l_0_19 ~= nil then
-              return 1
-            end
-          end
-          do
-            -- DECOMPILER ERROR at PC852: Overwrote pending register: R10 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC853: Overwrote pending register: R11 in 'AssignReg'
-
-            if l_0_9 == "nuget.exe" and l_0_6:match(l_0_20) ~= nil and l_0_18 ~= nil then
-              return 1
-            end
-            do
-              if l_0_9 == "vlc-cache-gen.exe" then
-                local l_0_23 = l_0_6:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)\\videolan\\vlc")
-                if l_0_23 ~= nil and l_0_23 == l_0_10:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)\\videolan\\vlc") then
-                  return 1
-                end
+end
+L9_9 = skip
+L9_9 = L9_9.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L2_2 == L9_9 then
+  L9_9 = skip
+  L9_9 = L9_9.IsHipsRuleEnabled
+  L10_10 = "56a863a9-875e-4185-98a7-b882c64b5ce5"
+  L9_9 = L9_9(L10_10)
+  if not L9_9 then
+    L9_9 = L3_3
+    L10_10 = L7_7
+    L11_11 = L8_8
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 then
+      L9_9 = skip
+      L9_9 = L9_9.IsHipsRuleEnabled
+      L10_10 = "3b576869-a4ec-4529-8536-b80a7769e899"
+      L9_9 = L9_9(L10_10)
+      if not L9_9 then
+        L9_9 = skip
+        L9_9 = L9_9.IsHipsRuleEnabled
+        L10_10 = "92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B"
+        L9_9 = L9_9(L10_10)
+        if not L9_9 then
+          L9_9 = skip
+          L9_9 = L9_9.IsHipsRuleEnabled
+          L10_10 = "be9ba2d9-53ea-4cdc-84e5-9b1eeee46550"
+          L9_9 = L9_9(L10_10)
+          if not L9_9 then
+            L9_9 = skip
+            L9_9 = L9_9.IsHipsRuleEnabled
+            L10_10 = "c28bf0fb-388c-438b-a41d-8688461af900"
+            L9_9 = L9_9(L10_10)
+            if not L9_9 then
+              L9_9 = L0_0
+              L10_10 = L6_6
+              L11_11 = ".xoml"
+              L9_9 = L9_9(L10_10, L11_11)
+              if not L9_9 then
+                L9_9 = 1
+                return L9_9
               end
-              if (string.sub)(l_0_9, 1, 5) == "gimp-" and l_0_0(l_0_9, "-setup.tmp") and l_0_6:match("^\\device\\harddiskvolume(.*)\\program files\\gimp 2") ~= nil then
-                return 1
-              end
-              do
-                if (l_0_9 == "setup.exe" or l_0_9 == "un_a.exe") and l_0_2 == skip.SCANREASON_ONOPEN then
-                  local l_0_24, l_0_25 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\")
-                  -- DECOMPILER ERROR at PC919: Unhandled construct in 'MakeBoolean' P1
-
-                  if l_0_24 ~= nil and l_0_25 ~= nil and l_0_24 == l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\") and l_0_25 == l_0_10 then
-                    return 1
-                  end
-                end
-                if l_0_24 == nil then
-                  l_0_24 = l_0_6:match("^\\device\\harddiskvolume(.*)\\program files\\mozilla ")
-                end
-                if l_0_24 == nil then
-                  l_0_24 = l_0_6:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)\\mozilla ")
-                end
-                if l_0_24 ~= nil and l_0_24 == l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp") and l_0_10 ~= nil then
-                  return 1
-                end
-                if l_0_5(l_0_9, l_0_10) == true then
-                  if l_0_6:find("^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\packages") ~= nil then
-                    return 1
-                  end
-                  if l_0_6:find("^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\temp\\photocache") ~= nil then
-                    return 1
-                  end
-                  if l_0_6:find("^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\microsoft\\office") ~= nil then
-                    return 1
-                  end
-                  if l_0_6:find("^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\microsoft\\msipc") ~= nil then
-                    return 1
-                  end
-                  if l_0_6:find("microsoft\\cryptneturlcache\\", 1, true) ~= nil then
-                    return 1
-                  end
-                end
-                if l_0_9 == "officeclicktorun.exe" then
-                  do
-                    if l_0_10:match("^\\device\\harddiskvolume(.*)\\program files\\common files\\microsoft shared\\clicktorun") == nil then
-                      local l_0_26 = l_0_10:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)\\common files\\microsoft shared\\clicktorun")
-                    end
-                    -- DECOMPILER ERROR at PC998: Confused about usage of register: R9 in 'UnsetPending'
-
-                    -- DECOMPILER ERROR at PC1027: Confused about usage of register: R9 in 'UnsetPending'
-
-                    if (((l_0_6:match("^\\device\\harddiskvolume(.*)\\program files\\common files\\microsoft shared\\clicktorun\\updates") == nil and l_0_6:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)\\common files\\microsoft shared\\clicktorun\\updates") ~= nil) or l_0_6:match("^\\device\\harddiskvolume(.*)\\programdata\\microsoft\\clicktorun") == nil) and l_0_6:match("^\\device\\harddiskvolume(.*)\\program files\\microsoft office") ~= nil) or l_0_6:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)\\microsoft office") == l_0_26 then
-                      return 1
-                    end
-                    if l_0_0(l_0_8, ".pf") then
-                      if l_0_7 == 4 then
-                        return 1
-                      end
-                      if l_0_6:match("^\\device\\harddiskvolume(.*)\\windows\\prefetch") ~= nil then
-                        if l_0_1(l_0_8, l_0_9) then
-                          return 1
-                        end
-                        if l_0_10:match("^\\device\\harddiskvolume(.*)\\windows\\") ~= nil then
-                          return 1
-                        end
-                      end
-                    end
-                    if l_0_0(l_0_8, ".log") or l_0_0(l_0_8, ".log1") or l_0_0(l_0_8, ".log2") or l_0_0(l_0_8, ".cat") or l_0_0(l_0_8, ".sqm") or l_0_0(l_0_8, ".etl") or l_0_0(l_0_8, ".db") or l_0_0(l_0_8, ".db3") or l_0_0(l_0_8, ".db-wal") or l_0_0(l_0_8, ".db3-wal") or l_0_0(l_0_8, ".db-journal") or l_0_0(l_0_8, ".db3-journal") or l_0_0(l_0_8, ".bin") or l_0_0(l_0_8, ".dat") or l_0_0(l_0_8, ".dmp") or l_0_0(l_0_8, ".data") or l_0_0(l_0_8, ".mui") or l_0_0(l_0_8, ".edb") or l_0_0(l_0_8, ".chk") or l_0_0(l_0_8, ".ini") or l_0_0(l_0_8, ".evtx") or l_0_0(l_0_8, ".manifest") or l_0_0(l_0_8, ".hve") or l_0_0(l_0_8, ".tmp.xml") or l_0_0(l_0_8, ".tmp.werinternalmetadata.xml") or l_0_0(l_0_8, ".hdmp") or l_0_0(l_0_8, ".dmp") or l_0_0(l_0_8, ".wer") or l_0_0(l_0_8, ".sdb") or l_0_0(l_0_8, ".tmp.appcompat.txt") then
-                      if l_0_7 == 4 then
-                        return 1
-                      end
-                      if l_0_9 == "svchost.exe" and l_0_8 == "gpt.ini" and l_0_6:match("^\\device\\mup\\") then
-                        return 0
-                      end
-                      if l_0_10:match("^\\device\\harddiskvolume(.*)\\windows\\system32") ~= nil or l_0_10:match("^\\\\%?\\volume{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}\\windows\\system32") ~= nil then
-                        return 1
-                      end
-                      do
-                        if l_0_10:match("^\\device\\harddiskvolume(.*)\\program files") == nil and l_0_10:match("^\\device\\harddiskvolume(.*)\\program files %(x86%)") == nil then
-                          local l_0_27 = l_0_10:match("^\\device\\harddiskvolume(.*)\\programdata")
-                        end
-                        -- DECOMPILER ERROR at PC1285: Confused about usage of register: R9 in 'UnsetPending'
-
-                        if l_0_27 ~= nil then
-                          return 1
-                        end
-                        do
-                          local l_0_28 = nil
-                          if (string.match)(l_0_9, "(%w+)%.") ~= nil and (string.find)(l_0_8, (string.match)(l_0_9, "(%w+)%."), 1, true) ~= nil then
-                            return 1
-                          end
-                          if l_0_9 == "firefox.exe" then
-                            if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\([^\\]*)\\mozilla\\firefox\\") ~= nil and l_0_6 ~= nil and "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\([^\\]*)\\mozilla\\firefox\\" ~= nil then
-                              return 1
-                            end
-                            if l_0_10:match("^\\device\\harddiskvolume(.*)\\program files\\mozilla firefox") ~= nil then
-                              if l_0_6:match("^\\device\\harddiskvolume(.*)\\program files\\mozilla firefox") ~= nil then
-                                return 1
-                              end
-                              if l_0_0(l_0_8, ".mui") or l_0_0(l_0_8, ".ttf") or l_0_0(l_0_8, ".icm") or l_0_0(l_0_8, ".db") or l_0_0(l_0_8, ".bin") then
-                                return 1
-                              end
-                            end
-                          end
-                          local l_0_29 = (string.find)(l_0_9, ".", 1, true)
-                          if l_0_29 == nil and (l_0_9 == "cp" or l_0_9 == "dash" or l_0_9 == "node" or l_0_9 == "npm" or l_0_9 == "grep" or l_0_9 == "cat" or l_0_9 == "dpkg" or l_0_9 == "dpkg-query" or l_0_9 == "sudo" or l_0_9 == "apt" or l_0_9 == "store" or l_0_9 == "apt-extracttemplates" or l_0_9 == "perl" or l_0_9 == "systemd-hwdb" or l_0_9 == "ldconfig" or l_0_9 == "update-alternatives") then
-                            local l_0_30, l_0_31, l_0_32 = l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs")
-                            if l_0_30 ~= nil and l_0_31 ~= nil and l_0_32 ~= nil then
-                              local l_0_33, l_0_34 = l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs\\usr\\bin")
-                              if ("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs\\usr\\bin" ~= nil or l_0_30 == l_0_33) and l_0_31 == l_0_34 and l_0_32 == R15_PC1431 then
-                                return 1
-                              end
-                            end
-                          end
-                          do
-                            do
-                              if l_0_9 == "firefox.exe" or l_0_9 == "gimp-2.8.exe" or l_0_9 == "soffice.bin" or l_0_9 == "chrome.exe" then
-                                local l_0_35, l_0_36 = l_0_6:match("^\\device\\harddiskvolume(.*)\\programdata\\ul\\pcmark 10\\chops\\dlc\\([^\\]*)\\")
-                                -- DECOMPILER ERROR at PC1450: Overwrote pending register: R13 in 'AssignReg'
-
-                                -- DECOMPILER ERROR at PC1451: Overwrote pending register: R14 in 'AssignReg'
-
-                                if l_0_35 ~= nil and l_0_36 ~= nil then
-                                  if l_0_35 == l_0_10:match(l_0_34) or l_0_36 == l_0_33 then
-                                    return 1
-                                  end
-                                  if l_0_10:match("^\\device\\harddiskvolume(.*)\\programdata\\ul\\pcmark 10\\tmp\\") == l_0_35 then
-                                    return 1
-                                  end
-                                end
-                              end
-                              do
-                                if l_0_9 == "code.exe" then
-                                  local l_0_37, l_0_38 = l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code")
-                                  if l_0_37 ~= nil and l_0_38 ~= nil then
-                                    if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\roaming\\code") == l_0_37 and l_0_6 == l_0_38 then
-                                      return 1
-                                    end
-                                    -- DECOMPILER ERROR at PC1485: Overwrote pending register: R15 in 'AssignReg'
-
-                                    if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code") == l_0_37 and R13_PC1492 == l_0_38 then
-                                      return 1
-                                    end
-                                  end
-                                end
-                                do
-                                  if l_0_9 == "code - insiders.exe" then
-                                    local l_0_39, l_0_40 = l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code insiders")
-                                    if l_0_39 ~= nil and l_0_40 ~= nil then
-                                      if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\roaming\\code") == l_0_39 and R13_PC1492 == l_0_40 then
-                                        return 1
-                                      end
-                                      -- DECOMPILER ERROR at PC1517: Overwrote pending register: R15 in 'AssignReg'
-
-                                      -- DECOMPILER ERROR at PC1520: Overwrote pending register: R13 in 'AssignReg'
-
-                                      if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code insiders") == l_0_39 and R13_PC1492 == l_0_40 then
-                                        return 1
-                                      end
-                                    end
-                                  end
-                                  do
-                                    if l_0_9 == "teams.exe" then
-                                      local l_0_41, l_0_42 = l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\teams")
-                                      -- DECOMPILER ERROR at PC1540: Overwrote pending register: R13 in 'AssignReg'
-
-                                      if l_0_41 ~= nil and l_0_42 ~= nil then
-                                        if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\roaming\\microsoft\\teams") == l_0_41 and R13_PC1492 == l_0_42 then
-                                          return 1
-                                        end
-                                        -- DECOMPILER ERROR at PC1549: Overwrote pending register: R15 in 'AssignReg'
-
-                                        if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\teams") == l_0_41 and R15_PC1431 == l_0_42 then
-                                          return 1
-                                        end
-                                      end
-                                    end
-                                    if l_0_9 == "dllhost.exe" and l_0_0(l_0_10, "\\windows\\system32") then
-                                      if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\microsoftwindows.client.cbs_cw5n1h2txyewy\\appdata\\cachestorage") ~= nil and l_0_6 ~= nil then
-                                        return 1
-                                      end
-                                      -- DECOMPILER ERROR at PC1577: Overwrote pending register: R13 in 'AssignReg'
-
-                                      if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\microsoftwindows.client_cw5n1h2txyewy\\appdata\\cachestorage") ~= nil and R11_PC1586 ~= nil then
-                                        return 1
-                                      end
-                                    end
-                                    do
-                                      if l_0_9 == "_conda.exe" or l_0_9 == "python.exe" or l_0_9 == "pythonw.exe" then
-                                        local l_0_43, l_0_44 = l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\miniconda%d"), R11_PC1586
-                                        -- DECOMPILER ERROR at PC1608: Overwrote pending register: R13 in 'AssignReg'
-
-                                        if l_0_43 ~= nil and l_0_44 ~= nil and l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\miniconda%d\\") == l_0_43 and R13_PC1492 == l_0_44 then
-                                          return 1
-                                        end
-                                        -- DECOMPILER ERROR at PC1617: Overwrote pending register: R13 in 'AssignReg'
-
-                                        -- DECOMPILER ERROR at PC1620: Overwrote pending register: R11 in 'AssignReg'
-
-                                        l_0_43 = l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\anaconda%d")
-                                        -- DECOMPILER ERROR at PC1628: Overwrote pending register: R13 in 'AssignReg'
-
-                                        if l_0_43 ~= nil and l_0_44 ~= nil and l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\anaconda%d\\") == l_0_43 and R13_PC1492 == l_0_44 then
-                                          return 1
-                                        end
-                                        -- DECOMPILER ERROR at PC1637: Overwrote pending register: R13 in 'AssignReg'
-
-                                        l_0_43 = l_0_10:match("^\\device\\harddiskvolume(.*)\\programdata\\miniconda%d")
-                                        -- DECOMPILER ERROR at PC1644: Overwrote pending register: R13 in 'AssignReg'
-
-                                        -- DECOMPILER ERROR at PC1649: Overwrote pending register: R13 in 'AssignReg'
-
-                                        if l_0_43 ~= nil and l_0_6:match("^\\device\\harddiskvolume(.*)\\programdata\\miniconda%d") == l_0_43 then
-                                          return R13_PC1492
-                                        end
-                                        -- DECOMPILER ERROR at PC1651: Overwrote pending register: R13 in 'AssignReg'
-
-                                        l_0_43 = l_0_10:match("^\\device\\harddiskvolume(.*)\\programdata\\anaconda%d")
-                                        -- DECOMPILER ERROR at PC1658: Overwrote pending register: R13 in 'AssignReg'
-
-                                        -- DECOMPILER ERROR at PC1663: Overwrote pending register: R13 in 'AssignReg'
-
-                                        if l_0_43 ~= nil and l_0_6:match("^\\device\\harddiskvolume(.*)\\programdata\\anaconda%d") == l_0_43 then
-                                          return R13_PC1492
-                                        end
-                                      end
-                                      -- DECOMPILER ERROR at PC1668: Overwrote pending register: R11 in 'AssignReg'
-
-                                      if l_0_9 == "machinelocalwatchdog.exe" and (l_0_8:match("%w*")) ~= nil then
-                                        return 1
-                                      end
-                                      if l_0_9 == "savservice.exe" and (l_0_8:match("%w*")) ~= nil then
-                                        return 1
-                                      end
-                                      if (l_0_9 == "postgres.exe" or l_0_9 == "postgresinstanceagentrunnerhost.exe") and (l_0_8:match("%w*")) ~= nil then
-                                        return 1
-                                      end
-                                      do
-                                        if l_0_9 == "javaw.exe" or l_0_9 == "java.exe" or l_0_9 == "javac.exe" then
-                                          local l_0_45, l_0_46 = l_0_10:match("^\\device\\harddiskvolume(.*)\\(.*)\\java\\jdk([^\\]*)\\bin")
-                                          -- DECOMPILER ERROR at PC1713: Overwrote pending register: R13 in 'AssignReg'
-
-                                          -- DECOMPILER ERROR at PC1716: Overwrote pending register: R13 in 'AssignReg'
-
-                                          -- DECOMPILER ERROR at PC1719: Overwrote pending register: R13 in 'AssignReg'
-
-                                          -- DECOMPILER ERROR at PC1722: Overwrote pending register: R13 in 'AssignReg'
-
-                                          -- DECOMPILER ERROR at PC1723: Overwrote pending register: R15 in 'AssignReg'
-
-                                          if l_0_45 ~= R13_PC1492 and l_0_46 ~= R13_PC1492 and "^\\device\\harddiskvolume(.*)\\(.*)\\java\\jdk([^\\]*)\\bin" ~= R13_PC1492 then
-                                            R13_PC1492 = R13_PC1492(l_0_6, R15_PC1431)
-                                            -- DECOMPILER ERROR at PC1729: Overwrote pending register: R15 in 'AssignReg'
-
-                                            if R13_PC1492 == l_0_45 and l_0_6 == l_0_46 then
-                                              return R15_PC1431
-                                            end
-                                            -- DECOMPILER ERROR at PC1731: Overwrote pending register: R15 in 'AssignReg'
-
-                                            R15_PC1431 = R15_PC1431(l_0_6, "^\\device\\harddiskvolume(.*)\\(.*)\\java\\gwdlso\\")
-                                            if R15_PC1431 == l_0_45 and l_0_6 == l_0_46 then
-                                              return 1
-                                            end
-                                          end
-                                        end
-                                        do
-                                          if l_0_9 == "svchost.exe" or l_0_9 == "lsass.exe" or l_0_9 == "services.exe" or l_0_9 == "taskhostw.exe" then
-                                            local l_0_47 = (l_0_10:match("^\\\\%?\\volume(.*)\\windows\\system32"))
-                                            if l_0_47 ~= nil then
-                                              if l_0_6:match(R13_PC1492) == l_0_47 then
-                                                return 1
-                                              end
-                                              -- DECOMPILER ERROR at PC1764: Overwrote pending register: R13 in 'AssignReg'
-
-                                              -- DECOMPILER ERROR at PC1769: Overwrote pending register: R13 in 'AssignReg'
-
-                                              if l_0_6:match("^\\device\\vhdharddisk(.*)\\programdata") == l_0_47 then
-                                                return R13_PC1492
-                                              end
-                                              -- DECOMPILER ERROR at PC1771: Overwrote pending register: R13 in 'AssignReg'
-
-                                              R13_PC1492 = (R13_PC1492(l_0_6, R15_PC1431))
-                                              if R13_PC1492 ~= nil then
-                                                return 1
-                                              end
-                                              -- DECOMPILER ERROR at PC1779: Overwrote pending register: R15 in 'AssignReg'
-
-                                              -- DECOMPILER ERROR at PC1782: Overwrote pending register: R15 in 'AssignReg'
-
-                                              -- DECOMPILER ERROR at PC1785: Overwrote pending register: R15 in 'AssignReg'
-
-                                              if (l_0_6:match("^\\device\\harddiskvolume(.*)\\programdata")) ~= R15_PC1431 then
-                                                return R15_PC1431
-                                              end
-                                            end
-                                          end
-                                          do
-                                            if l_0_9 == "fusion360.exe" then
-                                              local l_0_48, l_0_49 = l_0_10:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\autodesk\\webdeploy\\production")
-                                              if l_0_48 ~= nil and l_0_49 ~= nil then
-                                                if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\autodesk\\webdeploy\\production\\") == l_0_48 and R13_PC1492 == l_0_49 then
-                                                  return 1
+            end
+          end
+        end
+      end
+    end
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L7_7
+    L11_11 = "rar.exe"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 == nil then
+      L9_9 = string
+      L9_9 = L9_9.sub
+      L10_10 = L7_7
+      L11_11 = 1
+      L12_12 = 2
+      L9_9 = L9_9(L10_10, L11_11, L12_12)
+    elseif L9_9 == "7z" then
+      L9_9 = string
+      L9_9 = L9_9.find
+      L10_10 = L8_8
+      L11_11 = "\\program files\\7-zip"
+      L12_12 = 1
+      L13_13 = true
+      L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+      L9_9 = L9_9 ~= nil or L9_9 ~= nil
+      L10_10 = L9_9 and L10_10 == "7z" and (L7_7 == "7z.exe" or L7_7 == "7za.exe" or L7_7 == "7zfm.exe" or L7_7 == "7zg.exe" or L10_10 ~= nil or L10_10 ~= nil)
+      L11_11 = string
+      L11_11 = L11_11.find
+      L12_12 = L8_8
+      L13_13 = "\\program files\\winrar"
+      L14_14 = 1
+      L15_15 = true
+      L11_11 = L11_11(L12_12, L13_13, L14_14, L15_15)
+      L11_11 = L11_11 ~= nil or L11_11 ~= nil
+      L12_12 = L11_11 and (L7_7 == "rar.exe" or L7_7 == "unrar.exe" or L7_7 == "winrar.exe")
+      if L10_10 or L12_12 then
+        L13_13 = skip
+        L13_13 = L13_13.IsHipsRuleEnabled
+        L14_14 = "be9ba2d9-53ea-4cdc-84e5-9b1eeee46550"
+        L13_13 = L13_13(L14_14)
+        if not L13_13 then
+          L13_13 = skip
+          L13_13 = L13_13.IsHipsRuleEnabled
+          L14_14 = "5beb7efe-fd9a-4556-801d-275e5ffc04cc"
+          L13_13 = L13_13(L14_14)
+          if not L13_13 then
+            L13_13 = 1
+            return L13_13
+          end
+        end
+      end
+    end
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L7_7
+    L11_11 = "setup"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 == nil then
+      L9_9 = string
+      L9_9 = L9_9.find
+      L10_10 = L7_7
+      L11_11 = "install"
+      L12_12 = 1
+      L13_13 = true
+      L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    elseif L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L4_4
+    L11_11 = "\\program files"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 ~= nil then
+      L10_10 = L4_4
+      L9_9 = L4_4.match
+      L11_11 = "^\\device\\harddiskvolume%d*\\program files\\"
+      L9_9 = L9_9(L10_10, L11_11)
+      if L9_9 ~= nil then
+        L10_10 = 1
+        return L10_10
+      end
+      L11_11 = L4_4
+      L10_10 = L4_4.match
+      L12_12 = "^\\device\\harddiskvolume%d*\\program files %(x86%)\\"
+      L10_10 = L10_10(L11_11, L12_12)
+      L9_9 = L10_10
+      if L9_9 ~= nil then
+        L10_10 = 1
+        return L10_10
+      end
+    end
+    L9_9 = L1_1
+    L10_10 = L4_4
+    L11_11 = "\\device\\mup\\"
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 then
+      L9_9 = 1
+      return L9_9
+    end
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L8_8
+    L11_11 = "\\programdata\\ul\\pcmark"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L8_8
+    L11_11 = "\\program files\\windowsapps\\"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 == nil then
+      L9_9 = string
+      L9_9 = L9_9.find
+      L10_10 = L8_8
+      L11_11 = "\\windows\\systemapps\\"
+      L12_12 = 1
+      L13_13 = true
+      L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    elseif L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+    L9_9 = L0_0
+    L10_10 = L7_7
+    L11_11 = ".tmp"
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 then
+      L9_9 = L0_0
+      L10_10 = L6_6
+      L11_11 = ".tmp"
+      L9_9 = L9_9(L10_10, L11_11)
+      if L9_9 then
+        L9_9 = 1
+        return L9_9
+      end
+      L10_10 = L4_4
+      L9_9 = L4_4.match
+      L11_11 = "^\\device\\harddiskvolume%d*\\program files\\"
+      L9_9 = L9_9(L10_10, L11_11)
+      if L9_9 ~= nil then
+        L10_10 = 1
+        return L10_10
+      end
+      L11_11 = L4_4
+      L10_10 = L4_4.match
+      L12_12 = "^\\device\\harddiskvolume%d*\\program files %(x86%)\\"
+      L10_10 = L10_10(L11_11, L12_12)
+      L9_9 = L10_10
+      if L9_9 ~= nil then
+        L10_10 = 1
+        return L10_10
+      end
+    end
+    L9_9 = string
+    L9_9 = L9_9.sub
+    L10_10 = L7_7
+    L11_11 = 1
+    L12_12 = 4
+    L9_9 = L9_9(L10_10, L11_11, L12_12)
+    if L9_9 == "npp." then
+      L9_9 = L0_0
+      L10_10 = L7_7
+      L11_11 = ".installer.x64.exe"
+      L9_9 = L9_9(L10_10, L11_11)
+      if not L9_9 then
+        L9_9 = L0_0
+        L10_10 = L7_7
+        L11_11 = ".installer.exe"
+        L9_9 = L9_9(L10_10, L11_11)
+      elseif L9_9 then
+        L9_9 = 1
+        return L9_9
+      end
+    end
+    L9_9 = string
+    L9_9 = L9_9.sub
+    L10_10 = L7_7
+    L11_11 = 1
+    L12_12 = 7
+    L9_9 = L9_9(L10_10, L11_11, L12_12)
+    if L9_9 == "rstudio" then
+      L9_9 = string
+      L9_9 = L9_9.find
+      L10_10 = L7_7
+      L11_11 = "rstudio%d%.exe"
+      L9_9 = L9_9(L10_10, L11_11)
+      if L9_9 ~= nil then
+        L9_9 = 1
+        return L9_9
+      end
+    end
+    L9_9 = L0_0
+    L10_10 = L6_6
+    L11_11 = ".html"
+    L9_9 = L9_9(L10_10, L11_11)
+    if not L9_9 then
+      L9_9 = L0_0
+      L10_10 = L6_6
+      L11_11 = ".js"
+      L9_9 = L9_9(L10_10, L11_11)
+      if not L9_9 then
+        L9_9 = L0_0
+        L10_10 = L6_6
+        L11_11 = ".css"
+        L9_9 = L9_9(L10_10, L11_11)
+      end
+    elseif L9_9 then
+      L9_9 = string
+      L9_9 = L9_9.find
+      L10_10 = L4_4
+      L11_11 = "\\doc\\"
+      L12_12 = 1
+      L13_13 = true
+      L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+      if L9_9 ~= nil then
+        L9_9 = 1
+        return L9_9
+      end
+      L9_9 = string
+      L9_9 = L9_9.find
+      L10_10 = L4_4
+      L11_11 = "\\docs\\"
+      L12_12 = 1
+      L13_13 = true
+      L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+      if L9_9 ~= nil then
+        L9_9 = 1
+        return L9_9
+      end
+    end
+    L10_10 = L4_4
+    L9_9 = L4_4.match
+    L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp"
+    L10_10 = L9_9(L10_10, L11_11)
+    if L9_9 ~= nil and L10_10 ~= nil then
+      L11_11 = L0_0
+      L12_12 = L6_6
+      L13_13 = ".mptest"
+      L11_11 = L11_11(L12_12, L13_13)
+      if not L11_11 then
+        L12_12 = L8_8
+        L11_11 = L8_8.match
+        L13_13 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp"
+        L12_12 = L11_11(L12_12, L13_13)
+        if L9_9 == L11_11 and L10_10 == L12_12 then
+          L13_13 = 1
+          return L13_13
+        end
+      end
+    end
+  end
+end
+L9_9 = string
+L9_9 = L9_9.sub
+L10_10 = L7_7
+L11_11 = 1
+L12_12 = 4
+L9_9 = L9_9(L10_10, L11_11, L12_12)
+if L9_9 == "npp." then
+  L9_9 = L0_0
+  L10_10 = L7_7
+  L11_11 = ".installer.exe"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L4_4
+    L11_11 = "^\\device\\harddiskvolume%d*\\program files %(x86%)\\notepad%+%+"
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+  end
+  L9_9 = L0_0
+  L10_10 = L7_7
+  L11_11 = ".installer.x64.exe"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L4_4
+    L11_11 = "^\\device\\harddiskvolume%d*\\program files\\notepad%+%+"
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+  end
+end
+L9_9 = L0_0
+L10_10 = L8_8
+L11_11 = "\\windows\\system32"
+L9_9 = L9_9(L10_10, L11_11)
+if not L9_9 then
+  L9_9 = string
+  L9_9 = L9_9.find
+  L10_10 = L8_8
+  L11_11 = "\\program files\\windowsapps\\"
+  L12_12 = 1
+  L13_13 = true
+  L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+elseif L9_9 ~= nil then
+  L9_9 = string
+  L9_9 = L9_9.find
+  L10_10 = L4_4
+  L11_11 = "microsoft\\cryptneturlcache\\"
+  L12_12 = 1
+  L13_13 = true
+  L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+end
+if L7_7 == "runtimebroker.exe" then
+  L9_9 = L0_0
+  L10_10 = L8_8
+  L11_11 = "\\windows\\system32"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L4_4
+    L11_11 = "appdata\\roaming\\microsoft\\systemcertificates\\my\\certificates"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+  end
+end
+if L7_7 == "waworkerhost.exe" then
+  L9_9 = string
+  L9_9 = L9_9.find
+  L10_10 = L4_4
+  L11_11 = "microsoft\\cryptneturlcache\\"
+  L12_12 = 1
+  L13_13 = true
+  L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+  L10_10 = L6_6
+  L9_9 = L6_6.match
+  L11_11 = "^%d*$"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = 1
+    return L9_9
+  end
+end
+if L7_7 == "microsoft.office.web.certificatemanager.exe" then
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\programdata\\microsoft\\crypto\\rsa\\machinekeys"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+end
+if L7_7 == "pingsender.exe" then
+  L9_9 = L0_0
+  L10_10 = L8_8
+  L11_11 = "\\program files\\mozilla firefox"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L4_4
+    L11_11 = "microsoft\\cryptneturlcache\\"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+  end
+end
+if L7_7 == "chrome.exe" then
+  L9_9 = L0_0
+  L10_10 = L8_8
+  L11_11 = "\\google\\chrome\\application"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L4_4
+    L11_11 = "microsoft\\cryptneturlcache\\"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+  end
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\google\\chrome\\user data"
+  L10_10 = L9_9(L10_10, L11_11)
+  if L10_10 ~= nil and L9_9 ~= nil then
+    L12_12 = L8_8
+    L11_11 = L8_8.match
+    L13_13 = "^\\device\\harddiskvolume(.*)\\program files %(x86%)\\google\\chrome\\application"
+    L11_11 = L11_11(L12_12, L13_13)
+    if L9_9 == L11_11 then
+      L12_12 = 1
+      return L12_12
+    end
+  end
+end
+if L7_7 == "msedge.exe" or L7_7 == "msedgewebview2.exe" then
+  L9_9 = L0_0
+  L10_10 = L8_8
+  L11_11 = "\\application"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L9_9 = string
+    L9_9 = L9_9.find
+    L10_10 = L4_4
+    L11_11 = "microsoft\\cryptneturlcache\\"
+    L12_12 = 1
+    L13_13 = true
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    if L9_9 ~= nil then
+      L9_9 = 1
+      return L9_9
+    end
+  end
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\user data"
+  L11_11 = L9_9(L10_10, L11_11)
+  L13_13 = L8_8
+  L12_12 = L8_8.match
+  L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\application"
+  L14_14 = L12_12(L13_13, L14_14)
+  if L10_10 ~= nil and L9_9 ~= nil and L9_9 == L12_12 and L10_10 == L13_13 and L11_11 == L14_14 then
+    L15_15 = 1
+    return L15_15
+  end
+  L15_15 = L4_4.match
+  L10_10, L11_11, L15_15 = L4_4, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\application", L15_15(L4_4, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\edge([^\\]*)\\application")
+  L9_9 = L15_15
+  if L10_10 ~= nil and L9_9 ~= nil and L9_9 == L12_12 and L10_10 == L13_13 and L11_11 == L14_14 then
+    L15_15 = 1
+    return L15_15
+  end
+  L15_15 = L4_4.match
+  L10_10, L15_15 = L4_4, L15_15(L4_4, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp")
+  L9_9 = L15_15
+  if L10_10 ~= nil and L9_9 ~= nil and L9_9 == L12_12 and L10_10 == L13_13 and L14_14 ~= nil then
+    L15_15 = 1
+    return L15_15
+  end
+  L15_15 = L4_4.match
+  L10_10, L15_15 = L4_4, L15_15(L4_4, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages")
+  L9_9 = L15_15
+  if L10_10 ~= nil and L9_9 ~= nil and L9_9 == L12_12 and L10_10 == L13_13 and L14_14 ~= nil then
+    L15_15 = 1
+    return L15_15
+  end
+  L15_15 = L4_4.match
+  L15_15 = L15_15(L4_4, "^\\device\\harddiskvolume(.*)\\windows\\fonts")
+  L9_9 = L15_15
+  if L9_9 ~= nil and L9_9 == L12_12 and L13_13 ~= nil and L14_14 ~= nil then
+    L15_15 = 1
+    return L15_15
+  end
+end
+if L7_7 == "onedrive.exe" or L7_7 == "filecoauth.exe" or L7_7 == "onedrivesetup.exe" or L7_7 == "onedrivefilelauncher.exe" or L7_7 == "onedrivestandaloneupdater.exe" then
+  L10_10 = L8_8
+  L9_9 = L8_8.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\onedrive"
+  L10_10 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil and L10_10 ~= nil then
+    L12_12 = L4_4
+    L11_11 = L4_4.match
+    L13_13 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\onedrive"
+    L12_12 = L11_11(L12_12, L13_13)
+    if L11_11 == L9_9 and L12_12 == L10_10 then
+      L13_13 = 1
+      return L13_13
+    end
+  end
+end
+if L7_7 == "nuget.exe" then
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\.nuget\\packages"
+  L10_10 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil and L10_10 ~= nil then
+    L11_11 = 1
+    return L11_11
+  end
+end
+if L7_7 == "vlc-cache-gen.exe" then
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\program files([^\\]*)\\videolan\\vlc"
+  L10_10 = L9_9(L10_10, L11_11)
+  L12_12 = L8_8
+  L11_11 = L8_8.match
+  L13_13 = "^\\device\\harddiskvolume(.*)\\program files([^\\]*)\\videolan\\vlc"
+  L12_12 = L11_11(L12_12, L13_13)
+  if L9_9 ~= nil and L9_9 == L11_11 and L10_10 == L12_12 and (L10_10 == "" or L10_10 == " (x86)" or L10_10 == " (arm)") then
+    L13_13 = 1
+    return L13_13
+  end
+end
+if L7_7 == "installer.exe" then
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\roaming\\zoom"
+  L10_10 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil and L10_10 ~= nil then
+    L12_12 = L8_8
+    L11_11 = L8_8.match
+    L13_13 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp"
+    L12_12 = L11_11(L12_12, L13_13)
+    if L9_9 == L11_11 and L10_10 == L12_12 then
+      L13_13 = 1
+      return L13_13
+    end
+  end
+end
+L9_9 = string
+L9_9 = L9_9.sub
+L10_10 = L7_7
+L11_11 = 1
+L12_12 = 5
+L9_9 = L9_9(L10_10, L11_11, L12_12)
+if L9_9 == "gimp-" then
+  L9_9 = L0_0
+  L10_10 = L7_7
+  L11_11 = "-setup.tmp"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 then
+    L10_10 = L4_4
+    L9_9 = L4_4.match
+    L11_11 = "^\\device\\harddiskvolume(.*)\\program files\\gimp 2"
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 ~= nil then
+      L10_10 = 1
+      return L10_10
+    end
+  end
+end
+if L7_7 == "setup.exe" or L7_7 == "un_a.exe" then
+  L9_9 = skip
+  L9_9 = L9_9.SCANREASON_ONOPEN
+  if L2_2 == L9_9 then
+    L10_10 = L4_4
+    L9_9 = L4_4.match
+    L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp"
+    L10_10 = L9_9(L10_10, L11_11)
+    if L9_9 ~= nil and L10_10 ~= nil then
+      L12_12 = L8_8
+      L11_11 = L8_8.match
+      L13_13 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp"
+      L12_12 = L11_11(L12_12, L13_13)
+      if L9_9 == L11_11 and L10_10 == L12_12 then
+        L13_13 = 1
+        return L13_13
+      end
+    else
+      if L9_9 == nil then
+        L12_12 = L4_4
+        L11_11 = L4_4.match
+        L13_13 = "^\\device\\harddiskvolume(.*)\\program files\\mozilla "
+        L11_11 = L11_11(L12_12, L13_13)
+        L9_9 = L11_11
+      end
+      if L9_9 == nil then
+        L12_12 = L4_4
+        L11_11 = L4_4.match
+        L13_13 = "^\\device\\harddiskvolume(.*)\\program files %(x86%)\\mozilla "
+        L11_11 = L11_11(L12_12, L13_13)
+        L9_9 = L11_11
+      end
+      if L9_9 ~= nil then
+        L12_12 = L8_8
+        L11_11 = L8_8.match
+        L13_13 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp"
+        L12_12 = L11_11(L12_12, L13_13)
+        if L9_9 == L11_11 and L12_12 ~= nil then
+          L13_13 = 1
+          return L13_13
+        end
+      end
+    end
+  end
+end
+L9_9 = L3_3
+L10_10 = L7_7
+L11_11 = L8_8
+L9_9 = L9_9(L10_10, L11_11)
+if L9_9 == true then
+  L10_10 = L4_4
+  L9_9 = L4_4.find
+  L11_11 = "^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\packages"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+  L10_10 = L4_4
+  L9_9 = L4_4.find
+  L11_11 = "^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\temp\\photocache"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+  L10_10 = L4_4
+  L9_9 = L4_4.find
+  L11_11 = "^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\microsoft\\office"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+  L10_10 = L4_4
+  L9_9 = L4_4.find
+  L11_11 = "^\\device\\harddiskvolume%d*\\users\\[^\\]*\\appdata\\local\\microsoft\\msipc"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+  L10_10 = L4_4
+  L9_9 = L4_4.find
+  L11_11 = "microsoft\\cryptneturlcache\\"
+  L12_12 = 1
+  L13_13 = true
+  L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+  if L9_9 ~= nil then
+    L9_9 = 1
+    return L9_9
+  end
+end
+if L7_7 == "officeclicktorun.exe" then
+  L10_10 = L8_8
+  L9_9 = L8_8.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\program files\\common files\\microsoft shared\\clicktorun"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 == nil then
+    L11_11 = L8_8
+    L10_10 = L8_8.match
+    L12_12 = "^\\device\\harddiskvolume(.*)\\program files %(x86%)\\common files\\microsoft shared\\clicktorun"
+    L10_10 = L10_10(L11_11, L12_12)
+    L9_9 = L10_10
+  end
+  if L9_9 ~= nil then
+    L11_11 = L4_4
+    L10_10 = L4_4.match
+    L12_12 = "^\\device\\harddiskvolume(.*)\\program files\\common files\\microsoft shared\\clicktorun\\updates"
+    L10_10 = L10_10(L11_11, L12_12)
+    if L10_10 == nil then
+      L12_12 = L4_4
+      L11_11 = L4_4.match
+      L13_13 = "^\\device\\harddiskvolume(.*)\\program files %(x86%)\\common files\\microsoft shared\\clicktorun\\updates"
+      L11_11 = L11_11(L12_12, L13_13)
+      L10_10 = L11_11
+    end
+    if L10_10 == nil then
+      L12_12 = L4_4
+      L11_11 = L4_4.match
+      L13_13 = "^\\device\\harddiskvolume(.*)\\programdata\\microsoft\\clicktorun"
+      L11_11 = L11_11(L12_12, L13_13)
+      L10_10 = L11_11
+    end
+    if L10_10 == nil then
+      L12_12 = L4_4
+      L11_11 = L4_4.match
+      L13_13 = "^\\device\\harddiskvolume(.*)\\program files\\microsoft office"
+      L11_11 = L11_11(L12_12, L13_13)
+      L10_10 = L11_11
+    end
+    if L10_10 == nil then
+      L12_12 = L4_4
+      L11_11 = L4_4.match
+      L13_13 = "^\\device\\harddiskvolume(.*)\\program files %(x86%)\\microsoft office"
+      L11_11 = L11_11(L12_12, L13_13)
+      L10_10 = L11_11
+    end
+    if L10_10 == L9_9 then
+      L11_11 = 1
+      return L11_11
+    end
+  end
+end
+L9_9 = L0_0
+L10_10 = L6_6
+L11_11 = ".pf"
+L9_9 = L9_9(L10_10, L11_11)
+if L9_9 then
+  if L5_5 == 4 then
+    L9_9 = 1
+    return L9_9
+  end
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\windows\\prefetch"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil then
+    L10_10 = L1_1
+    L11_11 = L6_6
+    L12_12 = L7_7
+    L10_10 = L10_10(L11_11, L12_12)
+    if L10_10 then
+      L10_10 = 1
+      return L10_10
+    end
+    L11_11 = L8_8
+    L10_10 = L8_8.match
+    L12_12 = "^\\device\\harddiskvolume(.*)\\windows"
+    L10_10 = L10_10(L11_11, L12_12)
+    if L10_10 ~= nil then
+      L11_11 = 1
+      return L11_11
+    end
+  end
+end
+L9_9 = L0_0
+L10_10 = L6_6
+L11_11 = ".log"
+L9_9 = L9_9(L10_10, L11_11)
+if not L9_9 then
+  L9_9 = L0_0
+  L10_10 = L6_6
+  L11_11 = ".log1"
+  L9_9 = L9_9(L10_10, L11_11)
+  if not L9_9 then
+    L9_9 = L0_0
+    L10_10 = L6_6
+    L11_11 = ".log2"
+    L9_9 = L9_9(L10_10, L11_11)
+    if not L9_9 then
+      L9_9 = L0_0
+      L10_10 = L6_6
+      L11_11 = ".cat"
+      L9_9 = L9_9(L10_10, L11_11)
+      if not L9_9 then
+        L9_9 = L0_0
+        L10_10 = L6_6
+        L11_11 = ".sqm"
+        L9_9 = L9_9(L10_10, L11_11)
+        if not L9_9 then
+          L9_9 = L0_0
+          L10_10 = L6_6
+          L11_11 = ".etl"
+          L9_9 = L9_9(L10_10, L11_11)
+          if not L9_9 then
+            L9_9 = L0_0
+            L10_10 = L6_6
+            L11_11 = ".db"
+            L9_9 = L9_9(L10_10, L11_11)
+            if not L9_9 then
+              L9_9 = L0_0
+              L10_10 = L6_6
+              L11_11 = ".db3"
+              L9_9 = L9_9(L10_10, L11_11)
+              if not L9_9 then
+                L9_9 = L0_0
+                L10_10 = L6_6
+                L11_11 = ".db-wal"
+                L9_9 = L9_9(L10_10, L11_11)
+                if not L9_9 then
+                  L9_9 = L0_0
+                  L10_10 = L6_6
+                  L11_11 = ".db3-wal"
+                  L9_9 = L9_9(L10_10, L11_11)
+                  if not L9_9 then
+                    L9_9 = L0_0
+                    L10_10 = L6_6
+                    L11_11 = ".db-journal"
+                    L9_9 = L9_9(L10_10, L11_11)
+                    if not L9_9 then
+                      L9_9 = L0_0
+                      L10_10 = L6_6
+                      L11_11 = ".db3-journal"
+                      L9_9 = L9_9(L10_10, L11_11)
+                      if not L9_9 then
+                        L9_9 = L0_0
+                        L10_10 = L6_6
+                        L11_11 = ".bin"
+                        L9_9 = L9_9(L10_10, L11_11)
+                        if not L9_9 then
+                          L9_9 = L0_0
+                          L10_10 = L6_6
+                          L11_11 = ".dat"
+                          L9_9 = L9_9(L10_10, L11_11)
+                          if not L9_9 then
+                            L9_9 = L0_0
+                            L10_10 = L6_6
+                            L11_11 = ".dmp"
+                            L9_9 = L9_9(L10_10, L11_11)
+                            if not L9_9 then
+                              L9_9 = L0_0
+                              L10_10 = L6_6
+                              L11_11 = ".data"
+                              L9_9 = L9_9(L10_10, L11_11)
+                              if not L9_9 then
+                                L9_9 = L0_0
+                                L10_10 = L6_6
+                                L11_11 = ".mui"
+                                L9_9 = L9_9(L10_10, L11_11)
+                                if not L9_9 then
+                                  L9_9 = L0_0
+                                  L10_10 = L6_6
+                                  L11_11 = ".edb"
+                                  L9_9 = L9_9(L10_10, L11_11)
+                                  if not L9_9 then
+                                    L9_9 = L0_0
+                                    L10_10 = L6_6
+                                    L11_11 = ".chk"
+                                    L9_9 = L9_9(L10_10, L11_11)
+                                    if not L9_9 then
+                                      L9_9 = L0_0
+                                      L10_10 = L6_6
+                                      L11_11 = ".ini"
+                                      L9_9 = L9_9(L10_10, L11_11)
+                                      if not L9_9 then
+                                        L9_9 = L0_0
+                                        L10_10 = L6_6
+                                        L11_11 = ".evtx"
+                                        L9_9 = L9_9(L10_10, L11_11)
+                                        if not L9_9 then
+                                          L9_9 = L0_0
+                                          L10_10 = L6_6
+                                          L11_11 = ".manifest"
+                                          L9_9 = L9_9(L10_10, L11_11)
+                                          if not L9_9 then
+                                            L9_9 = L0_0
+                                            L10_10 = L6_6
+                                            L11_11 = ".hve"
+                                            L9_9 = L9_9(L10_10, L11_11)
+                                            if not L9_9 then
+                                              L9_9 = L0_0
+                                              L10_10 = L6_6
+                                              L11_11 = ".tmp.xml"
+                                              L9_9 = L9_9(L10_10, L11_11)
+                                              if not L9_9 then
+                                                L9_9 = L0_0
+                                                L10_10 = L6_6
+                                                L11_11 = ".tmp.werinternalmetadata.xml"
+                                                L9_9 = L9_9(L10_10, L11_11)
+                                                if not L9_9 then
+                                                  L9_9 = L0_0
+                                                  L10_10 = L6_6
+                                                  L11_11 = ".hdmp"
+                                                  L9_9 = L9_9(L10_10, L11_11)
+                                                  if not L9_9 then
+                                                    L9_9 = L0_0
+                                                    L10_10 = L6_6
+                                                    L11_11 = ".dmp"
+                                                    L9_9 = L9_9(L10_10, L11_11)
+                                                    if not L9_9 then
+                                                      L9_9 = L0_0
+                                                      L10_10 = L6_6
+                                                      L11_11 = ".wer"
+                                                      L9_9 = L9_9(L10_10, L11_11)
+                                                      if not L9_9 then
+                                                        L9_9 = L0_0
+                                                        L10_10 = L6_6
+                                                        L11_11 = ".sdb"
+                                                        L9_9 = L9_9(L10_10, L11_11)
+                                                        if not L9_9 then
+                                                          L9_9 = L0_0
+                                                          L10_10 = L6_6
+                                                          L11_11 = ".tmp.appcompat.txt"
+                                                          L9_9 = L9_9(L10_10, L11_11)
+                                                        end
+                                                      end
+                                                    end
+                                                  end
                                                 end
-                                                -- DECOMPILER ERROR at PC1808: Overwrote pending register: R15 in 'AssignReg'
-
-                                                -- DECOMPILER ERROR at PC1811: Overwrote pending register: R13 in 'AssignReg'
-
-                                                if l_0_6:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\fusionstreamer\\") == l_0_48 and R13_PC1492 == l_0_49 then
-                                                  return 1
-                                                end
                                               end
                                             end
-                                            return 0
                                           end
                                         end
                                       end
@@ -593,10 +1167,551 @@ end
                 end
               end
             end
+          end
+        end
+      end
+    end
+  end
+elseif L9_9 then
+  if L5_5 == 4 then
+    L9_9 = skip
+    L9_9 = L9_9.get_contextdata
+    L10_10 = 39
+    L9_9 = L9_9(L10_10)
+    if not L9_9 or L9_9 == "" then
+      L10_10 = 1
+      return L10_10
+    end
+  end
+  if L7_7 == "svchost.exe" and L6_6 == "gpt.ini" then
+    L10_10 = L4_4
+    L9_9 = L4_4.match
+    L11_11 = "^\\device\\mup\\"
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 then
+      L9_9 = 0
+      return L9_9
+    end
+  end
+  if L7_7 == "processhacker.exe" then
+    L9_9 = 0
+    return L9_9
+  end
+  L10_10 = L8_8
+  L9_9 = L8_8.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\windows\\system32"
+  L9_9 = L9_9(L10_10, L11_11)
+  if L9_9 == nil then
+    L11_11 = L8_8
+    L10_10 = L8_8.match
+    L12_12 = "^\\\\%?\\volume{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}\\windows\\system32"
+    L10_10 = L10_10(L11_11, L12_12)
+    L9_9 = L10_10
+  end
+  if L9_9 ~= nil then
+    L10_10 = 1
+    return L10_10
+  end
+end
+if L7_7 == "firefox.exe" then
+  L10_10 = L4_4
+  L9_9 = L4_4.match
+  L11_11 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\([^\\]*)\\mozilla\\firefox"
+  L11_11 = L9_9(L10_10, L11_11)
+  if L9_9 ~= nil and L10_10 ~= nil and L11_11 ~= nil then
+    L12_12 = 1
+    return L12_12
+  end
+  L13_13 = L8_8
+  L12_12 = L8_8.match
+  L14_14 = "^\\device\\harddiskvolume(.*)\\program files\\mozilla firefox"
+  L12_12 = L12_12(L13_13, L14_14)
+  L9_9 = L12_12
+  if L9_9 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\program files\\mozilla firefox"
+    L12_12 = L12_12(L13_13, L14_14)
+    L9_9 = L12_12
+    if L9_9 ~= nil then
+      L12_12 = 1
+      return L12_12
+    end
+    L12_12 = L0_0
+    L13_13 = L6_6
+    L14_14 = ".mui"
+    L12_12 = L12_12(L13_13, L14_14)
+    if not L12_12 then
+      L12_12 = L0_0
+      L13_13 = L6_6
+      L14_14 = ".ttf"
+      L12_12 = L12_12(L13_13, L14_14)
+      if not L12_12 then
+        L12_12 = L0_0
+        L13_13 = L6_6
+        L14_14 = ".icm"
+        L12_12 = L12_12(L13_13, L14_14)
+        if not L12_12 then
+          L12_12 = L0_0
+          L13_13 = L6_6
+          L14_14 = ".db"
+          L12_12 = L12_12(L13_13, L14_14)
+          if not L12_12 then
+            L12_12 = L0_0
+            L13_13 = L6_6
+            L14_14 = ".bin"
+            L12_12 = L12_12(L13_13, L14_14)
+          end
+        end
+      end
+    elseif L12_12 then
+      L12_12 = 1
+      return L12_12
+    end
+  end
+end
+L9_9 = string
+L9_9 = L9_9.find
+L10_10 = L7_7
+L11_11 = "."
+L12_12 = 1
+L13_13 = true
+L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+if L9_9 == nil and (L7_7 == "cp" or L7_7 == "dash" or L7_7 == "node" or L7_7 == "npm" or L7_7 == "grep" or L7_7 == "cat" or L7_7 == "dpkg" or L7_7 == "dpkg-query" or L7_7 == "sudo" or L7_7 == "apt" or L7_7 == "store" or L7_7 == "apt-extracttemplates" or L7_7 == "perl" or L7_7 == "systemd-hwdb" or L7_7 == "ldconfig" or L7_7 == "update-alternatives") then
+  L11_11 = L4_4
+  L10_10 = L4_4.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs"
+  L12_12 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil and L11_11 ~= nil and L12_12 ~= nil then
+    L14_14 = L8_8
+    L13_13 = L8_8.match
+    L15_15 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs\\usr\\bin"
+    L15_15 = L13_13(L14_14, L15_15)
+    if L15_15 == nil then
+      L13_13, L14_14, L15_15 = L8_8:match("^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\([^\\]*)\\localstate\\rootfs\\bin")
+    end
+    if L10_10 == L13_13 and L11_11 == L14_14 and L12_12 == L15_15 then
+      return 1
+    end
+  end
+end
+if L7_7 == "firefox.exe" or L7_7 == "gimp-2.8.exe" or L7_7 == "soffice.bin" or L7_7 == "chrome.exe" then
+  L11_11 = L4_4
+  L10_10 = L4_4.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\programdata\\ul\\pcmark 10\\chops\\dlc\\([^\\]*)\\"
+  L11_11 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil and L11_11 ~= nil then
+    L13_13 = L8_8
+    L12_12 = L8_8.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\programdata\\ul\\pcmark 10\\chops\\dlc\\([^\\]*)\\"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L10_10 == L12_12 or L11_11 == L13_13 then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L8_8
+    L14_14 = L8_8.match
+    L14_14 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\programdata\\ul\\pcmark 10\\tmp")
+    L12_12 = L14_14
+    if L12_12 == L10_10 then
+      L14_14 = 1
+      return L14_14
+    end
+  end
+end
+if L7_7 == "code.exe" then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code"
+  L11_11 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil and L11_11 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\roaming\\code"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L4_4
+    L14_14 = L4_4.match
+    L15_15 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code")
+    L13_13 = L15_15
+    L12_12 = L14_14
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L4_4
+    L14_14 = L4_4.match
+    L15_15 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\.vscode\\")
+    L13_13 = L15_15
+    L12_12 = L14_14
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+  end
+end
+if L7_7 == "code - insiders.exe" then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code insiders"
+  L11_11 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil and L11_11 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\roaming\\code"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L4_4
+    L14_14 = L4_4.match
+    L15_15 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\programs\\microsoft vs code insiders")
+    L13_13 = L15_15
+    L12_12 = L14_14
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L4_4
+    L14_14 = L4_4.match
+    L15_15 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\.vscode-insiders\\")
+    L13_13 = L15_15
+    L12_12 = L14_14
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+  end
+end
+if L7_7 == "rustup.exe" then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\.cargo\\bin"
+  L11_11 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil and L11_11 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\.rustup\\"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+  end
+end
+if L7_7 == "teams.exe" then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\teams"
+  L11_11 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil and L11_11 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\roaming\\microsoft\\teams"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L4_4
+    L14_14 = L4_4.match
+    L15_15 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\microsoft\\teams")
+    if L14_14 == L10_10 and L15_15 == L11_11 then
+      return 1
+    end
+  end
+end
+if L7_7 == "dllhost.exe" then
+  L10_10 = L0_0
+  L11_11 = L8_8
+  L12_12 = "\\windows\\system32"
+  L10_10 = L10_10(L11_11, L12_12)
+  if L10_10 then
+    L11_11 = L4_4
+    L10_10 = L4_4.match
+    L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\microsoftwindows.client.cbs_cw5n1h2txyewy\\appdata\\cachestorage"
+    L11_11 = L10_10(L11_11, L12_12)
+    if L10_10 ~= nil and L11_11 ~= nil then
+      L12_12 = 1
+      return L12_12
+    end
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\microsoftwindows.client_cw5n1h2txyewy\\appdata\\cachestorage"
+    L13_13 = L12_12(L13_13, L14_14)
+    L11_11 = L13_13
+    L10_10 = L12_12
+    if L10_10 ~= nil and L11_11 ~= nil then
+      L12_12 = 1
+      return L12_12
+    end
+  end
+end
+if L7_7 == "notepad.exe" then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\program files\\windowsapps\\microsoft.windowsnotepad_([^\\]*)__8wekyb3d8bbwe\\notepad\\notepad.exe$"
+  L11_11 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\packages\\microsoft.windowsnotepad_8wekyb3d8bbwe\\localstate\\tabstate\\"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 and L13_13 ~= nil then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L4_4
+    L14_14 = L4_4.match
+    L15_15 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\program files\\windowsapps\\microsoft.windowsnotepad_([^\\]*)__8wekyb3d8bbwe\\notepadxamlui\\")
+    if L14_14 == L10_10 and L15_15 == L11_11 then
+      return 1
+    end
+  end
+end
+if L7_7 == "_conda.exe" or L7_7 == "python.exe" or L7_7 == "pythonw.exe" then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\miniconda%d"
+  L11_11 = L10_10(L11_11, L12_12)
+  if L10_10 ~= nil and L11_11 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\miniconda%d\\"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+  end
+  L13_13 = L8_8
+  L12_12 = L8_8.match
+  L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\anaconda%d"
+  L13_13 = L12_12(L13_13, L14_14)
+  L11_11 = L13_13
+  L10_10 = L12_12
+  if L10_10 ~= nil and L11_11 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\anaconda%d\\"
+    L13_13 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 and L13_13 == L11_11 then
+      L14_14 = 1
+      return L14_14
+    end
+  end
+  L13_13 = L8_8
+  L12_12 = L8_8.match
+  L14_14 = "^\\device\\harddiskvolume(.*)\\programdata\\miniconda%d"
+  L12_12 = L12_12(L13_13, L14_14)
+  L10_10 = L12_12
+  if L10_10 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\programdata\\miniconda%d"
+    L12_12 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 then
+      L13_13 = 1
+      return L13_13
+    end
+  end
+  L13_13 = L8_8
+  L12_12 = L8_8.match
+  L14_14 = "^\\device\\harddiskvolume(.*)\\programdata\\anaconda%d"
+  L12_12 = L12_12(L13_13, L14_14)
+  L10_10 = L12_12
+  if L10_10 ~= nil then
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\harddiskvolume(.*)\\programdata\\anaconda%d"
+    L12_12 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 then
+      L13_13 = 1
+      return L13_13
+    end
+  end
+end
+if L7_7 == "machinelocalwatchdog.exe" then
+  L11_11 = L6_6
+  L10_10 = L6_6.match
+  L12_12 = "%w*"
+  L10_10 = L10_10(L11_11, L12_12)
+  L11_11 = nil
+  if L10_10 ~= L11_11 then
+    L10_10 = 1
+    return L10_10
+  end
+end
+L10_10 = "savservice.exe"
+if L7_7 == L10_10 then
+  L11_11 = L6_6
+  L10_10 = L6_6.match
+  L12_12 = "%w*"
+  L10_10 = L10_10(L11_11, L12_12)
+  L11_11 = nil
+  if L10_10 ~= L11_11 then
+    L10_10 = 1
+    return L10_10
+  end
+end
+L10_10 = "postgres.exe"
+if L7_7 ~= L10_10 then
+  L10_10 = "postgresinstanceagentrunnerhost.exe"
+elseif L7_7 == L10_10 then
+  L11_11 = L6_6
+  L10_10 = L6_6.match
+  L12_12 = "%w*"
+  L10_10 = L10_10(L11_11, L12_12)
+  L11_11 = nil
+  if L10_10 ~= L11_11 then
+    L10_10 = 1
+    return L10_10
+  end
+end
+L10_10 = "javaw.exe"
+if L7_7 ~= L10_10 then
+  L10_10 = "java.exe"
+  if L7_7 ~= L10_10 then
+    L10_10 = "javac.exe"
+  end
+elseif L7_7 == L10_10 then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\(.*)\\java\\jdk([^\\]*)\\bin"
+  L12_12 = L10_10(L11_11, L12_12)
+  L13_13 = nil
+  if L10_10 ~= L13_13 then
+    L13_13 = nil
+    if L11_11 ~= L13_13 then
+      L13_13 = nil
+      if L12_12 ~= L13_13 then
+        L14_14 = L4_4
+        L13_13 = L4_4.match
+        L15_15 = "^\\device\\harddiskvolume(.*)\\(.*)\\eclipse\\%d+.%d+\\"
+        L14_14 = L13_13(L14_14, L15_15)
+        if L13_13 == L10_10 and L14_14 == L11_11 then
+          L15_15 = 1
+          return L15_15
+        end
+        L15_15 = L4_4.match
+        L15_15 = L15_15(L4_4, "^\\device\\harddiskvolume(.*)\\(.*)\\java\\gwdlso\\")
+        if L15_15 == L10_10 and L15_15(L4_4, "^\\device\\harddiskvolume(.*)\\(.*)\\java\\gwdlso\\") == L11_11 then
+          return 1
+        end
+      end
+    end
+  end
+end
+if L7_7 ~= "svchost.exe" then
+  L10_10 = "lsass.exe"
+  if L7_7 ~= L10_10 then
+    L10_10 = "services.exe"
+    if L7_7 ~= L10_10 then
+      L10_10 = "taskhostw.exe"
+    end
+  end
+elseif L7_7 == L10_10 then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\\\%?\\volume(.*)\\windows\\system32"
+  L10_10 = L10_10(L11_11, L12_12)
+  L11_11 = nil
+  if L10_10 ~= L11_11 then
+    L12_12 = L4_4
+    L11_11 = L4_4.match
+    L13_13 = "^\\device\\vhdharddisk(.*)\\windows"
+    L11_11 = L11_11(L12_12, L13_13)
+    if L11_11 == L10_10 then
+      L12_12 = 1
+      return L12_12
+    end
+    L13_13 = L4_4
+    L12_12 = L4_4.match
+    L14_14 = "^\\device\\vhdharddisk(.*)\\programdata"
+    L12_12 = L12_12(L13_13, L14_14)
+    if L12_12 == L10_10 then
+      L13_13 = 1
+      return L13_13
+    end
+    L14_14 = L4_4
+    L13_13 = L4_4.match
+    L15_15 = "^\\device\\harddiskvolume(.*)\\windows"
+    L13_13 = L13_13(L14_14, L15_15)
+    L14_14 = nil
+    if L13_13 ~= L14_14 then
+      L14_14 = 1
+      return L14_14
+    end
+    L15_15 = L4_4
+    L14_14 = L4_4.match
+    L14_14 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\programdata")
+    L15_15 = nil
+    if L14_14 ~= L15_15 then
+      L15_15 = 1
+      return L15_15
+    end
+  end
+end
+L10_10 = "fusion360.exe"
+if L7_7 == L10_10 then
+  L11_11 = L8_8
+  L10_10 = L8_8.match
+  L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\autodesk\\webdeploy\\production"
+  L11_11 = L10_10(L11_11, L12_12)
+  L12_12 = nil
+  if L10_10 ~= L12_12 then
+    L12_12 = nil
+    if L11_11 ~= L12_12 then
+      L13_13 = L4_4
+      L12_12 = L4_4.match
+      L14_14 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\autodesk\\webdeploy\\production\\"
+      L13_13 = L12_12(L13_13, L14_14)
+      if L12_12 == L10_10 and L13_13 == L11_11 then
+        L14_14 = 1
+        return L14_14
+      end
+      L15_15 = L4_4
+      L14_14 = L4_4.match
+      L15_15 = L14_14(L15_15, "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\fusionstreamer\\")
+      L13_13 = L15_15
+      L12_12 = L14_14
+      if L12_12 == L10_10 and L13_13 == L11_11 then
+        L14_14 = 1
+        return L14_14
+      end
+    end
+  end
+end
+L10_10 = "irsetup.exe"
+if L7_7 == L10_10 then
+  L10_10 = "ultraedit setup log.txt"
+  if L6_6 == L10_10 then
+    L11_11 = L8_8
+    L10_10 = L8_8.match
+    L12_12 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp\\([^\\]*)"
+    L12_12 = L10_10(L11_11, L12_12)
+    L13_13 = nil
+    if L10_10 ~= L13_13 then
+      L13_13 = nil
+      if L11_11 ~= L13_13 then
+        L13_13 = nil
+        if L12_12 ~= L13_13 then
+          L14_14 = L4_4
+          L13_13 = L4_4.match
+          L15_15 = "^\\device\\harddiskvolume(.*)\\users\\([^\\]*)\\appdata\\local\\temp"
+          L14_14 = L13_13(L14_14, L15_15)
+          if L13_13 == L10_10 and L14_14 == L11_11 then
+            L15_15 = 1
+            return L15_15
           end
         end
       end
     end
   end
 end
-
+L10_10 = 0
+return L10_10

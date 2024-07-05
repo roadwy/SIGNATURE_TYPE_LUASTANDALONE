@@ -1,68 +1,109 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b1b3f83be4bd_Includes_BMLuaLib,Tech 
-
--- params : ...
--- function num : 0
-local l_0_8 = nil
-if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).p2 then
-  local l_0_0, l_0_3 = nil, nil
-  local l_0_1, l_0_4 = nil, nil
-  local l_0_2, l_0_5 = 2
-  l_0_1 = 1
-  local l_0_6 = nil
-else
-  do
-    do return mp.CLEAN end
-    if l_0_3 == nil or l_0_0 == nil then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC37: Confused about usage of register: R2 in 'UnsetPending'
-
-    local l_0_7 = nil
-    if (string.match)(l_0_3, "\\([^\\]+)$") == nil then
-      return mp.CLEAN
-    end
-    local l_0_9 = nil
-    local l_0_10 = nil
-    local l_0_11 = nil
-    if (bm.get_current_process_startup_info)() == nil or ((bm.get_current_process_startup_info)()).ppid == nil or ((bm.get_current_process_startup_info)()).command_line == nil then
-      return mp.CLEAN
-    end
-    local l_0_12 = nil
-    -- DECOMPILER ERROR at PC67: Confused about usage of register: R7 in 'UnsetPending'
-
-    local l_0_13 = nil
-    local l_0_14 = nil
-    local l_0_15 = nil
-    AppendToRollingQueue("OfficeGen" .. ((bm.get_current_process_startup_info)()).ppid, l_0_8, l_0_10 .. "|" .. l_0_7 .. "|" .. l_0_9, 3600, 10, 0)
-    local l_0_16 = nil
-    -- DECOMPILER ERROR at PC83: Confused about usage of register: R10 in 'UnsetPending'
-
-    local l_0_17 = nil
-    if GetRollingQueue("OfficeGen" .. ((bm.get_current_process_startup_info)()).ppid) == nil or type(GetRollingQueue("OfficeGen" .. ((bm.get_current_process_startup_info)()).ppid)) ~= "table" then
-      return mp.CLEAN
-    end
-    local l_0_18 = nil
-    local l_0_19 = nil
-    for l_0_23,l_0_24 in ipairs(GetRollingQueue("OfficeGen" .. ((bm.get_current_process_startup_info)()).ppid)) do
-      local l_0_20, l_0_21, l_0_22, l_0_23 = , {doc = bm_AddRelatedFileFromCommandLine(l_0_15), cmd = l_0_15, 
-detectionLog = {}
-}, nil
-      -- DECOMPILER ERROR at PC107: Confused about usage of register: R21 in 'UnsetPending'
-
-      l_0_23 = explode(R21_PC107.value, "|")
-      ;
-      (table.insert)(l_0_22.detectionLog, {name = R21_PC107.key, ppid = l_0_23[2], timestamp = R21_PC107.insert_time, file = l_0_23[3]})
-      -- DECOMPILER ERROR at PC125: Overwrote pending register: R3 in 'AssignReg'
-
-    end
-    -- DECOMPILER ERROR at PC134: Confused about usage of register: R15 in 'UnsetPending'
-
-    if l_0_12 <= l_0_10 then
-      (bm.add_related_string)("officegen", json_encode(l_0_22), bm.RelatedStringBMReport)
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16
+L5_5 = 2
+L6_6 = this_sigattrlog
+L6_6 = L6_6[7]
+L6_6 = L6_6.matched
+if L6_6 then
+  L6_6 = this_sigattrlog
+  L6_6 = L6_6[7]
+  L6_6 = L6_6.p2
+  if L6_6 then
+    L6_6 = this_sigattrlog
+    L6_6 = L6_6[7]
+    L6_6 = L6_6.utf8p1
+    L7_7 = L6_6
+    L6_6 = L6_6.lower
+    L6_6 = L6_6(L7_7)
+    L0_0 = L6_6
+    L6_6 = this_sigattrlog
+    L6_6 = L6_6[7]
+    L1_1 = L6_6.ppid
+    L6_6 = this_sigattrlog
+    L6_6 = L6_6[7]
+    L2_2 = L6_6.image_path
+    L3_3 = 1
   end
+else
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
 end
-
+if L2_2 == nil or L1_1 == nil then
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
+end
+L6_6 = string
+L6_6 = L6_6.match
+L7_7 = L2_2
+L8_8 = "\\([^\\]+)$"
+L6_6 = L6_6(L7_7, L8_8)
+L4_4 = L6_6
+if L4_4 == nil then
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
+end
+L6_6 = bm
+L6_6 = L6_6.get_current_process_startup_info
+L6_6 = L6_6()
+L7_7 = L6_6.ppid
+L8_8 = L6_6.command_line
+if L6_6 == nil or L7_7 == nil or L8_8 == nil then
+  L9_9 = mp
+  L9_9 = L9_9.CLEAN
+  return L9_9
+end
+L9_9 = L3_3
+L10_10 = "|"
+L11_11 = L1_1
+L12_12 = "|"
+L13_13 = L2_2
+L9_9 = L9_9 .. L10_10 .. L11_11 .. L12_12 .. L13_13
+L10_10 = "OfficeGen"
+L11_11 = L7_7
+L10_10 = L10_10 .. L11_11
+L11_11 = 3600
+L12_12 = 10
+L13_13 = AppendToRollingQueue
+L14_14 = L10_10
+L15_15 = L0_0
+L16_16 = L9_9
+L13_13(L14_14, L15_15, L16_16, L11_11, L12_12, 0)
+L13_13 = bm_AddRelatedFileFromCommandLine
+L14_14 = L8_8
+L13_13 = L13_13(L14_14)
+L14_14 = GetRollingQueue
+L15_15 = L10_10
+L14_14 = L14_14(L15_15)
+if L14_14 ~= nil then
+  L15_15 = type
+  L16_16 = L14_14
+  L15_15 = L15_15(L16_16)
+elseif L15_15 ~= "table" then
+  L15_15 = mp
+  L15_15 = L15_15.CLEAN
+  return L15_15
+end
+L15_15 = {}
+L15_15.doc = L13_13
+L15_15.cmd = L8_8
+L16_16 = {}
+L15_15.detectionLog = L16_16
+L16_16 = nil
+L3_3 = 0
+for _FORV_20_, _FORV_21_ in ipairs(L14_14) do
+  L16_16 = explode(_FORV_21_.value, "|")
+  table.insert(L15_15.detectionLog, {
+    name = _FORV_21_.key,
+    ppid = L16_16[2],
+    timestamp = _FORV_21_.insert_time,
+    file = L16_16[3]
+  })
+  L3_3 = L3_3 + L16_16[1]
+end
+if L5_5 <= L3_3 then
+  bm.add_related_string("officegen", safeJsonSerialize(L15_15), bm.RelatedStringBMReport)
+  return mp.INFECTED
+end
+return mp.CLEAN

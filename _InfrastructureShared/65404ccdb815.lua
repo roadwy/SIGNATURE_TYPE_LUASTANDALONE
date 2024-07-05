@@ -1,10 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/65404ccdb815 
-
--- params : ...
--- function num : 0
-if ((sigattr_head[1]).attribute == 12363 and (sigattr_tail[mp.SIGATTR_LOG_SZ]).attribute == 12375) or (sigattr_tail[mp.SIGATTR_LOG_SZ]).attribute == 12381 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = sigattr_head
+L0_0 = L0_0[1]
+L0_0 = L0_0.attribute
+if L0_0 == 12363 then
+  L0_0 = sigattr_tail
+  L1_1 = mp
+  L1_1 = L1_1.SIGATTR_LOG_SZ
+  L0_0 = L0_0[L1_1]
+  L0_0 = L0_0.attribute
+else
+  if L0_0 ~= 12375 then
+    L0_0 = sigattr_tail
+    L1_1 = mp
+    L1_1 = L1_1.SIGATTR_LOG_SZ
+    L0_0 = L0_0[L1_1]
+    L0_0 = L0_0.attribute
 end
-return mp.CLEAN
-
+elseif L0_0 == 12381 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

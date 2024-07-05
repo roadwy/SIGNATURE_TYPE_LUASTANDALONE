@@ -1,20 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Ransom_Win32_Roxstage!file_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSDEVICEPATH
+L1_1 = L1_1(L2_2)
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L2_2 = L2_2(L1_1)
+if L2_2 == nil then
   return mp.CLEAN
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-local l_0_2 = (MpCommon.PathToWin32Path)(l_0_1)
-if l_0_2 == nil then
-  return mp.CLEAN
-end
-l_0_2 = l_0_2 .. "\\" .. l_0_0
-if not (MpCommon.QueryPersistContext)(l_0_2, "CLOUD:RoxstageBlockAccess") then
+L2_2 = L2_2 .. "\\" .. L0_0
+if not MpCommon.QueryPersistContext(L2_2, "CLOUD:RoxstageBlockAccess") then
   return mp.CLEAN
 end
 return mp.INFECTED
-

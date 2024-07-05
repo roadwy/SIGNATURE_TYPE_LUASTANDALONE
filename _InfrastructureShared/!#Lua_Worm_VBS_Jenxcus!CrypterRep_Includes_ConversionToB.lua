@@ -1,39 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Worm_VBS_Jenxcus!CrypterRep_Includes_ConversionToB 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 15000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 15000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0 > 500000 then
-  return mp.CLEAN
+if L0_0 > 500000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (tostring(footerpage))
-local l_0_2, l_0_3 = nil, nil
-local l_0_4 = {}
-local l_0_5 = {}
-for l_0_9 = 0, 9 do
-  l_0_3 = (string.format)("[Rr][Ee][Pp][Ll][Aa][Cc][Ee]%%s-%%(%%a-,\"(.)\",\"[%d]\"", l_0_9)
-  l_0_2 = (string.match)(l_0_1, l_0_3)
-  if l_0_2 == nil then
+L1_1 = tostring
+L2_2 = footerpage
+L1_1 = L1_1(L2_2)
+L2_2, L3_3 = nil, nil
+L4_4 = {}
+L5_5 = {}
+for L9_9 = 0, 9 do
+  L3_3 = string.format("[Rr][Ee][Pp][Ll][Aa][Cc][Ee]%%s-%%(%%a-,\"(.)\",\"[%d]\"", L9_9)
+  L2_2 = string.match(L1_1, L3_3)
+  if L2_2 == nil then
     return mp.CLEAN
   end
-  ;
-  (table.insert)(l_0_4, l_0_2)
-  l_0_5[l_0_2] = l_0_9
+  table.insert(L4_4, L2_2)
+  L5_5[L2_2] = L9_9
 end
-local l_0_10 = (string.format)("[%s]", (table.concat)(l_0_4, ""))
-;
-(mp.readprotection)(false)
-local l_0_11 = (mp.readfile)(0, l_0_0)
-local l_0_12 = (string.match)(l_0_11, "=%s-\"(%c-)\"")
-if l_0_12 == nil then
-  return mp.CLEAN
+L9_9 = L4_4
+L9_9 = L8_8(L9_9, "")
+L7_7(L8_8)
+L9_9 = L0_0
+L9_9 = L7_7
+if L8_8 == nil then
+  L9_9 = mp
+  L9_9 = L9_9.CLEAN
+  return L9_9
 end
-l_0_12 = l_0_12:gsub(l_0_10, l_0_5)
-;
-(mp.vfo_add_buffer)(fastDec2Bin(l_0_12, "(%d+)[^%d]?"), "[Jenxcus]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-return mp.CLEAN
-
+L9_9 = L8_8.gsub
+L9_9 = L9_9(L8_8, L6_6, L5_5)
+L9_9 = mp
+L9_9 = L9_9.vfo_add_buffer
+L9_9(fastDec2Bin(L8_8, "(%d+)[^%d]?"), "[Jenxcus]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L9_9 = mp
+L9_9 = L9_9.CLEAN
+return L9_9

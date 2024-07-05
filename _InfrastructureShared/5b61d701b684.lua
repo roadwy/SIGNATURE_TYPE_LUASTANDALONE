@@ -1,12 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5b61d701b684 
-
--- params : ...
--- function num : 0
-for l_0_3 = 1, pehdr.NumberOfSections do
-  if (pesecs[l_0_3]).Name == ".." and (pesecs[l_0_3]).VirtualAddress == (hstrlog[1]).VA - pehdr.ImageBase and pevars.epsec ~= l_0_3 then
-    return mp.INFECTED
+local L2_0, L3_1, L4_2, L5_3, L6_4
+for L5_3 = 1, L3_1.NumberOfSections do
+  L6_4 = pesecs
+  L6_4 = L6_4[L5_3]
+  L6_4 = L6_4.Name
+  if L6_4 == ".." then
+    L6_4 = pesecs
+    L6_4 = L6_4[L5_3]
+    L6_4 = L6_4.VirtualAddress
+    if L6_4 == hstrlog[1].VA - pehdr.ImageBase then
+      L6_4 = pevars
+      L6_4 = L6_4.epsec
+      if L6_4 ~= L5_3 then
+        L6_4 = mp
+        L6_4 = L6_4.INFECTED
+        return L6_4
+      end
+    end
   end
 end
-return mp.CLEAN
-
+return L2_0

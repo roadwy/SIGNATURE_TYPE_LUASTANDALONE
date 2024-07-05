@@ -1,11 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6b7824875714 
-
--- params : ...
--- function num : 0
-local l_0_0 = pehdr.ImageBase + pehdr.AddressOfEntryPoint
-if (hstrlog[1]).VA == l_0_0 or (hstrlog[2]).VA == l_0_0 or (hstrlog[3]).VA == l_0_0 or (hstrlog[4]).VA == l_0_0 or (hstrlog[5]).VA == l_0_0 or (hstrlog[6]).VA == l_0_0 or (hstrlog[7]).VA == l_0_0 or (hstrlog[8]).VA == l_0_0 + 7 or (hstrlog[9]).VA == l_0_0 + 7 or (hstrlog[10]).VA == l_0_0 + 12 or (hstrlog[11]).VA == l_0_0 + 2 then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2
+L0_0 = pehdr
+L0_0 = L0_0.ImageBase
+L1_1 = pehdr
+L1_1 = L1_1.AddressOfEntryPoint
+L0_0 = L0_0 + L1_1
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.VA
+if L1_1 ~= L0_0 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.VA
+  if L1_1 ~= L0_0 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.VA
+    if L1_1 ~= L0_0 then
+      L1_1 = hstrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.VA
+      if L1_1 ~= L0_0 then
+        L1_1 = hstrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.VA
+        if L1_1 ~= L0_0 then
+          L1_1 = hstrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.VA
+          if L1_1 ~= L0_0 then
+            L1_1 = hstrlog
+            L1_1 = L1_1[7]
+            L1_1 = L1_1.VA
+            if L1_1 ~= L0_0 then
+              L1_1 = hstrlog
+              L1_1 = L1_1[8]
+              L1_1 = L1_1.VA
+              L2_2 = L0_0 + 7
+              if L1_1 ~= L2_2 then
+                L1_1 = hstrlog
+                L1_1 = L1_1[9]
+                L1_1 = L1_1.VA
+                L2_2 = L0_0 + 7
+                if L1_1 ~= L2_2 then
+                  L1_1 = hstrlog
+                  L1_1 = L1_1[10]
+                  L1_1 = L1_1.VA
+                  L2_2 = L0_0 + 12
+                  if L1_1 ~= L2_2 then
+                    L1_1 = hstrlog
+                    L1_1 = L1_1[11]
+                    L1_1 = L1_1.VA
+                    L2_2 = L0_0 + 2
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+elseif L1_1 == L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
 end
-return mp.CLEAN
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

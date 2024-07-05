@@ -1,26 +1,150 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3f97812b6cde7 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC147: Unhandled construct in 'MakeBoolean' P3
-
-if (((not (hstrlog[1]).matched and not (hstrlog[2]).matched and not (hstrlog[3]).matched and not (hstrlog[4]).matched and not (hstrlog[5]).matched and not (hstrlog[6]).matched and not (hstrlog[7]).matched and not (hstrlog[8]).matched and not (hstrlog[9]).matched and not (hstrlog[10]).matched and not (hstrlog[11]).matched and not (hstrlog[12]).matched and not (hstrlog[13]).matched and not (hstrlog[14]).matched and not (hstrlog[15]).matched and not (hstrlog[16]).matched and not (hstrlog[17]).matched and not (hstrlog[18]).matched) or not (hstrlog[19]).matched) and not (hstrlog[28]).matched) or 0 + 1 + 1 == 2 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if not L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if not L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if not L1_1 then
+      L1_1 = hstrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if not L1_1 then
+        L1_1 = hstrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if not L1_1 then
+          L1_1 = hstrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if not L1_1 then
+            L1_1 = hstrlog
+            L1_1 = L1_1[7]
+            L1_1 = L1_1.matched
+            if not L1_1 then
+              L1_1 = hstrlog
+              L1_1 = L1_1[8]
+              L1_1 = L1_1.matched
+              if not L1_1 then
+                L1_1 = hstrlog
+                L1_1 = L1_1[9]
+                L1_1 = L1_1.matched
+                if not L1_1 then
+                  L1_1 = hstrlog
+                  L1_1 = L1_1[10]
+                  L1_1 = L1_1.matched
+                  if not L1_1 then
+                    L1_1 = hstrlog
+                    L1_1 = L1_1[11]
+                    L1_1 = L1_1.matched
+                    if not L1_1 then
+                      L1_1 = hstrlog
+                      L1_1 = L1_1[12]
+                      L1_1 = L1_1.matched
+                      if not L1_1 then
+                        L1_1 = hstrlog
+                        L1_1 = L1_1[13]
+                        L1_1 = L1_1.matched
+                        if not L1_1 then
+                          L1_1 = hstrlog
+                          L1_1 = L1_1[14]
+                          L1_1 = L1_1.matched
+                          if not L1_1 then
+                            L1_1 = hstrlog
+                            L1_1 = L1_1[15]
+                            L1_1 = L1_1.matched
+                            if not L1_1 then
+                              L1_1 = hstrlog
+                              L1_1 = L1_1[16]
+                              L1_1 = L1_1.matched
+                              if not L1_1 then
+                                L1_1 = hstrlog
+                                L1_1 = L1_1[17]
+                                L1_1 = L1_1.matched
+                                if not L1_1 then
+                                  L1_1 = hstrlog
+                                  L1_1 = L1_1[18]
+                                  L1_1 = L1_1.matched
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+elseif L1_1 then
+  L0_0 = L0_0 + 1
 end
-return mp.CLEAN
-
+L1_1 = hstrlog
+L1_1 = L1_1[19]
+L1_1 = L1_1.matched
+if not L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[20]
+  L1_1 = L1_1.matched
+  if not L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[21]
+    L1_1 = L1_1.matched
+    if not L1_1 then
+      L1_1 = hstrlog
+      L1_1 = L1_1[22]
+      L1_1 = L1_1.matched
+      if not L1_1 then
+        L1_1 = hstrlog
+        L1_1 = L1_1[23]
+        L1_1 = L1_1.matched
+        if not L1_1 then
+          L1_1 = hstrlog
+          L1_1 = L1_1[24]
+          L1_1 = L1_1.matched
+          if not L1_1 then
+            L1_1 = hstrlog
+            L1_1 = L1_1[25]
+            L1_1 = L1_1.matched
+            if not L1_1 then
+              L1_1 = hstrlog
+              L1_1 = L1_1[26]
+              L1_1 = L1_1.matched
+              if not L1_1 then
+                L1_1 = hstrlog
+                L1_1 = L1_1[27]
+                L1_1 = L1_1.matched
+                if not L1_1 then
+                  L1_1 = hstrlog
+                  L1_1 = L1_1[28]
+                  L1_1 = L1_1.matched
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+elseif L1_1 then
+  L0_0 = L0_0 + 1
+end
+if L0_0 == 2 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

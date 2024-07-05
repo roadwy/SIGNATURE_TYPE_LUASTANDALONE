@@ -1,28 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/cdb3f4970fdb 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  local l_0_1 = (string.lower)((string.sub)(l_0_0, -20))
-  if l_0_1 ~= "\\umworkerprocess.exe" then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L2_2 = L2_2(L0_0, -20)
+  L1_1 = L1_1(L2_2, L2_2(L0_0, -20))
+  if L1_1 ~= "\\umworkerprocess.exe" then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = nil
-  if (this_sigattrlog[1]).matched then
-    l_0_2 = (this_sigattrlog[1]).utf8p1
-  else
-    if (this_sigattrlog[2]).matched then
-      l_0_2 = (this_sigattrlog[2]).utf8p1
-    end
+  L2_2 = nil
+  if this_sigattrlog[1].matched then
+    L2_2 = this_sigattrlog[1].utf8p1
+  elseif this_sigattrlog[2].matched then
+    L2_2 = this_sigattrlog[2].utf8p1
   end
-  if l_0_2 ~= nil and (sysio.IsFileExists)(l_0_2) and (string.sub)(l_0_2, -5) == ".aspx" then
-    (bm.add_threat_file)(l_0_2)
+  if L2_2 ~= nil and sysio.IsFileExists(L2_2) and string.sub(L2_2, -5) == ".aspx" then
+    bm.add_threat_file(L2_2)
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

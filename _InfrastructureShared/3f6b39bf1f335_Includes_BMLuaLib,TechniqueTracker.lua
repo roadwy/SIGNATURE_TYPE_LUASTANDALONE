@@ -1,45 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3f6b39bf1f335_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[9]).matched and (this_sigattrlog[9]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4, l_0_6, l_0_7 = nil, nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L2_2 = this_sigattrlog
+L2_2 = L2_2[9]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[9]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[9]
+    L0_0 = L2_2.utf8p2
   end
-  -- DECOMPILER ERROR at PC35: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC43: Confused about usage of register: R0 in 'UnsetPending'
-
-  if ((this_sigattrlog[10]).matched and (this_sigattrlog[10]).utf8p2 ~= nil and not contains((this_sigattrlog[10]).utf8p2, "downloadstring")) or contains((this_sigattrlog[10]).utf8p2, "%-[eE][ncodemaNCODEMA]*%s+", false) then
-    local l_0_5, l_0_8 = , NormalizeCmdline("powershell", (this_sigattrlog[10]).utf8p2)
-    if contains(l_0_8, "downloadstring") then
-      l_0_5 = l_0_8
-    end
-  else
-    do
-      do return mp.CLEAN end
-      local l_0_9 = nil
-      if contains(l_0_9, {"\\landesk\\ldclient\\ivanti-psmodule"}) then
-        return mp.CLEAN
-      end
-      local l_0_10 = nil
-      do
-        if contains(l_0_9, {"iex", "invoke-expression"}) then
-          local l_0_11 = nil
-          if contains(l_0_9, {"pastebin.com", "paste.ee", "j.mp", "textbin.net"}) then
-            if IsProcNameInParentProcessTree("BM", "wmiprvse.exe") then
-              (mp.TriggerScanResource)("wmi", "")
-            end
-            return mp.INFECTED
-          end
-        end
-        return mp.CLEAN
-      end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[10]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[10]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[10]
+      L0_0 = L2_2.utf8p2
     end
   end
 end
-
+L2_2 = contains
+L3_3 = L0_0
+L4_4 = "downloadstring"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 then
+else
+  L2_2 = contains
+  L3_3 = L0_0
+  L4_4 = "%-[eE][ncodemaNCODEMA]*%s+"
+  L2_2 = L2_2(L3_3, L4_4, false)
+  if L2_2 then
+    L2_2 = NormalizeCmdline
+    L3_3 = "powershell"
+    L4_4 = L0_0
+    L2_2 = L2_2(L3_3, L4_4)
+    L1_1 = L2_2
+    L2_2 = contains
+    L3_3 = L1_1
+    L4_4 = "downloadstring"
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 then
+      L0_0 = L1_1
+    end
+  else
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
+end
+L2_2 = {L3_3}
+L3_3 = "\\landesk\\ldclient\\ivanti-psmodule"
+L3_3 = contains
+L4_4 = L0_0
+L3_3 = L3_3(L4_4, L2_2)
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = {
+  L4_4,
+  "invoke-expression"
+}
+L4_4 = "iex"
+L4_4 = contains
+L4_4 = L4_4(L0_0, L3_3)
+if L4_4 then
+  L4_4 = {
+    "pastebin.com",
+    "paste.ee",
+    "j.mp",
+    "textbin.net"
+  }
+  if contains(L0_0, L4_4) then
+    if IsProcNameInParentProcessTree("BM", "wmiprvse.exe") then
+      mp.TriggerScanResource("wmi", "")
+    end
+    return mp.INFECTED
+  end
+end
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

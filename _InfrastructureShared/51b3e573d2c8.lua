@@ -1,22 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51b3e573d2c8 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[3]).utf8p2
-if not l_0_0 or #l_0_0 < 8 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.utf8p2
+if L0_0 then
+  L1_1 = #L0_0
+elseif L1_1 < 8 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (string.find)(l_0_0, "--%x+")
-if l_0_1 ~= 1 or l_0_2 < l_0_1 or l_0_2 - l_0_1 < 8 then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "--%x+"
+L2_2 = L1_1(L2_2, L3_3)
+if L1_1 == 1 and not (L2_2 < L1_1) then
+  L3_3 = L2_2 - L1_1
+elseif L3_3 < 8 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (bm.get_imagepath)()
-local l_0_4, l_0_5 = (bm.get_process_relationships)()
-for l_0_9,l_0_10 in ipairs(l_0_5) do
-  if l_0_10.image_path == l_0_3 then
-    (MpCommon.RequestSmsOnProcess)(l_0_10.ppid, MpCommon.SMS_SCAN_MED)
+L3_3 = bm
+L3_3 = L3_3.get_imagepath
+L3_3 = L3_3()
+L4_4 = bm
+L4_4 = L4_4.get_process_relationships
+L5_5 = L4_4()
+for _FORV_9_, _FORV_10_ in ipairs(L5_5) do
+  if _FORV_10_.image_path == L3_3 then
+    MpCommon.RequestSmsOnProcess(_FORV_10_.ppid, MpCommon.SMS_SCAN_MED)
   end
 end
 return mp.INFECTED
-

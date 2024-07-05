@@ -1,28 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/245b326398377_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 == nil or l_0_0.command_line == nil then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.command_line
+elseif L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0.command_line
+L1_1 = L1_1(L2_2)
+L3_3 = L1_1
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, "\\asppc.exe", 1, true)
+if not L2_2 then
+  L3_3 = L1_1
+  L2_2 = L1_1.find
+  L2_2 = L2_2(L3_3, "\\ecomppc.exe", 1, true)
+elseif L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L3_3 = L1_1
+L2_2 = L1_1.match
+L2_2 = L2_2(L3_3, "^[^%l]?([a-z]):\\")
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = string
+L3_3 = L3_3.byte
+L3_3 = L3_3(L2_2)
+L3_3 = L3_3 - string.byte("a")
+if L3_3 == nil or L3_3 < 0 or L3_3 > 26 then
   return mp.CLEAN
 end
-local l_0_1 = (string.lower)(l_0_0.command_line)
-if l_0_1:find("\\asppc.exe", 1, true) or l_0_1:find("\\ecomppc.exe", 1, true) then
+if sysio.GetLogicalDriveType(L3_3) ~= 4 then
   return mp.CLEAN
 end
-local l_0_2 = l_0_1:match("^[^%l]?([a-z]):\\")
-if l_0_2 == nil then
-  return mp.CLEAN
-end
-local l_0_3 = (string.byte)(l_0_2) - (string.byte)("a")
-if l_0_3 == nil or l_0_3 < 0 or l_0_3 > 26 then
-  return mp.CLEAN
-end
-local l_0_4 = (sysio.GetLogicalDriveType)(l_0_3)
-if l_0_4 ~= 4 then
-  return mp.CLEAN
-end
-TrackPidAndTechniqueBM(l_0_0.ppid, "T1021.002", "exec_from_remoteshare")
+TrackPidAndTechniqueBM(L0_0.ppid, "T1021.002", "exec_from_remoteshare")
 return mp.INFECTED
-

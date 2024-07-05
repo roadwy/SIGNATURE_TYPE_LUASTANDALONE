@@ -1,27 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_Defenestrator.E!dha_ObMpAttributes_g 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetCertificateInfo)()
-if l_0_0 == nil or #l_0_0 == 0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+elseif L1_1 == 0 then
+  return L1_1
 end
-for l_0_4,l_0_5 in ipairs(l_0_0) do
-  if l_0_5.AuthenticodeContentType ~= "PE" then
-    return mp.CLEAN
+for L4_4, L5_5 in L1_1(L2_2) do
+  L6_6 = L5_5.AuthenticodeContentType
+  if L6_6 ~= "PE" then
+    L6_6 = mp
+    L6_6 = L6_6.CLEAN
+    return L6_6
   end
-  local l_0_6 = l_0_5.Certificates
-  if l_0_6 ~= nil then
-    for l_0_10,l_0_11 in ipairs(l_0_6) do
-      local l_0_12 = l_0_11.Issuer
-      if l_0_12 ~= nil and l_0_12.CommonName ~= nil and (mp.utf16to8)(l_0_12.CommonName) == "officeupdate.com" then
+  L6_6 = L5_5.Certificates
+  if L6_6 ~= nil then
+    for _FORV_10_, _FORV_11_ in ipairs(L6_6) do
+      if _FORV_11_.Issuer ~= nil and _FORV_11_.Issuer.CommonName ~= nil and mp.utf16to8(_FORV_11_.Issuer.CommonName) == "officeupdate.com" then
         return mp.INFECTED
       end
     end
   end
 end
-do return mp.CLEAN end
--- DECOMPILER ERROR at PC50: Confused about usage of register R1 for local variables in 'ReleaseLocals'
-
-
+return L1_1

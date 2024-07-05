@@ -1,29 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19b3378537b0 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = nil
-  l_0_0 = (this_sigattrlog[1]).utf8p2
-  if l_0_0 == nil or l_0_0 == "" then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = nil
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
+  if L0_0 == nil or L0_0 == "" then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if (string.find)(l_0_0, "-k", 1, true) or (string.find)(l_0_0, "UnistackSvcGroup", 1, true) then
-    return mp.CLEAN
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L3_3 = "-k"
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L3_3 = "UnistackSvcGroup"
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_1 = (bm.get_current_process_startup_info)()
-  if l_0_1.integrity_level < MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
-    local l_0_2, l_0_3 = (bm.get_process_relationships)()
-    for l_0_7,l_0_8 in ipairs(l_0_2) do
-      if l_0_8.image_path ~= nil and (mp.bitand)(l_0_8.reason_ex, 1) == 1 and (string.find)(l_0_8.image_path, "windows\\system32\\svchost.exe", 1, true) then
+  L1_1 = bm
+  L1_1 = L1_1.get_current_process_startup_info
+  L1_1 = L1_1()
+  L2_2 = L1_1.integrity_level
+  L3_3 = MpCommon
+  L3_3 = L3_3.SECURITY_MANDATORY_SYSTEM_RID
+  if L2_2 < L3_3 then
+    L2_2 = bm
+    L2_2 = L2_2.get_process_relationships
+    L3_3 = L2_2()
+    for _FORV_7_, _FORV_8_ in L4_4(L5_5) do
+      if _FORV_8_.image_path ~= nil and mp.bitand(_FORV_8_.reason_ex, 1) == 1 and string.find(_FORV_8_.image_path, "windows\\system32\\svchost.exe", 1, true) then
         return mp.CLEAN
       end
     end
-    return mp.INFECTED
+    return L4_4
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

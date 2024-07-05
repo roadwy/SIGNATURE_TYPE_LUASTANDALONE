@@ -1,18 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19b3ac934fa9 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (bm.get_current_process_startup_info)()
-  if l_0_0.integrity_level == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
-    local l_0_1 = (this_sigattrlog[1]).utf8p2
-    if l_0_1 ~= nil and (string.len)(l_0_1) > 2 then
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = bm
+  L0_0 = L0_0.get_current_process_startup_info
+  L0_0 = L0_0()
+  L1_1 = L0_0.integrity_level
+  if L1_1 == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil and string.len(L1_1) > 2 then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

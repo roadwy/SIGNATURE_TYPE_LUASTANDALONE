@@ -1,26 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_PlaMasq.B!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 10000 then
+if mp.getfilesize() < 10000 then
   return mp.CLEAN
 end
-local l_0_1 = (pe.get_versioninfo)()
-if l_0_1 ~= nil then
-  if l_0_1.CompanyName ~= "Adobe Systems Incorporated" then
+if pe.get_versioninfo() ~= nil then
+  if pe.get_versioninfo().CompanyName ~= "Adobe Systems Incorporated" then
     return mp.CLEAN
   end
-  if l_0_1.FileOriginalName == "protect.exe" then
+  if pe.get_versioninfo().FileOriginalName == "protect.exe" then
     return mp.CLEAN
   end
-  if l_0_1.FileOriginalName == "WebInstaller.exe" then
+  if pe.get_versioninfo().FileOriginalName == "WebInstaller.exe" then
     return mp.CLEAN
   end
-  if l_0_1.ProductName == "Adobe" then
+  if pe.get_versioninfo().ProductName == "Adobe" then
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

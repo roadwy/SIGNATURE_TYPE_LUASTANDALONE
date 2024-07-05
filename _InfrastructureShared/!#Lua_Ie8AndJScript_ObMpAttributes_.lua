@@ -1,15 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Ie8AndJScript_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 400 then
+if mp.getfilesize() < 400 then
   return mp.CLEAN
 end
-local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_1:find("fuzz", 1, true) or l_0_1:find("exploitdb", 1, true) or l_0_1:find("helloworld", 1, true) or l_0_1:find("grizzly\\serve", 1, true) then
+if mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)):find("fuzz", 1, true) or mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)):find("exploitdb", 1, true) or mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)):find("helloworld", 1, true) or mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)):find("grizzly\\serve", 1, true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

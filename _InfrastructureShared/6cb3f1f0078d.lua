@@ -1,53 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6cb3f1f0078d 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2, l_0_3 = nil
-if R3_PC3 ~= nil then
-  for l_0_7,l_0_8 in ipairs(R5_PC7) do
-    local l_0_4, l_0_5 = (bm.get_process_relationships)()
-    -- DECOMPILER ERROR at PC9: Confused about usage of register: R8 in 'UnsetPending'
-
-    if R8_PC9.image_path ~= nil and R8_PC9.reason == bm.RELATIONSHIP_INJECTION then
-      if not (string.find)((string.lower)((MpCommon.PathToWin32Path)(R8_PC9.image_path)), "\\system32\\svchost.exe", -21, true) or not (string.find)((string.lower)((MpCommon.PathToWin32Path)(R8_PC9.image_path)), "\\syswow64\\svchost.exe", -21, true) then
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+if L3_3 ~= nil then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L9_9 = L8_8.image_path
+    if L9_9 ~= nil then
+      L9_9 = L8_8.reason
+      if L9_9 == bm.RELATIONSHIP_INJECTION then
+        L9_9 = string
+        L9_9 = L9_9.lower
+        L9_9 = L9_9(MpCommon.PathToWin32Path(L8_8.image_path))
+        if not string.find(L9_9, "\\system32\\svchost.exe", -21, true) or not string.find(L9_9, "\\syswow64\\svchost.exe", -21, true) then
+          return mp.CLEAN
+        end
+        L0_0 = L8_8.ppid
       end
-      l_0_2 = R8_PC9.ppid
     end
   end
 end
-do
-  -- DECOMPILER ERROR at PC48: Confused about usage of register: R2 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC51: Confused about usage of register: R2 in 'UnsetPending'
-
-  if l_0_4 ~= nil then
-    for l_0_13,l_0_14 in ipairs(l_0_4) do
-      local l_0_10, l_0_11 = nil
-      -- DECOMPILER ERROR at PC54: Confused about usage of register: R8 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC61: Confused about usage of register: R8 in 'UnsetPending'
-
-      if R8_PC9.image_path ~= nil then
-        l_0_3 = (string.lower)((MpCommon.PathToWin32Path)(R8_PC9.image_path))
-        if (sysio.IsFileExists)(l_0_3) and not (mp.IsKnownFriendlyFile)(l_0_3, true, false) then
-          (bm.add_related_file)(l_0_3)
+if L2_2 ~= nil then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L9_9 = L8_8.image_path
+    if L9_9 ~= nil then
+      L9_9 = string
+      L9_9 = L9_9.lower
+      L9_9 = L9_9(MpCommon.PathToWin32Path(L8_8.image_path))
+      L1_1 = L9_9
+      L9_9 = sysio
+      L9_9 = L9_9.IsFileExists
+      L9_9 = L9_9(L1_1)
+      if L9_9 then
+        L9_9 = mp
+        L9_9 = L9_9.IsKnownFriendlyFile
+        L9_9 = L9_9(L1_1, true, false)
+        if not L9_9 then
+          L9_9 = bm
+          L9_9 = L9_9.add_related_file
+          L9_9(L1_1)
         end
       end
     end
   end
-  do
-    if l_0_2 ~= nil and l_0_3 ~= nil then
-      (bm.request_SMS)(l_0_2, "l+")
-      ;
-      (bm.add_action)("SmsAsyncScanEvent", 1000)
-      ;
-      (bm.trigger_sig)("Cheddar", "ShellcodeSvchost")
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
 end
-
+if L0_0 ~= nil and L1_1 ~= nil then
+  L4_4(L5_5, L6_6)
+  L4_4(L5_5, L6_6)
+  L4_4(L5_5, L6_6)
+  return L4_4
+end
+return L4_4

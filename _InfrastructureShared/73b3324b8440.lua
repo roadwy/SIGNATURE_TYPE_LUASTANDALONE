@@ -1,20 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/73b3324b8440 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[1]).utf8p2
-if not l_0_0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.utf8p2
+if not L0_0 then
+  return L1_1
 end
-l_0_0 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-if not l_0_0 then
-  return mp.CLEAN
+L0_0 = L1_1
+if not L0_0 then
+  return L1_1
 end
-for l_0_4,l_0_5 in ipairs(l_0_0) do
-  if l_0_5 and (sysio.IsFileExists)(l_0_5) and not (mp.IsKnownFriendlyFile)(l_0_5, false, false) then
-    (bm.add_related_file)(l_0_5)
+for L4_4, L5_5 in L1_1(L2_2) do
+  if L5_5 and sysio.IsFileExists(L5_5) and not mp.IsKnownFriendlyFile(L5_5, false, false) then
+    bm.add_related_file(L5_5)
   end
 end
-return mp.INFECTED
-
+return L1_1

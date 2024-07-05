@@ -1,10 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b678e44bdb77 
-
--- params : ...
--- function num : 0
-if (((not (hstrlog[1]).matched and not (hstrlog[2]).matched and (hstrlog[4]).matched) or (hstrlog[3]).matched) and 1 or 0) + ((hstrlog[5]).matched and 1 or 0) + ((hstrlog[6]).matched and 1 or 0) >= 3 then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+  end
 end
-return mp.CLEAN
-
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if not L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[5]
+  L1_1 = L1_1.matched
+end
+L2_2 = hstrlog
+L2_2 = L2_2[6]
+L2_2 = L2_2.matched
+if L0_0 then
+  L3_3 = 1
+else
+  L3_3 = L3_3 or 0
+end
+if L1_1 then
+  L4_4 = 1
+else
+  L4_4 = L4_4 or 0
+end
+L3_3 = L3_3 + L4_4
+if L2_2 then
+  L4_4 = 1
+else
+  L4_4 = L4_4 or 0
+end
+L3_3 = L3_3 + L4_4
+if L3_3 >= 3 then
+  L4_4 = mp
+  L4_4 = L4_4.INFECTED
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

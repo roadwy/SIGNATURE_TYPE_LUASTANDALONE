@@ -1,26 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55d77e32bd13 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.GetParentProcInfo)()
-if l_0_1 ~= nil then
-  local l_0_2 = (string.lower)(l_0_1.image_path)
-  local l_0_3 = ((string.sub)(l_0_2, -15)):match("\\([^\\]+)$")
-  local l_0_4 = {}
-  l_0_4["winword.exe"] = true
-  l_0_4["excel.exe"] = true
-  l_0_4["powerpnt.exe"] = true
-  l_0_4["outlook.exe"] = true
-  if l_0_4[l_0_3] then
+L1_1 = mp
+L1_1 = L1_1.GetParentProcInfo
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(L1_1.image_path)
+  if ({
+    ["winword.exe"] = true,
+    ["excel.exe"] = true,
+    ["powerpnt.exe"] = true,
+    ["outlook.exe"] = true
+  })[string.sub(L2_2, -15):match("\\([^\\]+)$")] then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

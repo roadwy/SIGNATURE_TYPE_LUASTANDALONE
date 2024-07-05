@@ -1,22 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6ed769db7371_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 == nil or l_0_0.ppid == nil or l_0_0.image_path == nil then
+if mp.GetParentProcInfo() == nil or mp.GetParentProcInfo().ppid == nil or mp.GetParentProcInfo().image_path == nil then
   return mp.CLEAN
 end
-if IsPidExcluded(l_0_0.ppid) then
+if IsPidExcluded(mp.GetParentProcInfo().ppid) then
   return mp.CLEAN
 end
-TrackPidAndTechnique(l_0_0.ppid, "T1016", "network_discovery")
-if IsDetectionThresholdMet(l_0_0.ppid) then
+TrackPidAndTechnique(mp.GetParentProcInfo().ppid, "T1016", "network_discovery")
+if IsDetectionThresholdMet(mp.GetParentProcInfo().ppid) then
   return mp.INFECTED
 end
-local l_0_1 = GetTacticsTableForPid(l_0_0.ppid)
-if l_0_1.winrshost_childproc or l_0_1.wsmprovhost_childproc or l_0_1.wmi_childproc or l_0_1.remotedropexe_childproc or l_0_1.python_childproc or l_0_1.rundll32_childproc or l_0_1.wscript_childproc or l_0_1.cscript_childproc or l_0_1.mshta_childproc or l_0_1.webshell_childproc or l_0_1.exec_remotedroppedscript_a then
+if GetTacticsTableForPid(mp.GetParentProcInfo().ppid).winrshost_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wsmprovhost_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wmi_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).remotedropexe_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).python_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).rundll32_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wscript_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).cscript_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).mshta_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).webshell_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).exec_remotedroppedscript_a then
   return mp.INFECTED
 end
 return mp.LOWFI
-

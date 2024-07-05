@@ -1,31 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_PSb64WriteFile.C_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 5000000 then
-  (mp.readprotection)(false)
-  local l_0_1 = ((mp.readfile)(0, l_0_0))
-  local l_0_2, l_0_3, l_0_4 = nil, nil, nil
-  local l_0_5 = 1
-  l_0_2 = (string.find)(l_0_1, "%:%:FromBase64String%(")
-  -- DECOMPILER ERROR at PC32: Overwrote pending register: R3 in 'AssignReg'
-
-  if l_0_2 ~= nil then
-    l_0_2 = (string.find)(l_0_1, "([%w/+=]+)", l_0_3 + 1)
-    if l_0_2 ~= nil then
-      local l_0_6 = nil
-      l_0_6 = (MpCommon.Base64Decode)(l_0_4)
-      if l_0_6 ~= nil and l_0_6 ~= "" then
-        (mp.vfo_add_buffer)(l_0_6, (string.format)("[PSBase64][%02X]", l_0_5), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-        l_0_5 = l_0_5 + 1
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 5000000 then
+  L1_1 = mp
+  L1_1 = L1_1.readprotection
+  L2_2 = false
+  L1_1(L2_2)
+  L1_1 = mp
+  L1_1 = L1_1.readfile
+  L2_2 = 0
+  L3_3 = L0_0
+  L1_1 = L1_1(L2_2, L3_3)
+  L2_2, L3_3, L4_4 = nil, nil, nil
+  L5_5 = 1
+  L6_6 = string
+  L6_6 = L6_6.find
+  L3_3, L6_6 = L1_1, L6_6(L1_1, "%:%:FromBase64String%(")
+  L2_2 = L6_6
+  if L2_2 ~= nil then
+    L6_6 = string
+    L6_6 = L6_6.find
+    L3_3, L4_4, L6_6 = L1_1, "([%w/+=]+)", L6_6(L1_1, "([%w/+=]+)", L3_3 + 1)
+    L2_2 = L6_6
+    if L2_2 ~= nil then
+      L6_6 = nil
+      L6_6 = MpCommon.Base64Decode(L4_4)
+      if L6_6 ~= nil and L6_6 ~= "" then
+        mp.vfo_add_buffer(L6_6, string.format("[PSBase64][%02X]", L5_5), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+        L5_5 = L5_5 + 1
       end
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

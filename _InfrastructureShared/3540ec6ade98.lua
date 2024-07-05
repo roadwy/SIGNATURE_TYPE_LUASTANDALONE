@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3540ec6ade98 
-
--- params : ...
--- function num : 0
-local l_0_0 = (nri.GetRawResponseBlob)()
-if l_0_0 and (MpCommon.BinaryRegExpSearch)("\\\\\\\\10\\.[0-9\\.]+|172\\.[0-9\\.]+|192\\.168\\.[0-9\\.]+\\\\d+", l_0_0) then
+local L0_0
+L0_0 = nri
+L0_0 = L0_0.GetRawResponseBlob
+L0_0 = L0_0()
+if L0_0 and MpCommon.BinaryRegExpSearch("\\\\\\\\10\\.[0-9\\.]+|172\\.[0-9\\.]+|192\\.168\\.[0-9\\.]+\\\\d+", L0_0) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

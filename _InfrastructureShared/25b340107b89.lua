@@ -1,10 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b340107b89 
-
--- params : ...
--- function num : 0
-if (string.lower)((string.sub)((bm.get_imagepath)(), -13)) == "\\wmiprvse.exe" then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(string.sub(bm.get_imagepath(), -13))
+if L0_0 == "\\wmiprvse.exe" then
   return mp.INFECTED
 end
 return mp.CLEAN
-

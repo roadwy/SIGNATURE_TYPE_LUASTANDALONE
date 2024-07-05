@@ -1,18 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1e890eebdaa2 
-
--- params : ...
--- function num : 0
-local l_0_0 = 512
-local l_0_1 = (pe.mmap_va)(pevars.sigaddr - 256, l_0_0)
-local l_0_2 = (string.find)(l_0_1, "JB\015%z")
-if l_0_2 then
-  (pe.mmap_patch_va)(pevars.sigaddr + 7, "êê")
-  ;
-  (pe.mmap_patch_va)(pevars.sigaddr + 16, "\235")
-  ;
-  (mp.set_mpattribute)("FOPEX:Deep_Analysis_Disable_APILimit")
+local L0_0, L1_1
+L0_0 = 512
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L1_1 = L1_1(pevars.sigaddr - 256, L0_0)
+if string.find(L1_1, "JB\015%z") then
+  pe.mmap_patch_va(pevars.sigaddr + 7, "\144\144")
+  pe.mmap_patch_va(pevars.sigaddr + 16, "\235")
+  mp.set_mpattribute("FOPEX:Deep_Analysis_Disable_APILimit")
   return mp.INFECTED
 end
 return mp.CLEAN
-

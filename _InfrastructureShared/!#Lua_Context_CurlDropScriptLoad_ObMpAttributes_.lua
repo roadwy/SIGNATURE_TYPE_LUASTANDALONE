@@ -1,26 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_CurlDropScriptLoad_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-local l_0_1 = "ScriptDroppedByCurl"
-if l_0_0 == "wscript.exe" then
-  local l_0_2 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-  if (MpCommon.QueryPersistContext)(l_0_2, l_0_1) then
-    (mp.set_mpattribute)("Lua:Context/CurlDropWscriptLoad")
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L2_2 = L0_0
+  L1_1 = L0_0.lower
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+end
+L1_1 = "ScriptDroppedByCurl"
+if L0_0 == "wscript.exe" then
+  L2_2 = mp
+  L2_2 = L2_2.getfilename
+  L2_2 = L2_2(mp.FILEPATH_QUERY_LOWERCASE)
+  if MpCommon.QueryPersistContext(L2_2, L1_1) then
+    mp.set_mpattribute("Lua:Context/CurlDropWscriptLoad")
   end
-else
-  do
-    do
-      if l_0_0 == "cscript.exe" then
-        local l_0_3 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-        if (MpCommon.QueryPersistContext)(l_0_3, l_0_1) then
-          (mp.set_mpattribute)("Lua:Context/CurlDropCscriptLoad")
-        end
-      end
-      return mp.CLEAN
-    end
+elseif L0_0 == "cscript.exe" then
+  L2_2 = mp
+  L2_2 = L2_2.getfilename
+  L2_2 = L2_2(mp.FILEPATH_QUERY_LOWERCASE)
+  if MpCommon.QueryPersistContext(L2_2, L1_1) then
+    mp.set_mpattribute("Lua:Context/CurlDropCscriptLoad")
   end
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

@@ -1,15 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Trojan_JS_Flafisi.A.1 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.IOAVGetDownloadUrl)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.IOAVGetDownloadUrl
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)(((mp.getfilename)()):match("\\([^\\]+)$"))
-if (string.find)(l_0_1, "flash%s*player.*%.hta$") ~= nil then
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(mp.getfilename():match("\\([^\\]+)$"))
+if string.find(L1_1, "flash%s*player.*%.hta$") ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

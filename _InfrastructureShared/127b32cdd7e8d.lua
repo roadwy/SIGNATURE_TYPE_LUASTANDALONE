@@ -1,41 +1,166 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/127b32cdd7e8d 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[2]).matched and (this_sigattrlog[3]).matched and (this_sigattrlog[5]).matched then
-  local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p1)
-  local l_0_1 = (string.match)((string.lower)((this_sigattrlog[2]).utf8p1), "^(.+)\\\\imagepath")
-  if l_0_0 ~= l_0_1 then
-    return mp.CLEAN
-  end
-  local l_0_2 = (string.lower)((this_sigattrlog[2]).utf8p2)
-  if l_0_2 == nil or (string.len)(l_0_2) <= 1 then
-    return mp.CLEAN
-  else
-    if (string.find)(l_0_2, "\\program files", 1, true) or (string.find)(l_0_2, "\\system32\\", 1, true) or (string.find)(l_0_2, "\\syswow64\\", 1, true) or (string.find)(l_0_2, "%windir%\\", 1, true) or (string.find)(l_0_2, "\\programdata\\", 1, true) or (string.find)(l_0_2, "\\users\\", 1, true) or (string.find)(l_0_2, "\\macromed\\flash\\", 1, true) or (string.find)(l_0_2, "\\svchost.exe -k ", 1, true) or (string.find)(l_0_2, "\\ccmexec.exe", 1, true) or (string.find)(l_0_2, "\\ccmsetup.exe", 1, true) or (string.find)(l_0_2, "\\msiexec.exe", 1, true) or (string.find)(l_0_2, "\\pnkbstr", 1, true) or (string.find)(l_0_2, "\\uiusrv.exe", 1, true) or (string.find)(l_0_2, "service.exe", 1, true) or (string.find)(l_0_2, "\\framepkg", 1, true) or (string.find)(l_0_2, "\\veeam", 1, true) or (string.find)(l_0_2, "\\bginfo", 1, true) or (string.find)(l_0_2, "\\addmremquery", 1, true) or (string.find)(l_0_2, "\\ltsvc", 1, true) or (string.find)(l_0_2, ".sys", 1, true) then
-      return mp.CLEAN
-    end
-  end
-  for l_0_6 = 1, mp.SIGATTR_LOG_SZ do
-    if (sigattr_head[l_0_6]).matched and (sigattr_head[l_0_6]).attribute == 16400 then
-      local l_0_7 = (string.match)((string.lower)((sigattr_head[l_0_6]).utf8p1), "\\([^\\]+)$")
-      if (string.find)(l_0_2, l_0_7, 1, true) then
-        local l_0_8 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-        for l_0_12,l_0_13 in ipairs(l_0_8) do
-          l_0_13 = (mp.ContextualExpandEnvironmentVariables)(l_0_13)
-          if (sysio.IsFileExists)(l_0_13) then
-            (mp.ReportLowfi)(l_0_13, 2253321900)
-            ;
-            (bm.add_related_file)(l_0_13)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = this_sigattrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = this_sigattrlog
+      L0_0 = L0_0[5]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = string
+        L0_0 = L0_0.lower
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[1]
+        L1_1 = L1_1.utf8p1
+        L0_0 = L0_0(L1_1)
+        L1_1 = string
+        L1_1 = L1_1.match
+        L2_2 = string
+        L2_2 = L2_2.lower
+        L2_2 = L2_2(L3_3)
+        L1_1 = L1_1(L2_2, L3_3)
+        if L0_0 ~= L1_1 then
+          L2_2 = mp
+          L2_2 = L2_2.CLEAN
+          return L2_2
+        end
+        L2_2 = string
+        L2_2 = L2_2.lower
+        L2_2 = L2_2(L3_3)
+        if L2_2 ~= nil then
+        else
+          if L3_3 <= 1 then
+            return L3_3
+        end
+        else
+          L6_6 = 1
+          L7_7 = true
+          if not L3_3 then
+            L6_6 = 1
+            L7_7 = true
+            if not L3_3 then
+              L6_6 = 1
+              L7_7 = true
+              if not L3_3 then
+                L6_6 = 1
+                L7_7 = true
+                if not L3_3 then
+                  L6_6 = 1
+                  L7_7 = true
+                  if not L3_3 then
+                    L6_6 = 1
+                    L7_7 = true
+                    if not L3_3 then
+                      L6_6 = 1
+                      L7_7 = true
+                      if not L3_3 then
+                        L6_6 = 1
+                        L7_7 = true
+                        if not L3_3 then
+                          L6_6 = 1
+                          L7_7 = true
+                          if not L3_3 then
+                            L6_6 = 1
+                            L7_7 = true
+                            if not L3_3 then
+                              L6_6 = 1
+                              L7_7 = true
+                              if not L3_3 then
+                                L6_6 = 1
+                                L7_7 = true
+                                if not L3_3 then
+                                  L6_6 = 1
+                                  L7_7 = true
+                                  if not L3_3 then
+                                    L6_6 = 1
+                                    L7_7 = true
+                                    if not L3_3 then
+                                      L6_6 = 1
+                                      L7_7 = true
+                                      if not L3_3 then
+                                        L6_6 = 1
+                                        L7_7 = true
+                                        if not L3_3 then
+                                          L6_6 = 1
+                                          L7_7 = true
+                                          if not L3_3 then
+                                            L6_6 = 1
+                                            L7_7 = true
+                                            if not L3_3 then
+                                              L6_6 = 1
+                                              L7_7 = true
+                                              if not L3_3 then
+                                                L6_6 = 1
+                                                L7_7 = true
+                                              end
+                                            end
+                                          end
+                                        end
+                                      end
+                                    end
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          elseif L3_3 then
+            return L3_3
           end
         end
-        return mp.INFECTED
+        for L6_6 = 1, L4_4.SIGATTR_LOG_SZ do
+          L7_7 = sigattr_head
+          L7_7 = L7_7[L6_6]
+          L7_7 = L7_7.matched
+          if L7_7 then
+            L7_7 = sigattr_head
+            L7_7 = L7_7[L6_6]
+            L7_7 = L7_7.attribute
+            if L7_7 == 16400 then
+              L7_7 = string
+              L7_7 = L7_7.match
+              L8_8 = string
+              L8_8 = L8_8.lower
+              L8_8 = L8_8(L9_9)
+              L7_7 = L7_7(L8_8, L9_9)
+              L8_8 = string
+              L8_8 = L8_8.find
+              L12_12 = true
+              L8_8 = L8_8(L9_9, L10_10, L11_11, L12_12)
+              if L8_8 then
+                L8_8 = mp
+                L8_8 = L8_8.GetExecutablesFromCommandLine
+                L8_8 = L8_8(L9_9)
+                for L12_12, L13_13 in L9_9(L10_10) do
+                  L13_13 = mp.ContextualExpandEnvironmentVariables(L13_13)
+                  if sysio.IsFileExists(L13_13) then
+                    mp.ReportLowfi(L13_13, 2253321900)
+                    bm.add_related_file(L13_13)
+                  end
+                end
+                return L9_9
+              end
+            end
+          end
+        end
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

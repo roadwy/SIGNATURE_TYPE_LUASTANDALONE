@@ -1,36 +1,73 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LuaHighRiskMshtaJScriptNetDropper.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_0 ~= "mshta.exe" then
-  return mp.CLEAN
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSNAME
+L10_10 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L1_1(L2_2))
+if L0_0 ~= "mshta.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_2 = (MpCommon.QueryPersistContext)(l_0_1, "Lua:ExeDroppedByJsc")
-if not l_0_2 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_FULL
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+L10_10 = L2_2(L3_3, L4_4)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L2_2(L3_3, L4_4))
+L2_2 = MpCommon
+L2_2 = L2_2.QueryPersistContext
+L3_3 = L1_1
+L4_4 = "Lua:ExeDroppedByJsc"
+L2_2 = L2_2(L3_3, L4_4)
+if not L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-;
-(mp.set_mpattribute)("Lua:MshtaJScriptNet.A")
-local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESS_PPID)
-local l_0_4 = (mp.GetProcessCommandLine)(l_0_3)
-if l_0_4 ~= nil then
-  local l_0_5 = (mp.GetExecutablesFromCommandLine)(l_0_4)
-  for l_0_9,l_0_10 in ipairs(l_0_5) do
-    l_0_10 = (mp.ContextualExpandEnvironmentVariables)(l_0_10)
-    if (sysio.IsFileExists)(l_0_10) and (MpCommon.QueryPersistContext)(l_0_10, "Lua:HighRiskHtaWebVector") then
+L3_3 = mp
+L3_3 = L3_3.set_mpattribute
+L4_4 = "Lua:MshtaJScriptNet.A"
+L3_3(L4_4)
+L3_3 = mp
+L3_3 = L3_3.get_contextdata
+L4_4 = mp
+L4_4 = L4_4.CONTEXT_DATA_PROCESS_PPID
+L3_3 = L3_3(L4_4)
+L4_4 = mp
+L4_4 = L4_4.GetProcessCommandLine
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+if L4_4 ~= nil then
+  L5_5 = mp
+  L5_5 = L5_5.GetExecutablesFromCommandLine
+  L5_5 = L5_5(L6_6)
+  for L9_9, L10_10 in L6_6(L7_7) do
+    L10_10 = mp.ContextualExpandEnvironmentVariables(L10_10)
+    if sysio.IsFileExists(L10_10) and MpCommon.QueryPersistContext(L10_10, "Lua:HighRiskHtaWebVector") then
       return mp.INFECTED
     end
   end
 end
-do
-  l_0_5 = mp
-  l_0_5 = l_0_5.CLEAN
-  return l_0_5
-end
-
+L5_5 = mp
+L5_5 = L5_5.CLEAN
+return L5_5

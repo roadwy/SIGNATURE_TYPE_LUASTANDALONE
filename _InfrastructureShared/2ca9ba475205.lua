@@ -1,13 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2ca9ba475205 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((nri.GetHttpRequestHeader)("referer"))
-if (string.find)(l_0_0, "live.com", 1, true) or (string.find)(l_0_0, "bing.com", 1, true) or (string.find)(l_0_0, "msn.com", 1, true) or (string.find)(l_0_0, "yahoo.com", 1, true) or (string.find)(l_0_0, "windowssearch.com", 1, true) or (string.find)(l_0_0, "conduit.com", 1, true) then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(nri.GetHttpRequestHeader("referer"))
+if string.find(L0_0, "live.com", 1, true) or string.find(L0_0, "bing.com", 1, true) or string.find(L0_0, "msn.com", 1, true) or string.find(L0_0, "yahoo.com", 1, true) or string.find(L0_0, "windowssearch.com", 1, true) or string.find(L0_0, "conduit.com", 1, true) then
   return mp.CLEAN
 end
-;
-(nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), (mp.bitor)(nri.Telemetry_QUERY, nri.Telemetry_REFERER)))
+nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), mp.bitor(nri.Telemetry_QUERY, nri.Telemetry_REFERER)))
 return mp.INFECTED
-

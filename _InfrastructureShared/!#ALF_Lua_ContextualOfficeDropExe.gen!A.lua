@@ -1,9 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Lua_ContextualOfficeDropExe.gen!A 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and mp.get_contextdata(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
   if peattributes.isexe == false then
     return mp.CLEAN
   end
@@ -13,20 +8,17 @@ if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDH
   if peattributes.no_security == false then
     return mp.CLEAN
   end
-  local l_0_0 = {}
-  l_0_0["excel.exe"] = true
-  l_0_0["lync.exe"] = true
-  l_0_0["powerpnt.exe"] = true
-  l_0_0["pptview.exe"] = true
-  l_0_0["visio.exe"] = true
-  l_0_0["winword.exe"] = true
-  l_0_0["wordview.exe"] = true
-  l_0_0["xlview.exe"] = true
-  if l_0_0[(string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))] then
+  if ({
+    ["excel.exe"] = true,
+    ["lync.exe"] = true,
+    ["powerpnt.exe"] = true,
+    ["pptview.exe"] = true,
+    ["visio.exe"] = true,
+    ["winword.exe"] = true,
+    ["wordview.exe"] = true,
+    ["xlview.exe"] = true
+  })[string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))] then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

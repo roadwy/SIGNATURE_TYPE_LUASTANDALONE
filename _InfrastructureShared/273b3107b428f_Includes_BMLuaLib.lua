@@ -1,67 +1,81 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/273b3107b428f_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1, l_0_3, l_0_4 = nil, nil, nil
-local l_0_6 = nil
-do
-  if (this_sigattrlog[4]).matched then
-    local l_0_2, l_0_5 = , (this_sigattrlog[4]).utf8p2
-  end
-  -- DECOMPILER ERROR at PC18: Confused about usage of register: R2 in 'UnsetPending'
-
-  if not contains(l_0_5, "^werfault.exe$", false) then
-    return mp.CLEAN
-  end
-  local l_0_7, l_0_8 = nil
-  if l_0_5 ~= nil then
-    for l_0_12,l_0_13 in ipairs(R7_PC34) do
-      local l_0_9, l_0_10, l_0_11 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())), (bm.get_process_relationships)()
-      -- DECOMPILER ERROR at PC36: Confused about usage of register: R10 in 'UnsetPending'
-
-      if R10_PC36.image_path ~= nil and (R10_PC36.reason == bm.RELATIONSHIP_INJECTION or R10_PC36.reason == bm.RELATIONSHIP_CREATED) and (string.find)((string.lower)(R10_PC36.image_path), "\\werfault.exe", -13, true) then
-        l_0_7 = R10_PC36.ppid
-      end
-    end
-  end
-  do
-    -- DECOMPILER ERROR at PC65: Confused about usage of register: R4 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC68: Confused about usage of register: R4 in 'UnsetPending'
-
-    if l_0_10 ~= nil then
-      for l_0_18,l_0_19 in ipairs(l_0_10) do
-        local l_0_15, l_0_16, l_0_17 = nil
-        -- DECOMPILER ERROR at PC71: Confused about usage of register: R10 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC78: Confused about usage of register: R10 in 'UnsetPending'
-
-        if R10_PC36.image_path ~= nil then
-          l_0_6 = (string.lower)((MpCommon.PathToWin32Path)(R10_PC36.image_path))
-        end
-        if (sysio.IsFileExists)(l_0_6) and not (mp.IsKnownFriendlyFile)(l_0_6, true, false) then
-          (bm.add_related_file)(l_0_6)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = MpCommon
+L4_4 = L4_4.PathToWin32Path
+L5_5 = bm
+L5_5 = L5_5.get_imagepath
+L11_11 = L5_5()
+L11_11 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L5_5())
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L5_5()))
+L4_4 = this_sigattrlog
+L4_4 = L4_4[4]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[4]
+  L2_2 = L4_4.utf8p2
+end
+L4_4 = contains
+L5_5 = L2_2
+L4_4 = L4_4(L5_5, L6_6, L7_7)
+if not L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = bm
+L4_4 = L4_4.get_process_relationships
+L5_5 = L4_4()
+if L5_5 ~= nil then
+  for L9_9, L10_10 in L6_6(L7_7) do
+    L11_11 = L10_10.image_path
+    if L11_11 ~= nil then
+      L11_11 = L10_10.reason
+      if L11_11 ~= bm.RELATIONSHIP_INJECTION then
+        L11_11 = L10_10.reason
+      elseif L11_11 == bm.RELATIONSHIP_CREATED then
+        L11_11 = string
+        L11_11 = L11_11.lower
+        L11_11 = L11_11(L10_10.image_path)
+        if string.find(L11_11, "\\werfault.exe", -13, true) then
+          L1_1 = L10_10.ppid
         end
       end
-    end
-    do
-      -- DECOMPILER ERROR at PC104: Confused about usage of register: R3 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC110: Confused about usage of register: R3 in 'UnsetPending'
-
-      if (sysio.IsFileExists)(l_0_15) and not (mp.IsKnownFriendlyFile)(l_0_15, true, false) and l_0_7 ~= nil then
-        (bm.request_SMS)(l_0_7, "M")
-        ;
-        (bm.add_action)("SmsAsyncScanEvent", 1)
-        -- DECOMPILER ERROR at PC130: Confused about usage of register: R3 in 'UnsetPending'
-
-        ;
-        (bm.add_related_file)(l_0_15)
-        return mp.INFECTED
-      end
-      return mp.CLEAN
     end
   end
 end
-
+if L4_4 ~= nil then
+  for L9_9, L10_10 in L6_6(L7_7) do
+    L11_11 = L10_10.image_path
+    if L11_11 ~= nil then
+      L11_11 = string
+      L11_11 = L11_11.lower
+      L11_11 = L11_11(MpCommon.PathToWin32Path(L10_10.image_path))
+      L0_0 = L11_11
+    end
+    L11_11 = sysio
+    L11_11 = L11_11.IsFileExists
+    L11_11 = L11_11(L0_0)
+    if L11_11 then
+      L11_11 = mp
+      L11_11 = L11_11.IsKnownFriendlyFile
+      L11_11 = L11_11(L0_0, true, false)
+      if not L11_11 then
+        L11_11 = bm
+        L11_11 = L11_11.add_related_file
+        L11_11(L0_0)
+      end
+    end
+  end
+end
+if L6_6 then
+  L9_9 = false
+  if not L6_6 and L1_1 ~= nil then
+    L6_6(L7_7, L8_8)
+    L6_6(L7_7, L8_8)
+    L6_6(L7_7)
+    return L6_6
+  end
+end
+return L6_6

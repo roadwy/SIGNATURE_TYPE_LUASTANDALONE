@@ -1,78 +1,117 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PowShellFormat!obfus 
-
--- params : ...
--- function num : 0
-escape_word = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1, l_1_2 = l_1_0:gsub, l_1_0
-  local l_1_3 = "[%(%)%.%%%+%-%*%?%[%]%^%$]"
-  do
-    local l_1_4 = function(l_2_0)
-    -- function num : 0_0_0
-    return "%" .. l_2_0
-  end
-
-    do return l_1_1(l_1_2, l_1_3, l_1_4) end
-    -- DECOMPILER ERROR at PC5: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+function L0_0(A0_15)
+  return A0_15:gsub("[%(%)%.%%%+%-%*%?%[%]%^%$]", function(A0_16)
+    return "%" .. A0_16
+  end)
 end
-
-if (mp.get_mpattribute)("SCRIPT:PowShellFormat!obfus") or (mp.get_mpattribute)("SCRIPT:PowShellFormat!obfus2") or (mp.get_mpattribute)("SCRIPT:PowShellFormat!obfus3") then
-  local l_0_0 = (mp.getfilesize)()
-  if l_0_0 > 131072 then
-    return mp.CLEAN
+escape_word = L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "SCRIPT:PowShellFormat!obfus"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "SCRIPT:PowShellFormat!obfus2"
+  L0_0 = L0_0(L1_1)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "SCRIPT:PowShellFormat!obfus3"
+    L0_0 = L0_0(L1_1)
   end
-  ;
-  (mp.readprotection)(false)
-  local l_0_1 = (mp.readfile)(0, l_0_0)
-  l_0_1 = (string.lower)(l_0_1)
-  l_0_1 = (string.gsub)(l_0_1, " ", "")
-  if (mp.get_mpattribute)("SCRIPT:PowShellFormat!obfus2") then
-    l_0_1 = (string.gsub)(l_0_1, "\\\'", "\'")
-    l_0_1 = (string.gsub)(l_0_1, "`", "")
+elseif L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+  if L0_0 > 131072 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if (mp.get_mpattribute)("SCRIPT:PowShellFormat!obfus3") then
-    l_0_1 = (string.gsub)(l_0_1, "%+chr%(34%)%+\"", "")
-    l_0_1 = (string.gsub)(l_0_1, "`", "")
+  L1_1 = mp
+  L1_1 = L1_1.readprotection
+  L2_2 = false
+  L1_1(L2_2)
+  L1_1 = mp
+  L1_1 = L1_1.readfile
+  L2_2 = 0
+  L1_1 = L1_1(L2_2, L3_3)
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(L3_3)
+  L1_1 = L2_2
+  L2_2 = string
+  L2_2 = L2_2.gsub
+  L2_2 = L2_2(L3_3, L4_4, L5_5)
+  L1_1 = L2_2
+  L2_2 = mp
+  L2_2 = L2_2.get_mpattribute
+  L2_2 = L2_2(L3_3)
+  if L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.gsub
+    L2_2 = L2_2(L3_3, L4_4, L5_5)
+    L1_1 = L2_2
+    L2_2 = string
+    L2_2 = L2_2.gsub
+    L2_2 = L2_2(L3_3, L4_4, L5_5)
+    L1_1 = L2_2
   end
-  local l_0_2 = 0
-  for l_0_6 in (string.gmatch)(l_0_1, "%(\"{%d+}{%d+}.-\"%-f\'.-\',\'.-[^,]\'%)") do
-    local l_0_7, l_0_8 = (string.match)(l_0_6, "%(\"({%d+}{%d+}.-)\"%-f(\'.-\',\'.-[^,]\')%)")
-    if l_0_7 and l_0_8 then
-      local l_0_9 = {}
-      for l_0_13 in (string.gmatch)(l_0_7, "{(%d+)}") do
-        (table.insert)(l_0_9, l_0_13)
+  L2_2 = mp
+  L2_2 = L2_2.get_mpattribute
+  L2_2 = L2_2(L3_3)
+  if L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.gsub
+    L2_2 = L2_2(L3_3, L4_4, L5_5)
+    L1_1 = L2_2
+    L2_2 = string
+    L2_2 = L2_2.gsub
+    L2_2 = L2_2(L3_3, L4_4, L5_5)
+    L1_1 = L2_2
+  end
+  L2_2 = 0
+  for L6_6 in L3_3(L4_4, L5_5) do
+    L7_7 = string
+    L7_7 = L7_7.match
+    L8_8 = L6_6
+    L9_9 = "%(\"({%d+}{%d+}.-)\"%-f('.-','.-[^,]')%)"
+    L8_8 = L7_7(L8_8, L9_9)
+    if L7_7 and L8_8 then
+      L9_9 = {}
+      for L13_13 in L10_10(L11_11, L12_12) do
+        L14_14(L9_9, L13_13)
       end
-      local l_0_14 = {}
-      for l_0_18 in (string.gmatch)(l_0_8, "\'(.-)\'") do
-        (table.insert)(l_0_14, l_0_18)
+      for L14_14 in L11_11(L12_12, L13_13) do
+        table.insert(L10_10, L14_14)
       end
-      if #l_0_9 == #l_0_14 then
-        local l_0_19 = #l_0_9
-        local l_0_20 = ""
-        for l_0_24 = 1, l_0_19 do
-          l_0_20 = l_0_20 .. l_0_14[l_0_9[l_0_24] + 1]
+      if L11_11 == L12_12 then
+        for _FORV_16_ = 1, L11_11 do
         end
-        l_0_6 = escape_word(l_0_6)
-        l_0_1 = (string.gsub)(l_0_1, l_0_6, l_0_20)
-        l_0_2 = l_0_2 + 1
+        L6_6 = L13_13
+        L1_1 = L13_13
+        L2_2 = L2_2 + 1
       end
     end
   end
-  if l_0_2 >= 3 then
-    l_0_1 = (string.gsub)(l_0_1, "`([%a%d])", "%1")
-    l_0_1 = (string.gsub)(l_0_1, "\"%+\"", "")
-    l_0_1 = (string.gsub)(l_0_1, "\'%+\'", "")
-    l_0_1 = (string.gsub)(l_0_1, "%.\"(%w+)\"", "%.%1")
-    l_0_1 = (string.gsub)(l_0_1, "::\"(%w+)\"", "::%1")
-    ;
-    (mp.vfo_add_buffer)(l_0_1, "[deobfus]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-    return mp.INFECTED
+  if L2_2 >= 3 then
+    L6_6 = "%1"
+    L1_1 = L3_3
+    L6_6 = ""
+    L1_1 = L3_3
+    L6_6 = ""
+    L1_1 = L3_3
+    L6_6 = "%.%1"
+    L1_1 = L3_3
+    L6_6 = "::%1"
+    L1_1 = L3_3
+    L6_6 = mp
+    L6_6 = L6_6.ADD_VFO_TAKE_ACTION_ON_DAD
+    L3_3(L4_4, L5_5, L6_6)
+    return L3_3
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

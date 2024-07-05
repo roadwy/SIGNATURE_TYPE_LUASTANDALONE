@@ -1,46 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LuaHighRiskHtaWebVector.A_Includes_GetEmailPaths 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-local l_0_1 = {}
-l_0_1["outlook.exe"] = ""
-l_0_1["iexplore.exe"] = ""
-l_0_1["browser_broker.exe"] = ""
-l_0_1["firefox.exe"] = ""
-l_0_1["chrome.exe"] = ""
-l_0_1["winword.exe"] = ""
-l_0_1["powerpnt.exe"] = ""
-l_0_1["excel.exe"] = ""
-l_0_1["acrord32.exe"] = ""
-l_0_1["slack.exe"] = ""
-local l_0_2 = false
-local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if (l_0_1[l_0_3] or isOutlookProcess(l_0_3)) and l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  l_0_2 = true
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = {}
+L1_1["outlook.exe"] = ""
+L1_1["iexplore.exe"] = ""
+L1_1["browser_broker.exe"] = ""
+L1_1["firefox.exe"] = ""
+L1_1["chrome.exe"] = ""
+L1_1["winword.exe"] = ""
+L1_1["powerpnt.exe"] = ""
+L1_1["excel.exe"] = ""
+L1_1["acrord32.exe"] = ""
+L1_1["slack.exe"] = ""
+L2_2 = false
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = mp
+L4_4 = L4_4.get_contextdata
+L4_4 = L4_4(mp.CONTEXT_DATA_PROCESSNAME)
+L3_3 = L3_3(L4_4, L4_4(mp.CONTEXT_DATA_PROCESSNAME))
+L4_4 = L1_1[L3_3]
+if not L4_4 then
+  L4_4 = isOutlookProcess
+  L4_4 = L4_4(L3_3)
 else
-  if (mp.get_contextdata)(mp.CONTEXT_DATA_HAS_MOTW_ADS) == true and l_0_0 == mp.SCANREASON_ONOPEN then
-    local l_0_4 = (mp.GetMOTWZone)()
-    if l_0_4 == 3 or l_0_4 == 4 then
-      l_0_2 = true
+  if L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.SCANREASON_ONMODIFIEDHANDLECLOSE
+    if L0_0 == L4_4 then
+      L2_2 = true
+    end
+end
+else
+  L4_4 = mp
+  L4_4 = L4_4.get_contextdata
+  L4_4 = L4_4(mp.CONTEXT_DATA_HAS_MOTW_ADS)
+  if L4_4 == true then
+    L4_4 = mp
+    L4_4 = L4_4.SCANREASON_ONOPEN
+    if L0_0 == L4_4 then
+      L4_4 = mp
+      L4_4 = L4_4.GetMOTWZone
+      L4_4 = L4_4()
+      if L4_4 == 3 or L4_4 == 4 then
+        L2_2 = true
+      end
     end
   end
 end
-do
-  local l_0_5 = (mp.getfilename)(mp.FILEPATH_QUERY_FULL)
-  local l_0_6 = (string.lower)(l_0_5)
-  -- DECOMPILER ERROR at PC96: Unhandled construct in 'MakeBoolean' P3
-
-  if (#l_0_6 >= 17 and l_0_6:sub(2, 17) == ":\\program files\\") or #l_0_6 < 23 or #l_0_6 >= 11 and l_0_6:sub(2, 11) == ":\\windows\\" then
-    return mp.CLEAN
-  end
-  if l_0_2 then
-    (mp.set_mpattribute)("MpDisableCaching")
-    ;
-    (MpCommon.AppendPersistContext)(l_0_5, "Lua:HighRiskHtaWebVector", 0)
-    return mp.INFECTED
-  end
+L4_4 = mp
+L4_4 = L4_4.getfilename
+L4_4 = L4_4(mp.FILEPATH_QUERY_FULL)
+if #string.lower(L4_4) >= 17 and string.lower(L4_4):sub(2, 17) == ":\\program files\\" or #string.lower(L4_4) >= 23 and string.lower(L4_4):sub(2, 23) == ":\\program files (x86)\\" or #string.lower(L4_4) >= 11 and string.lower(L4_4):sub(2, 11) == ":\\windows\\" then
   return mp.CLEAN
 end
-
+if L2_2 then
+  mp.set_mpattribute("MpDisableCaching")
+  MpCommon.AppendPersistContext(L4_4, "Lua:HighRiskHtaWebVector", 0)
+  return mp.INFECTED
+end
+return mp.CLEAN

@@ -1,25 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/cbb3436173df 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0 = (this_sigattrlog[1]).utf8p2
-  if (string.sub)(l_0_0, -1) == "\\" then
-    l_0_0 = (string.sub)(l_0_0, 0, #l_0_0 - 1)
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = this_sigattrlog
+    L0_0 = L0_0[1]
+    L0_0 = L0_0.utf8p2
+    L1_1 = string
+    L1_1 = L1_1.sub
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2, -1)
+    if L1_1 == "\\" then
+      L1_1 = string
+      L1_1 = L1_1.sub
+      L2_2 = L0_0
+      L1_1 = L1_1(L2_2, 0, #L0_0 - 1)
+      L0_0 = L1_1
+    end
+    L1_1 = 43200
+    L2_2 = string
+    L2_2 = L2_2.sub
+    L2_2 = L2_2(L0_0, -28)
+    if L2_2 == "\\start menu\\programs\\startup" then
+      L1_1 = 1
+    end
+    L2_2 = {}
+    table.insert(L2_2, L0_0)
+    MpCommon.SetPersistContextNoPath("BMLua:StartupFolderPathChange.EE", L2_2, L1_1)
+    return mp.INFECTED
   end
-  local l_0_1 = 43200
-  if (string.sub)(l_0_0, -28) == "\\start menu\\programs\\startup" then
-    l_0_1 = 1
-  end
-  local l_0_2 = {}
-  ;
-  (table.insert)(l_0_2, l_0_0)
-  ;
-  (MpCommon.SetPersistContextNoPath)("BMLua:StartupFolderPathChange.EE", l_0_2, l_0_1)
-  return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

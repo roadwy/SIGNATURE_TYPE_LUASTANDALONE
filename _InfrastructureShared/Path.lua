@@ -1,45 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Path 
-
--- params : ...
--- function num : 0
-starts = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  do return (string.sub)(l_1_0, 1, (string.len)(l_1_1)) == l_1_1 end
-  -- DECOMPILER ERROR: 1 unprocessed JMP targets
+local L0_0, L1_1
+function L0_0(A0_2, A1_3)
+  local L2_4, L3_5, L4_6
+  L2_4 = string
+  L2_4 = L2_4.sub
+  L3_5 = A0_2
+  L4_6 = 1
+  L2_4 = L2_4(L3_5, L4_6, string.len(A1_3))
+  L2_4 = L2_4 == A1_3
+  return L2_4
 end
-
-towin32path = function(l_2_0)
-  -- function num : 0_1
-  local l_2_1 = l_2_0
-  if starts((string.lower)(l_2_0), "\\device\\") then
-    l_2_1 = (MpCommon.PathToWin32Path)(l_2_0)
+starts = L0_0
+function L0_0(A0_7)
+  local L1_8
+  L1_8 = A0_7
+  if starts(string.lower(A0_7), "\\device\\") then
+    L1_8 = MpCommon.PathToWin32Path(A0_7)
   end
-  return l_2_1
+  return L1_8
 end
-
-normalize_path = function(l_3_0)
-  -- function num : 0_2
-  local l_3_1 = towin32path(l_3_0)
-  if l_3_1 == nil then
+towin32path = L0_0
+function L0_0(A0_9)
+  local L1_10
+  L1_10 = towin32path
+  L1_10 = L1_10(A0_9)
+  if L1_10 == nil then
     return nil
   end
-  do
-    if #l_3_1 > 4 then
-      local l_3_5 = l_3_1:sub
-      l_3_5 = l_3_5(l_3_1, 1, 4)
-      if l_3_5 == "\\\\?\\" then
-        local l_3_4 = l_3_1
-        l_3_5 = l_3_5(l_3_4, 5)
-        l_3_1 = l_3_5
-      end
-    end
-    local l_3_2 = string.lower
-    local l_3_3 = l_3_1
-    do return l_3_2(l_3_3) end
-    -- DECOMPILER ERROR at PC25: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
+  if #L1_10 > 4 and L1_10:sub(1, 4) == "\\\\?\\" then
+    L1_10 = L1_10:sub(5)
   end
+  return string.lower(L1_10)
 end
-
-
+normalize_path = L0_0

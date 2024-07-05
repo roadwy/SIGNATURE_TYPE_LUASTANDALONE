@@ -1,24 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2fd71d5cc92c_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1, l_0_2 = , pcall(mp.GetParentProcInfo)
-if l_0_2 and mp.GetParentProcInfo ~= nil then
-  l_0_1 = (mp.GetParentProcInfo).ppid
+local L0_0, L1_1, L2_2, L3_3
+L1_1 = pcall
+L2_2 = mp
+L2_2 = L2_2.GetParentProcInfo
+L2_2 = L1_1(L2_2)
+if L1_1 and L2_2 ~= nil then
+  L0_0 = L2_2.ppid
 end
-if l_0_1 ~= nil then
-  if IsPidExcluded(l_0_1) then
-    return mp.CLEAN
+if L0_0 ~= nil then
+  L3_3 = IsPidExcluded
+  L3_3 = L3_3(L0_0)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   end
-  if IsTacticObservedForPid(l_0_1, "processinjection") then
-    return mp.LOWFI
+  L3_3 = IsTacticObservedForPid
+  L3_3 = L3_3(L0_0, "processinjection")
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.LOWFI
+    return L3_3
   end
 end
-local l_0_3 = nil
-if (mp.GetScannedPPID)() ~= "" and (mp.GetScannedPPID)() ~= nil and IsTacticObservedForPid((mp.GetScannedPPID)(), "processinjection_target") then
+L3_3 = mp
+L3_3 = L3_3.GetScannedPPID
+L3_3 = L3_3()
+if L3_3 ~= "" and L3_3 ~= nil and IsTacticObservedForPid(L3_3, "processinjection_target") then
   return mp.LOWFI
 end
 return mp.CLEAN
-

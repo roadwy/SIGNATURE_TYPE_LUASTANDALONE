@@ -1,20 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/73cb3754dad97_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = 150000000
-local l_0_1 = (bm.GetSignatureMatchDuration)()
-if l_0_0 < l_0_1 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = 150000000
+L1_1 = bm
+L1_1 = L1_1.GetSignatureMatchDuration
+L1_1 = L1_1()
+if L0_0 < L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).wp2 ~= nil then
-  l_0_2 = (string.lower)((this_sigattrlog[1]).utf8p2)
+L2_2 = nil
+if this_sigattrlog[1].matched and this_sigattrlog[1].wp2 ~= nil then
+  L2_2 = string.lower(this_sigattrlog[1].utf8p2)
 end
-if l_0_2 ~= nil then
+if L2_2 ~= nil then
   TrackPidAndTechniqueBM("BM", "T1036.003", "RenameBin_DefenseEvasion")
   return mp.INFECTED
 end
 return mp.CLEAN
-

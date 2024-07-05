@@ -1,15 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/cf78c6f44c1e 
-
--- params : ...
--- function num : 0
-(mp.readprotection)(false)
-local l_0_0 = (pe.foffset_va)((hstrlog[1]).VA + 42)
-local l_0_1 = (mp.readfile)(l_0_0, 4)
-local l_0_2 = (pe.foffset_va)((mp.readu_u32)(l_0_1, 1))
-local l_0_3 = (mp.readfile)(l_0_2, 15)
-if l_0_3 == "D\000e\000l\000e\000t\000e\000d\000\000" then
-  (mp.set_mpattribute)("HSTR:BingSearchCby")
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = pe
+L0_0 = L0_0.foffset_va
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.VA
+L1_1 = L1_1 + 42
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, 4)
+L2_2 = pe
+L2_2 = L2_2.foffset_va
+L2_2 = L2_2(mp.readu_u32(L1_1, 1))
+if mp.readfile(L2_2, 15) == "D\000e\000l\000e\000t\000e\000d\000\000" then
+  mp.set_mpattribute("HSTR:BingSearchCby")
 end
 return mp.CLEAN
-

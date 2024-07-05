@@ -1,65 +1,154 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Dorkbot 
-
--- params : ...
--- function num : 0
-split_path = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = string.match
-  local l_1_2 = l_1_0
-  do
-    local l_1_3 = "(.-)([^\\]-([^\\%.]+))$"
-    do return l_1_1(l_1_2, l_1_3) end
-    -- DECOMPILER ERROR at PC6: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+function L0_0(A0_7)
+  return string.match(A0_7, "(.-)([^\\]-([^\\%.]+))$")
 end
-
-IsDorkbotPath = function(l_2_0)
-  -- function num : 0_1
-  if l_2_0 == nil then
+split_path = L0_0
+function L0_0(A0_8)
+  local L1_9, L2_10, L3_11
+  if A0_8 == nil then
+    L1_9 = false
+    return L1_9
+  end
+  L1_9 = string
+  L1_9 = L1_9.lower
+  L2_10 = A0_8
+  L1_9 = L1_9(L2_10)
+  L2_10 = string
+  L2_10 = L2_10.find
+  L3_11 = L1_9
+  L2_10 = L2_10(L3_11, "\\temp\\adobe\\reader_sl%.exe$")
+  if L2_10 == nil then
+    L2_10 = string
+    L2_10 = L2_10.find
+    L3_11 = L1_9
+    L2_10 = L2_10(L3_11, "\\temp\\c731200$")
+  elseif L2_10 ~= nil then
+    L2_10 = true
+    return L2_10
+  end
+  L2_10 = string
+  L2_10 = L2_10.find
+  L3_11 = L1_9
+  L2_10 = L2_10(L3_11, "\\application data\\screensaverpro%.scr$")
+  if L2_10 == nil then
+    L2_10 = string
+    L2_10 = L2_10.find
+    L3_11 = L1_9
+    L2_10 = L2_10(L3_11, "\\appdata\\roaming\\screensaverpro%.scr$")
+    if L2_10 == nil then
+      L2_10 = string
+      L2_10 = L2_10.find
+      L3_11 = L1_9
+      L2_10 = L2_10(L3_11, "\\application data\\c731200$")
+      if L2_10 == nil then
+        L2_10 = string
+        L2_10 = L2_10.find
+        L3_11 = L1_9
+        L2_10 = L2_10(L3_11, "\\appdata\\roaming\\c731200$")
+        if L2_10 == nil then
+          L2_10 = string
+          L2_10 = L2_10.find
+          L3_11 = L1_9
+          L2_10 = L2_10(L3_11, "\\application data\\temp%.bin$")
+          if L2_10 == nil then
+            L2_10 = string
+            L2_10 = L2_10.find
+            L3_11 = L1_9
+            L2_10 = L2_10(L3_11, "\\appdata\\roaming\\temp%.bin$")
+            if L2_10 == nil then
+              L2_10 = string
+              L2_10 = L2_10.find
+              L3_11 = L1_9
+              L2_10 = L2_10(L3_11, "\\appdata\\roaming\\update\\update%.exe$")
+              if L2_10 == nil then
+                L2_10 = string
+                L2_10 = L2_10.find
+                L3_11 = L1_9
+                L2_10 = L2_10(L3_11, "\\application data\\update\\update%.exe$")
+                if L2_10 == nil then
+                  L2_10 = string
+                  L2_10 = L2_10.find
+                  L3_11 = L1_9
+                  L2_10 = L2_10(L3_11, "\\appdata\\roaming\\update\\explorer%.exe$")
+                  if L2_10 == nil then
+                    L2_10 = string
+                    L2_10 = L2_10.find
+                    L3_11 = L1_9
+                    L2_10 = L2_10(L3_11, "\\application data\\update\\explorer%.exe$")
+                    if L2_10 == nil then
+                      L2_10 = string
+                      L2_10 = L2_10.find
+                      L3_11 = L1_9
+                      L2_10 = L2_10(L3_11, "\\appdata\\roaming\\windowsupdate\\updater%.exe$")
+                      if L2_10 == nil then
+                        L2_10 = string
+                        L2_10 = L2_10.find
+                        L3_11 = L1_9
+                        L2_10 = L2_10(L3_11, "\\application data\\windowsupdate\\updater%.exe$")
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  elseif L2_10 ~= nil then
+    L2_10 = true
+    return L2_10
+  end
+  L2_10 = split_path
+  L3_11 = A0_8
+  L3_11 = L2_10(L3_11)
+  if L2_10(L3_11) ~= "exe" and L2_10(L3_11) ~= "scr" then
     return false
   end
-  local l_2_1 = (string.lower)(l_2_0)
-  if (string.find)(l_2_1, "\\temp\\adobe\\reader_sl%.exe$") ~= nil or (string.find)(l_2_1, "\\temp\\c731200$") ~= nil then
-    return true
-  end
-  if (string.find)(l_2_1, "\\application data\\screensaverpro%.scr$") ~= nil or (string.find)(l_2_1, "\\appdata\\roaming\\screensaverpro%.scr$") ~= nil or (string.find)(l_2_1, "\\application data\\c731200$") ~= nil or (string.find)(l_2_1, "\\appdata\\roaming\\c731200$") ~= nil or (string.find)(l_2_1, "\\application data\\temp%.bin$") ~= nil or (string.find)(l_2_1, "\\appdata\\roaming\\temp%.bin$") ~= nil or (string.find)(l_2_1, "\\appdata\\roaming\\update\\update%.exe$") ~= nil or (string.find)(l_2_1, "\\application data\\update\\update%.exe$") ~= nil or (string.find)(l_2_1, "\\appdata\\roaming\\update\\explorer%.exe$") ~= nil or (string.find)(l_2_1, "\\application data\\update\\explorer%.exe$") ~= nil or (string.find)(l_2_1, "\\appdata\\roaming\\windowsupdate\\updater%.exe$") ~= nil or (string.find)(l_2_1, "\\application data\\windowsupdate\\updater%.exe$") ~= nil then
-    return true
-  end
-  local l_2_2, l_2_3, l_2_4 = split_path(l_2_0)
-  if l_2_4 ~= "exe" and l_2_4 ~= "scr" then
-    return false
-  end
-  if ((string.find)((string.lower)(l_2_2), "\\application data\\identities\\$") ~= nil or (string.find)((string.lower)(l_2_2), "\\appdata\\roaming\\identities\\$") ~= nil or (string.find)((string.lower)(l_2_2), "\\appdata\\roaming\\microsoft\\windows\\themes\\$") ~= nil) and (string.find)(l_2_3, "%u%l%l%l%l%l%.exe$") ~= nil then
+  if (string.find(string.lower(L2_10), "\\application data\\identities\\$") ~= nil or string.find(string.lower(L2_10), "\\appdata\\roaming\\identities\\$") ~= nil or string.find(string.lower(L2_10), "\\appdata\\roaming\\microsoft\\windows\\themes\\$") ~= nil) and string.find(L3_11, "%u%l%l%l%l%l%.exe$") ~= nil then
     return true
   end
   return false
 end
-
-DeleteAutoRunEntries = function(l_3_0)
-  -- function num : 0_2
-  if l_3_0 then
-    local l_3_1 = (sysio.RegEnumValues)(l_3_0)
-    for l_3_5,l_3_6 in pairs(l_3_1) do
-      if l_3_6 then
-        local l_3_7 = (sysio.GetRegValueAsString)(l_3_0, l_3_6)
-        if l_3_7 and IsDorkbotPath(l_3_7) == true then
-          (sysio.DeleteRegValue)(l_3_0, l_3_6)
-          if (sysio.IsFileExists)(l_3_7) then
-            (Remediation.BtrDeleteFile)(l_3_7)
+IsDorkbotPath = L0_0
+function L0_0(A0_12)
+  local L1_13, L2_14, L3_15, L4_16, L5_17, L6_18, L7_19
+  if A0_12 then
+    L1_13 = sysio
+    L1_13 = L1_13.RegEnumValues
+    L1_13 = L1_13(L2_14)
+    for L5_17, L6_18 in L2_14(L3_15) do
+      if L6_18 then
+        L7_19 = sysio
+        L7_19 = L7_19.GetRegValueAsString
+        L7_19 = L7_19(A0_12, L6_18)
+        if L7_19 and IsDorkbotPath(L7_19) == true then
+          sysio.DeleteRegValue(A0_12, L6_18)
+          if sysio.IsFileExists(L7_19) then
+            Remediation.BtrDeleteFile(L7_19)
           end
         end
       end
     end
   end
 end
-
-if (Remediation.Threat).Active and (string.match)((Remediation.Threat).Name, "Win32/Dorkbot") then
-  local l_0_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")
-  for l_0_4,l_0_5 in pairs(l_0_0) do
-    local l_0_6 = (sysio.RegOpenKey)(l_0_5)
-    DeleteAutoRunEntries(l_0_6)
+DeleteAutoRunEntries = L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Active
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.match
+  L0_0 = L0_0(L1_1, L2_2)
+  if L0_0 then
+    L0_0 = sysio
+    L0_0 = L0_0.RegExpandUserKey
+    L0_0 = L0_0(L1_1)
+    for L4_4, L5_5 in L1_1(L2_2) do
+      L6_6 = sysio
+      L6_6 = L6_6.RegOpenKey
+      L6_6 = L6_6(L5_5)
+      DeleteAutoRunEntries(L6_6)
+    end
   end
 end
-

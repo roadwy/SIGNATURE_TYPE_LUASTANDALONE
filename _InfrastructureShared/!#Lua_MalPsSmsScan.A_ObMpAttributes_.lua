@@ -1,29 +1,61 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MalPsSmsScan.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_AMSI then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_AMSI
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_AMSI_OPERATION_PPID)
-if l_0_0 ~= nil then
-  if (mp.get_mpattribute)("SCRIPT:PS.Memset") and (mp.get_mpattribute)("SCRIPT:PS.Gt0x1000") then
-    if (mp.get_mpattribute)("SCRIPT:PS.AddType") and (mp.get_mpattribute)("SCRIPT:PS.Calloc") and (mp.get_mpattribute)("SCRIPT:PS.CreateThread") then
-      (mp.set_mpattribute)("MpDisableCaching")
-      local l_0_1 = {}
-      ;
-      (table.insert)(l_0_1, l_0_0)
-      ;
-      (MpCommon.SetPersistContextNoPath)("Lua:MalPsSmsScanAmsi", l_0_1, 0)
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_AMSI_OPERATION_PPID
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.get_mpattribute
+  L1_1 = L1_1("SCRIPT:PS.Memset")
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.get_mpattribute
+    L1_1 = L1_1("SCRIPT:PS.Gt0x1000")
+    if L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.get_mpattribute
+      L1_1 = L1_1("SCRIPT:PS.AddType")
+      if L1_1 then
+        L1_1 = mp
+        L1_1 = L1_1.get_mpattribute
+        L1_1 = L1_1("SCRIPT:PS.Calloc")
+        if L1_1 then
+          L1_1 = mp
+          L1_1 = L1_1.get_mpattribute
+          L1_1 = L1_1("SCRIPT:PS.CreateThread")
+          if L1_1 then
+            L1_1 = mp
+            L1_1 = L1_1.set_mpattribute
+            L1_1("MpDisableCaching")
+            L1_1 = {}
+            table.insert(L1_1, L0_0)
+            MpCommon.SetPersistContextNoPath("Lua:MalPsSmsScanAmsi", L1_1, 0)
+          end
+        end
+      end
+      L1_1 = MpCommon
+      L1_1 = L1_1.RequestSmsOnProcess
+      L1_1(L0_0, MpCommon.SMS_SCAN_HIGH)
     end
-    do
-      ;
-      (MpCommon.RequestSmsOnProcess)(l_0_0, MpCommon.SMS_SCAN_HIGH)
-      ;
-      (MpCommon.RequestSmsOnProcess)(l_0_0, MpCommon.SMS_SCAN_MED)
-      return mp.INFECTED
-    end
+  else
+    L1_1 = MpCommon
+    L1_1 = L1_1.RequestSmsOnProcess
+    L1_1(L0_0, MpCommon.SMS_SCAN_MED)
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

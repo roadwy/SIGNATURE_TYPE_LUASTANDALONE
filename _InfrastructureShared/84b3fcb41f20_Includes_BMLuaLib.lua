@@ -1,43 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b3fcb41f20_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = (string.lower)(l_0_0.command_line)
-local l_0_2 = false
-local l_0_3, l_0_4 = (bm.get_process_relationships)()
-for l_0_8,l_0_9 in ipairs(l_0_3) do
-  if l_0_9.image_path ~= nil then
-    local l_0_10 = (string.lower)((MpCommon.PathToWin32Path)(l_0_9.image_path))
-    local l_0_11 = (mp.bitand)(l_0_9.reason_ex, 1)
-    if l_0_11 == 1 then
-      l_0_2 = true
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0.command_line
+L1_1 = L1_1(L2_2)
+L2_2 = false
+L3_3 = bm
+L3_3 = L3_3.get_process_relationships
+L4_4 = L3_3()
+for L8_8, L9_9 in L5_5(L6_6) do
+  L10_10 = L9_9.image_path
+  if L10_10 ~= nil then
+    L10_10 = string
+    L10_10 = L10_10.lower
+    L10_10 = L10_10(MpCommon.PathToWin32Path(L9_9.image_path))
+    if mp.bitand(L9_9.reason_ex, 1) == 1 then
+      L2_2 = true
     end
-    if (l_0_11 == 1 and (mp.IsKnownFriendlyFile)(l_0_10, true, false)) or l_0_11 == 1 and ((string.find)(l_0_10, ":\\windows\\", 1, true) or (string.find)(l_0_10, ":\\$windows.~bt\\", 1, true) or (string.find)(l_0_10, ":\\program files (x86)\\", 1, true) or (string.find)(l_0_10, ":\\program files\\", 1, true)) then
+    if mp.bitand(L9_9.reason_ex, 1) == 1 and mp.IsKnownFriendlyFile(L10_10, true, false) or mp.bitand(L9_9.reason_ex, 1) == 1 and (string.find(L10_10, ":\\windows\\", 1, true) or string.find(L10_10, ":\\$windows.~bt\\", 1, true) or string.find(L10_10, ":\\program files (x86)\\", 1, true) or string.find(L10_10, ":\\program files\\", 1, true)) then
       return mp.CLEAN
     end
   end
 end
-if l_0_2 == false then
-  return mp.CLEAN
+if L2_2 == false then
+  return L5_5
 end
-if l_0_1 ~= nil then
-  local l_0_12 = (mp.GetExecutablesFromCommandLine)(l_0_1)
-  for l_0_16,l_0_17 in ipairs(l_0_12) do
-    l_0_17 = (mp.ContextualExpandEnvironmentVariables)(l_0_17)
-    if (sysio.IsFileExists)(l_0_17) then
-      (bm.add_related_file)(l_0_17)
+if L1_1 ~= nil then
+  for L9_9, L10_10 in L6_6(L7_7) do
+    L10_10 = mp.ContextualExpandEnvironmentVariables(L10_10)
+    if sysio.IsFileExists(L10_10) then
+      bm.add_related_file(L10_10)
     end
   end
 end
-do
-  l_0_12 = reportSessionInformation
-  l_0_12()
-  l_0_12 = add_parents
-  l_0_12()
-  l_0_12 = mp
-  l_0_12 = l_0_12.INFECTED
-  return l_0_12
-end
-
+L5_5()
+L5_5()
+return L5_5

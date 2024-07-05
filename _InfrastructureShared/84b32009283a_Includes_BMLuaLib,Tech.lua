@@ -1,83 +1,85 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b32009283a_Includes_BMLuaLib,Tech 
-
--- params : ...
--- function num : 0
-local l_0_0 = mp.SIGATTR_LOG_SZ
-local l_0_1 = 0
-local l_0_2 = {}
-if IsProcessExcludedFromRansomwareAnalysis() == true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.SIGATTR_LOG_SZ
+L1_1 = 0
+L2_2 = {}
+L3_3 = IsProcessExcludedFromRansomwareAnalysis
+L3_3 = L3_3()
+if L3_3 == true then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (bm.get_current_process_startup_info)()
-if l_0_3 == nil or l_0_3.ppid == nil or l_0_3.command_line == nil or l_0_3.command_line == "" then
-  return mp.CLEAN
-end
-if (string.find)(l_0_3.command_line, "/usr/bin/apt-key", 1, true) or (string.find)(l_0_3.command_line, "postgres", 1, true) or (string.find)(l_0_3.command_line, "zypper -qn refresh", 1, true) then
-  return mp.CLEAN
-end
-local l_0_4 = {}
-local l_0_5 = {}
--- DECOMPILER ERROR at PC62: No list found for R5 , SetList fails
-
-local l_0_6 = {}
--- DECOMPILER ERROR at PC64: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC66: No list found for R6 , SetList fails
-
--- DECOMPILER ERROR at PC67: No list found for R4 , SetList fails
-
--- DECOMPILER ERROR at PC70: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC71: Overwrote pending register: R8 in 'AssignReg'
-
-l_0_5 = l_0_5(l_0_6, "/usr/bin/apt-key", "zypper -qn refresh")
-if l_0_5 == true then
-  l_0_5 = mp
-  l_0_5 = l_0_5.CLEAN
-  return l_0_5
-end
-l_0_5 = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  if (string.find)("/usr/bin/gpg", l_1_0, 1, true) ~= 1 and (string.find)("/usr/bin/gpg2", l_1_0, 1, true) ~= 1 then
-    return false
+L3_3 = bm
+L3_3 = L3_3.get_current_process_startup_info
+L3_3 = L3_3()
+if L3_3 ~= nil then
+  L4_4 = L3_3.ppid
+  if L4_4 ~= nil then
+    L4_4 = L3_3.command_line
+    if L4_4 ~= nil then
+      L4_4 = L3_3.command_line
+    end
   end
-  if (string.find)(l_1_1, "--ignore-time-conflict", 1, true) or (string.find)(l_1_1, "--no-sk-comments", 1, true) or (string.find)(l_1_1, "--enable-progress-filter", 1, true) or (string.find)(l_1_1, "--enable-special-filenames", 1, true) or (string.find)(l_1_1, "--check-trustdb", 1, true) or (string.find)(l_1_1, "--version", 1, true) or (string.find)(l_1_1, "--with-colons", 1, true) or (string.find)(l_1_1, "--decrypt", 1, true) or (string.find)(l_1_1, "--fingerprint", 1, true) then
-    return false
-  end
-  return true
+elseif L4_4 == "" then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-
-gpgCommandLineSanityCheck = l_0_5
-l_0_5 = 1
--- DECOMPILER ERROR at PC81: Overwrote pending register: R6 in 'AssignReg'
-
-for i = l_0_5, l_0_6 do
-  local l_0_9 = (sigattr_tail[l_0_8]).attribute
-  local l_0_10 = (sigattr_tail[l_0_8]).utf8p1
-  local l_0_11 = (sigattr_tail[l_0_8]).utf8p2
-  if l_0_9 == 16400 and l_0_10 ~= nil and l_0_11 ~= nil and l_0_2[l_0_11] == nil then
-    l_0_2[l_0_11] = true
-    if gpgCommandLineSanityCheck(l_0_10, l_0_11) == true then
-      l_0_1 = l_0_1 + 1
+L4_4 = string
+L4_4 = L4_4.find
+L8_8 = true
+L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8)
+if not L4_4 then
+  L4_4 = string
+  L4_4 = L4_4.find
+  L8_8 = true
+  L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8)
+  if not L4_4 then
+    L4_4 = string
+    L4_4 = L4_4.find
+    L8_8 = true
+    L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8)
+  end
+elseif L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = {L5_5, L6_6}
+L8_8 = "zypper -qn refresh"
+L8_8 = 3
+if L5_5 == true then
+  return L5_5
+end
+gpgCommandLineSanityCheck = L5_5
+for L8_8 = 1, L0_0 do
+  L9_9 = sigattr_tail
+  L9_9 = L9_9[L8_8]
+  L9_9 = L9_9.attribute
+  L10_10 = sigattr_tail
+  L10_10 = L10_10[L8_8]
+  L10_10 = L10_10.utf8p1
+  L11_11 = sigattr_tail
+  L11_11 = L11_11[L8_8]
+  L11_11 = L11_11.utf8p2
+  if L9_9 == 16400 and L10_10 ~= nil and L11_11 ~= nil and L2_2[L11_11] == nil then
+    L2_2[L11_11] = true
+    if gpgCommandLineSanityCheck(L10_10, L11_11) == true then
+      L1_1 = L1_1 + 1
     end
   end
 end
-if l_0_1 >= 10 then
-  addRelatedProcess()
-  reportRelatedBmHits()
-  -- DECOMPILER ERROR at PC118: Overwrote pending register: R6 in 'AssignReg'
-
-  TrackPidAndTechniqueBM(l_0_6, "T1486", "Impact_GpgEncryption")
-  local l_0_12 = nil
-  ;
-  (bm.add_related_string)(l_0_12, json_encode(l_0_2), bm.RelatedStringBMReport)
-  RemediateProcessTreeForLinux()
-  return mp.INFECTED
+if L1_1 >= 10 then
+  L5_5()
+  L5_5()
+  L8_8 = "Impact_GpgEncryption"
+  L5_5(L6_6, L7_7, L8_8)
+  L8_8 = L5_5
+  L9_9 = bm
+  L9_9 = L9_9.RelatedStringBMReport
+  L6_6(L7_7, L8_8, L9_9)
+  L6_6()
+  return L6_6
 end
-do
-  do return mp.CLEAN end
-  -- DECOMPILER ERROR at PC140: Confused about usage of register R6 for local variables in 'ReleaseLocals'
-
-end
-
+return L5_5

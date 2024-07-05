@@ -1,18 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3c7535e74 
-
--- params : ...
--- function num : 0
-if not (this_sigattrlog[3]).utf8p1 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.utf8p1
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (bm.get_imagepath)()
-if #l_0_0 < 12 or (string.sub)(l_0_0, -12) ~= "\\svchost.exe" then
-  return mp.CLEAN
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+L1_1 = #L0_0
+if not (L1_1 < 12) then
+  L1_1 = string
+  L1_1 = L1_1.sub
+  L1_1 = L1_1(L0_0, -12)
+elseif L1_1 ~= "\\svchost.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((this_sigattrlog[3]).utf8p1)
-if (string.find)(l_0_1, "\\appdata\\", 1, true) == nil and (string.find)(l_0_1, "\\temp\\", 1, true) == nil then
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(this_sigattrlog[3].utf8p1)
+if string.find(L1_1, "\\appdata\\", 1, true) == nil and string.find(L1_1, "\\temp\\", 1, true) == nil then
   return mp.CLEAN
 end
 return mp.INFECTED
-

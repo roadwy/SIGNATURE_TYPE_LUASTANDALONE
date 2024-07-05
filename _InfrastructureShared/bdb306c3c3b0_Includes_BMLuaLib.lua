@@ -1,10 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/bdb306c3c3b0_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[3]).utf8p2 == (this_sigattrlog[3]).utf8p1 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.utf8p1
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

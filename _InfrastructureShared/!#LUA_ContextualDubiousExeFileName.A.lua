@@ -1,40 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_ContextualDubiousExeFileName.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 4096 or l_0_0 > 5242880 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 4096 or L0_0 > 5242880 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_1 = {}
-  l_0_1["2014"] = true
-  l_0_1.deutschland = true
-  l_0_1.dezember = true
-  l_0_1.informationen = true
-  l_0_1.kontobewegung = true
-  l_0_1.november = true
-  l_0_1.online = true
-  l_0_1.order = true
-  l_0_1.purchase = true
-  l_0_1.rechnung = true
-  l_0_1.team = true
-  l_0_1.telekom = true
-  l_0_1.transaktions = true
-  l_0_1.vodafone = true
-  local l_0_2 = 0
-  local l_0_3 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-  for l_0_7 in (string.gmatch)(l_0_3, "%w+") do
-    if l_0_1[l_0_7] then
-      l_0_2 = l_0_2 + 1
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_SCANREASON
+L1_1 = L1_1(L2_2)
+L2_2 = mp
+L2_2 = L2_2.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L1_1 == L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_NEWLYCREATEDHINT
+  L1_1 = L1_1(L2_2)
+  if L1_1 == true then
+    L1_1 = {}
+    L1_1["2014"] = true
+    L1_1.deutschland = true
+    L1_1.dezember = true
+    L1_1.informationen = true
+    L1_1.kontobewegung = true
+    L1_1.november = true
+    L1_1.online = true
+    L1_1.order = true
+    L1_1.purchase = true
+    L1_1.rechnung = true
+    L1_1.team = true
+    L1_1.telekom = true
+    L1_1.transaktions = true
+    L1_1.vodafone = true
+    L2_2 = 0
+    L3_3 = mp
+    L3_3 = L3_3.getfilename
+    L3_3 = L3_3(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+    for _FORV_7_ in string.gmatch(L3_3, "%w+") do
+      if L1_1[_FORV_7_] then
+        L2_2 = L2_2 + 1
+      end
+    end
+    if L2_2 >= 2 then
+      return mp.LOWFI
     end
   end
-  if l_0_2 >= 2 then
-    return mp.LOWFI
-  end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

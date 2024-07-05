@@ -1,16 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/85b370e3b053 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).wp2 == nil then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.wp2
+  if L0_0 == nil then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).wp2 == nil then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[3]
+  L0_0 = L0_0.wp2
+  if L0_0 == nil then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).wp2 == nil then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[4]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[4]
+  L0_0 = L0_0.wp2
+  if L0_0 == nil then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

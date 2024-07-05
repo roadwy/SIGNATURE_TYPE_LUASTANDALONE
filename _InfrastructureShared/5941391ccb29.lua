@@ -1,24 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5941391ccb29 
-
--- params : ...
--- function num : 0
-local l_0_0 = (nri.GetConnectionString)()
-local l_0_1 = (string.match)(l_0_0, "SrcIp=(.-)%.")
-local l_0_2 = (string.match)(l_0_0, "DestIp=(.-)%.")
-if l_0_1 == l_0_2 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = nri
+L0_0 = L0_0.GetConnectionString
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.match
+L2_2 = L0_0
+L3_3 = "SrcIp=(.-)%."
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L0_0
+L4_4 = "DestIp=(.-)%."
+L2_2 = L2_2(L3_3, L4_4)
+if L1_1 == L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if (this_sigattrlog[2]).timestamp < (this_sigattrlog[1]).timestamp then
-  return mp.CLEAN
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.timestamp
+L4_4 = this_sigattrlog
+L4_4 = L4_4[2]
+L4_4 = L4_4.timestamp
+if L3_3 > L4_4 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (this_sigattrlog[2]).timestamp - (this_sigattrlog[1]).timestamp
-if l_0_3 > 300000000 then
-  return mp.CLEAN
+L3_3 = this_sigattrlog
+L3_3 = L3_3[2]
+L3_3 = L3_3.timestamp
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.timestamp
+L3_3 = L3_3 - L4_4
+if L3_3 > 300000000 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = {}
-l_0_4.useragent = (nri.GetHttpRequestHeader)("User-Agent")
-;
-(nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), l_0_4)
+L4_4 = {}
+L4_4.useragent = nri.GetHttpRequestHeader("User-Agent")
+nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L4_4)
 return mp.INFECTED
-

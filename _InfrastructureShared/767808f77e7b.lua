@@ -1,20 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/767808f77e7b 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_PATH)
-if l_0_0 then
-  local l_0_1 = (sysio.FindFiles)(l_0_0, "*.pdb", 4)
-  if l_0_1 then
-    for l_0_5,l_0_6 in pairs(l_0_1) do
-      (mp.ReportLowfi)(l_0_6, 3390914334)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.FILEPATH_QUERY_PATH
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L1_1 = sysio
+  L1_1 = L1_1.FindFiles
+  L1_1 = L1_1(L2_2, L3_3, L4_4)
+  if L1_1 then
+    for L5_5, L6_6 in L2_2(L3_3) do
+      mp.ReportLowfi(L6_6, 3390914334)
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.INFECTED
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

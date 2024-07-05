@@ -1,30 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Worm_VBS_Jenxcus!CrypterRepRev_Includes_ConversionToBinary_fastHex2Bin 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("SCPT:Worm:VBS/Jenxcus!CryptRepRev") then
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "SCPT:Worm:VBS/Jenxcus!CryptRepRev"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 9000 or L0_0 > 300000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = tostring
+L2_2 = footerpage
+L1_1 = L1_1(L2_2)
+L3_3 = L1_1
+L2_2 = L1_1.match
+L4_4 = "=%s-replace%s-%(%a-%s-,%s-\"..?.?.?.?.?\"%s-,%s-\"(%d-)\"%)%s"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.readprotection
+L4_4 = false
+L3_3(L4_4)
+L3_3 = mp
+L3_3 = L3_3.readfile
+L4_4 = 0
+L3_3 = L3_3(L4_4, L0_0)
+L4_4 = L3_3.match
+L4_4 = L4_4(L3_3, "'(.-)%s")
+if L4_4 == nil then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 9000 or l_0_0 > 300000 then
-  return mp.CLEAN
-end
-local l_0_1 = tostring(footerpage)
-local l_0_2 = l_0_1:match("=%s-replace%s-%(%a-%s-,%s-\"..?.?.?.?.?\"%s-,%s-\"(%d-)\"%)%s")
-if l_0_2 == nil then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-local l_0_3 = (mp.readfile)(0, l_0_0)
-local l_0_4 = l_0_3:match("\'(.-)%s")
-if l_0_4 == nil then
-  return mp.CLEAN
-end
-l_0_4 = l_0_4:gsub("[^0-9A-F][^0-9A-F]?[^0-9A-F]?[^0-9A-F]?[^0-9A-F]?[^0-9A-F]?", l_0_2)
-l_0_4 = l_0_4:reverse()
-;
-(mp.vfo_add_buffer)(fastHex2Bin(l_0_4, "(..)"), "[CrypterRepRev]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L4_4 = L4_4:gsub("[^0-9A-F][^0-9A-F]?[^0-9A-F]?[^0-9A-F]?[^0-9A-F]?[^0-9A-F]?", L2_2)
+L4_4 = L4_4:reverse()
+mp.vfo_add_buffer(fastHex2Bin(L4_4, "(..)"), "[CrypterRepRev]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

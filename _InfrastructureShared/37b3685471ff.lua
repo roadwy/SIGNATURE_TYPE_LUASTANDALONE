@@ -1,36 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/37b3685471ff 
-
--- params : ...
--- function num : 0
-local l_0_0 = 0
-if (this_sigattrlog[1]).matched then
-  local l_0_1 = nil
-  local l_0_2, l_0_3 = (bm.get_process_relationships)()
-  for l_0_7,l_0_8 in ipairs(l_0_2) do
-    l_0_1 = l_0_8.image_path
-    if (string.find)(l_0_1, "\\WINWORD.EXE") then
-      l_0_0 = l_0_0 + 1
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = 0
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = nil
+  L2_2 = bm
+  L2_2 = L2_2.get_process_relationships
+  L3_3 = L2_2()
+  for _FORV_7_, _FORV_8_ in L4_4(L5_5) do
+    L1_1 = _FORV_8_.image_path
+    if string.find(L1_1, "\\WINWORD.EXE") then
+      L0_0 = L0_0 + 1
       break
     end
   end
-  do
-    local l_0_9 = nil
-    for l_0_13,l_0_14 in ipairs(l_0_3) do
-      l_0_9 = l_0_14.image_path
-      if (string.find)(l_0_9, "\\powershell.exe") or (string.find)(l_0_9, "\\cmd.exe") then
-        l_0_0 = l_0_0 + 1
-        break
-      end
-    end
-    do
-      do
-        if l_0_0 == 2 then
-          return mp.INFECTED
-        end
-        return mp.CLEAN
-      end
+  for _FORV_8_, _FORV_9_ in L5_5(L3_3) do
+    if string.find(L4_4, "\\powershell.exe") or string.find(L4_4, "\\cmd.exe") then
+      L0_0 = L0_0 + 1
+      break
     end
   end
+  if L0_0 == 2 then
+    return L5_5
+  end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

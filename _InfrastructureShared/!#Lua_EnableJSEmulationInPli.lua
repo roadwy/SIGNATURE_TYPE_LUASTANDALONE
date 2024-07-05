@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_EnableJSEmulationInPli 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("MpInternal_IsPliScan") and (mp.get_mpattribute)("BM_TEXT_FILE") then
-  (mp.set_mpattribute)("NScript:JSEnableEmulation")
+if mp.get_mpattribute("MpInternal_IsPliScan") and mp.get_mpattribute("BM_TEXT_FILE") then
+  mp.set_mpattribute("NScript:JSEnableEmulation")
 end
 return mp.CLEAN
-

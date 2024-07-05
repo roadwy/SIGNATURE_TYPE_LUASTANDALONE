@@ -1,56 +1,94 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/99b34fffa5a0 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0["cmd.exe"] = true
-l_0_0["powershell.exe"] = true
-local l_0_1 = nil
-if (this_sigattrlog[1]).matched then
-  l_0_1 = (this_sigattrlog[1]).ppid
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = {}
+L0_0["cmd.exe"] = true
+L0_0["powershell.exe"] = true
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L1_1 = L2_2.ppid
 else
-  if (this_sigattrlog[2]).matched then
-    l_0_1 = (this_sigattrlog[2]).ppid
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L1_1 = L2_2.ppid
   else
-    if (this_sigattrlog[3]).matched then
-      l_0_1 = (this_sigattrlog[3]).ppid
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L1_1 = L2_2.ppid
     else
-      if (this_sigattrlog[4]).matched then
-        l_0_1 = (this_sigattrlog[4]).ppid
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[4]
+        L1_1 = L2_2.ppid
+        L2_2 = mp
+        L2_2 = L2_2.ContextualExpandEnvironmentVariables
+        L2_2 = L2_2(L3_3)
+        if L2_2 == nil or L2_2 == "" then
+          return L3_3
+        end
+        L6_6 = 1
+        L7_7 = true
+        if L3_3 ~= nil then
+          return L3_3
+        end
       else
+        L2_2 = mp
+        L2_2 = L2_2.CLEAN
+        return L2_2
+      end
+    end
+  end
+end
+L2_2 = nil
+if L3_3 then
+  L2_2 = L3_3.ppid
+  if L3_3 == nil or L3_3 == "" then
+    return L4_4
+  end
+  L6_6 = L3_3
+  L6_6 = "dng-proxy-o.denso.co.jp:8080"
+  L7_7 = 1
+  L8_8 = true
+  if L4_4 ~= nil then
+    return L4_4
+  end
+else
+  return L3_3
+end
+for L6_6 = 1, 5 do
+  if L6_6 > 6 then
+    L7_7 = mp
+    L7_7 = L7_7.CLEAN
+    return L7_7
+  end
+  L7_7 = bm
+  L7_7 = L7_7.get_process_relationships
+  L8_8 = L1_1
+  L8_8 = L7_7(L8_8)
+  for _FORV_12_, _FORV_13_ in ipairs(L8_8) do
+    if _FORV_13_.reason == 1 then
+      if _FORV_13_.ppid == L2_2 then
+        return mp.INFECTED
+      elseif L0_0[string.lower(string.match(_FORV_13_.image_path, "\\([^\\]+)$"))] ~= true then
+        mp.ReportLowfi(_FORV_13_.image_path, 4150180286)
         return mp.CLEAN
       end
+      L1_1 = _FORV_13_.ppid
     end
   end
 end
-local l_0_2 = nil
-if (this_sigattrlog[5]).matched then
-  l_0_2 = (this_sigattrlog[5]).ppid
-else
-  return mp.CLEAN
-end
-for l_0_6 = 1, 5 do
-  if l_0_6 > 6 then
-    return mp.CLEAN
-  end
-  local l_0_7, l_0_8 = (bm.get_process_relationships)(l_0_1)
-  for l_0_12,l_0_13 in ipairs(l_0_8) do
-    if l_0_13.reason == 1 then
-      local l_0_14 = (string.lower)((string.match)(l_0_13.image_path, "\\([^\\]+)$"))
-      if l_0_13.ppid == l_0_2 then
-        return mp.INFECTED
-      else
-        if l_0_0[l_0_14] ~= true then
-          (mp.ReportLowfi)(l_0_13.image_path, 4150180286)
-          return mp.CLEAN
-        end
-      end
-      l_0_1 = l_0_13.ppid
-    end
-  end
-end
-do return mp.CLEAN end
--- DECOMPILER ERROR at PC109: Confused about usage of register R4 for local variables in 'ReleaseLocals'
-
-
+return L3_3

@@ -1,18 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75b3717ec4c7 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if MpCommon.SECURITY_MANDATORY_HIGH_RID <= l_0_0.integrity_level then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.integrity_level
+if L1_1 >= MpCommon.SECURITY_MANDATORY_HIGH_RID then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (bm.get_imagepath)()
-if l_0_1 ~= nil then
-  l_0_1 = (string.lower)((string.sub)(l_0_1, -21))
-  if l_0_1 == "\\system32\\svchost.exe" then
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L1_1 = string.lower(string.sub(L1_1, -21))
+  if L1_1 == "\\system32\\svchost.exe" then
     return mp.CLEAN
   end
 end
 return mp.INFECTED
-

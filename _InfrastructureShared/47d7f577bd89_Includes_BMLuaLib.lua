@@ -1,32 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/47d7f577bd89_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if not l_0_0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if not l_0_1 or #l_0_1 <= 10 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L2_2 = #L1_1
+elseif L2_2 <= 10 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.GetParentProcInfo)()
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.GetParentProcInfo
+L2_2 = L2_2()
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (string.lower)(l_0_2.image_path)
-if l_0_3 == nil then
-  return mp.CLEAN
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = L2_2.image_path
+L3_3 = L3_3(L4_4)
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-if not l_0_3:find("\\svchost.exe") then
-  return mp.CLEAN
+L5_5 = L3_3
+L4_4 = L3_3.find
+L4_4 = L4_4(L5_5, "\\svchost.exe")
+if not L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = "\\\\\\\\.*\\\\netlogon\\\\\\w{3,}.(?:exe|dll)(?:[,\\w]+)?\\s+-u\\s+\\w+\\:\\w+"
-local l_0_5 = false
-l_0_5 = (MpCommon.StringRegExpSearch)(l_0_4, l_0_1)
-if l_0_5 then
+L4_4 = "\\\\\\\\.*\\\\netlogon\\\\\\w{3,}.(?:exe|dll)(?:[,\\w]+)?\\s+-u\\s+\\w+\\:\\w+"
+L5_5 = false
+L5_5, _ = MpCommon.StringRegExpSearch(L4_4, L1_1)
+if L5_5 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

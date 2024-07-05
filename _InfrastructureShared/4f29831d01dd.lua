@@ -1,29 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4f29831d01dd 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetBruteMatchData)()
-local l_0_1 = ""
-if l_0_0.is_header then
-  l_0_1 = tostring(headerpage)
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = ""
+if L0_0.is_header then
+  L1_1 = tostring(headerpage)
 else
-  l_0_1 = tostring(footerpage)
+  L1_1 = tostring(footerpage)
 end
-if (string.find)(l_0_1, "%${[0-1][0-1][0-1][0-1]+}") then
+if string.find(L1_1, "%${[0-1][0-1][0-1][0-1]+}") then
   return mp.INFECTED
-else
-  if (string.find)(l_0_1, "%${[_/\\=][_/\\=][_/\\=][_/\\=]+}") then
-    return mp.INFECTED
-  else
-    if (string.find)(l_0_1, "%${%w%w%w%w%w%w%w%w+}") then
-      return mp.INFECTED
-    else
-      if (string.find)(l_0_1, "%${[1-9][1-9]+}") then
-        return mp.INFECTED
-      end
-    end
-  end
+elseif string.find(L1_1, "%${[_/\\=][_/\\=][_/\\=][_/\\=]+}") then
+  return mp.INFECTED
+elseif string.find(L1_1, "%${%w%w%w%w%w%w%w%w+}") then
+  return mp.INFECTED
+elseif string.find(L1_1, "%${[1-9][1-9]+}") then
+  return mp.INFECTED
 end
 return mp.CLEAN
-

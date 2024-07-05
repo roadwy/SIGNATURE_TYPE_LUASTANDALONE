@@ -1,78 +1,188 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_NullAppendedData 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasappendeddata ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasappendeddata
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections == 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (pesecs[pehdr.NumberOfSections]).PointerToRawData + (pesecs[pehdr.NumberOfSections]).SizeOfRawData
-if l_0_0 <= (mp.getfilesize)() then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.PointerToRawData
+L1_1 = pesecs
+L2_2 = pehdr
+L2_2 = L2_2.NumberOfSections
+L1_1 = L1_1[L2_2]
+L1_1 = L1_1.SizeOfRawData
+L0_0 = L0_0 + L1_1
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+if L0_0 <= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.getfilesize)() - l_0_0
-if l_0_1 <= 4096 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+L1_1 = L1_1 - L0_0
+if L1_1 <= 4096 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4033) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4033)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4037) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4037)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4041) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4041)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4045) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4045)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4049) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4049)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4053) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4053)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4057) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4057)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4061) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4061)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4065) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4065)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4069) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4069)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4073) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4073)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4077) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4077)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4081) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4081)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4085) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4085)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4089) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4089)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, 4093) ~= 0 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L2_2 = L2_2(footerpage, 4093)
+if L2_2 ~= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(mp.readprotection)(false)
-local l_0_2 = (mp.readfile)((pesecs[pehdr.NumberOfSections]).PointerToRawData + (pesecs[pehdr.NumberOfSections]).SizeOfRawData, 4096)
-if (mp.crc32)(-1, l_0_2, 1, 4096) ~= 954466286 then
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L2_2(false)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L2_2 = L2_2(pesecs[pehdr.NumberOfSections].PointerToRawData + pesecs[pehdr.NumberOfSections].SizeOfRawData, 4096)
+if mp.crc32(-1, L2_2, 1, 4096) ~= 954466286 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

@@ -1,32 +1,98 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/28c8cd6d68c95_Flags_1 
-
--- params : ...
--- function num : 0
-do
-  if ((((not (hstrlog[1]).matched or (hstrlog[2]).matched) and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and not (hstrlog[5]).matched) or (hstrlog[6]).matched then
-    local l_0_0, l_0_1, l_0_2 = 0 + 1 + 1 + 1 + 1 + 1 + 1
-  end
-  do
-    if ((((((hstrlog[7]).matched and not (hstrlog[8]).matched) or (hstrlog[9]).matched) and not (hstrlog[10]).matched) or (hstrlog[11]).matched) and not (hstrlog[12]).matched) or (hstrlog[13]).matched then
-      local l_0_3 = nil
-    end
-    -- DECOMPILER ERROR at PC110: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC114: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC118: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC120: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC124: Unhandled construct in 'MakeBoolean' P3
-
-    -- DECOMPILER ERROR at PC124: Unhandled construct in 'MakeBoolean' P3
-
-    if (((((hstrlog[14]).matched and not (hstrlog[15]).matched) or (hstrlog[16]).matched) and not (hstrlog[17]).matched) or (mp.getfilesize)() < 200000) and ((l_0_3 >= 1 and 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 4) or l_0_3 < 1 or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 == 7) then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0, L1_1, L2_2
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+L2_2 = hstrlog
+L2_2 = L2_2[7]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[8]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[9]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[10]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[11]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[12]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[13]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = 0
+if hstrlog[14].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[15].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[16].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[17].matched then
+  L2_2 = L2_2 + 1
+end
+if mp.getfilesize() < 200000 and (L0_0 >= 1 and L1_1 >= 4 or L0_0 >= 1 and L2_2 >= 1 or L0_0 >= 2 or L1_1 == 7) then
+  return mp.INFECTED
+end
+return mp.CLEAN

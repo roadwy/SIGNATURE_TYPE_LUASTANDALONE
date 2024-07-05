@@ -1,22 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_PlaMasq.C!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.get_versioninfo)()
-if l_0_0 ~= nil then
-  if l_0_0.FileOriginalName == "VMware.SpbmApi.dll" then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if L0_0 == "vmware-vmx.exe" then
+  return mp.CLEAN
+end
+if pe.get_versioninfo() ~= nil then
+  if pe.get_versioninfo().FileOriginalName == "VMware.SpbmApi.dll" then
     return mp.CLEAN
   end
-  if l_0_0.FileOriginalName == "setup.exe" then
+  if pe.get_versioninfo().FileOriginalName == "setup.exe" then
     return mp.CLEAN
   end
-  if l_0_0.CompanyName ~= "VMware, Inc." then
+  if pe.get_versioninfo().CompanyName ~= "VMware, Inc." then
     return mp.CLEAN
   end
-  if l_0_0.ProductName == "VMware" then
+  if pe.get_versioninfo().ProductName == "VMware" then
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

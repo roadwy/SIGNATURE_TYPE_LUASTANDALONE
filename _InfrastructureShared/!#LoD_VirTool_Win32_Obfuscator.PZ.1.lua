@@ -1,16 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LoD_VirTool_Win32_Obfuscator.PZ.1 
-
--- params : ...
--- function num : 0
-if pehdr.AddressOfEntryPoint ~= 238592 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.AddressOfEntryPoint
+if L0_0 ~= 238592 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < pevars.epsec then
-  return mp.CLEAN
+L0_0 = pevars
+L0_0 = L0_0.epsec
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+if L0_0 > L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).VirtualSize ~= 16384 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.VirtualSize
+if L0_0 ~= 16384 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

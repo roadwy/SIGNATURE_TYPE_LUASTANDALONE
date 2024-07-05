@@ -1,33 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b5b323db98a1 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  local l_0_1 = (string.lower)((string.sub)(l_0_0, -9))
-  if l_0_1 ~= "\\w3wp.exe" then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L0_0
+  L4_4 = -9
+  L4_4 = L2_2(L3_3, L4_4)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L2_2(L3_3, L4_4))
+  if L1_1 ~= "\\w3wp.exe" then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = (bm.get_current_process_startup_info)()
-  local l_0_3 = l_0_2.command_line
-  if not (string.find)(l_0_3, "MSExchangeOABAppPool", 1, true) then
-    return mp.CLEAN
+  L2_2 = bm
+  L2_2 = L2_2.get_current_process_startup_info
+  L2_2 = L2_2()
+  L3_3 = L2_2.command_line
+  L4_4 = string
+  L4_4 = L4_4.find
+  L4_4 = L4_4(L3_3, "MSExchangeOABAppPool", 1, true)
+  if not L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  local l_0_4 = nil
-  if (this_sigattrlog[1]).matched then
-    l_0_4 = (this_sigattrlog[1]).utf8p1
-  else
-    if (this_sigattrlog[2]).matched then
-      l_0_4 = (this_sigattrlog[2]).utf8p1
-    end
+  L4_4 = nil
+  if this_sigattrlog[1].matched then
+    L4_4 = this_sigattrlog[1].utf8p1
+  elseif this_sigattrlog[2].matched then
+    L4_4 = this_sigattrlog[2].utf8p1
   end
-  if l_0_4 ~= nil and (sysio.IsFileExists)(l_0_4) then
-    (bm.add_related_file)(l_0_4)
+  if L4_4 ~= nil and sysio.IsFileExists(L4_4) then
+    bm.add_related_file(L4_4)
   end
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

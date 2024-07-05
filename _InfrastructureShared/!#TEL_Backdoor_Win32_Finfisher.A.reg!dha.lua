@@ -1,21 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Backdoor_Win32_Finfisher.A.reg!dha 
-
--- params : ...
--- function num : 0
-if (mp.GetResmgrBasePlugin)() ~= "regkeyvalue" then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetResmgrBasePlugin
+L0_0 = L0_0()
+if L0_0 ~= "regkeyvalue" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L1_1(mp.CONTEXT_DATA_FILENAME)
+L0_0 = L0_0(L1_1, L1_1(mp.CONTEXT_DATA_FILENAME))
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.find)(l_0_0, "hklm\\system\\currentcontrolset\\services", 1, true) == nil then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L1_1 = L1_1(L0_0, "hklm\\system\\currentcontrolset\\services", 1, true)
+if L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)(tostring(headerpage))
-if (string.find)(l_0_1, "rpcsrv.dat", 1, true) == nil then
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(tostring(headerpage))
+if string.find(L1_1, "rpcsrv.dat", 1, true) == nil then
   return mp.CLEAN
 end
 return mp.INFECTED
-

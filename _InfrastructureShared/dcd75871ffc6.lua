@@ -1,16 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/dcd75871ffc6 
-
--- params : ...
--- function num : 0
-local l_0_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features")
-do
-  if l_0_0 then
-    local l_0_1 = (sysio.GetRegValueAsDword)(l_0_0, "TamperProtection")
-    if l_0_1 and (mp.bitand)(l_0_1, 1) == 1 then
-      return mp.INFECTED
-    end
+local L0_0, L1_1
+L0_0 = sysio
+L0_0 = L0_0.RegOpenKey
+L1_1 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L1_1 = sysio
+  L1_1 = L1_1.GetRegValueAsDword
+  L1_1 = L1_1(L0_0, "TamperProtection")
+  if L1_1 and mp.bitand(L1_1, 1) == 1 then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

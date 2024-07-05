@@ -1,18 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MSIL_Metload_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.set_mpattribute)("MpDisableCaching")
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_1 = {}
-;
-(table.insert)(l_0_1, l_0_0)
-;
-(MpCommon.SetPersistContextNoPath)("Lua:Metload.A", l_0_1, 0)
+L0_0 = mp
+L0_0 = L0_0.set_mpattribute
+L1_1 = "MpDisableCaching"
+L0_0(L1_1)
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L1_1 = L1_1(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)
+L0_0 = L0_0(L1_1, L1_1(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+L1_1 = {}
+table.insert(L1_1, L0_0)
+MpCommon.SetPersistContextNoPath("Lua:Metload.A", L1_1, 0)
 return mp.INFECTED
-

@@ -1,30 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b383804665_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-if l_0_1 ~= nil then
-  for l_0_5,l_0_6 in ipairs(l_0_1) do
-    if l_0_6.image_path ~= nil and l_0_6.reason == bm.RELATIONSHIP_INJECTION then
-      local l_0_7 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-      if (sysio.IsFileExists)(l_0_7) and not (mp.IsKnownFriendlyFile)(l_0_7, true, false) then
-        (bm.add_related_file)(l_0_7)
-      end
-      local l_0_8 = (string.lower)((MpCommon.PathToWin32Path)(l_0_6.image_path))
-      if (string.find)(l_0_8, "\\explorer.exe", -13, true) then
-        (bm.request_SMS)(l_0_6.ppid, "h+")
-        ;
-        (bm.add_action)("SmsAsyncScanEvent", 1)
-        ;
-        (bm.trigger_sig)("Explorer", "WriteVM")
-        TrackPidAndTechniqueBM("BM", "T1055.002", "portable_executable_injection")
-        return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+if L1_1 ~= nil then
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L7_7 = L6_6.image_path
+    if L7_7 ~= nil then
+      L7_7 = L6_6.reason
+      L8_8 = bm
+      L8_8 = L8_8.RELATIONSHIP_INJECTION
+      if L7_7 == L8_8 then
+        L7_7 = string
+        L7_7 = L7_7.lower
+        L8_8 = MpCommon
+        L8_8 = L8_8.PathToWin32Path
+        L8_8 = L8_8(bm.get_imagepath())
+        L7_7 = L7_7(L8_8, L8_8(bm.get_imagepath()))
+        L8_8 = sysio
+        L8_8 = L8_8.IsFileExists
+        L8_8 = L8_8(L7_7)
+        if L8_8 then
+          L8_8 = mp
+          L8_8 = L8_8.IsKnownFriendlyFile
+          L8_8 = L8_8(L7_7, true, false)
+          if not L8_8 then
+            L8_8 = bm
+            L8_8 = L8_8.add_related_file
+            L8_8(L7_7)
+          end
+        end
+        L8_8 = string
+        L8_8 = L8_8.lower
+        L8_8 = L8_8(MpCommon.PathToWin32Path(L6_6.image_path))
+        if string.find(L8_8, "\\explorer.exe", -13, true) then
+          bm.request_SMS(L6_6.ppid, "h+")
+          bm.add_action("SmsAsyncScanEvent", 1)
+          bm.trigger_sig("Explorer", "WriteVM")
+          TrackPidAndTechniqueBM("BM", "T1055.002", "portable_executable_injection")
+          return mp.INFECTED
+        end
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return L2_2

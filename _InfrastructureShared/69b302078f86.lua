@@ -1,57 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b302078f86 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC15: Overwrote pending register: R1 in 'AssignReg'
-
-  do
-    if (this_sigattrlog[5]).matched then
-      local l_0_1 = nil
-    end
-    -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-    if not l_0_1 or not nil then
-      return mp.CLEAN
-    end
-    local l_0_2 = nil
-    for l_0_6 = 1, mp.SIGATTR_LOG_SZ do
-      local l_0_3, l_0_4 = , {}
-      -- DECOMPILER ERROR at PC30: Confused about usage of register: R6 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC46: Confused about usage of register: R7 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC55: Confused about usage of register: R7 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC65: Confused about usage of register: R7 in 'UnsetPending'
-
-      if (sigattr_tail[R6_PC30]).matched and (sigattr_tail[R6_PC30]).attribute == 16400 and (sigattr_tail[R6_PC30]).utf8p2 ~= nil and not (string.find)((sigattr_tail[R6_PC30]).utf8p2, "chmod", 1, true) and not (string.find)((sigattr_tail[R6_PC30]).utf8p2, "rm", 1, true) then
-        (table.insert)(l_0_4, (sigattr_tail[R6_PC30]).utf8p2)
-      end
-    end
-    local l_0_8 = nil
-    for l_0_12,l_0_13 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_2)) do
-      local l_0_9, l_0_10 = nil
-      -- DECOMPILER ERROR at PC78: Confused about usage of register: R8 in 'UnsetPending'
-
-      if (string.find)(l_0_8, (mp.ContextualExpandEnvironmentVariables)(table.insert), 1, true) then
-        for l_0_17,l_0_18 in ipairs(l_0_9) do
-          -- DECOMPILER ERROR at PC96: Confused about usage of register: R13 in 'UnsetPending'
-
-          if (string.find)(true, l_0_15, 1, true) then
-            (bm.add_related_file)(l_0_15)
-            return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L0_0 = L2_2.utf8p2
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[5]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[5]
+  L1_1 = L2_2.utf8p2
+end
+if not L0_0 or not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = {}
+for L6_6 = 1, L4_4.SIGATTR_LOG_SZ do
+  L7_7 = sigattr_tail
+  L7_7 = L7_7[L6_6]
+  L7_7 = L7_7.matched
+  if L7_7 then
+    L7_7 = sigattr_tail
+    L7_7 = L7_7[L6_6]
+    L7_7 = L7_7.attribute
+    if L7_7 == 16400 then
+      L7_7 = sigattr_tail
+      L7_7 = L7_7[L6_6]
+      L7_7 = L7_7.utf8p2
+      if L7_7 ~= nil then
+        L8_8 = string
+        L8_8 = L8_8.find
+        L12_12 = true
+        L8_8 = L8_8(L9_9, L10_10, L11_11, L12_12)
+        if not L8_8 then
+          L8_8 = string
+          L8_8 = L8_8.find
+          L12_12 = true
+          L8_8 = L8_8(L9_9, L10_10, L11_11, L12_12)
+          if not L8_8 then
+            L8_8 = table
+            L8_8 = L8_8.insert
+            L8_8(L9_9, L10_10)
           end
         end
       end
     end
-    return mp.CLEAN
   end
 end
-
+for L7_7, L8_8 in L4_4(L5_5) do
+  L8_8 = L9_9
+  L12_12 = 1
+  L13_13 = true
+  if L9_9 then
+    for L12_12, L13_13 in L9_9(L10_10) do
+      if string.find(L13_13, L8_8, 1, true) then
+        bm.add_related_file(L8_8)
+        return mp.INFECTED
+      end
+    end
+  end
+end
+return L4_4

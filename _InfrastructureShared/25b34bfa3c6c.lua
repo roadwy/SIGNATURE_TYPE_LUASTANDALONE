@@ -1,20 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b34bfa3c6c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = l_0_0.command_line
-do
-  if (string.find)(l_0_1, "mshta", 1, true) ~= nil and (string.find)(l_0_1, ".hta", 1, true) == nil and (string.find)(l_0_1, "javascript", 1, true) ~= nil then
-    local l_0_2 = (mp.GetExecutablesFromCommandLine)(l_0_1)
-    for l_0_6,l_0_7 in ipairs(l_0_2) do
-      if (sysio.IsFileExists)(l_0_7) and not (mp.IsKnownFriendlyFile)(l_0_7, true, false) then
-        (bm.add_related_file)(l_0_7)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.command_line
+L2_2 = string
+L2_2 = L2_2.find
+L6_6 = true
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L6_6 = true
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  if L2_2 == nil then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L6_6 = true
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    if L2_2 ~= nil then
+      L2_2 = mp
+      L2_2 = L2_2.GetExecutablesFromCommandLine
+      L2_2 = L2_2(L3_3)
+      for L6_6, L7_7 in L3_3(L4_4) do
+        if sysio.IsFileExists(L7_7) and not mp.IsKnownFriendlyFile(L7_7, true, false) then
+          bm.add_related_file(L7_7)
+        end
       end
+      return L3_3
     end
-    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

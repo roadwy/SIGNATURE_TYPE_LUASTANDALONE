@@ -1,83 +1,157 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_PossibleDllSideLoading.A!dll_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONOPEN and l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
-end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_1 == nil or #l_0_1 < 4 then
-  return mp.CLEAN
-end
-local l_0_2 = {}
-l_0_2["version.dll"] = ":\\windows\\system32"
-l_0_2["activeds.dll"] = ":\\windows\\system32"
-l_0_2["credui.dll"] = ":\\windows\\system32"
-l_0_2["dpx.dll"] = ":\\windows\\system32"
-l_0_2["dui70.dll"] = ":\\windows\\system32"
-l_0_2["duser.dll"] = ":\\windows\\system32"
-l_0_2["dwmapi.dll"] = ":\\windows\\system32"
-l_0_2["dxgi.dll"] = ":\\windows\\system32"
-l_0_2["fvewiz.dll"] = ":\\windows\\system32"
-l_0_2["mfc42u.dll"] = ":\\windows\\system32"
-l_0_2["oleacc.dll"] = ":\\windows\\system32"
-l_0_2["secur32.dll"] = ":\\windows\\system32"
-l_0_2["slc.dll"] = ":\\windows\\system32"
-l_0_2["spp.dll"] = ":\\windows\\system32"
-l_0_2["tapi32.dll"] = ":\\windows\\system32"
-l_0_2["uxtheme.dll"] = ":\\windows\\system32"
-l_0_2["wer.dll"] = ":\\windows\\system32"
-l_0_2["winbrand.dll"] = ":\\windows\\system32"
-l_0_2["winmm.dll"] = ":\\windows\\system32"
-l_0_2["winsta.dll"] = ":\\windows\\system32"
-l_0_2["wtsapi32.dll"] = ":\\windows\\system32"
-l_0_2["xmllite.dll"] = ":\\windows\\system32"
-local l_0_3 = l_0_2[l_0_1]
-if l_0_3 == nil then
-  return mp.CLEAN
-end
-local l_0_4 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if l_0_4 == nil or #l_0_4 < 1 then
-  return mp.CLEAN
-end
-if l_0_4:sub(1, 8) == "\\device\\" then
-  l_0_4 = (MpCommon.PathToWin32Path)(l_0_4)
-  if l_0_4 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L0_0 ~= L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  l_0_4 = (string.lower)(l_0_4)
 end
-if l_0_4:sub(1, 4) == "\\\\?\\" then
-  l_0_4 = l_0_4:sub(5)
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_FILENAME
+L7_7 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2(L3_3))
+if L1_1 ~= nil then
+  L2_2 = #L1_1
+elseif L2_2 < 4 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (string.sub)(l_0_4, 2) == l_0_3 then
-  return mp.CLEAN
+L2_2 = {}
+L2_2["version.dll"] = ":\\windows\\system32"
+L2_2["activeds.dll"] = ":\\windows\\system32"
+L2_2["credui.dll"] = ":\\windows\\system32"
+L2_2["dpx.dll"] = ":\\windows\\system32"
+L2_2["dui70.dll"] = ":\\windows\\system32"
+L2_2["duser.dll"] = ":\\windows\\system32"
+L2_2["dwmapi.dll"] = ":\\windows\\system32"
+L2_2["dxgi.dll"] = ":\\windows\\system32"
+L2_2["fvewiz.dll"] = ":\\windows\\system32"
+L2_2["mfc42u.dll"] = ":\\windows\\system32"
+L2_2["oleacc.dll"] = ":\\windows\\system32"
+L2_2["secur32.dll"] = ":\\windows\\system32"
+L2_2["slc.dll"] = ":\\windows\\system32"
+L2_2["spp.dll"] = ":\\windows\\system32"
+L2_2["tapi32.dll"] = ":\\windows\\system32"
+L2_2["uxtheme.dll"] = ":\\windows\\system32"
+L2_2["wer.dll"] = ":\\windows\\system32"
+L2_2["winbrand.dll"] = ":\\windows\\system32"
+L2_2["winmm.dll"] = ":\\windows\\system32"
+L2_2["winsta.dll"] = ":\\windows\\system32"
+L2_2["wtsapi32.dll"] = ":\\windows\\system32"
+L2_2["xmllite.dll"] = ":\\windows\\system32"
+L3_3 = L2_2[L1_1]
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_5 = ((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)):lower()
-if l_0_5 == nil or #l_0_5 == 0 then
-  return mp.CLEAN
+L4_4 = mp
+L4_4 = L4_4.getfilename
+L5_5 = mp
+L5_5 = L5_5.FILEPATH_QUERY_LOWERCASE
+L4_4 = L4_4(L5_5)
+if L4_4 ~= nil then
+  L5_5 = #L4_4
+elseif L5_5 < 1 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_6 = l_0_4 .. "\\" .. l_0_5
-if (MpCommon.QueryPersistContext)(l_0_6, "CheckPossibleDllSideLoadingA") then
-  local l_0_7 = "Lua:Context/PossibleDllSideLoading.A!" .. l_0_1
-  ;
-  (mp.set_mpattribute)(l_0_7)
+L6_6 = L4_4
+L5_5 = L4_4.sub
+L7_7 = 1
+L5_5 = L5_5(L6_6, L7_7, 8)
+if L5_5 == "\\device\\" then
+  L5_5 = MpCommon
+  L5_5 = L5_5.PathToWin32Path
+  L6_6 = L4_4
+  L5_5 = L5_5(L6_6)
+  L4_4 = L5_5
+  if L4_4 == nil then
+    L5_5 = mp
+    L5_5 = L5_5.CLEAN
+    return L5_5
+  end
+  L5_5 = string
+  L5_5 = L5_5.lower
+  L6_6 = L4_4
+  L5_5 = L5_5(L6_6)
+  L4_4 = L5_5
+end
+L6_6 = L4_4
+L5_5 = L4_4.sub
+L7_7 = 1
+L5_5 = L5_5(L6_6, L7_7, 4)
+if L5_5 == "\\\\?\\" then
+  L6_6 = L4_4
+  L5_5 = L4_4.sub
+  L7_7 = 5
+  L5_5 = L5_5(L6_6, L7_7)
+  L4_4 = L5_5
+end
+L5_5 = string
+L5_5 = L5_5.sub
+L6_6 = L4_4
+L7_7 = 2
+L5_5 = L5_5(L6_6, L7_7)
+if L5_5 == L3_3 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = mp
+L5_5 = L5_5.get_contextdata
+L6_6 = mp
+L6_6 = L6_6.CONTEXT_DATA_PROCESSNAME
+L5_5 = L5_5(L6_6)
+L6_6 = L5_5
+L5_5 = L5_5.lower
+L5_5 = L5_5(L6_6)
+if L5_5 ~= nil then
+  L6_6 = #L5_5
+elseif L6_6 == 0 then
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
+end
+L6_6 = L4_4
+L7_7 = "\\"
+L6_6 = L6_6 .. L7_7 .. L5_5
+L7_7 = MpCommon
+L7_7 = L7_7.QueryPersistContext
+L7_7 = L7_7(L6_6, "CheckPossibleDllSideLoadingA")
+if L7_7 then
+  L7_7 = "Lua:Context/PossibleDllSideLoading.A!"
+  L7_7 = L7_7 .. L1_1
+  mp.set_mpattribute(L7_7)
   return mp.INFECTED
 else
-  do
-    do
-      if (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-        local l_0_8 = l_0_4 .. "\\" .. l_0_1
-        if (mp.IsKnownFriendlyFile)(l_0_8, false, false) == true or (mp.IsTrustedFile)(false) == true then
-          return mp.CLEAN
-        end
-        ;
-        (mp.set_mpattribute)("MpDisableCaching")
-      end
+  L7_7 = mp
+  L7_7 = L7_7.get_contextdata
+  L7_7 = L7_7(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+  if L7_7 == true then
+    L7_7 = L4_4
+    L7_7 = L7_7 .. "\\" .. L1_1
+    if mp.IsKnownFriendlyFile(L7_7, false, false) == true or mp.IsTrustedFile(false) == true then
       return mp.CLEAN
     end
+    mp.set_mpattribute("MpDisableCaching")
   end
 end
-
+L7_7 = mp
+L7_7 = L7_7.CLEAN
+return L7_7

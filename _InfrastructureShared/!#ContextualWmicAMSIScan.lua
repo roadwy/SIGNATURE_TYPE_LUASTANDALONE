@@ -1,21 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ContextualWmicAMSIScan 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_AMSI then
-  local l_0_1, l_0_2 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME)
-  if l_0_1 and l_0_2 == "WMI" then
-    local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_AMSI_OPERATION_PPID)
-    local l_0_4 = (sysio.GetFileNameFromProcess)(l_0_3)
-    local l_0_5 = ((string.lower)((string.sub)(l_0_4, -13))):match("\\([^\\]+%.exe)$")
-    if l_0_5 == "wmic.exe" then
-      (mp.set_mpattribute)("MpIsWmicWmiAmsiScan")
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_AMSI
+if L0_0 == L1_1 then
+  L1_1 = pcall
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_AMSI_APPNAME
+  L2_2 = L1_1(L2_2, L3_3)
+  if L1_1 and L2_2 == "WMI" then
+    L3_3 = mp
+    L3_3 = L3_3.get_contextdata
+    L4_4 = mp
+    L4_4 = L4_4.CONTEXT_DATA_AMSI_OPERATION_PPID
+    L3_3 = L3_3(L4_4)
+    L4_4 = sysio
+    L4_4 = L4_4.GetFileNameFromProcess
+    L4_4 = L4_4(L3_3)
+    if string.lower(string.sub(L4_4, -13)):match("\\([^\\]+%.exe)$") == "wmic.exe" then
+      mp.set_mpattribute("MpIsWmicWmiAmsiScan")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

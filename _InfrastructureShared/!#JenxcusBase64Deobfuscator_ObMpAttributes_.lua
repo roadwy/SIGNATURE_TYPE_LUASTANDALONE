@@ -1,34 +1,49 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#JenxcusBase64Deobfuscator_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() < mp.FOOTERPAGE_SZ * 3 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.FOOTERPAGE_SZ
+L1_1 = L1_1 * 3
+if L0_0 < L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0, l_0_1, l_0_2, l_0_3 = (string.find)(tostring(headerpage), "\"[A-Za-z0-9%+/][A-Za-z0-9%+/]=(=?)(..-)[A-Za-z0-9%+/][A-Za-z0-9%+/]=")
-local l_0_4, l_0_5 = (string.gsub)(l_0_3, "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])", "%%%1")
-;
-(mp.readprotection)(false)
-do
-  if (mp.getfilesize)() - l_0_0 > 2097152 then
-    local l_0_6, l_0_7 = 2097152
-  end
-  -- DECOMPILER ERROR at PC38: Confused about usage of register: R6 in 'UnsetPending'
-
-  local l_0_8 = nil
-  local l_0_9 = ((mp.readfile)(l_0_0, l_0_6))
-  -- DECOMPILER ERROR at PC52: Overwrote pending register: R8 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC62: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC63: Overwrote pending register: R8 in 'AssignReg'
-
-  if l_0_2 == "=" then
-    (mp.set_mpattribute)("//MpBase64DecodeLongLines")
-    ;
-    (mp.vfo_add_buffer)(nil, "[JXS64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-    return mp.CLEAN
-  end
+L0_0 = string
+L0_0 = L0_0.find
+L1_1 = tostring
+L2_2 = headerpage
+L1_1 = L1_1(L2_2)
+L2_2 = "\"[A-Za-z0-9%+/][A-Za-z0-9%+/]=(=?)(..-)[A-Za-z0-9%+/][A-Za-z0-9%+/]="
+L3_3 = L0_0(L1_1, L2_2)
+L4_4 = string
+L4_4 = L4_4.gsub
+L5_5 = L3_3
+L6_6 = "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])"
+L7_7 = "%%%1"
+L5_5 = L4_4(L5_5, L6_6, L7_7)
+L6_6 = mp
+L6_6 = L6_6.readprotection
+L7_7 = false
+L6_6(L7_7)
+L6_6 = mp
+L6_6 = L6_6.getfilesize
+L6_6 = L6_6()
+L6_6 = L6_6 - L0_0
+if L6_6 > 2097152 then
+  L6_6 = 2097152
 end
-
+L7_7 = mp
+L7_7 = L7_7.readfile
+L8_8 = L0_0
+L7_7 = L7_7(L8_8, L6_6)
+L8_8 = nil
+if L2_2 == "=" then
+  L8_8, L5_5 = L7_7:gsub(L4_4, ""):gsub("\".+", "")
+else
+  L8_8, L5_5 = L7_7:gsub(L4_4, "="):gsub("\".+", "")
+end
+mp.set_mpattribute("//MpBase64DecodeLongLines")
+mp.vfo_add_buffer(L8_8, "[JXS64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+return mp.CLEAN

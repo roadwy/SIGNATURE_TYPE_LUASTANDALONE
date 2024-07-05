@@ -1,21 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LuaContextualDropOutlookContainerFileDrop.A_Includes_GetEmailPaths 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  local l_0_2 = {}
-  l_0_2[".iso"] = ""
-  l_0_2[".vhd"] = ""
-  l_0_2.vhdx = ""
-  l_0_2.ppkg = ""
-  if l_0_2[(string.sub)(l_0_1, -4)] and isOutlookProcess() then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME))
+  if ({
+    [".iso"] = "",
+    [".vhd"] = "",
+    ["vhdx"] = "",
+    ["ppkg"] = ""
+  })[string.sub(L1_1, -4)] and isOutlookProcess() then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

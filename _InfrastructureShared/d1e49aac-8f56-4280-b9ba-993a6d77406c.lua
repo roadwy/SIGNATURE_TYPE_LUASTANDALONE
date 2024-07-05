@@ -1,70 +1,72 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d1e49aac-8f56-4280-b9ba-993a6d77406c 
-
--- params : ...
--- function num : 0
-GetRuleInfo = function()
-  -- function num : 0_0
-  local l_1_0 = {}
-  l_1_0.Name = "Block Process Creations originating from PSExec & WMI commands"
-  l_1_0.Description = "Windows Defender Exploit Guard detected remoting application (wmiprvse and psexesvc) creating child process"
-  l_1_0.NotificationDedupingInterval = 120
-  l_1_0.NotificationDedupingScope = HIPS.DEDUPE_SCOPE_UI
-  return l_1_0
+local L0_0, L1_1
+function L0_0()
+  local L0_2, L1_3
+  L0_2 = {}
+  L0_2.Name = "Block Process Creations originating from PSExec & WMI commands"
+  L0_2.Description = "Windows Defender Exploit Guard detected remoting application (wmiprvse and psexesvc) creating child process"
+  L0_2.NotificationDedupingInterval = 120
+  L1_3 = HIPS
+  L1_3 = L1_3.DEDUPE_SCOPE_UI
+  L0_2.NotificationDedupingScope = L1_3
+  return L0_2
 end
-
-GetMonitoredLocations = function()
-  -- function num : 0_1
-  local l_2_0 = {}
-  l_2_0["%windir%\\system32\\wbem\\WmiPrvSE.exe"] = 2
-  l_2_0["%windir%\\PSEXESVC.exe"] = 2
-  return 1, l_2_0
+GetRuleInfo = L0_0
+function L0_0()
+  local L0_4, L1_5, L2_6
+  L0_4 = {}
+  L0_4["%windir%\\system32\\wbem\\WmiPrvSE.exe"] = 2
+  L0_4["%windir%\\PSEXESVC.exe"] = 2
+  L1_5 = 1
+  L2_6 = L0_4
+  return L1_5, L2_6
 end
-
-GetPathExclusions = function()
-  -- function num : 0_2
-  local l_3_0 = {}
-  l_3_0["%windir%\\system32\\wbem\\WmiPrvSE.exe"] = 2
-  l_3_0["%windir%\\system32\\wbem\\mofcomp.exe"] = 2
-  l_3_0["%windir%\\system32\\svchost.exe"] = 2
-  l_3_0["%windir%\\system32\\WerFault.exe"] = 2
-  l_3_0["%windir%\\system32\\wuauclt.exe"] = 2
-  l_3_0["%windir%\\system32\\gpupdate.exe"] = 2
-  l_3_0["%windir%\\SysWOW64\\wbem\\WmiPrvSE.exe"] = 2
-  l_3_0["%windir%\\SysWOW64\\wbem\\mofcomp.exe"] = 2
-  l_3_0["%windir%\\SysWOW64\\svchost.exe"] = 2
-  l_3_0["%windir%\\SysWOW64\\WerFault.exe"] = 2
-  l_3_0["%windir%\\SysWOW64\\wuauclt.exe"] = 2
-  l_3_0["%windir%\\SysWOW64\\gpupdate.exe"] = 2
-  l_3_0["%windir%\\system32\\spool\\drivers"] = 2
-  l_3_0["%windir%\\system32\fsiso.exe"] = 2
-  l_3_0["%windir%\\PSEXESVC.exe"] = 2
-  l_3_0["%windir%\\Temp\\*\\DismHost.exe"] = 2
-  l_3_0["%systemdrive%\\*\\Tools\\MDATPClientAnalyzer.exe"] = 2
-  l_3_0["%systemdrive%\\*\\WDATPDeploy\\MDATPClientAnalyzer\\MDATPClientAnalyzer.exe"] = 2
-  l_3_0["%windir%\\CCM\\Ccm32BitLauncher.exe"] = 2
-  return l_3_0
+GetMonitoredLocations = L0_0
+function L0_0()
+  local L0_7, L1_8
+  L0_7 = {}
+  L0_7["%windir%\\system32\\wbem\\WmiPrvSE.exe"] = 2
+  L0_7["%windir%\\system32\\wbem\\mofcomp.exe"] = 2
+  L0_7["%windir%\\system32\\svchost.exe"] = 2
+  L0_7["%windir%\\system32\\WerFault.exe"] = 2
+  L0_7["%windir%\\system32\\wuauclt.exe"] = 2
+  L0_7["%windir%\\system32\\gpupdate.exe"] = 2
+  L0_7["%windir%\\SysWOW64\\wbem\\WmiPrvSE.exe"] = 2
+  L0_7["%windir%\\SysWOW64\\wbem\\mofcomp.exe"] = 2
+  L0_7["%windir%\\SysWOW64\\svchost.exe"] = 2
+  L0_7["%windir%\\SysWOW64\\WerFault.exe"] = 2
+  L0_7["%windir%\\SysWOW64\\wuauclt.exe"] = 2
+  L0_7["%windir%\\SysWOW64\\gpupdate.exe"] = 2
+  L0_7["%windir%\\system32\\spool\\drivers"] = 2
+  L0_7["%windir%\\system32\\fsiso.exe"] = 2
+  L0_7["%windir%\\PSEXESVC.exe"] = 2
+  L0_7["%windir%\\Temp\\*\\DismHost.exe"] = 2
+  L0_7["%systemdrive%\\MDE\\Tools\\MDEClientAnalyzer.exe"] = 2
+  L0_7["%systemdrive%\\*\\Tools\\MDATPClientAnalyzer.exe"] = 2
+  L0_7["%systemdrive%\\*\\WDATPDeploy\\MDATPClientAnalyzer\\MDATPClientAnalyzer.exe"] = 2
+  L0_7["%windir%\\CCM\\Ccm32BitLauncher.exe"] = 2
+  return L0_7
 end
-
-GetCommandLineExclusions = function()
-  -- function num : 0_3
-  local l_4_0 = ".:\\\\windows\\\\ccmcache\\\\.+"
-  local l_4_1 = ".:\\\\windows\\\\ccm\\\\systemtemp\\\\.+"
-  local l_4_2 = ".:\\\\windows\\\\ccm\\\\sensorframework\\\\.+"
-  local l_4_3 = ".:\\\\windows\\\\ccm\\\\signedscripts\\\\.+"
-  local l_4_4 = "cmd[^\\s]*\\s+/c\\s+\\\"chcp\\s+65001\\s+&\\s+.:\\\\windows\\\\system32\\\\inetsrv\\\\appcmd\\.exe\\s+list[^>]+>\\s+\\\"\\\\\\\\127\\.0\\.0\\.1\\\\.\\$\\\\temp\\\\[^\\\"]+\\\"\\s+2>&1\\\""
-  local l_4_5 = {}
-  l_4_5[l_4_0] = 0
-  l_4_5[l_4_1] = 0
-  l_4_5[l_4_2] = 0
-  l_4_5[l_4_3] = 0
-  l_4_5[l_4_4] = 0
-  return l_4_5
+GetPathExclusions = L0_0
+function L0_0()
+  local L7_9
+  L7_9 = ".:\\\\windows\\\\ccmcache\\\\.+"
+  return {
+    [L7_9] = 0,
+    [".:\\\\windows\\\\ccm\\\\systemtemp\\\\.+"] = 0,
+    [".:\\\\windows\\\\ccm\\\\sensorframework\\\\.+"] = 0,
+    [".:\\\\windows\\\\ccm\\\\signedscripts\\\\.+"] = 0,
+    ["cmd[^\\s]*\\s+/c\\s+\\\"chcp\\s+65001\\s+&\\s+.:\\\\windows\\\\system32\\\\inetsrv\\\\appcmd\\.exe\\s+list[^>]+>\\s+\\\"\\\\\\\\127\\.0\\.0\\.1\\\\.\\$\\\\temp\\\\[^\\\"]+\\\"\\s+2>&1\\\""] = 0,
+    ["\\s+(.:\\\\windows\\\\temp\\\\)?nessus_[^\\.\\s]+\\.txt[\\\"\\'\\;\\s]*$"] = 0,
+    [".:\\\\windows\\\\system32\\\\msiexec\\.exe\\s+.+\\{a38ee409\\-424d\\-4a0d\\-b5b6\\-5d66f20f62a5\\}\\s+.+.:\\\\windows\\\\temp\\\\nmwlogs\\\\wvdapps\\\\agentbootloaderuninstall\\.log"] = 0
+  }
 end
-
-GetCommandLineRegExp = function()
-  -- function num : 0_4
-  return "cmd(\\.exe)?\\s+\\/c\\s+\\\"*(.:\\\\.+\\.cmd)\\\"*"
+GetCommandLineExclusions = L0_0
+function L0_0()
+  local L2_10
+  L2_10 = "cmd(\\.exe)?\\s+\\/c\\s+\\\"*(.:\\\\.+\\.cmd)\\\"*"
+  return {
+    [L2_10] = 0,
+    ["cmd(\\.exe)?\\\"?\\s+\\/c\\s+\\\"?(.:\\\\.+\\.exe)\\\"?"] = 0
+  }
 end
-
-
+GetCommandLineRegExpList = L0_0

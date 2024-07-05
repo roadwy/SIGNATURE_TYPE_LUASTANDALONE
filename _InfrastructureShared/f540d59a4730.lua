@@ -1,18 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f540d59a4730 
-
--- params : ...
--- function num : 0
-do
-  if ((pe.get_versioninfo)()).CompanyName == "Company & Sons" and peattributes.ismsil == true then
-    local l_0_0 = (mp.GetCertificateInfo)()
-    for l_0_4,l_0_5 in pairs(l_0_0) do
-      if l_0_5.Signers ~= nil then
+local L0_0
+L0_0 = pe
+L0_0 = L0_0.get_versioninfo
+L0_0 = L0_0()
+L0_0 = L0_0.CompanyName
+if L0_0 == "Company & Sons" then
+  L0_0 = peattributes
+  L0_0 = L0_0.ismsil
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.GetCertificateInfo
+    L0_0 = L0_0()
+    for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+      if _FORV_5_.Signers ~= nil then
         return mp.CLEAN
       end
     end
     return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

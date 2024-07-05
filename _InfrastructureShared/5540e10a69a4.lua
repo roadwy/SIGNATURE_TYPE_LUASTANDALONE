@@ -1,10 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5540e10a69a4 
-
--- params : ...
--- function num : 0
-if peattributes.packed and peattributes.checks_teb_lasterror and peattributes.dynmem_APIcall and peattributes.executes_from_dynamic_memory then
-  return mp.SUSPICIOUS
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.packed
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.checks_teb_lasterror
+  if L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.dynmem_APIcall
+    if L0_0 then
+      L0_0 = peattributes
+      L0_0 = L0_0.executes_from_dynamic_memory
+      if L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.SUSPICIOUS
+        return L0_0
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

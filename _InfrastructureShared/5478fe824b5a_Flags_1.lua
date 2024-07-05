@@ -1,18 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5478fe824b5a_Flags_1 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.readu_u32)((pe.mmap_va)((hstrlog[1]).VA + 11, 4), 1)
-local l_0_1 = (pe.mmap_va)(l_0_0, 12)
-if (string.find)(l_0_1, "%w%z%w%z%w%z%w%z%w%z%z%z") >= 0 then
-  l_0_0 = (mp.readu_u32)((pe.mmap_va)((hstrlog[3]).VA + 15, 4), 1)
-  local l_0_2 = (pe.mmap_va)(l_0_0, 12)
-  if (string.find)(l_0_2, "%w%z%w%z%w%z%w%z%w%z%z%z") >= 0 then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = hstrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.VA
+L2_2 = L2_2 + 11
+L1_1 = L1_1(L2_2, 4)
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, 12)
+L2_2 = string
+L2_2 = L2_2.find
+L2_2 = L2_2(L1_1, "%w%z%w%z%w%z%w%z%w%z%z%z")
+if L2_2 >= 0 then
+  L2_2 = mp
+  L2_2 = L2_2.readu_u32
+  L2_2 = L2_2(pe.mmap_va(hstrlog[3].VA + 15, 4), 1)
+  L0_0 = L2_2
+  L2_2 = pe
+  L2_2 = L2_2.mmap_va
+  L2_2 = L2_2(L0_0, 12)
+  if string.find(L2_2, "%w%z%w%z%w%z%w%z%w%z%z%z") >= 0 then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

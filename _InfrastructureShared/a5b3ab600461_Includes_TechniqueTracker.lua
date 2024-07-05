@@ -1,33 +1,123 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a5b3ab600461_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 and ((string.find)(l_0_0, "windows\\explorer.exe", 1, true) or (string.find)(l_0_0, "\\system32\\svchost.exe", 1, true) or (string.find)(l_0_0, "\\syswow64\\svchost.exe", 1, true)) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2, "windows\\explorer.exe", 1, true)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2, "\\system32\\svchost.exe", 1, true)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L2_2 = L0_0
+      L1_1 = L1_1(L2_2, "\\syswow64\\svchost.exe", 1, true)
+    end
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
 end
-local l_0_1 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_1 = (this_sigattrlog[1]).utf8p2
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_1 = (this_sigattrlog[2]).utf8p2
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L1_1 = L2_2.utf8p2
+    end
   else
-    if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-      l_0_1 = (this_sigattrlog[3]).utf8p2
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L1_1 = L2_2.utf8p2
+      end
     else
-      if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 ~= nil then
-        l_0_1 = (this_sigattrlog[4]).utf8p2
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[4]
+        L2_2 = L2_2.utf8p2
+        if L2_2 ~= nil then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[4]
+          L1_1 = L2_2.utf8p2
+        end
       else
-        if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).utf8p2 ~= nil then
-          l_0_1 = (this_sigattrlog[5]).utf8p2
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[5]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[5]
+          L2_2 = L2_2.utf8p2
+          if L2_2 ~= nil then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[5]
+            L1_1 = L2_2.utf8p2
+          end
         else
-          if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-            l_0_1 = (this_sigattrlog[6]).utf8p2
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[6]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[6]
+            L2_2 = L2_2.utf8p2
+            if L2_2 ~= nil then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[6]
+              L1_1 = L2_2.utf8p2
+            end
           else
-            if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).utf8p2 ~= nil then
-              l_0_1 = (this_sigattrlog[7]).utf8p2
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[7]
+            L2_2 = L2_2.matched
+            if L2_2 then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[7]
+              L2_2 = L2_2.utf8p2
+              if L2_2 ~= nil then
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[7]
+                L1_1 = L2_2.utf8p2
+              end
             end
           end
         end
@@ -35,17 +125,24 @@ else
     end
   end
 end
-if (string.len)(l_0_1) < 8 then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.len
+L2_2 = L2_2(L1_1)
+if L2_2 < 8 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (string.find)(l_0_1, "%1", 1, true) then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.find
+L2_2 = L2_2(L1_1, "%1", 1, true)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = {}
-;
-(table.insert)(l_0_2, l_0_1)
-;
-(MpCommon.SetPersistContextNoPath)("UACBypassExp.T!ShieldUp", l_0_2, 300)
+L2_2 = {}
+table.insert(L2_2, L1_1)
+MpCommon.SetPersistContextNoPath("UACBypassExp.T!ShieldUp", L2_2, 300)
 TrackPidAndTechniqueBM("BM", "T1548.002", "uac_bypass_src")
 return mp.INFECTED
-

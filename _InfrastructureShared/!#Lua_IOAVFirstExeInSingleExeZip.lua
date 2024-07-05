@@ -1,27 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_IOAVFirstExeInSingleExeZip 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("//GIOAVFirstExeInSingleExeZip") then
-  if (mp.get_mpattribute)("//RPF:G_IOAV_SINGLE_EXE_IN_ZIP") then
-    (mp.set_mpattribute)("Lua:IOAVFirstExeInSingleExeZip")
-    ;
-    (mp.set_mpattribute)("//GIOAVFirstExeInSingleExeZip")
-    ;
-    (mp.set_mpattribute)("MpNonCachedLowfi")
-  else
-    local l_0_0, l_0_1 = (mp.UfsGetMetadataBool)("Lua:UfsIOAVSingleEXEZip", true)
-    if l_0_0 == 0 and l_0_1 then
-      (mp.set_mpattribute)("Lua:IOAVFirstExeInSingleExeZip")
-      ;
-      (mp.set_mpattribute)("//GIOAVFirstExeInSingleExeZip")
-      ;
-      (mp.set_mpattribute)("MpNonCachedLowfi")
-    end
+if not mp.get_mpattribute("//GIOAVFirstExeInSingleExeZip") then
+  if mp.get_mpattribute("//RPF:G_IOAV_SINGLE_EXE_IN_ZIP") then
+    mp.set_mpattribute("Lua:IOAVFirstExeInSingleExeZip")
+    mp.set_mpattribute("//GIOAVFirstExeInSingleExeZip")
+    mp.set_mpattribute("MpNonCachedLowfi")
+  elseif mp.UfsGetMetadataBool("Lua:UfsIOAVSingleEXEZip", true) == 0 and mp.UfsGetMetadataBool("Lua:UfsIOAVSingleEXEZip", true) then
+    mp.set_mpattribute("Lua:IOAVFirstExeInSingleExeZip")
+    mp.set_mpattribute("//GIOAVFirstExeInSingleExeZip")
+    mp.set_mpattribute("MpNonCachedLowfi")
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

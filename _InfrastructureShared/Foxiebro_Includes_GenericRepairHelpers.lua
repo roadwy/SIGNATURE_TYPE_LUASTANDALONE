@@ -1,59 +1,132 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Foxiebro_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = function(l_1_0)
-  -- function num : 0_0
-  if l_1_0 == nil then
-    return 
+local L0_0, L1_1
+function L0_0(A0_2)
+  local L1_3, L2_4, L3_5, L4_6, L5_7, L6_8, L7_9, L8_10, L9_11, L10_12, L11_13, L12_14, L13_15
+  if A0_2 == nil then
+    return
   end
-  local l_1_1, l_1_2, l_1_3, l_1_4 = Infrastructure_SplitThreatPath(l_1_0)
-  if l_1_1 ~= nil and l_1_2 ~= nil and l_1_3 ~= nil then
-    l_1_1 = (string.gsub)(l_1_1, "^\\\\%?\\", "")
-    l_1_1 = (string.lower)(l_1_1)
-    l_1_3 = (string.lower)(l_1_3)
-    if (string.sub)(l_1_1, 2, 16) == ":\\program files" and (string.sub)(l_1_3, 1, 6) == "update" and (string.sub)(l_1_3, -4) == ".exe" and (string.len)(l_1_3) > 10 then
-      local l_1_5 = (string.sub)(l_1_3, 7, -5)
-      local l_1_6 = (string.lower)((string.gsub)(l_1_2, " ", ""))
-      if l_1_6 == l_1_5 and (string.len)(l_1_6) > 0 and l_1_2 ~= nil and (string.len)(l_1_2) > 0 then
-        local l_1_7 = (sysio.FindFiles)(l_1_1, "*.dll", -1)
-        for l_1_11,l_1_12 in pairs(l_1_7) do
-          (MpDetection.ScanResource)("file://" .. l_1_12)
+  L1_3 = Infrastructure_SplitThreatPath
+  L2_4 = A0_2
+  L4_6 = L1_3(L2_4)
+  if L1_3 ~= nil and L2_4 ~= nil and L3_5 ~= nil then
+    L5_7 = string
+    L5_7 = L5_7.gsub
+    L6_8 = L1_3
+    L7_9 = "^\\\\%?\\"
+    L5_7 = L5_7(L6_8, L7_9, L8_10)
+    L1_3 = L5_7
+    L5_7 = string
+    L5_7 = L5_7.lower
+    L6_8 = L1_3
+    L5_7 = L5_7(L6_8)
+    L1_3 = L5_7
+    L5_7 = string
+    L5_7 = L5_7.lower
+    L6_8 = L3_5
+    L5_7 = L5_7(L6_8)
+    L3_5 = L5_7
+    L5_7 = string
+    L5_7 = L5_7.sub
+    L6_8 = L1_3
+    L7_9 = 2
+    L5_7 = L5_7(L6_8, L7_9, L8_10)
+    if L5_7 == ":\\program files" then
+      L5_7 = string
+      L5_7 = L5_7.sub
+      L6_8 = L3_5
+      L7_9 = 1
+      L5_7 = L5_7(L6_8, L7_9, L8_10)
+      if L5_7 == "update" then
+        L5_7 = string
+        L5_7 = L5_7.sub
+        L6_8 = L3_5
+        L7_9 = -4
+        L5_7 = L5_7(L6_8, L7_9)
+        if L5_7 == ".exe" then
+          L5_7 = string
+          L5_7 = L5_7.len
+          L6_8 = L3_5
+          L5_7 = L5_7(L6_8)
+          if L5_7 > 10 then
+            L5_7 = string
+            L5_7 = L5_7.sub
+            L6_8 = L3_5
+            L7_9 = 7
+            L5_7 = L5_7(L6_8, L7_9, L8_10)
+            L6_8 = string
+            L6_8 = L6_8.lower
+            L7_9 = string
+            L7_9 = L7_9.gsub
+            L13_15 = L7_9(L8_10, L9_11, L10_12)
+            L6_8 = L6_8(L7_9, L8_10, L9_11, L10_12, L11_13, L12_14, L13_15, L7_9(L8_10, L9_11, L10_12))
+            if L6_8 == L5_7 then
+              L7_9 = string
+              L7_9 = L7_9.len
+              L7_9 = L7_9(L8_10)
+              if L7_9 > 0 and L2_4 ~= nil then
+                L7_9 = string
+                L7_9 = L7_9.len
+                L7_9 = L7_9(L8_10)
+                if L7_9 > 0 then
+                  L7_9 = sysio
+                  L7_9 = L7_9.FindFiles
+                  L7_9 = L7_9(L8_10, L9_11, L10_12)
+                  for L11_13, L12_14 in L8_10(L9_11) do
+                    L13_15 = MpDetection
+                    L13_15 = L13_15.ScanResource
+                    L13_15("file://" .. L12_14)
+                  end
+                  for L12_14, L13_15 in L9_11(L10_12) do
+                    MpDetection.ScanResource("file://" .. L13_15)
+                  end
+                  L12_14 = A0_2
+                  L13_15 = true
+                  L10_12(L11_13, L12_14, L13_15)
+                  L12_14 = L2_4
+                  L10_12(L11_13, L12_14)
+                  L12_14 = L2_4
+                  L10_12(L11_13, L12_14)
+                  L12_14 = L2_4
+                  L10_12(L11_13, L12_14)
+                end
+              end
+            end
+          end
         end
-        local l_1_13 = (sysio.FindFiles)(l_1_1, "*.exe", -1)
-        for l_1_17,l_1_18 in pairs(l_1_13) do
-          (MpDetection.ScanResource)("file://" .. l_1_18)
-        end
-        local l_1_19 = 805306497
-        Infrastructure_DetectionReportFolder(l_1_19, l_1_0, true)
-        Infrastructure_ReportBHOByName(l_1_19, l_1_2)
-        Infrastructure_ReportSoftwareRegistryByKey(l_1_19, l_1_2)
-        Infrastructure_ReportUninstallRegistryByKey(l_1_19, l_1_2)
       end
     end
   end
 end
-
-local l_0_1 = function(l_2_0)
-  -- function num : 0_1
-  if l_2_0 == nil then
-    return 
+function L1_1(A0_16)
+  local L1_17
+  if A0_16 == nil then
+    return
   end
-  l_2_0 = (string.gsub)((string.lower)(l_2_0), "^\\\\%?\\", "")
-  if (string.match)(l_2_0, "%a:\\program files\\[%a%s]+\\uninstaller.exe") or (string.match)(l_2_0, "%a:\\programdata\\%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x\\") or (string.match)(l_2_0, "%a:\\program files.*\\common files\\%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x\\") then
-    local l_2_1 = 805306497
-    Infrastructure_DetectionReportFolder(l_2_1, l_2_0, true)
+  L1_17 = string
+  L1_17 = L1_17.gsub
+  L1_17 = L1_17(string.lower(A0_16), "^\\\\%?\\", "")
+  A0_16 = L1_17
+  L1_17 = string
+  L1_17 = L1_17.match
+  L1_17 = L1_17(A0_16, "%a:\\program files\\[%a%s]+\\uninstaller.exe")
+  if not L1_17 then
+    L1_17 = string
+    L1_17 = L1_17.match
+    L1_17 = L1_17(A0_16, "%a:\\programdata\\%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x\\")
+    if not L1_17 then
+      L1_17 = string
+      L1_17 = L1_17.match
+      L1_17 = L1_17(A0_16, "%a:\\program files.*\\common files\\%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x\\")
+    end
+  elseif L1_17 then
+    L1_17 = 805306497
+    Infrastructure_DetectionReportFolder(L1_17, A0_16, true)
   end
 end
-
-local l_0_2 = (MpDetection.GetCurrentThreat)()
-if (string.find)(l_0_2.Name, "BrowserModifier:Win32/Foxiebro", 1, true) then
-  for l_0_6,l_0_7 in pairs(l_0_2.Resources) do
-    if l_0_7.Schema == "file" and (crypto.bitand)(l_0_7.Type, MpCommon.MPRESOURCE_TYPE_CONCRETE) == MpCommon.MPRESOURCE_TYPE_CONCRETE then
-      l_0_0(l_0_7.Path)
-      l_0_1(l_0_7.Path)
+if string.find(MpDetection.GetCurrentThreat().Name, "BrowserModifier:Win32/Foxiebro", 1, true) then
+  for _FORV_6_, _FORV_7_ in pairs(MpDetection.GetCurrentThreat().Resources) do
+    if _FORV_7_.Schema == "file" and crypto.bitand(_FORV_7_.Type, MpCommon.MPRESOURCE_TYPE_CONCRETE) == MpCommon.MPRESOURCE_TYPE_CONCRETE then
+      L0_0(_FORV_7_.Path)
+      L1_1(_FORV_7_.Path)
     end
   end
 end
-

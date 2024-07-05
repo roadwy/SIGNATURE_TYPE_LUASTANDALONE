@@ -1,21 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_AutoItCustomDataSec 
-
--- params : ...
--- function num : 0
-if (mp.ispackedwith)("AutoIt_+") and peattributes.epscn_writable and peattributes.lastscn_writable and pehdr.NumberOfSections == 4 and (pesecs[3]).SizeOfRawData > 262144 then
-  local l_0_0 = (pesecs[3]).PointerToRawData + 20480
-  ;
-  (mp.readprotection)(false)
-  local l_0_1 = (mp.readfile)(l_0_0, 16)
-  if l_0_1 == "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000" then
-    if (mp.getfilesize)() >= 4194304 then
-      (mp.set_mpattribute)("AutoItIgnoreMaxSizes")
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.ispackedwith
+L0_0 = L0_0("AutoIt_+")
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.epscn_writable
+  if L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.lastscn_writable
+    if L0_0 then
+      L0_0 = pehdr
+      L0_0 = L0_0.NumberOfSections
+      if L0_0 == 4 then
+        L0_0 = pesecs
+        L0_0 = L0_0[3]
+        L0_0 = L0_0.SizeOfRawData
+        if L0_0 > 262144 then
+          L0_0 = pesecs
+          L0_0 = L0_0[3]
+          L0_0 = L0_0.PointerToRawData
+          L0_0 = L0_0 + 20480
+          mp.readprotection(false)
+          if mp.readfile(L0_0, 16) == "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000" then
+            if mp.getfilesize() >= 4194304 then
+              mp.set_mpattribute("AutoItIgnoreMaxSizes")
+            end
+            return mp.INFECTED
+          end
+        end
+      end
     end
-    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

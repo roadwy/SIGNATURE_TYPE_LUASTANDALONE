@@ -1,24 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/bab3a7d06ccd 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[3]).utf8p1
-local l_0_1 = (this_sigattrlog[3]).utf8p2
-if not l_0_0 or not l_0_1 then
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.utf8p1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.utf8p2
+if not L0_0 or not L1_1 then
   return mp.CLEAN
 end
-l_0_0 = (string.lower)(l_0_0)
-if (string.find)(l_0_0, "\\temp\\", 1, true) then
+L0_0 = string.lower(L0_0)
+if string.find(L0_0, "\\temp\\", 1, true) then
   return mp.CLEAN
 end
-l_0_0 = (string.match)(l_0_0, "([^\\]+)$")
-if (string.find)(l_0_0, "unins", 1, true) then
+L0_0 = string.match(L0_0, "([^\\]+)$")
+if string.find(L0_0, "unins", 1, true) then
   return mp.CLEAN
 end
-l_0_1 = (string.lower)((string.match)(l_0_1, "([^\\]+)$"))
-if l_0_0 ~= l_0_1 then
+L1_1 = string.lower(string.match(L1_1, "([^\\]+)$"))
+if L0_0 ~= L1_1 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

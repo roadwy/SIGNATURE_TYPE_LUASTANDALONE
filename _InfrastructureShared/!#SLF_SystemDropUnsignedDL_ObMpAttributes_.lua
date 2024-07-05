@@ -1,114 +1,157 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_SystemDropUnsignedDL_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if peattributes.isdamaged then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = peattributes
+L0_0 = L0_0.isdamaged
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not peattributes.no_security then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.no_security
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESS_ID)
-  if l_0_0 == 4 then
-    local l_0_1, l_0_2 = nil, nil
-    if (MpCommon.GetPersistContextCountNoPath)("RDPSettings") > 0 then
-      local l_0_3 = (MpCommon.GetPersistContextNoPath)("RDPSettings")
-      for l_0_7,l_0_8 in ipairs(l_0_3) do
-        l_0_1 = (string.match)(l_0_8, "UA=([%d]+);SL=([%d]+)")
-        if l_0_1 ~= nil then
-          l_0_1 = tonumber(l_0_1)
-          -- DECOMPILER ERROR at PC68: Overwrote pending register: R2 in 'AssignReg'
-
-          break
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.get_contextdata
+    L1_1 = mp
+    L1_1 = L1_1.CONTEXT_DATA_PROCESS_ID
+    L0_0 = L0_0(L1_1)
+    if L0_0 == 4 then
+      L1_1, L2_2 = nil, nil
+      L3_3 = MpCommon
+      L3_3 = L3_3.GetPersistContextCountNoPath
+      L3_3 = L3_3(L4_4)
+      if L3_3 > 0 then
+        L3_3 = MpCommon
+        L3_3 = L3_3.GetPersistContextNoPath
+        L3_3 = L3_3(L4_4)
+        for L7_7, L8_8 in L4_4(L5_5) do
+          L1_1, L2_2 = string.match(L8_8, "UA=([%d]+);SL=([%d]+)")
+          if L1_1 ~= nil then
+            L1_1 = tonumber(L1_1)
+            L2_2 = tonumber(L2_2)
+            break
+          end
+        end
+      else
+        L3_3 = sysio
+        L3_3 = L3_3.RegOpenKey
+        L3_3 = L3_3(L4_4)
+        if L3_3 then
+          L7_7 = "UserAuthentication"
+          L1_1 = L5_5
+          if L1_1 == nil then
+            if L4_4 then
+              L7_7 = "UserAuthentication"
+              L1_1 = L5_5
+            end
+          end
+          L7_7 = "SecurityLayer"
+          L2_2 = L5_5
+          if L2_2 == nil then
+            if L4_4 == nil then
+            end
+            if L4_4 then
+              L7_7 = "SecurityLayer"
+              L2_2 = L5_5
+            end
+          end
+        end
+        L5_5.UserAuthentication = L1_1
+        L7_7 = L1_1
+        L8_8 = ";SL="
+        L7_7 = table
+        L7_7 = L7_7.insert
+        L8_8 = L5_5
+        L7_7(L8_8, L6_6)
+        L7_7 = MpCommon
+        L7_7 = L7_7.SetPersistContextNoPath
+        L8_8 = "RDPSettings"
+        L7_7(L8_8, L5_5, 3600)
+      end
+      if L1_1 == 1 then
+        L3_3 = mp
+        L3_3 = L3_3.CLEAN
+        return L3_3
+      elseif L2_2 == 0 then
+        L3_3 = mp
+        L3_3 = L3_3.CLEAN
+        return L3_3
+      end
+      L3_3 = mp
+      L3_3 = L3_3.IsTrustedFile
+      L3_3 = L3_3(L4_4)
+      if L3_3 == true then
+        L3_3 = mp
+        L3_3 = L3_3.CLEAN
+        return L3_3
+      end
+      L3_3 = mp
+      L3_3 = L3_3.get_contextdata
+      L3_3 = L3_3(L4_4)
+      if L3_3 ~= nil then
+        if L4_4 == nil then
+          return L5_5
+        end
+        L5_5[":\\windows\\softwaredistribution"] = 1
+        L5_5[":\\windows\\assembly\\nativeimage"] = 1
+        L5_5[":\\program files\\cisco\\amp\\tmp\\"] = 1
+        L5_5[":\\windows\\carbonblack\\store\\tm"] = 1
+        L5_5[":\\program files (x86)\\trend mi"] = 1
+        L5_5[":\\program files\\trend\\sprotect"] = 1
+        L5_5[":\\$windows.~bt\\newos\\windows\\w"] = 1
+        L5_5[":\\windows\\winsxs\\temp\\inflight"] = 1
+        L5_5[":\\build_drop\\3ebuilddrop\\build"] = 1
+        L5_5[":\\windows\\csc\\v2.0.6\\namespace"] = 1
+        L5_5[":\\program files (x86)\\bmw\\ispi"] = 1
+        L5_5[":\\program files\\sourcefire\\fir"] = 1
+        L5_5[":\\programdata\\origin\\selfupdat"] = 1
+        L5_5[":\\program files\\microsoft dyna"] = 1
+        L5_5[":\\program files\\matlab\\r2019a\\"] = 1
+        if L6_6 > 30 then
+          L7_7 = L4_4
+          L8_8 = 2
+          L7_7 = L6_6
+          L7_7 = L5_5[L6_6]
+          if not L7_7 then
+            L7_7 = string
+            L7_7 = L7_7.find
+            L8_8 = L6_6
+            L7_7 = L7_7(L8_8, "\\$windows.~bt\\", 1, true)
+          elseif L7_7 then
+            L7_7 = mp
+            L7_7 = L7_7.CLEAN
+            return L7_7
+          end
+        end
+        L7_7 = L3_3
+        L8_8 = "SystemDrop"
+        if not L6_6 then
+          L7_7 = L3_3
+          L8_8 = "SystemDrop"
+          L6_6(L7_7, L8_8, 600)
         end
       end
-    else
-      do
-        local l_0_9 = ((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\Terminal Services"))
-        local l_0_10 = nil
-        if l_0_9 then
-          l_0_1 = (sysio.GetRegValueAsDword)(l_0_9, "UserAuthentication")
-          if l_0_1 == nil then
-            l_0_10 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp")
-            if l_0_10 then
-              l_0_1 = (sysio.GetRegValueAsDword)(l_0_10, "UserAuthentication")
-            end
-          end
-          -- DECOMPILER ERROR at PC106: Overwrote pending register: R2 in 'AssignReg'
-
-          if l_0_2 == nil then
-            if l_0_10 == nil then
-              l_0_10 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp")
-            end
-            -- DECOMPILER ERROR at PC123: Overwrote pending register: R2 in 'AssignReg'
-
-          end
-        end
-        if l_0_10 then
-          local l_0_11 = {}
-          l_0_11.UserAuthentication = l_0_1
-          do
-            local l_0_12 = "UA=" .. l_0_1 .. ";SL=" .. l_0_2
-            ;
-            (table.insert)(l_0_11, l_0_12)
-            ;
-            (MpCommon.SetPersistContextNoPath)("RDPSettings", l_0_11, 3600)
-            if l_0_1 == 1 then
-              return mp.CLEAN
-            else
-              if l_0_2 == 0 then
-                return mp.CLEAN
-              end
-            end
-            if (mp.IsTrustedFile)(false) == true then
-              return mp.CLEAN
-            end
-            local l_0_13 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-            if l_0_13 ~= nil then
-              local l_0_14 = (MpCommon.PathToWin32Path)(l_0_13)
-              if l_0_14 == nil then
-                return mp.CLEAN
-              end
-              local l_0_15 = {}
-              l_0_15[":\\windows\\softwaredistribution"] = 1
-              l_0_15[":\\windows\\assembly\\nativeimage"] = 1
-              l_0_15[":\\program files\\cisco\\amp\\tmp\\"] = 1
-              l_0_15[":\\windows\\carbonblack\\store\\tm"] = 1
-              l_0_15[":\\program files (x86)\\trend mi"] = 1
-              l_0_15[":\\program files\\trend\\sprotect"] = 1
-              l_0_15[":\\$windows.~bt\\newos\\windows\\w"] = 1
-              l_0_15[":\\windows\\winsxs\\temp\\inflight"] = 1
-              l_0_15[":\\build_drop\\3ebuilddrop\\build"] = 1
-              l_0_15[":\\windows\\csc\\v2.0.6\\namespace"] = 1
-              l_0_15[":\\program files (x86)\\bmw\\ispi"] = 1
-              l_0_15[":\\program files\\sourcefire\\fir"] = 1
-              l_0_15[":\\programdata\\origin\\selfupdat"] = 1
-              l_0_15[":\\program files\\microsoft dyna"] = 1
-              l_0_15[":\\program files\\matlab\\r2019a\\"] = 1
-              do
-                do
-                  do
-                    if #l_0_14 > 30 then
-                      local l_0_16 = ((string.sub)(l_0_14, 2, 31)):lower()
-                      if l_0_15[l_0_16] or (string.find)(l_0_16, "\\$windows.~bt\\", 1, true) then
-                        return mp.CLEAN
-                      end
-                    end
-                    if not (MpCommon.QueryPersistContext)(l_0_13, "SystemDrop") then
-                      (MpCommon.AppendPersistContext)(l_0_13, "SystemDrop", 600)
-                    end
-                    do return mp.INFECTED end
-                    return mp.CLEAN
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
+      return L4_4
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

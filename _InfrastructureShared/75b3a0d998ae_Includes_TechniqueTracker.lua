@@ -1,26 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75b3a0d998ae_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(bm.get_current_process_startup_info)
-if l_0_0 and l_0_1 ~= nil then
-  local l_0_2 = l_0_1.ppid
-  if l_0_2 ~= nil and IsTechniqueObservedForPid(l_0_2, "T1027.002") and IsDetectionThresholdMet("BM") then
-    TrackPidAndTechniqueBM("BM", "T1059", "commandscriptpacked")
-    local l_0_3, l_0_4 = (bm.get_process_relationships)()
-    local l_0_5 = nil
-    for l_0_9,l_0_10 in ipairs(l_0_4) do
-      local l_0_11 = (mp.bitand)(l_0_10.reason_ex, 1)
-      if l_0_11 == 1 and ((string.find)((string.lower)(l_0_10.image_path), "\\cmd.exe\\", 1, true) or (string.find)((string.lower)(l_0_10.image_path), "\\powershell.exe\\", 1, true) or (string.find)((string.lower)(l_0_10.image_path), "\\wscript.exe\\", 1, true) or (string.find)((string.lower)(l_0_10.image_path), "\\cscript.exe\\", 1, true) or (string.find)((string.lower)(l_0_10.image_path), "\\mshta.exe\\", 1, true)) then
-        l_0_5 = l_0_10.ppid
-        TrackPidAndTechniqueBM(l_0_5, "T1059", "commandscriptpackedthreshold")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = pcall
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L0_0(L1_1)
+if L0_0 and L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L3_3 = IsTechniqueObservedForPid
+    L4_4 = L2_2
+    L5_5 = "T1027.002"
+    L3_3 = L3_3(L4_4, L5_5)
+    if L3_3 then
+      L3_3 = IsDetectionThresholdMet
+      L4_4 = "BM"
+      L3_3 = L3_3(L4_4)
+      if L3_3 then
+        L3_3 = TrackPidAndTechniqueBM
+        L4_4 = "BM"
+        L5_5 = "T1059"
+        L3_3(L4_4, L5_5, "commandscriptpacked")
+        L3_3 = bm
+        L3_3 = L3_3.get_process_relationships
+        L4_4 = L3_3()
+        L5_5 = nil
+        for _FORV_9_, _FORV_10_ in ipairs(L4_4) do
+          if mp.bitand(_FORV_10_.reason_ex, 1) == 1 and (string.find(string.lower(_FORV_10_.image_path), "\\cmd.exe\\", 1, true) or string.find(string.lower(_FORV_10_.image_path), "\\powershell.exe\\", 1, true) or string.find(string.lower(_FORV_10_.image_path), "\\wscript.exe\\", 1, true) or string.find(string.lower(_FORV_10_.image_path), "\\cscript.exe\\", 1, true) or string.find(string.lower(_FORV_10_.image_path), "\\mshta.exe\\", 1, true)) then
+            L5_5 = _FORV_10_.ppid
+            TrackPidAndTechniqueBM(L5_5, "T1059", "commandscriptpackedthreshold")
+          end
+        end
+        return mp.INFECTED
       end
     end
-    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

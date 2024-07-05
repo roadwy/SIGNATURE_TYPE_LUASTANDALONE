@@ -1,29 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Trojan_Win32_Gatak.EA!dha 
-
--- params : ...
--- function num : 0
-if peattributes.no_security == false then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = peattributes
+L0_0 = L0_0.no_security
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 990000 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 990000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (pe.get_versioninfo)()
-if l_0_1 ~= nil then
-  return mp.CLEAN
+L1_1 = pe
+L1_1 = L1_1.get_versioninfo
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_3 == "googletalk.exe" and (string.sub)(l_0_2, -28, -1) == "\\appdata\\roaming\\google talk" then
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) == "googletalk.exe" and string.sub(L2_2, -28, -1) == "\\appdata\\roaming\\google talk" then
   return mp.INFECTED
 end
-if l_0_3 == "skype.exe" and (string.sub)(l_0_2, -28, -1) == "\\appdata\\roaming\\skype\\phone" then
+if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) == "skype.exe" and string.sub(L2_2, -28, -1) == "\\appdata\\roaming\\skype\\phone" then
   return mp.INFECTED
 end
-if l_0_3 == "advantage.exe" and (string.sub)(l_0_2, -26, -1) == "\\appdata\\roaming\\advantage" then
+if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) == "advantage.exe" and string.sub(L2_2, -26, -1) == "\\appdata\\roaming\\advantage" then
   return mp.INFECTED
 end
 return mp.CLEAN
-

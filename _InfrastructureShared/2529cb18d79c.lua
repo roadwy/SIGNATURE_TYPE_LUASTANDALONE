@@ -1,21 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2529cb18d79c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_AMSI_CONTENTNAME)
-if l_0_0 == nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_AMSI_CONTENTNAME)
+if L0_0 == nil then
   return mp.CLEAN
 end
-l_0_0 = (string.lower)(l_0_0)
-if (string.find)(l_0_0, "\\windows\\ccmcache\\", 1, true) then
+L0_0 = string.lower(L0_0)
+if string.find(L0_0, "\\windows\\ccmcache\\", 1, true) then
   return mp.CLEAN
 end
-if (string.find)(l_0_0, "\\windows\\ccm\\systemtemp\\", 1, true) then
+if string.find(L0_0, "\\windows\\ccm\\systemtemp\\", 1, true) then
   return mp.CLEAN
 end
-if (string.find)(l_0_0, "\\microsoft\\windows defender advanced threat protection\\", 1, true) then
+if string.find(L0_0, "\\microsoft\\windows defender advanced threat protection\\", 1, true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

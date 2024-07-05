@@ -1,26 +1,78 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_RegHiveSamBySysProc.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if (string.find)(l_0_0, "\\device\\harddiskvolumeshadowcopy", 1, true) or (string.find)(l_0_0, "\\system volume information\\_restore", 1, true) or (string.find)(l_0_0, "\\ifm\\registry\\", 1, true) or (string.find)(l_0_0, "\\sppcbshivestore\\", 1, true) then
-  return mp.CLEAN
-end
-if (string.sub)(l_0_0, 0, 4) == "\\\\?\\" then
-  l_0_0 = (string.sub)(l_0_0, 5)
-end
-if l_0_0:sub(1, 8) == "\\device\\" then
-  l_0_0 = (MpCommon.PathToWin32Path)(l_0_0)
-  if l_0_0 == nil then
-    return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.FILEPATH_QUERY_LOWERCASE
+L0_0 = L0_0(L1_1)
+L1_1 = string
+L1_1 = L1_1.find
+L1_1 = L1_1(L0_0, "\\device\\harddiskvolumeshadowcopy", 1, true)
+if not L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L1_1 = L1_1(L0_0, "\\system volume information\\_restore", 1, true)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L1_1 = L1_1(L0_0, "\\ifm\\registry\\", 1, true)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L1_1 = L1_1(L0_0, "\\ntuser.dat", 1, true)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L1_1 = L1_1(L0_0, "\\windows\\system32\\config\\s", 1, true)
+        if not L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L1_1 = L1_1(L0_0, "\\windows\\system32\\config\\regback\\s", 1, true)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L1_1 = L1_1(L0_0, "\\windows\\hkey_local_machine\\", 1, true)
+            if not L1_1 then
+              L1_1 = string
+              L1_1 = L1_1.find
+              L1_1 = L1_1(L0_0, "\\sppcbshivestore\\", 1, true)
+            end
+          end
+        end
+      end
+    end
   end
-  l_0_0 = (string.lower)(l_0_0)
+elseif L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = {}
-;
-(table.insert)(l_0_1, l_0_0)
-;
-(MpCommon.SetPersistContextNoPath)("RegHiveSamBySysProc", l_0_1, 0)
+L1_1 = string
+L1_1 = L1_1.sub
+L1_1 = L1_1(L0_0, 0, 4)
+if L1_1 == "\\\\?\\" then
+  L1_1 = string
+  L1_1 = L1_1.sub
+  L1_1 = L1_1(L0_0, 5)
+  L0_0 = L1_1
+end
+L1_1 = L0_0.sub
+L1_1 = L1_1(L0_0, 1, 8)
+if L1_1 == "\\device\\" then
+  L1_1 = MpCommon
+  L1_1 = L1_1.PathToWin32Path
+  L1_1 = L1_1(L0_0)
+  L0_0 = L1_1
+  if L0_0 == nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0)
+  L0_0 = L1_1
+end
+L1_1 = {}
+table.insert(L1_1, L0_0)
+MpCommon.SetPersistContextNoPath("RegHiveSamBySysProc", L1_1, 0)
 return mp.INFECTED
-

@@ -1,26 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19b37afd65d0 
-
--- params : ...
--- function num : 0
-local l_0_2 = nil
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = ".diagcab"
-  end
-  if l_0_2 ~= nil then
-    local l_0_3 = nil
-    for l_0_7,l_0_8 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_2)) do
-      local l_0_4 = nil
-      -- DECOMPILER ERROR at PC26: Confused about usage of register: R7 in 'UnsetPending'
-
-      if (sysio.IsFileExists)(R7_PC26) and (string.find)(l_0_3, (string.sub)(R7_PC26, -8), 1, true) then
-        (bm.add_related_file)(R7_PC26)
-      end
-    end
-  end
-  do
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = ".diagcab"
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p2
   end
 end
-
+if L0_0 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    if sysio.IsFileExists(L7_7) and string.find(L1_1, string.sub(L7_7, -8), 1, true) then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

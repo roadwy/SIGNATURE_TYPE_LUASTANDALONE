@@ -1,31 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/9eb31a937900_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-if IsLegacyOrgMachine() or IsTechniqueObservedForPid("BM", "ttexclusion") or IsTacticObservedForPid("BM", "ttexclusion") or IsTacticObservedForPid("BM", "ttexclusion_cln") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = IsLegacyOrgMachine
+L0_0 = L0_0()
+if not L0_0 then
+  L0_0 = IsTechniqueObservedForPid
+  L1_1 = "BM"
+  L0_0 = L0_0(L1_1, L2_2)
+  if not L0_0 then
+    L0_0 = IsTacticObservedForPid
+    L1_1 = "BM"
+    L0_0 = L0_0(L1_1, L2_2)
+    if not L0_0 then
+      L0_0 = IsTacticObservedForPid
+      L1_1 = "BM"
+      L0_0 = L0_0(L1_1, L2_2)
+    end
+  end
+elseif L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  local l_0_7 = l_0_6.image_path
-  if l_0_7 ~= nil then
-    local l_0_8 = {}
-    l_0_8["ccmexec.exe"] = true
-    l_0_8["gpscript.exe"] = true
-    l_0_8["mpcmdrun.exe"] = true
-    l_0_8["mssense.exe"] = true
-    l_0_8["senseir.exe"] = true
-    if l_0_8[(string.lower)(l_0_7:match("\\([^\\]+)$"))] then
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for _FORV_5_, _FORV_6_ in L2_2(L3_3) do
+  if _FORV_6_.image_path ~= nil then
+    if ({
+      ["ccmexec.exe"] = true,
+      ["gpscript.exe"] = true,
+      ["mpcmdrun.exe"] = true,
+      ["mssense.exe"] = true,
+      ["senseir.exe"] = true
+    })[string.lower(_FORV_6_.image_path:match("\\([^\\]+)$"))] then
       return mp.CLEAN
     end
   end
 end
-if (bm.GetSignatureMatchDuration)() > 36000000000 then
-  return mp.CLEAN
+if L2_2 > 36000000000 then
+  return L2_2
 end
-if IsDetectionThresholdMet("BM") then
-  return mp.INFECTED
+if L2_2 then
+  return L2_2
 end
-return mp.CLEAN
-
+return L2_2

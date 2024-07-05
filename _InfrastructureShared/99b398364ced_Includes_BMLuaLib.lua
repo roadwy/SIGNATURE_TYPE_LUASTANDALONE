@@ -1,91 +1,131 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/99b398364ced_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-checkProcessTree = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  if l_1_0 == nil or l_1_1 == nil or type(l_1_1) ~= "table" then
-    return nil
+local L0_0, L1_1, L2_2, L3_3, L4_4
+function L0_0(A0_5, A1_6)
+  local L2_7, L3_8, L4_9, L5_10, L6_11, L7_12, L8_13, L9_14, L10_15, L11_16
+  if A0_5 ~= nil and A1_6 ~= nil then
+    L2_7 = type
+    L3_8 = A1_6
+    L2_7 = L2_7(L3_8)
+  elseif L2_7 ~= "table" then
+    L2_7 = nil
+    return L2_7
   end
-  local l_1_2 = l_1_0
-  local l_1_3 = {}
-  for l_1_7,l_1_8 in ipairs(l_1_1) do
-    local l_1_9 = 0
-    local l_1_10, l_1_11 = (bm.get_process_relationships)(l_1_2)
-    for l_1_15,l_1_16 in ipairs(l_1_11) do
-      if (mp.bitand)(l_1_16.reason_ex, 1) == 1 and (string.sub)(l_1_16.image_path, -(string.len)(l_1_8)) == l_1_8 then
-        l_1_2 = l_1_16.ppid
-        l_1_9 = l_1_9 + 1
+  L2_7 = A0_5
+  L3_8 = {}
+  for L7_12, L8_13 in L4_9(L5_10) do
+    L9_14 = 0
+    L10_15 = bm
+    L10_15 = L10_15.get_process_relationships
+    L11_16 = L2_7
+    L11_16 = L10_15(L11_16)
+    for _FORV_15_, _FORV_16_ in ipairs(L11_16) do
+      if mp.bitand(_FORV_16_.reason_ex, 1) == 1 and string.sub(_FORV_16_.image_path, -string.len(L8_13)) == L8_13 then
+        L2_7 = _FORV_16_.ppid
+        L9_14 = L9_14 + 1
       end
-      if l_1_9 > 1 then
+      if L9_14 > 1 then
         return nil
       end
     end
-    if l_1_9 == 0 then
+    if L9_14 == 0 then
       return nil
     end
-    ;
-    (table.insert)(l_1_3, l_1_2)
+    table.insert(L3_8, L2_7)
   end
-  return l_1_3
+  return L3_8
 end
-
-local l_0_0, l_0_1 = nil, nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_0 = (this_sigattrlog[1]).ppid
-  l_0_1 = (this_sigattrlog[1]).utf8p2
+checkProcessTree = L0_0
+L0_0, L1_1 = nil, nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.ppid
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_0 = (this_sigattrlog[2]).ppid
-    l_0_1 = (this_sigattrlog[2]).utf8p2
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.ppid
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L1_1 = L2_2.utf8p2
+    end
   else
-    if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-      l_0_0 = (this_sigattrlog[3]).ppid
-      l_0_1 = (this_sigattrlog[3]).utf8p2
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L0_0 = L2_2.ppid
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L1_1 = L2_2.utf8p2
+      end
     end
   end
 end
-if l_0_0 == nil or l_0_1 == nil then
-  return mp.CLEAN
+if L0_0 == nil or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = {}
--- DECOMPILER ERROR at PC63: No list found for R2 , SetList fails
-
--- DECOMPILER ERROR at PC64: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC65: Overwrote pending register: R4 in 'AssignReg'
-
-local l_0_3 = ("cmd.exe")("powershell.exe", l_0_2)
-if l_0_3 == nil then
-  return mp.CLEAN
+L2_2 = {L3_3, L4_4}
+L3_3 = "cmd.exe"
+L4_4 = "powershell.exe"
+L3_3 = checkProcessTree
+L4_4 = L0_0
+L3_3 = L3_3(L4_4, L2_2)
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-do
-  if l_0_1 ~= nil then
-    local l_0_4 = {}
-    l_0_4[".xls"] = true
-    l_0_4[".doc"] = true
-    l_0_4[".ppt"] = true
-    l_0_4[".pps"] = true
-    l_0_4.docx = true
-    l_0_4.pptx = true
-    l_0_4.ppsx = true
-    l_0_4.xlsx = true
-    l_0_4[".rtf"] = true
-    l_0_4[".xml"] = true
-    l_0_4.dotx = true
-    l_0_4.dotm = true
-    l_0_4[".odt"] = true
-    l_0_4.xlsb = true
-    l_0_4.xltx = true
-    l_0_4.xltm = true
-    l_0_4.xlam = true
-    l_0_4[".xla"] = true
-    l_0_4.docm = true
-    l_0_4.xlsm = true
-    l_0_4.pptm = true
-    bm_AddRelatedFileFromCommandLine(l_0_1, l_0_4)
-  end
-  return mp.INFECTED
+if L1_1 ~= nil then
+  L4_4 = {}
+  L4_4[".xls"] = true
+  L4_4[".doc"] = true
+  L4_4[".ppt"] = true
+  L4_4[".pps"] = true
+  L4_4.docx = true
+  L4_4.pptx = true
+  L4_4.ppsx = true
+  L4_4.xlsx = true
+  L4_4[".rtf"] = true
+  L4_4[".xml"] = true
+  L4_4.dotx = true
+  L4_4.dotm = true
+  L4_4[".odt"] = true
+  L4_4.xlsb = true
+  L4_4.xltx = true
+  L4_4.xltm = true
+  L4_4.xlam = true
+  L4_4[".xla"] = true
+  L4_4.docm = true
+  L4_4.xlsm = true
+  L4_4.pptm = true
+  bm_AddRelatedFileFromCommandLine(L1_1, L4_4)
 end
-
+L4_4 = mp
+L4_4 = L4_4.INFECTED
+return L4_4

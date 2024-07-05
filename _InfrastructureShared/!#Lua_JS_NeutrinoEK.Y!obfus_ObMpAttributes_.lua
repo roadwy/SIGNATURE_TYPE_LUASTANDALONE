@@ -1,52 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_JS_NeutrinoEK.Y!obfus_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 4096 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 4096 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_3 = 0
-local l_0_2 = (string.gsub)(l_0_1, "/%*%w-%*/", "")
--- DECOMPILER ERROR at PC33: Overwrote pending register: R2 in 'AssignReg'
-
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = 0
+L3_3 = string
+L3_3 = L3_3.gsub
+L4_4 = L1_1
+L4_4 = L3_3(L4_4, "/%*%w-%*/", "")
+L2_2 = L2_2 + L4_4
+L3_3, L4_4 = string.gsub(L3_3, "\\x(%x%x)", function(A0_5)
+  local L2_6
+  L2_6 = string
+  L2_6 = L2_6.format
+  return L2_6("%c", tonumber(A0_5, 16))
+end)
+L2_2 = L2_2 + L4_4
 repeat
-  local l_0_4 = R4_PC33
-  -- DECOMPILER ERROR at PC41: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC42: Overwrote pending register: R2 in 'AssignReg'
-
-until l_0_4 == 0
+  L3_3, L4_4 = string.gsub(L3_3, "\"([%w-%.%s/]-)\"%+\"([%w-%.%s/]-)\"", "\"%1%2\"")
+  L2_2 = L2_2 + L4_4
+until L4_4 == 0
 repeat
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC52: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC53: Overwrote pending register: R2 in 'AssignReg'
-
-until l_0_4 == 0
+  L3_3, L4_4 = string.gsub(L3_3, "(%d+)%+(%d+)", function(A0_7, A1_8)
+    return A0_7 + A1_8
+  end)
+  L2_2 = L2_2 + L4_4
+until L4_4 == 0
 repeat
-  -- DECOMPILER ERROR at PC62: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC63: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC64: Overwrote pending register: R2 in 'AssignReg'
-
-until l_0_4 == 0
+  L3_3, L4_4 = string.gsub(L3_3, "(%d%d?)%-(%d%d?)", function(A0_9, A1_10)
+    return A0_9 - A1_10
+  end)
+  L2_2 = L2_2 + L4_4
+until L4_4 == 0
 repeat
-  -- DECOMPILER ERROR at PC73: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC74: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC75: Overwrote pending register: R2 in 'AssignReg'
-
-until l_0_4 == 0
-if l_0_3 > 3 then
-  (mp.vfo_add_buffer)(l_0_2, "[NeutrinoEK.Y]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+  L3_3, L4_4 = string.gsub(L3_3, ";(%a)%[\"(%w+)\"%]%(", ";%1.%2(")
+  L2_2 = L2_2 + L4_4
+until L4_4 == 0
+if L2_2 > 3 then
+  mp.vfo_add_buffer(L3_3, "[NeutrinoEK.Y]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 end
 return mp.CLEAN
-

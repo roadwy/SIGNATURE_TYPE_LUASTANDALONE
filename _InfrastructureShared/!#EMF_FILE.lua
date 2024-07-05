@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#EMF_FILE 
-
--- params : ...
--- function num : 0
 if headerpage[41] == 32 and headerpage[42] == 69 and headerpage[43] == 77 and headerpage[44] == 70 then
-  (mp.set_mpattribute)("EMF_FILE")
+  mp.set_mpattribute("EMF_FILE")
 end
 return mp.CLEAN
-

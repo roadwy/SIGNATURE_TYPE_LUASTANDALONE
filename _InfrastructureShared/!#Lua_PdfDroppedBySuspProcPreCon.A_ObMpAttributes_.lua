@@ -1,19 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PdfDroppedBySuspProcPreCon.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_0 ~= "explorer.exe" then
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSNAME
+L2_2 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2))
+if L0_0 ~= "explorer.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = "global_marker"
+L2_2 = "big_lnk_file_with_ps"
+if MpCommon.QueryPersistContextNoPath(L1_1, L2_2) then
   return mp.CLEAN
 end
-local l_0_1 = "global_marker"
-local l_0_2 = "big_lnk_file_with_ps"
-local l_0_3 = (MpCommon.QueryPersistContextNoPath)(l_0_1, l_0_2)
-if l_0_3 then
-  return mp.CLEAN
-end
-;
-(MpCommon.AppendPersistContextNoPath)(l_0_1, l_0_2, 30)
+MpCommon.AppendPersistContextNoPath(L1_1, L2_2, 30)
 return mp.INFECTED
-

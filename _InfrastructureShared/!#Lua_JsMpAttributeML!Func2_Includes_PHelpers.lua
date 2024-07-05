@@ -1,22 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_JsMpAttributeML!Func2_Includes_PHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 <= 1000 or l_0_0 > 1000000 then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 <= 1000 or L0_0 > 1000000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L2_2 = L2_2(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)
+L2_2 = L1_1(L2_2, L2_2(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
+if string.sub(L2_2, -3) ~= ".js" and string.sub(L2_2, -4) ~= ".jse" then
   return mp.CLEAN
 end
-local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_3 = (string.sub)(l_0_2, -3)
-local l_0_4 = (string.sub)(l_0_2, -4)
-if l_0_3 ~= ".js" and l_0_4 ~= ".jse" then
+if true == IsInternetCache(L1_1) or true == IsLowConfNPath(L1_1) then
   return mp.CLEAN
 end
-if IsInternetCache(l_0_1) == true or IsLowConfNPath(l_0_1) == true then
-  return mp.CLEAN
-end
-;
-(mp.set_mpattribute)("Lua:JsLowfiFlag")
+mp.set_mpattribute("Lua:JsLowfiFlag")
 return mp.CLEAN
-

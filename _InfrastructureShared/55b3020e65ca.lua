@@ -1,15 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3020e65ca 
-
--- params : ...
--- function num : 0
-do
-  if (versioning.GetEngineBuild)() >= 16700 then
-    local l_0_0 = (versioning.GetOrgID)()
-    if l_0_0 and (string.lower)(l_0_0) == "d7c7c745-195f-4223-9c7a-99fb420fd000" then
-      return mp.CLEAN
-    end
+local L0_0
+L0_0 = versioning
+L0_0 = L0_0.GetEngineBuild
+L0_0 = L0_0()
+if L0_0 >= 16700 then
+  L0_0 = versioning
+  L0_0 = L0_0.GetOrgID
+  L0_0 = L0_0()
+  if L0_0 and string.lower(L0_0) == "d7c7c745-195f-4223-9c7a-99fb420fd000" then
+    return mp.CLEAN
   end
-  return mp.INFECTED
 end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

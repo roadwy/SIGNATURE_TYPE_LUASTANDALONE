@@ -1,21 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_DllDroppedByPowerShell_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_0 == "powershell.exe" then
-  local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-  local l_0_2 = "DllDroppedByPowerShell"
-  local l_0_3 = (MpCommon.QueryPersistContext)(l_0_1, l_0_2)
-  if not l_0_3 then
-    (MpCommon.AppendPersistContext)(l_0_1, l_0_2, 100)
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L0_0 = L1_1
+if L0_0 == "powershell.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.getfilename
+  L2_2 = mp
+  L2_2 = L2_2.FILEPATH_QUERY_LOWERCASE
+  L1_1 = L1_1(L2_2)
+  L2_2 = "DllDroppedByPowerShell"
+  if not MpCommon.QueryPersistContext(L1_1, L2_2) then
+    MpCommon.AppendPersistContext(L1_1, L2_2, 100)
   end
-  ;
-  (mp.set_mpattribute)("MpDisableCaching")
+  mp.set_mpattribute("MpDisableCaching")
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

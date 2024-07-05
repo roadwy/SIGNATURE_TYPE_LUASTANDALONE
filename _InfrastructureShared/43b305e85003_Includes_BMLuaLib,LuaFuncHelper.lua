@@ -1,41 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/43b305e85003_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-pcallEx("maceSendConfig", maceSendConfig, "mace_qakbot")
-pcallEx("reportRelatedBmHits", reportRelatedBmHits)
-local l_0_0 = function()
-  -- function num : 0_0
-  local l_1_0, l_1_1 = pcall(bm.get_current_process_startup_info)
-  if not l_1_0 then
-    return mp.INFECTED
+local L0_0
+L0_0 = pcallEx
+L0_0("maceSendConfig", maceSendConfig, "mace_qakbot")
+L0_0 = pcallEx
+L0_0("reportRelatedBmHits", reportRelatedBmHits)
+function L0_0()
+  local L0_1, L1_2, L2_3, L3_4, L4_5, L5_6, L6_7, L7_8, L8_9, L9_10, L10_11
+  L0_1 = pcall
+  L1_2 = bm
+  L1_2 = L1_2.get_current_process_startup_info
+  L1_2 = L0_1(L1_2)
+  if not L0_1 then
+    L2_3 = mp
+    L2_3 = L2_3.INFECTED
+    return L2_3
   end
-  local l_1_2 = "SuspDllExplorerInject.A_CmdLineDll"
-  if (MpCommon.GetPersistContextCountNoPath)(l_1_2) > 0 then
-    local l_1_3 = (MpCommon.GetPersistContextNoPath)(l_1_2)
-    for l_1_7,l_1_8 in ipairs(l_1_3) do
-      local l_1_9, l_1_10 = (string.match)(l_1_8, "([%w%p]+);([%w%p]+)")
-      l_1_10 = (string.lower)(l_1_10)
-      if l_1_9 == l_1_1.ppid and (string.find)(l_1_10, "\\appdata\\", 1, true) then
-        do
-          do
-            (bm.add_threat_file)(l_1_10)
-            do break end
-            -- DECOMPILER ERROR at PC51: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC51: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC51: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
+  L2_3 = "SuspDllExplorerInject.A_CmdLineDll"
+  L3_4 = MpCommon
+  L3_4 = L3_4.GetPersistContextCountNoPath
+  L3_4 = L3_4(L4_5)
+  if L3_4 > 0 then
+    L3_4 = MpCommon
+    L3_4 = L3_4.GetPersistContextNoPath
+    L3_4 = L3_4(L4_5)
+    for L7_8, L8_9 in L4_5(L5_6) do
+      L9_10 = string
+      L9_10 = L9_10.match
+      L10_11 = L8_9
+      L10_11 = L9_10(L10_11, "([%w%p]+);([%w%p]+)")
+      L10_11 = string.lower(L10_11)
+      if L9_10 == L1_2.ppid and string.find(L10_11, "\\appdata\\", 1, true) then
+        bm.add_threat_file(L10_11)
+        break
       end
     end
   end
 end
-
-pcallEx("remediateDll", l_0_0)
+pcallEx("remediateDll", L0_0)
 reportPcallEx()
 return mp.INFECTED
-

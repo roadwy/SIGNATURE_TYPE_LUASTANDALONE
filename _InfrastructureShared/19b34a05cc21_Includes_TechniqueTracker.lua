@@ -1,23 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19b34a05cc21_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (this_sigattrlog[1]).utf8p2
-  if l_0_0 ~= nil then
-    local l_0_1 = {}
-    -- DECOMPILER ERROR at PC13: No list found for R1 , SetList fails
-
-    -- DECOMPILER ERROR at PC14: Overwrote pending register: R2 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC15: Overwrote pending register: R3 in 'AssignReg'
-
-    ;
-    ("T1105:ingress_tool")("T1105:BmRDPFileCopyIn", l_0_1)
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L1_1 = {
+      "T1105:ingress_tool",
+      "T1105:BmRDPFileCopyIn"
+    }
+    TrackFileAndTechnique(L0_0, L1_1)
   end
 end
-do
-  return mp.INFECTED
-end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

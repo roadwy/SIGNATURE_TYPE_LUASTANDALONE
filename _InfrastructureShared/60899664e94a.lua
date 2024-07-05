@@ -1,16 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/60899664e94a 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)((pe.get_regval)(pe.REG_EBP) - 32, 4)
-local l_0_1 = (mp.readu_u32)(l_0_0, 1)
-local l_0_2 = (pe.mmap_va)(pevars.sigaddr + 47, 4)
-local l_0_3 = (mp.readu_u32)(l_0_2, 1)
-local l_0_4, l_0_5, l_0_6, l_0_7 = (mp.bsplit)(l_0_1, 8)
-local l_0_8, l_0_9, l_0_10, l_0_11 = (mp.bsplit)(l_0_3, 8)
-local l_0_12 = "\186" .. (string.char)(l_0_4, l_0_5, l_0_6, l_0_7) .. "\138\0202\128\250+u\004\178>\235 \128\250/u\004\178?\235\023\128\2509\127\005\128\2340\235\r\128úZ\127\005\128\2347\235\003\128\234=\015¾Ò‰•" .. (string.char)(l_0_8, l_0_9, l_0_10, l_0_11) .. "\128\250\000‰Ò"
-;
-(pe.mmap_patch_va)(pevars.sigaddr + 9, l_0_12)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pe
+L1_1 = L1_1.get_regval
+L2_2 = pe
+L2_2 = L2_2.REG_EBP
+L1_1 = L1_1(L2_2)
+L1_1 = L1_1 - 32
+L2_2 = 4
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = L0_0
+L3_3 = 1
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L3_3 = pevars
+L3_3 = L3_3.sigaddr
+L3_3 = L3_3 + 47
+L4_4 = 4
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = L2_2
+L5_5 = 1
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = mp
+L4_4 = L4_4.bsplit
+L5_5 = L1_1
+L6_6 = 8
+L7_7 = L4_4(L5_5, L6_6)
+L8_8 = mp
+L8_8 = L8_8.bsplit
+L9_9 = L3_3
+L10_10 = 8
+L11_11 = L8_8(L9_9, L10_10)
+L12_12 = "\186"
+L12_12 = L12_12 .. string.char(L4_4, L5_5, L6_6, L7_7) .. "\138\0202\128\250+u\004\178>\235 \128\250/u\004\178?\235\023\128\2509\127\005\128\2340\235\r\128\250Z\127\005\128\2347\235\003\128\234=\015\190\210\137\149" .. string.char(L8_8, L9_9, L10_10, L11_11) .. "\128\250\000\137\210"
+pe.mmap_patch_va(pevars.sigaddr + 9, L12_12)
 return mp.INFECTED
-

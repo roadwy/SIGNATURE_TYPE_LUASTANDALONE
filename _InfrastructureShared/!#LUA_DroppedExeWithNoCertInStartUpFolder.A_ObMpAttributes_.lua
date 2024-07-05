@@ -1,21 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_DroppedExeWithNoCertInStartUpFolder.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_0:find("\\start menu\\programs\\startup", 1, true) then
-    local l_0_2 = {}
-    l_0_2[".com"] = true
-    l_0_2[".exe"] = true
-    l_0_2[".pif"] = true
-    if l_0_1 ~= nil and l_0_2[l_0_1:sub(-4)] then
-      return mp.INFECTED
-    end
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and mp.get_contextdata(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true and mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\start menu\\programs\\startup", 1, true) then
+  if mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)) ~= nil and ({
+    [".com"] = true,
+    [".exe"] = true,
+    [".pif"] = true
+  })[mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):sub(-4)] then
+    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

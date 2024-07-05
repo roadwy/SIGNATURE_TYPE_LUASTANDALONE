@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/138786676a5c5 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-if (string.sub)(l_0_0, -13) == "uninstall.exe" or (string.sub)(l_0_0, -15) == "uninstaller.exe" then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.getfilename())
+if string.sub(L0_0, -13) == "uninstall.exe" or string.sub(L0_0, -15) == "uninstaller.exe" then
   return mp.CLEAN
 end
 return mp.INFECTED
-

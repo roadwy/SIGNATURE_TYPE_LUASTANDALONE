@@ -1,59 +1,121 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ffb3f1490682 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-local l_0_1 = l_0_0:match("\\([^\\]+)$")
-if l_0_1 ~= "services.exe" then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+L2_2 = L0_0
+L1_1 = L0_0.match
+L3_3 = "\\([^\\]+)$"
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= "services.exe" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_2 = (this_sigattrlog[1]).utf8p2
+L2_2 = nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L3_3 = L3_3.utf8p2
+  if L3_3 ~= nil then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L2_2 = L3_3.utf8p2
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_2 = (this_sigattrlog[2]).utf8p2
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[2]
+  L3_3 = L3_3.matched
+  if L3_3 then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[2]
+    L3_3 = L3_3.utf8p2
+    if L3_3 ~= nil then
+      L3_3 = this_sigattrlog
+      L3_3 = L3_3[2]
+      L2_2 = L3_3.utf8p2
+    end
   end
 end
-if l_0_2 == nil or l_0_2 == "" or (mp.IsKnownFriendlyFile)(l_0_2, true, true) == true then
-  return mp.CLEAN
+if L2_2 ~= nil and L2_2 ~= "" then
+  L3_3 = mp
+  L3_3 = L3_3.IsKnownFriendlyFile
+  L3_3 = L3_3(L4_4, L5_5, L6_6)
+elseif L3_3 == true then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if (l_0_2.find)("c:\\programdata\\microsoft\\microsoft antimalware\\definition updates", 1, true) then
-  return mp.CLEAN
+L3_3 = L2_2.find
+L3_3 = L3_3(L4_4, L5_5, L6_6)
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 else
-  if l_0_2:find("C:\\windowsazure\\", 1, true) then
-    return mp.CLEAN
+  L3_3 = L2_2.find
+  L7_7 = true
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   else
-    if l_0_2:find("\\system32\\drivers\\mbamswissarmy.sys", 1, true) then
-      return mp.CLEAN
+    L3_3 = L2_2.find
+    L7_7 = true
+    L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+    if L3_3 then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
     else
-      if l_0_2:find("\\symantec shared\\eengine\\eraserutildrv11821.sys", 1, true) then
-        return mp.CLEAN
+      L3_3 = L2_2.find
+      L7_7 = true
+      L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+      if L3_3 then
+        L3_3 = mp
+        L3_3 = L3_3.CLEAN
+        return L3_3
       else
-        if l_0_2:find("\\spool\\drivers\\x64\\3\\printconfig.dll", 1, true) then
-          return mp.CLEAN
+        L3_3 = L2_2.find
+        L7_7 = true
+        L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+        if L3_3 then
+          L3_3 = mp
+          L3_3 = L3_3.CLEAN
+          return L3_3
         else
-          if l_0_2:find("\\windows\\system32\\hpzipm12.dll", 1, true) then
-            return mp.CLEAN
+          L3_3 = L2_2.find
+          L7_7 = true
+          L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+          if L3_3 then
+            L3_3 = mp
+            L3_3 = L3_3.CLEAN
+            return L3_3
           end
         end
       end
     end
   end
 end
-if (sysio.IsFileExists)(l_0_2) then
-  (bm.add_related_file)(l_0_2)
+L3_3 = sysio
+L3_3 = L3_3.IsFileExists
+L3_3 = L3_3(L4_4)
+if L3_3 then
+  L3_3 = bm
+  L3_3 = L3_3.add_related_file
+  L3_3(L4_4)
 end
-local l_0_3 = (MpCommon.GetPersistContextNoPath)("ServiceCreationScript")
-if l_0_3 then
-  for l_0_7,l_0_8 in ipairs(l_0_3) do
-    if (sysio.IsFileExists)(l_0_8) then
-      (bm.add_related_file)(l_0_8)
+L3_3 = MpCommon
+L3_3 = L3_3.GetPersistContextNoPath
+L3_3 = L3_3(L4_4)
+if L3_3 then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if sysio.IsFileExists(L8_8) then
+      bm.add_related_file(L8_8)
     end
   end
 end
-do
-  return mp.INFECTED
-end
-
+return L4_4

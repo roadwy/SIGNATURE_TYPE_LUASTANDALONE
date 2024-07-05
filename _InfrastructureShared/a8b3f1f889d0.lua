@@ -1,35 +1,79 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a8b3f1f889d0 
-
--- params : ...
--- function num : 0
-if not (this_sigattrlog[1]).matched or not (this_sigattrlog[2]).matched then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+elseif not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not (this_sigattrlog[1]).wp2 or not (this_sigattrlog[2]).utf8p1 then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.wp2
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.utf8p1
+elseif not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.utf16to8)((this_sigattrlog[1]).wp2)
-local l_0_1 = (this_sigattrlog[2]).utf8p1
-if #l_0_1 <= #l_0_0 or (string.sub)(l_0_1, -#l_0_0) ~= l_0_0 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.utf16to8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.wp2
+L0_0 = L0_0(L1_1)
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.utf8p1
+L2_2 = #L0_0
+if not (L2_2 >= L3_3) then
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L2_2 = L2_2(L3_3, L4_4)
+elseif L2_2 ~= L0_0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if not (sysio.IsFileExists)(l_0_1) then
-  return mp.CLEAN
+L2_2 = sysio
+L2_2 = L2_2.IsFileExists
+L2_2 = L2_2(L3_3)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(mp.TriggerScanResource)("taskscheduler", l_0_1)
-if (MpCommon.GetPersistContextCountNoPath)("bm_ipc_taskschd") > 0 then
-  local l_0_2 = (MpCommon.GetPersistContextNoPath)("bm_ipc_taskschd")
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    local l_0_8, l_0_9, l_0_10 = (string.match)(l_0_7, "([%w%p]+);([%w%p]+);([%w%p]+)")
-    ;
-    (mp.ReportLowfi)(l_0_10, tonumber(l_0_9))
+L2_2 = versioning
+L2_2 = L2_2.GetCloudBlockLevel
+L2_2 = L2_2()
+if L2_2 == 4 then
+  L2_2 = mp
+  L2_2 = L2_2.TriggerScanResource
+  L2_2(L3_3, L4_4)
+end
+L2_2 = MpCommon
+L2_2 = L2_2.GetPersistContextCountNoPath
+L2_2 = L2_2(L3_3)
+if L2_2 > 0 then
+  L2_2 = MpCommon
+  L2_2 = L2_2.GetPersistContextNoPath
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = string
+    L8_8 = L8_8.match
+    L9_9 = L7_7
+    L10_10 = "([%w%p]+);([%w%p]+);([%w%p]+)"
+    L10_10 = L8_8(L9_9, L10_10)
+    mp.ReportLowfi(L10_10, tonumber(L9_9))
   end
 end
-do
-  l_0_2 = mp
-  l_0_2 = l_0_2.CLEAN
-  return l_0_2
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

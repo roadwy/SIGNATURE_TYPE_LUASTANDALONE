@@ -1,46 +1,93 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1d5b3cec78c44_Includes_BMLuaLib,ResearchData,PeParser 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if not l_0_0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-l_0_0 = (string.lower)((MpCommon.PathToWin32Path)(l_0_0))
-local l_0_1 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\SYSTEM32\\"))
-if not l_0_0:find(l_0_1, 1, true) then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L3_3 = L0_0
+L5_5 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L2_2(L3_3))
+L0_0 = L1_1
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = MpCommon
+L2_2 = L2_2.ExpandEnvironmentVariables
+L3_3 = "%WINDIR%\\SYSTEM32\\"
+L5_5 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L2_2(L3_3))
+L3_3 = L0_0
+L2_2 = L0_0.find
+L4_4 = L1_1
+L5_5 = 1
+L2_2 = L2_2(L3_3, L4_4, L5_5, true)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = {}
-l_0_2["srdelayed.exe"] = true
-l_0_2["poqexec.exe"] = true
-l_0_2["setupcl.exe"] = true
-l_0_2["register-cimprovider2.exe"] = true
-l_0_2["msiexec.exe"] = true
-local l_0_3 = (MpCommon.GetOriginalFileName)(l_0_0)
-if l_0_3 ~= "" and l_0_3 ~= nil then
-  (bm.add_related_string)("OriginalFileName", l_0_3, bm.RelatedStringBMReport)
-  if l_0_2[l_0_3] then
-    return mp.CLEAN
+L2_2 = {}
+L2_2["srdelayed.exe"] = true
+L2_2["poqexec.exe"] = true
+L2_2["setupcl.exe"] = true
+L2_2["register-cimprovider2.exe"] = true
+L2_2["msiexec.exe"] = true
+L3_3 = MpCommon
+L3_3 = L3_3.GetOriginalFileName
+L4_4 = L0_0
+L3_3 = L3_3(L4_4)
+if L3_3 ~= "" and L3_3 ~= nil then
+  L4_4 = bm
+  L4_4 = L4_4.add_related_string
+  L5_5 = "OriginalFileName"
+  L4_4(L5_5, L3_3, bm.RelatedStringBMReport)
+  L4_4 = L2_2[L3_3]
+  if L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  return mp.INFECTED
+  L4_4 = mp
+  L4_4 = L4_4.INFECTED
+  return L4_4
 end
-if (mp.IsKnownFriendlyFile)(l_0_0, false, true) == false then
-  (bm.add_related_string)("FriendlyFile", "false", bm.RelatedStringBMReport)
+L4_4 = mp
+L4_4 = L4_4.IsKnownFriendlyFile
+L5_5 = L0_0
+L4_4 = L4_4(L5_5, false, true)
+if L4_4 == false then
+  L4_4 = bm
+  L4_4 = L4_4.add_related_string
+  L5_5 = "FriendlyFile"
+  L4_4(L5_5, "false", bm.RelatedStringBMReport)
 end
-l_0_3 = Get_file_ofn(l_0_0)
-if l_0_3 == nil or l_0_3 == "" then
-  (bm.add_related_string)("OriginalFileName_PeParser", "null", bm.RelatedStringBMReport)
-  return mp.INFECTED
+L4_4 = sysio
+L4_4 = L4_4.GetPEVersionInfo
+L5_5 = L0_0
+L4_4 = L4_4(L5_5)
+if L4_4 then
+  L5_5 = L4_4.OriginalFilename
+  L5_5 = L5_5 and L4_4.OriginalFilename
+elseif L5_5 == "" then
+  L5_5 = bm
+  L5_5 = L5_5.add_related_string
+  L5_5("OriginalFileName_PeParser", "null", bm.RelatedStringBMReport)
+  L5_5 = mp
+  L5_5 = L5_5.INFECTED
+  return L5_5
 end
-l_0_3 = (string.lower)(l_0_3)
-;
-(MpCommon.SetOriginalFileName)(l_0_0, l_0_3)
-;
-(bm.add_related_string)("OriginalFileName_PeParser", l_0_3, bm.RelatedStringBMReport)
-if l_0_2[l_0_3] then
+L5_5 = string
+L5_5 = L5_5.lower
+L5_5 = L5_5(L4_4.OriginalFilename)
+MpCommon.SetOriginalFileName(L0_0, L5_5)
+bm.add_related_string("OriginalFileName_PeParser", L5_5, bm.RelatedStringBMReport)
+if L2_2[L5_5] then
   return mp.CLEAN
 end
 return mp.INFECTED
-

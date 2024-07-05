@@ -1,8 +1,2 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5c296c0e115b 
-
--- params : ...
--- function num : 0
-(mp.set_mpattribute)("AllowList:SEsendlog.A")
+mp.set_mpattribute("AllowList:SEsendlog.A")
 return mp.INFECTED
-

@@ -1,36 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_HackTool_Win32_DriverAbuseAswArPot.A_Includes_ResearchData, 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) then
-  (mp.set_mpattribute)("MpInternal_researchdata=newlyCreated=" .. "true")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.set_mpattribute
+  L1_1 = "MpInternal_researchdata=newlyCreated="
+  L2_2 = "true"
+  L1_1 = L1_1 .. L2_2
+  L0_0(L1_1)
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-local l_0_2 = (MpCommon.PathToWin32Path)(l_0_1)
-if l_0_2 == nil or l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSDEVICEPATH
+L1_1 = L1_1(L2_2)
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 == nil or L0_0 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if l_0_2 == "" or l_0_0 == "" then
-  return mp.CLEAN
+if L2_2 == "" or L0_0 == "" then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = l_0_2 .. "\\" .. l_0_0
-;
-(mp.set_mpattribute)("MpInternal_researchdata=parentProcessPath=" .. l_0_3)
-local l_0_4 = Get_file_versionInfo(l_0_3)
-if l_0_4 == nil or next(l_0_4) == nil then
-  (mp.set_mpattribute)("MpInternal_researchdata=ERRORS=" .. "Failed to extract file verinfo")
-  return mp.INFECTED
+L3_3 = L2_2
+L4_4 = "\\"
+L5_5 = L0_0
+L3_3 = L3_3 .. L4_4 .. L5_5
+L4_4 = mp
+L4_4 = L4_4.set_mpattribute
+L5_5 = "MpInternal_researchdata=parentProcessPath="
+L6_6 = L3_3
+L5_5 = L5_5 .. L6_6
+L4_4(L5_5)
+L4_4 = sysio
+L4_4 = L4_4.GetPEVersionInfo
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+if not L4_4 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_5 = (string.lower)(l_0_4.OriginalFilename)
-local l_0_6 = (string.lower)(l_0_4.InternalName)
-if l_0_5 ~= nil and l_0_5 ~= "" then
-  (mp.set_mpattribute)("MpInternal_researchdata=parentProcessOFN=" .. l_0_5)
-else
-  if l_0_6 ~= nil and l_0_6 ~= "" then
-    (mp.set_mpattribute)("MpInternal_researchdata=parentProcessInternalName=" .. l_0_6)
-  end
+L5_5 = L4_4.OriginalFilename
+L6_6 = L4_4.InternalName
+if L5_5 then
+  mp.set_mpattribute("MpInternal_researchdata=parentProcessOFN=" .. L5_5)
+elseif L6_6 then
+  mp.set_mpattribute("MpInternal_researchdata=parentProcessInternalName=" .. L6_6)
 end
 return mp.INFECTED
-

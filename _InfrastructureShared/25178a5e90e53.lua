@@ -1,51 +1,164 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25178a5e90e53 
-
--- params : ...
--- function num : 0
-do
-  if not (hstrlog[1]).matched then
-    local l_0_0, l_0_5, l_0_6, l_0_8, l_0_11, l_0_15, l_0_20, l_0_25, l_0_26, l_0_28, l_0_31 = (hstrlog[2]).matched
-  end
-  do
-    if not (hstrlog[3]).matched and not (hstrlog[4]).matched and not (hstrlog[5]).matched and not (hstrlog[6]).matched and not (hstrlog[7]).matched and not (hstrlog[8]).matched and not (hstrlog[9]).matched and not (hstrlog[10]).matched and not (hstrlog[11]).matched and not (hstrlog[12]).matched and not (hstrlog[13]).matched and not (hstrlog[14]).matched and not (hstrlog[15]).matched and not (hstrlog[16]).matched then
-      local l_0_1, l_0_7, l_0_9, l_0_12, l_0_16, l_0_21, l_0_27, l_0_29, l_0_32 = , (hstrlog[17]).matched
-    end
-    do
-      if not (hstrlog[18]).matched and not (hstrlog[19]).matched and not (hstrlog[20]).matched and not (hstrlog[21]).matched then
-        local l_0_2, l_0_10, l_0_13, l_0_17, l_0_22, l_0_30, l_0_33 = , (hstrlog[22]).matched
-      end
-      do
-        if not (hstrlog[23]).matched and not (hstrlog[24]).matched and not (hstrlog[25]).matched and not (hstrlog[26]).matched and not (hstrlog[27]).matched and not (hstrlog[28]).matched and not (hstrlog[29]).matched and not (hstrlog[30]).matched then
-          local l_0_3, l_0_14, l_0_18, l_0_23, l_0_34 = , (hstrlog[31]).matched
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if not L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.matched
+  if not L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[5]
+    L1_1 = L1_1.matched
+    if not L1_1 then
+      L1_1 = hstrlog
+      L1_1 = L1_1[6]
+      L1_1 = L1_1.matched
+      if not L1_1 then
+        L1_1 = hstrlog
+        L1_1 = L1_1[7]
+        L1_1 = L1_1.matched
+        if not L1_1 then
+          L1_1 = hstrlog
+          L1_1 = L1_1[8]
+          L1_1 = L1_1.matched
+          if not L1_1 then
+            L1_1 = hstrlog
+            L1_1 = L1_1[9]
+            L1_1 = L1_1.matched
+            if not L1_1 then
+              L1_1 = hstrlog
+              L1_1 = L1_1[10]
+              L1_1 = L1_1.matched
+              if not L1_1 then
+                L1_1 = hstrlog
+                L1_1 = L1_1[11]
+                L1_1 = L1_1.matched
+                if not L1_1 then
+                  L1_1 = hstrlog
+                  L1_1 = L1_1[12]
+                  L1_1 = L1_1.matched
+                  if not L1_1 then
+                    L1_1 = hstrlog
+                    L1_1 = L1_1[13]
+                    L1_1 = L1_1.matched
+                    if not L1_1 then
+                      L1_1 = hstrlog
+                      L1_1 = L1_1[14]
+                      L1_1 = L1_1.matched
+                      if not L1_1 then
+                        L1_1 = hstrlog
+                        L1_1 = L1_1[15]
+                        L1_1 = L1_1.matched
+                        if not L1_1 then
+                          L1_1 = hstrlog
+                          L1_1 = L1_1[16]
+                          L1_1 = L1_1.matched
+                          if not L1_1 then
+                            L1_1 = hstrlog
+                            L1_1 = L1_1[17]
+                            L1_1 = L1_1.matched
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
         end
-        -- DECOMPILER ERROR at PC183: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC185: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC187: Confused about usage of register: R2 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC189: Confused about usage of register: R3 in 'UnsetPending'
-
-        if l_0_3 and l_0_14 and l_0_18 and l_0_23 and not peattributes.hasexports or ((pesecs[1]).SizeOfRawData >= 135168 and (pesecs[1]).SizeOfRawData <= 167936 and (pesecs[3]).VirtualAddress > 139264 and (pesecs[3]).VirtualAddress <= 204800 and (pesecs[3]).SizeOfRawData >= 29952 and (pesecs[3]).SizeOfRawData <= 103680) then
-          (mp.changedetectionname)(186)
-          return mp.INFECTED
-        end
-        -- DECOMPILER ERROR at PC200: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC202: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC204: Confused about usage of register: R2 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC206: Confused about usage of register: R3 in 'UnsetPending'
-
-        if l_0_3 and l_0_14 and l_0_18 and l_0_23 then
-          return mp.SUSPICIOUS
-        end
-        do return mp.CLEAN end
-        -- DECOMPILER ERROR: 4 unprocessed JMP targets
       end
     end
   end
 end
-
+L2_2 = hstrlog
+L2_2 = L2_2[18]
+L2_2 = L2_2.matched
+if not L2_2 then
+  L2_2 = hstrlog
+  L2_2 = L2_2[19]
+  L2_2 = L2_2.matched
+  if not L2_2 then
+    L2_2 = hstrlog
+    L2_2 = L2_2[20]
+    L2_2 = L2_2.matched
+    if not L2_2 then
+      L2_2 = hstrlog
+      L2_2 = L2_2[21]
+      L2_2 = L2_2.matched
+      if not L2_2 then
+        L2_2 = hstrlog
+        L2_2 = L2_2[22]
+        L2_2 = L2_2.matched
+      end
+    end
+  end
+end
+L3_3 = hstrlog
+L3_3 = L3_3[23]
+L3_3 = L3_3.matched
+if not L3_3 then
+  L3_3 = hstrlog
+  L3_3 = L3_3[24]
+  L3_3 = L3_3.matched
+  if not L3_3 then
+    L3_3 = hstrlog
+    L3_3 = L3_3[25]
+    L3_3 = L3_3.matched
+    if not L3_3 then
+      L3_3 = hstrlog
+      L3_3 = L3_3[26]
+      L3_3 = L3_3.matched
+      if not L3_3 then
+        L3_3 = hstrlog
+        L3_3 = L3_3[27]
+        L3_3 = L3_3.matched
+        if not L3_3 then
+          L3_3 = hstrlog
+          L3_3 = L3_3[28]
+          L3_3 = L3_3.matched
+          if not L3_3 then
+            L3_3 = hstrlog
+            L3_3 = L3_3[29]
+            L3_3 = L3_3.matched
+            if not L3_3 then
+              L3_3 = hstrlog
+              L3_3 = L3_3[30]
+              L3_3 = L3_3.matched
+              if not L3_3 then
+                L3_3 = hstrlog
+                L3_3 = L3_3[31]
+                L3_3 = L3_3.matched
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+L4_4 = peattributes
+L4_4 = L4_4.hasexports
+if L4_4 then
+  L4_4 = pesecs
+  L4_4 = L4_4[1]
+  L4_4 = L4_4.SizeOfRawData
+  L4_4 = L4_4 >= 135168 and L4_4 <= 167936 and L4_4 > 139264 and L4_4 <= 204800 and L4_4 >= 29952 and L4_4 <= 103680
+end
+if L0_0 and L1_1 and L2_2 and L3_3 and L4_4 then
+  mp.changedetectionname(186)
+  return mp.INFECTED
+end
+if L0_0 and L1_1 and L2_2 and L3_3 then
+  return mp.SUSPICIOUS
+end
+return mp.CLEAN

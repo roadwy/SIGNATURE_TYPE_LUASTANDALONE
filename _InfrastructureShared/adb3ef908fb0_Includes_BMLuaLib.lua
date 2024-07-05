@@ -1,29 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/adb3ef908fb0_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-do
-  local l_0_0, l_0_1 = (bm.get_process_relationships)()
-  for l_0_5,l_0_6 in ipairs(l_0_1) do
-    if l_0_6.image_path ~= nil and l_0_6.ppid ~= nil then
-      local l_0_7 = contains
-      local l_0_8 = l_0_6.image_path
-      local l_0_9 = {}
-      -- DECOMPILER ERROR at PC17: No list found for R9 , SetList fails
-
-      -- DECOMPILER ERROR at PC21: Overwrote pending register: R7 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC26: Overwrote pending register: R8 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC27: Overwrote pending register: R8 in 'AssignReg'
-
-      if l_0_7 and l_0_7 then
-        l_0_8(l_0_9)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = L6_6.image_path
+  if L7_7 ~= nil then
+    L7_7 = L6_6.ppid
+    if L7_7 ~= nil then
+      L7_7 = contains
+      L7_7 = L7_7(L6_6.image_path, {
+        "rundll32, regsvr32"
+      })
+      if L7_7 then
+        L7_7 = extractDllForRegproc
+        L7_7 = L7_7(L6_6.cmd_line)
+        if L7_7 then
+          bm.add_related_file(L7_7)
+        end
       end
     end
   end
-  do return mp.INFECTED end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+return L2_2

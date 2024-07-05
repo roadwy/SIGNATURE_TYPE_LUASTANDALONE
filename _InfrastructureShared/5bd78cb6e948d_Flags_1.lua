@@ -1,10 +1,125 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bd78cb6e948d_Flags_1 
-
--- params : ...
--- function num : 0
-if (((((((((((((((((((((((hstrlog[2]).matched and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and not (hstrlog[5]).matched) or (hstrlog[6]).matched) and not (hstrlog[7]).matched) or (hstrlog[8]).matched) and not (hstrlog[9]).matched) or (hstrlog[10]).matched) and not (hstrlog[11]).matched) or (hstrlog[12]).matched) and not (hstrlog[13]).matched) or (hstrlog[14]).matched) and not (hstrlog[15]).matched) or (hstrlog[16]).matched) and not (hstrlog[17]).matched) or (hstrlog[18]).matched) and not (hstrlog[19]).matched) or (hstrlog[20]).matched) and not (hstrlog[21]).matched) or (hstrlog[22]).matched) and not (hstrlog[23]).matched) or (mp.getfilesize)() < 400000) and ((hstrlog[1]).matched or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 < 1 or 0 + 1 + 1 + 1 + 1 + 1 + 1 < 1 or 0 + 1 + 1 + 1 + 1 + 1 >= 3) then
+local L0_0, L1_1, L2_2
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[10]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[11]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[12]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+L2_2 = hstrlog
+L2_2 = L2_2[13]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[14]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[15]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[16]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[17]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[18]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = 0
+if hstrlog[19].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[20].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[21].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[22].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[23].matched then
+  L2_2 = L2_2 + 1
+end
+if mp.getfilesize() < 400000 and (hstrlog[1].matched or L0_0 >= 1 and L1_1 >= 1 and L2_2 >= 3) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,10 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b078aecb3942_Flags_1 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections == 4 and pevars.epsec == 1 and (pesecs[pevars.epsec]).SizeOfRawData >= 40960 and (pesecs[pevars.epsec]).SizeOfRawData <= 57344 then
-  return mp.SUSPICIOUS
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 4 then
+  L0_0 = pevars
+  L0_0 = L0_0.epsec
+  if L0_0 == 1 then
+    L0_0 = pesecs
+    L1_1 = pevars
+    L1_1 = L1_1.epsec
+    L0_0 = L0_0[L1_1]
+    L0_0 = L0_0.SizeOfRawData
+    if L0_0 >= 40960 then
+      L0_0 = pesecs
+      L1_1 = pevars
+      L1_1 = L1_1.epsec
+      L0_0 = L0_0[L1_1]
+      L0_0 = L0_0.SizeOfRawData
+      if L0_0 <= 57344 then
+        L0_0 = mp
+        L0_0 = L0_0.SUSPICIOUS
+        return L0_0
+      end
+    end
+  end
 end
-return mp.LOWFI
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

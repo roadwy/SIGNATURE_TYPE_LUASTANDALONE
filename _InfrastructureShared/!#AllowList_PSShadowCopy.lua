@@ -1,19 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#AllowList_PSShadowCopy 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_AMSI then
-  local l_0_1, l_0_2 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME)
-  if l_0_1 and l_0_2 ~= nil then
-    local l_0_3 = (string.lower)(l_0_2)
-    if (string.find)(l_0_3, "microsoft intune management extension", 1, true) or (string.find)(l_0_3, "ccm\\systemtemp", 1, true) then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_AMSI
+if L0_0 == L1_1 then
+  L1_1 = pcall
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_AMSI_CONTENTNAME
+  L2_2 = L1_1(L2_2, L3_3)
+  if L1_1 and L2_2 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(L2_2)
+    if string.find(L3_3, "microsoft intune management extension", 1, true) or string.find(L3_3, "ccm\\systemtemp", 1, true) then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

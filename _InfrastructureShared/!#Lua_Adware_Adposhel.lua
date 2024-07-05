@@ -1,27 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Adware_Adposhel 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-if l_0_0:find("programdata", 1, true) == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L4_4 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L1_1())
+L2_2 = L0_0
+L1_1 = L0_0.find
+L3_3 = "programdata"
+L4_4 = 1
+L1_1 = L1_1(L2_2, L3_3, L4_4, true)
+if L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = l_0_0:match("(.+\\)([^\\]+)$")
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = L0_0
+L1_1 = L0_0.match
+L3_3 = "(.+\\)([^\\]+)$"
+L2_2 = L1_1(L2_2, L3_3)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if l_0_2:len() == 12 and l_0_2:sub(-4) == ".dll" then
-  local l_0_3, l_0_4 = l_0_1:match("(.+\\)(.+)\\$")
-  if l_0_4:len() == 8 then
-    local l_0_5, l_0_6 = (string.gsub)(l_0_4, "%d", "")
-    local l_0_7, l_0_8 = (string.gsub)(l_0_2, "%d", "")
-    if l_0_8 >= 1 and l_0_6 >= 1 and l_0_8 + l_0_6 >= 3 and l_0_2:match("%x%x%x%x%x%x%x%x.dll") and l_0_4:match("%x%x%x%x%x%x%x%x") then
-      (mp.set_mpattribute)("LUA:Adposhell:Name")
+L4_4 = L2_2
+L3_3 = L2_2.len
+L3_3 = L3_3(L4_4)
+if L3_3 == 12 then
+  L4_4 = L2_2
+  L3_3 = L2_2.sub
+  L3_3 = L3_3(L4_4, -4)
+  if L3_3 == ".dll" then
+    L4_4 = L1_1
+    L3_3 = L1_1.match
+    L4_4 = L3_3(L4_4, "(.+\\)(.+)\\$")
+    if L4_4:len() == 8 and 1 <= string.gsub(L2_2, "%d", "") and 1 <= string.gsub(L4_4, "%d", "") and string.gsub(L2_2, "%d", "") + string.gsub(L4_4, "%d", "") >= 3 and L2_2:match("%x%x%x%x%x%x%x%x.dll") and L4_4:match("%x%x%x%x%x%x%x%x") then
+      mp.set_mpattribute("LUA:Adposhell:Name")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

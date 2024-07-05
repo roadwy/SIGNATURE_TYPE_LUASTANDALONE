@@ -1,15 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5378ab2399c2 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections >= 7 then
-  return mp.CLEAN
+local L0_0, L2_1, L4_2
+if L0_0 >= 7 then
+  return L0_0
 end
-for l_0_3 = 1, pehdr.NumberOfSections do
-  if (pesecs[l_0_3]).Name == ".ndata" then
+for _FORV_3_ = 1, L2_1.NumberOfSections do
+  if pesecs[_FORV_3_].Name == ".ndata" then
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L0_0

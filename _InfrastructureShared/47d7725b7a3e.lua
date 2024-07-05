@@ -1,28 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/47d7725b7a3e 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.GetProcessCommandLine)(l_0_0))
-local l_0_2 = (string.match)(l_0_1, "https?://(%d+)/")
-do
-  if l_0_2 ~= nil then
-    local l_0_3 = nil
-    if (string.find)(l_0_2, "^[01]+$") ~= nil and #l_0_2 > 24 then
-      l_0_3 = (mp.shr32)(tonumber(l_0_2, 2), 24)
-    else
-      l_0_3 = (mp.shr32)(tonumber(l_0_2), 24)
-    end
-    if l_0_3 == nil or l_0_3 == 127 or l_0_3 == 10 then
-      return mp.CLEAN
-    else
-      return mp.INFECTED
-    end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.GetProcessCommandLine
+L3_3 = L0_0
+L3_3 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L2_2(L3_3))
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, "https?://(%d+)/")
+if L2_2 ~= nil then
+  L3_3 = nil
+  if string.find(L2_2, "^[01]+$") ~= nil and #L2_2 > 24 then
+    L3_3 = mp.shr32(tonumber(L2_2, 2), 24)
+  else
+    L3_3 = mp.shr32(tonumber(L2_2), 24)
   end
-  return mp.CLEAN
+  if L3_3 == nil or L3_3 == 127 or L3_3 == 10 then
+    return mp.CLEAN
+  else
+    return mp.INFECTED
+  end
 end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

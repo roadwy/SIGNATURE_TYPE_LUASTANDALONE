@@ -1,63 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_TechniqueAttributesProcessing.A_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = "BM_MT"
-local l_0_1 = (mp.enum_mpattributesubstring)(l_0_0)
-if l_0_1 == nil or #l_0_1 == 0 or #l_0_1 >= 100 or type(l_0_1) ~= "table" then
-  return mp.CLEAN
-end
-local l_0_2 = {}
-local l_0_3 = {}
-for l_0_7,l_0_8 in ipairs(l_0_1) do
-  local l_0_9, l_0_10 = (string.match)(l_0_8, "^BM_M(([tT][0-9][0-9][0-9][0-9])[%.]?[0-9]?[0-9]?[0-9]?):?(.*)")
-  if l_0_9 ~= nil and l_0_10 ~= nil then
-    if #l_0_9 > 6 then
-      (table.insert)(l_0_3, l_0_9)
-      ;
-      (mp.set_mpattribute)("BM_M" .. l_0_9)
-    end
-    ;
-    (table.insert)(l_0_2, l_0_10)
-    ;
-    (mp.set_mpattribute)("BM_M" .. l_0_10)
-  end
-end
-if #l_0_2 <= 1 and #l_0_3 <= 1 then
-  return mp.CLEAN
-end
-do
-  if #l_0_3 > 1 then
-    local l_0_11 = table_distinct_values(l_0_3)
-    if l_0_11 ~= nil then
-      if #l_0_11 >= 2 then
-        (mp.set_mpattribute)("Lua:SubTechniqueAttributesGTE2")
-      end
-      if #l_0_11 >= 3 then
-        (mp.set_mpattribute)("Lua:SubTechniqueAttributesGTE3")
-      end
-      if #l_0_11 >= 4 then
-        (mp.set_mpattribute)("Lua:SubTechniqueAttributesGTE4")
-      end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = "BM_MT"
+L1_1 = mp
+L1_1 = L1_1.enum_mpattributesubstring
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 ~= nil then
+  L2_2 = #L1_1
+  if L2_2 ~= 0 then
+    L2_2 = #L1_1
+    if not (L2_2 >= 100) then
+      L2_2 = type
+      L3_3 = L1_1
+      L2_2 = L2_2(L3_3)
     end
   end
-  do
-    if #l_0_2 > 1 then
-      local l_0_12 = table_distinct_values(l_0_2)
-      if l_0_12 ~= nil then
-        if #l_0_12 >= 2 then
-          (mp.set_mpattribute)("Lua:TechniqueAttributesGTE2")
-        end
-        if #l_0_12 >= 3 then
-          (mp.set_mpattribute)("Lua:TechniqueAttributesGTE3")
-        end
-        if #l_0_12 >= 4 then
-          (mp.set_mpattribute)("Lua:TechniqueAttributesGTE4")
-        end
-      end
+elseif L2_2 ~= "table" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = {}
+L3_3 = {}
+for L7_7, L8_8 in L4_4(L5_5) do
+  L9_9 = string
+  L9_9 = L9_9.match
+  L10_10 = L8_8
+  L10_10 = L9_9(L10_10, "^BM_M(([tT][0-9][0-9][0-9][0-9])[%.]?[0-9]?[0-9]?[0-9]?):?(.*)")
+  if L9_9 ~= nil and L10_10 ~= nil then
+    if #L9_9 > 6 then
+      table.insert(L3_3, L9_9)
+      mp.set_mpattribute("BM_M" .. L9_9)
     end
-    return mp.CLEAN
+    table.insert(L2_2, L10_10)
+    mp.set_mpattribute("BM_M" .. L10_10)
   end
 end
-
+if L4_4 <= 1 then
+  if L4_4 <= 1 then
+    return L4_4
+  end
+end
+if L4_4 > 1 then
+  if L4_4 ~= nil then
+    if L5_5 >= 2 then
+      L5_5(L6_6)
+    end
+    if L5_5 >= 3 then
+      L5_5(L6_6)
+    end
+    if L5_5 >= 4 then
+      L5_5(L6_6)
+    end
+  end
+end
+if L4_4 > 1 then
+  if L4_4 ~= nil then
+    if L5_5 >= 2 then
+      L5_5(L6_6)
+    end
+    if L5_5 >= 3 then
+      L5_5(L6_6)
+    end
+    if L5_5 >= 4 then
+      L5_5(L6_6)
+    end
+  end
+end
+return L4_4

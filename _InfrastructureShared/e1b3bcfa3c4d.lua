@@ -1,10 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e1b3bcfa3c4d 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[2]).matched and (string.lower)((string.sub)((this_sigattrlog[2]).utf8p1, -22)) == "easeofaccessdialog.exe" then
-  return mp.CLEAN
+local L0_0
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L0_0 = L0_0(string.sub(this_sigattrlog[2].utf8p1, -22))
+  if L0_0 == "easeofaccessdialog.exe" then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

@@ -1,31 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FlashInPdfStreamCount.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.bitand)((mp.readu_u32)(headerpage, 1), 16777215) ~= 5461830 and (mp.bitand)((mp.readu_u32)(headerpage, 1), 16777215) ~= 5461827 and (mp.bitand)((mp.readu_u32)(headerpage, 1), 16777215) ~= 5461850 then
-  return mp.CLEAN
-end
-local l_0_0 = (mp.getfilename)()
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.match)(l_0_0, "->%(pdf(%d+):")
-    if l_0_1 == nil then
-      return mp.CLEAN
-    end
-    l_0_1 = tonumber(l_0_1)
-    if l_0_1 > 5 then
-      (mp.set_mpattribute)("//Lua:FlashInPdfMoreThan_5")
-    else
-      if l_0_1 > 3 then
-        (mp.set_mpattribute)("//Lua:FlashInPdfMoreThan_3")
-      else
-        if l_0_1 > 2 then
-          (mp.set_mpattribute)("//Lua:FlashInPdfMoreThan_2")
-        end
-      end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.bitand
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(headerpage, 1)
+L0_0 = L0_0(L1_1, 16777215)
+if L0_0 ~= 5461830 then
+  L0_0 = mp
+  L0_0 = L0_0.bitand
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L1_1 = L1_1(headerpage, 1)
+  L0_0 = L0_0(L1_1, 16777215)
+  if L0_0 ~= 5461827 then
+    L0_0 = mp
+    L0_0 = L0_0.bitand
+    L1_1 = mp
+    L1_1 = L1_1.readu_u32
+    L1_1 = L1_1(headerpage, 1)
+    L0_0 = L0_0(L1_1, 16777215)
+    if L0_0 ~= 5461850 then
+      L0_0 = mp
+      L0_0 = L0_0.CLEAN
+      return L0_0
     end
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.match
+  L1_1 = L1_1(L0_0, "->%(pdf(%d+):")
+  if L1_1 == nil then
+    return mp.CLEAN
+  end
+  L1_1 = tonumber(L1_1)
+  if L1_1 > 5 then
+    mp.set_mpattribute("//Lua:FlashInPdfMoreThan_5")
+  elseif L1_1 > 3 then
+    mp.set_mpattribute("//Lua:FlashInPdfMoreThan_3")
+  elseif L1_1 > 2 then
+    mp.set_mpattribute("//Lua:FlashInPdfMoreThan_2")
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

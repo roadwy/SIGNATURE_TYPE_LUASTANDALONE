@@ -1,31 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a5b3524a2f44 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC6: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  else
-  end
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  if not (this_sigattrlog[3]).matched or this_sigattrlog[3] ~= nil then
-    local l_0_4 = nil
-    for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)((this_sigattrlog[3]).utf8p2)) do
-      local l_0_5 = nil
-      -- DECOMPILER ERROR at PC27: Confused about usage of register: R6 in 'UnsetPending'
-
-      R6_PC27 = (mp.ContextualExpandEnvironmentVariables)(R6_PC27)
-      if (sysio.IsFileExists)(R6_PC27) then
-        (bm.add_related_file)(R6_PC27)
-      end
-    end
-  end
-  do
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L0_0 = L1_1[2]
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L0_0 = L1_1[3]
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    if sysio.IsFileExists(L6_6) then
+      bm.add_related_file(L6_6)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

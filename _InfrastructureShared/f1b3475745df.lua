@@ -1,38 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f1b3475745df 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+if L0_0 == nil then
+  return L2_2
 end
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  if l_0_6.image_path ~= nil then
-    local l_0_7 = "svchost.exe|taskeng.exe|taskhostw.exe"
-    local l_0_8 = (string.lower)((string.match)(l_0_6.image_path, "\\([^\\]+)$"))
-    if l_0_8 ~= nil and (string.find)(l_0_7, l_0_8) then
-      local l_0_9 = "c:\\windows\\system32\\tasks"
-      ;
-      (mp.TriggerScanResource)("folder", l_0_9)
-    else
-      do
-        do
-          do return mp.CLEAN end
-          -- DECOMPILER ERROR at PC43: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC43: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-          -- DECOMPILER ERROR at PC43: LeaveBlock: unexpected jumping out IF_STMT
-
-          -- DECOMPILER ERROR at PC43: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC43: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = L6_6.image_path
+  if L7_7 ~= nil then
+    L7_7 = "svchost.exe|taskeng.exe|taskhostw.exe"
+    L8_8 = string
+    L8_8 = L8_8.lower
+    L9_9 = string
+    L9_9 = L9_9.match
+    L9_9 = L9_9(L6_6.image_path, "\\([^\\]+)$")
+    L8_8 = L8_8(L9_9, L9_9(L6_6.image_path, "\\([^\\]+)$"))
+    if L8_8 ~= nil then
+      L9_9 = string
+      L9_9 = L9_9.find
+      L9_9 = L9_9(L7_7, L8_8)
+      if L9_9 then
+        L9_9 = "c:\\windows\\system32\\tasks"
+        mp.TriggerScanResource("folder", L9_9)
       end
+    else
+      L9_9 = mp
+      L9_9 = L9_9.CLEAN
+      return L9_9
     end
   end
 end
-return mp.INFECTED
-
+return L2_2

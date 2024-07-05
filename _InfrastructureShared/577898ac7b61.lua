@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/577898ac7b61 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-if l_0_0 ~= nil and (string.find)(l_0_0, "\\system", 1, true) == nil and (string.find)(l_0_0, "program files", 1, true) == nil then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.getfilename())
+if L0_0 ~= nil and string.find(L0_0, "\\system", 1, true) == nil and string.find(L0_0, "program files", 1, true) == nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

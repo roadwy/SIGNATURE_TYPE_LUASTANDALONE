@@ -1,41 +1,56 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b9b33ce11d20 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[1]).utf8p2))
-  if l_0_0 == nil then
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L1_1 = mp
+  L1_1 = L1_1.ContextualExpandEnvironmentVariables
+  L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+  L0_0 = L0_0(L1_1, L1_1(this_sigattrlog[1].utf8p2))
+  if L0_0 == nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = string
+  L1_1 = L1_1.match
+  L1_1 = L1_1(L0_0, "wscript[^%s]+%s+\"(.-%.vbs)")
+  if L1_1 == nil then
     return mp.CLEAN
   end
-  local l_0_1 = (string.match)(l_0_0, "wscript[^%s]+%s+\"(.-%.vbs)")
-  if l_0_1 == nil then
+  if sysio.IsFileExists(L1_1) then
+    mp.ReportLowfi(L1_1, 3439210845)
+    bm.add_related_file(L1_1)
+  end
+end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L1_1 = mp
+  L1_1 = L1_1.ContextualExpandEnvironmentVariables
+  L1_1 = L1_1(this_sigattrlog[2].utf8p2)
+  L0_0 = L0_0(L1_1, L1_1(this_sigattrlog[2].utf8p2))
+  if L0_0 == nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = string
+  L1_1 = L1_1.match
+  L1_1 = L1_1(L0_0, "powershell.-%-file%s+(.-%.ps1)")
+  if L1_1 == nil then
     return mp.CLEAN
   end
-  if (sysio.IsFileExists)(l_0_1) then
-    (mp.ReportLowfi)(l_0_1, 3439210845)
-    ;
-    (bm.add_related_file)(l_0_1)
+  if sysio.IsFileExists(L1_1) then
+    mp.ReportLowfi(L1_1, 1442275559)
+    bm.add_related_file(L1_1)
   end
 end
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_2 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2))
-    if l_0_2 == nil then
-      return mp.CLEAN
-    end
-    local l_0_3 = (string.match)(l_0_2, "powershell.-%-file%s+(.-%.ps1)")
-    if l_0_3 == nil then
-      return mp.CLEAN
-    end
-    if (sysio.IsFileExists)(l_0_3) then
-      (mp.ReportLowfi)(l_0_3, 1442275559)
-      ;
-      (bm.add_related_file)(l_0_3)
-    end
-  end
-  do
-    return mp.INFECTED
-  end
-end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

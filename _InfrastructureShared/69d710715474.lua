@@ -1,30 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69d710715474 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if l_0_1 == "" or l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == "" or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_1 = (string.lower)(l_0_1)
-if l_0_1:find("maximomobile\\removecreds.ps1", 1, true) then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L3_3 = L1_1
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, "maximomobile\\removecreds.ps1", 1, true)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1:find(":\\windows\\ccm\\systemtemp", 1, true) then
-  return mp.CLEAN
+L3_3 = L1_1
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, ":\\windows\\ccm\\systemtemp", 1, true)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.GetParentProcInfo)()
-local l_0_3 = ""
-if l_0_2 ~= nil then
-  l_0_3 = (string.lower)(l_0_2.image_path)
+L2_2 = mp
+L2_2 = L2_2.GetParentProcInfo
+L2_2 = L2_2()
+L3_3 = ""
+if L2_2 ~= nil then
+  L3_3 = string.lower(L2_2.image_path)
 end
-if l_0_3:find(":\\windows\\ccm\\systemtemp", 1, true) then
+if L3_3:find(":\\windows\\ccm\\systemtemp", 1, true) then
   return mp.CLEAN
 end
 return mp.LOWFI
-

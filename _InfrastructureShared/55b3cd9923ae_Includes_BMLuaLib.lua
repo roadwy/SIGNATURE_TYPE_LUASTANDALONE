@@ -1,44 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3cd9923ae_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[3]).matched then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC18: Overwrote pending register: R1 in 'AssignReg'
-
-  do
-    if (this_sigattrlog[4]).matched then
-      local l_0_1 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(L3_3)
+  L0_0 = L2_2
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[4]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L1_1 = L2_2[4]
+end
+L2_2 = getMalwareManifest
+L2_2 = L2_2()
+if L2_2 ~= nil then
+  for L6_6, L7_7 in L3_3(L4_4) do
+    if L0_0 == L7_7 then
+      L8_8 = mp
+      L8_8 = L8_8.INFECTED
+      return L8_8
     end
-    local l_0_2 = nil
-    if getMalwareManifest() ~= nil then
-      for l_0_6,l_0_7 in ipairs(getMalwareManifest()) do
-        local l_0_3, l_0_4 = nil
-        -- DECOMPILER ERROR at PC27: Confused about usage of register: R7 in 'UnsetPending'
-
-        if l_0_2 == R7_PC27 then
-          return mp.INFECTED
-        end
-        if l_0_3 ~= nil then
-          if (string.lower)(l_0_3.utf8p1) ~= nil and (string.find)((string.lower)(l_0_3.utf8p1), R7_PC27, 1, true) then
-            (bm.add_related_file)(R7_PC27)
-            return mp.INFECTED
-          end
-          if (string.find)((string.lower)(l_0_3.utf8p2), l_0_9, 1, true) then
-            (bm.add_related_file)(l_0_9)
-            return mp.INFECTED
-          end
+    if L1_1 ~= nil then
+      L8_8 = string
+      L8_8 = L8_8.lower
+      L9_9 = L1_1.utf8p1
+      L8_8 = L8_8(L9_9)
+      if L8_8 ~= nil then
+        L9_9 = string
+        L9_9 = L9_9.find
+        L9_9 = L9_9(L8_8, L7_7, 1, true)
+        if L9_9 then
+          L9_9 = bm
+          L9_9 = L9_9.add_related_file
+          L9_9(L7_7)
+          L9_9 = mp
+          L9_9 = L9_9.INFECTED
+          return L9_9
         end
       end
-    end
-    do
-      return mp.CLEAN
+      L9_9 = string
+      L9_9 = L9_9.lower
+      L9_9 = L9_9(L1_1.utf8p2)
+      if string.find(L9_9, L7_7, 1, true) then
+        bm.add_related_file(L7_7)
+        return mp.INFECTED
+      end
     end
   end
 end
-
+return L3_3

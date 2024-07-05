@@ -1,37 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4ab3e7400161_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((bm.get_imagepath)())
-local l_0_1, l_0_2, l_0_3 = nil, nil, nil
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-  l_0_2 = (this_sigattrlog[2]).utf8p1
-  l_0_3 = (this_sigattrlog[2]).ppid
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+L1_1, L2_2, L3_3 = nil, nil, nil
+L4_4 = this_sigattrlog
+L4_4 = L4_4[2]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[2]
+  L4_4 = L4_4.utf8p1
+  if L4_4 ~= nil then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[2]
+    L2_2 = L4_4.utf8p1
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[2]
+    L3_3 = L4_4.ppid
+  end
 end
-local l_0_4 = {}
--- DECOMPILER ERROR at PC23: No list found for R4 , SetList fails
-
--- DECOMPILER ERROR at PC24: Overwrote pending register: R5 in 'AssignReg'
-
--- DECOMPILER ERROR at PC25: Overwrote pending register: R6 in 'AssignReg'
-
-for l_0_8,l_0_9 in ("/curl")("/wget") do
-  if l_0_0:sub(-#l_0_9) == l_0_9 then
+L4_4 = {"/curl", "/wget"}
+for _FORV_8_, _FORV_9_ in ipairs(L4_4) do
+  if L0_0:sub(-#_FORV_9_) == _FORV_9_ then
     return mp.CLEAN
   end
 end
-taint(l_0_2, "remote_file_created_taint", 3600)
-AppendToRollingQueue("queue_pid_taintfactory_a", l_0_3, 1, 600)
-l_0_1 = (bm.get_process_relationships)()
-for l_0_13,l_0_14 in ipairs(l_0_1) do
-  if (mp.bitand)(l_0_14.reason_ex, 1) == 1 then
-    (bm.add_related_file)(l_0_14.image_path)
-    ;
-    (bm.add_related_process)(l_0_14.ppid)
-    TrackPidAndTechnique(l_0_14.ppid, "T1036.003", "DefenseEvasion")
+taint(L2_2, "remote_file_created_taint", 3600)
+AppendToRollingQueue("queue_pid_taintfactory_a", L3_3, 1, 600)
+L1_1, _ = bm.get_process_relationships()
+for _FORV_8_, _FORV_9_ in ipairs(L1_1) do
+  if mp.bitand(_FORV_9_.reason_ex, 1) == 1 then
+    bm.add_related_file(_FORV_9_.image_path)
+    bm.add_related_process(_FORV_9_.ppid)
+    TrackPidAndTechniqueBM(_FORV_9_.ppid, "T1036.003", "DefenseEvasion")
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

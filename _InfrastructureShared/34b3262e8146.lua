@@ -1,30 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/34b3262e8146 
-
--- params : ...
--- function num : 0
-local l_0_1 = nil
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = "base64_plist_creation"
-  end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R1 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R1 in 'UnsetPending'
-
-  if l_0_1 ~= nil and (MpCommon.GetPersistContextCountNoPath)(l_0_0) > 0 then
-    local l_0_2 = nil
-    for l_0_6,l_0_7 in ipairs((MpCommon.GetPersistContextNoPath)(l_0_0)) do
-      local l_0_3 = nil
-      -- DECOMPILER ERROR at PC28: Confused about usage of register: R7 in 'UnsetPending'
-
-      if (string.find)(l_0_1, R7_PC28, 1, true) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = "base64_plist_creation"
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L0_0 = L2_2.utf8p2
+end
+if L0_0 ~= nil then
+  L2_2 = MpCommon
+  L2_2 = L2_2.GetPersistContextCountNoPath
+  L2_2 = L2_2(L3_3)
+  if L2_2 > 0 then
+    L2_2 = MpCommon
+    L2_2 = L2_2.GetPersistContextNoPath
+    L2_2 = L2_2(L3_3)
+    for L6_6, L7_7 in L3_3(L4_4) do
+      if string.find(L0_0, L7_7, 1, true) then
         return mp.INFECTED
       end
     end
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

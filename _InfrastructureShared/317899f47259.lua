@@ -1,61 +1,77 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/317899f47259 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
--- DECOMPILER ERROR at PC15: No list found for R0 , SetList fails
-
--- DECOMPILER ERROR at PC16: Overwrote pending register: R1 in 'AssignReg'
-
-local l_0_1 = ((81)[1]).VA
--- DECOMPILER ERROR at PC19: Overwrote pending register: R2 in 'AssignReg'
-
-local l_0_2 = ((87)[2]).VA
--- DECOMPILER ERROR at PC22: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC24: Overwrote pending register: R4 in 'AssignReg'
-
--- DECOMPILER ERROR at PC25: Overwrote pending register: R5 in 'AssignReg'
-
-local l_0_3 = ((69).mmap_va)(82, 84)
--- DECOMPILER ERROR at PC30: Overwrote pending register: R6 in 'AssignReg'
-
-local l_0_4 = (pe.mmap_va)(l_0_2 + 4, 89)
--- DECOMPILER ERROR at PC35: Overwrote pending register: R7 in 'AssignReg'
-
-local l_0_5 = (string.byte)(l_0_3, 65)
--- DECOMPILER ERROR at PC40: Overwrote pending register: R8 in 'AssignReg'
-
-local l_0_6 = (string.byte)(l_0_4, 83)
-local l_0_7 = 0
-local l_0_8 = 0
--- DECOMPILER ERROR at PC44: Overwrote pending register: R9 in 'AssignReg'
-
--- DECOMPILER ERROR at PC54: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC57: Overwrote pending register: R8 in 'AssignReg'
-
--- DECOMPILER ERROR at PC59: Overwrote pending register: R10 in 'AssignReg'
-
--- DECOMPILER ERROR at PC60: Overwrote pending register: R11 in 'AssignReg'
-
-if ((68)[4]).matched then
-  do
-    for l_0_12 = 1, 70, 74 do
-      -- DECOMPILER ERROR at PC62: Overwrote pending register: R13 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC71: Overwrote pending register: R14 in 'AssignReg'
-
-      if l_0_5 == 71 and l_0_6 == l_0_0[l_0_12 + 1] then
-        local l_0_13 = (string.format)(72, l_0_6, l_0_5, l_0_7, (hstrlog[3]).VA, l_0_8)
-        ;
-        (mp.set_mpattribute)(l_0_13)
-        return mp.INFECTED
-      end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = {
+  L1_1,
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7,
+  L8_8,
+  L9_9,
+  L10_10,
+  L11_11,
+  L12_12,
+  L13_13,
+  72
+}
+L1_1 = 81
+L2_2 = 87
+L3_3 = 69
+L4_4 = 82
+L5_5 = 84
+L6_6 = 89
+L7_7 = 65
+L8_8 = 83
+L12_12 = 75
+L13_13 = 71
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.VA
+L2_2 = hstrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.VA
+L3_3 = pe
+L3_3 = L3_3.mmap_va
+L4_4 = L1_1 + 4
+L5_5 = 1
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = pe
+L4_4 = L4_4.mmap_va
+L5_5 = L2_2 + 4
+L6_6 = 1
+L4_4 = L4_4(L5_5, L6_6)
+L5_5 = string
+L5_5 = L5_5.byte
+L6_6 = L3_3
+L7_7 = 1
+L5_5 = L5_5(L6_6, L7_7)
+L6_6 = string
+L6_6 = L6_6.byte
+L7_7 = L4_4
+L8_8 = 1
+L6_6 = L6_6(L7_7, L8_8)
+L7_7 = 0
+L8_8 = 0
+if L9_9 then
+  L7_7 = 7
+  L8_8 = L9_9.VA
+else
+  L7_7 = 8
+  L8_8 = L9_9.VA
+end
+for L12_12 = 1, #L0_0, 2 do
+  L13_13 = L0_0[L12_12]
+  if L5_5 == L13_13 then
+    L13_13 = L12_12 + 1
+    L13_13 = L0_0[L13_13]
+    if L6_6 == L13_13 then
+      L13_13 = string
+      L13_13 = L13_13.format
+      L13_13 = L13_13("obf_oa_00A_data_%02x%02x_%02x_%08x_%08x_", L6_6, L5_5, L7_7, hstrlog[3].VA, L8_8)
+      mp.set_mpattribute(L13_13)
+      return mp.INFECTED
     end
-    do return mp.CLEAN end
-    -- WARNING: undefined locals caused missing assignments!
   end
 end
-
+return L9_9

@@ -1,25 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3329acb06460_Includes_TechniqueTracker,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)()
-if l_0_0 ~= nil and ((mp.get_mpattribute)("PACKED_WITH:(Base64)") or l_0_0:find("%-%>%(Base64%)")) then
-  (mp.readprotection)(false)
-  local l_0_1 = (mp.getfilesize)()
-  do
-    do
-      if l_0_1 < 32767 then
-        local l_0_2 = (mp.readfile)(0, l_0_1)
-        l_0_2 = (string.lower)(l_0_2)
-        for l_0_6 in l_0_2:gmatch(".:\\users\\.-\\startup\\[^%s]*") do
-          AppendToRollingQueue("PoshevinRelatedFiles", l_0_6, nil, 5000)
-        end
-        TrackPidAndTechnique("AMSI", "T1037", "b64_script_refers_startup")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.get_mpattribute
+  L2_2 = "PACKED_WITH:(Base64)"
+  L1_1 = L1_1(L2_2)
+  if not L1_1 then
+    L2_2 = L0_0
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L2_2, L3_3)
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.readprotection
+    L2_2 = false
+    L1_1(L2_2)
+    L1_1 = mp
+    L1_1 = L1_1.getfilesize
+    L1_1 = L1_1()
+    if L1_1 < 32767 then
+      L2_2 = mp
+      L2_2 = L2_2.readfile
+      L2_2 = L2_2(L3_3, L4_4)
+      L2_2 = L3_3
+      for L6_6 in L3_3(L4_4, L5_5) do
+        AppendToRollingQueue("PoshevinRelatedFiles", L6_6, nil, 5000)
       end
-      do return mp.INFECTED end
-      return mp.CLEAN
+      L6_6 = "b64_script_refers_startup"
+      L3_3(L4_4, L5_5, L6_6)
     end
+    L2_2 = mp
+    L2_2 = L2_2.INFECTED
+    return L2_2
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

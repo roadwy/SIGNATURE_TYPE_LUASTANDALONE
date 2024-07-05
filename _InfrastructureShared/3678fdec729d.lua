@@ -1,27 +1,49 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3678fdec729d 
-
--- params : ...
--- function num : 0
-local l_0_0 = (hstrlog[1]).VA + 24
-if not (pe.isdynamic_va)(l_0_0) and peattributes.isexe and pehdr.NumberOfSections < 5 then
-  local l_0_1 = (pe.foffset_va)(l_0_0)
-  for l_0_5 = 1, pehdr.NumberOfSections do
-    if (pe.contains_va)(l_0_5, l_0_0) then
-      local l_0_6 = l_0_1 - (pesecs[l_0_5]).PointerToRawData
-      if l_0_6 < 512 or l_0_6 > 4000000 then
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.VA
+L0_0 = L0_0 + 24
+L1_1 = pe
+L1_1 = L1_1.isdynamic_va
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L1_1 = peattributes
+  L1_1 = L1_1.isexe
+  if L1_1 then
+    L1_1 = pehdr
+    L1_1 = L1_1.NumberOfSections
+    if L1_1 < 5 then
+      L1_1 = pe
+      L1_1 = L1_1.foffset_va
+      L1_1 = L1_1(L2_2)
+      for L5_5 = 1, L3_3.NumberOfSections do
+        L6_6 = pe
+        L6_6 = L6_6.contains_va
+        L7_7 = L5_5
+        L6_6 = L6_6(L7_7, L0_0)
+        if L6_6 then
+          L6_6 = pesecs
+          L6_6 = L6_6[L5_5]
+          L6_6 = L6_6.PointerToRawData
+          L6_6 = L1_1 - L6_6
+          if L6_6 < 512 or L6_6 > 4000000 then
+            L7_7 = mp
+            L7_7 = L7_7.CLEAN
+            return L7_7
+          end
+          L7_7 = mp
+          L7_7 = L7_7.readprotection
+          L7_7(false)
+          L7_7 = mp
+          L7_7 = L7_7.readfile
+          L7_7 = L7_7(L1_1 - L6_6, L6_6)
+          mp.vfo_add_buffer(string.reverse(L7_7), "[b64mz_reverse]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+          return mp.CLEAN
+        end
       end
-      ;
-      (mp.readprotection)(false)
-      local l_0_7 = (mp.readfile)(l_0_1 - l_0_6, l_0_6)
-      ;
-      (mp.vfo_add_buffer)((string.reverse)(l_0_7), "[b64mz_reverse]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-      return mp.CLEAN
     end
   end
 end
-do
-  return mp.LOWFI
-end
-
+L1_1 = mp
+L1_1 = L1_1.LOWFI
+return L1_1

@@ -1,23 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/73d74deadff2_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 ~= nil then
-  local l_0_1 = (string.lower)(l_0_0.image_path)
-  local l_0_2 = l_0_0.ppid
-  if l_0_1 == nil then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = L0_0.image_path
+  L1_1 = L1_1(L2_2)
+  L2_2 = L0_0.ppid
+  if L1_1 == nil then
     return mp.CLEAN
   end
-  if l_0_2 ~= "" and l_0_2 ~= nil then
-    TrackPidAndTechnique(l_0_2, "T1003.002", "shadowcopy_create")
-    if IsTechniqueObservedForPid(l_0_2, "iis_exch_web") or IsTechniqueObservedForPid(l_0_2, "iis_exch_childproc") or IsTechniqueObservedForPid(l_0_2, "webshell_parent") then
+  if L2_2 ~= "" and L2_2 ~= nil then
+    TrackPidAndTechnique(L2_2, "T1003.002", "shadowcopy_create")
+    if IsTechniqueObservedForPid(L2_2, "iis_exch_web") or IsTechniqueObservedForPid(L2_2, "iis_exch_childproc") or IsTechniqueObservedForPid(L2_2, "webshell_parent") then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.LOWFI
-end
-
+L1_1 = mp
+L1_1 = L1_1.LOWFI
+return L1_1

@@ -1,32 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a3b362d098f8_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  if l_0_0 then
-    if (mp.IsKnownFriendlyFile)(l_0_0, true, false) == true then
-      return mp.CLEAN
-    end
-    local l_0_1 = (string.match)((string.lower)((this_sigattrlog[1]).utf8p1), "\\services\\([^\\]+)\\parameters")
-    local l_0_2 = (MpCommon.QueryPersistContext)(l_0_1, "NewServiceCreation")
-    if not l_0_2 then
-      (MpCommon.AppendPersistContext)(l_0_1, "NewServiceCreation", 0)
-    end
-    local l_0_3 = (sysio.GetFileLastWriteTime)(l_0_0)
-    if ((sysio.GetLastResult)()).Success and l_0_3 ~= 0 then
-      l_0_3 = l_0_3 / 10000000 - 11644473600
-      local l_0_4 = (MpCommon.GetCurrentTimeT)()
-      if l_0_4 < l_0_3 or l_0_4 - (l_0_3) > 600 then
-        return mp.CLEAN
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    L0_0 = L0_0(L1_1)
+    if L0_0 then
+      L1_1 = mp
+      L1_1 = L1_1.IsKnownFriendlyFile
+      L1_1 = L1_1(L0_0, true, false)
+      if L1_1 == true then
+        L1_1 = mp
+        L1_1 = L1_1.CLEAN
+        return L1_1
       end
-      bm_AddRelatedFileFromCommandLine(l_0_0)
-      return mp.INFECTED
+      L1_1 = string
+      L1_1 = L1_1.match
+      L1_1 = L1_1(string.lower(this_sigattrlog[1].utf8p1), "\\services\\([^\\]+)\\parameters")
+      if not MpCommon.QueryPersistContext(L1_1, "NewServiceCreation") then
+        MpCommon.AppendPersistContext(L1_1, "NewServiceCreation", 0)
+      end
+      if sysio.GetLastResult().Success and sysio.GetFileLastWriteTime(L0_0) ~= 0 then
+        if sysio.GetFileLastWriteTime(L0_0) / 10000000 - 11644473600 > MpCommon.GetCurrentTimeT() or MpCommon.GetCurrentTimeT() - (sysio.GetFileLastWriteTime(L0_0) / 10000000 - 11644473600) > 600 then
+          return mp.CLEAN
+        end
+        bm_AddRelatedFileFromCommandLine(L0_0)
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

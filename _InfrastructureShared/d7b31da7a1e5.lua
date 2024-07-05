@@ -1,70 +1,92 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d7b31da7a1e5 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-if (this_sigattrlog[1]).matched then
-  local l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\sethc.exe")
-  if l_0_1 ~= nil then
-    local l_0_2 = (sysio.GetRegValueAsString)(l_0_1, "Debugger")
-    if l_0_2 ~= nil and (string.len)(l_0_2) > 3 and (sysio.IsFileExists)(l_0_2) then
-      (mp.ReportLowfi)(l_0_2, 203654752)
-      l_0_0 = true
+local L0_0, L1_1, L2_2
+L0_0 = false
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = sysio
+  L1_1 = L1_1.RegOpenKey
+  L2_2 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\sethc.exe"
+  L1_1 = L1_1(L2_2)
+  if L1_1 ~= nil then
+    L2_2 = sysio
+    L2_2 = L2_2.GetRegValueAsString
+    L2_2 = L2_2(L1_1, "Debugger")
+    if L2_2 ~= nil and string.len(L2_2) > 3 and sysio.IsFileExists(L2_2) then
+      mp.ReportLowfi(L2_2, 203654752)
+      L0_0 = true
     end
   end
 else
-  do
-    if (this_sigattrlog[2]).matched then
-      local l_0_3 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\osk.exe")
-      if l_0_3 ~= nil then
-        local l_0_4 = (sysio.GetRegValueAsString)(l_0_3, "Debugger")
-        if l_0_4 ~= nil and (string.len)(l_0_4) > 3 and (sysio.IsFileExists)(l_0_4) then
-          (mp.ReportLowfi)(l_0_4, 2797521046)
-          l_0_0 = true
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = sysio
+    L1_1 = L1_1.RegOpenKey
+    L2_2 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\osk.exe"
+    L1_1 = L1_1(L2_2)
+    if L1_1 ~= nil then
+      L2_2 = sysio
+      L2_2 = L2_2.GetRegValueAsString
+      L2_2 = L2_2(L1_1, "Debugger")
+      if L2_2 ~= nil and string.len(L2_2) > 3 and sysio.IsFileExists(L2_2) then
+        mp.ReportLowfi(L2_2, 2797521046)
+        L0_0 = true
+      end
+    end
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = sysio
+      L1_1 = L1_1.RegOpenKey
+      L2_2 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\magnify.exe"
+      L1_1 = L1_1(L2_2)
+      if L1_1 ~= nil then
+        L2_2 = sysio
+        L2_2 = L2_2.GetRegValueAsString
+        L2_2 = L2_2(L1_1, "Debugger")
+        if L2_2 ~= nil and string.len(L2_2) > 3 and sysio.IsFileExists(L2_2) then
+          mp.ReportLowfi(L2_2, 3633633013)
+          L0_0 = true
         end
       end
     else
-      do
-        if (this_sigattrlog[3]).matched then
-          local l_0_5 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\magnify.exe")
-          if l_0_5 ~= nil then
-            local l_0_6 = (sysio.GetRegValueAsString)(l_0_5, "Debugger")
-            if l_0_6 ~= nil and (string.len)(l_0_6) > 3 and (sysio.IsFileExists)(l_0_6) then
-              (mp.ReportLowfi)(l_0_6, 3633633013)
-              l_0_0 = true
-            end
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = sysio
+        L1_1 = L1_1.RegOpenKey
+        L2_2 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\utilman.exe"
+        L1_1 = L1_1(L2_2)
+        if L1_1 ~= nil then
+          L2_2 = sysio
+          L2_2 = L2_2.GetRegValueAsString
+          L2_2 = L2_2(L1_1, "Debugger")
+          if L2_2 ~= nil and string.len(L2_2) > 3 and sysio.IsFileExists(L2_2) then
+            mp.ReportLowfi(L2_2, 18635330)
+            L0_0 = true
           end
-        else
-          do
-            if (this_sigattrlog[4]).matched then
-              local l_0_7 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\utilman.exe")
-              if l_0_7 ~= nil then
-                local l_0_8 = (sysio.GetRegValueAsString)(l_0_7, "Debugger")
-                if l_0_8 ~= nil and (string.len)(l_0_8) > 3 and (sysio.IsFileExists)(l_0_8) then
-                  (mp.ReportLowfi)(l_0_8, 18635330)
-                  l_0_0 = true
-                end
-              end
-            else
-              do
-                if (this_sigattrlog[5]).matched then
-                  local l_0_9 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\narrator.exe")
-                  if l_0_9 ~= nil then
-                    local l_0_10 = (sysio.GetRegValueAsString)(l_0_9, "Debugger")
-                    if l_0_10 ~= nil and (string.len)(l_0_10) > 3 and (sysio.IsFileExists)(l_0_10) then
-                      (mp.ReportLowfi)(l_0_10, 3440281147)
-                      l_0_0 = true
-                    end
-                  end
-                end
-                do
-                  if l_0_0 == true then
-                    return mp.INFECTED
-                  end
-                  return mp.CLEAN
-                end
-              end
+        end
+      else
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = sysio
+          L1_1 = L1_1.RegOpenKey
+          L2_2 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\narrator.exe"
+          L1_1 = L1_1(L2_2)
+          if L1_1 ~= nil then
+            L2_2 = sysio
+            L2_2 = L2_2.GetRegValueAsString
+            L2_2 = L2_2(L1_1, "Debugger")
+            if L2_2 ~= nil and string.len(L2_2) > 3 and sysio.IsFileExists(L2_2) then
+              mp.ReportLowfi(L2_2, 3440281147)
+              L0_0 = true
             end
           end
         end
@@ -72,4 +94,11 @@ else
     end
   end
 end
-
+if L0_0 == true then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

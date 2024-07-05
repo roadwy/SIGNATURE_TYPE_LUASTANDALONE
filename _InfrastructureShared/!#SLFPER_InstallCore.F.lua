@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLFPER_InstallCore.F 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 == "downloadmanager.exe" or l_0_0:find("^dmgr2%..+%.exe$") then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if L0_0 == "downloadmanager.exe" or L0_0:find("^dmgr2%..+%.exe$") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

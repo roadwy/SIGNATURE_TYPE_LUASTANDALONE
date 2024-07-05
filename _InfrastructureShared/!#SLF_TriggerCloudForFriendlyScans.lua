@@ -1,20 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_TriggerCloudForFriendlyScans 
-
--- params : ...
--- function num : 0
-if not (mp.istriggercloudyfriendlyscan)() then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.istriggercloudyfriendlyscan
+L0_0 = L0_0()
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.get_parent_filehandle
+L0_0 = L0_0()
+if not mp.is_handle_nil(L0_0) then
   return mp.CLEAN
 end
-local l_0_0 = (mp.get_parent_filehandle)()
-if not (mp.is_handle_nil)(l_0_0) then
-  return mp.CLEAN
-end
-if not (mp.isfriendlyscan)() then
+if not mp.isfriendlyscan() then
   return mp.CLEAN
 end
 if peattributes.msil_ngenimage then
   return mp.CLEAN
 end
 return mp.INFECTED
-

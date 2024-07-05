@@ -1,38 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Trojan_Win32_Upatre!AppendedName 
-
--- params : ...
--- function num : 0
 if not peattributes.isexe then
   return mp.CLEAN
 end
 if not peattributes.hasappendeddata then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 65536 then
+if mp.getfilesize() > 65536 then
   return mp.CLEAN
 end
-if l_0_0 < 4096 then
+if mp.getfilesize() < 4096 then
   return mp.CLEAN
 end
-local l_0_1 = pehdr.NumberOfSections
-local l_0_2 = (pesecs[l_0_1]).PointerToRawData + (pesecs[l_0_1]).SizeOfRawData
-local l_0_3 = l_0_0 - l_0_2
-if l_0_3 > 4096 then
+if 4096 < mp.getfilesize() - (pesecs[pehdr.NumberOfSections].PointerToRawData + pesecs[pehdr.NumberOfSections].SizeOfRawData) then
   return mp.CLEAN
 end
 if footerpage[4087] ~= 46 then
   return mp.CLEAN
 end
-if (((footerpage[4089] == 115 and footerpage[4091] == 99 and footerpage[4093] == 114) or (footerpage[4089] == 83 and footerpage[4091] == 67 and footerpage[4093] == 82) or (footerpage[4089] == 101 and footerpage[4091] == 120 and footerpage[4093] == 101) or (footerpage[4089] ~= 69 or footerpage[4091] ~= 88 or footerpage[4093] ~= 69))) then
+if (footerpage[4089] ~= 115 or footerpage[4091] ~= 99 or footerpage[4093] ~= 114) and (footerpage[4089] ~= 83 or footerpage[4091] ~= 67 or footerpage[4093] ~= 82) and (footerpage[4089] ~= 101 or footerpage[4091] ~= 120 or footerpage[4093] ~= 101) and (footerpage[4089] ~= 69 or footerpage[4091] ~= 88 or footerpage[4093] ~= 69) then
   return mp.CLEAN
 end
-local l_0_4 = 4097 - l_0_3
-if footerpage[l_0_4 + 2] ~= 58 or footerpage[l_0_4 + 4] ~= 92 then
+if footerpage[4097 - (mp.getfilesize() - (pesecs[pehdr.NumberOfSections].PointerToRawData + pesecs[pehdr.NumberOfSections].SizeOfRawData)) + 2] ~= 58 or footerpage[4097 - (mp.getfilesize() - (pesecs[pehdr.NumberOfSections].PointerToRawData + pesecs[pehdr.NumberOfSections].SizeOfRawData)) + 4] ~= 92 then
   return mp.CLEAN
 end
-;
-(mp.set_mpattribute)("LUA:UpatreAppendedName")
+mp.set_mpattribute("LUA:UpatreAppendedName")
 return mp.CLEAN
-

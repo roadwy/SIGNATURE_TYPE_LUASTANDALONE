@@ -1,30 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ObfusJsVbs_Includes_SetAttributeF 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_mpattributevalue)("RPF:ObfusJsVbs:Probability")
-;
-(mp.set_mpattribute)("Lua:ObfusJsVbsML:" .. l_0_0)
-do
-  do
-    if l_0_0 ~= nil and l_0_0 >= 70 and l_0_0 <= 100 then
-      local l_0_1 = {}
-      -- DECOMPILER ERROR at PC22: No list found for R1 , SetList fails
-
-      -- DECOMPILER ERROR at PC23: Overwrote pending register: R2 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC24: Overwrote pending register: R3 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC25: Overwrote pending register: R4 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC26: Overwrote pending register: R5 in 'AssignReg'
-
-      ;
-      (99)(95, 90, 80)
-    end
-    do return mp.CLEAN end
-    -- WARNING: undefined locals caused missing assignments!
-  end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattributevalue
+L1_1 = "RPF:ObfusJsVbs:Probability"
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.set_mpattribute
+L1_1("Lua:ObfusJsVbsML:" .. L0_0)
+if L0_0 ~= nil and L0_0 >= 70 and L0_0 <= 100 then
+  L1_1 = {
+    99,
+    95,
+    90,
+    80,
+    70,
+    60,
+    50,
+    40
+  }
+  SetAttributeFromClassifierScoresEx(L0_0, L1_1, "Lua:ObfusJsVbsML1:")
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

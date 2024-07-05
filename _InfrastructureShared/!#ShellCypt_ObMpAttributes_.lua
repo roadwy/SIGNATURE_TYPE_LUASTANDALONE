@@ -1,26 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ShellCypt_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 15000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 15000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0 > 500000 then
-  return mp.CLEAN
+if L0_0 > 500000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, 768)
-local l_0_2, l_0_3 = (string.find)(l_0_1, "{ string .*= \"")
-if l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = 768
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = "{ string .*= \""
+L3_3 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (mp.readfile)(l_0_3, (mp.getfilesize)() - l_0_3)
-;
-(mp.set_mpattribute)("//MpBase64DecodeLongLines")
-;
-(mp.vfo_add_buffer)(l_0_4, "[ShellCypt]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L4_4 = mp
+L4_4 = L4_4.readfile
+L4_4 = L4_4(L3_3, mp.getfilesize() - L3_3)
+mp.set_mpattribute("//MpBase64DecodeLongLines")
+mp.vfo_add_buffer(L4_4, "[ShellCypt]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

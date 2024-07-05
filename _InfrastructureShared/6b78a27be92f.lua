@@ -1,10 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6b78a27be92f 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections == 5 and pevars.epsec == 1 and (pesecs[pevars.epsec]).Name == ".text" and (pesecs[pevars.epsec]).SizeOfRawData >= 237568 and (pesecs[pevars.epsec]).SizeOfRawData <= 393216 and (pesecs[pehdr.NumberOfSections]).Name == ".reloc" and (pesecs[pehdr.NumberOfSections]).SizeOfRawData >= 9216 and (pesecs[pehdr.NumberOfSections]).SizeOfRawData <= 12288 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 5 then
+  L0_0 = pevars
+  L0_0 = L0_0.epsec
+  if L0_0 == 1 then
+    L0_0 = pesecs
+    L1_1 = pevars
+    L1_1 = L1_1.epsec
+    L0_0 = L0_0[L1_1]
+    L0_0 = L0_0.Name
+    if L0_0 == ".text" then
+      L0_0 = pesecs
+      L1_1 = pevars
+      L1_1 = L1_1.epsec
+      L0_0 = L0_0[L1_1]
+      L0_0 = L0_0.SizeOfRawData
+      if L0_0 >= 237568 then
+        L0_0 = pesecs
+        L1_1 = pevars
+        L1_1 = L1_1.epsec
+        L0_0 = L0_0[L1_1]
+        L0_0 = L0_0.SizeOfRawData
+        if L0_0 <= 393216 then
+          L0_0 = pesecs
+          L1_1 = pehdr
+          L1_1 = L1_1.NumberOfSections
+          L0_0 = L0_0[L1_1]
+          L0_0 = L0_0.Name
+          if L0_0 == ".reloc" then
+            L0_0 = pesecs
+            L1_1 = pehdr
+            L1_1 = L1_1.NumberOfSections
+            L0_0 = L0_0[L1_1]
+            L0_0 = L0_0.SizeOfRawData
+            if L0_0 >= 9216 then
+              L0_0 = pesecs
+              L1_1 = pehdr
+              L1_1 = L1_1.NumberOfSections
+              L0_0 = L0_0[L1_1]
+              L0_0 = L0_0.SizeOfRawData
+              if L0_0 <= 12288 then
+                L0_0 = mp
+                L0_0 = L0_0.INFECTED
+                return L0_0
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

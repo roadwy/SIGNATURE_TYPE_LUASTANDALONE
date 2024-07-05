@@ -1,42 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/32b3948463c4 
-
--- params : ...
--- function num : 0
-local l_0_0 = this_sigattrlog[1]
-if not l_0_0 or not l_0_0.p1 or not l_0_0.p2 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+if L0_0 then
+  L1_1 = L0_0.p1
+  L1_1 = L1_1 and L0_0.p2
+elseif not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = l_0_0.utf8p2
-local l_0_2 = (string.match)(l_0_1, "Delay:(%d+);")
-local l_0_3 = (string.match)(l_0_1, "Type:([%w_]+);")
-local l_0_4 = (string.match)(l_0_1, "Origin:([%w:/%.%d]+);")
-if not l_0_3 or not l_0_2 then
-  return mp.CLEAN
+L1_1 = L0_0.utf8p2
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "Delay:(%d+);"
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = string
+L3_3 = L3_3.match
+L4_4 = L1_1
+L5_5 = "Type:([%w_]+);"
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = string
+L4_4 = L4_4.match
+L5_5 = L1_1
+L4_4 = L4_4(L5_5, "Origin:([%w:/%.%d]+);")
+if not L3_3 or not L2_2 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-l_0_3 = (string.upper)(l_0_3)
-l_0_2 = tonumber(l_0_2)
-if l_0_3:find("SMS_", 1, true) == 1 then
-  local l_0_5 = l_0_3:sub(-1)
-  if l_0_5 ~= "H" and l_0_5 ~= "M" and l_0_5 ~= "L" and l_0_5 ~= "1" then
+L5_5 = string
+L5_5 = L5_5.upper
+L5_5 = L5_5(L3_3)
+L3_3 = L5_5
+L5_5 = tonumber
+L5_5 = L5_5(L2_2)
+L2_2 = L5_5
+L5_5 = L3_3.find
+L5_5 = L5_5(L3_3, "SMS_", 1, true)
+if L5_5 == 1 then
+  L5_5 = L3_3.sub
+  L5_5 = L5_5(L3_3, -1)
+  if L5_5 ~= "H" and L5_5 ~= "M" and L5_5 ~= "L" and L5_5 ~= "1" then
     return mp.CLEAN
   end
-  local l_0_6 = (bm.get_current_process_startup_info)()
-  ;
-  (bm.request_SMS)(l_0_6.ppid, l_0_5)
-  ;
-  (bm.add_action)("SmsAsyncScanEvent", l_0_2)
+  bm.request_SMS(bm.get_current_process_startup_info().ppid, L5_5)
+  bm.add_action("SmsAsyncScanEvent", L2_2)
+elseif L3_3 == "EMS" then
+  L5_5 = bm
+  L5_5 = L5_5.add_action
+  L5_5("EmsScan", L2_2)
 else
-  do
-    if l_0_3 == "EMS" then
-      (bm.add_action)("EmsScan", l_0_2)
-    else
-      return mp.CLEAN
-    end
-    if l_0_4 and l_0_4:find("Behavior:", 1, true) == 1 then
-      (bm.add_related_string)("RelatedBMHits", l_0_4, bm.RelatedStringBMReport)
-    end
-    return mp.INFECTED
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+if L4_4 then
+  L5_5 = L4_4.find
+  L5_5 = L5_5(L4_4, "Behavior:", 1, true)
+  if L5_5 == 1 then
+    L5_5 = bm
+    L5_5 = L5_5.add_related_string
+    L5_5("RelatedBMHits", L4_4, bm.RelatedStringBMReport)
   end
 end
-
+L5_5 = mp
+L5_5 = L5_5.INFECTED
+return L5_5

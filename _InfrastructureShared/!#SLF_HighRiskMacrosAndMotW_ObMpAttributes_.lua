@@ -1,32 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_HighRiskMacrosAndMotW_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_HAS_MOTW_ADS) then
-  if (versioning.IsBeta)() then
-    return mp.INFECTED
-  else
-    do
-      local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME) or ""
-      -- DECOMPILER ERROR at PC33: Confused about usage of register: R1 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC35: Confused about usage of register: R1 in 'UnsetPending'
-
-      if l_0_1 ~= "" then
-        local l_0_2 = l_0_1:lower()
-        local l_0_3 = {}
-        l_0_3["winword.exe"] = true
-        l_0_3["excel.exe"] = true
-        if l_0_3[l_0_2] then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L1_1 = L1_1(mp.CONTEXT_DATA_HAS_MOTW_ADS)
+  if L1_1 then
+    L1_1 = versioning
+    L1_1 = L1_1.IsBeta
+    L1_1 = L1_1()
+    if L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.INFECTED
+      return L1_1
+    else
+      L1_1 = mp
+      L1_1 = L1_1.get_contextdata
+      L1_1 = L1_1(mp.CONTEXT_DATA_PROCESSNAME)
+      L1_1 = L1_1 or ""
+      if L1_1 ~= "" then
+        L1_1 = L1_1:lower()
+        if ({
+          ["winword.exe"] = true,
+          ["excel.exe"] = true
+        })[L1_1] then
           return mp.INFECTED
         end
-      end
-      do
-        return mp.CLEAN
       end
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,157 +1,175 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3c7c1ef4d_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-  local l_0_0, l_0_1 = nil, nil
-  l_0_1 = (this_sigattrlog[1]).ppid
-  local l_0_2 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p1
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.ppid
+  end
 end
-do
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC18: Confused about usage of register: R1 in 'UnsetPending'
-
-  if l_0_0 == nil or l_0_1 == nil then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC25: Confused about usage of register: R0 in 'UnsetPending'
-
-  if (string.sub)(l_0_0, 1, 1) == "%" then
-    return mp.CLEAN
-  end
-  local l_0_3 = nil
-  local l_0_4, l_0_5 = , false
-  if IsLegacyOrgMachine() == true then
-    (bm.trigger_sig)("LegacyOrgMachine", R7_PC44, l_0_4)
-  end
-  local l_0_6 = nil
-  -- DECOMPILER ERROR at PC59: Confused about usage of register: R5 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC63: Confused about usage of register: R5 in 'UnsetPending'
-
-  if (versioning.GetCloudBlockLevel)() >= 4 and IsLegacyOrgMachine() == false and (this_sigattrlog[1]).utf8p2 ~= nil and #(this_sigattrlog[1]).utf8p2 >= 1 then
-    local l_0_7 = nil
-    -- DECOMPILER ERROR at PC67: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC69: Overwrote pending register: R7 in 'AssignReg'
-
-    if getCustomStringHash(R7_PC44) ~= nil then
-      local l_0_8 = nil
-      if (MpCommon.GetPersistContextCountNoPath)(R7_PC44) > 0 and not (MpCommon.QueryPersistContextNoPath)(R7_PC44, l_0_4) then
-        local l_0_9 = nil
-        local l_0_10 = R7_PC44
-        for l_0_14,l_0_15 in ipairs((MpCommon.GetPersistContextNoPath)(R7_PC44)) do
-          local l_0_11, l_0_12 = , false
-          -- DECOMPILER ERROR at PC92: Confused about usage of register: R14 in 'UnsetPending'
-
-          if #R14_PC92 >= 5 then
-            if (string.match)(R14_PC92, "^[tT][0-9][0-9][0-9][0-9]") then
-              TrackPidAndTechniqueBM(l_0_4, (string.match)(R14_PC92, "^([tT][0-9][0-9][0-9][0-9][%.]?[0-9]?[0-9]?[0-9]?):?(.*)"), R20_PC112, 0)
-              l_0_12 = true
-            else
-              do
-                -- DECOMPILER ERROR at PC117: Confused about usage of register: R14 in 'UnsetPending'
-
-                -- DECOMPILER ERROR at PC125: Confused about usage of register: R14 in 'UnsetPending'
-
-                do
-                  if (string.sub)(l_0_17, 1, 1) == "[" then
-                    local l_0_18, l_0_19 = nil
-                    if (string.match)(l_0_17, "^%[(.-)%]=(.+)") ~= nil and l_0_17 ~= nil then
-                      (bm.trigger_sig)((string.match)(l_0_17, "^%[(.-)%]=(.+)"), R19_PC137, R20_PC112)
-                      l_0_12 = true
+if L0_0 == nil or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.sub
+L3_3 = L0_0
+L4_4 = 1
+L5_5 = 1
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+if L2_2 == "%" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = IsLegacyOrgMachine
+L3_3 = L2_2()
+if L2_2 == true then
+  L4_4 = bm
+  L4_4 = L4_4.trigger_sig
+  L5_5 = "LegacyOrgMachine"
+  L6_6 = L3_3
+  L4_4(L5_5, L6_6, L7_7)
+end
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.utf8p2
+L5_5 = versioning
+L5_5 = L5_5.GetCloudBlockLevel
+L5_5 = L5_5()
+if L5_5 >= 4 then
+  L5_5 = IsLegacyOrgMachine
+  L5_5 = L5_5()
+  if L5_5 == false and L4_4 ~= nil then
+    L5_5 = #L4_4
+    if L5_5 >= 1 then
+      L5_5 = string
+      L5_5 = L5_5.find
+      L6_6 = L4_4
+      L5_5 = L5_5(L6_6, L7_7, L8_8, L9_9)
+      if L5_5 ~= nil then
+        L6_6 = #L4_4
+        if L5_5 ~= L6_6 then
+          L6_6 = getCustomStringHash
+          L6_6 = L6_6(L7_7)
+          if L6_6 ~= nil then
+            if L8_8 > 0 then
+              if not L8_8 then
+                for L13_13, L14_14 in L10_10(L11_11) do
+                  L15_15 = #L14_14
+                  if L15_15 >= 5 then
+                    L15_15 = string
+                    L15_15 = L15_15.match
+                    L16_16 = L14_14
+                    L15_15 = L15_15(L16_16, "^[tT][0-9][0-9][0-9][0-9]")
+                    if L15_15 then
+                      L15_15 = string
+                      L15_15 = L15_15.match
+                      L16_16 = L14_14
+                      L16_16 = L15_15(L16_16, "^([tT][0-9][0-9][0-9][0-9][%.]?[0-9]?[0-9]?[0-9]?):?(.*)")
+                      TrackPidAndTechniqueBM(L1_1, L15_15, L16_16, 0)
+                    else
+                      L15_15 = string
+                      L15_15 = L15_15.sub
+                      L16_16 = L14_14
+                      L15_15 = L15_15(L16_16, 1, 1)
+                      if L15_15 == "[" then
+                        L15_15 = string
+                        L15_15 = L15_15.match
+                        L16_16 = L14_14
+                        L16_16 = L15_15(L16_16, "^%[(.-)%]=(.+)")
+                        if L15_15 ~= nil and L16_16 ~= nil then
+                          bm.trigger_sig(L15_15, L16_16, L1_1)
+                        end
+                      end
                     end
                   end
-                  -- DECOMPILER ERROR at PC139: LeaveBlock: unexpected jumping out DO_STMT
-
-                  -- DECOMPILER ERROR at PC139: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                  -- DECOMPILER ERROR at PC139: LeaveBlock: unexpected jumping out IF_STMT
-
-                  -- DECOMPILER ERROR at PC139: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC139: LeaveBlock: unexpected jumping out IF_STMT
-
+                end
+                if L9_9 then
+                  L13_13 = 0
+                  L10_10(L11_11, L12_12, L13_13)
                 end
               end
             end
           end
         end
-        -- DECOMPILER ERROR at PC141: Confused about usage of register: R9 in 'UnsetPending'
-
-        if l_0_12 then
-          l_0_5 = true
-          ;
-          (MpCommon.AppendPersistContextNoPath)(l_0_10, l_0_4, 0)
-        end
       end
     end
-  end
-  do
-    -- DECOMPILER ERROR at PC152: Overwrote pending register: R7 in 'AssignReg'
-
-    local l_0_20 = nil
-    if (MpCommon.GetPersistContextCount)(l_0_10) <= 0 or (MpCommon.QueryPersistContextNoPath)(l_0_4, "FilePersistContextToProcessRelay.A") == true then
-      return mp.CLEAN
-    end
-    if (MpCommon.GetPersistContextCount)(l_0_10) > 100 then
-      return mp.CLEAN
-    end
-    local l_0_21 = nil
-    for l_0_25,l_0_26 in ipairs((MpCommon.GetPersistContext)(l_0_3)) do
-      local l_0_22, l_0_23 = nil
-      -- DECOMPILER ERROR at PC182: Confused about usage of register: R12 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC186: Confused about usage of register: R12 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC191: Confused about usage of register: R12 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC198: Confused about usage of register: R12 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC206: Overwrote pending register: R20 in 'AssignReg'
-
-      if not (MpCommon.QueryPersistContextNoPath)(l_0_4, l_0_4) and #l_0_4 >= 4 and (string.match)(l_0_4, "^[tT][0-9][0-9][0-9][0-9]") then
-        TrackPidAndTechniqueBM(l_0_4, (string.match)(l_0_4, "^([tT][0-9][0-9][0-9][0-9][%.]?[0-9]?[0-9]?[0-9]?):?(.*)"), R18_PC207, R19_PC137, R20_PC112)
-        l_0_5 = true
-        do
-          do
-            if #l_0_28 > 5 then
-              local l_0_29 = nil
-              -- DECOMPILER ERROR at PC221: Overwrote pending register: R18 in 'AssignReg'
-
-              -- DECOMPILER ERROR at PC228: Overwrote pending register: R18 in 'AssignReg'
-
-              -- DECOMPILER ERROR at PC229: Overwrote pending register: R19 in 'AssignReg'
-
-              if not (MpCommon.QueryPersistContextNoPath)(l_0_4, R18_PC207) then
-                (MpCommon.AppendPersistContextNoPath)(l_0_4, R18_PC207, R19_PC137)
-              end
-            end
-            -- DECOMPILER ERROR at PC235: Overwrote pending register: R18 in 'AssignReg'
-
-            ;
-            (MpCommon.AppendPersistContextNoPath)(l_0_4, l_0_28, R18_PC207)
-            -- DECOMPILER ERROR at PC237: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC237: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC237: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
-      end
-    end
-    if not (MpCommon.QueryPersistContextNoPath)(l_0_4, "FilePersistContextToProcessRelay.A") then
-      (MpCommon.AppendPersistContextNoPath)(l_0_4, "FilePersistContextToProcessRelay.A", 0)
-    end
-    if l_0_5 == true then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
   end
 end
-
+L5_5 = MpCommon
+L5_5 = L5_5.GetPersistContextCount
+L6_6 = L0_0
+L5_5 = L5_5(L6_6)
+if not (L5_5 <= 0) then
+  L6_6 = MpCommon
+  L6_6 = L6_6.QueryPersistContextNoPath
+  L6_6 = L6_6(L7_7, L8_8)
+elseif L6_6 == true then
+  L6_6 = mp
+  L6_6 = L6_6.INFECTED
+  return L6_6
+end
+if L5_5 > 100 then
+  L6_6 = mp
+  L6_6 = L6_6.INFECTED
+  return L6_6
+end
+L6_6 = MpCommon
+L6_6 = L6_6.GetPersistContext
+L6_6 = L6_6(L7_7)
+for L10_10, L11_11 in L7_7(L8_8) do
+  L13_13 = L1_1
+  L14_14 = L11_11
+  if not L12_12 then
+    if L12_12 >= 4 then
+      L13_13 = L11_11
+      L14_14 = "^[tT][0-9][0-9][0-9][0-9]"
+      if L12_12 then
+        L13_13 = L11_11
+        L14_14 = "^([tT][0-9][0-9][0-9][0-9][%.]?[0-9]?[0-9]?[0-9]?):?(.*)"
+        L13_13 = L12_12(L13_13, L14_14)
+        L14_14 = TrackPidAndTechniqueBM
+        L15_15 = L1_1
+        L16_16 = L12_12
+        L14_14(L15_15, L16_16, L13_13, nil, true)
+        L14_14 = #L11_11
+        if L14_14 > 5 then
+          L14_14 = string
+          L14_14 = L14_14.sub
+          L15_15 = L11_11
+          L16_16 = 0
+          L14_14 = L14_14(L15_15, L16_16, 5)
+          L15_15 = MpCommon
+          L15_15 = L15_15.QueryPersistContextNoPath
+          L16_16 = L1_1
+          L15_15 = L15_15(L16_16, L14_14)
+          if not L15_15 then
+            L15_15 = MpCommon
+            L15_15 = L15_15.AppendPersistContextNoPath
+            L16_16 = L1_1
+            L15_15(L16_16, L14_14, 0)
+          end
+        end
+        L14_14 = MpCommon
+        L14_14 = L14_14.AppendPersistContextNoPath
+        L15_15 = L1_1
+        L16_16 = L11_11
+        L14_14(L15_15, L16_16, 0)
+      end
+    end
+  end
+end
+if not L7_7 then
+  L7_7(L8_8, L9_9, L10_10)
+end
+return L7_7

@@ -1,24 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b9b3aab7cf42 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-  local l_0_0 = (this_sigattrlog[6]).utf8p2
-  if l_0_0 ~= nil and (string.len)(l_0_0) > 4 then
-    local l_0_1 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-    if l_0_1 ~= nil then
-      for l_0_5,l_0_6 in ipairs(l_0_1) do
-        l_0_6 = (mp.ContextualExpandEnvironmentVariables)(l_0_6)
-        ;
-        (bm.add_related_file)(l_0_6)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = this_sigattrlog
+L0_0 = L0_0[6]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[6]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = this_sigattrlog
+    L0_0 = L0_0[6]
+    L0_0 = L0_0.utf8p2
+    if L0_0 ~= nil then
+      L1_1 = string
+      L1_1 = L1_1.len
+      L1_1 = L1_1(L2_2)
+      if L1_1 > 4 then
+        L1_1 = mp
+        L1_1 = L1_1.GetExecutablesFromCommandLine
+        L1_1 = L1_1(L2_2)
+        if L1_1 ~= nil then
+          for L5_5, L6_6 in L2_2(L3_3) do
+            L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+            bm.add_related_file(L6_6)
+          end
+        end
       end
     end
   end
 end
-do
-  l_0_0 = mp
-  l_0_0 = l_0_0.CLEAN
-  return l_0_0
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,29 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VBS_CrypterRevB64_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 15000 then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 15000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+if L0_0 > 60000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L1_1(false)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L1_1 = L1_1(0, L0_0)
+L1_1 = string.lower(L1_1)
+if L1_1:match("strreverse%(ss%(0%)%).-\r\n(.-)%s-=%s-base64decode%(%w-%)") == nil then
   return mp.CLEAN
 end
-if l_0_0 > 60000 then
+if L1_1:match("execute%s-(%w-)'") == nil then
   return mp.CLEAN
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-l_0_1 = (string.lower)(l_0_1)
-local l_0_2 = l_0_1:match("strreverse%(ss%(0%)%).-\r\n(.-)%s-=%s-base64decode%(%w-%)")
-if l_0_2 == nil then
-  return mp.CLEAN
-end
-local l_0_3 = l_0_1:match("execute%s-(%w-)\'")
-if l_0_3 == nil then
-  return mp.CLEAN
-end
-if l_0_2 ~= l_0_3 then
+if L1_1:match("strreverse%(ss%(0%)%).-\r\n(.-)%s-=%s-base64decode%(%w-%)") ~= L1_1:match("execute%s-(%w-)'") then
   return mp.CLEAN
 end
 return mp.INFECTED
-

@@ -1,23 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/352976b1c63f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetBruteMatchData)()
-local l_0_1 = l_0_0.match_offset + 1
-local l_0_2 = l_0_0.match_offset + 1 + 1024
-local l_0_3 = ((tostring(l_0_0.is_header and headerpage or footerpage)):sub(l_0_1, l_0_2)):lower()
-if not l_0_3 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = L0_0.match_offset
+L1_1 = L1_1 + 1
+L2_2 = L0_0.match_offset
+L2_2 = L2_2 + 1
+L2_2 = L2_2 + 1024
+L3_3 = tostring
+L4_4 = L0_0.is_header
+if L4_4 then
+  L4_4 = headerpage
+else
+  L4_4 = L4_4 or footerpage
 end
-local l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_3)
-for l_0_8,l_0_9 in ipairs(l_0_4) do
-  if l_0_9:find("insert.ps1", 1, true) or l_0_9:find("get-bitlockerkeys.ps1", 1, true) then
+L3_3 = L3_3(L4_4)
+L4_4 = L3_3
+L3_3 = L3_3.sub
+L3_3 = L3_3(L4_4, L5_5, L6_6)
+L4_4 = L3_3
+L3_3 = L3_3.lower
+L3_3 = L3_3(L4_4)
+if not L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.GetExecutablesFromCommandLine
+L4_4 = L4_4(L5_5)
+for L8_8, L9_9 in L5_5(L6_6) do
+  if L9_9:find("insert.ps1", 1, true) or L9_9:find("get-bitlockerkeys.ps1", 1, true) then
     return mp.CLEAN
   end
-  if (sysio.IsFileExists)(l_0_9) and not (mp.IsKnownFriendlyFile)(l_0_9, false, false) then
-    (mp.ReportLowfi)(l_0_9, 443472619)
+  if sysio.IsFileExists(L9_9) and not mp.IsKnownFriendlyFile(L9_9, false, false) then
+    mp.ReportLowfi(L9_9, 443472619)
   end
 end
-return mp.INFECTED
-
+return L5_5

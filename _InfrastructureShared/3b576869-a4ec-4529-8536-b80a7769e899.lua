@@ -1,16 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3b576869-a4ec-4529-8536-b80a7769e899 
-
--- params : ...
--- function num : 0
-GetRuleInfo = function()
-  -- function num : 0_0
-  local l_1_0 = {}
-  l_1_0.Name = "Block Office applications from creating executable content"
-  l_1_0.Description = "Windows Defender Exploit Guard detected the Office application creating executable content."
-  l_1_0.NotificationDedupingInterval = 120
-  l_1_0.NotificationDedupingScope = HIPS.DEDUPE_SCOPE_UI
-  return l_1_0
+local L0_0, L1_1
+function L0_0()
+  local L0_2, L1_3
+  L0_2 = {}
+  L0_2.Name = "Block Office applications from creating executable content"
+  L0_2.Description = "Windows Defender Exploit Guard detected the Office application creating executable content."
+  L0_2.NotificationDedupingInterval = 120
+  L1_3 = HIPS
+  L1_3 = L1_3.DEDUPE_SCOPE_UI
+  L0_2.NotificationDedupingScope = L1_3
+  return L0_2
 end
-
-
+GetRuleInfo = L0_0
+function L0_0()
+  local L0_4, L1_5
+  L0_4 = "((windowsapps\\\\[^\\\\]+\\\\)|(microsoft office\\\\(root\\\\)?))office..\\\\[^\\.]+\\.exe\\\"?[^\\\"]+\\\"([^\\\"]+)\\\"?"
+  return L0_4
+end
+GetCommandLineRegExp = L0_0

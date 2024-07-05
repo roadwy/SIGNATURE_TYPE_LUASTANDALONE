@@ -1,36 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b350b744fc 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).wp2 ~= nil then
-  local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.wp2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L0_0 = L1_1[2]
+  end
 else
-  do
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC18: Confused about usage of register: R0 in 'UnsetPending'
-
-    local l_0_1 = nil
-    local l_0_2 = (mp.GetExecutablesFromCommandLine)(l_0_0.utf8p2)
-    for l_0_6,l_0_7 in ipairs(l_0_2) do
-      local l_0_3 = false
-      -- DECOMPILER ERROR at PC27: Confused about usage of register: R7 in 'UnsetPending'
-
-      R7_PC27 = (mp.ContextualExpandEnvironmentVariables)(R7_PC27)
-      if (sysio.IsFileExists)(R7_PC27) and not (mp.IsKnownFriendlyFile)(R7_PC27, true, false) then
-        l_0_3 = true
-        ;
-        (bm.add_related_file)(R7_PC27)
-      end
-    end
-    -- DECOMPILER ERROR at PC51: Confused about usage of register: R2 in 'UnsetPending'
-
-    if l_0_3 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.GetExecutablesFromCommandLine
+L2_2 = L0_0.utf8p2
+L1_1 = L1_1(L2_2)
+L2_2 = false
+for L6_6, L7_7 in L3_3(L4_4) do
+  L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+  if sysio.IsFileExists(L7_7) and not mp.IsKnownFriendlyFile(L7_7, true, false) then
+    L2_2 = true
+    bm.add_related_file(L7_7)
   end
 end
-
+if L2_2 then
+  return L3_3
+end
+return L3_3

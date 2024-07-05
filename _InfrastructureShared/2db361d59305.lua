@@ -1,34 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db361d59305 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_2 = nil
-    local l_0_3 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-    for l_0_7,l_0_8 in ipairs(l_0_3) do
-      local l_0_4 = {[".xls"] = true, xlsx = true, xlsb = true, xltx = true, xltm = true, xlam = true, [".xla"] = true, xlsm = true}
-      -- DECOMPILER ERROR at PC34: Confused about usage of register: R7 in 'UnsetPending'
-
-      if (string.len)(R7_PC34) > 4 and (sysio.IsFileExists)(R7_PC34) and l_0_4[(string.sub)(R7_PC34, -4)] then
-        (bm.add_related_file)(l_0_9)
-      end
-    end
-  end
-  do
-    l_0_3 = mp
-    l_0_3 = l_0_3.INFECTED
-    return l_0_3
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  L2_2 = {}
+  L2_2[".xls"] = true
+  L2_2.xlsx = true
+  L2_2.xlsb = true
+  L2_2.xltx = true
+  L2_2.xltm = true
+  L2_2.xlam = true
+  L2_2[".xla"] = true
+  L2_2.xlsm = true
+  for L6_6, L7_7 in L3_3(L4_4) do
+    if string.len(L7_7) > 4 and sysio.IsFileExists(L7_7) and L2_2[string.sub(L7_7, -4)] then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

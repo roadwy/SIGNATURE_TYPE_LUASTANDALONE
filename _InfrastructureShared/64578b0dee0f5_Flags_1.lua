@@ -1,10 +1,73 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/64578b0dee0f5_Flags_1 
-
--- params : ...
--- function num : 0
-if (((((((((((((((((((hstrlog[1]).matched and not (hstrlog[2]).matched) or (hstrlog[3]).matched) and not (hstrlog[4]).matched) or (hstrlog[1]).matched) and not (hstrlog[2]).matched) or (hstrlog[3]).matched) and not (hstrlog[4]).matched) or (hstrlog[5]).matched) and not (hstrlog[6]).matched) or (hstrlog[7]).matched) and not (hstrlog[8]).matched) or (hstrlog[9]).matched) and not (hstrlog[10]).matched) or (hstrlog[11]).matched) and not (hstrlog[12]).matched) or (hstrlog[13]).matched) and not (hstrlog[14]).matched) or (mp.getfilesize)() < 700000) and (0 + 1 + 1 + 1 + 1 >= 1 or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 2) then
+local L0_0, L1_1
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+if hstrlog[1].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[2].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[3].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[4].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[5].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[6].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[7].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[8].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[9].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[10].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[11].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[12].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[13].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[14].matched then
+  L1_1 = L1_1 + 1
+end
+if mp.getfilesize() < 700000 and (L0_0 >= 1 or L1_1 >= 2) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,68 +1,108 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Xider_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-ReportCLSIDbyAppDir = function(l_1_0, l_1_1, l_1_2)
-  -- function num : 0_0
-  if l_1_0 ~= nil and l_1_1 ~= nil then
-    local l_1_3 = Infrastructure_GetFilePathFromGUID(l_1_0)
-    if l_1_3 ~= nil then
-      local l_1_4, l_1_5, l_1_6, l_1_7 = Infrastructure_SplitThreatPath(l_1_3)
-      if l_1_5 == l_1_1 and l_1_7 == "dll" then
-        Infrastructure_DetectionReportBHOByCLSID(l_1_2, l_1_0)
-        Infrastructure_ReportCLSID(l_1_2, l_1_0)
-        Infrastructure_ReportIEExtensionsByClsid(l_1_2, l_1_0)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18
+function L0_0(A0_19, A1_20, A2_21)
+  local L3_22
+  if A0_19 ~= nil and A1_20 ~= nil then
+    L3_22 = Infrastructure_GetFilePathFromGUID
+    L3_22 = L3_22(A0_19)
+    if L3_22 ~= nil and Infrastructure_SplitThreatPath(L3_22) == A1_20 and Infrastructure_SplitThreatPath(L3_22) == "dll" then
+      Infrastructure_DetectionReportBHOByCLSID(A2_21, A0_19)
+      Infrastructure_ReportCLSID(A2_21, A0_19)
+      Infrastructure_ReportIEExtensionsByClsid(A2_21, A0_19)
+    end
+  end
+end
+ReportCLSIDbyAppDir = L0_0
+L0_0 = MpDetection
+L0_0 = L0_0.GetCurrentThreat
+L0_0 = L0_0()
+if L1_1 == "BrowserModifier:Win32/Xider" then
+  for L4_4, L5_5 in L1_1(L2_2) do
+    L6_6 = L5_5.Schema
+    if L6_6 == "file" then
+      L6_6 = crypto
+      L6_6 = L6_6.bitand
+      L7_7 = L5_5.Type
+      L8_8 = MpCommon
+      L8_8 = L8_8.MPRESOURCE_TYPE_CONCRETE
+      L6_6 = L6_6(L7_7, L8_8)
+      L7_7 = MpCommon
+      L7_7 = L7_7.MPRESOURCE_TYPE_CONCRETE
+      if L6_6 == L7_7 then
+        L6_6 = Infrastructure_SplitThreatPath
+        L7_7 = L5_5.Path
+        L9_9 = L6_6(L7_7)
+        L11_11 = L6_6
+        L10_10 = L6_6.find
+        L12_12 = ":\\program files"
+        L10_10 = L10_10(L11_11, L12_12, L13_13, L14_14)
+        if not L10_10 then
+          L11_11 = L6_6
+          L10_10 = L6_6.find
+          L12_12 = "\\appdata\\local\\"
+          L10_10 = L10_10(L11_11, L12_12, L13_13, L14_14)
+        elseif L10_10 and L9_9 == "exe" then
+          L10_10 = string
+          L10_10 = L10_10.len
+          L11_11 = L7_7
+          L10_10 = L10_10(L11_11)
+          if L10_10 > 3 then
+            L10_10 = string
+            L10_10 = L10_10.sub
+            L11_11 = L8_8
+            L12_12 = -12
+            L10_10 = L10_10(L11_11, L12_12)
+            if L10_10 ~= "-enabler.exe" then
+              L10_10 = string
+              L10_10 = L10_10.sub
+              L11_11 = L8_8
+              L12_12 = -6
+              L10_10 = L10_10(L11_11, L12_12)
+              if L10_10 ~= "-2.exe" then
+                L10_10 = string
+                L10_10 = L10_10.sub
+                L11_11 = L8_8
+                L12_12 = -9
+                L10_10 = L10_10(L11_11, L12_12)
+              end
+            elseif L10_10 == "utils.exe" then
+              L10_10 = 536871282
+              L11_11 = Infrastructure_DetectionReportFolder
+              L12_12 = L10_10
+              L11_11(L12_12, L13_13, L14_14)
+              L11_11 = Infrastructure_ScanTaskschedulerResources
+              L11_11()
+              L12_12 = L7_7
+              L11_11 = L7_7.gsub
+              L11_11 = L11_11(L12_12, L13_13, L14_14)
+              L12_12 = Infrastructure_HKCUExpandSpecialPath
+              L12_12 = L12_12(L13_13)
+              for L16_16, L17_17 in L13_13(L14_14) do
+                L18_18 = L17_17
+                L18_18 = L18_18 .. "\\" .. L11_11 .. "\\"
+                if sysio.IsFileExists(L18_18 .. "Chrome\\" .. L11_11 .. ".crx") then
+                  Infrastructure_DetectionReportFolder(L10_10, L18_18, true)
+                end
+              end
+              if L13_13 == "215 Apps" then
+                L13_13(L14_14, L15_15)
+              elseif L13_13 ~= nil then
+                if L14_14 >= 1 then
+                  L16_16 = L11_11
+                  L14_14(L15_15, L16_16)
+                end
+              end
+              L16_16 = L10_10
+              L13_13(L14_14, L15_15, L16_16)
+              L16_16 = L10_10
+              L13_13(L14_14, L15_15, L16_16)
+              L16_16 = L10_10
+              L13_13(L14_14, L15_15, L16_16)
+              L16_16 = L10_10
+              L13_13(L14_14, L15_15, L16_16)
+            end
+          end
+        end
       end
     end
   end
 end
-
-local l_0_0 = (MpDetection.GetCurrentThreat)()
-if l_0_0.Name == "BrowserModifier:Win32/Xider" then
-  for l_0_4,l_0_5 in pairs(l_0_0.Resources) do
-    if l_0_5.Schema == "file" and (crypto.bitand)(l_0_5.Type, MpCommon.MPRESOURCE_TYPE_CONCRETE) == MpCommon.MPRESOURCE_TYPE_CONCRETE then
-      local l_0_6, l_0_7, l_0_8, l_0_9 = Infrastructure_SplitThreatPath(l_0_5.Path)
-      if (l_0_6:find(":\\program files", 1, true) or l_0_6:find("\\appdata\\local\\", 1, true)) and l_0_9 == "exe" and (string.len)(l_0_7) > 3 and ((string.sub)(l_0_8, -12) == "-enabler.exe" or (string.sub)(l_0_8, -6) == "-2.exe" or (string.sub)(l_0_8, -9) == "utils.exe") then
-        local l_0_10 = 536871282
-        Infrastructure_DetectionReportFolder(l_0_10, l_0_6, true)
-        Infrastructure_ScanTaskschedulerResources()
-        local l_0_11 = l_0_7:gsub("-BrowserExtensionUninstall", "")
-        local l_0_12 = Infrastructure_HKCUExpandSpecialPath("Local AppData")
-        for l_0_16,l_0_17 in pairs(l_0_12) do
-          local l_0_18 = l_0_17 .. "\\" .. l_0_11 .. "\\"
-          if (sysio.IsFileExists)(l_0_18 .. "Chrome\\" .. l_0_11 .. ".crx") then
-            Infrastructure_DetectionReportFolder(l_0_10, l_0_18, true)
-          end
-        end
-        if Infrastructure_GetUninstallStrFromKey(l_0_11, "Publisher") == "215 Apps" then
-          Infrastructure_DetectionReportUninstallRegKey(l_0_10, l_0_11)
-        else
-          local l_0_19 = Infrastructure_GetUninstallStrFromKey(l_0_11, "CrPublisherId")
-          if l_0_19 ~= nil and (string.len)(l_0_19) >= 1 then
-            Infrastructure_DetectionReportUninstallRegKey(l_0_10, l_0_11)
-          end
-        end
-        do
-          do
-            ReportCLSIDbyAppDir(Infrastructure_IE_GetExtPolicyGUIDfromMatch("{11111111%-1111%-1111%-1111%-110%d%d%d%d%d%d%d%d%d}"), l_0_7, l_0_10)
-            ReportCLSIDbyAppDir(Infrastructure_IE_GetExtPolicyGUIDfromMatch("{22222222%-2222%-2222%-2222%-220%d%d%d%d%d%d%d%d%d}"), l_0_7, l_0_10)
-            ReportCLSIDbyAppDir(Infrastructure_IE_GetExtPolicyGUIDfromMatch("{33333333%-3333%-3333%-3333%-330%d%d%d%d%d%d%d%d%d}"), l_0_7, l_0_10)
-            ReportCLSIDbyAppDir(Infrastructure_IE_GetExtPolicyGUIDfromMatch("{44444444%-4444%-4444%-4444%-440%d%d%d%d%d%d%d%d%d}"), l_0_7, l_0_10)
-            -- DECOMPILER ERROR at PC167: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC167: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC167: LeaveBlock: unexpected jumping out IF_STMT
-
-            -- DECOMPILER ERROR at PC167: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC167: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
-      end
-    end
-  end
-end
-

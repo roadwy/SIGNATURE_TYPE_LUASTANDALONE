@@ -1,41 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4dd76081396f_Includes_LuaFuncHelper,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (((mp.GetProcessCommandLine)(l_0_0)):lower())
-local l_0_2 = nil
-if l_0_1 then
-  l_0_2 = (string.match)(l_0_1, "wscript.*%s+%\"?%\'?(%w:\\.*%.js)")
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = L1_1
+L1_1 = L1_1.lower
+L1_1 = L1_1(L2_2)
+L2_2 = nil
+if L1_1 then
+  L3_3 = string
+  L3_3 = L3_3.match
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4, "wscript.*%s+%\"?%'?(%w:\\.*%.js)")
+  L2_2 = L3_3
 end
-if l_0_2 == nil then
-  return mp.CLEAN
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = false
-local l_0_4 = GetRollingQueue("LuaHighRiskJSinZipWebVector")
-if l_0_4 ~= nil and type(l_0_4) == "table" then
-  for l_0_8 in pairs(l_0_4) do
-    if (string.find)(l_0_2, (l_0_4[l_0_8]).key) then
-      l_0_3 = true
+L3_3 = false
+L4_4 = GetRollingQueue
+L4_4 = L4_4("LuaHighRiskJSinZipWebVector")
+if L4_4 ~= nil and type(L4_4) == "table" then
+  for _FORV_8_ in pairs(L4_4) do
+    if string.find(L2_2, L4_4[_FORV_8_].key) then
+      L3_3 = true
     end
   end
 end
-do
-  if l_0_3 then
-    local l_0_9 = (mp.GetParentProcInfo)()
-    if l_0_9 ~= nil then
-      local l_0_10 = (string.lower)(l_0_9.image_path)
-      if l_0_10:match("([^\\]+)$") == "explorer.exe" then
-        return mp.LOWFI
-      end
-    end
-  end
-  do
-    return mp.CLEAN
-  end
+if L3_3 and mp.GetParentProcInfo() ~= nil and string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "explorer.exe" then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

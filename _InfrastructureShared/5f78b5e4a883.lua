@@ -1,10 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5f78b5e4a883 
-
--- params : ...
--- function num : 0
-if peattributes.isdll and peattributes.hasexports and (hstrlog[1]).VA - (hstrlog[2]).VA < 9472 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.hasexports
+  if L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[1]
+    L0_0 = L0_0.VA
+    L1_1 = hstrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.VA
+    L0_0 = L0_0 - L1_1
+    if L0_0 < 9472 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

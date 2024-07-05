@@ -1,39 +1,79 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/18db3b268e226_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = ""
-if (this_sigattrlog[1]).matched then
-  l_0_0 = (this_sigattrlog[1]).utf8p2
+local L0_0, L1_1
+L0_0 = ""
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[2]).matched then
-  l_0_0 = (this_sigattrlog[2]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[3]).matched then
-  l_0_0 = (this_sigattrlog[3]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[4]).matched then
-  l_0_0 = (this_sigattrlog[4]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[5]).matched then
-  l_0_0 = (this_sigattrlog[5]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[5]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[6]).matched then
-  l_0_0 = (this_sigattrlog[6]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[6]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[7]).matched then
-  l_0_0 = (this_sigattrlog[7]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[7]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[8]).matched then
-  l_0_0 = (this_sigattrlog[8]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[8]
+  L0_0 = L1_1.utf8p2
 end
-if (this_sigattrlog[9]).matched then
-  l_0_0 = (this_sigattrlog[9]).utf8p2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[9]
+  L0_0 = L1_1.utf8p2
 end
-local l_0_1 = " -u [a-zA-Z0-9]{1,25}:[a-zA-Z0-9]{1,25}"
-if (MpCommon.StringRegExpSearch)(l_0_1, l_0_0) == true then
+L1_1 = " -u [a-zA-Z0-9]{1,25}:[a-zA-Z0-9]{1,25}"
+if MpCommon.StringRegExpSearch(L1_1, L0_0) == true then
   return mp.INFECTED
 end
 return mp.CLEAN
-

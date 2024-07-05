@@ -1,26 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2f29e12759a2 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("MpIsPowerShellAMSIScan") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "MpIsPowerShellAMSIScan"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.GetBruteMatchData)()
-if not l_0_0 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = l_0_0.match_offset + 1
-local l_0_2 = l_0_0.match_offset + 1 + 50
-local l_0_3 = ((tostring(l_0_0.is_header and headerpage or footerpage)):sub(l_0_1, l_0_2)):lower()
-if not l_0_3 then
-  return mp.CLEAN
+L1_1 = ""
+L2_2 = L0_0.is_header
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = tostring
+  L3_3 = L3_3(headerpage)
+  L2_2 = L2_2(L3_3, L3_3(headerpage))
+  L1_1 = L2_2
+else
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = tostring
+  L3_3 = L3_3(footerpage)
+  L2_2 = L2_2(L3_3, L3_3(footerpage))
+  L1_1 = L2_2
 end
-local l_0_4 = "(path\\s+(\\\")?c\\:(\\\\+)?(\\\"|\\s|;|$))"
-local l_0_5 = false
-l_0_5 = (MpCommon.StringRegExpSearch)(l_0_4, l_0_3)
-if l_0_5 == false then
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = "path\\s+[\"']?c:\\\\*\\*?%?[\"']?([\\s;]|$)"
+L3_3 = false
+L3_3, _ = MpCommon.StringRegExpSearch(L2_2, L1_1)
+if L3_3 == false then
   return mp.CLEAN
 end
 return mp.INFECTED
-

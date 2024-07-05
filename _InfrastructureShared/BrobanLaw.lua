@@ -1,25 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/BrobanLaw 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-for l_0_4,l_0_5 in pairs((Remediation.Threat).Resources) do
-  if l_0_5.Schema == "file" and (string.match)((Remediation.Threat).Name, "BrobanLaw") then
-    l_0_0 = true
+local L0_0, L1_1, L2_2
+L0_0 = false
+for _FORV_4_, _FORV_5_ in L1_1(L2_2) do
+  if _FORV_5_.Schema == "file" and string.match(Remediation.Threat.Name, "BrobanLaw") then
+    L0_0 = true
     break
   end
 end
-do
-  if l_0_0 then
-    local l_0_6 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\AXSPH")
-    if l_0_6 then
-      (sysio.DeleteRegKey)(l_0_6, nil)
-    end
-    local l_0_7 = (sysio.RegOpenKey)("HKCU\\SOFTWARE\\fgiusji")
-    if l_0_7 then
-      (sysio.DeleteRegKey)(l_0_7, nil)
-    end
+if L0_0 then
+  if L1_1 then
+    L2_2(L1_1, nil)
+  end
+  if L2_2 then
+    sysio.DeleteRegKey(L2_2, nil)
   end
 end
-

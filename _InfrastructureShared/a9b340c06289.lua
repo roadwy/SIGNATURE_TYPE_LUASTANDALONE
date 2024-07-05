@@ -1,33 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a9b340c06289 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC14: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  else
-  end
-  if (this_sigattrlog[2]).matched then
-    do return mp.CLEAN end
-    if (string.match)((string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2)), "/replaceremoteprefix [^ ]+ [^ ]+ \\\\localhost\\[^ ]*") ~= nil then
-      return mp.INFECTED
-    else
-      -- DECOMPILER ERROR at PC48: Confused about usage of register: R0 in 'UnsetPending'
-
-      if (string.match)((string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2)), "/replaceremoteprefix [^ ]+ [^ ]+ \\\\127%.0%.0%.1\\[^ ]*") ~= nil then
-        return mp.INFECTED
-      else
-        -- DECOMPILER ERROR at PC59: Confused about usage of register: R0 in 'UnsetPending'
-
-        if (string.match)((string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2)), "/replaceremoteprefix [^ ]+ [^ ]+ .:\\[^ ]*") ~= nil then
-          return mp.INFECTED
-        end
-      end
-    end
-    return mp.CLEAN
-  end
+local L0_0
+if this_sigattrlog[1].matched then
+  L0_0 = string.lower(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[1].utf8p2))
+elseif this_sigattrlog[2].matched then
+  L0_0 = string.lower(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[2].utf8p2))
+else
+  return mp.CLEAN
 end
-
+if string.match(L0_0, "/replaceremoteprefix [^ ]+ [^ ]+ \\\\localhost\\[^ ]*") ~= nil then
+  return mp.INFECTED
+elseif string.match(L0_0, "/replaceremoteprefix [^ ]+ [^ ]+ \\\\127%.0%.0%.1\\[^ ]*") ~= nil then
+  return mp.INFECTED
+elseif string.match(L0_0, "/replaceremoteprefix [^ ]+ [^ ]+ .:\\[^ ]*") ~= nil then
+  return mp.INFECTED
+end
+return mp.CLEAN

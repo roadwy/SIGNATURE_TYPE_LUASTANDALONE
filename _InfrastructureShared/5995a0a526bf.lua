@@ -1,47 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5995a0a526bf 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr + 13, 96)
-local l_0_1 = 1
-while 1 do
-  while 1 do
-    while 1 do
-      if l_0_1 < #l_0_0 then
-        local l_0_2 = (string.byte)(l_0_0, l_0_1)
-        if l_0_2 == 232 then
-          if (mp.readu_u32)(l_0_0, l_0_1 + 1) ~= 0 then
-            return mp.CLEAN
-          end
-          l_0_1 = l_0_1 + 5
-          -- DECOMPILER ERROR at PC29: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC29: LeaveBlock: unexpected jumping out IF_STMT
-
-          -- DECOMPILER ERROR at PC29: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC29: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 13
+L2_2 = 96
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = 1
+while true do
+  L2_2 = #L0_0
+  if L1_1 < L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.byte
+    L3_3 = L0_0
+    L2_2 = L2_2(L3_3, L1_1)
+    if L2_2 == 232 then
+      L3_3 = mp
+      L3_3 = L3_3.readu_u32
+      L3_3 = L3_3(L0_0, L1_1 + 1)
+      if L3_3 ~= 0 then
+        L3_3 = mp
+        L3_3 = L3_3.CLEAN
+        return L3_3
       end
-    end
-    if l_0_2 == 61 then
-      do
-        local l_0_3 = "\235"
-        ;
-        (pe.mmap_patch_va)(pevars.sigaddr + (l_0_1) + 34, l_0_3)
-        do return mp.INFECTED end
-        -- DECOMPILER ERROR at PC44: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC44: LeaveBlock: unexpected jumping out IF_STMT
-
-      end
+      L1_1 = L1_1 + 5
+    elseif L2_2 == 61 then
+      L3_3 = "\235"
+      pe.mmap_patch_va(pevars.sigaddr + L1_1 + 34, L3_3)
+      return mp.INFECTED
+    else
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
     end
   end
-  return mp.CLEAN
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

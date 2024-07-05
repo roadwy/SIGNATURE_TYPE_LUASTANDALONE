@@ -1,167 +1,73 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1957876d3e422 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections < 5 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 < 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = {}
-local l_0_1 = {}
-l_0_1.sig = "‹|$\016ƒï\b…Ét\0060\023IO\235"
-l_0_1.xray_type = 11
-l_0_1.bytes_to_decrypt = 0
-local l_0_2 = {}
-l_0_2.sig = "‹|$\016ƒï\006…Ét\0060\023IO\235"
-l_0_2.xray_type = 11
-l_0_2.bytes_to_decrypt = 0
--- DECOMPILER ERROR at PC16: No list found for R0 , SetList fails
-
-l_0_1 = pe
-l_0_1 = l_0_1.xray_block
-l_0_2 = l_0_0
-l_0_1 = l_0_1(l_0_2, 2, 1, 0, 8192)
-l_0_2 = mp
-l_0_2 = l_0_2.INFECTED
-if l_0_1 == l_0_2 then
-  l_0_2 = mp
-  l_0_2 = l_0_2.INFECTED
-  return l_0_2
+L0_0 = {
+  L1_1,
+  {
+    sig = "\139|$\016\131\239\006\133\201t\0060\023IO\235",
+    xray_type = 11,
+    bytes_to_decrypt = 0
+  }
+}
+L1_1 = {}
+L1_1.sig = "\139|$\016\131\239\b\133\201t\0060\023IO\235"
+L1_1.xray_type = 11
+L1_1.bytes_to_decrypt = 0
+L1_1 = pe
+L1_1 = L1_1.xray_block
+L1_1 = L1_1(L0_0, 2, 1, 0, 8192)
+if L1_1 == mp.INFECTED then
+  return mp.INFECTED
 end
-l_0_2 = pehdr
-l_0_2 = l_0_2.NumberOfSections
-if l_0_2 >= 5 then
-  l_0_2 = pesecs
-  l_0_2 = l_0_2[5]
-  l_0_2 = l_0_2.VirtualSize
-  if l_0_2 >= 9216 then
-    l_0_2 = pe
-    l_0_2 = l_0_2.xray_block
-    l_0_2 = l_0_2(l_0_0, 2, 4, 6656, 9216)
-    l_0_1 = l_0_2
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    if l_0_1 == l_0_2 then
-      l_0_2 = mp
-      l_0_2 = l_0_2.INFECTED
-      return l_0_2
+if pehdr.NumberOfSections >= 5 then
+  if pesecs[5].VirtualSize >= 9216 then
+    L1_1 = pe.xray_block(L0_0, 2, 4, 6656, 9216)
+    if L1_1 == mp.INFECTED then
+      return mp.INFECTED
     end
   end
-  l_0_2 = pe
-  l_0_2 = l_0_2.xray_block
-  l_0_2 = l_0_2(l_0_0, 2, 4, 2048, 5120)
-  l_0_1 = l_0_2
-  l_0_2 = mp
-  l_0_2 = l_0_2.INFECTED
-  if l_0_1 == l_0_2 then
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    return l_0_2
+  L1_1 = pe.xray_block(L0_0, 2, 4, 2048, 5120)
+  if L1_1 == mp.INFECTED then
+    return mp.INFECTED
   end
 end
-l_0_2 = pehdr
-l_0_2 = l_0_2.NumberOfSections
-if l_0_2 >= 7 then
-  l_0_2 = pe
-  l_0_2 = l_0_2.xray_block
-  l_0_2 = l_0_2(l_0_0, 2, 2, 0, 1024)
-  l_0_1 = l_0_2
-  l_0_2 = mp
-  l_0_2 = l_0_2.INFECTED
-  if l_0_1 == l_0_2 then
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    return l_0_2
+if pehdr.NumberOfSections >= 7 then
+  L1_1 = pe.xray_block(L0_0, 2, 2, 0, 1024)
+  if L1_1 == mp.INFECTED then
+    return mp.INFECTED
   end
-  l_0_2 = pe
-  l_0_2 = l_0_2.xray_block
-  l_0_2 = l_0_2(l_0_0, 2, 6, 0, 2048)
-  l_0_1 = l_0_2
-  l_0_2 = mp
-  l_0_2 = l_0_2.INFECTED
-  if l_0_1 == l_0_2 then
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    return l_0_2
+  L1_1 = pe.xray_block(L0_0, 2, 6, 0, 2048)
+  if L1_1 == mp.INFECTED then
+    return mp.INFECTED
   end
-  l_0_2 = pesecs
-  l_0_2 = l_0_2[7]
-  l_0_2 = l_0_2.VirtualSize
-  if l_0_2 >= 5120 then
-    l_0_2 = pe
-    l_0_2 = l_0_2.xray_block
-    l_0_2 = l_0_2(l_0_0, 2, 6, 4096, 5120)
-    l_0_1 = l_0_2
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    if l_0_1 == l_0_2 then
-      l_0_2 = mp
-      l_0_2 = l_0_2.INFECTED
-      return l_0_2
+  if 5120 <= pesecs[7].VirtualSize then
+    L1_1 = pe.xray_block(L0_0, 2, 6, 4096, 5120)
+    if L1_1 == mp.INFECTED then
+      return mp.INFECTED
     end
   end
-  l_0_2 = pehdr
-  l_0_2 = l_0_2.NumberOfSections
-  if l_0_2 >= 8 then
-    l_0_2 = pe
-    l_0_2 = l_0_2.xray_block
-    l_0_2 = l_0_2(l_0_0, 2, 7, 0, 1024)
-    l_0_1 = l_0_2
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    if l_0_1 == l_0_2 then
-      l_0_2 = mp
-      l_0_2 = l_0_2.INFECTED
-      return l_0_2
+  if pehdr.NumberOfSections >= 8 then
+    L1_1 = pe.xray_block(L0_0, 2, 7, 0, 1024)
+    if L1_1 == mp.INFECTED then
+      return mp.INFECTED
     end
-    l_0_2 = pesecs
-    l_0_2 = l_0_2[8]
-    l_0_2 = l_0_2.VirtualSize
-    if l_0_2 >= 5120 then
-      l_0_2 = pe
-      l_0_2 = l_0_2.xray_block
-      l_0_2 = l_0_2(l_0_0, 2, 7, 4096, 5120)
-      l_0_1 = l_0_2
-      l_0_2 = mp
-      l_0_2 = l_0_2.INFECTED
-      if l_0_1 == l_0_2 then
-        l_0_2 = mp
-        l_0_2 = l_0_2.INFECTED
-        return l_0_2
+    if 5120 <= pesecs[8].VirtualSize then
+      L1_1 = pe.xray_block(L0_0, 2, 7, 4096, 5120)
+      if L1_1 == mp.INFECTED then
+        return mp.INFECTED
       end
     end
   end
-  l_0_2 = pehdr
-  l_0_2 = l_0_2.NumberOfSections
-  if l_0_2 >= 9 then
-    l_0_2 = pesecs
-    l_0_2 = l_0_2[9]
-    l_0_2 = l_0_2.VirtualSize
-    if l_0_2 >= 5120 then
-      l_0_2 = pe
-      l_0_2 = l_0_2.xray_block
-      l_0_2 = l_0_2(l_0_0, 2, 8, 4096, 5120)
-      l_0_1 = l_0_2
-      l_0_2 = mp
-      l_0_2 = l_0_2.INFECTED
-      if l_0_1 == l_0_2 then
-        l_0_2 = mp
-        l_0_2 = l_0_2.INFECTED
-        return l_0_2
-      end
+  if pehdr.NumberOfSections >= 9 and 5120 <= pesecs[9].VirtualSize then
+    L1_1 = pe.xray_block(L0_0, 2, 8, 4096, 5120)
+    if L1_1 == mp.INFECTED then
+      return mp.INFECTED
     end
   end
 end
-l_0_2 = pe
-l_0_2 = l_0_2.xray_block
-local l_0_3 = l_0_0
-local l_0_4 = 2
-local l_0_5 = 5
-local l_0_6 = 0
-do
-  local l_0_7 = 4096
-  do return l_0_2(l_0_3, l_0_4, l_0_5, l_0_6, l_0_7) end
-  -- DECOMPILER ERROR at PC205: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
-end
-
+return pe.xray_block(L0_0, 2, 5, 0, 4096)

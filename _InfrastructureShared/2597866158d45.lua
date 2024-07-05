@@ -1,10 +1,100 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2597866158d45 
-
--- params : ...
--- function num : 0
-if ((hstrlog[1]).matched or (hstrlog[2]).matched or (hstrlog[3]).matched or (hstrlog[4]).matched or (hstrlog[5]).matched or (hstrlog[6]).matched or (hstrlog[7]).matched or (hstrlog[8]).matched or (hstrlog[9]).matched or (hstrlog[10]).matched or (hstrlog[11]).matched or (hstrlog[12]).matched or (hstrlog[13]).matched) and ((hstrlog[14]).matched or (hstrlog[15]).matched or (hstrlog[16]).matched or (hstrlog[17]).matched or (hstrlog[18]).matched or (hstrlog[19]).matched) then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if not L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[4]
+      L0_0 = L0_0.matched
+      if not L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[5]
+        L0_0 = L0_0.matched
+        if not L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[6]
+          L0_0 = L0_0.matched
+          if not L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[7]
+            L0_0 = L0_0.matched
+            if not L0_0 then
+              L0_0 = hstrlog
+              L0_0 = L0_0[8]
+              L0_0 = L0_0.matched
+              if not L0_0 then
+                L0_0 = hstrlog
+                L0_0 = L0_0[9]
+                L0_0 = L0_0.matched
+                if not L0_0 then
+                  L0_0 = hstrlog
+                  L0_0 = L0_0[10]
+                  L0_0 = L0_0.matched
+                  if not L0_0 then
+                    L0_0 = hstrlog
+                    L0_0 = L0_0[11]
+                    L0_0 = L0_0.matched
+                    if not L0_0 then
+                      L0_0 = hstrlog
+                      L0_0 = L0_0[12]
+                      L0_0 = L0_0.matched
+                      if not L0_0 then
+                        L0_0 = hstrlog
+                        L0_0 = L0_0[13]
+                        L0_0 = L0_0.matched
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+elseif L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[14]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[15]
+    L0_0 = L0_0.matched
+    if not L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[16]
+      L0_0 = L0_0.matched
+      if not L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[17]
+        L0_0 = L0_0.matched
+        if not L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[18]
+          L0_0 = L0_0.matched
+          if not L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[19]
+            L0_0 = L0_0.matched
+          end
+        end
+      end
+    end
+  elseif L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.INFECTED
+    return L0_0
+  end
 end
-return mp.LOWFI
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

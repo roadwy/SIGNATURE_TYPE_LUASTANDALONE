@@ -1,220 +1,167 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ddb383b730d9_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = 60
-local l_0_1 = (bm.get_current_process_startup_info)()
-local l_0_2 = (bm.get_imagepath)()
-if l_0_2 == nil or l_0_2 == "" or l_0_1 == nil or l_0_1.ppid == nil or l_0_1.command_line == nil or l_0_1.command_line == "" then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = 60
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L2_2 = L2_2()
+if L2_2 ~= nil and L2_2 ~= "" and L1_1 ~= nil then
+  L3_3 = L1_1.ppid
+  if L3_3 ~= nil then
+    L3_3 = L1_1.command_line
+    if L3_3 ~= nil then
+      L3_3 = L1_1.command_line
+    end
+  end
+elseif L3_3 == "" then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if IsProcessExcludedFromRansomwareAnalysis() == true then
-  return mp.CLEAN
+L3_3 = IsProcessExcludedFromRansomwareAnalysis
+L3_3 = L3_3()
+if L3_3 == true then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = "Ransomware_Analysis_pid_Generic.E"
-local l_0_4 = (MpCommon.GetPersistContextNoPath)(l_0_3)
-if l_0_4 ~= nil then
-  for l_0_8,l_0_9 in ipairs(l_0_4) do
-    if (string.find)(l_0_1.ppid, l_0_9, 1, true) == 1 then
+L3_3 = "Ransomware_Analysis_pid_Generic.E"
+L4_4 = MpCommon
+L4_4 = L4_4.GetPersistContextNoPath
+L4_4 = L4_4(L5_5)
+if L4_4 ~= nil then
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = string
+    L10_10 = L10_10.find
+    L11_11 = L1_1.ppid
+    L10_10 = L10_10(L11_11, L9_9, 1, true)
+    if L10_10 == 1 then
+      L10_10 = mp
+      L10_10 = L10_10.CLEAN
+      return L10_10
+    end
+  end
+end
+L5_5(L6_6, L7_7, L8_8)
+if L6_6 ~= nil then
+  for L10_10, L11_11 in L7_7(L8_8) do
+    if string.find(L1_1.command_line, L11_11, 1, true) == 1 then
       return mp.CLEAN
     end
   end
 end
-do
-  local l_0_10 = MpCommon.SetPersistContextNoPath
-  local l_0_11 = l_0_3
-  local l_0_12 = {}
-  -- DECOMPILER ERROR at PC62: No list found for R7 , SetList fails
-
-  -- DECOMPILER ERROR at PC63: Overwrote pending register: R8 in 'AssignReg'
-
-  l_0_10(l_0_11, l_0_12, l_0_1.ppid)
-  l_0_10 = "Ransomware_Analysis_cmd_Generic.E"
-  l_0_11 = MpCommon
-  l_0_11 = l_0_11.GetPersistContextNoPath
-  l_0_12 = l_0_10
-  l_0_11 = l_0_11(l_0_12)
-  if l_0_11 ~= nil then
-    l_0_12 = ipairs
-    l_0_12 = l_0_12(l_0_11)
-    for l_0_16,i_2 in l_0_12 do
-      if (string.find)(l_0_1.command_line, l_0_16, 1, true) == 1 then
-        return mp.CLEAN
+L10_10 = L1_1.command_line
+L10_10 = L0_0
+L7_7(L8_8, L9_9, L10_10)
+if L7_7 ~= nil then
+elseif L8_8 == nil then
+  return L8_8
+end
+L10_10 = L2_2
+L11_11 = ":File_Changed"
+L10_10 = L2_2
+L11_11 = "/bin/tar"
+if L9_9 then
+  return L9_9
+end
+if L9_9 then
+  if L9_9 ~= nil then
+    L10_10 = isMultiExtensionFileName
+    L11_11 = L9_9
+    L10_10 = L10_10(L11_11)
+    if L10_10 == false then
+      L10_10 = mp
+      L10_10 = L10_10.CLEAN
+      return L10_10
+    end
+    L11_11 = L9_9
+    L10_10 = L9_9.match
+    L10_10 = L10_10(L11_11, "%.[^/%.]+$")
+    if L10_10 == nil then
+      L11_11 = mp
+      L11_11 = L11_11.CLEAN
+      return L11_11
+    end
+    L11_11 = string
+    L11_11 = L11_11.find
+    L11_11 = L11_11(L2_2, "/usr/bin/gpg", 1, true)
+    if L11_11 == 1 then
+      L11_11 = string
+      L11_11 = L11_11.find
+      L11_11 = L11_11(L9_9, "/trustdb.gpg", -12, true)
+      if not L11_11 then
+        L11_11 = string
+        L11_11 = L11_11.find
+        L11_11 = L11_11(L9_9, "/secring.gpg", -12, true)
+      elseif L11_11 then
+        L11_11 = mp
+        L11_11 = L11_11.CLEAN
+        return L11_11
       end
     end
-  end
-  do
-    local l_0_17 = nil
-    local l_0_18 = nil
-    local l_0_19 = nil
-    -- DECOMPILER ERROR at PC96: Overwrote pending register: R10 in 'AssignReg'
-
-    ;
-    (MpCommon.SetPersistContextNoPath)(l_0_17, l_0_18, l_0_19)
-    l_0_18 = {l_0_19}
-    -- DECOMPILER ERROR at PC103: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC106: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC107: Overwrote pending register: R8 in 'AssignReg'
-
-    if (mp.GetParentProcInfo)() == nil or l_0_17 == nil then
-      return l_0_17
+    L11_11 = L10_10.match
+    L11_11 = L11_11(L10_10, "%.(%d+)$")
+    if L11_11 == nil then
+      L11_11 = L10_10.match
+      L11_11 = L11_11(L10_10, "%.%-(%w+)$")
+    elseif L11_11 ~= nil then
+      L11_11 = mp
+      L11_11 = L11_11.CLEAN
+      return L11_11
     end
-    -- DECOMPILER ERROR at PC109: Overwrote pending register: R8 in 'AssignReg'
-
-    l_0_18 = ":"
-    -- DECOMPILER ERROR at PC111: Overwrote pending register: R10 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC113: Overwrote pending register: R8 in 'AssignReg'
-
-    l_0_18 = string
-    l_0_18 = l_0_18.find
-    -- DECOMPILER ERROR at PC116: Overwrote pending register: R10 in 'AssignReg'
-
-    l_0_18 = l_0_18(l_0_19, "/bin/tar", -8, true)
-    if l_0_18 then
-      l_0_18 = mp
-      l_0_18 = l_0_18.CLEAN
-      return l_0_18
+    L11_11 = CheckFileExtnIncludeProcessId
+    L11_11 = L11_11(L1_1.ppid, L10_10)
+    if L11_11 then
+      L11_11 = mp
+      L11_11 = L11_11.CLEAN
+      return L11_11
     end
-    l_0_18 = this_sigattrlog
-    l_0_18 = l_0_18[6]
-    l_0_18 = l_0_18.matched
-    if l_0_18 then
-      l_0_18 = this_sigattrlog
-      l_0_18 = l_0_18[6]
-      l_0_18 = l_0_18.utf8p1
-      if l_0_18 ~= nil then
-        l_0_18 = this_sigattrlog
-        l_0_18 = l_0_18[6]
-        l_0_18 = l_0_18.utf8p1
-        -- DECOMPILER ERROR at PC139: Overwrote pending register: R10 in 'AssignReg'
-
-        l_0_19 = l_0_19(l_0_18)
-        if l_0_19 == false then
-          l_0_19 = mp
-          l_0_19 = l_0_19.CLEAN
-          return l_0_19
-        end
-        l_0_19 = l_0_19(l_0_18, "%.[^/%.]+$")
-        local l_0_20 = nil
-        if l_0_19 == nil then
-          l_0_20 = mp
-          l_0_20 = l_0_20.CLEAN
-          return l_0_20
-        end
-        l_0_20 = string
-        l_0_20 = l_0_20.find
-        l_0_20 = l_0_20(l_0_2, "/usr/bin/gpg", 1, true)
-        if l_0_20 == 1 then
-          l_0_20 = string
-          l_0_20 = l_0_20.find
-          l_0_20 = l_0_20(l_0_18, "/trustdb.gpg", -12, true)
-          if not l_0_20 then
-            l_0_20 = string
-            l_0_20 = l_0_20.find
-            l_0_20 = l_0_20(l_0_18, "/secring.gpg", -12, true)
-          end
-          if l_0_20 then
-            l_0_20 = mp
-            l_0_20 = l_0_20.CLEAN
-            return l_0_20
-          end
-        end
-        l_0_20 = l_0_20(l_0_19, "%.(%d+)$")
-        if l_0_20 == nil then
-          l_0_20 = l_0_20(l_0_19, "%.%-(%w+)$")
-        end
-        if l_0_20 ~= nil then
-          l_0_20 = mp
-          l_0_20 = l_0_20.CLEAN
-          return l_0_20
-        end
-        l_0_20 = CheckFileExtnIncludeProcessId
-        l_0_20 = l_0_20(l_0_1.ppid, l_0_19)
-        if l_0_20 then
-          l_0_20 = mp
-          l_0_20 = l_0_20.CLEAN
-          return l_0_20
-        end
-        l_0_20 = string
-        l_0_20 = l_0_20.find
-        l_0_20 = l_0_20(l_0_18, "/miniconda/", 1, true)
-        if not l_0_20 then
-          l_0_20 = string
-          l_0_20 = l_0_20.find
-          l_0_20 = l_0_20(l_0_18, "/.cache/", 1, true)
-          if not l_0_20 then
-            l_0_20 = string
-            l_0_20 = l_0_20.find
-            l_0_20 = l_0_20(l_0_18, "backup/", 1, true)
-            if not l_0_20 then
-              l_0_20 = string
-              l_0_20 = l_0_20.find
-              l_0_20 = l_0_20(l_0_18, "/backup", 1, true)
-              if not l_0_20 then
-                l_0_20 = string
-                l_0_20 = l_0_20.find
-                l_0_20 = l_0_20(l_0_18, "/opt/splunk/", 1, true)
-              end
-            end
-          end
-        end
-        if l_0_20 == 1 then
-          l_0_20 = mp
-          l_0_20 = l_0_20.CLEAN
-          return l_0_20
-        end
-        l_0_20 = isKnownFileExtension
-        l_0_20 = l_0_20(l_0_18)
-        if l_0_20 == false then
-          l_0_20 = IsRansomwareProcessImagePathExtensionExcluded
-          l_0_20 = l_0_20(l_0_2, l_0_19)
-          if l_0_20 == false then
-            l_0_20 = GetFileEntropy
-            l_0_20 = l_0_20(l_0_18)
-            local l_0_21 = nil
-            if l_0_20 == nil or l_0_20 < 7 then
-              l_0_21 = mp
-              l_0_21 = l_0_21.CLEAN
-              return l_0_21
-            end
-            l_0_21 = MpCommon
-            l_0_21 = l_0_21.SetPersistContextNoPath
-            local l_0_22 = nil
-            l_0_22 = l_0_17
-            local l_0_23 = nil
-            local l_0_24 = nil
-            l_0_24 = l_0_18
-            l_0_24 = l_0_0
-            l_0_21(l_0_22, l_0_23, l_0_24)
-            l_0_23 = {l_0_24}
-            l_0_21 = analyzeRansomwarePattern5
-            l_0_22 = l_0_17
-            l_0_23 = "NEW_FILE_CREATED"
-            l_0_21 = l_0_21(l_0_22, l_0_23)
-            l_0_22 = mp
-            l_0_22 = l_0_22.INFECTED
-            if l_0_21 == l_0_22 then
-              l_0_21 = mp
-              l_0_21 = l_0_21.INFECTED
-              return l_0_21
-            end
+    L11_11 = string
+    L11_11 = L11_11.find
+    L11_11 = L11_11(L9_9, "/miniconda/", 1, true)
+    if not L11_11 then
+      L11_11 = string
+      L11_11 = L11_11.find
+      L11_11 = L11_11(L9_9, "/.cache/", 1, true)
+      if not L11_11 then
+        L11_11 = string
+        L11_11 = L11_11.find
+        L11_11 = L11_11(L9_9, "backup/", 1, true)
+        if not L11_11 then
+          L11_11 = string
+          L11_11 = L11_11.find
+          L11_11 = L11_11(L9_9, "/backup", 1, true)
+          if not L11_11 then
+            L11_11 = string
+            L11_11 = L11_11.find
+            L11_11 = L11_11(L9_9, "/opt/splunk/", 1, true)
           end
         end
       end
+    elseif L11_11 == 1 then
+      L11_11 = mp
+      L11_11 = L11_11.CLEAN
+      return L11_11
     end
-    do
-      do
-        l_0_18 = mp
-        l_0_18 = l_0_18.CLEAN
-        do return l_0_18 end
-        -- DECOMPILER ERROR at PC298: Confused about usage of register R7 for local variables in 'ReleaseLocals'
-
+    L11_11 = isKnownFileExtension
+    L11_11 = L11_11(L9_9)
+    if L11_11 == false then
+      L11_11 = IsRansomwareProcessImagePathExtensionExcluded
+      L11_11 = L11_11(L2_2, L10_10)
+      if L11_11 == false then
+        L11_11 = MpCommon
+        L11_11 = L11_11.SetPersistContextNoPath
+        L11_11(L8_8, {L9_9}, L0_0)
+        L11_11 = analyzeRansomwarePattern5
+        L11_11 = L11_11(L8_8, "NEW_FILE_CREATED")
+        if L11_11 == mp.INFECTED then
+          L11_11 = mp
+          L11_11 = L11_11.INFECTED
+          return L11_11
+        end
       end
     end
   end
 end
-
+return L9_9

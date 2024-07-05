@@ -1,67 +1,116 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/68b34fc92b19 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_3, l_0_6, l_0_7, l_0_8, l_0_9, l_0_10 = nil
-if (this_sigattrlog[1]).matched then
-  local l_0_1 = nil
-  local l_0_2 = nil
-  if (string.match)((string.lower)((this_sigattrlog[1]).utf8p2), "%.exe%s(.+%.exe)%s") ~= nil and (string.len)((string.match)((string.lower)((this_sigattrlog[1]).utf8p2), "%.exe%s(.+%.exe)%s")) > 3 then
-    l_0_1 = (string.match)((string.lower)((this_sigattrlog[1]).utf8p2), "%.exe%s(.+%.exe)%s")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  L1_1 = L1_1(L2_2)
+  L2_2 = string
+  L2_2 = L2_2.match
+  L3_3 = L1_1
+  L4_4 = "%.exe%s(.+%.exe)%s"
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.len
+    L4_4 = L2_2
+    L3_3 = L3_3(L4_4)
+    if L3_3 > 3 then
+      L0_0 = L2_2
+    end
   end
 else
-  do
-    if (this_sigattrlog[2]).matched then
-      local l_0_4 = nil
-      local l_0_5 = nil
-      if (string.match)((string.lower)((this_sigattrlog[2]).utf8p2), "%.exe%s\".-([^\\]-[^\\%.]+)\"%s") ~= nil and (string.len)((string.match)((string.lower)((this_sigattrlog[2]).utf8p2), "%.exe%s\".-([^\\]-[^\\%.]+)\"%s")) > 3 then
-        l_0_4 = (string.match)((string.lower)((this_sigattrlog[2]).utf8p2), "%.exe%s\".-([^\\]-[^\\%.]+)\"%s")
-      end
-    end
-    do
-      -- DECOMPILER ERROR at PC51: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC55: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC61: Confused about usage of register: R0 in 'UnsetPending'
-
-      if l_0_4 == nil or (string.len)(l_0_4) < 4 or (string.sub)(l_0_4, -4) ~= ".exe" then
-        return mp.CLEAN
-      end
-      -- DECOMPILER ERROR at PC70: Confused about usage of register: R0 in 'UnsetPending'
-
-      local l_0_11 = nil
-      local l_0_12 = nil
-      if (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_0_4) ~= nil then
-        local l_0_13 = nil
-        if (sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_0_4), "Debugger") ~= nil and (string.len)((sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_0_4), "Debugger")) >= 1 then
-          if (sysio.IsFileExists)((sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_0_4), "Debugger")) then
-            (mp.ReportLowfi)((sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_0_4), "Debugger"), 1806419140)
-            ;
-            (bm.add_related_file)((sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_0_4), "Debugger"))
-          else
-            local l_0_14 = nil
-            for l_0_18,l_0_19 in ipairs((mp.GetExecutablesFromCommandLine)((sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_0_4), "Debugger"))) do
-              local l_0_15 = nil
-              -- DECOMPILER ERROR at PC115: Confused about usage of register: R9 in 'UnsetPending'
-
-              if R9_PC115 ~= nil and (string.len)(R9_PC115) > 3 and (sysio.IsFileExists)(R9_PC115) then
-                (mp.ReportLowfi)(R9_PC115, 1806419140)
-                ;
-                (bm.add_related_file)(R9_PC115)
-              end
-            end
-          end
-          do
-            do
-              do return mp.INFECTED end
-              return mp.CLEAN
-            end
-          end
-        end
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    L1_1 = L1_1(L2_2)
+    L2_2 = string
+    L2_2 = L2_2.match
+    L3_3 = L1_1
+    L4_4 = "%.exe%s\".-([^\\]-[^\\%.]+)\"%s"
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 ~= nil then
+      L3_3 = string
+      L3_3 = L3_3.len
+      L4_4 = L2_2
+      L3_3 = L3_3(L4_4)
+      if L3_3 > 3 then
+        L0_0 = L2_2
       end
     end
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  if not (L1_1 < 4) then
+    L1_1 = string
+    L1_1 = L1_1.sub
+    L2_2 = L0_0
+    L3_3 = -4
+    L1_1 = L1_1(L2_2, L3_3)
+  end
+elseif L1_1 ~= ".exe" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\"
+L2_2 = L0_0
+L1_1 = L1_1 .. L2_2
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 ~= nil then
+  L3_3 = sysio
+  L3_3 = L3_3.GetRegValueAsString
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 ~= nil then
+    L4_4 = string
+    L4_4 = L4_4.len
+    L4_4 = L4_4(L5_5)
+    if L4_4 >= 1 then
+      L4_4 = sysio
+      L4_4 = L4_4.IsFileExists
+      L4_4 = L4_4(L5_5)
+      if L4_4 then
+        L4_4 = mp
+        L4_4 = L4_4.ReportLowfi
+        L4_4(L5_5, L6_6)
+        L4_4 = bm
+        L4_4 = L4_4.add_related_file
+        L4_4(L5_5)
+      else
+        L4_4 = mp
+        L4_4 = L4_4.GetExecutablesFromCommandLine
+        L4_4 = L4_4(L5_5)
+        for L8_8, L9_9 in L5_5(L6_6) do
+          if L9_9 ~= nil and string.len(L9_9) > 3 and sysio.IsFileExists(L9_9) then
+            mp.ReportLowfi(L9_9, 1806419140)
+            bm.add_related_file(L9_9)
+          end
+        end
+      end
+      L4_4 = mp
+      L4_4 = L4_4.INFECTED
+      return L4_4
+    end
+  end
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

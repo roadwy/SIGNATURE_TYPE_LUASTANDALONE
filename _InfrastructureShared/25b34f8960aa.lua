@@ -1,25 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b34f8960aa 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-if not (string.find)(l_0_0, "^c:\\") and not (string.find)(l_0_0, "^\\\\") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L7_7 = L2_2()
+L7_7 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2())
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2()))
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+if not L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2, L3_3)
+  if not L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
 end
-if (string.find)(l_0_0, "\\program files", 1, true) or (string.find)(l_0_0, "\\cisco\\cisco", 1, true) then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+if not L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+elseif L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (MpCommon.QueryPersistContext)(l_0_0, "ExecutedPENoCert")
-if not l_0_1 then
-  return mp.CLEAN
+L1_1 = MpCommon
+L1_1 = L1_1.QueryPersistContext
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.enum_mpattributesubstring)("Behavior:")
-if #l_0_2 == 0 or l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.enum_mpattributesubstring
+L2_2 = L2_2(L3_3)
+if L3_3 == 0 or L2_2 == nil then
+  return L3_3
 end
-for l_0_6,l_0_7 in ipairs(l_0_2) do
-  (bm.add_related_string)("RelatedBMHits", l_0_7, bm.RelatedStringBMReport)
+for L6_6, L7_7 in L3_3(L4_4) do
+  bm.add_related_string("RelatedBMHits", L7_7, bm.RelatedStringBMReport)
 end
-return mp.INFECTED
-
+return L3_3

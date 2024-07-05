@@ -1,21 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VBS_JenxcusCrypt6_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 15000 or l_0_0 > 60000 then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 15000 or L0_0 > 60000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L1_1 = L1_1(L2_2, L0_0)
+L2_2 = L1_1.match
+L2_2 = L2_2(L1_1, "=%s-[Dd][Ee][Cc][Rr][Yy][Pp][Tt]%([Ss][Tt][Rr][Rr][Ee][Vv][Ee][Rr][Ss][Ee]%(\"(.-)\"%)%)")
+if L2_2 == nil then
   return mp.CLEAN
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_2 = l_0_1:match("=%s-[Dd][Ee][Cc][Rr][Yy][Pp][Tt]%([Ss][Tt][Rr][Rr][Ee][Vv][Ee][Rr][Ss][Ee]%(\"(.-)\"%)%)")
-if l_0_2 == nil then
-  return mp.CLEAN
-end
-l_0_2 = l_0_2:reverse()
-;
-(mp.vfo_add_buffer)(l_0_2, "[ReverseB64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L2_2 = L2_2:reverse()
+mp.vfo_add_buffer(L2_2, "[ReverseB64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

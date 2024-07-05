@@ -1,36 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1d8d7528f6e17_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 ~= nil and l_0_0.image_path ~= nil then
-  local l_0_1 = (string.lower)(l_0_0.image_path)
-  local l_0_2 = l_0_1:match("\\([^\\]+)$")
-  local l_0_3 = {}
-  l_0_3["movere.bot4.local.exe"] = true
-  l_0_3["sqlagent.exe"] = true
-  l_0_3["acroinst2.exe"] = true
-  l_0_3["kagentsilent.exe"] = true
-  l_0_3["taddmwmi.exe"] = true
-  l_0_3["madservice.exe"] = true
-  l_0_3["ccmexec.exe"] = true
-  l_0_3["gpscript.exe"] = true
-  l_0_3["mpcmdrun.exe"] = true
-  l_0_3["mssense.exe"] = true
-  l_0_3["senseir.exe"] = true
-  if l_0_3[l_0_2] then
-    return mp.CLEAN
-  end
-  local l_0_4 = GetRealPidForScenario("CMDHSTR")
-  if IsPidExcluded(l_0_4) then
-    return mp.CLEAN
-  end
-  if IsDetectionThresholdMet(l_0_4) and (IsTacticObservedForPid(l_0_4, "remoteservice-target") or IsTacticObservedForPid(l_0_4, "wmi_childproc") or IsTechniqueObservedForPid(l_0_4, "T1021.006")) then
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.image_path
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = L0_0.image_path
+    L1_1 = L1_1(L2_2)
+    L3_3 = L1_1
+    L2_2 = L1_1.match
+    L4_4 = "\\([^\\]+)$"
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = {}
+    L3_3["movere.bot4.local.exe"] = true
+    L3_3["sqlagent.exe"] = true
+    L3_3["acroinst2.exe"] = true
+    L3_3["kagentsilent.exe"] = true
+    L3_3["taddmwmi.exe"] = true
+    L3_3["madservice.exe"] = true
+    L3_3["ccmexec.exe"] = true
+    L3_3["gpscript.exe"] = true
+    L3_3["mpcmdrun.exe"] = true
+    L3_3["mssense.exe"] = true
+    L3_3["senseir.exe"] = true
+    L4_4 = L3_3[L2_2]
+    if L4_4 then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
+    end
+    L4_4 = GetRealPidForScenario
+    L4_4 = L4_4("CMDHSTR")
+    if IsPidExcluded(L4_4) then
+      return mp.CLEAN
+    end
+    if IsDetectionThresholdMet(L4_4) and (IsTacticObservedForPid(L4_4, "remoteservice-target") or IsTacticObservedForPid(L4_4, "wmi_childproc") or IsTechniqueObservedForPid(L4_4, "T1021.006")) then
+      return mp.INFECTED
+    end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

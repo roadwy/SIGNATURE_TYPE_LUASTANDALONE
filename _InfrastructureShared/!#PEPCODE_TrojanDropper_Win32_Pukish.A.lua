@@ -1,40 +1,85 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_TrojanDropper_Win32_Pukish.A 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.no_relocs ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.no_relocs
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasstandardentry == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasstandardentry
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.lastscn_falign == false then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.lastscn_falign
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epinfirstsect ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epinfirstsect
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epatstartlastsect ~= false then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epatstartlastsect
+if L0_0 ~= false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasappendeddata ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasappendeddata
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[6]).RVA ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[6]
+L0_0 = L0_0.RVA
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[3]).RVA == 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[3]
+L0_0 = L0_0.RVA
+if L0_0 == 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections <= 2 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 <= 2 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections >= 5 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 >= 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

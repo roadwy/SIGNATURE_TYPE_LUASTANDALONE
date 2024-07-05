@@ -1,17 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a3b36922ce8d 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = (MpCommon.QuerySessionInformation)(l_0_0.ppid, MpCommon.WTSIsRemoteSession)
-do
-  if l_0_1 then
-    local l_0_2 = (MpCommon.QuerySessionInformation)(l_0_0.ppid, MpCommon.WTSUserName)
-    if (MpCommon.QueryPersistContextNoPath)("MpNewRemoteUsers", l_0_2) then
-      return mp.INFECTED
-    end
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = MpCommon
+L1_1 = L1_1.QuerySessionInformation
+L2_2 = L0_0.ppid
+L1_1 = L1_1(L2_2, MpCommon.WTSIsRemoteSession)
+if L1_1 then
+  L2_2 = MpCommon
+  L2_2 = L2_2.QuerySessionInformation
+  L2_2 = L2_2(L0_0.ppid, MpCommon.WTSUserName)
+  if MpCommon.QueryPersistContextNoPath("MpNewRemoteUsers", L2_2) then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

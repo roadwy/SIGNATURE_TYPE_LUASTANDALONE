@@ -1,10 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4d788668a4c4 
-
--- params : ...
--- function num : 0
-if epcode[1] == 104 and epcode[6] == 195 and epcode[7] == 144 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 == 104 then
+  L0_0 = epcode
+  L0_0 = L0_0[6]
+  if L0_0 == 195 then
+    L0_0 = epcode
+    L0_0 = L0_0[7]
+    if L0_0 == 144 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

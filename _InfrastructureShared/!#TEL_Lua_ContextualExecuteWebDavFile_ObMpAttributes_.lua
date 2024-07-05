@@ -1,35 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Lua_ContextualExecuteWebDavFile_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN then
-  local l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  local l_0_2 = (string.sub)((string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)), 0, -5)
-  local l_0_3 = {}
-  l_0_3.cmd = ""
-  l_0_3.cscript = ""
-  l_0_3.wscript = ""
-  l_0_3.mshta = ""
-  l_0_3.rundll32 = ""
-  l_0_3.regasm = ""
-  l_0_3.regsvc = ""
-  l_0_3.regsvr32 = ""
-  l_0_3.odbcconf = ""
-  l_0_3.msbuild = ""
-  l_0_3.certutil = ""
-  l_0_3.installutil = ""
-  if l_0_3[(string.lower)(l_0_2)] then
-    local l_0_4 = (MpCommon.QueryPersistContext)(l_0_1, "DroppedFromWebDav")
-    if l_0_4 then
-      (mp.set_mpattribute)("Lua:ContextualExecuteWebDavFile:" .. l_0_2)
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.getfilename
+  L2_2 = mp
+  L2_2 = L2_2.bitor
+  L2_2 = L2_2(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)
+  L1_1 = L1_1(L2_2, L2_2(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L2_2 = L2_2(string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)), 0, -5)
+  if ({
+    cmd = "",
+    cscript = "",
+    wscript = "",
+    mshta = "",
+    rundll32 = "",
+    regasm = "",
+    regsvc = "",
+    regsvr32 = "",
+    odbcconf = "",
+    msbuild = "",
+    certutil = "",
+    installutil = ""
+  })[string.lower(L2_2)] then
+    if MpCommon.QueryPersistContext(L1_1, "DroppedFromWebDav") then
+      mp.set_mpattribute("Lua:ContextualExecuteWebDavFile:" .. L2_2)
     else
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

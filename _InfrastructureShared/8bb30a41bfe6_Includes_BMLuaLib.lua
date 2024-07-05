@@ -1,24 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8bb30a41bfe6_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[1]).utf8p1
-if not l_0_0 then
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.utf8p1
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.match
+L2_2 = L0_0.lower
+L2_2 = L2_2(L0_0)
+L1_1 = L1_1(L2_2, "\\(mpksl[%w]+)")
+L0_0 = L1_1
+L1_1 = getService
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.utf8p2
+if not L2_2 then
   return mp.CLEAN
 end
-l_0_0 = (string.match)(l_0_0:lower(), "\\(mpksl[%w]+)")
-local l_0_1 = getService(l_0_0)
-if not l_0_1 then
-  return mp.CLEAN
-end
-local l_0_2 = (this_sigattrlog[1]).utf8p2
-if not l_0_2 then
-  return mp.CLEAN
-end
-l_0_2 = l_0_2:lower()
-if l_0_2 ~= l_0_0 then
+L2_2 = L2_2:lower()
+if L2_2 ~= L0_0 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

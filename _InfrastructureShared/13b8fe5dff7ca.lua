@@ -1,10 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/13b8fe5dff7ca 
-
--- params : ...
--- function num : 0
-if (string.lower)((string.sub)((mp.getfilename)(), -3)) == "r2w" then
-  return mp.CLEAN
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(string.sub(mp.getfilename(), -3))
+if L0_0 == "r2w" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

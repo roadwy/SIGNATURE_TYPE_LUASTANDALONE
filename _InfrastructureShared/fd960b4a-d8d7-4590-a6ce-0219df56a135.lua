@@ -1,15 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/fd960b4a-d8d7-4590-a6ce-0219df56a135 
-
--- params : ...
--- function num : 0
-GetRuleInfo = function()
-  -- function num : 0_0
-  local l_1_0 = {}
-  l_1_0.Name = "Double Extension rule for consumer"
-  l_1_0.Description = "Block malicious double extension"
-  l_1_0.Type = HIPS.RULETYPE_CONSUMER
-  return l_1_0
+local L1_0
+function L1_0()
+  local L0_1, L1_2
+  L0_1 = {}
+  L0_1.Name = "Double Extension rule for consumer"
+  L0_1.Description = "Block malicious double extension"
+  L1_2 = HIPS
+  L1_2 = L1_2.RULETYPE_CONSUMER
+  L0_1.Type = L1_2
+  return L0_1
 end
-
-
+GetRuleInfo = L1_0

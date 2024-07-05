@@ -1,28 +1,63 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_DllDroppedByExcel_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_2 == "rbkvssprovider.dll" and ((string.find)(l_0_1, "\\temp\\rubrik_vmware", 1, true) or (string.find)(l_0_1, "program files\\rubrik\\rubrik backup service\\", 1, true)) then
-  return mp.CLEAN
-end
-if (string.find)(l_0_1, "windows\\syswow64", 1, true) and (l_0_2 == "ven2232.olb" or l_0_2 == "vbako32.olb" or l_0_2 == "vbaend32.olb" or l_0_2 == "vbade32.olb" or l_0_2 == "vbachs32.olb" or l_0_2 == "mscomctl.ocx") then
-  return mp.CLEAN
-end
-if l_0_0 == "excel.exe" then
-  local l_0_3 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-  local l_0_4 = "DllDroppedByExcel"
-  local l_0_5 = (MpCommon.QueryPersistContext)(l_0_3, l_0_4)
-  if not l_0_5 then
-    (MpCommon.AppendPersistContext)(l_0_3, l_0_4, 100)
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSNAME
+L4_4 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L1_1(L2_2))
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.bitor
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_PATH
+L3_3 = L3_3(L4_4, mp.FILEPATH_QUERY_FNAME)
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+L4_4 = L2_2(L3_3, L4_4)
+L2_2 = L1_1(L2_2, L3_3, L4_4, L2_2(L3_3, L4_4))
+if L2_2 == "rbkvssprovider.dll" then
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4, "\\temp\\rubrik_vmware", 1, true)
+  if not L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.find
+    L4_4 = L1_1
+    L3_3 = L3_3(L4_4, "program files\\rubrik\\rubrik backup service\\", 1, true)
+  elseif L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   end
-  ;
-  (mp.set_mpattribute)("MpDisableCaching")
+end
+L3_3 = string
+L3_3 = L3_3.find
+L4_4 = L1_1
+L3_3 = L3_3(L4_4, "windows\\syswow64", 1, true)
+if L3_3 and (L2_2 == "ven2232.olb" or L2_2 == "vbako32.olb" or L2_2 == "vbaend32.olb" or L2_2 == "vbade32.olb" or L2_2 == "vbachs32.olb" or L2_2 == "mscomctl.ocx") then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+if L0_0 == "excel.exe" then
+  L3_3 = mp
+  L3_3 = L3_3.getfilename
+  L4_4 = mp
+  L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+  L3_3 = L3_3(L4_4)
+  L4_4 = "DllDroppedByExcel"
+  if not MpCommon.QueryPersistContext(L3_3, L4_4) then
+    MpCommon.AppendPersistContext(L3_3, L4_4, 100)
+  end
+  mp.set_mpattribute("MpDisableCaching")
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

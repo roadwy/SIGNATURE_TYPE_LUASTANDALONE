@@ -1,24 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_TxtMzHexToBin_Includes_ConversionToB 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 8192 or l_0_0 > 4194304 then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 8192 or L0_0 > 4194304 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 0
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == 1953651835 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = tostring
+L3_3 = headerpage
+L5_5 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L2_2(L3_3))
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = "4d5a9000"
+L5_5 = 1
+L4_4 = L2_2(L3_3, L4_4, L5_5, true)
+L5_5 = mp
+L5_5 = L5_5.readprotection
+L5_5(false)
+L5_5 = mp
+L5_5 = L5_5.readfile
+L5_5 = L5_5(L2_2 - 1, L0_0 - (L2_2 - 1))
+if L5_5 == nil then
   return mp.CLEAN
 end
-if (mp.readu_u32)(headerpage, 0) == 1953651835 then
-  return mp.CLEAN
-end
-local l_0_1 = (string.lower)(tostring(headerpage))
-local l_0_2, l_0_3, l_0_4 = (string.find)(l_0_1, "4d5a9000", 1, true)
-;
-(mp.readprotection)(false)
-local l_0_5 = (mp.readfile)(l_0_2 - 1, l_0_0 - (l_0_2 - 1))
-if l_0_5 == nil then
-  return mp.CLEAN
-end
-;
-(mp.vfo_add_buffer)(fastHex2Bin(l_0_5, "([0-9A-Fa-f][0-9A-Fa-f])"), "[txtmzhextobin]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+mp.vfo_add_buffer(fastHex2Bin(L5_5, "([0-9A-Fa-f][0-9A-Fa-f])"), "[txtmzhextobin]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

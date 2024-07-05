@@ -1,30 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3e774c94e_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (bm.GetSignatureMatchDuration)() > 100000000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 100000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = nil
-local l_0_1, l_0_2 = pcall(bm.get_current_process_startup_info)
-local l_0_3 = nil
-if l_0_1 then
-  l_0_0 = l_0_2.command_line
-  l_0_3 = l_0_2.ppid
+L0_0 = nil
+L1_1 = pcall
+L2_2 = bm
+L2_2 = L2_2.get_current_process_startup_info
+L2_2 = L1_1(L2_2)
+L3_3 = nil
+if L1_1 then
+  L0_0 = L2_2.command_line
+  L3_3 = L2_2.ppid
 end
-do
-  if l_0_0 ~= nil and l_0_3 ~= nil then
-    local l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-    for l_0_8,l_0_9 in ipairs(l_0_4) do
-      l_0_9 = (mp.ContextualExpandEnvironmentVariables)(l_0_9)
-      if (sysio.IsFileExists)(l_0_9) and not (mp.IsKnownFriendlyFile)(l_0_9, true, false) then
-        (bm.add_related_file)(l_0_9)
-      end
+if L0_0 ~= nil and L3_3 ~= nil then
+  L4_4 = mp
+  L4_4 = L4_4.GetExecutablesFromCommandLine
+  L4_4 = L4_4(L5_5)
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L9_9 = mp.ContextualExpandEnvironmentVariables(L9_9)
+    if sysio.IsFileExists(L9_9) and not mp.IsKnownFriendlyFile(L9_9, true, false) then
+      bm.add_related_file(L9_9)
     end
-    TrackPidAndTechniqueBM(l_0_3, "T1574.002", "susp_dll_loaded")
-    return mp.INFECTED
   end
-  return mp.CLEAN
+  L8_8 = "susp_dll_loaded"
+  L5_5(L6_6, L7_7, L8_8)
+  return L5_5
 end
-
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

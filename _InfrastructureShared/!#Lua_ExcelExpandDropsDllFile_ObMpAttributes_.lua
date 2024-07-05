@@ -1,15 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ExcelExpandDropsDllFile_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-local l_0_1 = "CabDroppedByExcel"
-local l_0_2 = (MpCommon.QueryPersistContext)(l_0_0, l_0_1)
-if not l_0_2 then
-  (MpCommon.AppendPersistContext)(l_0_0, l_0_1, 100)
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.FILEPATH_QUERY_LOWERCASE
+L0_0 = L0_0(L1_1)
+L1_1 = "CabDroppedByExcel"
+if not MpCommon.QueryPersistContext(L0_0, L1_1) then
+  MpCommon.AppendPersistContext(L0_0, L1_1, 100)
 end
-;
-(mp.set_mpattribute)("MpDisableCaching")
+mp.set_mpattribute("MpDisableCaching")
 return mp.INFECTED
-

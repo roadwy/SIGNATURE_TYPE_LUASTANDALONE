@@ -1,60 +1,123 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/215b394af5a87 
-
--- params : ...
--- function num : 0
-if (bm.GetSignatureMatchDuration)() > 600000000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 600000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0, l_0_1 = nil, nil
-if (this_sigattrlog[15]).matched and (this_sigattrlog[15]).utf8p2 ~= nil then
-  l_0_0 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[15]).utf8p2))
-  if (string.find)(l_0_0, "/upload", 1, true) ~= nil then
-    return mp.CLEAN
+L0_0, L1_1 = nil, nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[15]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[15]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[15].utf8p2))
+    L0_0 = L2_2
+    L2_2 = string
+    L2_2 = L2_2.find
+    L2_2 = L2_2(L0_0, "/upload", 1, true)
+    if L2_2 ~= nil then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
+    end
+    L2_2 = string
+    L2_2 = L2_2.match
+    L2_2 = L2_2(L0_0, "\\([^\\]+)$")
+    L1_1 = L2_2
   end
-  l_0_1 = (string.match)(l_0_0, "\\([^\\]+)$")
 else
-  return mp.CLEAN
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-do
-  if (this_sigattrlog[16]).matched and (this_sigattrlog[16]).utf8p2 ~= nil then
-    local l_0_2 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[16]).utf8p2))
-    if (string.find)(l_0_2, l_0_1, 1, true) ~= nil then
+L2_2 = this_sigattrlog
+L2_2 = L2_2[16]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[16]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[16].utf8p2))
+    if string.find(L2_2, L1_1, 1, true) ~= nil then
       return mp.INFECTED
     end
   end
-  do
-    if (this_sigattrlog[17]).matched and (this_sigattrlog[17]).utf8p2 ~= nil then
-      local l_0_3 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[17]).utf8p2))
-      if (string.find)(l_0_3, l_0_1, 1, true) ~= nil then
-        return mp.INFECTED
-      end
-    end
-    do
-      if (this_sigattrlog[18]).matched and (this_sigattrlog[18]).utf8p2 ~= nil then
-        local l_0_4 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[18]).utf8p2))
-        if (string.find)(l_0_4, l_0_1, 1, true) ~= nil then
-          return mp.INFECTED
-        end
-      end
-      do
-        if (this_sigattrlog[19]).matched and (this_sigattrlog[19]).utf8p2 ~= nil then
-          local l_0_5 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[19]).utf8p2))
-          if (string.find)(l_0_5, l_0_1, 1, true) ~= nil then
-            return mp.INFECTED
-          end
-        end
-        do
-          if (this_sigattrlog[20]).matched and (this_sigattrlog[20]).utf8p2 ~= nil then
-            local l_0_6 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[20]).utf8p2))
-            if (string.find)(l_0_6, l_0_1, 1, true) ~= nil then
-              return mp.INFECTED
-            end
-          end
-          return mp.CLEAN
-        end
-      end
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[17]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[17]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[17].utf8p2))
+    if string.find(L2_2, L1_1, 1, true) ~= nil then
+      return mp.INFECTED
     end
   end
 end
-
+L2_2 = this_sigattrlog
+L2_2 = L2_2[18]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[18]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[18].utf8p2))
+    if string.find(L2_2, L1_1, 1, true) ~= nil then
+      return mp.INFECTED
+    end
+  end
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[19]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[19]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[19].utf8p2))
+    if string.find(L2_2, L1_1, 1, true) ~= nil then
+      return mp.INFECTED
+    end
+  end
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[20]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[20]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[20].utf8p2))
+    if string.find(L2_2, L1_1, 1, true) ~= nil then
+      return mp.INFECTED
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

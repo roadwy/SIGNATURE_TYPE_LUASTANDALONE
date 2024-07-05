@@ -1,47 +1,63 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FileInSpecialFolder.A_Includes_Path_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 ~= nil and #l_0_0 > 10 then
-  local l_0_1 = (mp.getfilesize)()
-  if l_0_1 < 100 then
-    return mp.CLEAN
-  end
-  l_0_0 = normalize_path(l_0_0)
-  if l_0_0 == nil then
-    return mp.CLEAN
-  end
-  local l_0_2 = {}
-  l_0_2[":\\programdata"] = "programdata"
-  l_0_2["\\appdata\\roaming"] = "appdata"
-  l_0_2[":\\program files\\common files"] = "commonprogramfiles"
-  l_0_2[":\\program files (x86)\\common files"] = "commonprogramfilesx86"
-  l_0_2["\\appdata\\local\\temp"] = "temp"
-  l_0_2["\\appdata\\local"] = "localappdata"
-  l_0_2["\\appdata\\locallow"] = "locallowappdata"
-  l_0_2[":\\program files"] = "programfiles"
-  l_0_2[":\\program files (x86)"] = "programfilesx86"
-  l_0_2[":\\users\\public"] = "public"
-  l_0_2[":\\windows\\system32\\wbem"] = "wbem"
-  l_0_2[":\\windows\\syswow64\\wbem"] = "wbem"
-  l_0_2[":\\windows\\servicing"] = "servicing"
-  l_0_2[":\\windows\\system32"] = "sysdir"
-  l_0_2[":\\windows\\syswow64"] = "syswow64"
-  l_0_2[":\\windows"] = "windir"
-  for l_0_6,l_0_7 in pairs(l_0_2) do
-    if #l_0_6 < #l_0_0 and l_0_0:find(l_0_6, 1, true) then
-      local l_0_8 = "Lua:Context/FileInPath.A!" .. l_0_7
-      ;
-      (mp.set_mpattribute)(l_0_8)
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_PATH
+L8_8 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L1_1(L2_2, L3_3))
+if L0_0 ~= nil then
+  L1_1 = #L0_0
+  if L1_1 > 10 then
+    L1_1 = mp
+    L1_1 = L1_1.getfilesize
+    L1_1 = L1_1()
+    if L1_1 < 100 then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
+    end
+    L2_2 = normalize_path
+    L2_2 = L2_2(L3_3)
+    L0_0 = L2_2
+    if L0_0 == nil then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
+    end
+    L2_2 = {}
+    L2_2[":\\programdata"] = "programdata"
+    L2_2["\\appdata\\roaming"] = "appdata"
+    L2_2[":\\program files\\common files"] = "commonprogramfiles"
+    L2_2[":\\program files (x86)\\common files"] = "commonprogramfilesx86"
+    L2_2["\\appdata\\local\\temp"] = "temp"
+    L2_2["\\appdata\\local"] = "localappdata"
+    L2_2["\\appdata\\locallow"] = "locallowappdata"
+    L2_2[":\\program files"] = "programfiles"
+    L2_2[":\\program files (x86)"] = "programfilesx86"
+    L2_2[":\\users\\public"] = "public"
+    L2_2[":\\windows\\system32\\wbem"] = "wbem"
+    L2_2[":\\windows\\syswow64\\wbem"] = "wbem"
+    L2_2[":\\windows\\servicing"] = "servicing"
+    L2_2[":\\windows\\system32"] = "sysdir"
+    L2_2[":\\windows\\syswow64"] = "syswow64"
+    L2_2[":\\windows"] = "windir"
+    for L6_6, L7_7 in L3_3(L4_4) do
+      L8_8 = #L0_0
+      if L8_8 > #L6_6 then
+        L8_8 = L0_0.find
+        L8_8 = L8_8(L0_0, L6_6, 1, true)
+        if L8_8 then
+          L8_8 = "Lua:Context/FileInPath.A!"
+          L8_8 = L8_8 .. L7_7
+          mp.set_mpattribute(L8_8)
+          return mp.CLEAN
+        end
+      end
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

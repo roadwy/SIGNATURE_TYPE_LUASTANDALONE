@@ -1,47 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Lua_VirTool_Win32_XoredPEword_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if mp.HEADERPAGE_SZ <= 60 then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if L0_0 <= 60 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if 0 == L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.HEADERPAGE_SZ
+if L0_0 <= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = headerpage
+L1_1 = L1_1[63]
+if 0 ~= L1_1 then
+  L1_1 = headerpage
+  L1_1 = L1_1[64]
+elseif 0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = headerpage
+L1_1 = L1_1[63]
+L2_2 = headerpage
+L2_2 = L2_2[64]
+if L1_1 == L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = headerpage
+L1_1 = L1_1[63]
+L2_2 = headerpage
+L2_2 = L2_2[64]
+if 77 ~= mp.bitxor(headerpage[1], L1_1) then
   return mp.CLEAN
 end
-if mp.HEADERPAGE_SZ == 0 then
+if 90 ~= mp.bitxor(headerpage[2], L2_2) then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 <= mp.HEADERPAGE_SZ then
-  return mp.CLEAN
-end
-if headerpage[63] == 0 or headerpage[64] == 0 then
-  return mp.CLEAN
-end
-if headerpage[63] == headerpage[64] then
-  return mp.CLEAN
-end
-local l_0_1 = headerpage[63]
-local l_0_2 = headerpage[64]
-if (mp.bitxor)(headerpage[1], l_0_1) ~= 77 then
-  return mp.CLEAN
-end
-if (mp.bitxor)(headerpage[2], l_0_2) ~= 90 then
-  return mp.CLEAN
-end
-local l_0_3 = 1 + (mp.bitxor)(headerpage[61], l_0_1) + (mp.bitxor)(headerpage[62], l_0_2) * 256
-if l_0_3 <= mp.HEADERPAGE_SZ - 4 then
-  if (mp.bitxor)(headerpage[l_0_3], l_0_1) ~= 80 then
+if 1 + mp.bitxor(headerpage[61], L1_1) + mp.bitxor(headerpage[62], L2_2) * 256 <= mp.HEADERPAGE_SZ - 4 then
+  if 80 ~= mp.bitxor(headerpage[1 + mp.bitxor(headerpage[61], L1_1) + mp.bitxor(headerpage[62], L2_2) * 256], L1_1) then
     return mp.CLEAN
   end
-  if (mp.bitxor)(headerpage[l_0_3 + 1], l_0_2) ~= 69 then
+  if 69 ~= mp.bitxor(headerpage[1 + mp.bitxor(headerpage[61], L1_1) + mp.bitxor(headerpage[62], L2_2) * 256 + 1], L2_2) then
     return mp.CLEAN
   end
-  if l_0_1 ~= headerpage[l_0_3 + 2] then
+  if L1_1 ~= headerpage[1 + mp.bitxor(headerpage[61], L1_1) + mp.bitxor(headerpage[62], L2_2) * 256 + 2] then
     return mp.CLEAN
   end
-  if l_0_2 ~= headerpage[l_0_3 + 3] then
+  if L2_2 ~= headerpage[1 + mp.bitxor(headerpage[61], L1_1) + mp.bitxor(headerpage[62], L2_2) * 256 + 3] then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,83 +1,106 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/99b350395ff4 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0, l_0_1 = nil, nil
-  l_0_1 = (this_sigattrlog[1]).utf8p2
-  local l_0_2 = nil
-else
-end
-do
-  -- DECOMPILER ERROR at PC46: Overwrote pending register: R0 in 'AssignReg'
-
-  if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-    local l_0_3 = (this_sigattrlog[2]).ppid
-    -- DECOMPILER ERROR at PC49: Overwrote pending register: R1 in 'AssignReg'
-
-    local l_0_4 = (this_sigattrlog[2]).utf8p2
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.ppid
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
   end
-  do
-    -- DECOMPILER ERROR at PC50: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_3 == nil then
-      return mp.CLEAN
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.ppid
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L1_1 = L2_2.utf8p2
     end
-    local l_0_5 = nil
-    local l_0_6 = nil
-    local l_0_7 = nil
-    local l_0_8, l_0_9 = , (string.len)("\\cmd.exe")
-    if l_0_5 == nil or #l_0_5 < 1 or #l_0_5 > 3 then
-      return mp.CLEAN
+  else
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L0_0 = L2_2.ppid
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L1_1 = L2_2.utf8p2
+      end
     end
-    for l_0_13,l_0_14 in ipairs(R8_PC78) do
-      local l_0_10, l_0_11 = (bm.get_process_relationships)(l_0_5)
-      -- DECOMPILER ERROR at PC82: Confused about usage of register: R11 in 'UnsetPending'
-
-      if (mp.bitand)(R11_PC82.reason_ex, 1) == 1 and l_0_9 < (string.len)(R11_PC82.image_path) and (string.sub)(R11_PC82.image_path, -l_0_9) == l_0_8 then
-        l_0_7 = R11_PC82.ppid
+  end
+end
+if L0_0 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = nil
+L3_3 = "\\cmd.exe"
+L4_4 = string
+L4_4 = L4_4.len
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+L5_5 = bm
+L5_5 = L5_5.get_process_relationships
+L6_6 = L0_0
+L6_6 = L5_5(L6_6)
+if L6_6 ~= nil then
+elseif L7_7 > 3 then
+  return L7_7
+end
+for L10_10, L11_11 in L7_7(L8_8) do
+  if L12_12 == 1 then
+    if L4_4 < L13_13 then
+      if L13_13 == L3_3 then
+        L2_2 = L11_11.ppid
         break
       end
     end
-    do
-      if l_0_7 == nil then
-        return mp.CLEAN
-      end
-      if not (this_sigattrlog[6]).matched then
-        return mp.CLEAN
-      end
-      local l_0_15 = nil
-      local l_0_16 = nil
-      local l_0_17 = (this_sigattrlog[6]).ppid
-      local l_0_18, l_0_19 = 0, false
-      for l_0_23,l_0_24 in ipairs(R13_PC128) do
-        local l_0_20, l_0_21 = (bm.get_process_relationships)(l_0_7)
-        -- DECOMPILER ERROR at PC132: Confused about usage of register: R16 in 'UnsetPending'
-
-        if (mp.bitand)(R16_PC132.reason_ex, 1) == 1 and l_0_9 < (string.len)(R16_PC132.image_path) and (string.sub)(R16_PC132.image_path, -l_0_9) == l_0_8 then
-          if l_0_17 == R16_PC132.ppid then
-            l_0_19 = true
-          end
-          l_0_18 = l_0_18 + 1
-        end
-      end
-      do
-        if l_0_18 ~= 2 or l_0_19 == false then
-          return mp.CLEAN
-        end
-        local l_0_25 = nil
-        for l_0_29,l_0_30 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_6)) do
-          local l_0_26, l_0_27 = nil
-          if (mp.bitand)(R16_PC132.reason_ex, 1) ~= nil and (string.len)((mp.bitand)(R16_PC132.reason_ex, 1)) >= 4 and (string.lower)((string.sub)((mp.bitand)(R16_PC132.reason_ex, 1), -4)) ~= ".exe" and (sysio.IsFileExists)((mp.bitand)(R16_PC132.reason_ex, 1)) then
-            (bm.add_related_file)((mp.bitand)(R16_PC132.reason_ex, 1))
-          end
-        end
-        return mp.INFECTED
-      end
-    end
   end
 end
-
+if L2_2 == nil then
+  return L7_7
+end
+if not L7_7 then
+  return L7_7
+end
+L10_10 = bm
+L10_10 = L10_10.get_process_relationships
+L11_11 = L2_2
+L11_11 = L10_10(L11_11)
+for L15_15, L16_16 in L12_12(L13_13) do
+  L17_17 = mp
+  L17_17 = L17_17.bitand
+  L17_17 = L17_17(L16_16.reason_ex, 1)
+  if L17_17 == 1 and L4_4 < string.len(L16_16.image_path) and string.sub(L16_16.image_path, -L4_4) == L3_3 then
+  end
+end
+if L8_8 ~= 2 or L9_9 == false then
+  return L12_12
+end
+for L16_16, L17_17 in L13_13(L14_14) do
+  if L17_17 ~= nil and string.len(L17_17) >= 4 and string.lower(string.sub(L17_17, -4)) ~= ".exe" and sysio.IsFileExists(L17_17) then
+    bm.add_related_file(L17_17)
+  end
+end
+return L13_13

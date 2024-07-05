@@ -1,31 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/57b33bd2b514 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  if l_0_6 ~= nil and l_0_6.reason_ex ~= nil and l_0_6.ppid ~= nil then
-    local l_0_7 = (mp.bitand)(l_0_6.reason_ex, 1)
-    if l_0_7 == 1 then
-      do
-        do
-          (bm.add_threat_process)(l_0_6.ppid)
-          do break end
-          -- DECOMPILER ERROR at PC27: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC27: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC27: LeaveBlock: unexpected jumping out IF_STMT
-
-          -- DECOMPILER ERROR at PC27: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC27: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
-      end
-    end
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for _FORV_5_, _FORV_6_ in L2_2(L3_3) do
+  if _FORV_6_ ~= nil and _FORV_6_.reason_ex ~= nil and _FORV_6_.ppid ~= nil and mp.bitand(_FORV_6_.reason_ex, 1) == 1 then
+    bm.add_threat_process(_FORV_6_.ppid)
+    break
   end
 end
-return mp.INFECTED
-
+return L2_2

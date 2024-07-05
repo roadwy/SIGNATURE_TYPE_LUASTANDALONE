@@ -1,57 +1,128 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_TamperSignedWinFolderFiles 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  if l_0_1 == nil or #l_0_1 < 1 then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_FILENAME
+  L1_1 = L1_1(L2_2)
+  if L1_1 ~= nil then
+    L2_2 = #L1_1
+  elseif L2_2 < 1 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = (string.lower)(l_0_1)
-  local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-  if l_0_3 == nil or #l_0_3 < 1 then
-    return mp.CLEAN
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  L3_3 = mp
+  L3_3 = L3_3.get_contextdata
+  L4_4 = mp
+  L4_4 = L4_4.CONTEXT_DATA_FILEPATH
+  L3_3 = L3_3(L4_4)
+  if L3_3 ~= nil then
+    L4_4 = #L3_3
+  elseif L4_4 < 1 then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  local l_0_4 = (MpCommon.PathToWin32Path)(l_0_3)
-  if l_0_4 == nil or #l_0_4 < 1 then
-    return mp.CLEAN
+  L4_4 = MpCommon
+  L4_4 = L4_4.PathToWin32Path
+  L5_5 = L3_3
+  L4_4 = L4_4(L5_5)
+  if L4_4 ~= nil then
+    L5_5 = #L4_4
+  elseif L5_5 < 1 then
+    L5_5 = mp
+    L5_5 = L5_5.CLEAN
+    return L5_5
   end
-  local l_0_5 = (string.lower)(l_0_4)
-  local l_0_6 = {}
-  l_0_6["ww2help.dll"] = ""
-  l_0_6["cryptsp.dll"] = ""
-  l_0_6["fxsst.dll"] = ""
-  l_0_6["secur32.dll"] = ""
-  if l_0_5:find("\\windows\\", 1, true) and l_0_6[l_0_2] then
-    local l_0_7, l_0_8 = (mp.IsTrustedFile)(true)
-    if l_0_7 ~= true then
-      local l_0_9 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-      if l_0_9 == nil or #l_0_9 < 1 then
-        return mp.CLEAN
+  L5_5 = string
+  L5_5 = L5_5.lower
+  L6_6 = L4_4
+  L5_5 = L5_5(L6_6)
+  L6_6 = {}
+  L6_6["ww2help.dll"] = ""
+  L6_6["cryptsp.dll"] = ""
+  L6_6["fxsst.dll"] = ""
+  L6_6["secur32.dll"] = ""
+  L8_8 = L5_5
+  L7_7 = L5_5.find
+  L9_9 = "\\windows\\"
+  L10_10 = 1
+  L11_11 = true
+  L7_7 = L7_7(L8_8, L9_9, L10_10, L11_11)
+  if L7_7 then
+    L7_7 = L6_6[L2_2]
+    if L7_7 then
+      L7_7 = mp
+      L7_7 = L7_7.IsTrustedFile
+      L8_8 = true
+      L8_8 = L7_7(L8_8)
+      if L7_7 ~= true then
+        L9_9 = mp
+        L9_9 = L9_9.get_contextdata
+        L10_10 = mp
+        L10_10 = L10_10.CONTEXT_DATA_PROCESSNAME
+        L9_9 = L9_9(L10_10)
+        if L9_9 ~= nil then
+          L10_10 = #L9_9
+        elseif L10_10 < 1 then
+          L10_10 = mp
+          L10_10 = L10_10.CLEAN
+          return L10_10
+        end
+        L10_10 = string
+        L10_10 = L10_10.lower
+        L11_11 = L9_9
+        L10_10 = L10_10(L11_11)
+        L11_11 = mp
+        L11_11 = L11_11.get_contextdata
+        L12_12 = mp
+        L12_12 = L12_12.CONTEXT_DATA_PROCESSDEVICEPATH
+        L11_11 = L11_11(L12_12)
+        if L11_11 ~= nil then
+          L12_12 = #L11_11
+        elseif L12_12 < 1 then
+          L12_12 = mp
+          L12_12 = L12_12.CLEAN
+          return L12_12
+        end
+        L12_12 = MpCommon
+        L12_12 = L12_12.PathToWin32Path
+        L13_13 = L11_11
+        L12_12 = L12_12(L13_13)
+        if L12_12 ~= nil then
+          L13_13 = #L12_12
+        elseif L13_13 < 1 then
+          L13_13 = mp
+          L13_13 = L13_13.CLEAN
+          return L13_13
+        end
+        L13_13 = string
+        L13_13 = L13_13.lower
+        L14_14 = L12_12
+        L13_13 = L13_13(L14_14)
+        L14_14 = L13_13
+        L14_14 = L14_14 .. "\\" .. L10_10
+        mp.ReportLowfi(L14_14, 4051462255)
+        return mp.INFECTED
       end
-      local l_0_10 = (string.lower)(l_0_9)
-      local l_0_11 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-      if l_0_11 == nil or #l_0_11 < 1 then
-        return mp.CLEAN
-      end
-      local l_0_12 = (MpCommon.PathToWin32Path)(l_0_11)
-      if l_0_12 == nil or #l_0_12 < 1 then
-        return mp.CLEAN
-      end
-      local l_0_13 = (string.lower)(l_0_12)
-      local l_0_14 = l_0_13 .. "\\" .. l_0_10
-      ;
-      (mp.ReportLowfi)(l_0_14, 4051462255)
-      return mp.INFECTED
     end
   end
-  do
-    do
-      do return mp.CLEAN end
-      return mp.CLEAN
-    end
-  end
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

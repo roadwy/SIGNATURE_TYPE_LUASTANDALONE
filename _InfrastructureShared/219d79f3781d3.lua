@@ -1,26 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/219d79f3781d3 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if l_0_1 == nil or #l_0_1 < 900 then
+if mp.GetProcessCommandLine(L0_0) == nil or #mp.GetProcessCommandLine(L0_0) < 900 then
   return mp.CLEAN
 end
-local l_0_2 = (mp.GetParentProcInfo)()
-if l_0_2 == nil then
+if mp.GetParentProcInfo() == nil then
   return mp.CLEAN
 end
-local l_0_3 = (string.lower)(l_0_2.image_path)
-if l_0_3:match("([^\\]+)$") == "winword.exe" then
-  if (versioning.GetCloudBlockLevel)() >= 4 then
+if string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "winword.exe" then
+  if versioning.GetCloudBlockLevel() >= 4 then
     return mp.INFECTED
   end
   return mp.LOWFI
 end
 return mp.CLEAN
-

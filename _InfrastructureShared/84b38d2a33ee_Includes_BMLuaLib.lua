@@ -1,13 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b38d2a33ee_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[2]).p2
-local l_0_1 = (crypto.ComputeEntropy)((string.sub)(l_0_0, 1, 512))
-if l_0_1 >= 6 then
-  (bm.add_related_string)("boot_entropy", "ent=" .. l_0_1, bm.RelatedStringBMReport)
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.p2
+L1_1 = crypto
+L1_1 = L1_1.ComputeEntropy
+L1_1 = L1_1(string.sub(L0_0, 1, 512))
+if L1_1 >= 6 then
+  bm.add_related_string("boot_entropy", "ent=" .. L1_1, bm.RelatedStringBMReport)
   return mp.INFECTED
 end
 return mp.CLEAN
-

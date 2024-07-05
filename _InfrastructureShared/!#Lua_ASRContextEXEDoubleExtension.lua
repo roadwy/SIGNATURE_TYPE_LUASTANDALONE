@@ -1,50 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ASRContextEXEDoubleExtension 
-
--- params : ...
--- function num : 0
-if not (mp.IsHipsRuleEnabled)("fd960b4a-d8d7-4590-a6ce-0219df56a135") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.IsHipsRuleEnabled
+L1_1 = "fd960b4a-d8d7-4590-a6ce-0219df56a135"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0:len() < 9 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L3_3 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2, L3_3))
+L2_2 = L0_0
+L1_1 = L0_0.len
+L1_1 = L1_1(L2_2)
+if L1_1 < 9 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = {}
-l_0_1[".doc"] = ""
-l_0_1[".xls"] = ""
-l_0_1[".ppt"] = ""
-l_0_1[".pdf"] = ""
-l_0_1[".jpg"] = ""
-l_0_1[".gif"] = ""
-l_0_1[".png"] = ""
-l_0_1[".pic"] = ""
-l_0_1[".txt"] = ""
-l_0_1[".mp3"] = ""
-l_0_1["®cod"] = ""
-l_0_1["®slx"] = ""
-l_0_1["®tpp"] = ""
-l_0_1["®fdp"] = ""
-l_0_1["®gpj"] = ""
-l_0_1["®fig"] = ""
-l_0_1["®gnp"] = ""
-l_0_1["®cip"] = ""
-l_0_1["®txt"] = ""
-l_0_1["\1743pm"] = ""
-local l_0_2 = {}
-l_0_2[".docx"] = ""
-l_0_2[".xlsx"] = ""
-l_0_2[".pptx"] = ""
-l_0_2["®xcod"] = ""
-l_0_2["®xlsx"] = ""
-l_0_2["®xtpp"] = ""
-local l_0_3 = (string.sub)(l_0_0, -8)
-if l_0_1[(string.sub)(l_0_3, 1, 4)] and (string.sub)(l_0_3, -4) == ".exe" then
-  (mp.set_mpattribute)("Lua:ASRContextEXEDoubleExtension")
+L1_1 = {}
+L1_1[".doc"] = ""
+L1_1[".xls"] = ""
+L1_1[".ppt"] = ""
+L1_1[".pdf"] = ""
+L1_1[".jpg"] = ""
+L1_1[".gif"] = ""
+L1_1[".png"] = ""
+L1_1[".pic"] = ""
+L1_1[".txt"] = ""
+L1_1[".mp3"] = ""
+L1_1["\174cod"] = ""
+L1_1["\174slx"] = ""
+L1_1["\174tpp"] = ""
+L1_1["\174fdp"] = ""
+L1_1["\174gpj"] = ""
+L1_1["\174fig"] = ""
+L1_1["\174gnp"] = ""
+L1_1["\174cip"] = ""
+L1_1["\174txt"] = ""
+L1_1["\1743pm"] = ""
+L2_2 = {}
+L2_2[".docx"] = ""
+L2_2[".xlsx"] = ""
+L2_2[".pptx"] = ""
+L2_2["\174xcod"] = ""
+L2_2["\174xlsx"] = ""
+L2_2["\174xtpp"] = ""
+L3_3 = string
+L3_3 = L3_3.sub
+L3_3 = L3_3(L0_0, -8)
+if L1_1[string.sub(L3_3, 1, 4)] and string.sub(L3_3, -4) == ".exe" then
+  mp.set_mpattribute("Lua:ASRContextEXEDoubleExtension")
 end
-l_0_3 = (string.sub)(l_0_0, -9)
-if l_0_2[(string.sub)(l_0_3, 1, 5)] and (string.sub)(l_0_3, -4) == ".exe" then
-  (mp.set_mpattribute)("Lua:ASRContextEXEDoubleExtension")
+L3_3 = string.sub(L0_0, -9)
+if L2_2[string.sub(L3_3, 1, 5)] and string.sub(L3_3, -4) == ".exe" then
+  mp.set_mpattribute("Lua:ASRContextEXEDoubleExtension")
 end
 return mp.CLEAN
-

@@ -1,36 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2038face1e102 
-
--- params : ...
--- function num : 0
 if mp.HSTR_WEIGHT > 101 then
-  do
-    -- DECOMPILER ERROR at PC55: Unhandled construct in 'MakeBoolean' P3
-
-    if (((((not (hstrlog[1]).matched and not (hstrlog[2]).matched and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and (hstrlog[5]).matched) or (hstrlog[7]).matched) and not (hstrlog[8]).matched) or (hstrlog[9]).matched then
-      local l_0_0, l_0_1 = 0 + 1 + 1 + 1 + 1 + 1
-    end
-    -- DECOMPILER ERROR at PC55: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_0 == 5 then
-      return mp.INFECTED
-    end
-    do
-      if (hstrlog[10]).matched or (hstrlog[11]).matched or (hstrlog[12]).matched or (hstrlog[13]).matched then
-        local l_0_2 = nil
-      end
-      -- DECOMPILER ERROR at PC82: Confused about usage of register: R0 in 'UnsetPending'
-
-      if l_0_2 >= 3 and 0 + 1 == 1 then
-        return mp.INFECTED
-      end
-      ;
-      (mp.set_mpattribute)("HSTR:TrojanDownloader:O97M/Donoff.gen!E.1")
-      do return mp.CLEAN end
-      ;
-      (mp.set_mpattribute)("HSTR:TrojanDownloader:O97M/Donoff.gen!E")
-      return mp.CLEAN
-    end
+  if hstrlog[1].matched or hstrlog[2].matched or hstrlog[3].matched then
   end
+  if hstrlog[4].matched then
+  end
+  if hstrlog[5].matched or hstrlog[6].matched or hstrlog[7].matched then
+  end
+  if hstrlog[8].matched then
+  end
+  if hstrlog[9].matched then
+  end
+  if 0 + 1 + 1 + 1 + 1 + 1 == 5 then
+    return mp.INFECTED
+  end
+  if hstrlog[10].matched or hstrlog[11].matched or hstrlog[12].matched or hstrlog[13].matched then
+  end
+  if 0 + 1 + 1 + 1 + 1 + 1 >= 3 and 0 + 1 == 1 then
+    return mp.INFECTED
+  end
+  mp.set_mpattribute("HSTR:TrojanDownloader:O97M/Donoff.gen!E.1")
+  return mp.CLEAN
 end
-
+mp.set_mpattribute("HSTR:TrojanDownloader:O97M/Donoff.gen!E")
+return mp.CLEAN

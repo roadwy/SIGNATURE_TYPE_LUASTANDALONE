@@ -1,14 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b3e2ddb09b 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[5]).wp1
-for l_0_4 = mp.SIGATTR_LOG_SZ, 1, -1 do
-  if ((sigattr_tail[l_0_4]).attribute == 16384 or (sigattr_tail[l_0_4]).attribute == 16385) and (sigattr_tail[l_0_4]).wp1 == l_0_0 then
-    (bm.add_related_file)(l_0_0)
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = this_sigattrlog
+L0_0 = L0_0[5]
+L0_0 = L0_0.wp1
+for L4_4 = L1_1.SIGATTR_LOG_SZ, 1, -1 do
+  if (sigattr_tail[L4_4].attribute == 16384 or sigattr_tail[L4_4].attribute == 16385) and sigattr_tail[L4_4].wp1 == L0_0 then
+    bm.add_related_file(L0_0)
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L1_1

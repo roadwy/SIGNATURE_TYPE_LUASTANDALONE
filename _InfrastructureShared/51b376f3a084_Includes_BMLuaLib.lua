@@ -1,93 +1,122 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51b376f3a084_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-checkProcessTree = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  if l_1_0 == nil or l_1_1 == nil or type(l_1_1) ~= "table" then
-    return nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+function L0_0(A0_9, A1_10)
+  local L2_11, L3_12, L4_13, L5_14, L6_15, L7_16, L8_17, L9_18, L10_19, L11_20
+  if A0_9 ~= nil and A1_10 ~= nil then
+    L2_11 = type
+    L3_12 = A1_10
+    L2_11 = L2_11(L3_12)
+  elseif L2_11 ~= "table" then
+    L2_11 = nil
+    return L2_11
   end
-  local l_1_2 = l_1_0
-  local l_1_3 = {}
-  for l_1_7,l_1_8 in ipairs(l_1_1) do
-    local l_1_9 = 0
-    local l_1_10, l_1_11 = (bm.get_process_relationships)(l_1_2)
-    for l_1_15,l_1_16 in ipairs(l_1_11) do
-      if (mp.bitand)(l_1_16.reason_ex, 1) == 1 and (string.sub)(l_1_16.image_path, -(string.len)(l_1_8)) == l_1_8 then
-        l_1_2 = l_1_16.ppid
-        l_1_9 = l_1_9 + 1
+  L2_11 = A0_9
+  L3_12 = {}
+  for L7_16, L8_17 in L4_13(L5_14) do
+    L9_18 = 0
+    L10_19 = bm
+    L10_19 = L10_19.get_process_relationships
+    L11_20 = L2_11
+    L11_20 = L10_19(L11_20)
+    for _FORV_15_, _FORV_16_ in ipairs(L11_20) do
+      if mp.bitand(_FORV_16_.reason_ex, 1) == 1 and string.sub(_FORV_16_.image_path, -string.len(L8_17)) == L8_17 then
+        L2_11 = _FORV_16_.ppid
+        L9_18 = L9_18 + 1
       end
-      if l_1_9 > 1 then
+      if L9_18 > 1 then
         return nil
       end
     end
-    if l_1_9 == 0 then
+    if L9_18 == 0 then
       return nil
     end
-    ;
-    (table.insert)(l_1_3, l_1_2)
+    table.insert(L3_12, L2_11)
   end
-  return l_1_3
+  return L3_12
 end
-
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 == nil or (string.len)(l_0_0) < 8 then
-  return mp.CLEAN
+checkProcessTree = L0_0
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+elseif L1_1 < 8 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((string.match)(l_0_0, "([^\\]+)$"))
-local l_0_2 = {}
-l_0_2["winword.exe"] = true
-l_0_2["excel.exe"] = true
-l_0_2["powerpnt.exe"] = true
-if l_0_2[l_0_1] == nil then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L0_0
+L4_4 = "([^\\]+)$"
+L8_8 = L2_2(L3_3, L4_4)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2(L3_3, L4_4))
+L2_2 = {}
+L2_2["winword.exe"] = true
+L2_2["excel.exe"] = true
+L2_2["powerpnt.exe"] = true
+L3_3 = L2_2[L1_1]
+if L3_3 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (bm.get_current_process_startup_info)()
-if l_0_3 == nil or l_0_3.ppid == nil then
-  return mp.CLEAN
+L3_3 = bm
+L3_3 = L3_3.get_current_process_startup_info
+L3_3 = L3_3()
+if L3_3 ~= nil then
+  L4_4 = L3_3.ppid
+elseif L4_4 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = l_0_3.ppid
-local l_0_5 = l_0_3.command_line
-local l_0_6 = {}
--- DECOMPILER ERROR at PC51: No list found for R6 , SetList fails
-
--- DECOMPILER ERROR at PC52: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC53: Overwrote pending register: R8 in 'AssignReg'
-
--- DECOMPILER ERROR at PC54: Overwrote pending register: R9 in 'AssignReg'
-
-local l_0_7 = ("cmd.exe")("cmd.exe", "powershell.exe")
-if l_0_7 == nil then
-  return mp.CLEAN
+L4_4 = L3_3.ppid
+L5_5 = L3_3.command_line
+L6_6 = {
+  L7_7,
+  L8_8,
+  "powershell.exe"
+}
+L7_7 = "cmd.exe"
+L8_8 = "cmd.exe"
+L7_7 = checkProcessTree
+L8_8 = L4_4
+L7_7 = L7_7(L8_8, L6_6)
+if L7_7 == nil then
+  L8_8 = mp
+  L8_8 = L8_8.CLEAN
+  return L8_8
 end
-do
-  if l_0_5 ~= nil then
-    local l_0_8 = {}
-    l_0_8[".xls"] = true
-    l_0_8[".doc"] = true
-    l_0_8[".ppt"] = true
-    l_0_8[".pps"] = true
-    l_0_8.docx = true
-    l_0_8.pptx = true
-    l_0_8.ppsx = true
-    l_0_8.xlsx = true
-    l_0_8[".rtf"] = true
-    l_0_8[".xml"] = true
-    l_0_8.dotx = true
-    l_0_8.dotm = true
-    l_0_8[".odt"] = true
-    l_0_8.xlsb = true
-    l_0_8.xltx = true
-    l_0_8.xltm = true
-    l_0_8.xlam = true
-    l_0_8[".xla"] = true
-    l_0_8.docm = true
-    l_0_8.xlsm = true
-    l_0_8.pptm = true
-    bm_AddRelatedFileFromCommandLine(l_0_5, l_0_8)
-  end
-  return mp.INFECTED
+if L5_5 ~= nil then
+  L8_8 = {}
+  L8_8[".xls"] = true
+  L8_8[".doc"] = true
+  L8_8[".ppt"] = true
+  L8_8[".pps"] = true
+  L8_8.docx = true
+  L8_8.pptx = true
+  L8_8.ppsx = true
+  L8_8.xlsx = true
+  L8_8[".rtf"] = true
+  L8_8[".xml"] = true
+  L8_8.dotx = true
+  L8_8.dotm = true
+  L8_8[".odt"] = true
+  L8_8.xlsb = true
+  L8_8.xltx = true
+  L8_8.xltm = true
+  L8_8.xlam = true
+  L8_8[".xla"] = true
+  L8_8.docm = true
+  L8_8.xlsm = true
+  L8_8.pptm = true
+  bm_AddRelatedFileFromCommandLine(L5_5, L8_8)
 end
-
+L8_8 = mp
+L8_8 = L8_8.INFECTED
+return L8_8

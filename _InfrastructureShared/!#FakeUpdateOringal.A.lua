@@ -1,15 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#FakeUpdateOringal.A 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("Trojan:Script/FakeUpdates.A") and not (mp.get_mpattribute)("Trojan:Script/FakeUpdates.C") and not (mp.get_mpattribute)("Backdoor:JS/FakeUpdates.C!dha") and not (mp.get_mpattribute)("Backdoor:JS/FakeUpdates.D!dha") then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "Trojan:Script/FakeUpdates.A"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "Trojan:Script/FakeUpdates.C"
+  L0_0 = L0_0(L1_1)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "Backdoor:JS/FakeUpdates.C!dha"
+    L0_0 = L0_0(L1_1)
+    if not L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.get_mpattribute
+      L1_1 = "Backdoor:JS/FakeUpdates.D!dha"
+      L0_0 = L0_0(L1_1)
+      if not L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.CLEAN
+        return L0_0
+      end
+    end
+  end
 end
-local l_0_0, l_0_1 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME)
-if l_0_0 and (sysio.IsFileExists)(l_0_1) and not (mp.IsKnownFriendlyFile)(l_0_1, false, false) then
-  (mp.ReportLowfi)(l_0_1, 73467367)
+L0_0 = pcall
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L0_0(L1_1, mp.CONTEXT_DATA_AMSI_CONTENTNAME)
+if L0_0 and sysio.IsFileExists(L1_1) and not mp.IsKnownFriendlyFile(L1_1, false, false) then
+  mp.ReportLowfi(L1_1, 73467367)
   return mp.CLEAN
 end
 return mp.CLEAN
-

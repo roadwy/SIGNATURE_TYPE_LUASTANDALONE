@@ -1,56 +1,117 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspiciousFilesInDesktopFolder_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_0 ~= nil and l_0_0:len() > 12 and l_0_1 ~= nil then
-    local l_0_2 = false
-    local l_0_3 = ""
-    if l_0_0:sub(-8) == "\\desktop" then
-      l_0_2 = true
-      l_0_3 = "Lua:WrittenToDesktopFolder"
-      ;
-      (mp.set_mpattribute)(l_0_3)
-    else
-      if l_0_0:find("\\desktop\\", 1, true) ~= nil then
-        l_0_2 = true
-        l_0_3 = "Lua:WrittenToDesktopSubfolder"
-        ;
-        (mp.set_mpattribute)(l_0_3)
-      end
-    end
-    if l_0_2 == true then
-      if l_0_1:len() > 64 then
-        (mp.set_mpattribute)("Lua:WrittenToDesktopFolderWithLongFileName")
-      end
-      do
-        local l_0_4, l_0_5, l_0_8 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME) or ""
-        -- DECOMPILER ERROR at PC84: Confused about usage of register: R4 in 'UnsetPending'
-
-        if l_0_4 == "" then
-          l_0_3 = l_0_3 .. "ByUnknownParentProcess"
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.getfilename
+    L1_1 = mp
+    L1_1 = L1_1.bitor
+    L2_2 = mp
+    L2_2 = L2_2.bitor
+    L3_3 = mp
+    L3_3 = L3_3.FILEPATH_QUERY_FNAME
+    L4_4 = mp
+    L4_4 = L4_4.FILEPATH_QUERY_PATH
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = mp
+    L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+    L6_6 = L1_1(L2_2, L3_3)
+    L1_1 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L1_1(L2_2, L3_3))
+    if L0_0 ~= nil then
+      L3_3 = L0_0
+      L2_2 = L0_0.len
+      L2_2 = L2_2(L3_3)
+      if L2_2 > 12 and L1_1 ~= nil then
+        L2_2 = false
+        L3_3 = ""
+        L5_5 = L0_0
+        L4_4 = L0_0.sub
+        L6_6 = -8
+        L4_4 = L4_4(L5_5, L6_6)
+        if L4_4 == "\\desktop" then
+          L2_2 = true
+          L3_3 = "Lua:WrittenToDesktopFolder"
+          L4_4 = mp
+          L4_4 = L4_4.set_mpattribute
+          L5_5 = L3_3
+          L4_4(L5_5)
         else
-          local l_0_6 = nil
-          local l_0_7 = nil
-          if ({["searchprotocolhost.exe"] = "WindowsBinary", ["explorer.exe"] = "Explorer", ["svchost.exe"] = "WindowsBinary", ["dllhost.exe"] = "WindowsBinary", ["7zg.exe"] = "Archiver", ["winzip64.exe"] = "Archiver", ["winrar.exe"] = "Archiver", ["chrome.exe"] = "Browser", ["opera.exe"] = "Browser", ["brave.exe"] = "Browser", ["bittorrent.exe"] = "Torrent", ["utorrent.exe"] = "Torrent"})[l_0_6:lower()] == nil then
-            l_0_3 = l_0_3 .. "ByOtherParentProcess"
-          else
-            -- DECOMPILER ERROR at PC114: Confused about usage of register: R6 in 'UnsetPending'
-
-            l_0_3 = l_0_3 .. "By" .. ({["searchprotocolhost.exe"] = "WindowsBinary", ["explorer.exe"] = "Explorer", ["svchost.exe"] = "WindowsBinary", ["dllhost.exe"] = "WindowsBinary", ["7zg.exe"] = "Archiver", ["winzip64.exe"] = "Archiver", ["winrar.exe"] = "Archiver", ["chrome.exe"] = "Browser", ["opera.exe"] = "Browser", ["brave.exe"] = "Browser", ["bittorrent.exe"] = "Torrent", ["utorrent.exe"] = "Torrent"})[l_0_6:lower()]
+          L5_5 = L0_0
+          L4_4 = L0_0.find
+          L6_6 = "\\desktop\\"
+          L4_4 = L4_4(L5_5, L6_6, 1, true)
+          if L4_4 ~= nil then
+            L2_2 = true
+            L3_3 = "Lua:WrittenToDesktopSubfolder"
+            L4_4 = mp
+            L4_4 = L4_4.set_mpattribute
+            L5_5 = L3_3
+            L4_4(L5_5)
           end
         end
-        do
-          do
-            ;
-            (mp.set_mpattribute)(l_0_3)
-            return mp.CLEAN
+        if L2_2 == true then
+          L5_5 = L1_1
+          L4_4 = L1_1.len
+          L4_4 = L4_4(L5_5)
+          if L4_4 > 64 then
+            L4_4 = mp
+            L4_4 = L4_4.set_mpattribute
+            L5_5 = "Lua:WrittenToDesktopFolderWithLongFileName"
+            L4_4(L5_5)
           end
+          L4_4 = mp
+          L4_4 = L4_4.get_contextdata
+          L5_5 = mp
+          L5_5 = L5_5.CONTEXT_DATA_PROCESSNAME
+          L4_4 = L4_4(L5_5)
+          L4_4 = L4_4 or ""
+          if L4_4 == "" then
+            L5_5 = L3_3
+            L6_6 = "ByUnknownParentProcess"
+            L3_3 = L5_5 .. L6_6
+          else
+            L5_5 = {}
+            L5_5["searchprotocolhost.exe"] = "WindowsBinary"
+            L5_5["explorer.exe"] = "Explorer"
+            L5_5["svchost.exe"] = "WindowsBinary"
+            L5_5["dllhost.exe"] = "WindowsBinary"
+            L5_5["7zg.exe"] = "Archiver"
+            L5_5["winzip64.exe"] = "Archiver"
+            L5_5["winrar.exe"] = "Archiver"
+            L5_5["chrome.exe"] = "Browser"
+            L5_5["opera.exe"] = "Browser"
+            L5_5["brave.exe"] = "Browser"
+            L5_5["bittorrent.exe"] = "Torrent"
+            L5_5["utorrent.exe"] = "Torrent"
+            L6_6 = L4_4.lower
+            L6_6 = L6_6(L4_4)
+            L6_6 = L5_5[L6_6]
+            if nil == L6_6 then
+              L3_3 = L3_3 .. "ByOtherParentProcess"
+            else
+              L3_3 = L3_3 .. "By" .. L6_6
+            end
+          end
+          L5_5 = mp
+          L5_5 = L5_5.set_mpattribute
+          L6_6 = L3_3
+          L5_5(L6_6)
         end
       end
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

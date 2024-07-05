@@ -1,23 +1,13 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3d898df4b00c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr, 32)
-local l_0_1 = (string.byte)(l_0_0, 26) + (string.byte)(l_0_0, 27) * 256 + (string.byte)(l_0_0, 28) * 65536 + (string.byte)(l_0_0, 29) * 16777216
-local l_0_2 = pevars.sigaddr + 29 + l_0_1
-l_0_0 = (pe.mmap_va)(l_0_2 - 4, 32)
-local l_0_3 = (string.byte)(l_0_0, 1) + (string.byte)(l_0_0, 2) * 256 + (string.byte)(l_0_0, 3) * 65536 + (string.byte)(l_0_0, 4) * 16777216
-local l_0_4 = (mp.bitand)(l_0_2 + l_0_3, 4294967295)
-if l_0_4 ~= pevars.sigaddr then
+local L0_0
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L0_0 = L0_0(pevars.sigaddr, 32)
+L0_0 = pe.mmap_va(pevars.sigaddr + 29 + (string.byte(L0_0, 26) + string.byte(L0_0, 27) * 256 + string.byte(L0_0, 28) * 65536 + string.byte(L0_0, 29) * 16777216) - 4, 32)
+if mp.bitand(pevars.sigaddr + 29 + (string.byte(L0_0, 26) + string.byte(L0_0, 27) * 256 + string.byte(L0_0, 28) * 65536 + string.byte(L0_0, 29) * 16777216) + (string.byte(L0_0, 1) + string.byte(L0_0, 2) * 256 + string.byte(L0_0, 3) * 65536 + string.byte(L0_0, 4) * 16777216), 4294967295) ~= pevars.sigaddr then
   return mp.CLEAN
 end
--- DECOMPILER ERROR at PC106: Unhandled construct in 'MakeBoolean' P3
-
-if (pehdr.SizeOfImage >= 503808 and pehdr.SizeOfImage <= 573440) or pehdr.SizeOfImage < 409600 or pehdr.SizeOfImage >= 868352 and pehdr.SizeOfImage <= 888832 then
+if pehdr.SizeOfImage >= 503808 and pehdr.SizeOfImage <= 573440 or pehdr.SizeOfImage >= 409600 and pehdr.SizeOfImage <= 425984 or pehdr.SizeOfImage >= 868352 and pehdr.SizeOfImage <= 888832 then
   return mp.INFECTED
 end
-;
-(mp.changedetectionname)(805306375)
+mp.changedetectionname(805306375)
 return mp.SUSPICIOUS
-

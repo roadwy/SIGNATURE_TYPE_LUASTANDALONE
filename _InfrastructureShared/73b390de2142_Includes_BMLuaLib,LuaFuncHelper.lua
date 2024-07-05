@@ -1,21 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/73b390de2142_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = "remote_file_created_taint"
-local l_0_1, l_0_2 = nil, nil
-if (this_sigattrlog[3]).matched then
-  l_0_1 = (this_sigattrlog[3]).utf8p1
-  l_0_2 = (this_sigattrlog[3]).ppid
+local L0_0, L1_1, L2_2
+L0_0 = "remote_file_created_taint"
+L1_1, L2_2 = nil, nil
+if this_sigattrlog[3].matched then
+  L1_1 = this_sigattrlog[3].utf8p1
+  L2_2 = this_sigattrlog[3].ppid
 end
-if l_0_1 then
-  if isParentPackageManager(l_0_2) then
+if L1_1 then
+  if isParentPackageManager(L2_2) then
     return mp.CLEAN
   end
-  if isTainted(l_0_1, l_0_0) then
+  if isTainted(L1_1, L0_0) then
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

@@ -1,29 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b333f1adb8_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1 = (bm.get_current_process_startup_info)()
-if l_0_1 ~= nil and l_0_1.ppid ~= nil then
-  local l_0_2, l_0_3 = (bm.get_process_relationships)()
-  if l_0_3 ~= nil then
-    for l_0_7,l_0_8 in ipairs(l_0_3) do
-      if l_0_8.image_path ~= nil and l_0_8.ppid ~= nil then
-        TrackPidAndTechniqueBM(l_0_8.ppid, "T1548.002", "uac_bypass_trg")
-        l_0_0 = true
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = false
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L2_2 = bm
+    L2_2 = L2_2.get_process_relationships
+    L3_3 = L2_2()
+    if L3_3 ~= nil then
+      for _FORV_7_, _FORV_8_ in ipairs(L3_3) do
+        if _FORV_8_.image_path ~= nil and _FORV_8_.ppid ~= nil then
+          TrackPidAndTechniqueBM(_FORV_8_.ppid, "T1548.002", "uac_bypass_trg")
+          L0_0 = true
+        end
       end
     end
   end
 end
-do
-  if l_0_0 then
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    return l_0_2
-  end
-  l_0_2 = mp
-  l_0_2 = l_0_2.CLEAN
-  return l_0_2
+if L0_0 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

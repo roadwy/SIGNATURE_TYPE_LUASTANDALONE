@@ -1,46 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3fb341df3b68 
-
--- params : ...
--- function num : 0
-local l_0_3 = nil
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1 = nil, "|.js|jse|vbs|vbe|wsf|wsh"
-  end
-  do
-    if (this_sigattrlog[2]).matched then
-      local l_0_2 = (this_sigattrlog[2]).utf8p2
-    end
-    if l_0_3 ~= nil then
-      local l_0_4 = nil
-      for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_3)) do
-        local l_0_5, l_0_6 = nil
-        -- DECOMPILER ERROR at PC29: Confused about usage of register: R8 in 'UnsetPending'
-
-        if (sysio.IsFileExists)(R8_PC29) and (string.find)(l_0_5, (string.lower)((string.sub)(R8_PC29, -3)), 1, true) then
-          (bm.add_related_file)(R8_PC29)
-        end
-      end
-    end
-    do
-      if l_0_4 ~= nil then
-        local l_0_11 = nil
-        for l_0_15,l_0_16 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_4)) do
-          local l_0_12 = nil
-          -- DECOMPILER ERROR at PC68: Confused about usage of register: R8 in 'UnsetPending'
-
-          -- DECOMPILER ERROR at PC76: Confused about usage of register: R8 in 'UnsetPending'
-
-          if (sysio.IsFileExists)(R8_PC29) and (string.lower)((string.sub)(R8_PC29, -3)) == "dll" then
-            (bm.add_related_file)(l_0_17)
-          end
-        end
-      end
-      do
-        return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L2_2 = "|.js|jse|vbs|vbe|wsf|wsh"
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L0_0 = L3_3.utf8p2
+end
+L3_3 = this_sigattrlog
+L3_3 = L3_3[2]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[2]
+  L1_1 = L3_3.utf8p2
+end
+if L0_0 ~= nil then
+  L3_3 = mp
+  L3_3 = L3_3.GetExecutablesFromCommandLine
+  L3_3 = L3_3(L4_4)
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L9_9 = sysio
+    L9_9 = L9_9.IsFileExists
+    L9_9 = L9_9(L8_8)
+    if L9_9 then
+      L9_9 = string
+      L9_9 = L9_9.lower
+      L9_9 = L9_9(string.sub(L8_8, -3))
+      if string.find(L2_2, L9_9, 1, true) then
+        bm.add_related_file(L8_8)
       end
     end
   end
 end
-
+if L1_1 ~= nil then
+  L3_3 = mp
+  L3_3 = L3_3.GetExecutablesFromCommandLine
+  L3_3 = L3_3(L4_4)
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L9_9 = sysio
+    L9_9 = L9_9.IsFileExists
+    L9_9 = L9_9(L8_8)
+    if L9_9 then
+      L9_9 = string
+      L9_9 = L9_9.lower
+      L9_9 = L9_9(string.sub(L8_8, -3))
+      if L9_9 == "dll" then
+        bm.add_related_file(L8_8)
+      end
+    end
+  end
+end
+L3_3 = mp
+L3_3 = L3_3.INFECTED
+return L3_3

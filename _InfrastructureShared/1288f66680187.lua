@@ -1,14 +1,6 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1288f66680187 
-
--- params : ...
--- function num : 0
 if mp.HSTR_WEIGHT >= 3 then
   return mp.INFECTED
-else
-  if (mp.get_mpattribute)("MHSTR:MacroDownload") and (mp.get_mpattribute)("MHSTR:MacroJustOpen") then
-    return mp.INFECTED
-  end
+elseif mp.get_mpattribute("MHSTR:MacroDownload") and mp.get_mpattribute("MHSTR:MacroJustOpen") then
+  return mp.INFECTED
 end
 return mp.LOWFI
-

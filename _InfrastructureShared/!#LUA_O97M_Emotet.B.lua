@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_O97M_Emotet.B 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if (string.find)(l_0_0, "emotet_e1_", 1, true) ~= nil or (string.find)(l_0_0, "emotet_e2_", 1, true) ~= nil or (string.find)(l_0_0, "emotet_e3_", 1, true) ~= nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if string.find(L0_0, "emotet_e1_", 1, true) ~= nil or string.find(L0_0, "emotet_e2_", 1, true) ~= nil or string.find(L0_0, "emotet_e3_", 1, true) ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,113 +1,166 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_RightToLeftOverride.gen!C_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("Lua:Context/RightToLeftOverride.A!masquerading") or (mp.get_mpattribute)("Lua:Context/RightToLeftOverride.B!masquerading") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "Lua:Context/RightToLeftOverride.A!masquerading"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "Lua:Context/RightToLeftOverride.B!masquerading"
+  L0_0 = L0_0(L1_1)
+elseif L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_0 ~= nil and #l_0_0 > 5 then
-  if (string.find)((string.sub)(l_0_0, -4), ".", 1, true) == nil then
-    return mp.CLEAN
-  end
-  if (string.find)(l_0_0, "â€\174", 1, true) == nil then
-    return mp.CLEAN
-  end
-  local l_0_1 = (string.sub)(l_0_0, -3)
-  local l_0_2 = "Lua:Context/RightToLeftOverride.gen!A"
-  local l_0_3 = {}
-  l_0_3[".7z"] = "Lua:Context/RightToLeftOverride.C"
-  l_0_3.zip = "Lua:Context/RightToLeftOverride.C"
-  l_0_3.rar = "Lua:Context/RightToLeftOverride.C"
-  l_0_3.cmd = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.bat = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.vbe = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.vbs = "Lua:Context/RightToLeftOverride.D"
-  l_0_3[".js"] = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.jse = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.wsh = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.wsf = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.ps1 = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.jar = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.hta = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.lnk = "Lua:Context/RightToLeftOverride.D"
-  l_0_3.exe = "Lua:Context/RightToLeftOverride.E"
-  l_0_3.scr = "Lua:Context/RightToLeftOverride.E"
-  l_0_3.com = "Lua:Context/RightToLeftOverride.E"
-  l_0_3.pif = "Lua:Context/RightToLeftOverride.E"
-  l_0_3.dav = "Lua:Context/RightToLeftOverride.F"
-  if l_0_3[l_0_1] == nil then
-    return mp.CLEAN
-  end
-  l_0_2 = l_0_3[l_0_1]
-  local l_0_4 = l_0_0:gsub(" ", "")
-  l_0_4 = (string.gsub)(l_0_4, "â[\128-][^®]", "")
-  local l_0_5 = (string.gmatch)(l_0_4, "â€\174(.[%w%p%s]+)")
-  local l_0_6 = {}
-  local l_0_7 = 0
-  for l_0_11 in l_0_5 do
-    if #l_0_11 == 3 then
-      l_0_6[l_0_11] = true
-      l_0_7 = l_0_7 + 1
-    else
-      if #l_0_11 > 3 then
-        l_0_6[(string.sub)(l_0_11, 0, 3)] = true
-        l_0_6[(string.sub)(l_0_11, 0, 4)] = true
-        l_0_7 = l_0_7 + 2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILENAME
+L7_7 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L1_1(L2_2))
+if L0_0 ~= nil then
+  L1_1 = #L0_0
+  if L1_1 > 5 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = string
+    L2_2 = L2_2.sub
+    L3_3 = L0_0
+    L4_4 = -4
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = "."
+    L4_4 = 1
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if L1_1 == nil then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L3_3 = "\226\128\174"
+    L4_4 = 1
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if L1_1 == nil then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
+    L1_1 = string
+    L1_1 = L1_1.sub
+    L2_2 = L0_0
+    L3_3 = -3
+    L1_1 = L1_1(L2_2, L3_3)
+    L2_2 = "Lua:Context/RightToLeftOverride.gen!A"
+    L3_3 = {}
+    L3_3[".7z"] = "Lua:Context/RightToLeftOverride.C"
+    L3_3.zip = "Lua:Context/RightToLeftOverride.C"
+    L3_3.rar = "Lua:Context/RightToLeftOverride.C"
+    L3_3.cmd = "Lua:Context/RightToLeftOverride.D"
+    L3_3.bat = "Lua:Context/RightToLeftOverride.D"
+    L3_3.vbe = "Lua:Context/RightToLeftOverride.D"
+    L3_3.vbs = "Lua:Context/RightToLeftOverride.D"
+    L3_3[".js"] = "Lua:Context/RightToLeftOverride.D"
+    L3_3.jse = "Lua:Context/RightToLeftOverride.D"
+    L3_3.wsh = "Lua:Context/RightToLeftOverride.D"
+    L3_3.wsf = "Lua:Context/RightToLeftOverride.D"
+    L3_3.ps1 = "Lua:Context/RightToLeftOverride.D"
+    L3_3.jar = "Lua:Context/RightToLeftOverride.D"
+    L3_3.hta = "Lua:Context/RightToLeftOverride.D"
+    L3_3.lnk = "Lua:Context/RightToLeftOverride.D"
+    L3_3.exe = "Lua:Context/RightToLeftOverride.E"
+    L3_3.scr = "Lua:Context/RightToLeftOverride.E"
+    L3_3.com = "Lua:Context/RightToLeftOverride.E"
+    L3_3.pif = "Lua:Context/RightToLeftOverride.E"
+    L3_3.dav = "Lua:Context/RightToLeftOverride.F"
+    L4_4 = L3_3[L1_1]
+    if L4_4 == nil then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
+    end
+    L2_2 = L3_3[L1_1]
+    L5_5 = L0_0
+    L4_4 = L0_0.gsub
+    L6_6 = " "
+    L7_7 = ""
+    L4_4 = L4_4(L5_5, L6_6, L7_7)
+    L5_5 = string
+    L5_5 = L5_5.gsub
+    L6_6 = L4_4
+    L7_7 = "\226[\128-\129][^\174]"
+    L5_5 = L5_5(L6_6, L7_7, L8_8)
+    L4_4 = L5_5
+    L5_5 = string
+    L5_5 = L5_5.gmatch
+    L6_6 = L4_4
+    L7_7 = "\226\128\174(.[%w%p%s]+)"
+    L5_5 = L5_5(L6_6, L7_7)
+    L6_6 = {}
+    L7_7 = 0
+    for L11_11 in L5_5, nil, nil do
+      if #L11_11 == 3 then
+        L6_6[L11_11] = true
+        L7_7 = L7_7 + 1
+      elseif #L11_11 > 3 then
+        L6_6[string.sub(L11_11, 0, 3)] = true
+        L6_6[string.sub(L11_11, 0, 4)] = true
+        L7_7 = L7_7 + 2
+      end
+    end
+    if L7_7 == 0 then
+      return L8_8
+    end
+    L8_8.cod = "doc"
+    L8_8.xcod = "docx"
+    L8_8.slx = "xls"
+    L8_8[".slx"] = "xls"
+    L8_8.xslx = "xlsx"
+    L8_8[".xsl"] = "xlsx"
+    L8_8.tpp = "ppt"
+    L8_8.xtpp = "pptx"
+    L8_8.ftr = "rtf"
+    L8_8.fdp = "pdf"
+    L8_8.txt = "txt"
+    L8_8.ini = "ini"
+    L8_8["4pm"] = "mp4"
+    L8_8["3pm"] = "mp3"
+    L8_8.vaw = "wav"
+    L8_8.iva = "avi"
+    L8_8.vkm = "mkv"
+    L8_8.bvmr = "rmvb"
+    L8_8.vmw = "wmv"
+    L8_8.vom = "mov"
+    L8_8.vlf = "flv"
+    L8_8.a4m = "m4a"
+    L8_8.gpj = "jpg"
+    L8_8.gepj = "jpeg"
+    L8_8.gnp = "png"
+    L8_8.pmb = "bmp"
+    L8_8.fig = "gif"
+    L8_8.pg3 = "3gp"
+    L8_8.piz = "zip"
+    L8_8.rar = "rar"
+    L8_8["z7."] = ".7z"
+    L8_8.lmth = "html"
+    L8_8.mth = "htm"
+    L8_8.php = "php"
+    L8_8["3php"] = "php"
+    L8_8.mhc = "chm"
+    for _FORV_12_, _FORV_13_ in L9_9(L10_10) do
+      if L8_8[_FORV_12_] ~= nil then
+        mp.set_mpattribute(L2_2)
+        return mp.INFECTED
       end
     end
   end
-  if l_0_7 == 0 then
-    return mp.CLEAN
-  end
-  local l_0_12 = {}
-  l_0_12.cod = "doc"
-  l_0_12.xcod = "docx"
-  l_0_12.slx = "xls"
-  l_0_12[".slx"] = "xls"
-  l_0_12.xslx = "xlsx"
-  l_0_12[".xsl"] = "xlsx"
-  l_0_12.tpp = "ppt"
-  l_0_12.xtpp = "pptx"
-  l_0_12.ftr = "rtf"
-  l_0_12.fdp = "pdf"
-  l_0_12.txt = "txt"
-  l_0_12.ini = "ini"
-  l_0_12["4pm"] = "mp4"
-  l_0_12["3pm"] = "mp3"
-  l_0_12.vaw = "wav"
-  l_0_12.iva = "avi"
-  l_0_12.vkm = "mkv"
-  l_0_12.bvmr = "rmvb"
-  l_0_12.vmw = "wmv"
-  l_0_12.vom = "mov"
-  l_0_12.vlf = "flv"
-  l_0_12.a4m = "m4a"
-  l_0_12.gpj = "jpg"
-  l_0_12.gepj = "jpeg"
-  l_0_12.gnp = "png"
-  l_0_12.pmb = "bmp"
-  l_0_12.fig = "gif"
-  l_0_12.pg3 = "3gp"
-  l_0_12.piz = "zip"
-  l_0_12.rar = "rar"
-  l_0_12["z7."] = ".7z"
-  l_0_12.lmth = "html"
-  l_0_12.mth = "htm"
-  l_0_12.php = "php"
-  l_0_12["3php"] = "php"
-  l_0_12.mhc = "chm"
-  for l_0_16,l_0_17 in pairs(l_0_6) do
-    if l_0_12[l_0_16] ~= nil then
-      (mp.set_mpattribute)(l_0_2)
-      return mp.INFECTED
-    end
-  end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

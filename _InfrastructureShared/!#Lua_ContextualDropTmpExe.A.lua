@@ -1,19 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ContextualDropTmpExe.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  if ((string.sub)(l_0_1, -5) == "\\temp" or (string.sub)(l_0_1, -9) == "\\temp\\low") and l_0_2:len() < 13 and l_0_2:find("^[0-9A-F][0-9A-F]?[0-9A-F]?[0-9A-F]?%.tmp%.exe$") == 1 then
-    (mp.set_mpattribute)("Lua:ContextualDropTmpExe.A")
-    ;
-    (mp.set_mpattribute)("SLF:Lua:ContextualDropTmpExe.A!fdr")
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L1_1 = L1_1(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+  if L1_1 == true then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+    if (string.sub(L1_1, -5) == "\\temp" or string.sub(L1_1, -9) == "\\temp\\low") and mp.get_contextdata(mp.CONTEXT_DATA_FILENAME):len() < 13 and mp.get_contextdata(mp.CONTEXT_DATA_FILENAME):find("^[0-9A-F][0-9A-F]?[0-9A-F]?[0-9A-F]?%.tmp%.exe$") == 1 then
+      mp.set_mpattribute("Lua:ContextualDropTmpExe.A")
+      mp.set_mpattribute("SLF:Lua:ContextualDropTmpExe.A!fdr")
+    end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

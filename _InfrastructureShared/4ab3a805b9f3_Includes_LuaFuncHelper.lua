@@ -1,30 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4ab3a805b9f3_Includes_LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = "remote_file_created_taint"
-local l_0_1, l_0_2 = nil, nil
-if (this_sigattrlog[1]).matched then
-  l_0_2 = (this_sigattrlog[1]).utf8p2
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = "remote_file_created_taint"
+L1_1, L2_2 = nil, nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L2_2 = L3_3.utf8p2
 end
-if (this_sigattrlog[2]).matched then
-  l_0_1 = (this_sigattrlog[2]).utf8p1
+L3_3 = this_sigattrlog
+L3_3 = L3_3[2]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[2]
+  L1_1 = L3_3.utf8p1
 end
-if not l_0_2 or not l_0_1 then
-  return mp.CLEAN
+if not L2_2 or not L1_1 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = nil
-local l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-for l_0_8,l_0_9 in ipairs(l_0_4) do
-  l_0_3 = (string.match)(l_0_9, "/([^/]+)$")
-  if not l_0_3 then
-    l_0_3 = l_0_9
-  end
-  if IsKeyInRollingQueue(l_0_0, l_0_3) and not isTainted(l_0_1, l_0_0) then
-    taint(l_0_1, l_0_0, 3600)
+L3_3 = nil
+L4_4 = mp
+L4_4 = L4_4.GetExecutablesFromCommandLine
+L4_4 = L4_4(L5_5)
+for L8_8, L9_9 in L5_5(L6_6) do
+  L3_3 = string.match(L9_9, "/([^/]+)$")
+  L3_3 = L3_3 or L9_9
+  if IsKeyInRollingQueue(L0_0, L3_3, false) and not isTainted(L1_1, L0_0) then
+    taint(L1_1, L0_0, 3600)
     return mp.CLEAN
   end
 end
-return mp.CLEAN
-
+return L5_5

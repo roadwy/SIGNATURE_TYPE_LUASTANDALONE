@@ -1,59 +1,71 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_JS_Obfuscator.Null.Constant 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC6: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (mp.get_mpattribute)("SCPT:JS/Obfuscator.ShellExecute.Cmd") then
-    local l_0_0, l_0_1 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L1_1 = mp
+L1_1 = L1_1.get_mpattribute
+L2_2 = "SCPT:JS/Obfuscator.ShellExecute.Cmd"
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L0_0 = 1
+else
+  L1_1 = mp
+  L1_1 = L1_1.get_mpattribute
+  L2_2 = "SCPT:JS/Obfuscator.Null.Constant"
+  L1_1 = L1_1(L2_2)
+  if L1_1 then
+    L0_0 = 2
   else
-  end
-  if (mp.get_mpattribute)("SCPT:JS/Obfuscator.Null.Constant") then
-    do return mp.CLEAN end
-    local l_0_2 = 2
-    if (mp.getfilesize)() < 2000 or (mp.getfilesize)() > 30000 then
-      return mp.CLEAN
-    end
-    ;
-    (mp.readprotection)(false)
-    local l_0_3 = nil
-    local l_0_4, l_0_5 = ((mp.readfile)(0, (mp.getfilesize)())), nil
-    -- DECOMPILER ERROR at PC46: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC48: Overwrote pending register: R3 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC57: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC58: Overwrote pending register: R3 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC59: Overwrote pending register: R3 in 'AssignReg'
-
-    if l_0_2 ~= 1 or l_0_2 == 2 then
-      do return mp.CLEAN end
-      if nil == nil then
-        return mp.CLEAN
-      end
-      local l_0_6 = nil
-      -- DECOMPILER ERROR at PC79: Overwrote pending register: R5 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC80: Overwrote pending register: R3 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC91: Overwrote pending register: R5 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC92: Overwrote pending register: R3 in 'AssignReg'
-
-      if l_0_2 ~= 1 or l_0_2 == 2 then
-        do return mp.CLEAN end
-        if nil < 25 then
-          return mp.CLEAN
-        end
-        ;
-        (mp.set_mpattribute)("//LUA:JS/Obfuscator.Equal.Apostrophe.Caret")
-        return mp.CLEAN
-      end
-    end
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+if L1_1 < 2000 or L1_1 > 30000 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = 0
+L4_4 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+L3_3, L4_4 = nil, nil
+if L0_0 == 1 then
+  L5_5 = string
+  L5_5 = L5_5.find
+  L3_3, L4_4, L5_5 = L2_2, "(%^.-\",)", L5_5(L2_2, "(%^.-\",)")
+  L3_3 = L5_5
+elseif L0_0 == 2 then
+  L5_5 = string
+  L5_5 = L5_5.find
+  L3_3, L4_4, L5_5 = L2_2, "(%=%'%^.-%)%;\\\"\"%;)", L5_5(L2_2, "(%=%'%^.-%)%;\\\"\"%;)")
+  L3_3 = L5_5
+else
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+if L4_4 == nil then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = nil
+if L0_0 == 1 then
+  L3_3, L5_5 = string.gsub(L4_4, "%^", "", 25)
+elseif L0_0 == 2 then
+  L3_3, L5_5 = string.gsub(L4_4, "%=%'%^", "", 25)
+else
+  return mp.CLEAN
+end
+if L5_5 < 25 then
+  return mp.CLEAN
+end
+mp.set_mpattribute("//LUA:JS/Obfuscator.Equal.Apostrophe.Caret")
+return mp.CLEAN

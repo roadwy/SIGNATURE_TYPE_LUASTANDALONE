@@ -1,26 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bb365af2996 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-    local l_0_0 = nil
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p1
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p1
   end
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC26: Overwrote pending register: R1 in 'AssignReg'
-
-  if not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p1 == nil or not (string.find)(l_0_1, "\\microsoft\\onedrive\\", 1, true) then
-    return mp.INFECTED
-  end
-  -- DECOMPILER ERROR at PC66: Confused about usage of register: R1 in 'UnsetPending'
-
-  if not (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(nil)), "\\onedrive\\[%d+.]+", 1, true) then
-    (bm.add_related_file)((string.lower)((mp.ContextualExpandEnvironmentVariables)(nil)))
-    return mp.INFECTED
-  end
-  return mp.CLEAN
 end
-
+L1_1 = nil
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p1 ~= nil then
+  L1_1 = this_sigattrlog[2].utf8p1
+end
+L0_0 = string.lower(mp.ContextualExpandEnvironmentVariables(L0_0))
+if not string.find(L0_0, "\\microsoft\\onedrive\\", 1, true) then
+  return mp.INFECTED
+end
+L1_1 = string.lower(mp.ContextualExpandEnvironmentVariables(L1_1))
+if not string.find(L1_1, "\\onedrive\\[%d+.]+", 1, true) then
+  bm.add_related_file(L1_1)
+  return mp.INFECTED
+end
+return mp.CLEAN

@@ -1,37 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3a5ccf4b8_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  end
-  -- DECOMPILER ERROR at PC8: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil and (versioning.GetCloudBlockLevel)() >= 4 then
-    TrackPidAndTechniqueBM(l_0_0, "T1562.001", "DefenseEvasion_PtraceScopeToggle")
-    -- DECOMPILER ERROR at PC22: Confused about usage of register: R0 in 'UnsetPending'
-
-    local l_0_4, l_0_5 = , (bm.get_process_relationships)(l_0_0)
-    for l_0_9,l_0_10 in ipairs(l_0_5) do
-      local l_0_6 = nil
-      -- DECOMPILER ERROR at PC30: Confused about usage of register: R7 in 'UnsetPending'
-
-      ;
-      (bm.add_related_process)(R7_PC30.ppid)
-      TrackPidAndTechniqueBM(R7_PC30.ppid, "T1562.001", "DefenseEvasion_PtraceScopeToggle")
-    end
-    addRelatedProcess()
-    reportRelatedBmHits()
-    return mp.INFECTED
-  end
-  do
-    return mp.CLEAN
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.ppid
 end
-
+if L0_0 ~= nil then
+  L1_1 = TrackPidAndTechniqueBM
+  L2_2 = L0_0
+  L1_1(L2_2, L3_3, L4_4)
+  L1_1 = bm
+  L1_1 = L1_1.get_process_relationships
+  L2_2 = L0_0
+  L2_2 = L1_1(L2_2)
+  for _FORV_6_, _FORV_7_ in L3_3(L4_4) do
+    bm.add_related_process(_FORV_7_.ppid)
+    TrackPidAndTechniqueBM(_FORV_7_.ppid, "T1562.001", "DefenseEvasion_PtraceScopeToggle")
+  end
+  L3_3()
+  L3_3()
+  return L3_3
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

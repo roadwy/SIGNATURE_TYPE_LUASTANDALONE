@@ -1,115 +1,105 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MasqueradeasSysinternalUtil.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) then
-  local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  local l_0_2 = {}
-  l_0_2["accesschk.exe"] = true
-  l_0_2["accesschk64.exe"] = true
-  l_0_2["accessenum.exe"] = true
-  l_0_2["adexplorer.exe"] = true
-  l_0_2["adinsight.exe"] = true
-  l_0_2["adrestore.exe"] = true
-  l_0_2["autoruns.exe"] = true
-  l_0_2["autoruns64.exe"] = true
-  l_0_2["autorunsc.exe"] = true
-  l_0_2["autorunsc64.exe"] = true
-  l_0_2["clockres.exe"] = true
-  l_0_2["clockres64.exe"] = true
-  l_0_2["contig.exe"] = true
-  l_0_2["contig64.exe"] = true
-  l_0_2["coreinfo.exe"] = true
-  l_0_2["ctrl2cap.exe"] = true
-  l_0_2["dbgview.exe"] = true
-  l_0_2["disk2vhd.exe"] = true
-  l_0_2["diskext.exe"] = true
-  l_0_2["diskext64.exe"] = true
-  l_0_2["findlinks.exe"] = true
-  l_0_2["findlinks64.exe"] = true
-  l_0_2["handle.exe"] = true
-  l_0_2["handle64.exe"] = true
-  l_0_2["hex2dec.exe"] = true
-  l_0_2["hex2dec64.exe"] = true
-  l_0_2["junction.exe"] = true
-  l_0_2["junction64.exe"] = true
-  l_0_2["ldmdump.exe"] = true
-  l_0_2["livekd.exe"] = true
-  l_0_2["livekd64.exe"] = true
-  l_0_2["loadord.exe"] = true
-  l_0_2["loadord64.exe"] = true
-  l_0_2["loadordc.exe"] = true
-  l_0_2["loadordc64.exe"] = true
-  l_0_2["logonsessions.exe"] = true
-  l_0_2["logonsessions64.exe"] = true
-  l_0_2["notmyfault.exe"] = true
-  l_0_2["notmyfault64.exe"] = true
-  l_0_2["notmyfaultc.exe"] = true
-  l_0_2["notmyfaultc64.exe"] = true
-  l_0_2["ntfsinfo.exe"] = true
-  l_0_2["ntfsinfo64.exe"] = true
-  l_0_2["pagedfrg.exe"] = true
-  l_0_2["pendmoves.exe"] = true
-  l_0_2["pendmoves64.exe"] = true
-  l_0_2["pipelist.exe"] = true
-  l_0_2["pipelist64.exe"] = true
-  l_0_2["procdump.exe"] = true
-  l_0_2["procdump64.exe"] = true
-  l_0_2["procexp.exe"] = true
-  l_0_2["procexp64.exe"] = true
-  l_0_2["procmon.exe"] = true
-  l_0_2["psexec.exe"] = true
-  l_0_2["psexec64.exe"] = true
-  l_0_2["psfile.exe"] = true
-  l_0_2["psfile64.exe"] = true
-  l_0_2["psgetsid.exe"] = true
-  l_0_2["psgetsid64.exe"] = true
-  l_0_2["psinfo.exe"] = true
-  l_0_2["psinfo64.exe"] = true
-  l_0_2["pskill.exe"] = true
-  l_0_2["pskill64.exe"] = true
-  l_0_2["pslist.exe"] = true
-  l_0_2["pslist64.exe"] = true
-  l_0_2["psloggedon.exe"] = true
-  l_0_2["psloggedon64.exe"] = true
-  l_0_2["psloglist.exe"] = true
-  l_0_2["psloglist64.exe"] = true
-  l_0_2["pspasswd.exe"] = true
-  l_0_2["pspasswd64.exe"] = true
-  l_0_2["psping.exe"] = true
-  l_0_2["psping64.exe"] = true
-  l_0_2["psservice.exe"] = true
-  l_0_2["psservice64.exe"] = true
-  l_0_2["psshutdown.exe"] = true
-  l_0_2["pssuspend.exe"] = true
-  l_0_2["pssuspend64.exe"] = true
-  l_0_2["rammap.exe"] = true
-  l_0_2["regdelnull.exe"] = true
-  l_0_2["regdelnull64.exe"] = true
-  l_0_2["regjump.exe"] = true
-  l_0_2["sdelete.exe"] = true
-  l_0_2["sdelete64.exe"] = true
-  l_0_2["sigcheck.exe"] = true
-  l_0_2["sigcheck64.exe"] = true
-  l_0_2["streams.exe"] = true
-  l_0_2["streams64.exe"] = true
-  l_0_2["sysmon.exe"] = true
-  l_0_2["sysmon64.exe"] = true
-  l_0_2["tcpvcon.exe"] = true
-  l_0_2["tcpview.exe"] = true
-  l_0_2["vmmap.exe"] = true
-  l_0_2["winobj.exe"] = true
-  if l_0_2[l_0_1] then
-    if (mp.IsTrustedFile)() then
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and mp.get_contextdata(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) then
+  if ({
+    ["accesschk.exe"] = true,
+    ["accesschk64.exe"] = true,
+    ["accessenum.exe"] = true,
+    ["adexplorer.exe"] = true,
+    ["adinsight.exe"] = true,
+    ["adrestore.exe"] = true,
+    ["autoruns.exe"] = true,
+    ["autoruns64.exe"] = true,
+    ["autorunsc.exe"] = true,
+    ["autorunsc64.exe"] = true,
+    ["clockres.exe"] = true,
+    ["clockres64.exe"] = true,
+    ["contig.exe"] = true,
+    ["contig64.exe"] = true,
+    ["coreinfo.exe"] = true,
+    ["ctrl2cap.exe"] = true,
+    ["dbgview.exe"] = true,
+    ["disk2vhd.exe"] = true,
+    ["diskext.exe"] = true,
+    ["diskext64.exe"] = true,
+    ["findlinks.exe"] = true,
+    ["findlinks64.exe"] = true,
+    ["handle.exe"] = true,
+    ["handle64.exe"] = true,
+    ["hex2dec.exe"] = true,
+    ["hex2dec64.exe"] = true,
+    ["junction.exe"] = true,
+    ["junction64.exe"] = true,
+    ["ldmdump.exe"] = true,
+    ["livekd.exe"] = true,
+    ["livekd64.exe"] = true,
+    ["loadord.exe"] = true,
+    ["loadord64.exe"] = true,
+    ["loadordc.exe"] = true,
+    ["loadordc64.exe"] = true,
+    ["logonsessions.exe"] = true,
+    ["logonsessions64.exe"] = true,
+    ["notmyfault.exe"] = true,
+    ["notmyfault64.exe"] = true,
+    ["notmyfaultc.exe"] = true,
+    ["notmyfaultc64.exe"] = true,
+    ["ntfsinfo.exe"] = true,
+    ["ntfsinfo64.exe"] = true,
+    ["pagedfrg.exe"] = true,
+    ["pendmoves.exe"] = true,
+    ["pendmoves64.exe"] = true,
+    ["pipelist.exe"] = true,
+    ["pipelist64.exe"] = true,
+    ["procdump.exe"] = true,
+    ["procdump64.exe"] = true,
+    ["procexp.exe"] = true,
+    ["procexp64.exe"] = true,
+    ["procmon.exe"] = true,
+    ["psexec.exe"] = true,
+    ["psexec64.exe"] = true,
+    ["psfile.exe"] = true,
+    ["psfile64.exe"] = true,
+    ["psgetsid.exe"] = true,
+    ["psgetsid64.exe"] = true,
+    ["psinfo.exe"] = true,
+    ["psinfo64.exe"] = true,
+    ["pskill.exe"] = true,
+    ["pskill64.exe"] = true,
+    ["pslist.exe"] = true,
+    ["pslist64.exe"] = true,
+    ["psloggedon.exe"] = true,
+    ["psloggedon64.exe"] = true,
+    ["psloglist.exe"] = true,
+    ["psloglist64.exe"] = true,
+    ["pspasswd.exe"] = true,
+    ["pspasswd64.exe"] = true,
+    ["psping.exe"] = true,
+    ["psping64.exe"] = true,
+    ["psservice.exe"] = true,
+    ["psservice64.exe"] = true,
+    ["psshutdown.exe"] = true,
+    ["pssuspend.exe"] = true,
+    ["pssuspend64.exe"] = true,
+    ["rammap.exe"] = true,
+    ["regdelnull.exe"] = true,
+    ["regdelnull64.exe"] = true,
+    ["regjump.exe"] = true,
+    ["sdelete.exe"] = true,
+    ["sdelete64.exe"] = true,
+    ["sigcheck.exe"] = true,
+    ["sigcheck64.exe"] = true,
+    ["streams.exe"] = true,
+    ["streams64.exe"] = true,
+    ["sysmon.exe"] = true,
+    ["sysmon64.exe"] = true,
+    ["tcpvcon.exe"] = true,
+    ["tcpview.exe"] = true,
+    ["vmmap.exe"] = true,
+    ["winobj.exe"] = true
+  })[mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))] then
+    if mp.IsTrustedFile() then
       return mp.CLEAN
     end
-    ;
-    (mp.set_mpattribute)("BM_MasqSysinternalUtil")
+    mp.set_mpattribute("BM_MasqSysinternalUtil")
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

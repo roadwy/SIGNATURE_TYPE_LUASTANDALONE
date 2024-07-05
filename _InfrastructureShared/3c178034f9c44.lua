@@ -1,22 +1,127 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3c178034f9c44 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT < 26 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 < 26 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((((hstrlog[1]).matched and not (hstrlog[2]).matched) or (hstrlog[3]).matched) and not (hstrlog[4]).matched) or 0 + 1 + 1 + 1 + 1 < 2 then
-  return mp.CLEAN
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-if ((((((hstrlog[5]).matched and not (hstrlog[6]).matched) or (hstrlog[7]).matched) and not (hstrlog[8]).matched) or (hstrlog[9]).matched) and not (hstrlog[10]).matched) or 0 + 1 + 1 + 1 + 1 + 1 + 1 < 3 then
-  return mp.CLEAN
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-if ((((not (hstrlog[11]).matched or (hstrlog[12]).matched) and not (hstrlog[13]).matched) or (hstrlog[14]).matched) and not (hstrlog[15]).matched) or 0 + 1 + 1 + 1 + 1 + 1 < 3 then
-  return mp.CLEAN
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-if (hstrlog[16]).matched == false then
-  return mp.CLEAN
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-return mp.INFECTED
-
+if L0_0 < 2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[10]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+if L0_0 < 3 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[11]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[12]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[13]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[14]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[15]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+if L0_0 < 3 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[16]
+L1_1 = L1_1.matched
+if L1_1 == false then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

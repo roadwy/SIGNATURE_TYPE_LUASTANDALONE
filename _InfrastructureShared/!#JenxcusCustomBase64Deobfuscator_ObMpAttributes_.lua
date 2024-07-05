@@ -1,39 +1,71 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#JenxcusCustomBase64Deobfuscator_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 1024 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 1024 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0 > 2097152 then
-  return mp.CLEAN
+if L0_0 > 2097152 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (string.find)(tostring(headerpage), "\"[A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/]")
-;
-(mp.readprotection)(false)
-local l_0_3 = (mp.getfilesize)() - l_0_1
-local l_0_4 = ((mp.readfile)(l_0_1, l_0_3)):gsub("\"%).+", "")
-local l_0_5 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-local l_0_6 = {}
-local l_0_7 = string.char
-local l_0_8 = l_0_5:len()
-for l_0_12 = 1, l_0_8 do
-  local l_0_13 = l_0_5:byte(l_0_12)
-  local l_0_14 = 10 + l_0_12
-  if l_0_8 < l_0_14 then
-    l_0_14 = 1 + (l_0_14 - 1 - l_0_8)
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = tostring
+L3_3 = headerpage
+L2_2 = L2_2(L3_3)
+L3_3 = "\"[A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/][A-Za-z0-9%+/]"
+L2_2 = L1_1(L2_2, L3_3)
+L3_3 = mp
+L3_3 = L3_3.readprotection
+L4_4 = false
+L3_3(L4_4)
+L3_3 = mp
+L3_3 = L3_3.getfilesize
+L3_3 = L3_3()
+L3_3 = L3_3 - L1_1
+L4_4 = mp
+L4_4 = L4_4.readfile
+L5_5 = L1_1
+L6_6 = L3_3
+L4_4 = L4_4(L5_5, L6_6)
+L5_5 = L4_4
+L4_4 = L4_4.gsub
+L6_6 = "\"%).+"
+L7_7 = ""
+L4_4 = L4_4(L5_5, L6_6, L7_7)
+L5_5 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+L6_6 = {}
+L7_7 = string
+L7_7 = L7_7.char
+L8_8 = L5_5.len
+L8_8 = L8_8(L9_9)
+for L12_12 = 1, L8_8 do
+  L14_14 = L5_5
+  L13_13 = L5_5.byte
+  L15_15 = L12_12
+  L13_13 = L13_13(L14_14, L15_15)
+  L14_14 = 10 + L12_12
+  if L8_8 < L14_14 then
+    L15_15 = L14_14 - 1
+    L15_15 = L15_15 - L8_8
+    L14_14 = 1 + L15_15
   end
-  local l_0_15 = l_0_5:byte(l_0_14)
-  l_0_13 = l_0_7(l_0_13)
-  l_0_15 = l_0_7(l_0_15)
-  l_0_6[l_0_13] = l_0_15
+  L15_15 = L5_5.byte
+  L15_15 = L15_15(L5_5, L14_14)
+  L13_13 = L7_7(L13_13)
+  L15_15 = L7_7(L15_15)
+  L6_6[L13_13] = L15_15
 end
-local l_0_16, l_0_17 = l_0_4:gsub("[0-9a-zA-Z]", l_0_6)
-;
-(mp.set_mpattribute)("//MpBase64DecodeLongLines")
-;
-(mp.vfo_add_buffer)(l_0_16, "[JXSC64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-return mp.CLEAN
-
+L12_12 = L6_6
+L12_12 = "//MpBase64DecodeLongLines"
+L11_11(L12_12)
+L12_12 = L9_9
+L13_13 = "[JXSC64]"
+L14_14 = mp
+L14_14 = L14_14.ADD_VFO_TAKE_ACTION_ON_DAD
+L11_11(L12_12, L13_13, L14_14)
+return L11_11

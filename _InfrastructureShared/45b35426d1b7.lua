@@ -1,20 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b35426d1b7 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(bm.get_current_process_startup_info)
-if l_0_0 and l_0_1 ~= nil then
-  local l_0_2 = l_0_1.command_line
-  if l_0_2 == nil then
+local L0_0, L1_1, L2_2
+L0_0 = pcall
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L0_0(L1_1)
+if L0_0 and L1_1 ~= nil then
+  L2_2 = L1_1.command_line
+  if L2_2 == nil then
     return mp.CLEAN
   end
-  local l_0_3 = (string.lower)(l_0_2)
-  if (l_0_3:find("powershell", 1, true) or (l_0_3.find)("pwsh", 1, true)) and l_0_3:match("%s+[%-/]en?c?o?d?e?d?c?o?m?m?a?n?d?%s+") then
+  if (string.lower(L2_2):find("powershell", 1, true) or string.lower(L2_2).find("pwsh", 1, true)) and string.lower(L2_2):match("%s+[%-/]en?c?o?d?e?d?c?o?m?m?a?n?d?%s+") then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

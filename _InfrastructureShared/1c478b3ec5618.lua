@@ -1,17 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c478b3ec5618 
-
--- params : ...
--- function num : 0
 if mp.HSTR_WEIGHT >= 4 then
-  (mp.set_mpattribute)("PUA:Block:CoinMiner64")
+  mp.set_mpattribute("PUA:Block:CoinMiner64")
   return mp.INFECTED
 end
 if peattributes.amd64_image then
-  (mp.set_mpattribute)("do_exhaustivehstr_64bit_rescan_coinminer")
+  mp.set_mpattribute("do_exhaustivehstr_64bit_rescan_coinminer")
 else
-  ;
-  (mp.set_mpattribute)("do_exhaustivehstr_rescan_coinminer")
+  mp.set_mpattribute("do_exhaustivehstr_rescan_coinminer")
 end
 return mp.CLEAN
-

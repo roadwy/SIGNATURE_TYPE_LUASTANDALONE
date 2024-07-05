@@ -1,28 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_NewWrittenBySystemProcessDetected_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("MpContentDetected") and not (mp.get_mpattributesubstring)("Detection:Trojan:Win") and not (mp.get_mpattributesubstring)("Detection:HackTool:Win") and not (mp.get_mpattributesubstring)("Detection:RemoteAccess:Win") then
-  return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("MpContentDetected")
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattributesubstring
+  L0_0 = L0_0("Detection:Trojan:Win")
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattributesubstring
+    L0_0 = L0_0("Detection:HackTool:Win")
+    if not L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.get_mpattributesubstring
+      L0_0 = L0_0("Detection:RemoteAccess:Win")
+      if not L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.CLEAN
+        return L0_0
+      end
+    end
+  end
 end
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if (string.sub)(l_0_0, 0, 4) == "\\\\?\\" then
-  l_0_0 = (string.sub)(l_0_0, 5)
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.FILEPATH_QUERY_LOWERCASE)
+if string.sub(L0_0, 0, 4) == "\\\\?\\" then
+  L0_0 = string.sub(L0_0, 5)
 end
-if l_0_0:sub(1, 8) == "\\device\\" then
-  l_0_0 = (MpCommon.PathToWin32Path)(l_0_0)
-  if l_0_0 == nil then
+if L0_0:sub(1, 8) == "\\device\\" then
+  L0_0 = MpCommon.PathToWin32Path(L0_0)
+  if L0_0 == nil then
     return mp.CLEAN
   end
-  l_0_0 = (string.lower)(l_0_0)
+  L0_0 = string.lower(L0_0)
 end
-if not (string.find)(l_0_0, "^c:\\windows\\%w+%.exe$") then
+if not string.find(L0_0, "^c:\\windows\\%w+%.exe$") then
   return mp.CLEAN
 end
-local l_0_1 = (MpCommon.QueryPersistContext)(l_0_0, "NewWrittenBySystemProcessDetected")
-if not l_0_1 then
-  (MpCommon.AppendPersistContext)(l_0_0, "NewWrittenBySystemProcessDetected", 5)
+if not MpCommon.QueryPersistContext(L0_0, "NewWrittenBySystemProcessDetected") then
+  MpCommon.AppendPersistContext(L0_0, "NewWrittenBySystemProcessDetected", 5)
 end
 return mp.INFECTED
-

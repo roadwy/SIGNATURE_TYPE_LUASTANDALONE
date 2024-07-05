@@ -1,28 +1,38 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b3c2c1a508 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 and MpCommon.SECURITY_MANDATORY_MEDIUM_RID < l_0_0.integrity_level then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 then
+  L1_1 = L0_0.integrity_level
+  if L1_1 > L2_2 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
 end
-local l_0_1 = (sysio.RegExpandUserKey)("HKCU\\Software\\Classes\\Ms-Settings\\Shell\\Open\\Command")
-if l_0_1 then
-  for l_0_5,l_0_6 in pairs(l_0_1) do
-    local l_0_7 = (sysio.RegOpenKey)(l_0_6)
-    if l_0_7 then
-      local l_0_8 = (sysio.GetRegValueType)(l_0_7, "DelegateExecute")
-      if l_0_8 then
-        local l_0_9 = (sysio.GetRegValueAsString)(l_0_7, "")
-        if l_0_9 and (string.len)(l_0_9) > 4 then
+L1_1 = sysio
+L1_1 = L1_1.RegExpandUserKey
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L7_7 = sysio
+    L7_7 = L7_7.RegOpenKey
+    L8_8 = L6_6
+    L7_7 = L7_7(L8_8)
+    if L7_7 then
+      L8_8 = sysio
+      L8_8 = L8_8.GetRegValueType
+      L9_9 = L7_7
+      L8_8 = L8_8(L9_9, "DelegateExecute")
+      if L8_8 then
+        L9_9 = sysio
+        L9_9 = L9_9.GetRegValueAsString
+        L9_9 = L9_9(L7_7, "")
+        if L9_9 and string.len(L9_9) > 4 then
           return mp.INFECTED
         end
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return L2_2

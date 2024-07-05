@@ -1,58 +1,135 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Win32_Vundo.HK2 
-
--- params : ...
--- function num : 0
-if peattributes.epscn_writable ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.epscn_writable
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[1] ~= 104 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 ~= 104 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.AddressOfEntryPoint ~= 4096 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.AddressOfEntryPoint
+if L0_0 ~= 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.ImageBase ~= 268435456 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.ImageBase
+if L0_0 ~= 268435456 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < pevars.epsec then
-  return mp.CLEAN
+L0_0 = pevars
+L0_0 = L0_0.epsec
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+if L0_0 > L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).SizeOfRawData <= 8192 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 <= 8192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).SizeOfRawData >= 16384 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 >= 16384 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.packed ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.packed
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasstandardentry == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasstandardentry
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasexports == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epatstartentrysect ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epatstartentrysect
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasboundimports == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasboundimports
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < 5 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 < 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections > 6 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 > 6 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[2]).Size <= 240 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 <= 240 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[2]).Size >= 512 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 >= 512 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

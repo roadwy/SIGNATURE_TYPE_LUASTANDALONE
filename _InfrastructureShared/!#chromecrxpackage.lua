@@ -1,33 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#chromecrxpackage 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 256 or l_0_0 > 1048576 then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 256 or L0_0 > 1048576 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 1
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == 875721283 then
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L2_2 = headerpage
+  L3_3 = 5
+  L1_1 = L1_1(L2_2, L3_3)
+elseif L1_1 ~= 2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 9
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = headerpage
+L2_2 = L2_2(L3_3, 13)
+if L2_2 == 0 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = L1_1 + L2_2
+L3_3 = L3_3 + 17
+if L3_3 >= mp.HEADERPAGE_SZ then
   return mp.CLEAN
 end
-if (mp.readu_u32)(headerpage, 1) ~= 875721283 or (mp.readu_u32)(headerpage, 5) ~= 2 then
+if mp.readu_u16(headerpage, L3_3) ~= 19280 then
   return mp.CLEAN
 end
-local l_0_1 = (mp.readu_u32)(headerpage, 9)
-if l_0_1 == 0 then
-  return mp.CLEAN
-end
-local l_0_2 = (mp.readu_u32)(headerpage, 13)
-if l_0_2 == 0 then
-  return mp.CLEAN
-end
-local l_0_3 = l_0_1 + l_0_2 + 17
-if mp.HEADERPAGE_SZ <= l_0_3 then
-  return mp.CLEAN
-end
-if (mp.readu_u16)(headerpage, l_0_3) ~= 19280 then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-;
-(mp.vfo_add_buffer)((mp.readfile)(l_0_3 - 1, l_0_0 - l_0_3 + 1), "[ChromeCrxPackage]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+mp.readprotection(false)
+mp.vfo_add_buffer(mp.readfile(L3_3 - 1, L0_0 - L3_3 + 1), "[ChromeCrxPackage]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

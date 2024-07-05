@@ -1,20 +1,13 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1a78b7d26e40 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("PEPCODE:HasDigitalSignature") then
+if mp.get_mpattribute("PEPCODE:HasDigitalSignature") then
   return mp.CLEAN
 end
-if (mp.get_mpattribute)("pea_isdriver") then
+if mp.get_mpattribute("pea_isdriver") then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0:find("program files", 1, true) then
+if mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)):find("program files", 1, true) then
   return mp.CLEAN
 end
-if l_0_0:find("system32", 1, true) then
+if mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)):find("system32", 1, true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

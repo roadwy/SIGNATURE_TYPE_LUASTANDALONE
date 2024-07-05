@@ -1,37 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/~VirTool_Win32_Obfuscator.RC 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections <= 4 then
-  return mp.CLEAN
+local L0_0
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 <= 4 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u16)(epcode, 1) ~= 5631 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u16
+L0_0 = L0_0(epcode, 1)
+if L0_0 ~= 5631 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u16)(epcode, 7) ~= 63617 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u16
+L0_0 = L0_0(epcode, 7)
+if L0_0 ~= 63617 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u16)(epcode, 9) ~= 65535 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u16
+L0_0 = L0_0(epcode, 9)
+if L0_0 ~= 65535 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = {}
-local l_0_1 = {}
-l_0_1.sig = "‹Õý\255\255ÁÕý\255\255Q…$\244\255\255\199\000\000\000\000\000\232"
-l_0_1.xray_type = 11
-l_0_1.bytes_to_decrypt = 0
--- DECOMPILER ERROR at PC42: No list found for R0 , SetList fails
-
-l_0_1 = pe
-l_0_1 = l_0_1.xray_block
-local l_0_2 = l_0_0
-local l_0_3 = 1
-local l_0_4 = 2
-local l_0_5 = 0
-do
-  local l_0_6 = 256
-  do return l_0_1(l_0_2, l_0_3, l_0_4, l_0_5, l_0_6) end
-  -- DECOMPILER ERROR at PC52: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-end
-
+L0_0 = {
+  {
+    sig = "\141\139\213\253\255\255\129\193\213\253\255\255Q\141\133$\244\255\255\199\000\000\000\000\000\232",
+    xray_type = 11,
+    bytes_to_decrypt = 0
+  }
+}
+return pe.xray_block(L0_0, 1, 2, 0, 256)

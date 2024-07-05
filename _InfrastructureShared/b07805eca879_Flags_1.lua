@@ -1,34 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b07805eca879_Flags_1 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT > 10 then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 > 10 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-if pehdr.Magic ~= 267 then
+L0_0 = pehdr
+L0_0 = L0_0.Magic
+if L0_0 ~= 267 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.RVA
+L1_1 = pehdr
+L1_1 = L1_1.DataDirectory
+L1_1 = L1_1[1]
+L1_1 = L1_1.Size
+L2_2 = pe
+L2_2 = L2_2.foffset_rva
+L3_3 = L0_0
+L2_2 = L2_2(L3_3)
+L0_0 = L2_2
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = L0_0
+L4_4 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.ror32
+L4_4 = mp
+L4_4 = L4_4.readu_u32
+L5_5 = L2_2
+L4_4 = L4_4(L5_5, 20)
+L5_5 = 8
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 ~= 1 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.ror32
+L5_5 = mp
+L5_5 = L5_5.readu_u32
+L5_5 = L5_5(L2_2, 40)
+L4_4 = L4_4(L5_5, 8)
+L5_5 = mp
+L5_5 = L5_5.readfile
+L5_5 = L5_5(0, mp.getfilesize())
+if mp.ror32(mp.readu_u32(L5_5, mp.ror32(mp.readu_u32(L5_5, 60), 8) + 40), 8) == L4_4 then
   return mp.CLEAN
 end
-local l_0_0 = ((pehdr.DataDirectory)[1]).RVA
-local l_0_1 = ((pehdr.DataDirectory)[1]).Size
-l_0_0 = (pe.foffset_rva)(l_0_0)
-;
-(mp.readprotection)(false)
-local l_0_2 = (mp.readfile)(l_0_0, l_0_1)
-local l_0_3 = (mp.ror32)((mp.readu_u32)(l_0_2, 20), 8)
-if l_0_3 ~= 1 then
-  return mp.CLEAN
-end
-local l_0_4 = (mp.ror32)((mp.readu_u32)(l_0_2, 40), 8)
-local l_0_5 = (mp.readfile)(0, (mp.getfilesize)())
-local l_0_6 = (mp.ror32)((mp.readu_u32)(l_0_5, 60), 8)
-local l_0_7 = (mp.ror32)((mp.readu_u32)(l_0_5, l_0_6 + 40), 8)
-if l_0_7 == l_0_4 then
-  return mp.CLEAN
-end
-;
-(mp.writeu_u32)(l_0_5, l_0_6 + 40 + 1, l_0_4)
-;
-(mp.vfo_add_buffer)(l_0_5, "Export_OEP", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+mp.writeu_u32(L5_5, mp.ror32(mp.readu_u32(L5_5, 60), 8) + 40 + 1, L4_4)
+mp.vfo_add_buffer(L5_5, "Export_OEP", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

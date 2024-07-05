@@ -1,59 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/WDBlockFirewallRule_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-Infrastructure_ScanWDFirewallBlockRules = function()
-  -- function num : 0_0
-  local l_1_0 = {}
-  l_1_0["mpcmdrun.exe"] = true
-  l_1_0["msascui.exe"] = true
-  l_1_0["configsecuritypolicy.exe"] = true
-  l_1_0["mpuxsrv.exe"] = true
-  l_1_0["msascuil.exe"] = true
-  l_1_0["msmpeng.exe"] = true
-  l_1_0["mssense.exe"] = true
-  l_1_0["sensecncproxy.exe"] = true
-  l_1_0["sensesampleuploader.exe"] = true
-  l_1_0["senseir.exe"] = true
-  local l_1_1 = {}
-  l_1_1.sense = true
-  l_1_1.windefend = true
-  local l_1_2 = "HKLM\\SYSTEM\\ControlSet001\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\FirewallRules"
-  local l_1_3 = "HKLM\\SYSTEM\\ControlSet002\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\FirewallRules"
-  local l_1_4 = {}
-  -- DECOMPILER ERROR at PC19: No list found for R4 , SetList fails
-
-  -- DECOMPILER ERROR at PC20: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC21: Overwrote pending register: R6 in 'AssignReg'
-
-  for l_1_8,l_1_9 in l_1_2(l_1_3) do
-    local l_1_10 = (sysio.RegOpenKey)(l_1_9)
-    if l_1_10 then
-      local l_1_11 = (sysio.RegEnumValues)(l_1_10)
-      for l_1_15,l_1_16 in pairs(l_1_11) do
-        if l_1_16 then
-          local l_1_17 = (sysio.GetRegValueAsString)(l_1_10, l_1_16)
-          if l_1_17 then
-            l_1_17 = (string.lower)(l_1_17)
-            if (string.find)(l_1_17, "action=block|active=true", 1, true) then
-              local l_1_18 = (string.match)(l_1_17, "|app=.*\\([^\\]+%.exe)")
-              if l_1_18 and l_1_0[l_1_18] then
-                (MpDetection.ReportResource)("regkeyvalue", l_1_9 .. "\\\\" .. l_1_16, 2591, false)
+local L1_0
+function L1_0()
+  local L0_1, L1_2, L2_3, L3_4, L4_5, L5_6, L6_7, L7_8, L8_9, L9_10, L10_11, L11_12, L12_13, L13_14, L14_15, L15_16, L16_17, L17_18, L18_19
+  L0_1 = {}
+  L0_1["mpcmdrun.exe"] = true
+  L0_1["msascui.exe"] = true
+  L0_1["configsecuritypolicy.exe"] = true
+  L0_1["mpuxsrv.exe"] = true
+  L0_1["msascuil.exe"] = true
+  L0_1["msmpeng.exe"] = true
+  L0_1["mssense.exe"] = true
+  L0_1["sensecncproxy.exe"] = true
+  L0_1["sensesampleuploader.exe"] = true
+  L0_1["senseir.exe"] = true
+  L1_2 = {}
+  L1_2.sense = true
+  L1_2.windefend = true
+  L2_3 = "HKLM\\SYSTEM\\ControlSet001\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\FirewallRules"
+  L3_4 = "HKLM\\SYSTEM\\ControlSet002\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\FirewallRules"
+  L4_5 = {L5_6, L6_7}
+  for L8_9, L9_10 in L5_6(L6_7) do
+    L10_11 = sysio
+    L10_11 = L10_11.RegOpenKey
+    L11_12 = L9_10
+    L10_11 = L10_11(L11_12)
+    if L10_11 then
+      L11_12 = sysio
+      L11_12 = L11_12.RegEnumValues
+      L11_12 = L11_12(L12_13)
+      for L15_16, L16_17 in L12_13(L13_14) do
+        if L16_17 then
+          L17_18 = sysio
+          L17_18 = L17_18.GetRegValueAsString
+          L18_19 = L10_11
+          L17_18 = L17_18(L18_19, L16_17)
+          if L17_18 then
+            L18_19 = string
+            L18_19 = L18_19.lower
+            L18_19 = L18_19(L17_18)
+            L17_18 = L18_19
+            L18_19 = string
+            L18_19 = L18_19.find
+            L18_19 = L18_19(L17_18, "action=block|active=true", 1, true)
+            if L18_19 then
+              L18_19 = string
+              L18_19 = L18_19.match
+              L18_19 = L18_19(L17_18, "|app=.*\\([^\\]+%.exe)")
+              if L18_19 then
+                if L0_1[L18_19] then
+                  MpDetection.ReportResource("regkeyvalue", L9_10 .. "\\\\" .. L16_17, 2591, false)
+                end
+              else
+                L18_19 = string.match(L17_18, "|svc=([^|]+)")
+                if L18_19 and L1_2[L18_19] then
+                  MpDetection.ReportResource("regkeyvalue", L9_10 .. "\\\\" .. L16_17, 2591, false)
+                end
               end
             end
           end
         end
-        l_1_18 = (string.match)(l_1_17, "|svc=([^|]+)")
-        if l_1_18 and l_1_1[l_1_18] then
-          (MpDetection.ReportResource)("regkeyvalue", l_1_9 .. "\\\\" .. l_1_16, 2591, false)
-        end
       end
     end
   end
-  -- DECOMPILER ERROR at PC107: Confused about usage of register R6 for local variables in 'ReleaseLocals'
-
 end
-
-
+Infrastructure_ScanWDFirewallBlockRules = L1_0

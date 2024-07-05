@@ -1,15 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#AlignAttribsWithContext_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1 = nil
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONFIRSTREAD and (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONWRITE and (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_UNKNOWN then
-    if (mp.GetResmgrBasePlugin)() == "file" then
-      l_0_1 = (mp.getfilename)()
-      if not (sysio.IsFileExists)(l_0_1) then
+local L0_0
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN and mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_UNKNOWN then
+    if mp.GetResmgrBasePlugin() == "file" then
+      L0_0 = mp.getfilename()
+      if not sysio.IsFileExists(L0_0) then
         return mp.CLEAN
       end
     else
@@ -19,14 +13,13 @@ if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN and 
     return mp.CLEAN
   end
 end
-if l_0_1 == nil then
-  l_0_1 = (mp.getfilename)()
+if L0_0 == nil then
+  L0_0 = mp.getfilename()
 end
-if not (mp.get_mpattribute)("BM_AgePrevLookedUpForBITS") and (MpCommon.QueryPersistContext)(l_0_1, "BM_AgePrevLookedUpForBITS") then
-  (mp.set_mpattribute)("BM_AgePrevLookedUpForBITS")
+if not mp.get_mpattribute("BM_AgePrevLookedUpForBITS") and MpCommon.QueryPersistContext(L0_0, "BM_AgePrevLookedUpForBITS") then
+  mp.set_mpattribute("BM_AgePrevLookedUpForBITS")
 end
-if not (mp.get_mpattribute)("BM_BlockedForBITS") and (MpCommon.QueryPersistContext)(l_0_1, "BM_BlockedForBITS") then
-  (mp.set_mpattribute)("BM_BlockedForBITS")
+if not mp.get_mpattribute("BM_BlockedForBITS") and MpCommon.QueryPersistContext(L0_0, "BM_BlockedForBITS") then
+  mp.set_mpattribute("BM_BlockedForBITS")
 end
 return mp.CLEAN
-

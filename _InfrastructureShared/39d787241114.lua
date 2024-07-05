@@ -1,25 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/39d787241114 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L1_1 = L1_1(L0_0)
+if L1_1 == "" or L1_1 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if l_0_1 == "" or l_0_1 == nil then
+L1_1 = string.lower(L1_1)
+if L1_1 == "" or L1_1 == nil then
   return mp.CLEAN
 end
-l_0_1 = (string.lower)(l_0_1)
-if l_0_1 == "" or l_0_1 == nil then
+if string.find(L1_1, ".zip\\", 1, true) == nil then
   return mp.CLEAN
 end
-if (string.find)(l_0_1, ".zip\\", 1, true) == nil then
-  return mp.CLEAN
-end
-if (string.find)(l_0_1, ".js", 1, true) == nil then
+if string.find(L1_1, ".js", 1, true) == nil then
   return mp.CLEAN
 end
 return mp.INFECTED
-

@@ -1,49 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3a895538ce20 
-
--- params : ...
--- function num : 0
-local l_0_0 = 0
-local l_0_1 = (string.byte)((pe.mmap_va)(pevars.sigaddr + 14, 1), 1)
-if l_0_1 == 129 then
-  l_0_0 = 20
+local L0_0, L1_1, L2_2
+L0_0 = 0
+L1_1 = string
+L1_1 = L1_1.byte
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L2_2 = L2_2(pevars.sigaddr + 14, 1)
+L1_1 = L1_1(L2_2, 1)
+if L1_1 == 129 then
+  L0_0 = 20
+elseif L1_1 == 131 then
+  L0_0 = 17
 else
-  if l_0_1 == 131 then
-    l_0_0 = 17
-  else
-    l_0_0 = 24
-  end
+  L0_0 = 24
 end
-local l_0_2 = (pe.mmap_va)(pevars.sigaddr + l_0_0, 64)
-local l_0_3 = (string.find)(l_0_2, "t", 1, true)
-if l_0_3 == nil then
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L2_2 = L2_2(pevars.sigaddr + L0_0, 64)
+if string.find(L2_2, "t", 1, true) == nil then
   return mp.CLEAN
 end
-;
-(pe.mmap_patch_va)(pevars.sigaddr + l_0_0 + l_0_3 - 1, "\235")
-if (string.byte)((pe.mmap_va)(pevars.sigaddr + 9, 1), 1) == 185 then
-  for l_0_7 = 15, l_0_0 + l_0_3 - 1 do
-    (pe.mmap_patch_va)(pevars.sigaddr + l_0_7 - 1, "\144")
+pe.mmap_patch_va(pevars.sigaddr + L0_0 + string.find(L2_2, "t", 1, true) - 1, "\235")
+if string.byte(pe.mmap_va(pevars.sigaddr + 9, 1), 1) == 185 then
+  for _FORV_7_ = 15, L0_0 + string.find(L2_2, "t", 1, true) - 1 do
+    pe.mmap_patch_va(pevars.sigaddr + _FORV_7_ - 1, "\144")
+  end
+elseif string.byte(pe.mmap_va(pevars.sigaddr + 9, 1), 1) == 96 then
+  for _FORV_7_ = string.find(pe.mmap_va(pevars.sigaddr, 32), "a\185", 1, true) + 1, L0_0 + string.find(L2_2, "t", 1, true) - 1 do
+    pe.mmap_patch_va(pevars.sigaddr + _FORV_7_ - 1, "\144")
+  end
+  for _FORV_7_ = 10, string.find(pe.mmap_va(pevars.sigaddr + 9, 32), "a", 1, true) + 9 do
+    pe.mmap_patch_va(pevars.sigaddr + _FORV_7_ - 1, "\144")
   end
 else
-  do
-    if (string.byte)((pe.mmap_va)(pevars.sigaddr + 9, 1), 1) == 96 then
-      for l_0_11 = (string.find)((pe.mmap_va)(pevars.sigaddr, 32), "a\185", 1, true) + 1, l_0_0 + l_0_3 - 1 do
-        (pe.mmap_patch_va)(pevars.sigaddr + l_0_11 - 1, "\144")
-      end
-      for l_0_15 = 10, (string.find)((pe.mmap_va)(pevars.sigaddr + 9, 32), "a", 1, true) + 9 do
-        (pe.mmap_patch_va)(pevars.sigaddr + l_0_15 - 1, "\144")
-      end
-    else
-      do
-        for l_0_19 = (string.find)((pe.mmap_va)(pevars.sigaddr, 32), "\185", 1, true), l_0_0 + l_0_3 - 1 do
-          (pe.mmap_patch_va)(pevars.sigaddr + l_0_19 - 1, "\144")
-        end
-        do
-          return mp.INFECTED
-        end
-      end
-    end
+  for _FORV_7_ = string.find(pe.mmap_va(pevars.sigaddr, 32), "\185", 1, true), L0_0 + string.find(L2_2, "t", 1, true) - 1 do
+    pe.mmap_patch_va(pevars.sigaddr + _FORV_7_ - 1, "\144")
   end
 end
-
+return _FOR_.INFECTED

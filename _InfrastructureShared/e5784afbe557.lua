@@ -1,10 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e5784afbe557 
-
--- params : ...
--- function num : 0
-if peattributes.no_security == true and (pehdr.NumberOfSections >= 5 or pehdr.NumberOfSections <= 7) then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.no_security
+if L0_0 == true then
+  L0_0 = pehdr
+  L0_0 = L0_0.NumberOfSections
+  if not (L0_0 >= 5) then
+    L0_0 = pehdr
+    L0_0 = L0_0.NumberOfSections
+  elseif L0_0 <= 7 then
+    L0_0 = mp
+    L0_0 = L0_0.INFECTED
+    return L0_0
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

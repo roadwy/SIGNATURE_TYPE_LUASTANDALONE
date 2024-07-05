@@ -1,58 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b34ba1dd04_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2 = nil
-if (bm.get_current_process_startup_info)() ~= nil and ((bm.get_current_process_startup_info)()).command_line ~= nil and ((bm.get_current_process_startup_info)()).ppid ~= nil then
-  local l_0_3 = (string.lower)(((bm.get_current_process_startup_info)()).command_line)
-  if ((bm.get_imagepath)() ~= nil and (MpCommon.PathToWin32Path)((bm.get_imagepath)()) == nil) or l_0_2 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L2_2 = bm
+L2_2 = L2_2.get_current_process_startup_info
+L2_2 = L2_2()
+if L2_2 ~= nil then
+  L3_3 = L2_2.command_line
+  if L3_3 ~= nil then
+    L3_3 = L2_2.ppid
+    if L3_3 ~= nil then
+      L3_3 = string
+      L3_3 = L3_3.lower
+      L3_3 = L3_3(L2_2.command_line)
+      L1_1 = L3_3
+      L0_0 = L2_2.ppid
+    end
   end
-  -- DECOMPILER ERROR at PC36: Confused about usage of register: R3 in 'UnsetPending'
-
-  if StringStartsWith((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())), "%") then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC48: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC55: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC60: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC65: Confused about usage of register: R3 in 'UnsetPending'
-
-  if ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("\\adminarsenal\\", 1, true) or ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("ccmexec%.exe") or ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("bomgar%-scc%.exe") or ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("keyacc32%.exe") then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC73: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC80: Confused about usage of register: R3 in 'UnsetPending'
-
-  if ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("\\temp\\kav remote installations\\", 1, true) or ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("\\logmein rescue connectonlan\\lmirescueapplet", 1, true) then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC90: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC95: Confused about usage of register: R3 in 'UnsetPending'
-
-  if ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("\\veeam.+%.exe") or ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("\\f5.+%.exe") then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC103: Confused about usage of register: R3 in 'UnsetPending'
-
-  if ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("\\pdq.+%.exe") then
-    return mp.CLEAN
-  end
-  if l_0_3:find("advanced threat protection\\datacollection\\", 1, true) then
-    return mp.CLEAN
-  end
-  local l_0_4 = nil
-  if GetTaintLevelHR() == "High" and ((mp.IsHipsRuleEnabled)("01443614-cd74-433a-b99e-2ecdc07bfc25") or (mp.IsHipsRuleEnabled)("c1db55ab-c21a-4637-bb3f-a12568109d35")) then
-    TrackPidAndTechniqueBM(l_0_2, "T1021.002", "tt_remediate_cantidate")
-    return mp.INFECTED
-  end
+end
+L3_3 = bm
+L3_3 = L3_3.get_imagepath
+L3_3 = L3_3()
+if L3_3 ~= nil then
+  L3_3 = MpCommon.PathToWin32Path(L3_3)
+end
+if L3_3 == nil or L0_0 == nil then
   return mp.CLEAN
 end
-
+L3_3 = string.lower(L3_3)
+if StringStartsWith(L3_3, "%") then
+  return mp.CLEAN
+end
+if L3_3:find("\\adminarsenal\\", 1, true) or L3_3:find("ccmexec%.exe") or L3_3:find("bomgar%-scc%.exe") or L3_3:find("keyacc32%.exe") then
+  return mp.CLEAN
+end
+if L3_3:find("\\temp\\kav remote installations\\", 1, true) or L3_3:find("\\logmein rescue connectonlan\\lmirescueapplet", 1, true) then
+  return mp.CLEAN
+end
+if L3_3:find("\\veeam.+%.exe") or L3_3:find("\\f5.+%.exe") then
+  return mp.CLEAN
+end
+if L3_3:find("\\pdq.+%.exe") then
+  return mp.CLEAN
+end
+if L1_1:find("advanced threat protection\\datacollection\\", 1, true) then
+  return mp.CLEAN
+end
+if GetTaintLevelHR() == "High" and (mp.IsHipsRuleEnabled("01443614-cd74-433a-b99e-2ecdc07bfc25") or mp.IsHipsRuleEnabled("c1db55ab-c21a-4637-bb3f-a12568109d35")) then
+  TrackPidAndTechniqueBM(L0_0, "T1021.002", "tt_remediate_cantidate")
+  return mp.INFECTED
+end
+return mp.CLEAN

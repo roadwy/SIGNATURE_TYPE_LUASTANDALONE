@@ -1,18 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_HackTool_Win32_ReVulnDriverNstd.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if not l_0_0 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L1_1 = L1_1(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)
+L0_0 = L0_0(L1_1, L1_1(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.find)(l_0_0, ":\\windows\\system32\\", 1, true) then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L1_1 = L1_1(L0_0, ":\\windows\\system32\\", 1, true)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESS_PPID)
-if l_0_1 ~= nil then
-  (MpCommon.RequestSmsOnProcess)(l_0_1, MpCommon.SMS_SCAN_MED)
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L1_1(mp.CONTEXT_DATA_PROCESS_PPID)
+if L1_1 ~= nil then
+  MpCommon.RequestSmsOnProcess(L1_1, MpCommon.SMS_SCAN_MED)
 end
 return mp.INFECTED
-

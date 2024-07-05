@@ -1,18 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8578d12820f9 
-
--- params : ...
--- function num : 0
-if peattributes.suspicious_image_version and peattributes.suspicious_timestamp and peattributes.isdll and (mp.getfilesize)() < 237568 then
+if peattributes.suspicious_image_version and peattributes.suspicious_timestamp and peattributes.isdll and mp.getfilesize() < 237568 then
   if mp.HSTR_WEIGHT == 11 then
     return mp.SUSPICIOUS
   end
-  ;
-  (pe.set_peattribute)("hstr_exhaustive", true)
-  ;
-  (pe.set_peattribute)("deep_analysis", true)
-  ;
-  (pe.reemulate)()
+  pe.set_peattribute("hstr_exhaustive", true)
+  pe.set_peattribute("deep_analysis", true)
+  pe.reemulate()
 end
 return mp.CLEAN
-

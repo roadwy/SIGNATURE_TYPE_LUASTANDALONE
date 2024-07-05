@@ -1,10 +1,198 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/628787ac0271a_Flags_1 
-
--- params : ...
--- function num : 0
-if (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((hstrlog[2]).matched and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and not (hstrlog[5]).matched) or (hstrlog[6]).matched) and not (hstrlog[7]).matched) or (hstrlog[8]).matched) and not (hstrlog[9]).matched) or (hstrlog[10]).matched) and not (hstrlog[11]).matched) or (hstrlog[12]).matched) and not (hstrlog[13]).matched) or (hstrlog[14]).matched) and not (hstrlog[15]).matched) or (hstrlog[16]).matched) and not (hstrlog[17]).matched) or (hstrlog[18]).matched) and not (hstrlog[19]).matched) or (hstrlog[20]).matched) and not (hstrlog[21]).matched) or (hstrlog[22]).matched) and not (hstrlog[23]).matched) or (hstrlog[24]).matched) and not (hstrlog[25]).matched) or (hstrlog[26]).matched) and not (hstrlog[27]).matched) or (hstrlog[28]).matched) and not (hstrlog[29]).matched) or (hstrlog[30]).matched) and not (hstrlog[31]).matched) or (hstrlog[32]).matched) and not (hstrlog[33]).matched) or (hstrlog[34]).matched) and not (hstrlog[35]).matched) or (hstrlog[36]).matched) and not (hstrlog[37]).matched) or (hstrlog[38]).matched) and not (hstrlog[39]).matched) or (hstrlog[40]).matched) and not (hstrlog[41]).matched) or (hstrlog[42]).matched) and not (hstrlog[43]).matched) or (hstrlog[44]).matched) and not (hstrlog[45]).matched) or (hstrlog[46]).matched) and not (hstrlog[47]).matched) or (hstrlog[48]).matched) and not (hstrlog[49]).matched) or (hstrlog[50]).matched) and not (hstrlog[51]).matched) or (hstrlog[52]).matched) and not (hstrlog[53]).matched) or (hstrlog[54]).matched) and not (hstrlog[55]).matched) or (hstrlog[56]).matched) and not (hstrlog[57]).matched) or (hstrlog[58]).matched) and not (hstrlog[59]).matched) or (hstrlog[60]).matched) and not (hstrlog[61]).matched) or (hstrlog[62]).matched) and not (hstrlog[63]).matched) or (hstrlog[64]).matched) and not (hstrlog[65]).matched) or (mp.getfilesize)() > 50000) and (mp.getfilesize)() < 200000 and (hstrlog[1]).matched and 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 1 then
+local L0_0
+L0_0 = 0
+if hstrlog[2].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[3].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[4].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[5].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[6].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[7].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[8].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[9].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[10].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[11].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[12].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[13].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[14].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[15].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[16].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[17].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[18].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[19].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[20].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[21].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[22].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[23].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[24].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[25].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[26].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[27].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[28].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[29].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[30].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[31].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[32].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[33].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[34].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[35].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[36].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[37].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[38].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[39].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[40].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[41].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[42].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[43].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[44].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[45].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[46].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[47].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[48].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[49].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[50].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[51].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[52].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[53].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[54].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[55].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[56].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[57].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[58].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[59].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[60].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[61].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[62].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[63].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[64].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[65].matched then
+  L0_0 = L0_0 + 1
+end
+if mp.getfilesize() > 50000 and mp.getfilesize() < 200000 and hstrlog[1].matched and L0_0 >= 1 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,51 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b304a10fcb 
-
--- params : ...
--- function num : 0
-local l_0_1 = nil
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-    local l_0_0 = (this_sigattrlog[2]).utf8p1
-  end
-  local l_0_2 = nil
-  -- DECOMPILER ERROR at PC26: Overwrote pending register: R2 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC29: Overwrote pending register: R1 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[1]).matched or (this_sigattrlog[1]).utf8p1 == nil or nil ~= nil) and l_0_2 ~= nil then
-      local l_0_3, l_0_4 = nil
-      -- DECOMPILER ERROR at PC39: Overwrote pending register: R3 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC44: Overwrote pending register: R4 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC59: Confused about usage of register: R3 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC67: Confused about usage of register: R4 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC75: Confused about usage of register: R4 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC84: Confused about usage of register: R4 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC93: Confused about usage of register: R4 in 'UnsetPending'
-
-      if (sysio.IsFileExists)(nil) and (sysio.IsFileExists)(nil) and (mp.IsKnownFriendlyFile)(nil, true, false) and not (mp.IsKnownFriendlyFile)(nil, true, false) then
-        if (string.find)(nil, "\\system32\\mrt.exe", -17, true) or (string.find)(nil, "\\asep_inv.exe", -13, true) or (string.find)(nil, "\\mpsigstub.exe", -14, true) then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC105: Confused about usage of register: R4 in 'UnsetPending'
-
-        ;
-        (bm.add_related_file)(nil)
-        ;
-        (bm.request_SMS)(l_0_3, "l")
-        ;
-        (bm.add_action)("SingleProcessScan", 100)
-        return mp.INFECTED
-      end
-    end
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L0_0 = L2_2.utf8p1
   end
 end
-
+L2_2 = nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L3_3 = L3_3.utf8p1
+  if L3_3 ~= nil then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L2_2 = L3_3.utf8p1
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L1_1 = L3_3.ppid
+  end
+end
+if L2_2 ~= nil and L0_0 ~= nil then
+  L3_3, L4_4 = nil, nil
+  L3_3 = mp.ContextualExpandEnvironmentVariables(L0_0)
+  L4_4 = mp.ContextualExpandEnvironmentVariables(L2_2)
+  if sysio.IsFileExists(L3_3) and sysio.IsFileExists(L4_4) and mp.IsKnownFriendlyFile(L3_3, true, false) and not mp.IsKnownFriendlyFile(L4_4, true, false) then
+    if string.find(L4_4, "\\system32\\mrt.exe", -17, true) or string.find(L4_4, "\\asep_inv.exe", -13, true) or string.find(L4_4, "\\mpsigstub.exe", -14, true) then
+      return mp.CLEAN
+    end
+    bm.add_related_file(L4_4)
+    bm.request_SMS(L1_1, "l")
+    bm.add_action("SingleProcessScan", 100)
+    return mp.INFECTED
+  end
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

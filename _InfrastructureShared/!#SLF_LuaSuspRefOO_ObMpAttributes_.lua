@@ -1,48 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LuaSuspRefOO_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 1536000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 1536000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-if not l_0_1:find("\\downloads", 1, true) then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.bitor
+L3_3 = L3_3(L4_4, L5_5)
+L8_8 = L2_2(L3_3, L4_4)
+L2_2 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2(L3_3, L4_4))
+L3_3 = L1_1.find
+L7_7 = true
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+if not L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = {}
-l_0_3[".xls->"] = "%.xls%->.+"
-l_0_3["xlsx->"] = "%.xlsx%->.+"
-l_0_3[".doc->"] = "%.doc%->.+"
-l_0_3["docx->"] = "%.docx%->.+"
-l_0_3[".rtf->"] = "%.rtf%->.+"
-l_0_3["xlsm->"] = "%.xlsm%->.+"
-l_0_3["xlsb->"] = "%.xlsb%->.+"
-l_0_3["xltx->"] = "%.xltx%->.+"
-l_0_3["xltm->"] = "%.xltm%->.+"
-l_0_3["xlam->"] = "%.xlam%->.+"
-l_0_3[".xla->"] = "%.xla%->.+"
-l_0_3["docm->"] = "%.docm%->.+"
-l_0_3["dotx->"] = "%.dotx%->.+"
-l_0_3["dotm->"] = "%.dotm%->.+"
-l_0_3[".ppt->"] = "%.ppt%->.+"
-l_0_3["pptm->"] = "%.pptm%->.+"
-l_0_3[".pps->"] = "%.pps%->.+"
-l_0_3["pptx->"] = "%.pptx%->.+"
-l_0_3["ppsx->"] = "%.ppsx%->.+"
-l_0_3[".odt->"] = "%.odt%->.+"
-l_0_3[".xml->"] = "%.xml%->.+"
-for l_0_7,l_0_8 in pairs(l_0_3) do
-  if (string.find)(l_0_2, l_0_7, 1, true) then
-    local l_0_9 = (string.match)(l_0_2, l_0_8)
-    if l_0_9 == nil or l_0_9:len() < 12 then
+L3_3 = {}
+L3_3[".xls->"] = "%.xls%->.+"
+L3_3["xlsx->"] = "%.xlsx%->.+"
+L3_3[".doc->"] = "%.doc%->.+"
+L3_3["docx->"] = "%.docx%->.+"
+L3_3[".rtf->"] = "%.rtf%->.+"
+L3_3["xlsm->"] = "%.xlsm%->.+"
+L3_3["xlsb->"] = "%.xlsb%->.+"
+L3_3["xltx->"] = "%.xltx%->.+"
+L3_3["xltm->"] = "%.xltm%->.+"
+L3_3["xlam->"] = "%.xlam%->.+"
+L3_3[".xla->"] = "%.xla%->.+"
+L3_3["docm->"] = "%.docm%->.+"
+L3_3["dotx->"] = "%.dotx%->.+"
+L3_3["dotm->"] = "%.dotm%->.+"
+L3_3[".ppt->"] = "%.ppt%->.+"
+L3_3["pptm->"] = "%.pptm%->.+"
+L3_3[".pps->"] = "%.pps%->.+"
+L3_3["pptx->"] = "%.pptx%->.+"
+L3_3["ppsx->"] = "%.ppsx%->.+"
+L3_3[".odt->"] = "%.odt%->.+"
+L3_3[".xml->"] = "%.xml%->.+"
+for L7_7, L8_8 in L4_4(L5_5) do
+  if string.find(L2_2, L7_7, 1, true) then
+    if string.match(L2_2, L8_8) == nil or string.match(L2_2, L8_8):len() < 12 then
       return mp.CLEAN
     end
-    if l_0_9:find("sheets/", 1, true) then
+    if string.match(L2_2, L8_8):find("sheets/", 1, true) then
       return mp.INFECTED
     end
   end
 end
-return mp.CLEAN
-
+return L4_4

@@ -1,29 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/16296d6ad23d 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("BM_PDF_FILE") and not (mp.get_mpattribute)("MpInternal_IsPliScan") and not (mp.get_mpattribute)("MpAlwaysLowfiMatch") and not (mp.get_mpattribute)("Lua:Guid.1") and not (mp.get_mpattribute)("//Lua:ContextFromWebmail") and not (mp.get_mpattribute)("//Lua:ContextualDropFileByEmailClient") then
-  local l_0_0 = (mp.GetBruteMatchData)()
-  local l_0_1 = l_0_0.match_offset + 1
-  local l_0_2 = 128
-  local l_0_3 = ""
-  if l_0_0.is_header then
-    l_0_3 = (tostring(headerpage)):sub(l_0_1, l_0_1 + l_0_2)
-  else
-    l_0_3 = (tostring(footerpage)):sub(l_0_1, l_0_1 + l_0_2)
-  end
-  local l_0_4, l_0_5 = l_0_3:find("http", 1, true)
-  if l_0_5 ~= nil then
-    l_0_3 = l_0_3:sub(l_0_5 - 3, l_0_2 - l_0_5)
-    local l_0_6, l_0_7 = l_0_3:find(")", 1, true)
-    if l_0_7 ~= nil then
-      (mp.vfo_add_buffer)(l_0_3:sub(1, l_0_7 - 1), "[pdfuri2rdata]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-      return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "BM_PDF_FILE"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "MpInternal_IsPliScan"
+  L0_0 = L0_0(L1_1)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "MpAlwaysLowfiMatch"
+    L0_0 = L0_0(L1_1)
+    if not L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.get_mpattribute
+      L1_1 = "Lua:Guid.1"
+      L0_0 = L0_0(L1_1)
+      if not L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.get_mpattribute
+        L1_1 = "//Lua:ContextFromWebmail"
+        L0_0 = L0_0(L1_1)
+        if not L0_0 then
+          L0_0 = mp
+          L0_0 = L0_0.get_mpattribute
+          L1_1 = "//Lua:ContextualDropFileByEmailClient"
+          L0_0 = L0_0(L1_1)
+          if not L0_0 then
+            L0_0 = mp
+            L0_0 = L0_0.GetBruteMatchData
+            L0_0 = L0_0()
+            L1_1 = L0_0.match_offset
+            L1_1 = L1_1 + 1
+            L2_2 = 128
+            L3_3 = ""
+            if L0_0.is_header then
+              L3_3 = tostring(headerpage):sub(L1_1, L1_1 + L2_2)
+            else
+              L3_3 = tostring(footerpage):sub(L1_1, L1_1 + L2_2)
+            end
+            if L3_3:find("http", 1, true) ~= nil then
+              L3_3 = L3_3:sub(L3_3:find("http", 1, true) - 3, L2_2 - L3_3:find("http", 1, true))
+              if L3_3:find(")", 1, true) ~= nil then
+                mp.vfo_add_buffer(L3_3:sub(1, L3_3:find(")", 1, true) - 1), "[pdfuri2rdata]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+                return mp.INFECTED
+              end
+            end
+          end
+        end
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,52 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/add732294516 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1, l_0_2, l_0_3 = nil, nil, nil, nil
-local l_0_4 = nil
-local l_0_5 = nil
-local l_0_6 = nil
-do
-  local l_0_7 = nil
-  while 1 do
-    -- DECOMPILER ERROR at PC6: Confused about usage of register: R7 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC13: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC20: Overwrote pending register: R0 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC21: Overwrote pending register: R4 in 'AssignReg'
-
-    if 0 <= 5 and (0 ~= 0 or true == true) then
-      if l_0_4 == nil then
-        break
-      end
-    end
-    if l_0_5 == nil then
-      break
-    end
-    if l_0_6 == nil then
-      break
-    end
-    -- DECOMPILER ERROR at PC39: Overwrote pending register: R2 in 'AssignReg'
-
-    if l_0_7 ~= nil then
-      if l_0_7 == "" then
-        break
-      end
-      -- DECOMPILER ERROR at PC63: Confused about usage of register: R7 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC64: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-      -- DECOMPILER ERROR at PC64: LeaveBlock: unexpected jumping out IF_STMT
-
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L7_5
+L4_4 = true
+L7_5 = false
+while 0 <= 5 do
+  if 0 == 0 then
+    L4_4, L0_0 = pcall(mp.GetParentProcInfo)
+  else
+    L4_4, L0_0 = pcall(mp.GetParentProcInfo, L1_1)
   end
-  if (((l_0_7 ~= "psexecsvc.exe" and l_0_7 ~= "wmiprvse.exe" and l_0_7 ~= "gpscript.exe" and l_0_7 ~= "winrm.exe") or l_0_7 == "services.exe") and true == false) or true == false then
-    return mp.CLEAN
+  if L4_4 ~= true or L0_0 == nil then
+    break
   end
-  do return mp.INFECTED end
-  -- WARNING: undefined locals caused missing assignments!
+  L1_1 = L0_0.ppid
+  if L1_1 == nil then
+    break
+  end
+  L2_2 = L0_0.image_path
+  if L2_2 == nil then
+    break
+  end
+  L2_2 = string.lower(L2_2)
+  L3_3 = string.match(L2_2, "\\([^\\]+)$")
+  if L3_3 == nil or L3_3 == "" then
+    break
+  end
+  if L3_3 == "services.exe" then
+    L7_5 = true
+  end
 end
-
+if true == false or L7_5 == false then
+  return mp.CLEAN
+end
+return mp.INFECTED

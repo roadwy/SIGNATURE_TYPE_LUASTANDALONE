@@ -1,14 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b32456945c_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (MpCommon.GetPersistContextNoPath)("vssamsipid")
-for l_0_4,l_0_5 in ipairs(l_0_0) do
-  sms_untrusted_process_pid(l_0_5)
-  add_parents(l_0_5)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = MpCommon
+L0_0 = L0_0.GetPersistContextNoPath
+L0_0 = L0_0(L1_1)
+for L4_4, L5_5 in L1_1(L2_2) do
+  sms_untrusted_process_pid(L5_5)
+  add_parents(L5_5)
   reportSessionInformation()
-  do return mp.INFECTED end
+  return mp.INFECTED
 end
-return mp.CLEAN
-
+return L1_1

@@ -1,15 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Chasendi_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters")
-if l_0_0 then
-  local l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "DhcpNameServer")
-  if l_0_1 and (string.find)(l_0_1, "82.163.143.", 1, true) then
+local L0_0, L1_1
+L0_0 = sysio
+L0_0 = L0_0.RegOpenKey
+L1_1 = "HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L1_1 = sysio
+  L1_1 = L1_1.GetRegValueAsString
+  L1_1 = L1_1(L0_0, "DhcpNameServer")
+  if L1_1 and string.find(L1_1, "82.163.143.", 1, true) then
     Infrastructure_ClearALLDNS()
-    ;
-    (Remediation.SetRebootRequired)()
+    Remediation.SetRebootRequired()
   end
 end
-

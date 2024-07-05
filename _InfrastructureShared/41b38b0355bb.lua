@@ -1,49 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b38b0355bb 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R1 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_2 = nil
-  end
-  do
-    if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-      local l_0_0 = (this_sigattrlog[2]).utf8p1
-    end
-    local l_0_3 = nil
-    if l_0_3 ~= nil then
-      local l_0_1 = nil
-      if (sysio.IsFileExists)(l_0_3) then
-        (bm.add_related_file)(l_0_3)
-        ;
-        (table.insert)({}, l_0_3)
-        -- DECOMPILER ERROR at PC52: Confused about usage of register: R2 in 'UnsetPending'
-
-        ;
-        (MpCommon.SetPersistContextNoPath)("ServiceCreationScript", {}, 100)
-      end
-      if l_0_1 ~= nil then
-        local l_0_4 = nil
-        for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_1)) do
-          local l_0_5 = nil
-          -- DECOMPILER ERROR at PC67: Confused about usage of register: R8 in 'UnsetPending'
-
-          R8_PC67 = (mp.ContextualExpandEnvironmentVariables)(R8_PC67)
-          if (sysio.IsFileExists)(R8_PC67) == true then
-            (bm.add_related_file)(R8_PC67)
-          end
-        end
-      end
-      do
-        do
-          do return mp.INFECTED end
-          return mp.CLEAN
-        end
-      end
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
   end
 end
-
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L0_0 = L2_2.utf8p1
+  end
+end
+L2_2 = {}
+if L0_0 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(L4_4)
+  L0_0 = L3_3
+  L3_3 = sysio
+  L3_3 = L3_3.IsFileExists
+  L3_3 = L3_3(L4_4)
+  if L3_3 then
+    L3_3 = bm
+    L3_3 = L3_3.add_related_file
+    L3_3(L4_4)
+    L3_3 = table
+    L3_3 = L3_3.insert
+    L3_3(L4_4, L5_5)
+    L3_3 = MpCommon
+    L3_3 = L3_3.SetPersistContextNoPath
+    L3_3(L4_4, L5_5, L6_6)
+  end
+  if L1_1 ~= nil then
+    L3_3 = mp
+    L3_3 = L3_3.GetExecutablesFromCommandLine
+    L3_3 = L3_3(L4_4)
+    for L7_7, L8_8 in L4_4(L5_5) do
+      L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+      if sysio.IsFileExists(L8_8) == true then
+        bm.add_related_file(L8_8)
+      end
+    end
+  end
+  L3_3 = mp
+  L3_3 = L3_3.INFECTED
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

@@ -1,115 +1,234 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_ELAMDriverTBS.A_Includes_ResearchData_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONOPEN and l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L27_27, L28_28, L29_29, L30_30, L31_31, L32_32, L33_33, L34_34, L35_35, L36_36, L37_37, L38_38, L39_39, L40_40, L41_41, L42_42, L43_43, L44_44, L45_45, L46_46, L47_47, L48_48, L49_49, L50_50, L51_51, L52_52, L53_53, L54_54, L55_55, L56_56, L57_57, L58_58, L59_59, L60_60, L61_61, L62_62, L63_63, L64_64, L65_65
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L0_0 ~= L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
 end
-if peattributes.no_security == true then
-  return mp.CLEAN
+L1_1 = peattributes
+L1_1 = L1_1.no_security
+if L1_1 == true then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = function()
-  -- function num : 0_0
-  for l_1_3 = 1, pehdr.NumberOfSections do
-    if tostring((pesecs[l_1_3]).Name) == ".rsrc" then
-      return (pesecs[l_1_3]).PointerToRawData, (pesecs[l_1_3]).VirtualAddress
+function L1_1()
+  local L0_66, L2_67, L3_68
+  for _FORV_3_ = 1, L2_67.NumberOfSections do
+    if tostring(pesecs[_FORV_3_].Name) == ".rsrc" then
+      return pesecs[_FORV_3_].PointerToRawData, pesecs[_FORV_3_].VirtualAddress
     end
   end
 end
-
-local l_0_2 = function(l_2_0)
-  -- function num : 0_1
-  local l_2_1 = (mp.readfile)(l_2_0, 20)
-  local l_2_2 = (mp.readu_u16)(l_2_1, 15)
-  local l_2_3 = (mp.readu_u16)(l_2_1, 13)
-  local l_2_4 = l_2_0 + 16
-  return l_2_2, l_2_3, l_2_4
+function L2_2(A0_69)
+  local L1_70, L2_71, L3_72, L4_73
+  L1_70 = mp
+  L1_70 = L1_70.readfile
+  L2_71 = A0_69
+  L3_72 = 20
+  L1_70 = L1_70(L2_71, L3_72)
+  L2_71 = mp
+  L2_71 = L2_71.readu_u16
+  L3_72 = L1_70
+  L4_73 = 15
+  L2_71 = L2_71(L3_72, L4_73)
+  L3_72 = mp
+  L3_72 = L3_72.readu_u16
+  L4_73 = L1_70
+  L3_72 = L3_72(L4_73, 13)
+  L4_73 = A0_69 + 16
+  return L2_71, L3_72, L4_73
 end
-
-local l_0_3 = function(l_3_0)
-  -- function num : 0_2
-  local l_3_1 = (mp.readfile)(l_3_0, 8)
-  local l_3_2 = (mp.readu_u32)(l_3_1, 1)
-  local l_3_3 = (mp.readu_u32)(l_3_1, 5)
-  local l_3_4 = (mp.bitand)(l_3_2, 2147483647)
-  local l_3_5 = (mp.bitand)(l_3_2, 4294901760)
-  local l_3_6 = (mp.bitand)(l_3_2, 65535)
-  local l_3_7 = (mp.shr32)((mp.bitand)(l_3_3, 2147483648), 31)
-  local l_3_8 = (mp.bitand)(l_3_3, 2147483647)
-  return l_3_2, l_3_3, l_3_4, l_3_5, l_3_6, l_3_7, l_3_8
+function L3_3(A0_74)
+  local L1_75, L2_76, L3_77, L4_78, L5_79, L6_80, L7_81, L8_82
+  L1_75 = mp
+  L1_75 = L1_75.readfile
+  L2_76 = A0_74
+  L3_77 = 8
+  L1_75 = L1_75(L2_76, L3_77)
+  L2_76 = mp
+  L2_76 = L2_76.readu_u32
+  L3_77 = L1_75
+  L4_78 = 1
+  L2_76 = L2_76(L3_77, L4_78)
+  L3_77 = mp
+  L3_77 = L3_77.readu_u32
+  L4_78 = L1_75
+  L5_79 = 5
+  L3_77 = L3_77(L4_78, L5_79)
+  L4_78 = mp
+  L4_78 = L4_78.bitand
+  L5_79 = L2_76
+  L6_80 = 2147483647
+  L4_78 = L4_78(L5_79, L6_80)
+  L5_79 = mp
+  L5_79 = L5_79.bitand
+  L6_80 = L2_76
+  L7_81 = 4294901760
+  L5_79 = L5_79(L6_80, L7_81)
+  L6_80 = mp
+  L6_80 = L6_80.bitand
+  L7_81 = L2_76
+  L8_82 = 65535
+  L6_80 = L6_80(L7_81, L8_82)
+  L7_81 = mp
+  L7_81 = L7_81.shr32
+  L8_82 = mp
+  L8_82 = L8_82.bitand
+  L8_82 = L8_82(L3_77, 2147483648)
+  L7_81 = L7_81(L8_82, 31)
+  L8_82 = mp
+  L8_82 = L8_82.bitand
+  L8_82 = L8_82(L3_77, 2147483647)
+  return L2_76, L3_77, L4_78, L5_79, L6_80, L7_81, L8_82
 end
-
-local l_0_4 = function(l_4_0)
-  -- function num : 0_3
-  local l_4_1 = (mp.readfile)(l_4_0, 20)
-  local l_4_2 = (mp.readu_u32)(l_4_1, 1)
-  local l_4_3 = (mp.readu_u32)(l_4_1, 5)
-  local l_4_4 = (mp.readu_u32)(l_4_1, 9)
-  local l_4_5 = (mp.readu_u32)(l_4_1, 13)
-  return l_4_2, l_4_3, l_4_4, l_4_5
+function L4_4(A0_83)
+  local L1_84, L2_85, L3_86, L4_87, L5_88
+  L1_84 = mp
+  L1_84 = L1_84.readfile
+  L2_85 = A0_83
+  L3_86 = 20
+  L1_84 = L1_84(L2_85, L3_86)
+  L2_85 = mp
+  L2_85 = L2_85.readu_u32
+  L3_86 = L1_84
+  L4_87 = 1
+  L2_85 = L2_85(L3_86, L4_87)
+  L3_86 = mp
+  L3_86 = L3_86.readu_u32
+  L4_87 = L1_84
+  L5_88 = 5
+  L3_86 = L3_86(L4_87, L5_88)
+  L4_87 = mp
+  L4_87 = L4_87.readu_u32
+  L5_88 = L1_84
+  L4_87 = L4_87(L5_88, 9)
+  L5_88 = mp
+  L5_88 = L5_88.readu_u32
+  L5_88 = L5_88(L1_84, 13)
+  return L2_85, L3_86, L4_87, L5_88
 end
-
-local l_0_5 = {}
-l_0_5.E17764C39F2AFD7114F8528D2F9783D9A591F6679715EECE730A262CF5CFD3B3 = "62009aaabdae749fd47d19150958329bf6ff4b34"
-l_0_5["84D8717A416C8C9E214C6E0DBD091860D8133F413BCFF35673998F27BBA084CA"] = "b9eaa034c821c159b05d3521bcf7feb796ebd6ff"
-l_0_5.A08E79C386083D875014C409C13D144E0A24386132980DF11FF59737C8489EB1 = "007790f6561dad89b0bcd85585762495e358f8a5"
-l_0_5["4843A82ED3B1F2BFBEE9671960E1940C942F688D"] = "495847a93187cfb8c71f840cb7b41497ad95c64f"
-l_0_5["47F4B9898631773231B32844EC0D49990AC4EB1E"] = "409AA4A74A0CDA7C0FEE6BD0BB8823D16B5F1875"
-;
-(mp.readprotection)(false)
-local l_0_6, l_0_7 = l_0_1()
-local l_0_8, l_0_9, l_0_10 = l_0_2(l_0_6)
-if l_0_9 == 0 then
-  return mp.CLEAN
+L5_5 = {}
+L5_5.E17764C39F2AFD7114F8528D2F9783D9A591F6679715EECE730A262CF5CFD3B3 = "62009aaabdae749fd47d19150958329bf6ff4b34"
+L5_5["84D8717A416C8C9E214C6E0DBD091860D8133F413BCFF35673998F27BBA084CA"] = "b9eaa034c821c159b05d3521bcf7feb796ebd6ff"
+L5_5.A08E79C386083D875014C409C13D144E0A24386132980DF11FF59737C8489EB1 = "007790f6561dad89b0bcd85585762495e358f8a5"
+L5_5["4843A82ED3B1F2BFBEE9671960E1940C942F688D"] = "495847a93187cfb8c71f840cb7b41497ad95c64f"
+L5_5["47F4B9898631773231B32844EC0D49990AC4EB1E"] = "409AA4A74A0CDA7C0FEE6BD0BB8823D16B5F1875"
+L6_6 = mp
+L6_6 = L6_6.readprotection
+L7_7 = false
+L6_6(L7_7)
+L6_6 = L1_1
+L7_7 = L6_6()
+L8_8 = L2_2
+L9_9 = L6_6
+L10_10 = L8_8(L9_9)
+if L9_9 == 0 then
+  return L11_11
 end
-for l_0_14 = 0, l_0_9 do
-  local l_0_15 = l_0_10 + l_0_14 * 8
-  local l_0_16, l_0_17, l_0_18, l_0_19, l_0_20, l_0_21, l_0_22 = l_0_3(l_0_15)
-  local l_0_23 = (mp.readfile)(l_0_6 + l_0_18, 40)
-  l_0_23 = (string.gsub)(l_0_23, "%z", "")
-  if (string.find)(l_0_23, "MSELAMCERTINFOID", 1, true) then
-    (mp.set_mpattribute)("Lua:ELAMDriver")
-    local l_0_24 = l_0_6 + l_0_22
-    local l_0_25, l_0_26, l_0_27 = l_0_2(l_0_24)
-    if l_0_26 == 0 then
-      return mp.CLEAN
+for L14_14 = 0, L9_9 do
+  L15_15 = L14_14 * 8
+  L15_15 = L10_10 + L15_15
+  L16_16 = L3_3
+  L17_17 = L15_15
+  L22_22 = L16_16(L17_17)
+  L23_23 = mp
+  L23_23 = L23_23.readfile
+  L24_24 = L6_6 + L18_18
+  L25_25 = 40
+  L23_23 = L23_23(L24_24, L25_25)
+  L24_24 = string
+  L24_24 = L24_24.gsub
+  L25_25 = L23_23
+  L26_26 = "%z"
+  L27_27 = ""
+  L24_24 = L24_24(L25_25, L26_26, L27_27)
+  L23_23 = L24_24
+  L24_24 = string
+  L24_24 = L24_24.find
+  L25_25 = L23_23
+  L26_26 = "MSELAMCERTINFOID"
+  L27_27 = 1
+  L24_24 = L24_24(L25_25, L26_26, L27_27, L28_28)
+  if L24_24 then
+    L24_24 = mp
+    L24_24 = L24_24.set_mpattribute
+    L25_25 = "Lua:ELAMDriver"
+    L24_24(L25_25)
+    L24_24 = L6_6 + L22_22
+    L25_25 = L2_2
+    L26_26 = L24_24
+    L27_27 = L25_25(L26_26)
+    if L26_26 == 0 then
+      return L28_28
     end
-    for l_0_31 = 0, l_0_26 do
-      local l_0_32 = l_0_27 + l_0_31 * 8
-      local l_0_33, l_0_34, l_0_35, l_0_36, l_0_37, l_0_38, l_0_39 = l_0_3(l_0_32)
-      local l_0_40 = (mp.readfile)(l_0_6 + l_0_35, 70)
-      l_0_40 = (string.gsub)(l_0_40, "%z", "")
-      if (string.find)(l_0_40, "MICROSOFTELAMCERTIFICATEINFO", 1, true) then
-        local l_0_41 = l_0_6 + l_0_39
-        local l_0_42, l_0_43, l_0_44 = l_0_2(l_0_41)
-        for l_0_48 = 0, l_0_42 do
-          local l_0_49 = l_0_44 + l_0_48 * 8
-          local l_0_50, l_0_51, l_0_52, l_0_53, l_0_54, l_0_55, l_0_56 = l_0_3(l_0_49)
-          local l_0_57 = l_0_6 + l_0_56
-          local l_0_58, l_0_59 = l_0_4(l_0_57)
-          if l_0_59 <= 4000 and l_0_7 < l_0_58 then
-            local l_0_60 = l_0_58 - l_0_7 + l_0_6
-            local l_0_61 = (mp.readfile)(l_0_60, l_0_59)
-            l_0_61 = (string.gsub)(l_0_61, "%z", "")
-            for l_0_65 in pairs(l_0_5) do
-              if l_0_61:match(l_0_65) ~= nil then
-                (mp.set_mpattribute)("MpInternal_researchdata=TBSHash=" .. l_0_65)
+    for L31_31 = 0, L26_26 do
+      L32_32 = L31_31 * 8
+      L32_32 = L27_27 + L32_32
+      L33_33 = L3_3
+      L34_34 = L32_32
+      L39_39 = L33_33(L34_34)
+      L40_40 = mp
+      L40_40 = L40_40.readfile
+      L41_41 = L6_6 + L35_35
+      L42_42 = 70
+      L40_40 = L40_40(L41_41, L42_42)
+      L41_41 = string
+      L41_41 = L41_41.gsub
+      L42_42 = L40_40
+      L43_43 = "%z"
+      L44_44 = ""
+      L41_41 = L41_41(L42_42, L43_43, L44_44)
+      L40_40 = L41_41
+      L41_41 = string
+      L41_41 = L41_41.find
+      L42_42 = L40_40
+      L43_43 = "MICROSOFTELAMCERTIFICATEINFO"
+      L44_44 = 1
+      L41_41 = L41_41(L42_42, L43_43, L44_44, L45_45)
+      if L41_41 then
+        L41_41 = L6_6 + L39_39
+        L42_42 = L2_2
+        L43_43 = L41_41
+        L44_44 = L42_42(L43_43)
+        for L48_48 = 0, L42_42 do
+          L49_49 = L48_48 * 8
+          L49_49 = L44_44 + L49_49
+          L50_50 = L3_3
+          L51_51 = L49_49
+          L56_56 = L50_50(L51_51)
+          L57_57 = L6_6 + L56_56
+          L58_58 = L4_4
+          L59_59 = L57_57
+          L59_59 = L58_58(L59_59)
+          if L59_59 <= 4000 and L7_7 < L58_58 then
+            L60_60 = L58_58 - L7_7
+            L60_60 = L60_60 + L6_6
+            L61_61 = mp
+            L61_61 = L61_61.readfile
+            L61_61 = L61_61(L62_62, L63_63)
+            L65_65 = ""
+            L61_61 = L62_62
+            for L65_65 in L62_62(L63_63) do
+              if L61_61:match(L65_65) ~= nil then
+                mp.set_mpattribute("MpInternal_researchdata=TBSHash=" .. L65_65)
                 return mp.INFECTED
               end
             end
           end
         end
-        -- DECOMPILER ERROR at PC176: Confused about usage of register R48 for local variables in 'ReleaseLocals'
-
       end
     end
-    -- DECOMPILER ERROR at PC177: Confused about usage of register R47 for local variables in 'ReleaseLocals'
-
   end
 end
-do return mp.CLEAN end
--- DECOMPILER ERROR at PC181: Confused about usage of register R46 for local variables in 'ReleaseLocals'
-
-
+return L11_11

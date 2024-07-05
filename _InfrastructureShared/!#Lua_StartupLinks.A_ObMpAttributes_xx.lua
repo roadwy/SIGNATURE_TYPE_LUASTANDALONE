@@ -1,25 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_StartupLinks.A_ObMpAttributes_xx 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.getfilename)())
-  if (string.match)(l_0_1, "\\microsoft\\windows\\start menu\\programs\\startup.*%.lnk") ~= nil then
-    local l_0_2 = (string.lower)(tostring(headerpage))
-    local l_0_3 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-    for l_0_7,l_0_8 in ipairs(l_0_3) do
-      l_0_8 = (mp.ContextualExpandEnvironmentVariables)(l_0_8)
-      if (sysio.IsFileExists)(l_0_8) then
-        (mp.ReportLowfi)(l_0_8, 2199264473)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.getfilename
+  L8_8 = L2_2()
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2())
+  L2_2 = string
+  L2_2 = L2_2.match
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = tostring
+    L8_8 = L3_3(L4_4)
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L3_3(L4_4))
+    L3_3 = mp
+    L3_3 = L3_3.GetExecutablesFromCommandLine
+    L3_3 = L3_3(L4_4)
+    for L7_7, L8_8 in L4_4(L5_5) do
+      L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+      if sysio.IsFileExists(L8_8) then
+        mp.ReportLowfi(L8_8, 2199264473)
       end
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

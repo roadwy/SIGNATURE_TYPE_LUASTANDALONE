@@ -1,129 +1,140 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SingleFileIn7z 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-;
-(mp.readprotection)(false)
-if l_0_0 < 512 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+if L0_0 < 512 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 1) ~= 2948364855 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 1
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= 2948364855 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 13) == 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 13
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.readu_u32)(headerpage, 21)
-if l_0_1 < 50 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 21
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 < 50 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if mp.FOOTERPAGE_SZ < l_0_1 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.FOOTERPAGE_SZ
+if L1_1 > L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.readu_u32)(footerpage, mp.FOOTERPAGE_SZ - l_0_1 + 1) ~= 394241 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = footerpage
+L4_4 = mp
+L4_4 = L4_4.FOOTERPAGE_SZ
+L4_4 = L4_4 - L1_1
+L4_4 = L4_4 + 1
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= 394241 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.readu_u16)(footerpage, mp.FOOTERPAGE_SZ - l_0_1 + 1 + 46) - 1
-if l_0_2 < 8 or l_0_2 > 256 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readu_u16
+L3_3 = footerpage
+L4_4 = mp
+L4_4 = L4_4.FOOTERPAGE_SZ
+L4_4 = L4_4 - L1_1
+L4_4 = L4_4 + 1
+L4_4 = L4_4 + 46
+L2_2 = L2_2(L3_3, L4_4)
+L2_2 = L2_2 - 1
+if L2_2 < 8 or L2_2 > 256 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = l_0_1 - 48
-if l_0_3 < l_0_2 then
-  return mp.CLEAN
+L3_3 = L1_1 - 48
+if L2_2 > L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (mp.readfile)(l_0_0 - l_0_3 - 1, l_0_2)
-local l_0_5 = (string.gsub)(l_0_4, "%z", "")
-;
-(mp.set_mpattribute)("Lua:SingleFileIn7Z")
-;
-(mp.UfsSetMetadataBool)("Lua:SingleFileIn7Z!ufs", true)
-local l_0_6 = (string.lower)((string.sub)(l_0_5, -4))
-local l_0_7 = (string.lower)((string.sub)(l_0_5, -3))
-if l_0_6 == ".zip" then
-  (mp.set_mpattribute)("Lua:SingleZipIn7z")
-else
-  if l_0_6 == ".vbs" then
-    (mp.set_mpattribute)("Lua:SingleVBSIn7z")
-    ;
-    (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-  else
-    if l_0_6 == ".lnk" then
-      (mp.set_mpattribute)("Lua:SingleLNKIn7z")
-      ;
-      (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-    else
-      if l_0_6 == ".wsf" then
-        (mp.set_mpattribute)("Lua:SingleWSFIn7z")
-        ;
-        (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-      else
-        if l_0_6 == ".vbe" then
-          (mp.set_mpattribute)("Lua:SingleVBEIn7z")
-          ;
-          (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-        else
-          if l_0_6 == ".jse" then
-            (mp.set_mpattribute)("Lua:SingleJSEIn7z")
-            ;
-            (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-          else
-            if l_0_6 == "html" then
-              (mp.set_mpattribute)("Lua:SingleHTAIn7z")
-              ;
-              (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-            else
-              if l_0_6 == ".exe" then
-                (mp.set_mpattribute)("Lua:SingleEXEIn7z")
-                ;
-                (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-              else
-                if l_0_6 == ".dll" then
-                  (mp.set_mpattribute)("Lua:SingleDLLIn7z")
-                else
-                  if l_0_6 == ".com" then
-                    (mp.set_mpattribute)("Lua:SingleCOMIn7z")
-                    ;
-                    (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-                  else
-                    if l_0_6 == ".ps1" then
-                      (mp.set_mpattribute)("Lua:SinglePSIn7z")
-                      ;
-                      (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-                    else
-                      if l_0_6 == ".bat" then
-                        (mp.set_mpattribute)("Lua:SingleBATIn7z")
-                        ;
-                        (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-                      else
-                        if l_0_6 == ".rar" then
-                          (mp.set_mpattribute)("Lua:SingleRarIn7z")
-                        else
-                          if l_0_6 == ".ace" then
-                            (mp.set_mpattribute)("Lua:SingleACEIn7z")
-                          end
-                        end
-                      end
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-  end
+L4_4 = mp
+L4_4 = L4_4.readfile
+L5_5 = L0_0 - L3_3
+L5_5 = L5_5 - 1
+L4_4 = L4_4(L5_5, L2_2)
+L5_5 = string
+L5_5 = L5_5.gsub
+L5_5 = L5_5(L4_4, "%z", "")
+mp.set_mpattribute("Lua:SingleFileIn7Z")
+mp.UfsSetMetadataBool("Lua:SingleFileIn7Z!ufs", true)
+if string.lower(string.sub(L5_5, -4)) == ".zip" then
+  mp.set_mpattribute("Lua:SingleZipIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".vbs" then
+  mp.set_mpattribute("Lua:SingleVBSIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".lnk" then
+  mp.set_mpattribute("Lua:SingleLNKIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".wsf" then
+  mp.set_mpattribute("Lua:SingleWSFIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".vbe" then
+  mp.set_mpattribute("Lua:SingleVBEIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".jse" then
+  mp.set_mpattribute("Lua:SingleJSEIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == "html" then
+  mp.set_mpattribute("Lua:SingleHTAIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".exe" then
+  mp.set_mpattribute("Lua:SingleEXEIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".dll" then
+  mp.set_mpattribute("Lua:SingleDLLIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".com" then
+  mp.set_mpattribute("Lua:SingleCOMIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".ps1" then
+  mp.set_mpattribute("Lua:SinglePSIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".bat" then
+  mp.set_mpattribute("Lua:SingleBATIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".rar" then
+  mp.set_mpattribute("Lua:SingleRarIn7z")
+elseif string.lower(string.sub(L5_5, -4)) == ".ace" then
+  mp.set_mpattribute("Lua:SingleACEIn7z")
 end
-if l_0_7 == ".js" then
-  (mp.set_mpattribute)("Lua:SingleJSIn7z")
-  ;
-  (mp.set_mpattribute)("Lua:SingleSuspiciousExtensionIn7z")
-else
-  if l_0_7 == ".7z" then
-    (mp.set_mpattribute)("Lua:Single7zIn7z")
-  end
+if string.lower(string.sub(L5_5, -3)) == ".js" then
+  mp.set_mpattribute("Lua:SingleJSIn7z")
+  mp.set_mpattribute("Lua:SingleSuspiciousExtensionIn7z")
+elseif string.lower(string.sub(L5_5, -3)) == ".7z" then
+  mp.set_mpattribute("Lua:Single7zIn7z")
 end
 return mp.CLEAN
-

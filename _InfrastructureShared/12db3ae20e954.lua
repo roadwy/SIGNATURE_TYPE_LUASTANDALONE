@@ -1,15 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/12db3ae20e954 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[3]).timestamp
-local l_0_1 = (this_sigattrlog[2]).timestamp
-if l_0_0 < l_0_1 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.timestamp
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.timestamp
+if L0_0 < L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_0 - l_0_1 > 10000000 then
-  return mp.CLEAN
+L2_2 = L0_0 - L1_1
+if L2_2 > 10000000 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-return mp.INFECTED
-
+L3_3 = mp
+L3_3 = L3_3.INFECTED
+return L3_3

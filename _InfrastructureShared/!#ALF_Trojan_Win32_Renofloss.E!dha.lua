@@ -1,37 +1,111 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_Renofloss.E!dha 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if mp.SCANREASON_ONMODIFIEDHANDLECLOSE == l_0_0 and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true and (mp.get_mpattribute)("HSTR:RenoFlossLoader") then
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-  local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-  if l_0_2 ~= nil and l_0_1 ~= nil then
-    (mp.ReportLowfi)((MpCommon.PathToWin32Path)(l_0_1) .. "\\" .. l_0_2, 2439729955)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L1_1 == L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_NEWLYCREATEDHINT
+  L1_1 = L1_1(L2_2)
+  if true == L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.get_mpattribute
+    L2_2 = "HSTR:RenoFlossLoader"
+    L1_1 = L1_1(L2_2)
+    if L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.get_contextdata
+      L2_2 = mp
+      L2_2 = L2_2.CONTEXT_DATA_PROCESSDEVICEPATH
+      L1_1 = L1_1(L2_2)
+      L2_2 = mp
+      L2_2 = L2_2.get_contextdata
+      L3_3 = mp
+      L3_3 = L3_3.CONTEXT_DATA_PROCESSNAME
+      L2_2 = L2_2(L3_3)
+      if L2_2 ~= nil and L1_1 ~= nil then
+        L3_3 = mp
+        L3_3 = L3_3.ReportLowfi
+        L4_4 = MpCommon
+        L4_4 = L4_4.PathToWin32Path
+        L5_5 = L1_1
+        L4_4 = L4_4(L5_5)
+        L5_5 = "\\"
+        L6_6 = L2_2
+        L4_4 = L4_4 .. L5_5 .. L6_6
+        L5_5 = 2439729955
+        L3_3(L4_4, L5_5)
+      end
+    end
   end
-end
-do
-  if mp.SCANREASON_ONOPEN == l_0_0 and (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) == true then
-    local l_0_3, l_0_4 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-    local l_0_5 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%temp%") .. "\\" .. "rarsfx")
-    if l_0_3:find(l_0_5, 1, true) ~= nil then
-      local l_0_6 = {}
-      l_0_6["ccmexec.exe"] = ""
-      l_0_6["tpvcgateway.exe"] = ""
-      l_0_6["cmrcviewer.exe"] = ""
-      if l_0_6[l_0_4] then
-        local l_0_7 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-        local l_0_8 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-        if l_0_8 ~= nil and l_0_7 ~= nil then
-          (mp.ReportLowfi)((MpCommon.PathToWin32Path)(l_0_7) .. "\\" .. l_0_8, 2439729955)
-          return mp.INFECTED
+else
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONOPEN
+  if L1_1 == L0_0 then
+    L1_1 = mp
+    L1_1 = L1_1.get_contextdata
+    L2_2 = mp
+    L2_2 = L2_2.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+    L1_1 = L1_1(L2_2)
+    if true == L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.getfilename
+      L2_2 = mp
+      L2_2 = L2_2.bitor
+      L3_3 = mp
+      L3_3 = L3_3.bitor
+      L4_4 = mp
+      L4_4 = L4_4.FILEPATH_QUERY_FNAME
+      L5_5 = mp
+      L5_5 = L5_5.FILEPATH_QUERY_PATH
+      L3_3 = L3_3(L4_4, L5_5)
+      L4_4 = mp
+      L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+      L6_6 = L2_2(L3_3, L4_4)
+      L2_2 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L2_2(L3_3, L4_4))
+      L3_3 = string
+      L3_3 = L3_3.lower
+      L4_4 = mp
+      L4_4 = L4_4.ContextualExpandEnvironmentVariables
+      L5_5 = "%temp%"
+      L4_4 = L4_4(L5_5)
+      L5_5 = "\\"
+      L6_6 = "rarsfx"
+      L4_4 = L4_4 .. L5_5 .. L6_6
+      L3_3 = L3_3(L4_4)
+      L5_5 = L1_1
+      L4_4 = L1_1.find
+      L6_6 = L3_3
+      L4_4 = L4_4(L5_5, L6_6, 1, true)
+      if L4_4 ~= nil then
+        L4_4 = {}
+        L4_4["ccmexec.exe"] = ""
+        L4_4["tpvcgateway.exe"] = ""
+        L4_4["cmrcviewer.exe"] = ""
+        L5_5 = L4_4[L2_2]
+        if L5_5 then
+          L5_5 = mp
+          L5_5 = L5_5.get_contextdata
+          L6_6 = mp
+          L6_6 = L6_6.CONTEXT_DATA_PROCESSDEVICEPATH
+          L5_5 = L5_5(L6_6)
+          L6_6 = mp
+          L6_6 = L6_6.get_contextdata
+          L6_6 = L6_6(mp.CONTEXT_DATA_PROCESSNAME)
+          if L6_6 ~= nil and L5_5 ~= nil then
+            mp.ReportLowfi(MpCommon.PathToWin32Path(L5_5) .. "\\" .. L6_6, 2439729955)
+            return mp.INFECTED
+          end
         end
       end
     end
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

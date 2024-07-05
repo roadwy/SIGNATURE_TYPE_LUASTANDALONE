@@ -1,16 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TerminateAmsiProcess 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("MpIsVBScriptAMSIScan") and not (mp.get_mpattribute)("MpIsJScriptAMSIScan") and not (mp.get_mpattribute)("MpIsPowerShellAMSIScan") then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "MpIsVBScriptAMSIScan"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "MpIsJScriptAMSIScan"
+  L0_0 = L0_0(L1_1)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "MpIsPowerShellAMSIScan"
+    L0_0 = L0_0(L1_1)
+    if not L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.CLEAN
+      return L0_0
+    end
+  end
 end
-local l_0_0 = {}
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_AMSI_OPERATION_PPID)
-;
-(table.insert)(l_0_0, l_0_1)
-;
-(MpCommon.SetPersistContextNoPath)("amsidetct", l_0_0, 120)
+L0_0 = {}
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L1_1(mp.CONTEXT_DATA_AMSI_OPERATION_PPID)
+table.insert(L0_0, L1_1)
+MpCommon.SetPersistContextNoPath("amsidetct", L0_0, 120)
 return mp.CLEAN
-

@@ -1,29 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ExeDroppedByJscFunc.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE or (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) ~= true then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L0_0 = L0_0(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+elseif L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+if not string.find(L0_0, "\\temp\\", 1, true) then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if not (string.find)(l_0_0, "\\temp\\", 1, true) then
+if not string.find(L0_0, "%.exe$") then
   return mp.CLEAN
 end
-if not (string.find)(l_0_0, "%.exe$") then
+if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) ~= "jsc.exe" then
   return mp.CLEAN
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_1 ~= "jsc.exe" then
+if MpCommon.QueryPersistContext(L0_0, "Lua:ExeDroppedByJsc") then
   return mp.CLEAN
 end
-local l_0_2 = (MpCommon.QueryPersistContext)(l_0_0, "Lua:ExeDroppedByJsc")
-if l_0_2 then
-  return mp.CLEAN
-end
-;
-(mp.set_mpattribute)("MpDisableCaching")
-;
-(MpCommon.AppendPersistContext)(l_0_0, "Lua:ExeDroppedByJsc", 0)
+mp.set_mpattribute("MpDisableCaching")
+MpCommon.AppendPersistContext(L0_0, "Lua:ExeDroppedByJsc", 0)
 return mp.INFECTED
-

@@ -1,14 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/63d7256aed33_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-local l_0_1 = (mp.GetScannedPPID)()
-local l_0_2 = (mp.GetProcessCommandLine)(l_0_1)
-if (not (string.match)(l_0_2, "%Wpassword[%W$]") and not (string.match)(l_0_2, "%Wpass[%W$]") and not (string.match)(l_0_2, "%Wpw[%W$]") and not (string.match)(l_0_2, "%Wkey[%W$]")) or l_0_0 == nil then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.GetScannedPPID
+L1_1 = L1_1()
+L2_2 = mp
+L2_2 = L2_2.GetProcessCommandLine
+L2_2 = L2_2(L1_1)
+if not string.match(L2_2, "%Wpassword[%W$]") and not string.match(L2_2, "%Wpass[%W$]") and not string.match(L2_2, "%Wpw[%W$]") and not string.match(L2_2, "%Wkey[%W$]") or L0_0 == nil then
   return mp.CLEAN
 end
-TrackPidAndTechnique(l_0_0.ppid, "T1552.001", "CredentialAccess_GitCredentials")
+TrackPidAndTechnique(L0_0.ppid, "T1552.001", "CredentialAccess_GitCredentials")
 return mp.LOWFI
-

@@ -1,26 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_NSISPossiblyUsedForMiurefInjector_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
 if peattributes.isexe == false or peattributes.isdamaged or peattributes.arm_image or peattributes.hasappendeddata == false then
   return mp.CLEAN
 end
-if ((mp.get_mpattribute)("HSTR:NSIS_Installer") == false and (mp.get_mpattribute)("HSTR:NSIS.gen!A") == false) or (mp.get_mpattribute)("PEPCODE:HasDigitalSignature") then
+if mp.get_mpattribute("HSTR:NSIS_Installer") == false and mp.get_mpattribute("HSTR:NSIS.gen!A") == false or mp.get_mpattribute("PEPCODE:HasDigitalSignature") then
   return mp.CLEAN
 end
-local l_0_0 = pehdr.NumberOfSections
-if l_0_0 < 1 then
+if pehdr.NumberOfSections < 1 then
   return mp.CLEAN
 end
-local l_0_1 = (pesecs[l_0_0]).PointerToRawData + (pesecs[l_0_0]).SizeOfRawData
-local l_0_2 = (mp.getfilesize)()
-if l_0_2 < l_0_1 then
+if pesecs[pehdr.NumberOfSections].PointerToRawData + pesecs[pehdr.NumberOfSections].SizeOfRawData > mp.getfilesize() then
   return mp.CLEAN
 end
-local l_0_3 = l_0_2 - l_0_1
-if l_0_3 < 94208 or l_0_3 > 143360 then
+if mp.getfilesize() - (pesecs[pehdr.NumberOfSections].PointerToRawData + pesecs[pehdr.NumberOfSections].SizeOfRawData) < 94208 or mp.getfilesize() - (pesecs[pehdr.NumberOfSections].PointerToRawData + pesecs[pehdr.NumberOfSections].SizeOfRawData) > 143360 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

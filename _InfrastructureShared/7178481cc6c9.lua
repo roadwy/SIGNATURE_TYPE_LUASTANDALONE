@@ -1,10 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7178481cc6c9 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections >= 2 and peattributes.isexe and peattributes.lastscn_writable and peattributes.lastscn_executable and peattributes.lastscn_vfalign and (pesecs[pehdr.NumberOfSections]).Name == ".text" and (pesecs[pehdr.NumberOfSections]).VirtualAddress <= (hstrlog[1]).VA - pehdr.ImageBase then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 >= 2 then
+  L0_0 = peattributes
+  L0_0 = L0_0.isexe
+  if L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.lastscn_writable
+    if L0_0 then
+      L0_0 = peattributes
+      L0_0 = L0_0.lastscn_executable
+      if L0_0 then
+        L0_0 = peattributes
+        L0_0 = L0_0.lastscn_vfalign
+        if L0_0 then
+          L0_0 = pesecs
+          L1_1 = pehdr
+          L1_1 = L1_1.NumberOfSections
+          L0_0 = L0_0[L1_1]
+          L0_0 = L0_0.Name
+          if L0_0 == ".text" then
+            L0_0 = hstrlog
+            L0_0 = L0_0[1]
+            L0_0 = L0_0.VA
+            L1_1 = pehdr
+            L1_1 = L1_1.ImageBase
+            L0_0 = L0_0 - L1_1
+            L1_1 = pesecs
+            L2_2 = pehdr
+            L2_2 = L2_2.NumberOfSections
+            L1_1 = L1_1[L2_2]
+            L1_1 = L1_1.VirtualAddress
+            if L0_0 >= L1_1 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

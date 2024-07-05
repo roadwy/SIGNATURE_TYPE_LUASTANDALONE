@@ -1,48 +1,92 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/85b35cfc4645 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[3]).matched then
-    local l_0_0 = nil
-  end
-  local l_0_1, l_0_2 = , (bm.get_process_relationships)()
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    local l_0_3 = nil
-    -- DECOMPILER ERROR at PC17: Confused about usage of register: R7 in 'UnsetPending'
-
-    if (string.lower)(R7_PC17.image_path) ~= nil and ((string.find)((string.lower)(R7_PC17.image_path), "\\svchost.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\msiexec.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\runtimebroker.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\maatunnel.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\cftpstes.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\explorer.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\dllhost.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\msaccess.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\dwdesk.exe", 1, true) or (string.find)((string.lower)(R7_PC17.image_path), "\\dsaccessservice.exe", 1, true)) then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L2_2 = L1_1()
+for L6_6, L7_7 in L3_3(L4_4) do
+  L8_8 = string
+  L8_8 = L8_8.lower
+  L9_9 = L7_7.image_path
+  L8_8 = L8_8(L9_9)
+  if L8_8 ~= nil then
+    L9_9 = string
+    L9_9 = L9_9.find
+    L9_9 = L9_9(L8_8, "\\svchost.exe", 1, true)
+    if not L9_9 then
+      L9_9 = string
+      L9_9 = L9_9.find
+      L9_9 = L9_9(L8_8, "\\msiexec.exe", 1, true)
+      if not L9_9 then
+        L9_9 = string
+        L9_9 = L9_9.find
+        L9_9 = L9_9(L8_8, "\\runtimebroker.exe", 1, true)
+        if not L9_9 then
+          L9_9 = string
+          L9_9 = L9_9.find
+          L9_9 = L9_9(L8_8, "\\maatunnel.exe", 1, true)
+          if not L9_9 then
+            L9_9 = string
+            L9_9 = L9_9.find
+            L9_9 = L9_9(L8_8, "\\cftpstes.exe", 1, true)
+            if not L9_9 then
+              L9_9 = string
+              L9_9 = L9_9.find
+              L9_9 = L9_9(L8_8, "\\explorer.exe", 1, true)
+              if not L9_9 then
+                L9_9 = string
+                L9_9 = L9_9.find
+                L9_9 = L9_9(L8_8, "\\dllhost.exe", 1, true)
+                if not L9_9 then
+                  L9_9 = string
+                  L9_9 = L9_9.find
+                  L9_9 = L9_9(L8_8, "\\msaccess.exe", 1, true)
+                  if not L9_9 then
+                    L9_9 = string
+                    L9_9 = L9_9.find
+                    L9_9 = L9_9(L8_8, "\\dwdesk.exe", 1, true)
+                    if not L9_9 then
+                      L9_9 = string
+                      L9_9 = L9_9.find
+                      L9_9 = L9_9(L8_8, "\\dsaccessservice.exe", 1, true)
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    elseif L9_9 then
+      L9_9 = mp
+      L9_9 = L9_9.CLEAN
+      return L9_9
     end
   end
-  if l_0_1 ~= nil and (string.len)(l_0_1) > 3 then
-    local l_0_9 = nil
-    if (bm.get_current_process_startup_info)() == nil or ((bm.get_current_process_startup_info)()).command_line == nil or (string.find)((string.lower)(((bm.get_current_process_startup_info)()).command_line), "natsvc*") then
-      return mp.CLEAN
+end
+if L0_0 ~= nil then
+  if L3_3 > 3 then
+    if L3_3 ~= nil then
+      if L4_4 ~= nil then
+      end
+    elseif L4_4 then
+      return L4_4
     end
-    local l_0_10 = nil
-    if (mp.GetExecutablesFromCommandLine)(l_0_1) ~= nil then
-      for l_0_14,l_0_15 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_1)) do
-        local l_0_11 = nil
-        -- DECOMPILER ERROR at PC157: Confused about usage of register: R9 in 'UnsetPending'
-
-        if (string.find)(mp.CLEAN, "\\maslog_runxx.dl") then
+    if L4_4 ~= nil then
+      for L8_8, L9_9 in L5_5(L6_6) do
+        if string.find(L9_9, "\\maslog_runxx.dl") then
           return mp.CLEAN
         end
-        -- DECOMPILER ERROR at PC167: Confused about usage of register: R9 in 'UnsetPending'
-
-        ;
-        (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(mp.CLEAN))
+        L9_9 = mp.ContextualExpandEnvironmentVariables(L9_9)
+        bm.add_related_file(L9_9)
       end
     end
   end
-  do
-    l_0_10 = mp
-    l_0_10 = l_0_10.INFECTED
-    return l_0_10
-  end
 end
-
+return L3_3

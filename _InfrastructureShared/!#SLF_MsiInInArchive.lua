@@ -1,44 +1,89 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_MsiInInArchive 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 == nil or (string.len)(l_0_0) < 5 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L11_11 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L1_1(L2_2, L3_3))
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+elseif L1_1 < 5 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.find)(l_0_0, "->", 1, true) == nil then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+if L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = l_0_0:sub(-4)
-if l_0_1 == ".msi" then
-  local l_0_2 = {}
-  l_0_2[".zip->"] = "%.zip%->.+"
-  for l_0_6,l_0_7 in pairs(l_0_2) do
-    if (string.find)(l_0_0, l_0_6, 1, true) then
-      local l_0_8 = (string.match)(l_0_0, l_0_7)
-      if l_0_8 == nil or l_0_8:len() < 12 then
-        return mp.CLEAN
+L2_2 = L0_0
+L1_1 = L0_0.sub
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == ".msi" then
+  L2_2 = {}
+  L2_2[".zip->"] = "%.zip%->.+"
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = string
+    L8_8 = L8_8.find
+    L9_9 = L0_0
+    L10_10 = L6_6
+    L11_11 = 1
+    L8_8 = L8_8(L9_9, L10_10, L11_11, true)
+    if L8_8 then
+      L8_8 = string
+      L8_8 = L8_8.match
+      L9_9 = L0_0
+      L10_10 = L7_7
+      L8_8 = L8_8(L9_9, L10_10)
+      if L8_8 ~= nil then
+        L10_10 = L8_8
+        L9_9 = L8_8.len
+        L9_9 = L9_9(L10_10)
+      elseif L9_9 < 12 then
+        L9_9 = mp
+        L9_9 = L9_9.CLEAN
+        return L9_9
       end
-      local l_0_9 = l_0_6:len() + 1
-      if l_0_8:len() <= l_0_9 + 5 then
-        return mp.CLEAN
+      L10_10 = L6_6
+      L9_9 = L6_6.len
+      L9_9 = L9_9(L10_10)
+      L9_9 = L9_9 + 1
+      L10_10 = L9_9 + 5
+      L11_11 = L8_8.len
+      L11_11 = L11_11(L8_8)
+      if L10_10 >= L11_11 then
+        L10_10 = mp
+        L10_10 = L10_10.CLEAN
+        return L10_10
       end
-      local l_0_10 = (string.sub)(l_0_8, l_0_9, -5)
-      if l_0_10 == nil then
-        return mp.CLEAN
+      L10_10 = string
+      L10_10 = L10_10.sub
+      L11_11 = L8_8
+      L10_10 = L10_10(L11_11, L9_9, -5)
+      if L10_10 == nil then
+        L11_11 = mp
+        L11_11 = L11_11.CLEAN
+        return L11_11
       end
-      local l_0_11 = l_0_10 .. l_0_6
-      if (string.find)(l_0_0, l_0_11, 1, true) == nil then
+      L11_11 = L10_10
+      L11_11 = L11_11 .. L6_6
+      if string.find(L0_0, L11_11, 1, true) == nil then
         return mp.CLEAN
       end
       return mp.INFECTED
     end
   end
 end
-do
-  l_0_2 = mp
-  l_0_2 = l_0_2.CLEAN
-  return l_0_2
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

@@ -1,85 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PowerShell_Chimera.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 4096 or l_0_0 > 7340032 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 4096 or L0_0 > 7340032 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.gsub)(tostring(headerpage), " ", "")
-local l_0_2 = (string.match)(l_0_1, "^#[A-Za-z%.]+")
-if l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.gsub
+L2_2 = tostring
+L3_3 = headerpage
+L2_2 = L2_2(L3_3)
+L3_3 = " "
+L4_4 = ""
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "^#[A-Za-z%.]+"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if l_0_2:len() < 40 then
-  return mp.CLEAN
+L4_4 = L2_2
+L3_3 = L2_2.len
+L3_3 = L3_3(L4_4)
+if L3_3 < 40 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = 0
-local l_0_4 = 0
-local l_0_5 = 0
-local l_0_6 = 0
-local l_0_7 = 0
-local l_0_8 = nil
-for l_0_12 in l_0_1:gmatch("([^\n]*)\n?") do
-  l_0_8 = (string.match)(l_0_12, "^#[%a%d%.]+$")
-  if l_0_8 then
-    if l_0_8:len() > 100 then
-      l_0_4 = l_0_4 + 1
-    else
-      if l_0_8:len() > 40 then
-        l_0_3 = l_0_3 + 1
-      end
+L3_3 = 0
+L4_4 = 0
+L5_5 = 0
+L6_6 = 0
+L7_7 = 0
+L8_8 = nil
+for L12_12 in L9_9(L10_10, L11_11) do
+  L8_8 = L13_13
+  if L8_8 then
+    if L13_13 > 100 then
+      L4_4 = L4_4 + 1
+    elseif L13_13 > 40 then
+      L3_3 = L3_3 + 1
     end
   else
-    l_0_8 = (string.match)(l_0_12, "^%$[%a%d]+=\"[%a%d`%.]+\"$")
-    if l_0_8 and l_0_8:len() >= 18 then
-      if l_0_8:len() > 80 then
-        l_0_6 = l_0_6 + 1
-      else
-        l_0_5 = l_0_5 + 1
+    L8_8 = L13_13
+    if L8_8 then
+      if L13_13 >= 18 then
+        if L13_13 > 80 then
+          L6_6 = L6_6 + 1
+        else
+          L5_5 = L5_5 + 1
+        end
       end
-    else
-      if (string.len)(l_0_12) > 3 then
-        l_0_8 = (string.match)(l_0_12, "^%$%a+")
-        if not l_0_8 or l_0_8:len() < 20 then
-          l_0_7 = l_0_7 + 1
-          if l_0_7 >= 10 then
-            return mp.CLEAN
-          end
+    elseif L13_13 > 3 then
+      L8_8 = L13_13
+      if L8_8 then
+      elseif L13_13 < 20 then
+        L7_7 = L7_7 + 1
+        if L7_7 >= 10 then
+          return L13_13
         end
       end
     end
   end
 end
-local l_0_13 = false
--- DECOMPILER ERROR at PC126: Unhandled construct in 'MakeBoolean' P3
-
-if (l_0_4 >= 2 and l_0_6 >= 2) or l_0_4 < 2 or l_0_6 < 1 or l_0_3 >= 10 and l_0_5 >= 5 then
-  l_0_13 = true
+if not L9_9 then
+  return L10_10
 end
-if not l_0_13 then
-  return mp.CLEAN
-end
-local l_0_14 = (string.gsub)(tostring(footerpage), " ", "")
-local l_0_15 = false
-local l_0_16 = nil
-for l_0_20 in l_0_14:gmatch("([^\n]*)\n?") do
-  l_0_16 = (string.match)(l_0_20, "^#[%a%d%.]+$")
-  if l_0_16 and (string.len)(l_0_16) > 40 then
-    l_0_15 = true
+L12_12 = footerpage
+L12_12 = " "
+L12_12 = nil
+for L16_16 in L13_13(L14_14, L15_15) do
+  L12_12 = string.match(L16_16, "^#[%a%d%.]+$")
+  if L12_12 and string.len(L12_12) > 40 then
     break
   end
-  l_0_8 = (string.match)(l_0_20, "[%w%+/]+")
-  if l_0_8 and (string.len)(l_0_8) > 18 then
-    l_0_15 = true
+  L8_8 = string.match(L16_16, "[%w%+/]+")
+  if L8_8 and string.len(L8_8) > 18 then
     break
   end
 end
-do
-  if l_0_15 then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
+if L11_11 then
+  return L13_13
 end
-
+return L13_13

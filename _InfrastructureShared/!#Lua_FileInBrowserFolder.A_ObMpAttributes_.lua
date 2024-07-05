@@ -1,28 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FileInBrowserFolder.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-if l_0_0 ~= nil and l_0_0:len() > 60 then
-  local l_0_1 = {}
-  l_0_1["Lua:FileInMicrosoftEdgeCache.A"] = "\\users\\[^\\]+\\appdata\\local\\packages\\microsoft.microsoftedge_8wekyb3d8bbwe\\.+\\#!.+\\microsoftedge\\cache\\.+"
-  l_0_1["Lua:FileInMicrosoftEdgeDownloadsFolder.A"] = "\\users\\[^\\]+\\appdata\\local\\packages\\microsoft.microsoftedge_8wekyb3d8bbwe\\tempstate\\downloads.*"
-  l_0_1["Lua:FileInInternetExplorerTemp.A"] = "\\users\\[^\\]+\\appdata\\local\\microsoft\\windows\\temporary internet files\\content.ie5\\.+"
-  l_0_1["Lua:FileInChromeCache.A"] = "\\users\\[^\\]+\\appdata\\local\\google\\chrome\\user data\\default\\cache\\.+"
-  l_0_1["Lua:FileInOperaCache.A"] = "\\users\\[^\\]+\\appdata\\local\\opera software\\opera stable\\cache\\.+"
-  l_0_1["Lua:FileInFilefoxCache.A"] = "\\users\\[^\\]+\\appdata\\local\\mozilla\\firefox\\profiles\\.+%.default\\cache2\\entries\\.+"
-  local l_0_2 = (string.lower)(l_0_0)
-  for l_0_6,l_0_7 in pairs(l_0_1) do
-    if (string.match)(l_0_2, l_0_7) then
-      (mp.set_mpattribute)(l_0_6)
-      return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_FILEPATH
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L2_2 = L0_0
+  L1_1 = L0_0.len
+  L1_1 = L1_1(L2_2)
+  if L1_1 > 60 then
+    L1_1 = {}
+    L1_1["Lua:FileInMicrosoftEdgeCache.A"] = "\\users\\[^\\]+\\appdata\\local\\packages\\microsoft.microsoftedge_8wekyb3d8bbwe\\.+\\#!.+\\microsoftedge\\cache\\.+"
+    L1_1["Lua:FileInMicrosoftEdgeDownloadsFolder.A"] = "\\users\\[^\\]+\\appdata\\local\\packages\\microsoft.microsoftedge_8wekyb3d8bbwe\\tempstate\\downloads.*"
+    L1_1["Lua:FileInInternetExplorerTemp.A"] = "\\users\\[^\\]+\\appdata\\local\\microsoft\\windows\\temporary internet files\\content.ie5\\.+"
+    L1_1["Lua:FileInChromeCache.A"] = "\\users\\[^\\]+\\appdata\\local\\google\\chrome\\user data\\default\\cache\\.+"
+    L1_1["Lua:FileInOperaCache.A"] = "\\users\\[^\\]+\\appdata\\local\\opera software\\opera stable\\cache\\.+"
+    L1_1["Lua:FileInFilefoxCache.A"] = "\\users\\[^\\]+\\appdata\\local\\mozilla\\firefox\\profiles\\.+%.default\\cache2\\entries\\.+"
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    for L6_6, L7_7 in L3_3(L4_4) do
+      if string.match(L2_2, L7_7) then
+        mp.set_mpattribute(L6_6)
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

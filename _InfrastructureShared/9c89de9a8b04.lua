@@ -1,121 +1,340 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/9c89de9a8b04 
-
--- params : ...
--- function num : 0
-local l_0_0 = pevars.sigaddr + 56
-local l_0_1 = (pe.vm_search)(l_0_0, l_0_0 + 4040, "j@h\000\016\000\000h\144\001\004j\000\144\019°ê\001\004\139\016\137\021\144\001\004\255%\144\000", nil, pe.VM_SEARCH_BM)
-if l_0_1 == 4294967295 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26
+L0_0 = pevars
+L0_0 = L0_0.sigaddr
+L0_0 = L0_0 + 56
+L1_1 = pe
+L1_1 = L1_1.vm_search
+L2_2 = L0_0
+L3_3 = L0_0 + 4040
+L4_4 = "j@h\000\016\000\000h\144\001\004j\000\144\019\161\144\001\004\139\016\137\021\144\001\004\255%\144\000"
+L5_5 = nil
+L6_6 = pe
+L6_6 = L6_6.VM_SEARCH_BM
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6)
+if L1_1 == 4294967295 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(pe.set_peattribute)("hstr_exhaustive", true)
-local l_0_2 = 9
-local l_0_3 = (pe.vm_search)(l_0_0, l_0_0 + 4040, "ç∞\144\001\004\139\029\144\001\004ÅÎ\144\001\004\144\003\003\000\144\001\t\144\004\001\002ÎÈ\144\000", nil, pe.VM_SEARCH_BM)
-if l_0_3 == 4294967295 then
-  return mp.CLEAN
+L2_2 = pe
+L2_2 = L2_2.set_peattribute
+L3_3 = "hstr_exhaustive"
+L4_4 = true
+L2_2(L3_3, L4_4)
+L2_2 = 9
+L3_3 = pe
+L3_3 = L3_3.vm_search
+L4_4 = L0_0
+L5_5 = L0_0 + 4040
+L6_6 = "\141\176\144\001\004\139\029\144\001\004\129\235\144\001\004\144\003\003\000\144\001\t\144\004\001\002\235\233\144\000"
+L7_7 = nil
+L8_8 = pe
+L8_8 = L8_8.VM_SEARCH_BM
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8)
+if L3_3 == 4294967295 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (pe.vm_search)(l_0_3 - 46, l_0_3, "1“É\192\001πê\001\004\137\001°ê\000", nil, pe.VM_SEARCH_BM)
-if l_0_4 == 4294967295 then
-  return mp.CLEAN
+L4_4 = pe
+L4_4 = L4_4.vm_search
+L5_5 = L3_3 - 46
+L6_6 = L3_3
+L7_7 = "1\210\131\192\001\185\144\001\004\137\001\161\144\000"
+L8_8 = nil
+L9_9 = pe
+L9_9 = L9_9.VM_SEARCH_BM
+L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9)
+if L4_4 == 4294967295 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-if (pe.vm_search)(l_0_4 - 68, l_0_4, "9\b\015Öê\001\004∏ê\001\004\255\a9\a\015Öê\000", nil, pe.VM_SEARCH_BM) == 4294967295 then
-  l_0_2 = 5
-  local l_0_5 = (pe.vm_search)(l_0_4 - 60, l_0_4, "9\bu\144\001\001∏ê\001\004\255\a9\au\144\000", nil, pe.VM_SEARCH_BM)
-  if l_0_5 == 4294967295 then
-    return mp.CLEAN
+L5_5 = pe
+L5_5 = L5_5.vm_search
+L6_6 = L4_4 - 68
+L7_7 = L4_4
+L8_8 = "9\b\015\133\144\001\004\184\144\001\004\255\a9\a\015\133\144\000"
+L9_9 = nil
+L10_10 = pe
+L10_10 = L10_10.VM_SEARCH_BM
+L5_5 = L5_5(L6_6, L7_7, L8_8, L9_9, L10_10)
+if L5_5 == 4294967295 then
+  L2_2 = 5
+  L6_6 = pe
+  L6_6 = L6_6.vm_search
+  L7_7 = L4_4 - 60
+  L8_8 = L4_4
+  L9_9 = "9\bu\144\001\001\184\144\001\004\255\a9\au\144\000"
+  L10_10 = nil
+  L11_11 = pe
+  L11_11 = L11_11.VM_SEARCH_BM
+  L6_6 = L6_6(L7_7, L8_8, L9_9, L10_10, L11_11)
+  L5_5 = L6_6
+  if L5_5 == 4294967295 then
+    L6_6 = mp
+    L6_6 = L6_6.CLEAN
+    return L6_6
   end
 end
-do
-  local l_0_6 = nil
-  if (mp.readu_u16)((pe.mmap_va)(l_0_3 + 17, 9), 1) == 15747 and (string.byte)((pe.mmap_va)(l_0_3 + 17, 9), 8) == 124 then
-    (pe.mmap_patch_va)(l_0_3 + 25, "\000")
+L6_6 = pe
+L6_6 = L6_6.mmap_va
+L7_7 = L3_3 + 17
+L8_8 = 9
+L6_6 = L6_6(L7_7, L8_8)
+L7_7 = mp
+L7_7 = L7_7.readu_u16
+L8_8 = L6_6
+L9_9 = 1
+L7_7 = L7_7(L8_8, L9_9)
+if L7_7 == 15747 then
+  L7_7 = string
+  L7_7 = L7_7.byte
+  L8_8 = L6_6
+  L9_9 = 8
+  L7_7 = L7_7(L8_8, L9_9)
+  if L7_7 == 124 then
+    L7_7 = pe
+    L7_7 = L7_7.mmap_patch_va
+    L8_8 = L3_3 + 25
+    L9_9 = "\000"
+    L7_7(L8_8, L9_9)
   end
-  local l_0_7 = nil
-  local l_0_8 = nil
-  ;
-  (pe.set_regval)(pe.REG_EAX, (mp.readu_u32)((pe.mmap_va)(l_0_6 + l_0_2, 4), 1))
-  local l_0_9 = nil
-  local l_0_10 = nil
-  local l_0_11, l_0_12, l_0_13, l_0_14 = , (mp.bsplit)(l_0_3 - (pevars.sigaddr + 3) - 5, 8)
-  ;
-  (pe.mmap_patch_va)(l_0_10, "\233")
-  ;
-  (pe.mmap_patch_va)(l_0_10 + 1, (string.char)(l_0_12))
-  ;
-  (pe.mmap_patch_va)(l_0_10 + 2, (string.char)(l_0_13))
-  ;
-  (pe.mmap_patch_va)(l_0_10 + 3, (string.char)(l_0_14))
-  ;
-  (pe.mmap_patch_va)(l_0_10 + 4, (string.char)(R18_PC163))
-  local l_0_15 = nil
-  if (mp.readu_u16)((pe.mmap_va)(l_0_1 + 27, 16), 1) == 15747 and (mp.readu_u16)((pe.mmap_va)(l_0_1 + 27, 16), 8) == 35855 then
-    (pe.mmap_patch_va)(l_0_1 + 34, "\000\000\000\000")
+end
+L7_7 = pe
+L7_7 = L7_7.mmap_va
+L8_8 = L5_5 + L2_2
+L9_9 = 4
+L7_7 = L7_7(L8_8, L9_9)
+L8_8 = mp
+L8_8 = L8_8.readu_u32
+L9_9 = L7_7
+L10_10 = 1
+L8_8 = L8_8(L9_9, L10_10)
+L9_9 = pe
+L9_9 = L9_9.set_regval
+L10_10 = pe
+L10_10 = L10_10.REG_EAX
+L11_11 = L8_8
+L9_9(L10_10, L11_11)
+L9_9 = pevars
+L9_9 = L9_9.sigaddr
+L9_9 = L9_9 + 3
+L10_10 = L3_3 - L9_9
+L10_10 = L10_10 - 5
+L11_11 = mp
+L11_11 = L11_11.bsplit
+L12_12 = L10_10
+L13_13 = 8
+L14_14 = L11_11(L12_12, L13_13)
+L15_15 = pe
+L15_15 = L15_15.mmap_patch_va
+L16_16 = L9_9
+L17_17 = "\233"
+L15_15(L16_16, L17_17)
+L15_15 = pe
+L15_15 = L15_15.mmap_patch_va
+L16_16 = L9_9 + 1
+L17_17 = string
+L17_17 = L17_17.char
+L18_18 = L11_11
+L26_26 = L17_17(L18_18)
+L15_15(L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L17_17(L18_18))
+L15_15 = pe
+L15_15 = L15_15.mmap_patch_va
+L16_16 = L9_9 + 2
+L17_17 = string
+L17_17 = L17_17.char
+L18_18 = L12_12
+L26_26 = L17_17(L18_18)
+L15_15(L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L17_17(L18_18))
+L15_15 = pe
+L15_15 = L15_15.mmap_patch_va
+L16_16 = L9_9 + 3
+L17_17 = string
+L17_17 = L17_17.char
+L18_18 = L13_13
+L26_26 = L17_17(L18_18)
+L15_15(L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L17_17(L18_18))
+L15_15 = pe
+L15_15 = L15_15.mmap_patch_va
+L16_16 = L9_9 + 4
+L17_17 = string
+L17_17 = L17_17.char
+L18_18 = L14_14
+L26_26 = L17_17(L18_18)
+L15_15(L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L17_17(L18_18))
+L15_15 = pe
+L15_15 = L15_15.mmap_va
+L16_16 = L1_1 + 27
+L17_17 = 16
+L15_15 = L15_15(L16_16, L17_17)
+L16_16 = mp
+L16_16 = L16_16.readu_u16
+L17_17 = L15_15
+L18_18 = 1
+L16_16 = L16_16(L17_17, L18_18)
+if L16_16 == 15747 then
+  L16_16 = mp
+  L16_16 = L16_16.readu_u16
+  L17_17 = L15_15
+  L18_18 = 8
+  L16_16 = L16_16(L17_17, L18_18)
+  if L16_16 == 35855 then
+    L16_16 = pe
+    L16_16 = L16_16.mmap_patch_va
+    L17_17 = L1_1 + 34
+    L18_18 = "\000\000\000\000"
+    L16_16(L17_17, L18_18)
   end
-  local l_0_16 = nil
-  local l_0_17 = {"\139\021\144\001\004É˙\144\001\001\144\003\002\001\015å|\144\000", "P°ê\001\004@É¯\144\001\001X\144\003\002\001\015å|\144\000", "V\1395\144\001\004çF\001É¯\144\001\001^X\144\003\002\001\015å|\144\000", "PV°ê\001\004â∆@çF\001É¯\144\001\001^X\144\003\002\001\015å|\144\000", "PV°ê\001\004â∆@çF\002;\005\144\001\004^X\144\003\002\001\015å|\144\000"}
-  local l_0_18 = {0, 1, 1, 1, 2}
-  local l_0_19 = {7, 8, 10, 13, 141}
-  local l_0_20 = {2, 2, 3, 3, 3}
-  local l_0_21 = 0
-  local l_0_22 = 0
-  while 1 do
-    -- DECOMPILER ERROR at PC227: Confused about usage of register: R22 in 'UnsetPending'
-
-    if 1 <= #l_0_17 then
-      local l_0_23 = nil
-      if (pe.vm_search)(l_0_6, l_0_3, l_0_17[1], nil, pe.VM_SEARCH_BM) ~= 4294967295 then
-        if l_0_19[l_0_23] < 128 then
-          l_0_21 = (pe.mmap_va)((pe.vm_search)(l_0_6, l_0_3, l_0_17[1], nil, pe.VM_SEARCH_BM) + l_0_20[l_0_23], l_0_19[l_0_23])
-          l_0_22 = (string.byte)(l_0_21, l_0_19[l_0_23]) - l_0_18[l_0_23]
-        else
-          local l_0_24 = nil
-          l_0_21 = (pe.mmap_va)(l_0_24 + l_0_20[l_0_23], l_0_19[l_0_23] - 128 + 3)
-          -- DECOMPILER ERROR at PC264: Confused about usage of register: R24 in 'UnsetPending'
-
-          local l_0_25 = nil
-          if (pe.foffset_va)((mp.readu_u32)(l_0_21, l_0_19[l_0_23] - 128)) == 4294967295 then
-            return mp.INFECTED
-          end
-          local l_0_26 = nil
-          l_0_22 = (mp.readu_u32)((pe.mmap_va)((mp.readu_u32)(l_0_21, l_0_19[l_0_23] - 128), 4), 1)
+end
+L16_16 = {
+  L17_17,
+  L18_18,
+  L19_19,
+  L20_20,
+  L21_21
+}
+L17_17 = "\139\021\144\001\004\131\250\144\001\001\144\003\002\001\015\140|\144\000"
+L18_18 = "P\161\144\001\004@\131\248\144\001\001X\144\003\002\001\015\140|\144\000"
+L19_19 = "V\1395\144\001\004\141F\001\131\248\144\001\001^X\144\003\002\001\015\140|\144\000"
+L20_20 = "PV\161\144\001\004\137\198@\141F\001\131\248\144\001\001^X\144\003\002\001\015\140|\144\000"
+L21_21 = "PV\161\144\001\004\137\198@\141F\002;\005\144\001\004^X\144\003\002\001\015\140|\144\000"
+L17_17 = {
+  L18_18,
+  L19_19,
+  L20_20,
+  L21_21,
+  L22_22
+}
+L18_18 = 0
+L19_19 = 1
+L20_20 = 1
+L21_21 = 1
+L22_22 = 2
+L18_18 = {
+  L19_19,
+  L20_20,
+  L21_21,
+  L22_22,
+  L23_23
+}
+L19_19 = 7
+L20_20 = 8
+L21_21 = 10
+L22_22 = 13
+L23_23 = 141
+L19_19 = {
+  L20_20,
+  L21_21,
+  L22_22,
+  L23_23,
+  L24_24
+}
+L20_20 = 2
+L21_21 = 2
+L22_22 = 3
+L23_23 = 3
+L24_24 = 3
+L20_20 = 0
+L21_21 = 0
+L22_22 = 1
+while true do
+  L23_23 = #L16_16
+  if L22_22 <= L23_23 then
+    L23_23 = pe
+    L23_23 = L23_23.vm_search
+    L24_24 = L5_5
+    L25_25 = L3_3
+    L26_26 = L16_16[L22_22]
+    L23_23 = L23_23(L24_24, L25_25, L26_26, nil, pe.VM_SEARCH_BM)
+    if L23_23 ~= 4294967295 then
+      L24_24 = L18_18[L22_22]
+      if L24_24 < 128 then
+        L24_24 = pe
+        L24_24 = L24_24.mmap_va
+        L25_25 = L19_19[L22_22]
+        L25_25 = L23_23 + L25_25
+        L26_26 = L18_18[L22_22]
+        L24_24 = L24_24(L25_25, L26_26)
+        L20_20 = L24_24
+        L24_24 = string
+        L24_24 = L24_24.byte
+        L25_25 = L20_20
+        L26_26 = L18_18[L22_22]
+        L24_24 = L24_24(L25_25, L26_26)
+        L25_25 = L17_17[L22_22]
+        L21_21 = L24_24 - L25_25
+      else
+        L24_24 = L18_18[L22_22]
+        L24_24 = L24_24 - 128
+        L25_25 = pe
+        L25_25 = L25_25.mmap_va
+        L26_26 = L19_19[L22_22]
+        L26_26 = L23_23 + L26_26
+        L25_25 = L25_25(L26_26, L24_24 + 3)
+        L20_20 = L25_25
+        L25_25 = mp
+        L25_25 = L25_25.readu_u32
+        L26_26 = L20_20
+        L25_25 = L25_25(L26_26, L24_24)
+        L26_26 = pe
+        L26_26 = L26_26.foffset_va
+        L26_26 = L26_26(L25_25)
+        if L26_26 == 4294967295 then
+          L26_26 = mp
+          L26_26 = L26_26.INFECTED
+          return L26_26
         end
-        do
-          do
-            do
-              local l_0_27 = nil
-              if (pe.foffset_va)((mp.readu_u32)(l_0_21, 1)) == 4294967295 then
-                return mp.INFECTED
-              end
-              l_0_12 = (mp.bsplit)(l_0_22, 8)
-              ;
-              (pe.mmap_patch_va)((mp.readu_u32)(l_0_21, 1), (string.char)(l_0_12))
-              ;
-              (pe.mmap_patch_va)((mp.readu_u32)(l_0_21, 1) + 1, (string.char)(l_0_13))
-              ;
-              (pe.mmap_patch_va)((mp.readu_u32)(l_0_21, 1) + 2, (string.char)(l_0_14))
-              ;
-              (pe.mmap_patch_va)((mp.readu_u32)(l_0_21, 1) + 3, (string.char)(l_0_15))
-              do return mp.INFECTED end
-              l_0_23 = l_0_23 + 1
-              -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out IF_STMT
-
-              -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
-        end
+        L26_26 = pe
+        L26_26 = L26_26.mmap_va
+        L26_26 = L26_26(L25_25, 4)
+        L21_21 = mp.readu_u32(L26_26, 1)
       end
+      L24_24 = mp
+      L24_24 = L24_24.readu_u32
+      L25_25 = L20_20
+      L26_26 = 1
+      L24_24 = L24_24(L25_25, L26_26)
+      L25_25 = pe
+      L25_25 = L25_25.foffset_va
+      L26_26 = L24_24
+      L25_25 = L25_25(L26_26)
+      if L25_25 == 4294967295 then
+        L25_25 = mp
+        L25_25 = L25_25.INFECTED
+        return L25_25
+      end
+      L25_25 = mp
+      L25_25 = L25_25.bsplit
+      L26_26 = L21_21
+      L13_13, L14_14, L25_25 = 8, L26_26, L25_25(L26_26, 8)
+      L13_13, L14_14, L26_26 = 8, L26_26, L25_25(L26_26, 8)
+      L12_12 = L26_26
+      L11_11 = L25_25
+      L25_25 = pe
+      L25_25 = L25_25.mmap_patch_va
+      L26_26 = L24_24
+      L25_25(L26_26, string.char(L11_11))
+      L25_25 = pe
+      L25_25 = L25_25.mmap_patch_va
+      L26_26 = L24_24 + 1
+      L25_25(L26_26, string.char(L12_12))
+      L25_25 = pe
+      L25_25 = L25_25.mmap_patch_va
+      L26_26 = L24_24 + 2
+      L25_25(L26_26, string.char(L13_13))
+      L25_25 = pe
+      L25_25 = L25_25.mmap_patch_va
+      L26_26 = L24_24 + 3
+      L25_25(L26_26, string.char(L14_14))
+      L25_25 = mp
+      L25_25 = L25_25.INFECTED
+      return L25_25
     end
+    L22_22 = L22_22 + 1
   end
-  return mp.INFECTED
 end
-
+L23_23 = mp
+L23_23 = L23_23.INFECTED
+return L23_23

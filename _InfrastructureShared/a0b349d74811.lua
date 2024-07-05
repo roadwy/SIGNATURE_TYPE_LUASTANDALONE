@@ -1,37 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a0b349d74811 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  if (this_sigattrlog[1]).utf8p1 ~= nil then
-    if (string.match)((this_sigattrlog[1]).utf8p1, "\\\\BitTorrent$") ~= nil then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p1
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.match
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p1
+    L2_2 = "\\\\BitTorrent$"
+    L0_0 = L0_0(L1_1, L2_2)
+    if L0_0 ~= nil then
+      L0_0 = mp
+      L0_0 = L0_0.CLEAN
+      return L0_0
     end
-    if (string.match)((this_sigattrlog[1]).utf8p1, "\\\\uTorrent$") ~= nil then
-      return mp.CLEAN
+    L0_0 = string
+    L0_0 = L0_0.match
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p1
+    L2_2 = "\\\\uTorrent$"
+    L0_0 = L0_0(L1_1, L2_2)
+    if L0_0 ~= nil then
+      L0_0 = mp
+      L0_0 = L0_0.CLEAN
+      return L0_0
     end
   end
-  if (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = (string.match)((this_sigattrlog[1]).utf8p2, "%a:[^:\"]+%.exe")
-    if l_0_0 then
-      (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(l_0_0))
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.match
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    L2_2 = "%a:[^:\"]+%.exe"
+    L0_0 = L0_0(L1_1, L2_2)
+    if L0_0 then
+      L1_1 = bm
+      L1_1 = L1_1.add_related_file
+      L2_2 = mp
+      L2_2 = L2_2.ContextualExpandEnvironmentVariables
+      L3_3 = L0_0
+      L3_3 = L2_2(L3_3)
+      L1_1(L2_2, L3_3, L2_2(L3_3))
     end
-    local l_0_1 = (string.match)((this_sigattrlog[1]).utf8p2, "%a:[^:\"]+%.ps1")
-    if l_0_1 then
-      (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(l_0_1))
+    L1_1 = string
+    L1_1 = L1_1.match
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.utf8p2
+    L3_3 = "%a:[^:\"]+%.ps1"
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 then
+      L2_2 = bm
+      L2_2 = L2_2.add_related_file
+      L3_3 = mp
+      L3_3 = L3_3.ContextualExpandEnvironmentVariables
+      L3_3 = L3_3(L1_1)
+      L2_2(L3_3, L3_3(L1_1))
     end
-    local l_0_2 = (string.match)((this_sigattrlog[1]).utf8p2, "%a:[^:\"]+%.bat")
-    if l_0_2 then
-      (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(l_0_2))
+    L2_2 = string
+    L2_2 = L2_2.match
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L3_3 = L3_3.utf8p2
+    L2_2 = L2_2(L3_3, "%a:[^:\"]+%.bat")
+    if L2_2 then
+      L3_3 = bm
+      L3_3 = L3_3.add_related_file
+      L3_3(mp.ContextualExpandEnvironmentVariables(L2_2))
     end
-    local l_0_3 = (string.match)((this_sigattrlog[1]).utf8p2, "%a:[^:\"]+%.dll")
-    if l_0_3 then
-      (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(l_0_3))
+    L3_3 = string
+    L3_3 = L3_3.match
+    L3_3 = L3_3(this_sigattrlog[1].utf8p2, "%a:[^:\"]+%.dll")
+    if L3_3 then
+      bm.add_related_file(mp.ContextualExpandEnvironmentVariables(L3_3))
     end
   end
 end
-do
-  return mp.INFECTED
-end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

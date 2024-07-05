@@ -1,41 +1,83 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/169b38002202f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 ~= nil and ((string.sub)(l_0_0, -33) == "\\msexchangemailboxreplication.exe" or (string.sub)(l_0_0, -23) == "\\msexchangedelivery.exe" or (string.sub)(l_0_0, -39) == "\\msexchangemailboxreplicationworker.exe") then
-  local l_0_1 = nil
-  if (this_sigattrlog[1]).matched then
-    l_0_1 = (this_sigattrlog[1]).utf8p1
-  else
-    if (this_sigattrlog[2]).matched then
-      l_0_1 = (this_sigattrlog[2]).utf8p1
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L3_3 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1())
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.sub
+  L2_2 = L0_0
+  L3_3 = -33
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 ~= "\\msexchangemailboxreplication.exe" then
+    L1_1 = string
+    L1_1 = L1_1.sub
+    L2_2 = L0_0
+    L3_3 = -23
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 ~= "\\msexchangedelivery.exe" then
+      L1_1 = string
+      L1_1 = L1_1.sub
+      L2_2 = L0_0
+      L3_3 = -39
+      L1_1 = L1_1(L2_2, L3_3)
+    end
+  elseif L1_1 == "\\msexchangemailboxreplicationworker.exe" then
+    L1_1 = nil
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[1]
+      L1_1 = L2_2.utf8p1
     else
-      if (this_sigattrlog[3]).matched then
-        l_0_1 = (this_sigattrlog[3]).utf8p1
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[2]
+        L1_1 = L2_2.utf8p1
       else
-        if (this_sigattrlog[4]).matched then
-          l_0_1 = (this_sigattrlog[4]).utf8p1
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[3]
+          L1_1 = L2_2.utf8p1
+        else
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[4]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[4]
+            L1_1 = L2_2.utf8p1
+          end
         end
       end
     end
-  end
-  if l_0_1 ~= nil then
-    local l_0_2 = (string.sub)(l_0_1, -4)
-    local l_0_3 = "|.asp|aspx|ashx|asmx|"
-    if (string.find)(l_0_3, l_0_2, 1, true) == nil then
-      return mp.CLEAN
+    if L1_1 ~= nil then
+      L2_2 = string
+      L2_2 = L2_2.sub
+      L3_3 = L1_1
+      L2_2 = L2_2(L3_3, -4)
+      L3_3 = "|.asp|aspx|ashx|asmx|"
+      if string.find(L3_3, L2_2, 1, true) == nil then
+        return mp.CLEAN
+      end
+      if sysio.IsFileExists(L1_1) then
+        bm.add_related_file(L1_1)
+        bm.add_threat_file(L1_1)
+      end
+      return mp.INFECTED
     end
-    if (sysio.IsFileExists)(l_0_1) then
-      (bm.add_related_file)(l_0_1)
-      ;
-      (bm.add_threat_file)(l_0_1)
-    end
-    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

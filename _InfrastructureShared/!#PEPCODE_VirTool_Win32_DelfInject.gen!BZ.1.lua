@@ -1,37 +1,76 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_VirTool_Win32_DelfInject.gen!BZ.1 
-
--- params : ...
--- function num : 0
-if epcode[1] ~= 77 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 ~= 77 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[2] ~= 90 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[2]
+if L0_0 ~= 90 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[5] ~= 233 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[5]
+if L0_0 ~= 233 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[8] ~= 0 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[8]
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[9] ~= 0 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[9]
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.AddressOfEntryPoint ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.AddressOfEntryPoint
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).NameDW ~= 1162104643 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 1162104643 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).VirtualAddress ~= 4096 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.VirtualAddress
+if L0_0 ~= 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epscn_islast ~= false then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epscn_islast
+if L0_0 ~= false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epinfirstsect == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epinfirstsect
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

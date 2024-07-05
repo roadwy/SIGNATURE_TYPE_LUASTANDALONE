@@ -1,25 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_VirTool_Win64_Obfuscator.A 
-
--- params : ...
--- function num : 0
 if pehdr.Machine ~= 34404 then
   return mp.CLEAN
 end
-if ((pehdr.DataDirectory)[2]).Size ~= 40 then
+if pehdr.DataDirectory[2].Size ~= 40 then
   return mp.CLEAN
 end
-if (mp.readu_u32)(epcode, 1) ~= 686588744 then
+if mp.readu_u32(epcode, 1) ~= 686588744 then
   return mp.CLEAN
 end
 if epcode[5] ~= 232 then
   return mp.CLEAN
 end
-if (mp.readu_u32)(epcode, 9) ~= 3296937984 then
+if mp.readu_u32(epcode, 9) ~= 3296937984 then
   return mp.CLEAN
 end
-if (mp.readu_u16)(epcode, 13) ~= 49960 then
+if mp.readu_u16(epcode, 13) ~= 49960 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

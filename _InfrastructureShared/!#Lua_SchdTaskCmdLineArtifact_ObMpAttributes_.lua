@@ -1,17 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SchdTaskCmdLineArtifact_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.GetResmgrBasePlugin)() ~= "Taskscheduler" then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.GetResmgrBasePlugin
+L0_0 = L0_0()
+if L0_0 ~= "Taskscheduler" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+if string.find(L0_0, ":\\windows\\system32", 1, true) ~= nil or string.find(L0_0, ":\\windows\\syswow64", 1, true) ~= nil or string.find(L0_0, ":\\windows\\tasks", 1, true) ~= nil then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if (string.find)(l_0_0, ":\\windows\\system32", 1, true) ~= nil or (string.find)(l_0_0, ":\\windows\\syswow64", 1, true) ~= nil or (string.find)(l_0_0, ":\\windows\\tasks", 1, true) ~= nil then
-  return mp.CLEAN
-end
-if (mp.IsKnownFriendlyFile)(l_0_0, true, false) then
+if mp.IsKnownFriendlyFile(L0_0, true, false) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

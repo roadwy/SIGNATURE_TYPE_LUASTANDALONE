@@ -1,16 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/22611b40ff80 
-
--- params : ...
--- function num : 0
-local l_0_0 = pehdr.ImageBase + ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_RESOURCE]).RVA
-if l_0_0 <= 0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = pehdr
+L0_0 = L0_0.ImageBase
+L1_1 = pehdr
+L1_1 = L1_1.DataDirectory
+L2_2 = pe
+L2_2 = L2_2.IMAGE_DIRECTORY_ENTRY_RESOURCE
+L1_1 = L1_1[L2_2]
+L1_1 = L1_1.RVA
+L0_0 = L0_0 + L1_1
+if L0_0 <= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_RESOURCE]).Size
-local l_0_2 = (hstrlog[1]).VA
-if l_0_0 < l_0_2 and l_0_2 < l_0_0 + l_0_1 then
-  return mp.INFECTED
+L1_1 = pehdr
+L1_1 = L1_1.DataDirectory
+L2_2 = pe
+L2_2 = L2_2.IMAGE_DIRECTORY_ENTRY_RESOURCE
+L1_1 = L1_1[L2_2]
+L1_1 = L1_1.Size
+L2_2 = hstrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.VA
+if L0_0 < L2_2 then
+  L3_3 = L0_0 + L1_1
+  if L2_2 < L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.INFECTED
+    return L3_3
+  end
 end
-return mp.CLEAN
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

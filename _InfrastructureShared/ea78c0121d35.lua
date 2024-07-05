@@ -1,26 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ea78c0121d35 
-
--- params : ...
--- function num : 0
-do
-  if not (hstrlog[1]).matched then
-    local l_0_0 = (hstrlog[2]).matched
-  end
-  -- DECOMPILER ERROR at PC12: Confused about usage of register: R0 in 'UnsetPending'
-
-  if mp.HSTR_WEIGHT >= 3 and (l_0_0 or (hstrlog[3]).matched) then
-    return mp.INFECTED
-  end
-  if mp.HSTR_WEIGHT >= 2 then
-    return mp.LOWFI
-  else
-    -- DECOMPILER ERROR at PC31: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_0 then
-      return mp.LOWFI
-    end
-  end
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
 end
-
+L1_1 = mp
+L1_1 = L1_1.HSTR_WEIGHT
+if L1_1 >= 3 then
+  if not L0_0 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.INFECTED
+    return L1_1
+  end
+else
+  L1_1 = mp
+  L1_1 = L1_1.HSTR_WEIGHT
+  if L1_1 >= 2 then
+    L1_1 = mp
+    L1_1 = L1_1.LOWFI
+    return L1_1
+  elseif L0_0 then
+    L1_1 = mp
+    L1_1 = L1_1.LOWFI
+    return L1_1
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

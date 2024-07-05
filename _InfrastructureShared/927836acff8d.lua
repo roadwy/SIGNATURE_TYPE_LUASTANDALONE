@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/927836acff8d 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("MpHasValidProjPath") and (mp.get_mpattribute)("SIGATTR:mpinthandler") and peattributes.epinfirstsect and pehdr.NumberOfSections == 4 and (pesecs[1]).SizeOfRawData >= 106496 and (pesecs[1]).SizeOfRawData <= 147456 then
+if mp.get_mpattribute("MpHasValidProjPath") and mp.get_mpattribute("SIGATTR:mpinthandler") and peattributes.epinfirstsect and pehdr.NumberOfSections == 4 and pesecs[1].SizeOfRawData >= 106496 and pesecs[1].SizeOfRawData <= 147456 then
   return mp.INFECTED
 end
 return mp.LOWFI
-

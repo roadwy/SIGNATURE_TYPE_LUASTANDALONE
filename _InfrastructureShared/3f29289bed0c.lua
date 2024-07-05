@@ -1,21 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3f29289bed0c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)()
-if l_0_0 then
-  l_0_0 = (string.lower)(l_0_0)
-  if l_0_0:find("\\appdata\\.+\\thunderbird\\profiles\\") then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if L0_0 then
+  L0_0 = string.lower(L0_0)
+  if L0_0:find("\\appdata\\.+\\thunderbird\\profiles\\") then
     return mp.CLEAN
   end
-  if l_0_0:find("\\logging\\.+queue\\.+%.log") then
+  if L0_0:find("\\logging\\.+queue\\.+%.log") then
     return mp.CLEAN
   end
-  if l_0_0:find("%.rss$") then
+  if L0_0:find("%.rss$") then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
 return mp.CLEAN
-

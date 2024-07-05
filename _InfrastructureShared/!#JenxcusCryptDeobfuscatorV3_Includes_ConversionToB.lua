@@ -1,106 +1,139 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#JenxcusCryptDeobfuscatorV3_Includes_ConversionToB 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < mp.FOOTERPAGE_SZ * 3 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.FOOTERPAGE_SZ
+L1_1 = L1_1 * 3
+if L0_0 < L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0 > 2097152 then
-  return mp.CLEAN
+if L0_0 > 2097152 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_2, l_0_3, l_0_4 = (string.find)(l_0_1, "= ?\"(.-)\"")
-while (string.len)(l_0_4) < 800 do
-  l_0_2 = (string.find)(l_0_1, "= ?\"(.-)\"", l_0_3 + 2)
-end
-if #l_0_4 < mp.FOOTERPAGE_SZ then
-  return mp.CLEAN
-end
-local l_0_5, l_0_6, l_0_7 = (string.find)(l_0_1, "= ?%(?\"(.-)\"", l_0_3)
-if #l_0_7 < 1 or #l_0_4 <= #l_0_7 then
-  return mp.CLEAN
-end
-local l_0_8, l_0_9 = (string.gsub)(l_0_7, "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])", "%%%1")
-if l_0_4:match(l_0_8) == nil then
-  return mp.CLEAN
-end
-local l_0_10, l_0_11, l_0_12 = (string.find)(l_0_1, "= ?%(?\"(.-)\"", l_0_6)
-if #l_0_12 < 1 or #l_0_4 <= #l_0_12 then
-  return mp.CLEAN
-end
-local l_0_13 = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  local l_1_2 = {}
-  local l_1_3 = {}
-  local l_1_4 = {}
-  local l_1_5 = 0
-  local l_1_6 = (l_1_1:rep(256 / #l_1_1 + 1)):sub(1, 256)
-  for l_1_10 in (string.gmatch)(l_1_6, ".") do
-    l_1_2[l_1_5] = l_1_5
-    l_1_3[l_1_5] = l_1_10:byte()
-    l_1_5 = l_1_5 + 1
-  end
-  local l_1_11 = 0
-  for l_1_15 = 0, 255 do
-    l_1_11 = (l_1_11 + l_1_2[l_1_15] + l_1_3[l_1_15]) % 255
-    local l_1_16 = l_1_2[l_1_11]
-    l_1_2[l_1_11] = l_1_2[l_1_15]
-    l_1_2[l_1_15] = l_1_16
-  end
-  local l_1_17 = 0
-  local l_1_18 = 0
-  for l_1_22 = 1, 3072 do
-    l_1_17 = (l_1_17 + 1) % 255
-    l_1_18 = (l_1_18 + l_1_2[l_1_17]) % 255
-    local l_1_23 = l_1_2[l_1_18]
-    l_1_2[l_1_18] = l_1_2[l_1_17]
-    l_1_2[l_1_17] = l_1_23
-  end
-  local l_1_24 = string.char
-  for l_1_28 = 1, #l_1_0 do
-    local l_1_33 = nil
-    l_1_33 = l_1_17 + 1
-    l_1_17 = (l_1_33) % 255
-    l_1_33 = l_1_2[l_1_17]
-    l_1_33 = l_1_18 + l_1_33
-    l_1_18 = (l_1_33) % 255
-    l_1_33 = l_1_2[l_1_18]
-    local l_1_29, l_1_34 = nil
-    l_1_29 = l_1_2[l_1_17]
-    l_1_2[l_1_18] = l_1_29
-    l_1_2[l_1_17] = l_1_33
-    l_1_33 = #l_1_4
-    l_1_33 = l_1_33 + 1
-    l_1_29 = l_1_24
-    l_1_34 = mp
-    l_1_34 = l_1_34.bitxor
-    do
-      local l_1_36, l_1_37, l_1_38, l_1_39, l_1_40, l_1_41 = .end
-      l_1_29 = l_1_29(l_1_34(l_1_2[(l_1_2[l_1_17] + l_1_2[l_1_18]) % 255], (l_1_0:sub(l_1_28, l_1_28)):byte()), l_1_36, l_1_37, l_1_38, l_1_39, l_1_40, l_1_41)
-      local l_1_35 = nil
-      l_1_4[l_1_33] = l_1_29
-      -- DECOMPILER ERROR at PC91: Confused about usage of register R17 for local variables in 'ReleaseLocals'
-
-      -- DECOMPILER ERROR at PC91: LeaveBlock: unexpected jumping out DO_STMT
-
-    end
-  end
-  local l_1_30 = nil
-  local l_1_31 = nil
-  do
-    local l_1_32 = nil
-    do return (table.concat)(l_1_4, "") end
-    -- DECOMPILER ERROR at PC98: Confused about usage of register R14 for local variables in 'ReleaseLocals'
-
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = "= ?\"(.-)\""
+L4_4 = L2_2(L3_3, L4_4)
+while true do
+  L5_5 = string
+  L5_5 = L5_5.len
+  L6_6 = L4_4
+  L5_5 = L5_5(L6_6)
+  if L5_5 < 800 then
+    L5_5 = string
+    L5_5 = L5_5.find
+    L6_6 = L1_1
+    L7_7 = "= ?\"(.-)\""
+    L8_8 = L3_3 + 2
+    L7_7 = L5_5(L6_6, L7_7, L8_8)
+    L4_4 = L7_7
+    L3_3 = L6_6
+    L2_2 = L5_5
   end
 end
-
-local l_0_14 = (mp.bitxor)((l_0_13("0", l_0_12)):byte(), 48)
-;
-(mp.vfo_add_buffer)(fastDec2BinWithKey(l_0_4, "(%d-)" .. l_0_8, l_0_14, mp.bitxor), "[JXSC3]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L5_5 = #L4_4
+L6_6 = mp
+L6_6 = L6_6.FOOTERPAGE_SZ
+if L5_5 < L6_6 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = string
+L5_5 = L5_5.find
+L6_6 = L1_1
+L7_7 = "= ?%(?\"(.-)\""
+L8_8 = L3_3
+L7_7 = L5_5(L6_6, L7_7, L8_8)
+L8_8 = #L7_7
+if not (L8_8 < 1) then
+  L8_8 = #L7_7
+  L9_9 = #L4_4
+elseif L8_8 >= L9_9 then
+  L8_8 = mp
+  L8_8 = L8_8.CLEAN
+  return L8_8
+end
+L8_8 = string
+L8_8 = L8_8.gsub
+L9_9 = L7_7
+L10_10 = "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])"
+L11_11 = "%%%1"
+L9_9 = L8_8(L9_9, L10_10, L11_11)
+L11_11 = L4_4
+L10_10 = L4_4.match
+L12_12 = L8_8
+L10_10 = L10_10(L11_11, L12_12)
+if L10_10 == nil then
+  L10_10 = mp
+  L10_10 = L10_10.CLEAN
+  return L10_10
+end
+L10_10 = string
+L10_10 = L10_10.find
+L11_11 = L1_1
+L12_12 = "= ?%(?\"(.-)\""
+L13_13 = L6_6
+L12_12 = L10_10(L11_11, L12_12, L13_13)
+L13_13 = #L12_12
+if not (L13_13 < 1) then
+  L13_13 = #L12_12
+  L14_14 = #L4_4
+elseif L13_13 >= L14_14 then
+  L13_13 = mp
+  L13_13 = L13_13.CLEAN
+  return L13_13
+end
+function L13_13(A0_15, A1_16)
+  local L2_17, L3_18, L4_19, L5_20, L6_21, L7_22, L8_23, L9_24, L10_25, L11_26, L12_27, L13_28, L14_29
+  L2_17 = {}
+  L3_18 = {}
+  L4_19 = {}
+  L5_20 = 0
+  L6_21 = A1_16.rep
+  L6_21 = L6_21(L7_22, L8_23)
+  L6_21 = L6_21.sub
+  L6_21 = L6_21(L7_22, L8_23, L9_24)
+  for L10_25 in L7_22(L8_23, L9_24) do
+    L2_17[L5_20] = L5_20
+    L3_18[L5_20] = L11_26
+    L5_20 = L5_20 + 1
+  end
+  for L11_26 = 0, 255 do
+    L2_17[L7_22] = L13_28
+    L2_17[L11_26] = L12_27
+  end
+  for L13_28 = 1, 3072 do
+    L14_29 = L8_23 + 1
+    L14_29 = L2_17[L8_23]
+    L14_29 = L9_24 + L14_29
+    L14_29 = L2_17[L9_24]
+    L2_17[L9_24] = L2_17[L8_23]
+    L2_17[L8_23] = L14_29
+  end
+  for L14_29 = 1, #A0_15 do
+    L2_17[L8_23], L2_17[L9_24] = L2_17[L9_24], L2_17[L8_23]
+    L4_19[#L4_19 + 1] = L10_25(mp.bitxor(L2_17[(L2_17[L8_23] + L2_17[L9_24]) % 255], A0_15:sub(L14_29, L14_29):byte()))
+  end
+  return L11_26(L12_27, L13_28)
+end
+L14_14 = mp
+L14_14 = L14_14.bitxor
+L14_14 = L14_14(L13_13("0", L12_12):byte(), 48)
+mp.vfo_add_buffer(fastDec2BinWithKey(L4_4, "(%d-)" .. L8_8, L14_14, mp.bitxor), "[JXSC3]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

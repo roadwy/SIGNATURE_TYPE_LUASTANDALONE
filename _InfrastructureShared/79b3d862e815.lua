@@ -1,68 +1,93 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/79b3d862e815 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil and (string.len)(l_0_0) >= 15 then
-  local l_0_1 = {}
-  l_0_1["services.exe"] = true
-  l_0_1["msmpeng.exe"] = true
-  l_0_1["trustedinstaller.exe"] = true
-  l_0_1["tiworker.exe"] = true
-  l_0_1["poqexec.exe"] = true
-  l_0_1["mbamservice.exe"] = true
-  l_0_1["osrssinst.exe"] = true
-  l_0_1["core.exe"] = true
-  l_0_1["instup.exe"] = true
-  l_0_1["tguard.exe"] = true
-  l_0_1["nortonsecurity.exe"] = true
-  l_0_1["mfehidin.exe"] = true
-  l_0_1["mfeamcin.exe"] = true
-  l_0_1["avp.exe"] = true
-  l_0_1["computerztray.exe"] = true
-  l_0_1["w32tm.exe"] = true
-  l_0_1["printisolationhost.exe"] = true
-  l_0_1["xlserviceplatform.exe"] = true
-  l_0_1["zhudongfangyu.exe"] = true
-  l_0_1["qqlivesetupex.exe"] = true
-  local l_0_2 = l_0_0:match("\\([^\\]+)$")
-  if l_0_2 ~= nil then
-    l_0_2 = (string.lower)(l_0_2)
-    if l_0_1[l_0_2] then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  if L1_1 >= 15 then
+    L1_1 = {}
+    L1_1["services.exe"] = true
+    L1_1["msmpeng.exe"] = true
+    L1_1["trustedinstaller.exe"] = true
+    L1_1["tiworker.exe"] = true
+    L1_1["poqexec.exe"] = true
+    L1_1["mbamservice.exe"] = true
+    L1_1["osrssinst.exe"] = true
+    L1_1["core.exe"] = true
+    L1_1["instup.exe"] = true
+    L1_1["tguard.exe"] = true
+    L1_1["nortonsecurity.exe"] = true
+    L1_1["mfehidin.exe"] = true
+    L1_1["mfeamcin.exe"] = true
+    L1_1["avp.exe"] = true
+    L1_1["computerztray.exe"] = true
+    L1_1["w32tm.exe"] = true
+    L1_1["printisolationhost.exe"] = true
+    L1_1["xlserviceplatform.exe"] = true
+    L1_1["zhudongfangyu.exe"] = true
+    L1_1["qqlivesetupex.exe"] = true
+    L2_2 = L0_0.match
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 ~= nil then
+      L2_2 = L3_3
+      if L3_3 then
+        return L3_3
+      end
     end
   end
 end
-do
-  local l_0_3 = nil
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    l_0_3 = (string.lower)((this_sigattrlog[1]).utf8p2)
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L1_1 = L2_2
   end
-  if l_0_3:find("\\printconfig.dll") then
-    return mp.CLEAN
+end
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+else
+  L2_2 = L1_1.find
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   else
-    if l_0_3:find("\\windows\\system32\\hpzipm12.dll") then
-      return mp.CLEAN
-    else
-      if l_0_3:find("\\windows\\system32\\w32time.dll") then
-        return mp.CLEAN
-      end
+    L2_2 = L1_1.find
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
     end
-  end
-  if l_0_3 ~= nil then
-    local l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_3)
-    for l_0_8,l_0_9 in ipairs(l_0_4) do
-      l_0_9 = (mp.ContextualExpandEnvironmentVariables)(l_0_9)
-      if (sysio.IsFileExists)(l_0_9) then
-        (bm.add_related_file)(l_0_9)
-      end
-    end
-  end
-  do
-    l_0_4 = mp
-    l_0_4 = l_0_4.INFECTED
-    return l_0_4
   end
 end
-
+if L1_1 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

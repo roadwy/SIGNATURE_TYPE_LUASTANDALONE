@@ -1,10 +1,6 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b3280e784e 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-;
-(bm.add_threat_file)(l_0_0)
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(MpCommon.PathToWin32Path(bm.get_imagepath()))
+bm.add_threat_file(L0_0)
 return mp.INFECTED
-

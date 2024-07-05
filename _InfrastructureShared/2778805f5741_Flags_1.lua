@@ -1,10 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2778805f5741_Flags_1 
-
--- params : ...
--- function num : 0
-if ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_DEBUG]).Size ~= 0 and ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_DEBUG]).Size ~= 0 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L1_1 = pe
+L1_1 = L1_1.IMAGE_DIRECTORY_ENTRY_DEBUG
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.Size
+if L0_0 ~= 0 then
+  L0_0 = pehdr
+  L0_0 = L0_0.DataDirectory
+  L1_1 = pe
+  L1_1 = L1_1.IMAGE_DIRECTORY_ENTRY_DEBUG
+  L0_0 = L0_0[L1_1]
+  L0_0 = L0_0.Size
+  if L0_0 ~= 0 then
+    L0_0 = mp
+    L0_0 = L0_0.INFECTED
+    return L0_0
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

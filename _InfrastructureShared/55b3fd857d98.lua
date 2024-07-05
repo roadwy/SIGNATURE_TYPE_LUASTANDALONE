@@ -1,43 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3fd857d98 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC6: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L0_0 = L1_1[1]
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L0_0 = L1_1[2]
   else
-  end
-  -- DECOMPILER ERROR at PC22: Overwrote pending register: R0 in 'AssignReg'
-
-  if not (this_sigattrlog[2]).matched or (this_sigattrlog[3]).matched then
-    local l_0_1, l_0_2 = this_sigattrlog[2]
-  else
-    do
-      do return mp.CLEAN end
-      -- DECOMPILER ERROR at PC27: Confused about usage of register: R0 in 'UnsetPending'
-
-      if not l_0_1.utf8p2 then
-        return mp.CLEAN
-      end
-      local l_0_3 = nil
-      local l_0_4 = {}
-      local l_0_5 = "0x0c347ca0"
-      for l_0_9,l_0_10 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_3.utf8p2)) do
-        local l_0_6 = nil
-        -- DECOMPILER ERROR at PC45: Confused about usage of register: R8 in 'UnsetPending'
-
-        if (string.lower)(R8_PC45) ~= (string.lower)(l_0_3.image_path) and (sysio.IsFileExists)(R8_PC45) then
-          (table.insert)(l_0_4, l_0_3.ppid .. ";" .. l_0_5 .. ";" .. R8_PC45)
-        end
-      end
-      if #l_0_4 > 0 then
-        (MpCommon.SetPersistContextNoPath)("bm_ipc_taskschd", l_0_4, 10)
-      end
-      return mp.CLEAN
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L0_0 = L1_1[3]
+    else
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     end
   end
 end
-
+L1_1 = L0_0.utf8p2
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = {}
+L2_2 = "0x0c347ca0"
+L3_3 = mp
+L3_3 = L3_3.GetExecutablesFromCommandLine
+L3_3 = L3_3(L4_4)
+for L7_7, L8_8 in L4_4(L5_5) do
+  L9_9 = string
+  L9_9 = L9_9.lower
+  L9_9 = L9_9(L8_8)
+  if L9_9 ~= string.lower(L0_0.image_path) then
+    L9_9 = sysio
+    L9_9 = L9_9.IsFileExists
+    L9_9 = L9_9(L8_8)
+    if L9_9 then
+      L9_9 = L0_0.ppid
+      L9_9 = L9_9 .. ";" .. L2_2 .. ";" .. L8_8
+      table.insert(L1_1, L9_9)
+    end
+  end
+end
+if L4_4 > 0 then
+  L7_7 = 10
+  L4_4(L5_5, L6_6, L7_7)
+end
+return L4_4

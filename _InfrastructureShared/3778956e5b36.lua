@@ -1,35 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3778956e5b36 
-
--- params : ...
--- function num : 0
-if not peattributes.isexe then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.ispackedwith)("AutoHotKey_+") then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.ispackedwith
+L1_1 = "AutoHotKey_+"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.ispackedwith)("AutoIt_+") or (mp.get_mpattributesubstring)("Win32/AutoIt") or (mp.get_mpattributesubstring)("PESTATIC:cleanstub_autoitv") then
-  local l_0_0, l_0_1 = nil, nil
-  if (hstrlog[1]).matched then
-    l_0_0 = ((hstrlog[1]).match_offsets)[3]
-    l_0_1 = (hstrlog[1]).VA + l_0_0
-    local l_0_2 = (mp.readu_u32)((pe.mmap_va)(l_0_1, 4), 1)
-    if (mp.readu_u32)((pe.mmap_va)(l_0_2 + 8, 4), 1) ~= 3192604835 then
+L0_0 = mp
+L0_0 = L0_0.ispackedwith
+L1_1 = "AutoIt_+"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattributesubstring
+  L1_1 = "Win32/AutoIt"
+  L0_0 = L0_0(L1_1)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattributesubstring
+    L1_1 = "PESTATIC:cleanstub_autoitv"
+    L0_0 = L0_0(L1_1)
+  end
+elseif L0_0 then
+  L0_0, L1_1 = nil, nil
+  L2_2 = hstrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = hstrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.match_offsets
+    L0_0 = L2_2[3]
+    L2_2 = hstrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.VA
+    L1_1 = L2_2 + L0_0
+    L2_2 = mp
+    L2_2 = L2_2.readu_u32
+    L2_2 = L2_2(pe.mmap_va(L1_1, 4), 1)
+    if mp.readu_u32(pe.mmap_va(L2_2 + 8, 4), 1) ~= 3192604835 then
       return mp.INFECTED
     end
-    if (mp.readu_u32)((pe.mmap_va)(l_0_2 + 12, 4), 1) ~= 2840226968 then
+    if mp.readu_u32(pe.mmap_va(L2_2 + 12, 4), 1) ~= 2840226968 then
       return mp.INFECTED
     end
-    if (mp.readu_u32)((pe.mmap_va)(l_0_2, 4), 1) ~= 173231257 then
+    if mp.readu_u32(pe.mmap_va(L2_2, 4), 1) ~= 173231257 then
       return mp.INFECTED
     end
-    if (mp.readu_u32)((pe.mmap_va)(l_0_2 + 4, 4), 1) ~= 2101925510 then
+    if mp.readu_u32(pe.mmap_va(L2_2 + 4, 4), 1) ~= 2101925510 then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

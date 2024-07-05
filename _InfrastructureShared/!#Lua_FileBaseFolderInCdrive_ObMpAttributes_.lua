@@ -1,24 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FileBaseFolderInCdrive_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-do
-  if l_0_0 ~= nil and l_0_0:len() > 5 then
-    local l_0_1 = (string.lower)(l_0_0)
-    if l_0_0:len() > 8 and (string.sub)(l_0_0, 1, 8) == "\\device\\" then
-      l_0_1 = (string.lower)((MpCommon.PathToWin32Path)(l_0_0))
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_FILEPATH
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = L0_0.len
+  L1_1 = L1_1(L0_0)
+  if L1_1 > 5 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L0_0)
+    if L0_0:len() > 8 and string.sub(L0_0, 1, 8) == "\\device\\" then
+      L1_1 = string.lower(MpCommon.PathToWin32Path(L0_0))
     end
-    if l_0_1:len() == 6 then
-      if l_0_1 == "\\\\?\\c:" then
+    if L1_1:len() == 6 then
+      if L1_1 == "\\\\?\\c:" then
         return mp.INFECTED
       else
-        ;
-        (mp.set_mpattribute)("Lua:FileBaseFolderInOtherDrive")
+        mp.set_mpattribute("Lua:FileBaseFolderInOtherDrive")
       end
     end
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

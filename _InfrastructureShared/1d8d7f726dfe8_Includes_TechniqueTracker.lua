@@ -1,19 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1d8d7f726dfe8_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2, l_0_3 = nil
-if pcall(mp.GetParentProcInfo) and mp.GetParentProcInfo ~= nil then
-  l_0_2 = (mp.GetParentProcInfo).ppid
-  l_0_3 = (mp.GetParentProcInfo).image_path
+local L0_0
+if pcall(mp.GetParentProcInfo) and pcall(mp.GetParentProcInfo) ~= nil then
+  L0_0 = pcall(mp.GetParentProcInfo).ppid
 end
-if l_0_2 ~= nil and l_0_3 ~= nil then
-  TrackPidAndTechnique(l_0_2, "T1087", "user_discovery")
-  if IsDetectionThresholdMet(l_0_2) then
+if L0_0 ~= nil and pcall(mp.GetParentProcInfo).image_path ~= nil then
+  TrackPidAndTechnique(L0_0, "T1087", "user_discovery")
+  if IsDetectionThresholdMet(L0_0) then
     return mp.INFECTED
   end
 end
 return mp.LOWFI
-

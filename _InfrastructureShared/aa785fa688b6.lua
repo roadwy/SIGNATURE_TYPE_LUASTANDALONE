@@ -1,34 +1,95 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/aa785fa688b6 
-
--- params : ...
--- function num : 0
-if (hstrlog[2]).VA < (hstrlog[1]).VA and (hstrlog[1]).VA - (hstrlog[2]).VA < 1024 then
-  local l_0_0 = 11
-  local l_0_1 = 10
-  local l_0_2 = (mp.readu_u32)((pe.mmap_va)((hstrlog[2]).VA + 4, 4), 1)
-  local l_0_3 = (pe.mmap_va)(l_0_2, l_0_0 * 2 + 1)
-  l_0_3 = (mp.utf16to8)(l_0_3)
-  local l_0_4 = (mp.readu_u32)((pe.mmap_va)((hstrlog[3]).VA + 13, 4), 1)
-  local l_0_5 = (pe.mmap_va)(l_0_4, l_0_1 * 4 + 2 + 2)
-  local l_0_6 = (mp.utf16to8)(l_0_5)
-  local l_0_7 = ""
-  for l_0_11 = 3, l_0_1 * 2 + 2, 2 do
-    local l_0_12 = tonumber((string.sub)(l_0_6, l_0_11 - 2, l_0_11 - 1), 16)
-    local l_0_13 = tonumber((string.sub)(l_0_6, l_0_11, l_0_11 + 1), 16)
-    local l_0_14 = (string.byte)(l_0_3, (l_0_11 - 1) / 2)
-    local l_0_15 = (mp.bitxor)(l_0_13, l_0_14)
-    if l_0_15 - l_0_12 < 0 then
-      l_0_7 = l_0_7 .. (string.char)(l_0_15 - l_0_12 + 255)
-    else
-      l_0_7 = l_0_7 .. (string.char)(l_0_15 - l_0_12)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = hstrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.VA
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.VA
+if L0_0 < L1_1 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.VA
+  L1_1 = hstrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.VA
+  L0_0 = L0_0 - L1_1
+  if L0_0 < 1024 then
+    L0_0 = 11
+    L1_1 = 10
+    L2_2 = mp
+    L2_2 = L2_2.readu_u32
+    L3_3 = pe
+    L3_3 = L3_3.mmap_va
+    L4_4 = hstrlog
+    L4_4 = L4_4[2]
+    L4_4 = L4_4.VA
+    L4_4 = L4_4 + 4
+    L5_5 = 4
+    L3_3 = L3_3(L4_4, L5_5)
+    L4_4 = 1
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = pe
+    L3_3 = L3_3.mmap_va
+    L4_4 = L2_2
+    L5_5 = L0_0 * 2
+    L5_5 = L5_5 + 1
+    L3_3 = L3_3(L4_4, L5_5)
+    L4_4 = mp
+    L4_4 = L4_4.utf16to8
+    L5_5 = L3_3
+    L4_4 = L4_4(L5_5)
+    L3_3 = L4_4
+    L4_4 = mp
+    L4_4 = L4_4.readu_u32
+    L5_5 = pe
+    L5_5 = L5_5.mmap_va
+    L6_6 = hstrlog
+    L6_6 = L6_6[3]
+    L6_6 = L6_6.VA
+    L6_6 = L6_6 + 13
+    L7_7 = 4
+    L5_5 = L5_5(L6_6, L7_7)
+    L6_6 = 1
+    L4_4 = L4_4(L5_5, L6_6)
+    L5_5 = pe
+    L5_5 = L5_5.mmap_va
+    L6_6 = L4_4
+    L7_7 = L1_1 * 4
+    L7_7 = L7_7 + 2
+    L7_7 = L7_7 + 2
+    L5_5 = L5_5(L6_6, L7_7)
+    L6_6 = mp
+    L6_6 = L6_6.utf16to8
+    L7_7 = L5_5
+    L6_6 = L6_6(L7_7)
+    L7_7 = ""
+    for L11_11 = 3, L9_9 + 2, 2 do
+      L12_12 = tonumber
+      L13_13 = string
+      L13_13 = L13_13.sub
+      L14_14 = L6_6
+      L13_13 = L13_13(L14_14, L11_11 - 2, L11_11 - 1)
+      L14_14 = 16
+      L12_12 = L12_12(L13_13, L14_14)
+      L13_13 = tonumber
+      L14_14 = string
+      L14_14 = L14_14.sub
+      L14_14 = L14_14(L6_6, L11_11, L11_11 + 1)
+      L13_13 = L13_13(L14_14, 16)
+      L14_14 = string
+      L14_14 = L14_14.byte
+      L14_14 = L14_14(L3_3, (L11_11 - 1) / 2)
+      if mp.bitxor(L13_13, L14_14) - L12_12 < 0 then
+        L7_7 = L7_7 .. string.char(mp.bitxor(L13_13, L14_14) - L12_12 + 255)
+      else
+        L7_7 = L7_7 .. string.char(mp.bitxor(L13_13, L14_14) - L12_12)
+      end
+    end
+    if L7_7 == "cmd /c tas" then
+      return L8_8
     end
   end
-  if l_0_7 == "cmd /c tas" then
-    return mp.INFECTED
-  end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

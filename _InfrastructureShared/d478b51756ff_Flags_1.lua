@@ -1,26 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d478b51756ff_Flags_1 
-
--- params : ...
--- function num : 0
-local l_0_0 = 0
-if (hstrlog[4]).matched then
-  local l_0_1 = (hstrlog[4]).VA + 32
-  local l_0_2 = (mp.readu_u32)((pe.mmap_va)(l_0_1, 4), 1)
-  local l_0_3 = (mp.utf16to8)((pe.mmap_va)(l_0_2, 40))
-  if (string.match)(l_0_3, "ServerL") or (string.match)(l_0_3, "rList") then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.VA
+  L1_1 = L1_1 + 32
+  L2_2 = mp
+  L2_2 = L2_2.readu_u32
+  L3_3 = pe
+  L3_3 = L3_3.mmap_va
+  L3_3 = L3_3(L1_1, 4)
+  L2_2 = L2_2(L3_3, 1)
+  L3_3 = mp
+  L3_3 = L3_3.utf16to8
+  L3_3 = L3_3(pe.mmap_va(L2_2, 40))
+  if string.match(L3_3, "ServerL") or string.match(L3_3, "rList") then
     return mp.INFECTED
   end
-  l_0_0 = 3
+  L0_0 = 3
 end
-do
-  if mp.HSTR_WEIGHT - l_0_0 >= 5 then
-    return mp.INFECTED
-  else
-    if mp.HSTR_WEIGHT - l_0_0 >= 4 then
-      return mp.SUSPICIOUS
-    end
+L1_1 = mp
+L1_1 = L1_1.HSTR_WEIGHT
+L1_1 = L1_1 - L0_0
+if L1_1 >= 5 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
+else
+  L1_1 = mp
+  L1_1 = L1_1.HSTR_WEIGHT
+  L1_1 = L1_1 - L0_0
+  if L1_1 >= 4 then
+    L1_1 = mp
+    L1_1 = L1_1.SUSPICIOUS
+    return L1_1
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

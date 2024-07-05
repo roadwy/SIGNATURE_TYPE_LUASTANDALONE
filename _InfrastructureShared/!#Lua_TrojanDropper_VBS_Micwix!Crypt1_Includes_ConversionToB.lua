@@ -1,20 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_TrojanDropper_VBS_Micwix!Crypt1_Includes_ConversionToB 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 <= 500000 or l_0_0 > 4000000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 <= 500000 or L0_0 > 4000000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = ((tostring(headerpage)):sub(0, 512)):find("= \".-39")
-local l_0_3, l_0_4 = (tostring(footerpage)):find("%d[%D]-\"%s")
-;
-(mp.readprotection)(false)
-local l_0_5 = (mp.readfile)(l_0_2 - 2, l_0_0 - 4098 + l_0_4)
-if l_0_5 ~= nil then
-  (mp.vfo_add_buffer)(fastDec2Bin(l_0_5, "(%d+)[%D]+"), "[Micwix]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L1_1 = tostring
+L2_2 = headerpage
+L1_1 = L1_1(L2_2)
+L2_2 = L1_1
+L1_1 = L1_1.sub
+L3_3 = 0
+L4_4 = 512
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+L2_2 = L1_1
+L1_1 = L1_1.find
+L3_3 = "= \".-39"
+L2_2 = L1_1(L2_2, L3_3)
+L3_3 = tostring
+L4_4 = footerpage
+L3_3 = L3_3(L4_4)
+L4_4 = L3_3
+L3_3 = L3_3.find
+L5_5 = "%d[%D]-\"%s"
+L4_4 = L3_3(L4_4, L5_5)
+L5_5 = mp
+L5_5 = L5_5.readprotection
+L5_5(false)
+L5_5 = mp
+L5_5 = L5_5.readfile
+L5_5 = L5_5(L2_2 - 2, L0_0 - 4098 + L4_4)
+if L5_5 ~= nil then
+  mp.vfo_add_buffer(fastDec2Bin(L5_5, "(%d+)[%D]+"), "[Micwix]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
   return mp.INFECTED
 end
 return mp.CLEAN
-

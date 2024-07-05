@@ -1,16 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b3f665ddfe 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC2: Overwrote pending register: R0 in 'AssignReg'
-
-local l_0_0 = nil
-local l_0_1 = (string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_0))
-if l_0_0 == nil or (string.find)(l_0_1, "\\windows\\system32\\", 1, true) or (mp.IsKnownFriendlyFile)(l_0_1, true, false) then
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L0_0 = L1_1.utf8p2
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(mp.ContextualExpandEnvironmentVariables(L0_0))
+if L0_0 == nil or string.find(L1_1, "\\windows\\system32\\", 1, true) or mp.IsKnownFriendlyFile(L1_1, true, false) then
   return mp.CLEAN
 end
-;
-(bm.add_related_file)(l_0_1)
+bm.add_related_file(L1_1)
 return mp.INFECTED
-

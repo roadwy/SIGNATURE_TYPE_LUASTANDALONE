@@ -1,10 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/bf78a2779186 
-
--- params : ...
--- function num : 0
-if epcode[1] == 233 and epcode[2] == 155 and epcode[3] == 219 and epcode[4] == 255 and pehdr.TimeDateStamp == 0 and pehdr.PointerToSymbolTable > 1048576 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 == 233 then
+  L0_0 = epcode
+  L0_0 = L0_0[2]
+  if L0_0 == 155 then
+    L0_0 = epcode
+    L0_0 = L0_0[3]
+    if L0_0 == 219 then
+      L0_0 = epcode
+      L0_0 = L0_0[4]
+      if L0_0 == 255 then
+        L0_0 = pehdr
+        L0_0 = L0_0.TimeDateStamp
+        if L0_0 == 0 then
+          L0_0 = pehdr
+          L0_0 = L0_0.PointerToSymbolTable
+          if L0_0 > 1048576 then
+            L0_0 = mp
+            L0_0 = L0_0.INFECTED
+            return L0_0
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,20 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Ransom_Win32_Roxstage!proc_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if peattributes.isdll or peattributes.isdriver or peattributes.isdamaged then
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if not L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.isdriver
+  if not L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.isdamaged
+  end
+elseif L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("CLOUD:RoxstageBlockAccess")
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if not mp.get_mpattribute("BM_RoxstageProcessBlock") and not MpCommon.QueryPersistContext(L0_0, "BM_RoxstageProcessBlock") then
   return mp.CLEAN
 end
-if not (mp.get_mpattribute)("CLOUD:RoxstageBlockAccess") then
-  return mp.CLEAN
-end
-local l_0_0 = (mp.getfilename)()
-if not (mp.get_mpattribute)("BM_RoxstageProcessBlock") and not (MpCommon.QueryPersistContext)(l_0_0, "BM_RoxstageProcessBlock") then
-  return mp.CLEAN
-end
-if not (MpCommon.QueryPersistContext)(l_0_0, "CLOUD:RoxstageBlockAccess") then
-  (MpCommon.AppendPersistContext)(l_0_0, "CLOUD:RoxstageBlockAccess", 0)
+if not MpCommon.QueryPersistContext(L0_0, "CLOUD:RoxstageBlockAccess") then
+  MpCommon.AppendPersistContext(L0_0, "CLOUD:RoxstageBlockAccess", 0)
 end
 return mp.INFECTED
-

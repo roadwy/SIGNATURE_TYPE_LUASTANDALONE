@@ -1,19 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1f57825cf9b0f_Flags_1 
-
--- params : ...
--- function num : 0
-do
-  if ((hstrlog[1]).matched and not (hstrlog[2]).matched) or (hstrlog[3]).matched then
-    local l_0_0 = 0 + 1 + 1 + 1
-  end
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 >= 2 or l_0_0 == 3 then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+if L0_0 >= 2 or L0_0 == 3 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

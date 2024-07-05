@@ -1,20 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ddd74d5213a6_Includes_HstrLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.GetProcessCommandLine)(l_0_0))
-local l_0_2 = false
-l_0_2 = (MpCommon.StringRegExpSearch)("(\\s(stop|delete)\\s(sense|windefend|wdfilter|diagtrack)(\\s|$))", l_0_1)
-if l_0_2 == true then
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.GetProcessCommandLine
+L2_2 = L2_2(L0_0)
+L1_1 = L1_1(L2_2, L2_2(L0_0))
+L2_2 = false
+L2_2, _ = MpCommon.StringRegExpSearch("(\\s(stop|delete)\\s(sense|windefend|wdfilter|diagtrack)(\\s|$))", L1_1)
+if L2_2 == true then
   if not isTamperProtectionOn() then
     return mp.LOWFI
   end
   return mp.INFECTED
 end
 return mp.CLEAN
-

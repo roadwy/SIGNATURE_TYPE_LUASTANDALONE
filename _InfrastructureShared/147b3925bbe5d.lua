@@ -1,34 +1,71 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/147b3925bbe5d 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).utf8p2 ~= nil then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[5]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[5]
+    L2_2 = L2_2.utf8p2
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC34: Overwrote pending register: R1 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC52: Overwrote pending register: R1 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC59: Unhandled construct in 'MakeBoolean' P3
-
-  if ((not (this_sigattrlog[3]).matched or (this_sigattrlog[3]).utf8p2 == nil or (this_sigattrlog[4]).matched) and l_0_1 == nil) or nil == nil then
-    return mp.CLEAN
-  end
-  if not (string.find)(l_0_1, " +h", 1, true) then
-    return mp.CLEAN
-  end
-  local l_0_2 = nil
-  if (string.find)(l_0_2, (string.match)(l_0_1, " (%l:\\.+%.class)"), 1, true) then
-    if (sysio.IsFileExists)((string.match)(l_0_1, " (%l:\\.+%.class)")) then
-      (bm.add_threat_file)((string.match)(l_0_1, " (%l:\\.+%.class)"))
-    end
-    return mp.INFECTED
-  end
-  return mp.CLEAN
 end
-
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(this_sigattrlog[3].utf8p2)
+    L1_1 = L2_2
+  end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[4]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[4]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = string
+      L2_2 = L2_2.lower
+      L2_2 = L2_2(this_sigattrlog[4].utf8p2)
+      L1_1 = L2_2
+    end
+  end
+end
+if L0_0 == nil or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.find
+L2_2 = L2_2(L0_0, " +h", 1, true)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.match
+L2_2 = L2_2(L0_0, " (%l:\\.+%.class)")
+if string.find(L1_1, L2_2, 1, true) then
+  if sysio.IsFileExists(L2_2) then
+    bm.add_threat_file(L2_2)
+  end
+  return mp.INFECTED
+end
+return mp.CLEAN

@@ -1,98 +1,106 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Crowti_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-RemoveStartupFileCmpFileNameAndSize = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  local l_1_2 = nil
-  local l_1_3 = nil
-  for l_1_7,l_1_8 in pairs((sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders")) do
-    local l_1_4 = nil
-    -- DECOMPILER ERROR at PC10: Confused about usage of register: R8 in 'UnsetPending'
-
-    if (sysio.RegOpenKey)(R8_PC10) then
-      l_1_3 = (sysio.GetRegValueAsString)((sysio.RegOpenKey)(R8_PC10), "Startup")
-      if (sysio.IsFolderExists)(l_1_3) then
-        local l_1_10 = nil
-        -- DECOMPILER ERROR at PC38: Confused about usage of register: R10 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC44: Confused about usage of register: R10 in 'UnsetPending'
-
-        if (sysio.IsFileExists)(l_1_3 .. "\\" .. l_1_0) and l_1_1 == (sysio.GetFileSize)(l_1_3 .. "\\" .. l_1_0) then
-          (Remediation.BtrDeleteFile)(l_1_3 .. "\\" .. l_1_0)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16
+function L0_0(A0_17, A1_18)
+  local L2_19, L3_20, L4_21, L5_22, L6_23, L7_24, L8_25, L9_26, L10_27
+  L3_20 = sysio
+  L3_20 = L3_20.RegExpandUserKey
+  L3_20 = L3_20(L4_21)
+  for L7_24, L8_25 in L4_21(L5_22) do
+    L9_26 = sysio
+    L9_26 = L9_26.RegOpenKey
+    L10_27 = L8_25
+    L9_26 = L9_26(L10_27)
+    if L9_26 then
+      L10_27 = sysio
+      L10_27 = L10_27.GetRegValueAsString
+      L10_27 = L10_27(L9_26, "Startup")
+      L2_19 = L10_27
+      L10_27 = sysio
+      L10_27 = L10_27.IsFolderExists
+      L10_27 = L10_27(L2_19)
+      if L10_27 then
+        L10_27 = L2_19
+        L10_27 = L10_27 .. "\\" .. A0_17
+        if sysio.IsFileExists(L10_27) and A1_18 == sysio.GetFileSize(L10_27) then
+          Remediation.BtrDeleteFile(L10_27)
         end
       end
     end
   end
 end
-
-CompareRegValueFileSizeAndRemove = function(l_2_0, l_2_1, l_2_2)
-  -- function num : 0_1
-  local l_2_3 = ((sysio.RegOpenKey)(l_2_0))
-  local l_2_4 = nil
-  if l_2_3 then
-    local l_2_5 = (sysio.RegEnumValues)(l_2_3)
-    for l_2_9,l_2_10 in pairs(l_2_5) do
-      if l_2_10 then
-        l_2_4 = (sysio.GetRegValueAsString)(l_2_3, l_2_10)
-        if l_2_4 then
-          l_2_4 = (string.lower)(l_2_4)
-          if (sysio.IsFileExists)(l_2_4) and (string.find)(l_2_4, l_2_1, 1, true) and l_2_2 == (sysio.GetFileSize)(l_2_4) then
-            (sysio.DeleteRegValue)(l_2_3, l_2_10)
+RemoveStartupFileCmpFileNameAndSize = L0_0
+function L0_0(A0_28, A1_29, A2_30)
+  local L3_31, L4_32, L5_33, L6_34, L7_35, L8_36, L9_37, L10_38
+  L3_31 = sysio
+  L3_31 = L3_31.RegOpenKey
+  L4_32 = A0_28
+  L3_31 = L3_31(L4_32)
+  L4_32 = nil
+  if L3_31 then
+    L5_33 = sysio
+    L5_33 = L5_33.RegEnumValues
+    L5_33 = L5_33(L6_34)
+    for L9_37, L10_38 in L6_34(L7_35) do
+      if L10_38 then
+        L4_32 = sysio.GetRegValueAsString(L3_31, L10_38)
+        if L4_32 then
+          L4_32 = string.lower(L4_32)
+          if sysio.IsFileExists(L4_32) and string.find(L4_32, A1_29, 1, true) and A2_30 == sysio.GetFileSize(L4_32) then
+            sysio.DeleteRegValue(L3_31, L10_38)
             return true
           end
         end
       end
     end
   end
-  do
-    l_2_5 = false
-    return l_2_5
+  L5_33 = false
+  return L5_33
+end
+CompareRegValueFileSizeAndRemove = L0_0
+function L0_0(A0_39, A1_40, A2_41)
+  local L3_42, L4_43, L5_44, L6_45, L7_46, L8_47
+  if A1_40 and A2_41 > 256 then
+    L3_42(L4_43, L5_44, L6_45)
+    for L6_45, L7_46 in L3_42(L4_43) do
+      L8_47 = CompareRegValueFileSizeAndRemove
+      L8_47(L7_46, A1_40, A2_41)
+    end
+    for L7_46, L8_47 in L4_43(L5_44) do
+      CompareRegValueFileSizeAndRemove(L8_47, A1_40, A2_41)
+    end
+    L4_43(L5_44, L6_45)
   end
 end
-
-RemoveCrowtiASEPs = function(l_3_0, l_3_1, l_3_2)
-  -- function num : 0_2
-  if l_3_1 and l_3_2 > 256 then
-    CompareRegValueFileSizeAndRemove("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", l_3_1, l_3_2)
-    for l_3_6,l_3_7 in pairs(l_3_0) do
-      CompareRegValueFileSizeAndRemove(l_3_7, l_3_1, l_3_2)
-    end
-    local l_3_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce")
-    for l_3_12,l_3_13 in pairs(l_3_8) do
-      CompareRegValueFileSizeAndRemove(l_3_13, l_3_1, l_3_2)
-    end
-    RemoveStartupFileCmpFileNameAndSize(l_3_1, l_3_2)
-  end
-end
-
-if (Remediation.Threat).Active then
-  local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4 = nil, nil, nil, nil, nil
-  local l_0_5 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")
-  for l_0_9,l_0_10 in pairs(l_0_5) do
-    l_0_0 = (sysio.RegOpenKey)(l_0_10)
-    if l_0_0 then
-      l_0_1 = (sysio.RegEnumValues)(l_0_0)
-      for l_0_14,l_0_15 in pairs(l_0_1) do
-        if l_0_15 then
-          l_0_4 = (sysio.GetRegValueAsString)(l_0_0, l_0_15)
-          if l_0_4 then
-            local l_0_16, l_0_17 = (string.match)(l_0_4, "^%a:\\([0-9a-z]+)\\([0-9a-z]+)%.exe")
-            if l_0_16 ~= nil and l_0_17 ~= nil and l_0_16 == l_0_17 then
-              local l_0_18 = (string.len)(l_0_16)
-              if l_0_18 >= 7 and l_0_18 <= 8 then
-                l_0_2 = l_0_16 .. ".exe"
-                ;
-                (sysio.DeleteRegValue)(l_0_0, l_0_15)
-                if (sysio.IsFileExists)(l_0_4) then
-                  l_0_3 = (sysio.GetFileSize)(l_0_4)
-                  ;
-                  (Remediation.BtrDeleteFile)(l_0_4)
-                  RemoveCrowtiASEPs(l_0_5, l_0_2, l_0_3)
-                  ;
-                  (MpCommon.ReportLowfi)(l_0_4, 2546441377)
-                end
+RemoveCrowtiASEPs = L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Active
+if L0_0 then
+  L0_0, L1_1, L2_2, L3_3, L4_4 = nil, nil, nil, nil, nil
+  L5_5 = sysio
+  L5_5 = L5_5.RegExpandUserKey
+  L5_5 = L5_5(L6_6)
+  for L9_9, L10_10 in L6_6(L7_7) do
+    L0_0 = L11_11
+    if L0_0 then
+      L1_1 = L11_11
+      for L14_14, L15_15 in L11_11(L12_12) do
+        if L15_15 then
+          L16_16 = sysio
+          L16_16 = L16_16.GetRegValueAsString
+          L16_16 = L16_16(L0_0, L15_15)
+          L4_4 = L16_16
+          if L4_4 then
+            L16_16 = string
+            L16_16 = L16_16.match
+            L16_16 = L16_16(L4_4, "^%a:\\([0-9a-z]+)\\([0-9a-z]+)%.exe")
+            if L16_16 ~= nil and L16_16(L4_4, "^%a:\\([0-9a-z]+)\\([0-9a-z]+)%.exe") ~= nil and L16_16 == L16_16(L4_4, "^%a:\\([0-9a-z]+)\\([0-9a-z]+)%.exe") and string.len(L16_16) >= 7 and string.len(L16_16) <= 8 then
+              L2_2 = L16_16 .. ".exe"
+              sysio.DeleteRegValue(L0_0, L15_15)
+              if sysio.IsFileExists(L4_4) then
+                L3_3 = sysio.GetFileSize(L4_4)
+                Remediation.BtrDeleteFile(L4_4)
+                RemoveCrowtiASEPs(L5_5, L2_2, L3_3)
+                MpCommon.ReportLowfi(L4_4, 2546441377)
               end
             end
           end
@@ -101,62 +109,86 @@ if (Remediation.Threat).Active then
     end
   end
 end
-do
-  l_0_0 = function()
-  -- function num : 0_3
-  local l_4_0 = false
-  local l_4_1 = true
-  if Info.OSType and Info.OSType == "Server" then
-    l_4_1 = false
+function L0_0()
+  local L0_48, L1_49, L2_50, L3_51, L4_52, L5_53, L6_54, L7_55, L8_56, L9_57
+  L0_48 = false
+  L1_49 = true
+  L2_50 = Info
+  L2_50 = L2_50.OSType
+  if L2_50 then
+    L2_50 = Info
+    L2_50 = L2_50.OSType
+    if L2_50 == "Server" then
+      L1_49 = false
+    end
   end
-  local l_4_2 = (sysio.RegOpenKey)("HKLM\\SYSTEM")
-  if l_4_2 then
-    local l_4_3 = (sysio.RegEnumKeys)(l_4_2)
-    if l_4_3 then
-      for l_4_7,l_4_8 in pairs(l_4_3) do
-        -- DECOMPILER ERROR at PC73: Unhandled construct in 'MakeBoolean' P3
-
-        if (((((not (string.match)(l_4_8, "ControlSet%d%d%d") or (not Infrastructure_RepairServiceAtPath("wuauserv", l_4_8)) and Infrastructure_RepairServiceAtPath("BITS", l_4_8))) or not Infrastructure_RepairServiceAtPath("WerSvc", l_4_8))) and not l_4_1) or not Infrastructure_RepairServiceAtPath("wscsvc", l_4_8) then
-          local l_4_9 = (sysio.RegOpenSubkey)(l_4_2, l_4_8 .. "\\services\\SharedAccess\\Parameters\\FirewallPolicy\\StandardProfile")
-          if l_4_9 then
-            (sysio.SetRegValueAsDword)(l_4_9, "EnableFirewall", 1)
+  L2_50 = sysio
+  L2_50 = L2_50.RegOpenKey
+  L3_51 = "HKLM\\SYSTEM"
+  L2_50 = L2_50(L3_51)
+  if L2_50 then
+    L3_51 = sysio
+    L3_51 = L3_51.RegEnumKeys
+    L3_51 = L3_51(L4_52)
+    if L3_51 then
+      for L7_55, L8_56 in L4_52(L5_53) do
+        L9_57 = string
+        L9_57 = L9_57.match
+        L9_57 = L9_57(L8_56, "ControlSet%d%d%d")
+        if L9_57 then
+          L9_57 = Infrastructure_RepairServiceAtPath
+          L9_57 = L9_57("wuauserv", L8_56)
+          L0_48 = L9_57 or L0_48
+          L9_57 = Infrastructure_RepairServiceAtPath
+          L9_57 = L9_57("BITS", L8_56)
+          L0_48 = L9_57 or L0_48
+          L9_57 = Infrastructure_RepairServiceAtPath
+          L9_57 = L9_57("WerSvc", L8_56)
+          L0_48 = L9_57 or L0_48
+          if L1_49 then
+            L9_57 = Infrastructure_RepairServiceAtPath
+            L9_57 = L9_57("wscsvc", L8_56)
+            L0_48 = L9_57 or L0_48
+            L9_57 = Infrastructure_RepairServiceAtPath
+            L9_57 = L9_57("WinDefend", L8_56)
+            L0_48 = L9_57 or L0_48
+          end
+          L9_57 = sysio
+          L9_57 = L9_57.RegOpenSubkey
+          L9_57 = L9_57(L2_50, L8_56 .. "\\services\\SharedAccess\\Parameters\\FirewallPolicy\\StandardProfile")
+          if L9_57 then
+            sysio.SetRegValueAsDword(L9_57, "EnableFirewall", 1)
           end
         end
       end
     end
   end
-  do
-    l_4_3 = Remediation
-    l_4_3 = l_4_3.DefaultSpecialRegistry
-    l_4_3("HKLM\\SOFTWARE\\Microsoft\\Security Center")
-    l_4_3 = Infrastructure_EnableUAC
-    l_4_3()
-    l_4_3 = Infrastructure_EnableSystemRestore
-    l_4_3()
-    if l_4_0 then
-      l_4_3 = Remediation
-      l_4_3 = l_4_3.SetRebootRequired
-      l_4_3()
-    end
+  L3_51 = Remediation
+  L3_51 = L3_51.DefaultSpecialRegistry
+  L3_51(L4_52)
+  L3_51 = Infrastructure_EnableUAC
+  L3_51()
+  L3_51 = Infrastructure_EnableSystemRestore
+  L3_51()
+  if L0_48 then
+    L3_51 = Remediation
+    L3_51 = L3_51.SetRebootRequired
+    L3_51()
   end
 end
-
-  RepairServicesAndComponents = l_0_0
-  l_0_0 = Remediation
-  l_0_0 = l_0_0.Threat
-  l_0_0 = l_0_0.Active
-  if not l_0_0 then
-    l_0_0 = string
-    l_0_0 = l_0_0.match
-    l_0_1 = Remediation
-    l_0_1 = l_0_1.Threat
-    l_0_1 = l_0_1.Name
-    l_0_2 = "Ransom:Win32/Crowti"
-    l_0_0 = l_0_0(l_0_1, l_0_2)
-  end
-  if l_0_0 then
-    l_0_0 = RepairServicesAndComponents
-    l_0_0()
-  end
+RepairServicesAndComponents = L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Active
+if not L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.match
+  L1_1 = Remediation
+  L1_1 = L1_1.Threat
+  L1_1 = L1_1.Name
+  L2_2 = "Ransom:Win32/Crowti"
+  L0_0 = L0_0(L1_1, L2_2)
+elseif L0_0 then
+  L0_0 = RepairServicesAndComponents
+  L0_0()
 end
-

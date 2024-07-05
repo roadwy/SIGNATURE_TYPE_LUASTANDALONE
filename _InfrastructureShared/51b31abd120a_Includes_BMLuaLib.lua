@@ -1,60 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51b31abd120a_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_1, l_0_8, l_0_9 = (string.lower)(l_0_0)
-    l_0_8 = string
-    l_0_8 = l_0_8.find
-    l_0_9 = l_0_1
-    l_0_8 = l_0_8(l_0_9, "\\windows\\ccm\\systemtemp\\", 1, true)
-    if l_0_8 then
-      l_0_8 = mp
-      l_0_8 = l_0_8.CLEAN
-      return l_0_8
-    end
-    l_0_8 = mp
-    l_0_8 = l_0_8.GetExecutablesFromCommandLine
-    l_0_9 = l_0_1
-    l_0_8 = l_0_8(l_0_9)
-    local l_0_2 = nil
-    l_0_9 = ipairs
-    l_0_2 = l_0_8
-    l_0_9 = l_0_9(l_0_2)
-    for l_0_6,l_0_7 in l_0_9 do
-      local l_0_6, l_0_7 = nil
-      l_0_6 = sysio
-      l_0_6 = l_0_6.IsFileExists
-      l_0_7 = l_0_5
-      l_0_6 = l_0_6(l_0_7)
-      if l_0_6 then
-        l_0_6 = bm
-        l_0_6 = l_0_6.add_related_file
-        l_0_7 = l_0_5
-        l_0_6(l_0_7)
-      end
-    end
-  end
-  do
-    l_0_8 = mp
-    l_0_8 = l_0_8.TriggerScanResource
-    l_0_8("wmi", "")
-    l_0_8 = reportSessionInformation
-    l_0_8()
-    l_0_8 = mp
-    l_0_8 = l_0_8.INFECTED
-    return l_0_8
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.utf8p2
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+  L1_1 = string
+  L1_1 = L1_1.find
+  L5_5 = true
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    if sysio.IsFileExists(L6_6) then
+      bm.add_related_file(L6_6)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.TriggerScanResource
+L1_1(L2_2, L3_3)
+L1_1 = reportSessionInformation
+L1_1()
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

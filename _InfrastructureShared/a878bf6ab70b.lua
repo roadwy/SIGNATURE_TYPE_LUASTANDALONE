@@ -1,14 +1,6 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a878bf6ab70b 
-
--- params : ...
--- function num : 0
-if peattributes.isvbnative == true and peattributes.isexe == true and (mp.getfilesize)() < 2048000 then
+if peattributes.isvbnative == true and peattributes.isexe == true and mp.getfilesize() < 2048000 then
   return mp.INFECTED
-else
-  if (mp.get_mpattribute)("HSTR:IsVB6") and peattributes.isexe == true and (mp.getfilesize)() < 2048000 then
-    return mp.INFECTED
-  end
+elseif mp.get_mpattribute("HSTR:IsVB6") and peattributes.isexe == true and mp.getfilesize() < 2048000 then
+  return mp.INFECTED
 end
 return mp.CLEAN
-

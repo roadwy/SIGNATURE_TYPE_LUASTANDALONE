@@ -1,12 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/43b34218e4d7_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = "suid_file_taint"
-local l_0_1 = (bm.get_imagepath)()
-if not l_0_1 or not isTainted(l_0_1, l_0_0) then
+local L0_0, L1_1
+L0_0 = "suid_file_taint"
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+if not L1_1 or not isTainted(L1_1, L0_0) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

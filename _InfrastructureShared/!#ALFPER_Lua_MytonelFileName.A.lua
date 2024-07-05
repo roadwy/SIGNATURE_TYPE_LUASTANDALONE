@@ -1,19 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALFPER_Lua_MytonelFileName.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-do
-  if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-    local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-    if l_0_1:match("^pps[-]qq[-]19.exe$") or l_0_1:match("^05a00036.exe$") or l_0_1:match("^ucbrabs.exe$") then
-      if (mp.get_mpattribute)("SIGATTR:VirTool:Win32/LoadLibChg1stLetter") then
-        (mp.set_mpattribute)("Lowfi:Lua:MytonelFilenameAndObfus")
-      end
-      return mp.INFECTED
-    end
+if (mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN or mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE) and (mp.get_contextdata(mp.CONTEXT_DATA_FILENAME):match("^pps[-]qq[-]19.exe$") or mp.get_contextdata(mp.CONTEXT_DATA_FILENAME):match("^05a00036.exe$") or mp.get_contextdata(mp.CONTEXT_DATA_FILENAME):match("^ucbrabs.exe$")) then
+  if mp.get_mpattribute("SIGATTR:VirTool:Win32/LoadLibChg1stLetter") then
+    mp.set_mpattribute("Lowfi:Lua:MytonelFilenameAndObfus")
   end
-  return mp.CLEAN
+  return mp.INFECTED
 end
-
+return mp.CLEAN

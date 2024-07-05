@@ -1,16 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_LowIntegrityCheckInUACPath.B 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetUACMetadata)()
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.lower)((l_0_0.Info).ApplicationName)
-    if (string.find)(l_0_1, "\\appdata\\", 1, true) and ((string.find)(l_0_1, "cache\\low\\", 1, true) or (string.find)(l_0_1, "\\locallow\\", 1, true) or (string.find)(l_0_1, "\\temp\\low\\", 1, true) or (string.find)(l_0_1, "\\privacie\\low\\", 1, true) or (string.find)(l_0_1, "\\inetcookies\\low\\", 1, true) or (string.find)(l_0_1, "\\inetcache\\virtualize\\", 1, true) or (string.find)(l_0_1, "\\microsoft\\playready\\", 1, true) or (string.find)(l_0_1, "\\dntexception\\low\\", 1, true) or (string.find)(l_0_1, "\\history\\low\\", 1, true)) then
-      return mp.SYNCLOWFI
-    end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetUACMetadata
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0.Info.ApplicationName)
+  if string.find(L1_1, "\\appdata\\", 1, true) and (string.find(L1_1, "cache\\low\\", 1, true) or string.find(L1_1, "\\locallow\\", 1, true) or string.find(L1_1, "\\temp\\low\\", 1, true) or string.find(L1_1, "\\privacie\\low\\", 1, true) or string.find(L1_1, "\\inetcookies\\low\\", 1, true) or string.find(L1_1, "\\inetcache\\virtualize\\", 1, true) or string.find(L1_1, "\\microsoft\\playready\\", 1, true) or string.find(L1_1, "\\dntexception\\low\\", 1, true) or string.find(L1_1, "\\history\\low\\", 1, true)) then
+    return mp.SYNCLOWFI
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

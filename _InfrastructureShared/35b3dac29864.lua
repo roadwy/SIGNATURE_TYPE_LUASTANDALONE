@@ -1,26 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3dac29864 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_2 = nil
-    local l_0_3 = {["\\winhlp32.exe"] = true, ["\\werfault.exe"] = true, ["\\imepadsv.exe"] = true, ["\\splwow64.exe"] = true, ["\\sgtool.exe"] = true, ["\\mdm.exe"] = true, ["\\sgpicfacetool.exe"] = true}
-    local l_0_4 = nil
-    if (string.match)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_2)), "(\\[^\\]+)$") ~= nil and l_0_3[(string.match)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_2)), "(\\[^\\]+)$")] == true then
-      return mp.CLEAN
-    end
-  end
-  do
-    return mp.INFECTED
+local L0_0, L1_1, L2_2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.utf8p1
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.utf8p1
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = {}
+  L1_1["\\winhlp32.exe"] = true
+  L1_1["\\werfault.exe"] = true
+  L1_1["\\imepadsv.exe"] = true
+  L1_1["\\splwow64.exe"] = true
+  L1_1["\\sgtool.exe"] = true
+  L1_1["\\mdm.exe"] = true
+  L1_1["\\sgpicfacetool.exe"] = true
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(L0_0))
+  if string.match(L2_2, "(\\[^\\]+)$") ~= nil and L1_1[string.match(L2_2, "(\\[^\\]+)$")] == true then
+    return mp.CLEAN
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

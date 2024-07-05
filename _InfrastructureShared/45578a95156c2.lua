@@ -1,31 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45578a95156c2 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetHSTRCallerId)()
-if mp.HSTR_CALLER_SMS == l_0_0 then
-  local l_0_1 = (mp.GetSMSLevel)()
-  if l_0_1 ~= mp.SMS_SCAN_ONCE_ADV and l_0_1 ~= mp.SMS_SCAN_LOW_ADV and l_0_1 ~= mp.SMS_SCAN_MED_ADV and l_0_1 ~= mp.SMS_SCAN_HIGH_ADV then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetHSTRCallerId
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.HSTR_CALLER_SMS
+if L1_1 == L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.GetSMSLevel
+  L1_1 = L1_1()
+  L2_2 = mp
+  L2_2 = L2_2.SMS_SCAN_ONCE_ADV
+  if L1_1 ~= L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.SMS_SCAN_LOW_ADV
+    if L1_1 ~= L2_2 then
+      L2_2 = mp
+      L2_2 = L2_2.SMS_SCAN_MED_ADV
+      if L1_1 ~= L2_2 then
+        L2_2 = mp
+        L2_2 = L2_2.SMS_SCAN_HIGH_ADV
+        if L1_1 ~= L2_2 then
+          L2_2 = mp
+          L2_2 = L2_2.CLEAN
+          return L2_2
+        end
+      end
+    end
   end
-  local l_0_2 = (mp.hstr_full_log)()
-  for l_0_6,l_0_7 in pairs(l_0_2) do
-    if l_0_7.matched and l_0_7.VA then
-      local l_0_8, l_0_9 = (mp.SMSVirtualQuery)(l_0_7.VA)
-      if l_0_8 ~= true then
+  L2_2 = mp
+  L2_2 = L2_2.hstr_full_log
+  L2_2 = L2_2()
+  for _FORV_6_, _FORV_7_ in pairs(L2_2) do
+    if _FORV_7_.matched and _FORV_7_.VA then
+      if mp.SMSVirtualQuery(_FORV_7_.VA) ~= true then
         return mp.CLEAN
       end
-      if l_0_9.prot ~= 64 or l_0_9.state_type ~= mp.SMS_MBI_PRIVATE then
+      if mp.SMSVirtualQuery(_FORV_7_.VA).prot ~= 64 or mp.SMSVirtualQuery(_FORV_7_.VA).state_type ~= mp.SMS_MBI_PRIVATE then
         return mp.CLEAN
       end
       return mp.INFECTED
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

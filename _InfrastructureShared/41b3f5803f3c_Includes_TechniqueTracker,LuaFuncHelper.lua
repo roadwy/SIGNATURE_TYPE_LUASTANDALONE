@@ -1,49 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3f5803f3c_Includes_TechniqueTracker,LuaFuncHelper 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-  local l_0_0, l_0_2 = nil, nil
-  l_0_2 = (this_sigattrlog[2]).ppid
-  local l_0_1, l_0_4, l_0_5 = nil
+local L0_0, L1_1
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p1 ~= nil then
+  L0_0 = this_sigattrlog[2].utf8p1
+  L1_1 = this_sigattrlog[2].ppid
 end
-do
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC18: Confused about usage of register: R1 in 'UnsetPending'
-
-  if l_0_0 == nil or l_0_2 == nil then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC24: Confused about usage of register: R1 in 'UnsetPending'
-
-  if IsPidExcluded(l_0_2) then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC33: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_3 = (string.lower)(l_0_0)
-  if StringStartsWith(l_0_3, "%") then
-    return mp.CLEAN
-  end
-  local l_0_6 = nil
-  if (MpCommon.QueryPersistContext)(l_0_3, "NewPECreatedNoCert") then
-    (bm.trigger_sig)("ExecNewlyCreatedUnsignedExe", "ExecNewlyCreatedUnsignedExe", l_0_6)
-  end
-  local l_0_7 = nil
-  if (MpCommon.QueryPersistContext)(l_0_3, "SuspExeFileDroppedBySystemProcess") then
-    (bm.trigger_sig)("ExecRemoteDroppedExe", "ExecRemoteDroppedExe", l_0_6)
-    ;
-    (bm.trigger_sig)("T1570", "exec_remotedroppedexe_a", l_0_6)
-    return mp.INFECTED
-  end
-  if IsKeyInRollingQueue("DroppedByPossibleRemotelyCreatedProc", l_0_3) then
-    (bm.trigger_sig)("T1570", "exec_remotedroppedexe_b", l_0_6)
-    return mp.INFECTED
-  end
+if L0_0 == nil or L1_1 == nil then
   return mp.CLEAN
 end
-
+if IsPidExcluded(L1_1) then
+  return mp.CLEAN
+end
+L0_0 = string.lower(L0_0)
+if StringStartsWith(L0_0, "%") then
+  return mp.CLEAN
+end
+if MpCommon.QueryPersistContext(L0_0, "NewPECreatedNoCert") then
+  bm.trigger_sig("ExecNewlyCreatedUnsignedExe", "ExecNewlyCreatedUnsignedExe", L1_1)
+end
+if IsKeyInRollingQueue("SuspExeFileDroppedViaSMB", L0_0, true) then
+  bm.trigger_sig("ExecRemoteDroppedExe", "ExecRemoteDroppedExe", L1_1)
+  bm.trigger_sig("T1570", "exec_remotedroppedexe_a", L1_1)
+  return mp.INFECTED
+end
+if IsKeyInRollingQueue("DroppedByPossibleRemotelyCreatedProc", L0_0, true) then
+  bm.trigger_sig("T1570", "exec_remotedroppedexe_b", L1_1)
+  return mp.INFECTED
+end
+return mp.CLEAN

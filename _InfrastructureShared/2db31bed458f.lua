@@ -1,33 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db31bed458f 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = nil
-  l_0_0 = (this_sigattrlog[1]).utf8p2
-  if l_0_0 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = nil
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
+  if L0_0 == nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if (string.find)(l_0_0, "-k", 1, true) or (string.find)(l_0_0, "UnistackSvcGroup", 1, true) then
-    return mp.CLEAN
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L3_3 = "-k"
+  L4_4 = 1
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L3_3 = "UnistackSvcGroup"
+    L4_4 = 1
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_1 = (bm.get_imagepath)()
-  if l_0_1 ~= nil and (string.lower)((string.sub)(l_0_1, -4)) == ".dll" then
-    return mp.CLEAN
+  L1_1 = bm
+  L1_1 = L1_1.get_imagepath
+  L1_1 = L1_1()
+  if L1_1 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = string
+    L3_3 = L3_3.sub
+    L4_4 = L1_1
+    L4_4 = L3_3(L4_4, L5_5)
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L3_3(L4_4, L5_5))
+    if L2_2 == ".dll" then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
+    end
   end
-  local l_0_2 = (bm.get_current_process_startup_info)()
-  if l_0_2.integrity_level < MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
-    local l_0_3, l_0_4 = (bm.get_process_relationships)()
-    for l_0_8,l_0_9 in ipairs(l_0_3) do
-      if l_0_9.image_path ~= nil and (mp.bitand)(l_0_9.reason_ex, 1) == 1 and (string.find)(l_0_9.image_path, "windows\\system32\\svchost.exe", 1, true) then
+  L2_2 = bm
+  L2_2 = L2_2.get_current_process_startup_info
+  L2_2 = L2_2()
+  L3_3 = L2_2.integrity_level
+  L4_4 = MpCommon
+  L4_4 = L4_4.SECURITY_MANDATORY_SYSTEM_RID
+  if L3_3 < L4_4 then
+    L3_3 = bm
+    L3_3 = L3_3.get_process_relationships
+    L4_4 = L3_3()
+    for _FORV_8_, _FORV_9_ in L5_5(L6_6) do
+      if _FORV_9_.image_path ~= nil and mp.bitand(_FORV_9_.reason_ex, 1) == 1 and string.find(_FORV_9_.image_path, "windows\\system32\\svchost.exe", 1, true) then
         return mp.CLEAN
       end
     end
-    return mp.INFECTED
+    return L5_5
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

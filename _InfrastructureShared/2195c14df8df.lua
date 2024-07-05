@@ -1,15 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2195c14df8df 
-
--- params : ...
--- function num : 0
-local l_0_1 = nil
-local l_0_0 = (pe.get_regval)(pe.REG_ECX) - (4294967295 - (pe.get_regval)(pe.REG_EBX))
-;
-(pe.set_regval)(pe.REG_EAX, 0)
-;
-(pe.set_regval)(pe.REG_EBX, l_0_1)
-;
-(pe.set_regval)(pe.REG_ECX, l_0_0)
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.get_regval
+L1_1 = pe
+L1_1 = L1_1.REG_EBX
+L0_0 = L0_0(L1_1)
+L1_1 = pe
+L1_1 = L1_1.get_regval
+L1_1 = L1_1(pe.REG_ECX)
+L1_1 = L1_1 - (4294967295 - L0_0)
+L0_0 = 4294967295
+pe.set_regval(pe.REG_EAX, 0)
+pe.set_regval(pe.REG_EBX, L0_0)
+pe.set_regval(pe.REG_ECX, L1_1)
 return mp.CLEAN
-

@@ -1,165 +1,342 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LUA_ASR_c1db55ab-c21a-4637-bb3f-a12568109d35_Includes_HipsLuaInfra 
-
--- params : ...
--- function num : 0
-if (mp.IsHipsRuleEnabled)("c1db55ab-c21a-4637-bb3f-a12568109d35") ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.IsHipsRuleEnabled
+L1_1 = "c1db55ab-c21a-4637-bb3f-a12568109d35"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
--- DECOMPILER ERROR at PC27: Unhandled construct in 'MakeBoolean' P1
-
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) ~= true then
-  return mp.CLEAN
-end
--- DECOMPILER ERROR at PC53: Unhandled construct in 'MakeBoolean' P1
-
-if l_0_0 == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) ~= true and (mp.bitand)((mp.get_contextdata)(mp.CONTEXT_DATA_DESIREDACCESS), 32) ~= 32 then
-  return mp.CLEAN
-end
-do return mp.CLEAN end
-if peattributes.isexe ~= true and peattributes.isdll ~= true then
-  return mp.CLEAN
-end
-local l_0_1 = (mp.getfilesize)()
-if l_0_1 < 256 or l_0_1 > 50331648 then
-  return mp.CLEAN
-end
-if not (mp.get_mpattribute)("HSTR:AggressiveRansomScoping") and not (mp.get_mpattribute)("Lua:InitDataToCodeRatio") and not (mp.get_mpattribute)("Lua:RsrcDataToCodeRatio") and not peattributes.dynmem_APIcall == true and not peattributes.dynmem_checks_if_debugged_doc == true and not peattributes.dynmem_checks_if_debugged_undoc == true and not peattributes.dynmem_detects_virtualpc == true and not peattributes.dynmem_detects_vm == true and not peattributes.dynmem_detects_vmware == true and not peattributes.dynmem_kernel_scan == true and not peattributes.dynmem_reads_vdll_code == true and not peattributes.dynmem_self_modifying_code == true and not peattributes.executes_from_dynamic_memory == true then
-  return mp.CLEAN
-end
-local l_0_2 = (string.lower)((MpCommon.PathToWin32Path)((mp.getfilename)(mp.FILEPATH_QUERY_FULL)))
-if (string.find)(l_0_2, ".:\\windows\\installer\\[^\\]+%.tmp$") then
-  return mp.CLEAN
-end
-if (string.find)(l_0_2, ".:\\windows\\assembly\\nativeimages_[^\\]+\\[^\\]+\\[0-9a-f]+\\[^\\]+%.ni%.dll$") then
-  return mp.CLEAN
-end
-if (mp.IsTrustedFile)(false) == true then
-  return mp.CLEAN
-end
-local l_0_3 = false
-while 1 do
-  local l_0_4 = {}
-  l_0_4["RPF:ApiCallsClassifier.Probability"] = true
-  l_0_4["RPF:Gamorthic_Classifier"] = true
-  l_0_4["RPF:MsilRoutineLenClassifier"] = true
-  l_0_4["RPF:PEATTR_SIGATTR:PREDICT:30"] = true
-  l_0_4["RPF:PEATTR_SIGATTR:PREDICT:40"] = true
-  l_0_4["RPF:PEATTR_SIGATTR:PREDICT:50"] = true
-  l_0_4["RPF:PEATTR_SIGATTR:PREDICT:70"] = true
-  l_0_4["RPF:PEATTR_SIGATTR:PREDICT:90"] = true
-  l_0_4["RPF:VBKcrcLenClassifier"] = true
-  for l_0_8,l_0_9 in pairs(l_0_4) do
-    if l_0_9 == true and (mp.get_mpattribute)(l_0_8) == true then
-      l_0_3 = true
-      break
-    end
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_NEWLYCREATEDHINT
+  L1_1 = L1_1(L2_2)
+  if L1_1 ~= true then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  do
-    if l_0_3 then
-      break
-    end
-    local l_0_10 = {}
-    l_0_10["Lua:Context7ZipExtracted.A"] = true
-    l_0_10["Lua:Context7ZipExtracted.B"] = true
-    l_0_10["Lua:ContextCmdAccessTIF.A"] = true
-    l_0_10["Lua:ContextCmdDropTIF.A"] = true
-    l_0_10["Lua:ContextControlAccessTemp.A"] = true
-    l_0_10["Lua:ContextControlAccessTIF.A"] = true
-    l_0_10["Lua:ContextEKAcroRdDrop"] = true
-    l_0_10["Lua:ContextEKAcroRdDropTest"] = true
-    l_0_10["Lua:ContextEKExplorerDrop"] = true
-    l_0_10["Lua:ContextEKExplorerDropTest"] = true
-    l_0_10["Lua:ContextEKFirefoxDrop"] = true
-    l_0_10["Lua:ContextEKFirefoxDropTest"] = true
-    l_0_10["Lua:ContextEKIEDrop"] = true
-    l_0_10["Lua:ContextEKIEDropTest"] = true
-    l_0_10["Lua:ContextEKJavaDrop"] = true
-    l_0_10["Lua:ContextEKJavaDropTest"] = true
-    l_0_10["Lua:ContextEKOperaDrop"] = true
-    l_0_10["Lua:ContextEKOperaDropTest"] = true
-    l_0_10["Lua:ContextEKOtherDrop"] = true
-    l_0_10["Lua:ContextEKOtherDropTest"] = true
-    l_0_10["Lua:ContextExplorerZIPExtracted.A"] = true
-    l_0_10["Lua:ContextFileNameBtvstack.A"] = true
-    l_0_10["Lua:ContextIRSetupExtracted.A"] = true
-    l_0_10["Lua:ContextRegsvr32AccessTemp.A"] = true
-    l_0_10["Lua:ContextRegsvr32AccessTIF.A"] = true
-    l_0_10["Lua:ContextScriptTempDll.A"] = true
-    l_0_10["Lua:ContextScriptTempExe.A"] = true
-    l_0_10["Lua:ContextualDropIELocalLow"] = true
-    l_0_10["Lua:ContextualDropMsiexecKB.A"] = true
-    l_0_10["Lua:ContextualDropOperaTemp"] = true
-    l_0_10["Lua:ContextualDropPlugincontainerTemp"] = true
-    l_0_10["Lua:ContextualDropSvchostTemp"] = true
-    l_0_10["Lua:ContextualDropSvchostTemp.B"] = true
-    l_0_10["Lua:ContextualDropTmpExe.A"] = true
-    l_0_10["Lua:ContextualDropVmhostTemp"] = true
-    l_0_10["Lua:ContextWinRARExtracted.A"] = true
-    l_0_10["Lua:ContextWinZipExtracted.A"] = true
-    for l_0_14,l_0_15 in pairs(l_0_10) do
-      if l_0_15 == true and (mp.get_mpattribute)(l_0_14) == true then
-        l_0_3 = true
-        break
+else
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONOPEN
+  if L0_0 == L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.get_contextdata
+    L2_2 = mp
+    L2_2 = L2_2.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+    L1_1 = L1_1(L2_2)
+    if L1_1 ~= true then
+      L1_1 = mp
+      L1_1 = L1_1.bitand
+      L2_2 = mp
+      L2_2 = L2_2.get_contextdata
+      L3_3 = mp
+      L3_3 = L3_3.CONTEXT_DATA_DESIREDACCESS
+      L2_2 = L2_2(L3_3)
+      L3_3 = 32
+      L1_1 = L1_1(L2_2, L3_3)
+      if L1_1 ~= 32 then
+        L1_1 = mp
+        L1_1 = L1_1.CLEAN
+        return L1_1
       end
     end
-    do
-      if l_0_3 then
-        break
-      end
-      local l_0_16 = {}
-      l_0_16["cmd.exe"] = true
-      l_0_16["cscript.exe"] = true
-      l_0_16["java.exe"] = true
-      l_0_16["javaw.exe"] = true
-      l_0_16["mshta.exe"] = true
-      l_0_16["powershell.exe"] = true
-      l_0_16["rundll32.exe"] = true
-      l_0_16["wscript.exe"] = true
-      do
-        local l_0_17 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-        l_0_17 = (l_0_17 == nil and "" or l_0_17):lower()
-        if l_0_16[l_0_17] == true then
-          l_0_3 = true
-        end
-        do break end
-        -- DECOMPILER ERROR at PC305: LeaveBlock: unexpected jumping out DO_STMT
-
-        -- DECOMPILER ERROR at PC305: LeaveBlock: unexpected jumping out DO_STMT
-
-      end
-    end
-  end
-end
-if l_0_3 == true then
-  l_0_4 = mp
-  l_0_4 = l_0_4.SCANREASON_ONMODIFIEDHANDLECLOSE
-  if l_0_0 == l_0_4 then
-    l_0_4 = mp
-    l_0_4 = l_0_4.set_mpattribute
-    l_0_4("MpDisableCaching")
-    l_0_4 = mp
-    l_0_4 = l_0_4.INFECTED
-    return l_0_4
   else
-    l_0_4 = mp
-    l_0_4 = l_0_4.get_mpattribute
-    l_0_4 = l_0_4("CLOUD:ASRResponderBlockExecution")
-    if l_0_4 then
-      l_0_4 = mp
-      l_0_4 = l_0_4.SetHipsRule
-      l_0_4("c1db55ab-c21a-4637-bb3f-a12568109d35")
-      l_0_4 = mp
-      l_0_4 = l_0_4.BLOCKEXECUTION
-      return l_0_4
-    end
-    l_0_4 = mp
-    l_0_4 = l_0_4.set_mpattribute
-    l_0_4("MpDisableCaching")
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-l_0_4 = mp
-l_0_4 = l_0_4.CLEAN
-return l_0_4
-
+L1_1 = peattributes
+L1_1 = L1_1.isexe
+if L1_1 ~= true then
+  L1_1 = peattributes
+  L1_1 = L1_1.isdll
+  if L1_1 ~= true then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+if L1_1 < 256 or L1_1 > 50331648 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.get_mpattribute
+L3_3 = "HSTR:AggressiveRansomScoping"
+L2_2 = L2_2(L3_3)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.get_mpattribute
+  L3_3 = "Lua:InitDataToCodeRatio"
+  L2_2 = L2_2(L3_3)
+  if not L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.get_mpattribute
+    L3_3 = "Lua:RsrcDataToCodeRatio"
+    L2_2 = L2_2(L3_3)
+    if not L2_2 then
+      L2_2 = peattributes
+      L2_2 = L2_2.dynmem_APIcall
+      L2_2 = not L2_2
+      if L2_2 == true then
+        L2_2 = peattributes
+        L2_2 = L2_2.dynmem_checks_if_debugged_doc
+        L2_2 = not L2_2
+        if L2_2 == true then
+          L2_2 = peattributes
+          L2_2 = L2_2.dynmem_checks_if_debugged_undoc
+          L2_2 = not L2_2
+          if L2_2 == true then
+            L2_2 = peattributes
+            L2_2 = L2_2.dynmem_detects_virtualpc
+            L2_2 = not L2_2
+            if L2_2 == true then
+              L2_2 = peattributes
+              L2_2 = L2_2.dynmem_detects_vm
+              L2_2 = not L2_2
+              if L2_2 == true then
+                L2_2 = peattributes
+                L2_2 = L2_2.dynmem_detects_vmware
+                L2_2 = not L2_2
+                if L2_2 == true then
+                  L2_2 = peattributes
+                  L2_2 = L2_2.dynmem_kernel_scan
+                  L2_2 = not L2_2
+                  if L2_2 == true then
+                    L2_2 = peattributes
+                    L2_2 = L2_2.dynmem_reads_vdll_code
+                    L2_2 = not L2_2
+                    if L2_2 == true then
+                      L2_2 = peattributes
+                      L2_2 = L2_2.dynmem_self_modifying_code
+                      L2_2 = not L2_2
+                      if L2_2 == true then
+                        L2_2 = peattributes
+                        L2_2 = L2_2.executes_from_dynamic_memory
+                        L2_2 = not L2_2
+                        if L2_2 == true then
+                          L2_2 = mp
+                          L2_2 = L2_2.CLEAN
+                          return L2_2
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.getfilename
+L3_3 = mp
+L3_3 = L3_3.bitor
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_FULL
+L5_5 = mp
+L5_5 = L5_5.FILEPATH_QUERY_LOWERCASE
+L11_11 = L3_3(L4_4, L5_5)
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L3_3(L4_4, L5_5))
+if L2_2 ~= nil and L2_2 ~= "" then
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L4_4 = MpCommon
+  L4_4 = L4_4.PathToWin32Path
+  L5_5 = L2_2
+  L11_11 = L4_4(L5_5)
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L4_4(L5_5))
+  L2_2 = L3_3
+  L3_3 = mp
+  L3_3 = L3_3.IsPathExcludedForHipsRule
+  L4_4 = L2_2
+  L5_5 = "c1db55ab-c21a-4637-bb3f-a12568109d35"
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L2_2
+  L5_5 = ".:\\windows\\installer\\[^\\]+%.tmp$"
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L2_2
+  L5_5 = ".:\\windows\\assembly\\nativeimages_[^\\]+\\[^\\]+\\[0-9a-f]+\\[^\\]+%.ni%.dll$"
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L2_2
+  L5_5 = ".:\\program files[^\\]*\\notepad%+%+\\"
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L2_2
+  L5_5 = ".:\\program files[^\\]*\\eporezna\\eporeznachromesupportfiles\\"
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+end
+L3_3 = mp
+L3_3 = L3_3.IsTrustedFile
+L4_4 = false
+L4_4 = L3_3(L4_4)
+if L3_3 == true then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = false
+while true do
+  L6_6 = {}
+  L6_6["RPF:ApiCallsClassifier.Probability"] = true
+  L6_6["RPF:Gamorthic_Classifier"] = true
+  L6_6["RPF:MsilRoutineLenClassifier"] = true
+  L6_6["RPF:PEATTR_SIGATTR:PREDICT:30"] = true
+  L6_6["RPF:PEATTR_SIGATTR:PREDICT:40"] = true
+  L6_6["RPF:PEATTR_SIGATTR:PREDICT:50"] = true
+  L6_6["RPF:PEATTR_SIGATTR:PREDICT:70"] = true
+  L6_6["RPF:PEATTR_SIGATTR:PREDICT:90"] = true
+  L6_6["RPF:VBKcrcLenClassifier"] = true
+  for L10_10, L11_11 in L7_7(L8_8) do
+    if L11_11 == true and mp.get_mpattribute(L10_10) == true then
+      L5_5 = true
+      break
+    end
+  end
+  if L5_5 then
+    break
+  end
+  L7_7["Lua:Context7ZipExtracted.A"] = true
+  L7_7["Lua:Context7ZipExtracted.B"] = true
+  L7_7["Lua:ContextCmdAccessTIF.A"] = true
+  L7_7["Lua:ContextCmdDropTIF.A"] = true
+  L7_7["Lua:ContextControlAccessTemp.A"] = true
+  L7_7["Lua:ContextControlAccessTIF.A"] = true
+  L7_7["Lua:ContextEKAcroRdDrop"] = true
+  L7_7["Lua:ContextEKAcroRdDropTest"] = true
+  L7_7["Lua:ContextEKExplorerDrop"] = true
+  L7_7["Lua:ContextEKExplorerDropTest"] = true
+  L7_7["Lua:ContextEKFirefoxDrop"] = true
+  L7_7["Lua:ContextEKFirefoxDropTest"] = true
+  L7_7["Lua:ContextEKIEDrop"] = true
+  L7_7["Lua:ContextEKIEDropTest"] = true
+  L7_7["Lua:ContextEKJavaDrop"] = true
+  L7_7["Lua:ContextEKJavaDropTest"] = true
+  L7_7["Lua:ContextEKOperaDrop"] = true
+  L7_7["Lua:ContextEKOperaDropTest"] = true
+  L7_7["Lua:ContextEKOtherDrop"] = true
+  L7_7["Lua:ContextEKOtherDropTest"] = true
+  L7_7["Lua:ContextExplorerZIPExtracted.A"] = true
+  L7_7["Lua:ContextFileNameBtvstack.A"] = true
+  L7_7["Lua:ContextIRSetupExtracted.A"] = true
+  L7_7["Lua:ContextRegsvr32AccessTemp.A"] = true
+  L7_7["Lua:ContextRegsvr32AccessTIF.A"] = true
+  L7_7["Lua:ContextScriptTempDll.A"] = true
+  L7_7["Lua:ContextScriptTempExe.A"] = true
+  L7_7["Lua:ContextualDropIELocalLow"] = true
+  L7_7["Lua:ContextualDropMsiexecKB.A"] = true
+  L7_7["Lua:ContextualDropOperaTemp"] = true
+  L7_7["Lua:ContextualDropPlugincontainerTemp"] = true
+  L7_7["Lua:ContextualDropSvchostTemp"] = true
+  L7_7["Lua:ContextualDropSvchostTemp.B"] = true
+  L7_7["Lua:ContextualDropTmpExe.A"] = true
+  L7_7["Lua:ContextualDropVmhostTemp"] = true
+  L7_7["Lua:ContextWinRARExtracted.A"] = true
+  L7_7["Lua:ContextWinZipExtracted.A"] = true
+  for L11_11, _FORV_12_ in L8_8(L9_9) do
+    if _FORV_12_ == true and mp.get_mpattribute(L11_11) == true then
+      L5_5 = true
+      break
+    end
+  end
+  if L5_5 then
+    break
+  end
+  L8_8["cmd.exe"] = true
+  L8_8["cscript.exe"] = true
+  L8_8["java.exe"] = true
+  L8_8["javaw.exe"] = true
+  L8_8["mshta.exe"] = true
+  L8_8["powershell.exe"] = true
+  L8_8["rundll32.exe"] = true
+  L8_8["wscript.exe"] = true
+  if L9_9 == nil then
+  else
+  end
+  L11_11 = L10_10
+  if L10_10 == true then
+    L5_5 = true
+  end
+  break
+end
+if L5_5 == true then
+  L6_6 = mp
+  L6_6 = L6_6.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L0_0 == L6_6 then
+    L6_6 = mp
+    L6_6 = L6_6.set_mpattribute
+    L6_6(L7_7)
+    L6_6 = mp
+    L6_6 = L6_6.INFECTED
+    return L6_6
+  else
+    L6_6 = mp
+    L6_6 = L6_6.get_mpattribute
+    L6_6 = L6_6(L7_7)
+    if L6_6 then
+      L6_6 = mp
+      L6_6 = L6_6.SetHipsRule
+      L6_6(L7_7)
+      L6_6 = mp
+      L6_6 = L6_6.BLOCKEXECUTION
+      return L6_6
+    end
+    L6_6 = mp
+    L6_6 = L6_6.set_mpattribute
+    L6_6(L7_7)
+  end
+end
+L6_6 = mp
+L6_6 = L6_6.CLEAN
+return L6_6

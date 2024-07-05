@@ -1,10 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1540e455d110 
-
--- params : ...
--- function num : 0
-if (pesecs[1]).Name == "UPX0" and (pesecs[1]).SizeOfRawData == 0 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.Name
+if L0_0 == "UPX0" then
+  L0_0 = pesecs
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.SizeOfRawData
+  if L0_0 == 0 then
+    L0_0 = mp
+    L0_0 = L0_0.INFECTED
+    return L0_0
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

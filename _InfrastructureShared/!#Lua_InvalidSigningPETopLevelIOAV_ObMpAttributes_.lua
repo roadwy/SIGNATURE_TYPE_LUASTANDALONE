@@ -1,28 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_InvalidSigningPETopLevelIOAV_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-do
-  if (mp.GetCertificateInfo)(false) ~= nil and not (mp.IsTrustedFile)(false) then
-    local l_0_0 = (mp.IOAVGetDownloadBrowser)()
-    if l_0_0 ~= nil then
-      l_0_0 = (string.lower)(l_0_0)
-      if l_0_0 == "utorrent.exe" or l_0_0 == "bittorrent.exe" then
-        (mp.set_mpattribute)("Lua:InvalidSigningPETopLevelIOAVuTorrent")
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0(false)
+if L0_0 ~= nil then
+  L0_0 = mp
+  L0_0 = L0_0.IsTrustedFile
+  L0_0 = L0_0(false)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.IOAVGetDownloadBrowser
+    L0_0 = L0_0()
+    if L0_0 ~= nil then
+      L0_0 = string.lower(L0_0)
+      if L0_0 == "utorrent.exe" or L0_0 == "bittorrent.exe" then
+        mp.set_mpattribute("Lua:InvalidSigningPETopLevelIOAVuTorrent")
       else
-        ;
-        (mp.set_mpattribute)("Lua:InvalidSigningPETopLevelIOAV")
-        ;
-        (mp.set_mpattribute)("MpNonCachedLowfi")
+        mp.set_mpattribute("Lua:InvalidSigningPETopLevelIOAV")
+        mp.set_mpattribute("MpNonCachedLowfi")
       end
     else
-      ;
-      (mp.set_mpattribute)("Lua:InvalidSigningPETopLevelIOAV")
-      ;
-      (mp.set_mpattribute)("MpNonCachedLowfi")
+      mp.set_mpattribute("Lua:InvalidSigningPETopLevelIOAV")
+      mp.set_mpattribute("MpNonCachedLowfi")
     end
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

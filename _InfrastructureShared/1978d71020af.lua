@@ -1,10 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1978d71020af 
-
--- params : ...
--- function num : 0
-if pehdr.ImageBase + pehdr.SizeOfHeaders < (hstrlog[1]).VA then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.VA
+L1_1 = pehdr
+L1_1 = L1_1.ImageBase
+L2_2 = pehdr
+L2_2 = L2_2.SizeOfHeaders
+L1_1 = L1_1 + L2_2
+if L0_0 > L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

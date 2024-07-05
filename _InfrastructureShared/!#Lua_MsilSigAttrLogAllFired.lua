@@ -1,23 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MsilSigAttrLogAllFired 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR]).RVA
-local l_0_1 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR]).Size
-if l_0_0 == 0 or l_0_1 == 0 then
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L1_1 = pe
+L1_1 = L1_1.IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.RVA
+L1_1 = pehdr
+L1_1 = L1_1.DataDirectory
+L1_1 = L1_1[pe.IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR]
+L1_1 = L1_1.Size
+if L0_0 == 0 or L1_1 == 0 then
   return mp.CLEAN
 end
 if pehdr.Machine ~= 332 and pehdr.Machine ~= 34404 then
   return mp.CLEAN
 end
-local l_0_2 = (mp.getfilesize)()
-if l_0_2 < 3072 or l_0_2 >= 5242880 then
+if mp.getfilesize() < 3072 or mp.getfilesize() >= 5242880 then
   return mp.CLEAN
 end
-;
-(mp.set_mpattribute)("SIGATTR:SIGATTR_LOG_ALL_FIRED")
-;
-(mp.set_mpattribute)("SIGATTR:SIGATTR_EXTENDED_LOG")
+mp.set_mpattribute("SIGATTR:SIGATTR_LOG_ALL_FIRED")
+mp.set_mpattribute("SIGATTR:SIGATTR_EXTENDED_LOG")
 return mp.CLEAN
-

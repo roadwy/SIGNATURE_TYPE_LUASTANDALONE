@@ -1,12 +1,271 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/547784783d2c9_Flags_1 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC272: Unhandled construct in 'MakeBoolean' P3
-
-if (((((((((((((((((((((((((((((((((((((((((((((hstrlog[1]).matched and not (hstrlog[2]).matched) or (hstrlog[3]).matched) and not (hstrlog[4]).matched) or (hstrlog[5]).matched) and not (hstrlog[6]).matched) or (hstrlog[7]).matched) and not (hstrlog[8]).matched) or (hstrlog[9]).matched) and not (hstrlog[10]).matched) or (hstrlog[11]).matched) and not (hstrlog[12]).matched) or (hstrlog[13]).matched) and not (hstrlog[14]).matched) or (hstrlog[15]).matched) and not (hstrlog[16]).matched) or (hstrlog[17]).matched) and not (hstrlog[18]).matched) or (hstrlog[19]).matched) and not (hstrlog[20]).matched) or (hstrlog[21]).matched) and not (hstrlog[22]).matched) or (hstrlog[23]).matched) and not (hstrlog[24]).matched) or (hstrlog[25]).matched) and not (hstrlog[42]).matched) or (hstrlog[43]).matched) and not (hstrlog[26]).matched) or (hstrlog[27]).matched) and not (hstrlog[28]).matched) or (hstrlog[29]).matched) and not (hstrlog[30]).matched) or (hstrlog[31]).matched) and not (hstrlog[32]).matched) or (hstrlog[33]).matched) and not (hstrlog[34]).matched) or (hstrlog[35]).matched) and not (hstrlog[36]).matched) or (hstrlog[37]).matched) and not (hstrlog[38]).matched) or (hstrlog[39]).matched) and not (hstrlog[40]).matched) or (hstrlog[41]).matched) and 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 5) or 0 + 1 + 1 >= 1) and 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 3 then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-return mp.CLEAN
-
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[10]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[11]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[12]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[13]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[14]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[15]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[16]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[17]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[18]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[19]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[20]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+L2_2 = hstrlog
+L2_2 = L2_2[21]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[22]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[23]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[24]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[25]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = 0
+L3_3 = hstrlog
+L3_3 = L3_3[42]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[43]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = 0
+L4_4 = hstrlog
+L4_4 = L4_4[26]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[27]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[28]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[29]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[30]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[31]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[32]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[33]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[34]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[35]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[36]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[37]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[38]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[39]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[40]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[41]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+if (L0_0 >= 5 or L1_1 >= 2 or L2_2 >= 1) and L3_3 >= 3 then
+  L4_4 = mp
+  L4_4 = L4_4.INFECTED
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

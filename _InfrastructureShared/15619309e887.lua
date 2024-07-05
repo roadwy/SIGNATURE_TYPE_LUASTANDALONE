@@ -1,10 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15619309e887 
-
--- params : ...
--- function num : 0
-if pehdr.AddressOfEntryPoint == 34224 and pehdr.Magic == 523 and pehdr.SizeOfImage == 1249280 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.AddressOfEntryPoint
+if L0_0 == 34224 then
+  L0_0 = pehdr
+  L0_0 = L0_0.Magic
+  if L0_0 == 523 then
+    L0_0 = pehdr
+    L0_0 = L0_0.SizeOfImage
+    if L0_0 == 1249280 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

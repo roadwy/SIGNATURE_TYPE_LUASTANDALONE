@@ -1,30 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Win32_ShellCode.BM_Includes_ConversionToB 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 102400 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 102400 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = nil
-if l_0_0 <= mp.HEADERPAGE_SZ then
-  l_0_1 = tostring(headerpage)
+L1_1 = nil
+L2_2 = mp
+L2_2 = L2_2.HEADERPAGE_SZ
+if L0_0 <= L2_2 then
+  L2_2 = tostring
+  L3_3 = headerpage
+  L2_2 = L2_2(L3_3)
+  L1_1 = L2_2
 else
-  ;
-  (mp.readprotection)(false)
-  l_0_1 = tostring((mp.readfile)(0, l_0_0))
+  L2_2 = mp
+  L2_2 = L2_2.readprotection
+  L3_3 = false
+  L2_2(L3_3)
+  L2_2 = tostring
+  L3_3 = mp
+  L3_3 = L3_3.readfile
+  L7_7 = L3_3(L4_4, L5_5)
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L3_3(L4_4, L5_5))
+  L1_1 = L2_2
 end
-local l_0_2 = (string.gmatch)(l_0_1, "var_shellcode%s*=%s*\"(4d5a%x+)\"")
-local l_0_3 = 0
-for l_0_7 in l_0_2 do
-  if l_0_7 ~= nil and l_0_7 ~= "" then
-    (mp.vfo_add_buffer)(fastHex2Bin(l_0_7, "[0-9A-Fa-f][0-9A-Fa-f]"), (string.format)("[Hexify][%02X]", l_0_3), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-    l_0_3 = l_0_3 + 1
+L2_2 = string
+L2_2 = L2_2.gmatch
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = 0
+for L7_7 in L2_2, nil, nil do
+  if L7_7 ~= nil and L7_7 ~= "" then
+    mp.vfo_add_buffer(fastHex2Bin(L7_7, "[0-9A-Fa-f][0-9A-Fa-f]"), string.format("[Hexify][%02X]", L3_3), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+    L3_3 = L3_3 + 1
   end
 end
-if l_0_3 > 0 then
-  return mp.INFECTED
+if L3_3 > 0 then
+  return L4_4
 end
-return mp.CLEAN
-
+return L4_4

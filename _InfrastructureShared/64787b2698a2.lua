@@ -1,25 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/64787b2698a2 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_SECURITY]).RVA
-if l_0_0 == 0 then
-  return mp.LOWFI
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L1_1 = pe
+L1_1 = L1_1.IMAGE_DIRECTORY_ENTRY_SECURITY
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.RVA
+if L0_0 == 0 then
+  L1_1 = mp
+  L1_1 = L1_1.LOWFI
+  return L1_1
 end
-if (mp.getfilesize)() < l_0_0 + 4096 then
-  return mp.LOWFI
+L1_1 = L0_0 + 4096
+if L1_1 > mp.getfilesize() then
+  L1_1 = mp
+  L1_1 = L1_1.LOWFI
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-if (mp.readfile)(l_0_0 + 3904, 27) == "\004\b\019\002OR1\0180\016\006\003U\004\a\019\tBeaverton1" then
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L1_1(false)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L1_1 = L1_1(L0_0 + 3904, 27)
+if L1_1 == "\004\b\019\002OR1\0180\016\006\003U\004\a\019\tBeaverton1" then
   return mp.INFECTED
 end
-if (mp.readfile)(l_0_0 + 3876, 27) == "\004\b\019\002OR1\0180\016\006\003U\004\a\019\tBeaverton1" then
+L1_1 = mp.readfile(L0_0 + 3876, 27)
+if L1_1 == "\004\b\019\002OR1\0180\016\006\003U\004\a\019\tBeaverton1" then
   return mp.INFECTED
 end
-if (mp.readfile)(l_0_0 + 3602, 27) == "\004\b\019\002OR1\0180\016\006\003U\004\a\019\tBeaverton1" then
+L1_1 = mp.readfile(L0_0 + 3602, 27)
+if L1_1 == "\004\b\019\002OR1\0180\016\006\003U\004\a\019\tBeaverton1" then
   return mp.INFECTED
 end
 return mp.LOWFI
-

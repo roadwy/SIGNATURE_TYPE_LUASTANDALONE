@@ -1,16 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2eb3c3aee392 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  if (string.lower)((string.sub)(l_0_0, -14)) == "\\gvfs\\gvfs.exe" then
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(string.sub(L0_0, -14))
+  if L1_1 == "\\gvfs\\gvfs.exe" then
     return mp.CLEAN
   end
-  if (string.lower)((string.sub)(l_0_0, -36)) == "\\urbrowser\\application\\urbrowser.exe" then
+  L1_1 = string.lower(string.sub(L0_0, -36))
+  if L1_1 == "\\urbrowser\\application\\urbrowser.exe" then
     return mp.CLEAN
   end
 end
-return mp.INFECTED
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

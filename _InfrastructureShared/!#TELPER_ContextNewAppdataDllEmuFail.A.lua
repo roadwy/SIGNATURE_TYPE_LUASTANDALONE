@@ -1,57 +1,112 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TELPER_ContextNewAppdataDllEmuFail.A 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if not (L0_0 < 4096) then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+elseif L0_0 > 1048576 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.executble_image
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.x86_image
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0._32bitmachine
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.packed
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.packersigmatched
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.dirty_wx_branch
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.no_security
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.no_decription
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.dt_error_heur_exit_criteria
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.getfilename())
+if mp.IsKnownFriendlyFile(L0_0, true, false) == true then
   return mp.CLEAN
 end
-if (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) ~= true then
+if L0_0:match("(.+\\)([^\\]+)$") == nil or L0_0:match("(.+\\)([^\\]+)$") == nil then
   return mp.CLEAN
 end
-if (mp.getfilesize)() < 4096 or (mp.getfilesize)() > 1048576 then
-  return mp.CLEAN
-end
-if not peattributes.isdll then
-  return mp.CLEAN
-end
-if not peattributes.executble_image then
-  return mp.CLEAN
-end
-if not peattributes.x86_image then
-  return mp.CLEAN
-end
-if not peattributes._32bitmachine then
-  return mp.CLEAN
-end
-if peattributes.packed then
-  return mp.CLEAN
-end
-if peattributes.packersigmatched then
-  return mp.CLEAN
-end
-if peattributes.dirty_wx_branch then
-  return mp.CLEAN
-end
-if not peattributes.no_security then
-  return mp.CLEAN
-end
-if not peattributes.no_decription then
-  return mp.CLEAN
-end
-if not peattributes.dt_error_heur_exit_criteria then
-  return mp.CLEAN
-end
-local l_0_0 = (string.lower)((mp.getfilename)())
-if (mp.IsKnownFriendlyFile)(l_0_0, true, false) == true then
-  return mp.CLEAN
-end
-local l_0_1, l_0_2 = l_0_0:match("(.+\\)([^\\]+)$")
-if l_0_2 == nil or l_0_1 == nil then
-  return mp.CLEAN
-end
-if (l_0_1:find("\\roaming\\$") or l_0_1:find("\\low\\$") or l_0_1:find("\\ns%w+.tmp\\$")) and l_0_2:find(".dll$") then
+if (L0_0:match("(.+\\)([^\\]+)$"):find("\\roaming\\$") or L0_0:match("(.+\\)([^\\]+)$"):find("\\low\\$") or L0_0:match("(.+\\)([^\\]+)$"):find("\\ns%w+.tmp\\$")) and L0_0:match("(.+\\)([^\\]+)$"):find(".dll$") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

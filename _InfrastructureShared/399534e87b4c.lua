@@ -1,57 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/399534e87b4c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr + 10, 96)
-local l_0_1 = 1
-while 1 do
-  while 1 do
-    while 1 do
-      if l_0_1 < #l_0_0 then
-        local l_0_3 = 1
-        if (string.byte)(l_0_0, l_0_1) == 254 then
-          if (string.byte)(l_0_0, l_0_1 + 1) ~= 192 then
-            return mp.CLEAN
-          end
-          l_0_1 = l_0_1 + 2
-          l_0_3 = l_0_3 + 1
-          do
-            local l_0_2 = nil
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_STMT
-
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 10
+L2_2 = 96
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = 1
+L2_2 = 1
+while true do
+  L3_3 = #L0_0
+  if L1_1 < L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.byte
+    L4_4 = L0_0
+    L5_5 = L1_1
+    L3_3 = L3_3(L4_4, L5_5)
+    if L3_3 == 254 then
+      L4_4 = string
+      L4_4 = L4_4.byte
+      L5_5 = L0_0
+      L4_4 = L4_4(L5_5, L1_1 + 1)
+      if L4_4 ~= 192 then
+        L4_4 = mp
+        L4_4 = L4_4.CLEAN
+        return L4_4
+      end
+      L1_1 = L1_1 + 2
+      L2_2 = L2_2 + 1
+    elseif L3_3 == 60 then
+      L4_4 = string
+      L4_4 = L4_4.byte
+      L5_5 = L0_0
+      L4_4 = L4_4(L5_5, L1_1 + 1)
+      L5_5 = L2_2 + 111
+      if L4_4 ~= L5_5 then
+        L5_5 = L2_2 + 118
+        if L4_4 ~= L5_5 then
+          L5_5 = mp
+          L5_5 = L5_5.CLEAN
+          return L5_5
         end
       end
-    end
-    -- DECOMPILER ERROR at PC32: Confused about usage of register: R3 in 'UnsetPending'
-
-    if l_0_2 == 60 then
-      local l_0_4 = nil
-      if (string.byte)(l_0_0, l_0_1 + 1) ~= l_0_3 + 111 and (string.byte)(l_0_0, l_0_1 + 1) ~= l_0_3 + 118 then
-        return mp.CLEAN
-      end
-      do
-        local l_0_5 = nil
-        ;
-        (pe.mmap_patch_va)(pevars.sigaddr + (l_0_1) + 11, "\235")
-        do return mp.INFECTED end
-        -- DECOMPILER ERROR at PC60: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC60: LeaveBlock: unexpected jumping out IF_STMT
-
-      end
+      L5_5 = "\235"
+      pe.mmap_patch_va(pevars.sigaddr + L1_1 + 11, L5_5)
+      return mp.INFECTED
+    else
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
     end
   end
-  return mp.CLEAN
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

@@ -1,40 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_KilimFilenames 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = {}
-  l_0_1["arsiv.exe"] = true
-  l_0_1["chromenet.exe"] = true
-  l_0_1["chromium.exe"] = true
-  l_0_1["app.exe"] = true
-  l_0_1["winsnrnr.exe"] = true
-  l_0_1["denemeisim.exe"] = true
-  local l_0_2 = {}
-  l_0_2["asdfghjklmn.exe"] = true
-  l_0_2["dwmvs.exe"] = true
-  l_0_2["tplmk.exe"] = true
-  l_0_2["goup.exe"] = true
-  l_0_2["per.zip"] = true
-  l_0_2["nod32.exe"] = true
-  l_0_2["google.exe"] = true
-  local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  local l_0_4 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  -- DECOMPILER ERROR at PC63: Unhandled construct in 'MakeBoolean' P1
-
-  if l_0_1[l_0_4] and ((string.sub)(l_0_3, -16) == "\\appdata\\roaming" or (string.sub)(l_0_3, -17) == "\\application data") then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = {}
+  L1_1["arsiv.exe"] = true
+  L1_1["chromenet.exe"] = true
+  L1_1["chromium.exe"] = true
+  L1_1["app.exe"] = true
+  L1_1["winsnrnr.exe"] = true
+  L1_1["denemeisim.exe"] = true
+  L2_2 = {}
+  L2_2["asdfghjklmn.exe"] = true
+  L2_2["dwmvs.exe"] = true
+  L2_2["tplmk.exe"] = true
+  L2_2["goup.exe"] = true
+  L2_2["per.zip"] = true
+  L2_2["nod32.exe"] = true
+  L2_2["google.exe"] = true
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+  if L1_1[string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME))] then
+    if string.sub(L3_3, -16) == "\\appdata\\roaming" or string.sub(L3_3, -17) == "\\application data" then
+      return mp.INFECTED
+    end
+  elseif L2_2[string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME))] and L3_3 == "c:\\windows" then
     return mp.INFECTED
   end
-  if l_0_2[l_0_4] and l_0_3 == "c:\\windows" then
-    return mp.INFECTED
-  end
-  if l_0_3 == "c:" and (l_0_4 == "debgr.txt" or l_0_4 == "chrome1.exe") then
+  if L3_3 == "c:" and (string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) == "debgr.txt" or string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) == "chrome1.exe") then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,22 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/209b3af57166b_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = 0
-local l_0_1 = (bm.get_current_process_startup_info)()
-local l_0_2 = (mp.GetParentProcInfo)(l_0_1.ppid)
-if l_0_2 ~= nil then
-  if IsTacticObservedForPid(l_0_2.ppid, "CredentialAccess") or IsTacticObservedForPid(l_0_2.ppid, "Collection") or IsTacticObservedForPid(l_0_2.ppid, "Execution") or IsTacticObservedForPid(l_0_2.ppid, "Impact") or IsTacticObservedForPid(l_0_2.ppid, "Ingress") then
-    TrackPidAndTechniqueBM(l_0_2.ppid, "T1018", "Discovery_FileAndDirectoryDiscovery")
-    TrackPidAndTechniqueBM(l_0_2.ppid, "T1560", "Collection")
+local L0_0
+L0_0 = 0
+if mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid) ~= nil then
+  if IsTacticObservedForPid(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "CredentialAccess") or IsTacticObservedForPid(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "Collection") or IsTacticObservedForPid(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "Execution") or IsTacticObservedForPid(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "Impact") or IsTacticObservedForPid(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "Ingress") then
+    TrackPidAndTechniqueBM(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "T1018", "Discovery_FileAndDirectoryDiscovery")
+    TrackPidAndTechniqueBM(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "T1560", "Collection")
     addRelatedProcess()
     return mp.INFECTED
   else
-    l_0_0 = GetTechniquesCountForPid(l_0_2.ppid)
-    if l_0_0 > 2 then
-      TrackPidAndTechniqueBM(l_0_2.ppid, "T1018", "Discovery_FileAndDirectoryDiscovery")
-      TrackPidAndTechniqueBM(l_0_2.ppid, "T1560", "Collection")
+    L0_0 = GetTechniquesCountForPid(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid)
+    if L0_0 > 2 then
+      TrackPidAndTechniqueBM(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "T1018", "Discovery_FileAndDirectoryDiscovery")
+      TrackPidAndTechniqueBM(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).ppid, "T1560", "Collection")
       addRelatedProcess()
       reportRelatedBmHits()
       return mp.INFECTED
@@ -24,4 +18,3 @@ if l_0_2 ~= nil then
   end
 end
 return mp.CLEAN
-

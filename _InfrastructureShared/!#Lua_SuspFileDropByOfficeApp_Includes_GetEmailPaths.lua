@@ -1,81 +1,109 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspFileDropByOfficeApp_Includes_GetEmailPaths 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONOPEN and l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L0_0 ~= L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSNAME
+L1_1 = L1_1(L2_2)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = "winword.exe|excel.exe|powerpnt.exe|outlook.exe|commsapps.exe|lync.exe|teams.exe|"
-if l_0_2:find(l_0_1) or isOutlookProcess(l_0_1) then
-  local l_0_3, l_0_4 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  local l_0_5 = l_0_4:sub(-3)
-  local l_0_6 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-  local l_0_7 = false
-  ;
-  (mp.set_mpattribute)("Lua:OfficeApp!" .. l_0_1)
-  ;
-  (mp.set_mpattribute)("Lua:OfficeAppDropped!" .. l_0_4)
-  ;
-  (mp.set_mpattribute)("Lua:OfficeAppDroppedExt!" .. l_0_5)
-  if l_0_6 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-    if (mp.get_mpattribute)("BM_ScriptFile") then
-      (mp.set_mpattribute)("BM_ScriptFileDropByOffcApp")
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = "winword.exe|excel.exe|powerpnt.exe|outlook.exe|commsapps.exe|lync.exe|teams.exe|"
+L4_4 = L2_2
+L3_3 = L2_2.find
+L5_5 = L1_1
+L3_3 = L3_3(L4_4, L5_5)
+if not L3_3 then
+  L3_3 = isOutlookProcess
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4)
+elseif L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.getfilename
+  L4_4 = mp
+  L4_4 = L4_4.bitor
+  L5_5 = mp
+  L5_5 = L5_5.bitor
+  L5_5 = L5_5(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH)
+  L5_5 = L4_4(L5_5, mp.FILEPATH_QUERY_LOWERCASE)
+  L4_4 = L3_3(L4_4, L5_5, L4_4(L5_5, mp.FILEPATH_QUERY_LOWERCASE))
+  L5_5 = L4_4.sub
+  L5_5 = L5_5(L4_4, -3)
+  mp.set_mpattribute("Lua:OfficeApp!" .. L1_1)
+  mp.set_mpattribute("Lua:OfficeAppDropped!" .. L4_4)
+  mp.set_mpattribute("Lua:OfficeAppDroppedExt!" .. L5_5)
+  if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and mp.get_contextdata(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
+    if mp.get_mpattribute("BM_ScriptFile") then
+      mp.set_mpattribute("BM_ScriptFileDropByOffcApp")
     end
-    if (mp.get_mpattribute)("BM_MZ_FILE") then
-      if l_0_3:find("appdata\\local\\assembly", 1, true) or l_0_3:find("\\local\\box\\", 1, true) then
-        (mp.set_mpattribute)("Lua:OfficeAddinAssemblyExclPath")
-        l_0_7 = true
+    if mp.get_mpattribute("BM_MZ_FILE") then
+      if L3_3:find("appdata\\local\\assembly", 1, true) or L3_3:find("\\local\\box\\", 1, true) then
+        mp.set_mpattribute("Lua:OfficeAddinAssemblyExclPath")
       else
-        ;
-        (mp.set_mpattribute)("BM_PeFileDropByOffcApp")
+        mp.set_mpattribute("BM_PeFileDropByOffcApp")
       end
     end
-    if (mp.get_mpattribute)("BM_LNK_FILE") then
-      (mp.set_mpattribute)("BM_LnkFileDropByOffcApp")
+    if mp.get_mpattribute("BM_LNK_FILE") then
+      mp.set_mpattribute("BM_LnkFileDropByOffcApp")
     end
-    if l_0_5 == "pdf" then
-      (mp.set_mpattribute)("BM_PdfDroppedByOfficeApp")
+    if L5_5 == "pdf" then
+      mp.set_mpattribute("BM_PdfDroppedByOfficeApp")
     end
-    local l_0_8 = "tmf|emf|wmf|spl|off|bak|m4a|mp4|mp3|wav|bmp|kgx|idx|etl|log|ico|"
-    local l_0_9 = "aplorislib[1].js|tokencache|temp.db.idx|msip_telemetry.tm-journal|_isres_0x0409.dll"
-    if l_0_8:find(l_0_5) or l_0_9:find(l_0_4) or l_0_4:match("~wrs%{.+%}%.tmp") or l_0_4:match("mso.+%.tmp") or l_0_4:match("oc.+%.tmp") or l_0_4:match("react.+%.js") or l_0_3:find("\\office\\recent", 1, true) or l_0_3:find("\\windows\\recent", 1, true) or l_0_3:find("$recycle.bin", 1, true) or l_0_3:find("\\appdata\\roaming\\microsoft\\excel\\.-xlsx?%.lnk") or l_0_3:find("\\appdata\\roaming\\microsoft\\word\\.-docx?%.lnk") or l_0_3:find("\\appdata\\roaming\\microsoft\\powerpoint\\.-pptx?%.lnk") or l_0_3:find("\\microsoft\\teams\\", 1, true) or l_0_3:find("\\windows\\cryptoguard", 1, true) or l_0_3:find("\\microsoft\\msip\\tokencache", 1, true) or l_0_3:find("\\internet explorer\\quick launch\\microsoft outlook.lnk", 1, true) or l_0_3:find("\\carbonblack\\store", 1, true) or l_0_3:find("\\crowdstrike\\downloads", 1, true) or l_0_3:find("\\cyvera\\ransomware", 1, true) or l_0_3:find("\\outlook\\offline address books", 1, true) or l_0_3:find("\\slack\\service worker\\cachestorage", 1, true) or l_0_3:find("\\systemcertificates\\my\\certificates\\", 1, true) or l_0_3:find("\\temp\\photocache\\", 1, true) or l_0_3:find("\\windows\\csc\\", 1, true) then
-      l_0_7 = true
+    if ("tmf|emf|wmf|spl|off|bak|m4a|mp4|mp3|wav|bmp|kgx|idx|etl|log|ico|"):find(L5_5) or ("aplorislib[1].js|tokencache|temp.db.idx|msip_telemetry.tm-journal|_isres_0x0409.dll"):find(L4_4) or L4_4:match("~wrs%{.+%}%.tmp") or L4_4:match("mso.+%.tmp") or L4_4:match("oc.+%.tmp") or L4_4:match("react.+%.js") or L3_3:find("\\office\\recent", 1, true) or L3_3:find("\\windows\\recent", 1, true) or L3_3:find("$recycle.bin", 1, true) or L3_3:find("\\appdata\\roaming\\microsoft\\excel\\.-xlsx?%.lnk") or L3_3:find("\\appdata\\roaming\\microsoft\\word\\.-docx?%.lnk") or L3_3:find("\\appdata\\roaming\\microsoft\\powerpoint\\.-pptx?%.lnk") or L3_3:find("\\microsoft\\teams\\", 1, true) or L3_3:find("\\windows\\cryptoguard", 1, true) or L3_3:find("\\microsoft\\msip\\tokencache", 1, true) or L3_3:find("\\internet explorer\\quick launch\\microsoft outlook.lnk", 1, true) or L3_3:find("\\carbonblack\\store", 1, true) or L3_3:find("\\crowdstrike\\downloads", 1, true) or L3_3:find("\\cyvera\\ransomware", 1, true) or L3_3:find("\\outlook\\offline address books", 1, true) or L3_3:find("\\slack\\service worker\\cachestorage", 1, true) or L3_3:find("\\systemcertificates\\my\\certificates\\", 1, true) or L3_3:find("\\temp\\photocache\\", 1, true) or L3_3:find("\\windows\\csc\\", 1, true) then
     end
-    if l_0_7 then
-      (mp.set_mpattribute)("Lua:OfficeAppExcludePath")
+    if true then
+      mp.set_mpattribute("Lua:OfficeAppExcludePath")
     end
-    if not l_0_7 then
-      if l_0_3:match("windows\\temp") then
-        (mp.set_mpattribute)("Lua:OfficeAppDroppedIn!wintemp")
+    if not true then
+      if L3_3:match("windows\\temp") then
+        mp.set_mpattribute("Lua:OfficeAppDroppedIn!wintemp")
       end
-      if l_0_3:match("users\\.-\\appdata\\local") then
-        (mp.set_mpattribute)("Lua:OfficeAppDroppedIn!localappdata")
+      if L3_3:match("users\\.-\\appdata\\local") then
+        mp.set_mpattribute("Lua:OfficeAppDroppedIn!localappdata")
       end
-      if l_0_3:match("users\\.-\\appdata\\remote") then
-        (mp.set_mpattribute)("Lua:OfficeAppDroppedIn!remoteappdata")
+      if L3_3:match("users\\.-\\appdata\\remote") then
+        mp.set_mpattribute("Lua:OfficeAppDroppedIn!remoteappdata")
       end
-      if l_0_3:match("users\\.-\\appdata\\local\\temp") then
-        (mp.set_mpattribute)("Lua:OfficeAppDroppedIn!usrtemp")
+      if L3_3:match("users\\.-\\appdata\\local\\temp") then
+        mp.set_mpattribute("Lua:OfficeAppDroppedIn!usrtemp")
       end
-      if l_0_3:match("users\\.-\\desktop$") then
-        (mp.set_mpattribute)("Lua:OfficeAppDroppedIn!usrdesktop")
+      if L3_3:match("users\\.-\\desktop$") then
+        mp.set_mpattribute("Lua:OfficeAppDroppedIn!usrdesktop")
       end
-      if l_0_3:match("users\\.-\\documents$") then
-        (mp.set_mpattribute)("Lua:OfficeAppDroppedIn!usrdocs")
+      if L3_3:match("users\\.-\\documents$") then
+        mp.set_mpattribute("Lua:OfficeAppDroppedIn!usrdocs")
       end
     end
   end
-  do
-    do
-      do return mp.INFECTED end
-      return mp.CLEAN
-    end
-  end
+  return mp.INFECTED
 end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

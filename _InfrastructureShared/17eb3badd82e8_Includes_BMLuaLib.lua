@@ -1,63 +1,83 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/17eb3badd82e8_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  else
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[6]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[6]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[3]).matched or (this_sigattrlog[3]).utf8p2 == nil or (this_sigattrlog[4]).matched) and (this_sigattrlog[4]).utf8p2 ~= nil then
-      local l_0_1, l_0_2, l_0_3 = (this_sigattrlog[3]).utf8p2
-    else
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L0_0 = L1_1.utf8p2
     end
-    if not (this_sigattrlog[5]).matched or (this_sigattrlog[5]).utf8p2 == nil or (this_sigattrlog[5]).utf8p2 == nil then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC62: Confused about usage of register: R0 in 'UnsetPending'
-
-    local l_0_4 = (string.lower)((this_sigattrlog[5]).utf8p2)
-    local l_0_5 = {}
-    -- DECOMPILER ERROR at PC67: No list found for R1 , SetList fails
-
-    -- DECOMPILER ERROR at PC68: Overwrote pending register: R2 in 'AssignReg'
-
-    if ("RemoteRunner.hta")(l_0_4, l_0_5) then
-      return mp.CLEAN
-    end
-    local l_0_6 = contains
-    local l_0_7 = l_0_4
-    do
-      local l_0_8 = {}
-      -- DECOMPILER ERROR at PC86: No list found for R4 , SetList fails
-
-      -- DECOMPILER ERROR at PC90: Overwrote pending register: R2 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC91: Overwrote pending register: R2 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC94: Overwrote pending register: R5 in 'AssignReg'
-
-      if l_0_6 then
-        l_0_6(l_0_7, l_0_8, (" -s ").RelatedStringBMReport)
-        -- DECOMPILER ERROR at PC97: Overwrote pending register: R2 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC98: Overwrote pending register: R2 in 'AssignReg'
-
-        return l_0_6
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L0_0 = L1_1.utf8p2
       end
-      -- DECOMPILER ERROR at PC100: Overwrote pending register: R2 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC101: Overwrote pending register: R2 in 'AssignReg'
-
-      do return l_0_6 end
-      -- WARNING: undefined locals caused missing assignments!
+    else
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[5]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L0_0 = L1_1.utf8p2
+        end
+      end
     end
   end
 end
-
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(L0_0)
+L0_0 = L1_1
+L1_1 = {
+  "RemoteRunner.hta"
+}
+if contains(L0_0, L1_1) then
+  return mp.CLEAN
+end
+if contains(L0_0, {
+  " -s ",
+  " -q ",
+  "start-process",
+  "urlcache",
+  "transfer",
+  "http"
+}) then
+  bm.add_related_string("Capfetox_cmdline_H", L0_0, bm.RelatedStringBMReport)
+  return mp.INFECTED
+end
+return mp.CLEAN

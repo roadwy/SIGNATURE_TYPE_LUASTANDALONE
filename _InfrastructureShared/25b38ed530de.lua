@@ -1,37 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b38ed530de 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = l_0_0.command_line
-if (string.find)(l_0_1, "mshta", 1, true) ~= nil then
-  local l_0_2 = (mp.GetExecutablesFromCommandLine)(l_0_1)
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    if (sysio.IsFileExists)(l_0_7) and not (mp.IsKnownFriendlyFile)(l_0_7, true, false) then
-      (bm.add_related_file)(l_0_7)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.command_line
+L2_2 = string
+L2_2 = L2_2.find
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    if sysio.IsFileExists(L7_7) and not mp.IsKnownFriendlyFile(L7_7, true, false) then
+      bm.add_related_file(L7_7)
     end
   end
-  local l_0_8, l_0_9 = (bm.get_process_relationships)()
-  for l_0_13,l_0_14 in ipairs(l_0_8) do
-    if l_0_14.image_path ~= nil then
-      local l_0_15 = (mp.bitand)(l_0_14.reason_ex, 1)
-      if l_0_15 == 1 then
-        local l_0_16 = {}
-        l_0_16["winword.exe"] = true
-        l_0_16["excel.exe"] = true
-        l_0_16["powerpnt.exe"] = true
-        local l_0_17 = (string.lower)((string.match)(l_0_14.image_path, "([^\\]-[^\\%.]+)$"))
-        if l_0_17 ~= nil and l_0_16[l_0_17] then
-          return mp.INFECTED
-        end
+  for _FORV_8_, _FORV_9_ in L5_5(L6_6) do
+    if _FORV_9_.image_path ~= nil and mp.bitand(_FORV_9_.reason_ex, 1) == 1 then
+      if string.lower(string.match(_FORV_9_.image_path, "([^\\]-[^\\%.]+)$")) ~= nil and ({
+        ["winword.exe"] = true,
+        ["excel.exe"] = true,
+        ["powerpnt.exe"] = true
+      })[string.lower(string.match(_FORV_9_.image_path, "([^\\]-[^\\%.]+)$"))] then
+        return mp.INFECTED
       end
     end
   end
 end
-do
-  l_0_2 = mp
-  l_0_2 = l_0_2.CLEAN
-  return l_0_2
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

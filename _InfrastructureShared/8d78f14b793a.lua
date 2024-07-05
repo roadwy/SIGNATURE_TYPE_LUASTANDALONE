@@ -1,20 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8d78f14b793a 
-
--- params : ...
--- function num : 0
-(mp.readprotection)(false)
-if (mp.getfilesize)() > 155652 then
-  local l_0_0 = (mp.readfile)(155648, 4)
-  local l_0_1 = (mp.readu_u16)(l_0_0, 1)
-  if l_0_1 == 23117 then
-    (mp.set_mpattribute)("LobaostInfected")
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 155652 then
+  L0_0 = mp
+  L0_0 = L0_0.readfile
+  L0_0 = L0_0(155648, 4)
+  if mp.readu_u16(L0_0, 1) == 23117 then
+    mp.set_mpattribute("LobaostInfected")
     return mp.INFECTED
   end
 end
-do
-  ;
-  (mp.set_mpattribute)("LobaostOriginal")
-  return mp.INFECTED
-end
-
+L0_0 = mp
+L0_0 = L0_0.set_mpattribute
+L0_0("LobaostOriginal")
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

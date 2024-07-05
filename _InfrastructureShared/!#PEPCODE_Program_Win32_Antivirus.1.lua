@@ -1,43 +1,97 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Program_Win32_Antivirus.1 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < pevars.epsec then
-  return mp.CLEAN
+L0_0 = pevars
+L0_0 = L0_0.epsec
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+if L0_0 > L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).NameDW ~= 0 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).NameDW ~= 0 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).NameDW ~= 1633968430 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 1633968430 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections <= 5 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 <= 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections >= 10 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 >= 10 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasstandardentry == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasstandardentry
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfCode <= 163840 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfCode
+if L0_0 <= 163840 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfCode >= 217088 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfCode
+if L0_0 >= 217088 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[1] ~= 104 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 ~= 104 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[6] ~= 232 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[6]
+if L0_0 ~= 232 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

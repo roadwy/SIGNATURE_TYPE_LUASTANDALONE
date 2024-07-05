@@ -1,18 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/16297aed610d 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("InEmail") then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "InEmail"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.GetNormalizedScript
+L1_1 = L1_1(L0_0.is_header)
+L1_1 = L1_1.lower
+L1_1 = L1_1(L1_1)
+if L1_1 == nil or #L1_1 < 600 then
   return mp.CLEAN
 end
-local l_0_0 = (mp.GetBruteMatchData)()
-local l_0_1 = ((mp.GetNormalizedScript)(l_0_0.is_header)):lower()
-if l_0_1 == nil or #l_0_1 < 600 then
-  return mp.CLEAN
-end
-if (MpCommon.StringRegExpSearch)("\\+([\\w]+)\\((?:\\d+|0x[\\da-f]+)\\)((\\+\\1\\((?:\\d+|0x[\\da-f]+)\\)|\\+\'[\\w\\/\\+]+\')+)", l_0_1) == true and #l_0_1 > 600 then
+if MpCommon.StringRegExpSearch("\\+([\\w]+)\\((?:\\d+|0x[\\da-f]+)\\)((\\+\\1\\((?:\\d+|0x[\\da-f]+)\\)|\\+'[\\w\\/\\+]+')+)", L1_1) == true and 600 < #MpCommon.StringRegExpSearch("\\+([\\w]+)\\((?:\\d+|0x[\\da-f]+)\\)((\\+\\1\\((?:\\d+|0x[\\da-f]+)\\)|\\+'[\\w\\/\\+]+')+)", L1_1) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

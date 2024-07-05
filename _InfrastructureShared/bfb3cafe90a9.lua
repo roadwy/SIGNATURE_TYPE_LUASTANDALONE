@@ -1,45 +1,53 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/bfb3cafe90a9 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1, l_0_2, l_0_4, l_0_5, l_0_6, l_0_8, l_0_9, l_0_10, l_0_12, l_0_13, l_0_14 = nil, nil, nil, nil
-do
-  if (this_sigattrlog[4]).matched then
-    local l_0_3 = nil
-    -- DECOMPILER ERROR at PC10: Confused about usage of register: R3 in 'UnsetPending'
-
-    if (this_sigattrlog[4]).utf8p2 ~= nil then
-      l_0_3 = (this_sigattrlog[4]).utf8p2
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L4_4 = this_sigattrlog
+L4_4 = L4_4[4]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[4]
+  L3_3 = L4_4.utf8p2
+  if L3_3 ~= nil then
+    L0_0 = L3_3
   end
-  do
-    if (this_sigattrlog[5]).matched then
-      local l_0_7 = nil
-      -- DECOMPILER ERROR at PC21: Confused about usage of register: R3 in 'UnsetPending'
-
-    end
-    do
-      if (this_sigattrlog[5]).utf8p2 == nil or (this_sigattrlog[6]).matched then
-        local l_0_11, l_0_15 = , (this_sigattrlog[5]).utf8p2
-        -- DECOMPILER ERROR at PC32: Confused about usage of register: R3 in 'UnsetPending'
-
-      end
-      if (this_sigattrlog[6]).utf8p1 ~= nil then
-        local l_0_16, l_0_17 = nil
-        for l_0_21,l_0_22 in ipairs((bm.get_process_relationships)()) do
-          local l_0_18, l_0_19, l_0_20, l_0_21 = (this_sigattrlog[6]).utf8p1
-          -- DECOMPILER ERROR at PC40: Confused about usage of register: R10 in 'UnsetPending'
-
-          -- DECOMPILER ERROR at PC45: Confused about usage of register: R10 in 'UnsetPending'
-
-          if l_0_13.image_path ~= nil and (string.find)(l_0_13.image_path, "XCBBuildService.bundle/Contents/MacOS/XCBBuildService", -53, true) and (string.find)(l_0_18, l_0_17:match("+x [\"]*([^\"]+)"), 1, true) and (string.find)(l_0_16, l_0_17:match("+x [\"]*([^\"]+)"), 1, true) then
-            return mp.INFECTED
-          end
-        end
-        return mp.CLEAN
+end
+L4_4 = this_sigattrlog
+L4_4 = L4_4[5]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[5]
+  L3_3 = L4_4.utf8p2
+  if L3_3 ~= nil then
+    L1_1 = L3_3
+  end
+end
+L4_4 = this_sigattrlog
+L4_4 = L4_4[6]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[6]
+  L3_3 = L4_4.utf8p1
+  if L3_3 ~= nil then
+    L2_2 = L3_3
+  end
+end
+L4_4 = bm
+L4_4 = L4_4.get_process_relationships
+L5_5 = L4_4()
+for L9_9, L10_10 in L6_6(L7_7) do
+  L11_11 = L10_10.image_path
+  if L11_11 ~= nil then
+    L11_11 = string
+    L11_11 = L11_11.find
+    L11_11 = L11_11(L10_10.image_path, "XCBBuildService.bundle/Contents/MacOS/XCBBuildService", -53, true)
+    if L11_11 then
+      L11_11 = L1_1.match
+      L11_11 = L11_11(L1_1, "+x [\"]*([^\"]+)")
+      if string.find(L2_2, L11_11, 1, true) and string.find(L0_0, L11_11, 1, true) then
+        return mp.INFECTED
       end
     end
   end
 end
-
+return L6_6

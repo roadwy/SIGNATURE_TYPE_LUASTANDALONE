@@ -1,45 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3f1a2d3b4 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC15: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_2 = nil
-  if (string.find)((string.lower)(l_0_0), "\\program files", 1, true) then
-    return mp.CLEAN
-  end
-  local l_0_3 = nil
-  local l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-  if l_0_4 ~= nil then
-    for l_0_8,l_0_9 in ipairs(l_0_4) do
-      local l_0_5 = 0
-      -- DECOMPILER ERROR at PC42: Confused about usage of register: R8 in 'UnsetPending'
-
-      R8_PC42 = (mp.ContextualExpandEnvironmentVariables)(R8_PC42)
-      if (sysio.IsFileExists)(R8_PC42) and ((sysio.GetLastResult)()).Success and (sysio.GetFileLastWriteTime)(R8_PC42) ~= 0 then
-        local l_0_11 = (sysio.GetFileLastWriteTime)(R8_PC42) / 10000000 - 11644473600
-        if l_0_11 < (MpCommon.GetCurrentTimeT)() and (MpCommon.GetCurrentTimeT)() - l_0_11 < 600 then
-          l_0_5 = 1
-          ;
-          (bm.add_related_file)(l_0_10)
-        end
-      end
-    end
-  end
-  do
-    -- DECOMPILER ERROR at PC80: Confused about usage of register: R3 in 'UnsetPending'
-
-    if l_0_5 == 1 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
 end
-
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.GetExecutablesFromCommandLine
+L3_3 = L0_0
+L2_2 = L2_2(L3_3)
+L3_3 = 0
+if L2_2 ~= nil then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+    if sysio.IsFileExists(L8_8) and sysio.GetLastResult().Success and sysio.GetFileLastWriteTime(L8_8) ~= 0 and sysio.GetFileLastWriteTime(L8_8) / 10000000 - 11644473600 < MpCommon.GetCurrentTimeT() and MpCommon.GetCurrentTimeT() - (sysio.GetFileLastWriteTime(L8_8) / 10000000 - 11644473600) < 600 then
+      L3_3 = 1
+      bm.add_related_file(L8_8)
+    end
+  end
+end
+if L3_3 == 1 then
+  return L4_4
+end
+return L4_4

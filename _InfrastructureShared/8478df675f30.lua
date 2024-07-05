@@ -1,42 +1,61 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8478df675f30 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("SIGATTR:AntiEmuRaceThread") and (hstrlog[1]).matched then
-  local l_0_0 = 0
-  local l_0_1 = (mp.hstr_full_log)()
-  for l_0_5,l_0_6 in pairs(l_0_1) do
-    if l_0_6.matched and l_0_5 ~= "filter1" then
-      l_0_0 = l_0_6.VA
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "SIGATTR:AntiEmuRaceThread"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = 0
+    L1_1 = mp
+    L1_1 = L1_1.hstr_full_log
+    L1_1 = L1_1()
+    for L5_5, L6_6 in L2_2(L3_3) do
+      if L6_6.matched and L5_5 ~= "filter1" then
+        L0_0 = L6_6.VA
+      end
     end
+    if L0_0 == 0 then
+      return L2_2
+    end
+    if L2_2 < 48 and L2_2 > -48 then
+      return L3_3
+    end
+    L5_5 = pehdr
+    L5_5 = L5_5.ImageBase
+    L5_5 = 16
+    L5_5 = L3_3
+    L6_6 = 1
+    L5_5 = mp
+    L5_5 = L5_5.bitand
+    L6_6 = L4_4
+    L5_5 = L5_5(L6_6, 16777215)
+    if L5_5 ~= 15204458 then
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
+    end
+    L5_5 = pehdr
+    L5_5 = L5_5.AddressOfEntryPoint
+    L5_5 = L0_0 - L5_5
+    L5_5 = L5_5 - 7
+    L6_6 = pehdr
+    L6_6 = L6_6.ImageBase
+    L5_5 = L5_5 - L6_6
+    L6_6 = mp
+    L6_6 = L6_6.readprotection
+    L6_6(false)
+    L6_6 = mp
+    L6_6 = L6_6.readfile
+    L6_6 = L6_6(0, mp.getfilesize())
+    mp.writeu_u32(L6_6, pe.foffset_rva(pehdr.AddressOfEntryPoint + 1), 15326001)
+    mp.writeu_u32(L6_6, pe.foffset_rva(pehdr.AddressOfEntryPoint + 4), L5_5)
+    mp.vfo_add_buffer(L6_6, "[Obfuscator.AKH0]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+    mp.set_mpattribute("HSTR:PatchAntiEmuRaceThread")
   end
-  if l_0_0 == 0 then
-    return mp.CLEAN
-  end
-  local l_0_7 = l_0_0 - pehdr.AddressOfEntryPoint
-  if l_0_7 < 48 and l_0_7 > -48 then
-    return mp.CLEAN
-  end
-  local l_0_8 = (pe.mmap_va)(pehdr.AddressOfEntryPoint + pehdr.ImageBase, 16)
-  local l_0_9 = (mp.readu_u32)(l_0_8, 1)
-  if (mp.bitand)(l_0_9, 16777215) ~= 15204458 then
-    return mp.CLEAN
-  end
-  local l_0_10 = l_0_0 - pehdr.AddressOfEntryPoint - 7 - pehdr.ImageBase
-  ;
-  (mp.readprotection)(false)
-  local l_0_11 = (mp.readfile)(0, (mp.getfilesize)())
-  ;
-  (mp.writeu_u32)(l_0_11, (pe.foffset_rva)(pehdr.AddressOfEntryPoint + 1), 15326001)
-  ;
-  (mp.writeu_u32)(l_0_11, (pe.foffset_rva)(pehdr.AddressOfEntryPoint + 4), l_0_10)
-  ;
-  (mp.vfo_add_buffer)(l_0_11, "[Obfuscator.AKH0]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-  ;
-  (mp.set_mpattribute)("HSTR:PatchAntiEmuRaceThread")
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

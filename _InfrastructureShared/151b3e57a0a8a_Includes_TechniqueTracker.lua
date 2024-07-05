@@ -1,24 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/151b3e57a0a8a_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if (string.sub)(l_0_0, -12) == "\\msmpeng.exe" then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(bm.get_imagepath())
+if string.sub(L0_0, -12) == "\\msmpeng.exe" then
   return mp.CLEAN
-else
-  if (string.sub)(l_0_0, -10) == "\\mpcmd.exe" then
-    return mp.CLEAN
-  else
-    if (string.sub)(l_0_0, -13) == "\\mpcmdrun.exe" then
-      return mp.CLEAN
-    else
-      if (string.sub)(l_0_0, -12) == "\\svchost.exe" then
-        return mp.CLEAN
-      end
-    end
-  end
+elseif string.sub(L0_0, -10) == "\\mpcmd.exe" then
+  return mp.CLEAN
+elseif string.sub(L0_0, -13) == "\\mpcmdrun.exe" then
+  return mp.CLEAN
+elseif string.sub(L0_0, -12) == "\\svchost.exe" then
+  return mp.CLEAN
 end
 TrackPidAndTechniqueBM("BM", "T1562.001", "mptamper_gp")
 return mp.INFECTED
-

@@ -1,17 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7361b499bf7b 
-
--- params : ...
--- function num : 0
-do
-  local l_0_0 = (pe.get_versioninfo)()
-  if l_0_0 == nil then
-    return mp.CLEAN
-  end
-  if l_0_0.InternalName == "mimikatz" or (string.find)(l_0_0.CompanyName, "gentilkiwi", 1, true) ~= nil or l_0_0.ProductName == "mimikatz" or (string.find)(l_0_0.SpecialBuild, "kiwi flavor", 1, true) ~= nil then
-    return mp.INFECTED
-  end
-  do return mp.CLEAN end
-  -- DECOMPILER ERROR: 2 unprocessed JMP targets
+if pe.get_versioninfo() == nil then
+  return mp.CLEAN
 end
-
+if pe.get_versioninfo().InternalName == "mimikatz" or string.find(pe.get_versioninfo().CompanyName, "gentilkiwi", 1, true) ~= nil or pe.get_versioninfo().ProductName == "mimikatz" or string.find(pe.get_versioninfo().SpecialBuild, "kiwi flavor", 1, true) ~= nil then
+  return mp.INFECTED
+end
+return mp.CLEAN

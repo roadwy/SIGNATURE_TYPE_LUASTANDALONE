@@ -1,31 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/71b3be4d5f4b 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 ~= nil and l_0_0.ppid ~= nil then
-  (bm.request_SMS)(l_0_0.ppid, "h+")
-  ;
-  (bm.add_action)("SmsAsyncScanEvent", 1)
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.ppid
+  if L1_1 ~= nil then
+    L1_1 = bm
+    L1_1 = L1_1.request_SMS
+    L2_2 = L0_0.ppid
+    L1_1(L2_2, L3_3)
+    L1_1 = bm
+    L1_1 = L1_1.add_action
+    L2_2 = "SmsAsyncScanEvent"
+    L1_1(L2_2, L3_3)
+    L1_1 = mp
+    L1_1 = L1_1.INFECTED
+    return L1_1
+  end
 end
-local l_0_1, l_0_2 = (bm.get_process_relationships)()
-if l_0_1 ~= nil then
-  for l_0_6,l_0_7 in ipairs(l_0_1) do
-    if l_0_7.image_path ~= nil then
-      local l_0_8 = (string.lower)((MpCommon.PathToWin32Path)(l_0_7.image_path))
-      if l_0_7.reason_ex == bm.RELATIONSHIP_CREATED and (sysio.IsFileExists)(l_0_8) then
-        (bm.add_related_file)(l_0_8)
-        ;
-        (bm.request_SMS)(l_0_7.ppid, "h+")
-        ;
-        (bm.add_action)("SmsAsyncScanEvent", 1)
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L2_2 = L1_1()
+if L1_1 ~= nil then
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = L7_7.image_path
+    if L8_8 ~= nil then
+      L8_8 = string
+      L8_8 = L8_8.lower
+      L8_8 = L8_8(MpCommon.PathToWin32Path(L7_7.image_path))
+      if L7_7.reason_ex == bm.RELATIONSHIP_CREATED and sysio.IsFileExists(L8_8) then
+        bm.add_related_file(L8_8)
+        bm.request_SMS(L7_7.ppid, "h+")
+        bm.add_action("SmsAsyncScanEvent", 1)
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return L3_3

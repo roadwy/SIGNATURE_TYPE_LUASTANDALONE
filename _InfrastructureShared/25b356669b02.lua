@@ -1,40 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b356669b02 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_connection_string)()
-if l_0_0 then
-  local l_0_1 = (string.match)(l_0_0, "DestPort=(%d+)")
-  local l_0_2 = {}
-  l_0_2["80"] = true
-  l_0_2["8080"] = true
-  l_0_2["443"] = true
-  l_0_2["53"] = true
-  l_0_2["21"] = true
-  l_0_2["25"] = true
-  l_0_2["22"] = true
-  l_0_2["389"] = true
-  l_0_2["9"] = true
-  l_0_2["636"] = true
-  l_0_2["1433"] = true
-  l_0_2["1434"] = true
-  l_0_2["1521"] = true
-  l_0_2["9389"] = true
-  l_0_2["8100"] = true
-  l_0_2["23"] = true
-  l_0_2["993"] = true
-  l_0_2["40000"] = true
-  l_0_2["9085"] = true
-  l_0_2["9092"] = true
-  l_0_2["3306"] = true
-  l_0_2["3300"] = true
-  l_0_2["5432"] = true
-  if l_0_2[l_0_1] then
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.get_connection_string
+L0_0 = L0_0()
+if L0_0 then
+  if ({
+    ["80"] = true,
+    ["8080"] = true,
+    ["443"] = true,
+    ["53"] = true,
+    ["21"] = true,
+    ["25"] = true,
+    ["22"] = true,
+    ["389"] = true,
+    ["9"] = true,
+    ["636"] = true,
+    ["1433"] = true,
+    ["1434"] = true,
+    ["1521"] = true,
+    ["9389"] = true,
+    ["8100"] = true,
+    ["23"] = true,
+    ["993"] = true,
+    ["40000"] = true,
+    ["9085"] = true,
+    ["9092"] = true,
+    ["3306"] = true,
+    ["3300"] = true,
+    ["5432"] = true
+  })[string.match(L0_0, "DestPort=(%d+)")] then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

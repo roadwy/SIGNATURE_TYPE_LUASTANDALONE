@@ -1,33 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c2786e7f746e_Flags_1 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("SIGATTR:GoogleSoftwareRemovalTool") == true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0(L1_1)
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.GetCertificateInfo)()
-if l_0_0 ~= nil and #l_0_0 > 0 then
-  for l_0_4,l_0_5 in ipairs(l_0_0) do
-    if l_0_5.AuthenticodeContentType == "PE" then
-      local l_0_6 = l_0_5.Certificates
-      if l_0_6 ~= nil then
-        for l_0_10,l_0_11 in ipairs(l_0_6) do
-          local l_0_12 = l_0_11.Subject
-          if l_0_12 ~= nil and l_0_12.Organization ~= nil and (mp.utf16to8)(l_0_12.Organization) == "Google Inc" then
-            return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  if L1_1 > 0 then
+    for L4_4, L5_5 in L1_1(L2_2) do
+      L6_6 = L5_5.AuthenticodeContentType
+      if L6_6 == "PE" then
+        L6_6 = L5_5.Certificates
+        if L6_6 ~= nil then
+          for _FORV_10_, _FORV_11_ in ipairs(L6_6) do
+            if _FORV_11_.Subject ~= nil and _FORV_11_.Subject.Organization ~= nil and mp.utf16to8(_FORV_11_.Subject.Organization) == "Google Inc" then
+              return mp.CLEAN
+            end
           end
         end
       end
     end
   end
 end
-do
-  if mp.HSTR_WEIGHT >= 3 then
-    return mp.INFECTED
-  end
-  do return mp.LOWFI end
-  -- DECOMPILER ERROR at PC60: Confused about usage of register R1 for local variables in 'ReleaseLocals'
-
+if L1_1 >= 3 then
+  return L1_1
 end
-
+return L1_1

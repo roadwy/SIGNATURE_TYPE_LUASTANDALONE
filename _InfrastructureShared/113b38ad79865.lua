@@ -1,38 +1,76 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/113b38ad79865 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  l_0_0 = (string.lower)(l_0_0)
-  if (l_0_0.find)(l_0_0, "\\clicktorun\\officeclicktorun.exe", 1, true) ~= nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+  L1_1 = L0_0.find
+  L2_2 = L0_0
+  L3_3 = "\\clicktorun\\officeclicktorun.exe"
+  L1_1 = L1_1(L2_2, L3_3, 1, true)
+  if L1_1 ~= nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-local l_0_1, l_0_2 = nil, nil
-if (this_sigattrlog[1]).matched then
-  do
-    if (this_sigattrlog[1]).utf8p2 ~= nil then
-      local l_0_3 = (this_sigattrlog[1]).utf8p2
-      if (sysio.IsFileExists)(l_0_3) then
-        if (mp.IsKnownFriendlyFile)(l_0_3, true, false) == true then
-          return mp.CLEAN
-        end
-        ;
-        (bm.add_related_file)(l_0_3)
+L1_1, L2_2 = nil, nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L3_3 = L3_3.utf8p2
+  if L3_3 ~= nil then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L3_3 = L3_3.utf8p2
+    if sysio.IsFileExists(L3_3) then
+      if mp.IsKnownFriendlyFile(L3_3, true, false) == true then
+        return mp.CLEAN
       end
+      bm.add_related_file(L3_3)
     end
-    if (this_sigattrlog[1]).utf8p1 ~= nil then
-      l_0_1 = (string.lower)((this_sigattrlog[1]).utf8p1)
-    end
-    if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-      l_0_2 = (string.lower)((this_sigattrlog[2]).utf8p2)
-    end
-    if l_0_1 ~= nil and l_0_2 ~= nil and (string.find)(l_0_1, l_0_2, 1, true) then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+  end
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L3_3 = L3_3.utf8p1
+  if L3_3 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(this_sigattrlog[1].utf8p1)
+    L1_1 = L3_3
   end
 end
-
+L3_3 = this_sigattrlog
+L3_3 = L3_3[2]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[2]
+  L3_3 = L3_3.utf8p2
+  if L3_3 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(this_sigattrlog[2].utf8p2)
+    L2_2 = L3_3
+  end
+end
+if L1_1 ~= nil and L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.find
+  L3_3 = L3_3(L1_1, L2_2, 1, true)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.INFECTED
+    return L3_3
+  end
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

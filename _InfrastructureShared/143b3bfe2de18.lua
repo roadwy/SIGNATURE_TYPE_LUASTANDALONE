@@ -1,38 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/143b3bfe2de18 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1 = false
-local l_0_2 = nil
-local l_0_3, l_0_4 = (bm.get_process_relationships)()
-for l_0_8,l_0_9 in ipairs(l_0_3) do
-  l_0_2 = l_0_9.ppid
-  local l_0_10, l_0_11 = (bm.get_process_relationships)(l_0_2)
-  for l_0_15,l_0_16 in ipairs(l_0_10) do
-    if l_0_16.image_path ~= nil then
-      local l_0_17 = (string.lower)((MpCommon.PathToWin32Path)(l_0_16.image_path))
-      if not (string.find)(l_0_17, "\\wordpad.exe", -12, true) then
-        local l_0_18 = l_0_16.ppid
-        if (sysio.IsFileExists)(l_0_17) and not (mp.IsKnownFriendlyFile)(l_0_17, true, false) then
-          (bm.add_related_file)(l_0_17)
-          ;
-          (bm.request_SMS)(l_0_18, "m+")
-          l_0_0 = true
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18
+L0_0 = false
+L1_1 = false
+L2_2 = nil
+L3_3 = bm
+L3_3 = L3_3.get_process_relationships
+L4_4 = L3_3()
+for L8_8, L9_9 in L5_5(L6_6) do
+  L2_2 = L9_9.ppid
+  L10_10 = bm
+  L10_10 = L10_10.get_process_relationships
+  L11_11 = L2_2
+  L11_11 = L10_10(L11_11)
+  for L15_15, L16_16 in L12_12(L13_13) do
+    L17_17 = L16_16.image_path
+    if L17_17 ~= nil then
+      L17_17 = string
+      L17_17 = L17_17.lower
+      L18_18 = MpCommon
+      L18_18 = L18_18.PathToWin32Path
+      L18_18 = L18_18(L16_16.image_path)
+      L17_17 = L17_17(L18_18, L18_18(L16_16.image_path))
+      L18_18 = string
+      L18_18 = L18_18.find
+      L18_18 = L18_18(L17_17, "\\wordpad.exe", -12, true)
+      if not L18_18 then
+        L18_18 = L16_16.ppid
+        if sysio.IsFileExists(L17_17) and not mp.IsKnownFriendlyFile(L17_17, true, false) then
+          bm.add_related_file(L17_17)
+          bm.request_SMS(L18_18, "m+")
+          L0_0 = true
         end
       end
     end
   end
-  if not (MpCommon.IsFriendlyProcess)(l_0_2) then
-    (bm.add_related_process)(l_0_2)
-    ;
-    (bm.request_SMS)(l_0_2, "m+")
-    l_0_1 = true
+  if not L12_12 then
+    L12_12(L13_13)
+    L12_12(L13_13, L14_14)
+    L1_1 = true
   end
 end
-if l_0_0 == false and l_0_3 ~= nil and l_0_1 == false then
-  (bm.request_SMS)(l_0_2, "m+")
+if L0_0 == false and L3_3 ~= nil and L1_1 == false then
+  L5_5(L6_6, L7_7)
 end
-return mp.INFECTED
-
+return L5_5

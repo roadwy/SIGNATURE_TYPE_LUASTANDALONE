@@ -1,23 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db348a0b323 
-
--- params : ...
--- function num : 0
-local l_0_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History")
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = sysio
+L0_0 = L0_0.RegOpenKey
+L1_1 = "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History"
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "MachineDomain")
-if l_0_1 == nil or #l_0_1 < 1 then
-  return mp.CLEAN
+L1_1 = sysio
+L1_1 = L1_1.GetRegValueAsString
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, "MachineDomain")
+if L1_1 ~= nil then
+  L2_2 = #L1_1
+elseif L2_2 < 1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_2 = (string.lower)((this_sigattrlog[1]).utf8p2)
-    if (sysio.IsFileExists)(l_0_2) then
-      (bm.add_related_file)(l_0_2)
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(this_sigattrlog[1].utf8p2)
+    if sysio.IsFileExists(L2_2) then
+      bm.add_related_file(L2_2)
     end
   end
-  return mp.INFECTED
 end
-
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

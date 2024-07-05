@@ -1,35 +1,56 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/92d7e8c79e11_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0["qualysagent.exe"] = true
-l_0_0["pulsesecureservice.exe"] = true
-l_0_0["911 location manager.exe"] = true
-l_0_0["logmein.exe"] = true
-l_0_0["fasm.exe"] = true
-local l_0_1 = (mp.GetParentProcInfo)()
-do
-  if l_0_1 ~= nil then
-    local l_0_2 = (string.lower)(l_0_1.image_path)
-    if l_0_2 ~= nil and (l_0_0[l_0_2:match("([^\\]+)$")] or (string.find)(l_0_2, ":\\windows\\assembly\\nativeimages_", 1, true) or (string.find)(l_0_2, ":\\programdata\\ctes\\components\\", 1, true)) then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = {}
+L0_0["qualysagent.exe"] = true
+L0_0["pulsesecureservice.exe"] = true
+L0_0["911 location manager.exe"] = true
+L0_0["logmein.exe"] = true
+L0_0["fasm.exe"] = true
+L1_1 = mp
+L1_1 = L1_1.GetParentProcInfo
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = L1_1.image_path
+  L2_2 = L2_2(L3_3)
+  if L2_2 ~= nil then
+    L3_3 = L2_2.match
+    L3_3 = L3_3(L2_2, "([^\\]+)$")
+    if L0_0[L3_3] or string.find(L2_2, ":\\windows\\assembly\\nativeimages_", 1, true) or string.find(L2_2, ":\\programdata\\ctes\\components\\", 1, true) then
+      return mp.CLEAN
+    end
+    if L2_2:find("\\relauncher\\.+\\studio%.exe$") or L2_2:find("\\relauncher\\.+\\launcher%.exe$") then
       return mp.CLEAN
     end
   end
-  local l_0_3 = (mp.GetParentProcInfo)(l_0_1.ppid)
-  do
-    if l_0_3 ~= nil then
-      local l_0_4 = (string.lower)(l_0_3.image_path)
-      if l_0_4 ~= nil and (l_0_0[l_0_4:match("([^\\]+)$")] or (string.find)(l_0_4, ":\\windows\\assembly\\nativeimages_", 1, true) or (string.find)(l_0_4, ":\\programdata\\ctes\\components\\", 1, true)) then
-        return mp.CLEAN
-      end
-    end
-    TrackPidAndTechnique("CMDHSTR", "T1016", "network_discovery")
-    if IsDetectionThresholdMet("CMDHSTR") then
-      return mp.INFECTED
-    end
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(mp.GetProcessCommandLine(L1_1.ppid))
+  if L3_3:find("splunkuniversalforwarder", 1, true) then
     return mp.CLEAN
   end
 end
-
+L2_2 = mp
+L2_2 = L2_2.GetParentProcInfo
+L3_3 = L1_1.ppid
+L2_2 = L2_2(L3_3)
+if L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(L2_2.image_path)
+  if L3_3 ~= nil and (L0_0[L3_3:match("([^\\]+)$")] or string.find(L3_3, ":\\windows\\assembly\\nativeimages_", 1, true) or string.find(L3_3, ":\\programdata\\ctes\\components\\", 1, true)) then
+    return mp.CLEAN
+  end
+end
+L3_3 = TrackPidAndTechnique
+L3_3("CMDHSTR", "T1016", "network_discovery")
+L3_3 = IsDetectionThresholdMet
+L3_3 = L3_3("CMDHSTR")
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.INFECTED
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

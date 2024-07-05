@@ -1,89 +1,86 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/SuspiciousFileExtension 
-
--- params : ...
--- function num : 0
-GetSuspiciuousFileType = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = {}
-  l_1_1[".au"] = "Bin"
-  l_1_1[".ax"] = "Bin"
-  l_1_1[".js"] = "Script"
-  l_1_1[".7z"] = "Archive"
-  local l_1_2 = {}
-  l_1_2.exe = "Bin"
-  l_1_2.com = "Bin"
-  l_1_2.scr = "Bin"
-  l_1_2.cpl = "Bin"
-  l_1_2.dll = "Bin"
-  l_1_2.ocx = "Bin"
-  l_1_2.msi = "Bin"
-  l_1_2.sys = "Bin"
-  l_1_2.bin = "Bin"
-  l_1_2.fon = "Bin"
-  l_1_2.drv = "Bin"
-  l_1_2.app = "Bin"
-  l_1_2.apl = "Bin"
-  l_1_2.bat = "Script"
-  l_1_2.cmd = "Script"
-  l_1_2.vbs = "Script"
-  l_1_2.reg = "Script"
-  l_1_2.shs = "Script"
-  l_1_2[".vb"] = "Script"
-  l_1_2.vbe = "Script"
-  l_1_2.wsc = "Script"
-  l_1_2.wsf = "Script"
-  l_1_2.wsh = "Script"
-  l_1_2.asm = "Script"
-  l_1_2.ini = "Script"
-  l_1_2.pif = "Script"
-  l_1_2.htm = "Script"
-  l_1_2.chm = "Script"
-  l_1_2.msp = "Script"
-  l_1_2.tlb = "Script"
-  l_1_2.asp = "Script"
-  l_1_2.msc = "Script"
-  l_1_2.api = "Script"
-  l_1_2.rar = "Archive"
-  l_1_2.zip = "Archive"
-  l_1_2.cab = "Archive"
-  l_1_2.tar = "Archive"
-  l_1_2.jar = "Archive"
-  l_1_2.doc = "Office"
-  l_1_2.xls = "Office"
-  l_1_2.ppt = "Office"
-  local l_1_3 = {}
-  l_1_3.docm = "Office"
-  l_1_3.xlsm = "Office"
-  l_1_3.pptm = "Office"
-  l_1_3.docx = "Office"
-  l_1_3.xlsx = "Office"
-  l_1_3.pptx = "Office"
-  l_1_3.html = "Script"
-  l_1_3.aspx = "Script"
-  l_1_3.bzip = "Archive"
-  if l_1_0 == nil or (string.len)(l_1_0) < 4 then
+local L1_0
+function L1_0(A0_1)
+  local L1_2, L2_3, L3_4, L4_5, L5_6
+  L1_2 = {}
+  L1_2[".au"] = "Bin"
+  L1_2[".ax"] = "Bin"
+  L1_2[".js"] = "Script"
+  L1_2[".7z"] = "Archive"
+  L2_3 = {}
+  L2_3.exe = "Bin"
+  L2_3.com = "Bin"
+  L2_3.scr = "Bin"
+  L2_3.cpl = "Bin"
+  L2_3.dll = "Bin"
+  L2_3.ocx = "Bin"
+  L2_3.msi = "Bin"
+  L2_3.sys = "Bin"
+  L2_3.bin = "Bin"
+  L2_3.fon = "Bin"
+  L2_3.drv = "Bin"
+  L2_3.app = "Bin"
+  L2_3.apl = "Bin"
+  L2_3.bat = "Script"
+  L2_3.cmd = "Script"
+  L2_3.vbs = "Script"
+  L2_3.reg = "Script"
+  L2_3.shs = "Script"
+  L2_3[".vb"] = "Script"
+  L2_3.vbe = "Script"
+  L2_3.wsc = "Script"
+  L2_3.wsf = "Script"
+  L2_3.wsh = "Script"
+  L2_3.asm = "Script"
+  L2_3.ini = "Script"
+  L2_3.pif = "Script"
+  L2_3.htm = "Script"
+  L2_3.chm = "Script"
+  L2_3.msp = "Script"
+  L2_3.tlb = "Script"
+  L2_3.asp = "Script"
+  L2_3.msc = "Script"
+  L2_3.api = "Script"
+  L2_3.rar = "Archive"
+  L2_3.zip = "Archive"
+  L2_3.cab = "Archive"
+  L2_3.tar = "Archive"
+  L2_3.jar = "Archive"
+  L2_3.doc = "Office"
+  L2_3.xls = "Office"
+  L2_3.ppt = "Office"
+  L3_4 = {}
+  L3_4.docm = "Office"
+  L3_4.xlsm = "Office"
+  L3_4.pptm = "Office"
+  L3_4.docx = "Office"
+  L3_4.xlsx = "Office"
+  L3_4.pptx = "Office"
+  L3_4.html = "Script"
+  L3_4.aspx = "Script"
+  L3_4.bzip = "Archive"
+  if A0_1 ~= nil then
+    L4_5 = string
+    L4_5 = L4_5.len
+    L5_6 = A0_1
+    L4_5 = L4_5(L5_6)
+  elseif L4_5 < 4 then
+    L4_5 = nil
+    return L4_5
+  end
+  L4_5 = string
+  L4_5 = L4_5.lower
+  L5_6 = A0_1
+  L4_5 = L4_5(L5_6)
+  L5_6 = string
+  L5_6 = L5_6.match
+  L5_6 = L5_6(L4_5, "%.(%l+)$")
+  if L5_6 == nil then
     return nil
   end
-  local l_1_4 = (string.lower)(l_1_0)
-  local l_1_5 = (string.match)(l_1_4, "%.(%l+)$")
-  if l_1_5 == nil then
-    return nil
-  end
-  local l_1_6 = ((string.len)(l_1_5))
-  local l_1_7 = nil
-  if l_1_6 == 2 then
-    l_1_7 = l_1_1[l_1_5]
+  if string.len(L5_6) == 2 then
+  elseif string.len(L5_6) == 3 then
   else
-    if l_1_6 == 3 then
-      l_1_7 = l_1_2[l_1_5]
-    else
-      if l_1_6 == 4 then
-        l_1_7 = l_1_3[l_1_5]
-      end
-    end
   end
-  return l_1_7
+  return L3_4[L5_6]
 end
-
-
+GetSuspiciuousFileType = L1_0

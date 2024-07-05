@@ -1,24 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Xtrat_Config!dat 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 256 then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 256 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L1_1 = L1_1()
+if ".dat" ~= string.sub(L1_1, -4) then
   return mp.CLEAN
 end
-local l_0_1 = (mp.getfilename)()
-if (string.sub)(l_0_1, -4) ~= ".dat" then
+if 170 ~= headerpage[1] then
   return mp.CLEAN
 end
-if headerpage[1] ~= 170 then
+if 254 ~= headerpage[2] then
   return mp.CLEAN
 end
-if headerpage[2] ~= 254 then
-  return mp.CLEAN
-end
-if headerpage[3] ~= 14 then
+if 14 ~= headerpage[3] then
   return mp.CLEAN
 end
 return mp.INFECTED
-

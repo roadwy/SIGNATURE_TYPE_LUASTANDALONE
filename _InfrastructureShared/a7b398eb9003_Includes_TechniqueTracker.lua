@@ -1,17 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a7b398eb9003_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(bm.get_current_process_startup_info)
-do
-  if l_0_0 and l_0_1 ~= nil then
-    local l_0_2 = l_0_1.ppid
-    if l_0_2 ~= nil then
-      TrackPidAndTechniqueBM(l_0_2, "T1055.002", "processinjection_source_dridex")
-      return mp.INFECTED
-    end
+local L0_0, L1_1, L2_2
+L0_0 = pcall
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L0_0(L1_1)
+if L0_0 and L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    TrackPidAndTechniqueBM(L2_2, "T1055.002", "processinjection_source_dridex")
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

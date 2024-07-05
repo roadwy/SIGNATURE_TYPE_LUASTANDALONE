@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FileInStartMenuProgramsFolder.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-if l_0_0 ~= nil and (string.len)(l_0_0) > 40 and (string.find)(l_0_0, "\\microsoft\\windows\\start menu\\programs", 1, true) ~= nil then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+if L0_0 ~= nil and string.len(L0_0) > 40 and string.find(L0_0, "\\microsoft\\windows\\start menu\\programs", 1, true) ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

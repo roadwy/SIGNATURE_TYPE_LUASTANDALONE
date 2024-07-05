@@ -1,23 +1,78 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3e6154b7a_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-if (string.find)(l_0_0, "\\avast", 1, true) or (string.find)(l_0_0, "\\webnavigatorbrowser", 1, true) or (string.find)(l_0_0, "\\ccleaner", 1, true) or (string.find)(l_0_0, "\\chrome.exe", 1, true) or (string.find)(l_0_0, "\\webexplorer", 1, true) or (string.find)(l_0_0, "\\teams\\", 1, true) or (string.find)(l_0_0, "\\fmr.", 1, true) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L3_3 = L2_2()
+L3_3 = L1_1(L2_2, L3_3, L2_2())
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2, L3_3, L2_2()))
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "\\avast"
+L1_1 = L1_1(L2_2, L3_3, 1, true)
+if not L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L3_3 = "\\webnavigatorbrowser"
+  L1_1 = L1_1(L2_2, L3_3, 1, true)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L3_3 = "\\ccleaner"
+    L1_1 = L1_1(L2_2, L3_3, 1, true)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L2_2 = L0_0
+      L3_3 = "\\chrome.exe"
+      L1_1 = L1_1(L2_2, L3_3, 1, true)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L2_2 = L0_0
+        L3_3 = "\\webexplorer"
+        L1_1 = L1_1(L2_2, L3_3, 1, true)
+        if not L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L2_2 = L0_0
+          L3_3 = "\\teams\\"
+          L1_1 = L1_1(L2_2, L3_3, 1, true)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L2_2 = L0_0
+            L3_3 = "\\fmr."
+            L1_1 = L1_1(L2_2, L3_3, 1, true)
+          end
+        end
+      end
+    end
+  end
+elseif L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((this_sigattrlog[2]).utf8p1)
-local l_0_2, l_0_3 = (bm.get_process_relationships)()
-for l_0_7,l_0_8 in ipairs(l_0_3) do
-  local l_0_9 = (mp.bitand)(l_0_8.reason_ex, bm.RELATIONSHIP_CREATED)
-  if l_0_9 == bm.RELATIONSHIP_CREATED and (string.find)(l_0_8.image_path, l_0_1, 1, true) then
-    TrackPidAndTechniqueBM(l_0_8.ppid, "T1055.002", "processinjection_target_u")
-    ;
-    (bm.request_SMS)(l_0_8.ppid, "M")
-    ;
-    (bm.add_action)("SmsAsyncScanEvent", 1000)
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.utf8p1
+L1_1 = L1_1(L2_2)
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+for _FORV_7_, _FORV_8_ in ipairs(L3_3) do
+  if mp.bitand(_FORV_8_.reason_ex, bm.RELATIONSHIP_CREATED) == bm.RELATIONSHIP_CREATED and string.find(_FORV_8_.image_path, L1_1, 1, true) then
+    TrackPidAndTechniqueBM(_FORV_8_.ppid, "T1055.002", "processinjection_target_u")
+    bm.request_SMS(_FORV_8_.ppid, "M")
+    bm.add_action("SmsAsyncScanEvent", 1000)
   end
 end
 return mp.INFECTED
-

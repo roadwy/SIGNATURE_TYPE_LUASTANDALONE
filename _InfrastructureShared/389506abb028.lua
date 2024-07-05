@@ -1,52 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/389506abb028 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr + 16, 105)
-local l_0_1 = (string.byte)(l_0_0, 1) + 2
-if #l_0_0 < l_0_1 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 16
+L2_2 = 105
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = string
+L1_1 = L1_1.byte
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, 1)
+L1_1 = L1_1 + 2
+L2_2 = #L0_0
+if L1_1 > L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (string.byte)(l_0_0, l_0_1) == 232 then
-  local l_0_2 = 2
-  while 1 do
-    while 1 do
-      while 1 do
-        while 1 do
-          if l_0_2 < #l_0_0 then
-            local l_0_3 = (string.byte)(l_0_0, l_0_2)
-            if l_0_3 == 61 then
-              l_0_2 = l_0_2 + 5
-              -- DECOMPILER ERROR at PC38: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC38: LeaveBlock: unexpected jumping out IF_STMT
-
-              -- DECOMPILER ERROR at PC38: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC38: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
-        end
-        if l_0_3 == 204 then
-          do return mp.INFECTED end
-          -- DECOMPILER ERROR at PC44: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC44: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
-      end
-      if l_0_3 == 116 and l_0_1 ~= (string.byte)(l_0_0, l_0_2 + 1) + (l_0_2) then
+L2_2 = string
+L2_2 = L2_2.byte
+L2_2 = L2_2(L0_0, L1_1)
+if L2_2 == 232 then
+  L2_2 = 2
+  while L2_2 < #L0_0 do
+    if string.byte(L0_0, L2_2) == 61 then
+      L2_2 = L2_2 + 5
+    elseif string.byte(L0_0, L2_2) == 204 then
+      return mp.INFECTED
+    elseif string.byte(L0_0, L2_2) == 116 then
+      L2_2 = L2_2 + 2
+      if L1_1 ~= string.byte(L0_0, L2_2 + 1) + L2_2 then
         return mp.CLEAN
       end
+    else
+      return mp.CLEAN
     end
-    return mp.CLEAN
   end
 end
-do
-  -- DECOMPILER ERROR at PC64: Overwrote pending register: R2 in 'AssignReg'
-
-  return l_0_2.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

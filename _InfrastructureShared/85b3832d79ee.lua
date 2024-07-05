@@ -1,17 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/85b3832d79ee 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  if l_0_6.image_path ~= nil then
-    local l_0_7 = (mp.bitand)(l_0_6.reason_ex, 1)
-    local l_0_8 = (string.lower)(l_0_6.image_path)
-    if l_0_7 == 1 and ((string.find)(l_0_8, "\\excel.exe", 1, true) or (string.find)(l_0_8, "\\winword.exe", 1, true) or (string.find)(l_0_8, "\\eqnedt32.exe", 1, true) or (string.find)(l_0_8, "\\powerpnt.exe", 1, true) or (string.find)(l_0_8, "\\wscript.exe", 1, true) or (string.find)(l_0_8, "\\cscript.exe", 1, true)) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = L6_6.image_path
+  if L7_7 ~= nil then
+    L7_7 = mp
+    L7_7 = L7_7.bitand
+    L8_8 = L6_6.reason_ex
+    L7_7 = L7_7(L8_8, 1)
+    L8_8 = string
+    L8_8 = L8_8.lower
+    L8_8 = L8_8(L6_6.image_path)
+    if L7_7 == 1 and (string.find(L8_8, "\\excel.exe", 1, true) or string.find(L8_8, "\\winword.exe", 1, true) or string.find(L8_8, "\\eqnedt32.exe", 1, true) or string.find(L8_8, "\\powerpnt.exe", 1, true) or string.find(L8_8, "\\wscript.exe", 1, true) or string.find(L8_8, "\\cscript.exe", 1, true)) then
       return mp.INFECTED
     end
   end
 end
-return mp.CLEAN
-
+return L2_2

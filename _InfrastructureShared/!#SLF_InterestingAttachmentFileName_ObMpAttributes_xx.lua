@@ -1,31 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_InterestingAttachmentFileName_ObMpAttributes_xx 
-
--- params : ...
--- function num : 0
-do
-  local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)) or ""
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_2, l_0_3 = , l_0_0:match("(.+)%.([^.]+)$")
-  if l_0_0 ~= nil and l_0_3 ~= nil then
-    local l_0_4 = nil
-    if ({doc = true, docm = true, xls = true, xlsm = true, pdf = true})[l_0_4] == true then
-      local l_0_5 = nil
-      for l_0_9,l_0_10 in pairs({"untitled", "img", "receipt", "invoice", "steam", "min", "nuevo", "pic", "jpg", "inc", "crack", "files", "backup", "plugin", "setup", "pdf", "acc", "cracked", "dhl", "instr"}) do
-        local l_0_6 = nil
-        -- DECOMPILER ERROR at PC56: Confused about usage of register: R9 in 'UnsetPending'
-
-        if l_0_3:sub("steam", 1, "true") then
-          return mp.INFECTED
-        end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L9_9 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L1_1(L2_2, L3_3))
+L0_0 = L0_0 or ""
+L2_2 = L0_0
+L1_1 = L0_0.match
+L3_3 = "(.+)%.([^.]+)$"
+L2_2 = L1_1(L2_2, L3_3)
+if nil ~= L2_2 and nil ~= L1_1 then
+  L3_3 = {}
+  L3_3.doc = true
+  L3_3.docm = true
+  L3_3.xls = true
+  L3_3.xlsm = true
+  L3_3.pdf = true
+  L4_4 = L3_3[L2_2]
+  if true == L4_4 then
+    L4_4 = {
+      L5_5,
+      L6_6,
+      L7_7,
+      L8_8,
+      L9_9,
+      "min",
+      "nuevo",
+      "pic",
+      "jpg",
+      "inc",
+      "crack",
+      "files",
+      "backup",
+      "plugin",
+      "setup",
+      "pdf",
+      "acc",
+      "cracked",
+      "dhl",
+      "instr"
+    }
+    L8_8 = "invoice"
+    L9_9 = "steam"
+    for L8_8, L9_9 in L5_5(L6_6) do
+      if L1_1:sub(L9_9, 1, "true") then
+        return mp.INFECTED
       end
     end
   end
-  do
-    l_0_5 = mp
-    l_0_5 = l_0_5.CLEAN
-    return l_0_5
-  end
 end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

@@ -1,10 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8d7801196e4d 
-
--- params : ...
--- function num : 0
-if not peattributes.hasexports and pehdr.SizeOfImage == 2351104 and pehdr.SizeOfCode == 57344 and pehdr.AddressOfEntryPoint == 14780 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if not L0_0 then
+  L0_0 = pehdr
+  L0_0 = L0_0.SizeOfImage
+  if L0_0 == 2351104 then
+    L0_0 = pehdr
+    L0_0 = L0_0.SizeOfCode
+    if L0_0 == 57344 then
+      L0_0 = pehdr
+      L0_0 = L0_0.AddressOfEntryPoint
+      if L0_0 == 14780 then
+        L0_0 = mp
+        L0_0 = L0_0.INFECTED
+        return L0_0
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

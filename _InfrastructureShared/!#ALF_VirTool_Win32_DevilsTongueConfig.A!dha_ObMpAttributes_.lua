@@ -1,51 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_VirTool_Win32_DevilsTongueConfig.A!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 40000 or l_0_0 > 48000000 then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 40000 or L0_0 > 48000000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = L0_0 % 16
+if L1_1 ~= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L1_1 = L1_1(mp.FILEPATH_QUERY_FULL)
+if L1_1 == nil then
   return mp.CLEAN
 end
-if l_0_0 % 16 ~= 0 then
-  return mp.CLEAN
-end
-local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_FULL)
-l_0_1 = (string.lower)((MpCommon.PathToWin32Path)(l_0_1))
-if l_0_1 ~= nil and l_0_1:len() > 40 and l_0_1:find("c:\\windows\\system32\\config\\", 1, true) then
-  if l_0_1:find("\\config\\systemprofile\\", 1, true) then
+L1_1 = MpCommon.PathToWin32Path(L1_1)
+L1_1 = string.lower(L1_1)
+if L1_1 ~= nil and L1_1:len() > 40 and L1_1:find("c:\\windows\\system32\\config\\", 1, true) then
+  if L1_1:find("\\config\\systemprofile\\", 1, true) then
     return mp.CLEAN
   end
-  if l_0_1:find("\\system32\\config\\cache\\", 1, true) then
+  if L1_1:find("\\system32\\config\\cache\\", 1, true) then
     return mp.CLEAN
   end
-  if l_0_1:find("\\recoverybin\\", 1, true) then
+  if L1_1:find("\\recoverybin\\", 1, true) then
     return mp.CLEAN
   end
-  if l_0_1:find("\\appdata\\", 1, true) then
+  if L1_1:find("\\appdata\\", 1, true) then
     return mp.CLEAN
   end
-  if l_0_1:find("ntuser.dat", 1, true) then
+  if L1_1:find("ntuser.dat", 1, true) then
     return mp.CLEAN
   end
-  if l_0_1:find("\\system32\\config\\journal", 1, true) then
+  if L1_1:find("\\system32\\config\\journal", 1, true) then
     return mp.CLEAN
   end
-  if l_0_1:find("\\system32\\config\\regback", 1, true) then
+  if L1_1:find("\\system32\\config\\regback", 1, true) then
     return mp.CLEAN
   end
-  if l_0_1:find("\\system32\\config\\txr", 1, true) then
+  if L1_1:find("\\system32\\config\\txr", 1, true) then
     return mp.CLEAN
   end
-  local l_0_2 = select(2, (string.gsub)(l_0_1, "\\", ""))
-  if l_0_2 < 5 then
+  if select(2, string.gsub(L1_1, "\\", "")) < 5 then
     return mp.CLEAN
   end
-  ;
-  (mp.set_mpattribute)("MpNonPIIFileType")
+  mp.set_mpattribute("MpNonPIIFileType")
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

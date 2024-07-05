@@ -1,15 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/37894e8062f9 
-
--- params : ...
--- function num : 0
-(mp.set_mpattribute)("lua_codepatch_tibs_5")
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr, 22)
-local l_0_1 = (mp.readu_u32)(l_0_0, 7)
-local l_0_2 = (mp.readu_u32)(l_0_0, 18)
-local l_0_3 = (pe.get_regval)(pe.REG_EDX)
-local l_0_4 = l_0_3 - (mp.bitxor)(l_0_2, l_0_1) - 1
-;
-(pe.set_regval)(pe.REG_EBX, l_0_4)
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.set_mpattribute
+L1_1 = "lua_codepatch_tibs_5"
+L0_0(L1_1)
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L2_2 = 22
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = L0_0
+L3_3 = 7
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = L0_0
+L4_4 = 18
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = pe
+L3_3 = L3_3.get_regval
+L4_4 = pe
+L4_4 = L4_4.REG_EDX
+L3_3 = L3_3(L4_4)
+L4_4 = mp
+L4_4 = L4_4.bitxor
+L4_4 = L4_4(L2_2, L1_1)
+L4_4 = L3_3 - L4_4
+L4_4 = L4_4 - 1
+pe.set_regval(pe.REG_EBX, L4_4)
 return mp.INFECTED
-

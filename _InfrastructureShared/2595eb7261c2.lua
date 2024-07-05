@@ -1,19 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2595eb7261c2 
-
--- params : ...
--- function num : 0
-if peattributes.isexe and (pe.isdynamic_va)(pevars.sigaddr) == false then
-  local l_0_0 = pevars.sigaddr + 7
-  local l_0_1 = pevars.sigaddr + 26
-  local l_0_2 = (pe.vm_search)(l_0_0, l_0_1, "u\184+", nil, pe.VM_SEARCH_FOP)
-  ;
-  (pe.mmap_patch_va)(l_0_2, "êê")
-  ;
-  (pe.mmap_patch_va)(l_0_2 + 7, "êê")
-  return mp.LOWFI
+local L0_0, L1_1, L2_2
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 then
+  L0_0 = pe
+  L0_0 = L0_0.isdynamic_va
+  L1_1 = pevars
+  L1_1 = L1_1.sigaddr
+  L0_0 = L0_0(L1_1)
+  if L0_0 == false then
+    L0_0 = pevars
+    L0_0 = L0_0.sigaddr
+    L0_0 = L0_0 + 7
+    L1_1 = pevars
+    L1_1 = L1_1.sigaddr
+    L1_1 = L1_1 + 26
+    L2_2 = pe
+    L2_2 = L2_2.vm_search
+    L2_2 = L2_2(L0_0, L1_1, "u\184+", nil, pe.VM_SEARCH_FOP)
+    pe.mmap_patch_va(L2_2, "\144\144")
+    pe.mmap_patch_va(L2_2 + 7, "\144\144")
+    return mp.LOWFI
+  end
 end
-do
-  return mp.LOWFI
-end
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

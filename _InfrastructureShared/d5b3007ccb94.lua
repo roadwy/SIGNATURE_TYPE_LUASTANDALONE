@@ -1,54 +1,116 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d5b3007ccb94 
-
--- params : ...
--- function num : 0
-if (mp.get_sigattr_event_count)(16384) > 50 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_sigattr_event_count
+L1_1 = 16384
+L0_0 = L0_0(L1_1)
+if L0_0 > 50 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_0 = (this_sigattrlog[1]).utf8p2
+L0_0 = nil
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_0 = (this_sigattrlog[2]).utf8p2
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
+    end
   else
-    if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-      l_0_0 = (this_sigattrlog[3]).utf8p2
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
+      end
     else
-      if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 ~= nil then
-        l_0_0 = (this_sigattrlog[4]).utf8p2
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[4]
+          L0_0 = L1_1.utf8p2
+        end
       else
-        if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).utf8p2 ~= nil then
-          l_0_0 = (this_sigattrlog[5]).utf8p2
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.utf8p2
+          if L1_1 ~= nil then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[5]
+            L0_0 = L1_1.utf8p2
+          end
         else
-          if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-            l_0_0 = (this_sigattrlog[6]).utf8p2
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[6]
+            L1_1 = L1_1.utf8p2
+            if L1_1 ~= nil then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[6]
+              L0_0 = L1_1.utf8p2
+            end
           end
         end
       end
     end
   end
 end
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-    for l_0_5,l_0_6 in ipairs(l_0_1) do
-      l_0_6 = (mp.ContextualExpandEnvironmentVariables)(l_0_6)
-      if (sysio.IsFileExists)(l_0_6) == true then
-        if (string.find)((string.lower)(l_0_6), "getupdatedates", 1, true) then
-          return mp.CLEAN
-        end
-        local l_0_7 = {}
-        l_0_7[".exe"] = true
-        local l_0_8 = (string.sub)(l_0_6, -4)
-        if l_0_8 ~= nil and l_0_7[l_0_8] ~= true then
-          (bm.add_related_file)(l_0_6)
-        end
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    if sysio.IsFileExists(L6_6) == true then
+      if string.find(string.lower(L6_6), "getupdatedates", 1, true) then
+        return mp.CLEAN
+      end
+      if string.sub(L6_6, -4) ~= nil and ({
+        [".exe"] = true
+      })[string.sub(L6_6, -4)] ~= true then
+        bm.add_related_file(L6_6)
       end
     end
-    return mp.INFECTED
   end
-  return mp.CLEAN
+  return L2_2
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,117 +1,118 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/14bb3bb6af802 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0["cmd.exe"] = true
-l_0_0["powershell.exe"] = true
-local l_0_1 = {}
-l_0_1["cscript.exe"] = true
-l_0_1["wscript.exe"] = true
-local l_0_2 = {}
-l_0_2["python.exe"] = true
-l_0_2["perl.exe"] = true
-l_0_2["java.exe"] = true
-local l_0_3 = nil
-if (this_sigattrlog[1]).matched then
-  l_0_3 = (this_sigattrlog[1]).ppid
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18
+L0_0 = {}
+L0_0["cmd.exe"] = true
+L0_0["powershell.exe"] = true
+L1_1 = {}
+L1_1["cscript.exe"] = true
+L1_1["wscript.exe"] = true
+L2_2 = {}
+L2_2["python.exe"] = true
+L2_2["perl.exe"] = true
+L2_2["java.exe"] = true
+L3_3 = nil
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L3_3 = L4_4.ppid
 else
-  return mp.CLEAN
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = nil
-local l_0_5 = false
-if (this_sigattrlog[2]).matched then
-  local l_0_6 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2))
-  if (string.find)(l_0_6, "/query", 1, true) == nil and (string.find)(l_0_6, "/delete", 1, true) == nil then
-    l_0_5 = true
+L4_4 = nil
+L5_5 = false
+if L6_6 then
+  L18_18 = L7_7(L8_8)
+  L9_9 = "/query"
+  L10_10 = 1
+  L11_11 = true
+  if L7_7 == nil then
+    L9_9 = "/delete"
+    L10_10 = 1
+    L11_11 = true
+    if L7_7 == nil then
+      L5_5 = true
+    end
   end
-  l_0_4 = (this_sigattrlog[2]).ppid
+  L4_4 = L7_7.ppid
+elseif L6_6 then
+  L5_5 = true
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
 else
-  do
-    if (this_sigattrlog[3]).matched then
-      l_0_5 = true
-      l_0_4 = (this_sigattrlog[3]).ppid
-    else
-      if (this_sigattrlog[4]).matched then
-        l_0_4 = (this_sigattrlog[4]).ppid
-      else
-        if (this_sigattrlog[5]).matched then
-          l_0_4 = (this_sigattrlog[5]).ppid
-        else
-          if (this_sigattrlog[6]).matched then
-            l_0_4 = (this_sigattrlog[6]).ppid
-          else
-            if (this_sigattrlog[7]).matched then
-              l_0_4 = (this_sigattrlog[7]).ppid
+  return L6_6
+end
+for L9_9 = 1, 6 do
+  if L9_9 > 7 then
+    L10_10 = mp
+    L10_10 = L10_10.CLEAN
+    return L10_10
+  end
+  L10_10 = bm
+  L10_10 = L10_10.get_process_relationships
+  L11_11 = L3_3
+  L11_11 = L10_10(L11_11)
+  for L15_15, L16_16 in L12_12(L13_13) do
+    L17_17 = L16_16.image_path
+    if L17_17 ~= nil then
+      L17_17 = L16_16.reason
+      if L17_17 == 1 then
+        L17_17 = L16_16.ppid
+        if L17_17 == L4_4 then
+          L17_17 = mp
+          L17_17 = L17_17.CLEAN
+          return L17_17
+        end
+        L17_17 = string
+        L17_17 = L17_17.lower
+        L18_18 = string
+        L18_18 = L18_18.match
+        L18_18 = L18_18(L16_16.image_path, "\\([^\\]+)$")
+        L17_17 = L17_17(L18_18, L18_18(L16_16.image_path, "\\([^\\]+)$"))
+        L18_18 = L0_0[L17_17]
+        if L18_18 ~= true then
+          L18_18 = L1_1[L17_17]
+          if L18_18 ~= true then
+            L18_18 = L2_2[L17_17]
+          end
+        elseif L18_18 == true then
+          L18_18 = string
+          L18_18 = L18_18.lower
+          L18_18 = L18_18(mp.GetProcessCommandLine(L16_16.ppid))
+          if L18_18 == nil or L18_18 == "" or string.find(L18_18, "\\windows\\ccm\\systemtemp\\", 1, true) == nil and string.find(L18_18, "\\windows\\ccmcache\\", 1, true) == nil then
+            if L5_5 == true then
+              return mp.INFECTED
             else
-              if (this_sigattrlog[8]).matched then
-                l_0_4 = (this_sigattrlog[8]).ppid
-              else
-                if (this_sigattrlog[9]).matched then
-                  l_0_4 = (this_sigattrlog[9]).ppid
-                else
-                  if (this_sigattrlog[10]).matched then
-                    l_0_4 = (this_sigattrlog[10]).ppid
-                  else
-                    if (this_sigattrlog[11]).matched then
-                      l_0_4 = (this_sigattrlog[11]).ppid
-                    else
-                      if (this_sigattrlog[12]).matched then
-                        l_0_4 = (this_sigattrlog[12]).ppid
-                      else
-                        return mp.CLEAN
-                      end
-                    end
-                  end
-                end
-              end
+              mp.ReportLowfi(L16_16.image_path, 864567885)
             end
           end
         end
+        L18_18 = bm
+        L18_18 = L18_18.add_related_file
+        L18_18(L16_16.image_path)
+        L3_3 = L16_16.ppid
       end
     end
-    for l_0_10 = 1, 6 do
-      if l_0_10 > 7 then
-        return mp.CLEAN
-      end
-      local l_0_11, l_0_12 = (bm.get_process_relationships)(l_0_3)
-      for l_0_16,l_0_17 in ipairs(l_0_12) do
-        if l_0_17.image_path ~= nil and l_0_17.reason == 1 then
-          if l_0_17.ppid == l_0_4 then
-            return mp.CLEAN
-          end
-          local l_0_18 = (string.lower)((string.match)(l_0_17.image_path, "\\([^\\]+)$"))
-          do
-            do
-              if l_0_0[l_0_18] == true or l_0_1[l_0_18] == true or l_0_2[l_0_18] == true then
-                local l_0_19 = (string.lower)((mp.GetProcessCommandLine)(l_0_17.ppid))
-                if l_0_19 == nil or l_0_19 == "" or (string.find)(l_0_19, "\\windows\\ccm\\systemtemp\\", 1, true) == nil and (string.find)(l_0_19, "\\windows\\ccmcache\\", 1, true) == nil then
-                  if l_0_5 == true then
-                    return mp.INFECTED
-                  else
-                    ;
-                    (mp.ReportLowfi)(l_0_17.image_path, 864567885)
-                  end
-                end
-              end
-              ;
-              (bm.add_related_file)(l_0_17.image_path)
-              l_0_3 = l_0_17.ppid
-              -- DECOMPILER ERROR at PC247: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC247: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC247: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
-        end
-      end
-    end
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC253: Confused about usage of register R7 for local variables in 'ReleaseLocals'
-
   end
 end
-
+return L6_6

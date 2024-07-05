@@ -1,88 +1,99 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8f78c9781649 
-
--- params : ...
--- function num : 0
-if ((hstrlog[1]).matched or (hstrlog[2]).matched or hstrlog[3] or hstrlog[4]) and pehdr.NumberOfSections < 6 and pehdr.NumberOfSections >= 3 then
-  local l_0_0 = 1280
-  local l_0_1 = 256
-  local l_0_2 = 8192
-  if (pesecs[1]).Name == ".text" and l_0_0 + l_0_1 < (pesecs[1]).VirtualSize and l_0_2 < (pesecs[3]).VirtualSize then
-    local l_0_3 = (pe.mmap_rva)((pesecs[1]).VirtualAddress + l_0_1, l_0_0)
-    local l_0_4 = true
-    local l_0_5 = 0
-    local l_0_6 = 0
-    for l_0_10 = 1, 8 do
-      local l_0_11 = (mp.readu_u32)(l_0_3, l_0_10)
-      if (mp.bitand)(l_0_11, 65535) > 0 and (mp.bitand)(l_0_11, 4294901760) == 0 then
-        do
-          do
-            l_0_6 = l_0_10
-            do break end
-            -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
-      end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    if not L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[4]
     end
-    for l_0_15 = l_0_6, l_0_0 - 4 - l_0_6, 4 do
-      local l_0_16 = (mp.readu_u32)(l_0_3, l_0_15)
-      if (mp.bitand)(l_0_16, 65535) > 0 then
-        l_0_5 = l_0_5 + 1
-      end
-      if (mp.bitand)(l_0_16, 4294901760) > 0 then
-        do
-          do
-            l_0_4 = false
-            do break end
-            -- DECOMPILER ERROR at PC109: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC109: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC109: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
-      end
-    end
-    if l_0_4 and l_0_0 / 4 / 2 < l_0_5 then
-      local l_0_17 = (pe.foffset_rva)((pesecs[3]).VirtualAddress + (pesecs[3]).VirtualSize - l_0_2)
-      ;
-      (mp.readprotection)(false)
-      local l_0_18 = (mp.readfile)(l_0_17, l_0_2)
-      local l_0_19 = -1
-      for l_0_23 = l_0_2 - 4, 1, -1 do
-        local l_0_24 = (mp.readu_u32)(l_0_18, l_0_23)
-        if l_0_24 == 720895 or l_0_24 == 655359 then
-          do
-            do
-              l_0_19 = l_0_17 + l_0_23
-              do break end
-              -- DECOMPILER ERROR at PC152: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC152: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC152: LeaveBlock: unexpected jumping out IF_STMT
-
+  end
+elseif L0_0 then
+  L0_0 = pehdr
+  L0_0 = L0_0.NumberOfSections
+  if L0_0 < 6 then
+    L0_0 = pehdr
+    L0_0 = L0_0.NumberOfSections
+    if L0_0 >= 3 then
+      L0_0 = 1280
+      L1_1 = 256
+      L2_2 = 8192
+      L3_3 = pesecs
+      L3_3 = L3_3[1]
+      L3_3 = L3_3.Name
+      if L3_3 == ".text" then
+        L3_3 = pesecs
+        L3_3 = L3_3[1]
+        L3_3 = L3_3.VirtualSize
+        L4_4 = L0_0 + L1_1
+        if L3_3 > L4_4 then
+          L3_3 = pesecs
+          L3_3 = L3_3[3]
+          L3_3 = L3_3.VirtualSize
+          if L2_2 < L3_3 then
+            L3_3 = pe
+            L3_3 = L3_3.mmap_rva
+            L4_4 = pesecs
+            L4_4 = L4_4[1]
+            L4_4 = L4_4.VirtualAddress
+            L4_4 = L4_4 + L1_1
+            L5_5 = L0_0
+            L3_3 = L3_3(L4_4, L5_5)
+            L4_4 = true
+            L5_5 = 0
+            L6_6 = 0
+            for L10_10 = 1, 8 do
+              L13_13 = L10_10
+              L13_13 = L11_11
+              if L12_12 > 0 then
+                L13_13 = L11_11
+                if L12_12 == 0 then
+                  L6_6 = L10_10
+                  break
+                end
+              end
+            end
+            for L10_10 = L6_6, L8_8 - L6_6, 4 do
+              L13_13 = L10_10
+              L13_13 = L11_11
+              if L12_12 > 0 then
+                L5_5 = L5_5 + 1
+              end
+              L13_13 = L11_11
+              if L12_12 > 0 then
+                L4_4 = false
+                break
+              end
+            end
+            if L4_4 then
+              if L5_5 > L7_7 then
+                L8_8(L9_9)
+                for L13_13 = L2_2 - 4, 1, -1 do
+                  if mp.readu_u32(L8_8, L13_13) == 720895 or mp.readu_u32(L8_8, L13_13) == 655359 then
+                    break
+                  end
+                end
+                if L9_9 ~= -1 then
+                  L13_13 = L12_12()
+                  L13_13 = L9_9
+                  L11_11(L12_12, L13_13, 1)
+                  L13_13 = "xorgetti_patched"
+                  L11_11(L12_12, L13_13, mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+                end
+              end
             end
           end
         end
       end
-      if l_0_19 ~= -1 then
-        local l_0_25 = (mp.readfile)(0, (mp.getfilesize)())
-        ;
-        (mp.writeu_u32)(l_0_25, l_0_19, 1)
-        ;
-        (mp.vfo_add_buffer)(l_0_25, "xorgetti_patched", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

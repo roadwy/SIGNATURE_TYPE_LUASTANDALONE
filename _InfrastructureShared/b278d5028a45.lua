@@ -1,31 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b278d5028a45 
-
--- params : ...
--- function num : 0
-(mp.readprotection)(false)
-if (hstrlog[1]).matched then
-  local l_0_0 = (mp.readfile)((pe.foffset_va)((hstrlog[1]).VA + 11), 4)
-  ;
-  (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", (mp.readu_u32)(l_0_0, 1)))
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.readfile
+  L0_0 = L0_0(pe.foffset_va(hstrlog[1].VA + 11), 4)
+  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", mp.readu_u32(L0_0, 1)))
 else
-  do
-    if (hstrlog[2]).matched then
-      local l_0_1 = (mp.readfile)((pe.foffset_va)((hstrlog[2]).VA - 7), 4)
-      ;
-      (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", (mp.readu_u32)(l_0_1, 1)))
-    else
-      do
-        if (hstrlog[3]).matched or (hstrlog[5]).matched or (hstrlog[6]).matched or (hstrlog[7]).matched or (hstrlog[8]).matched or (hstrlog[9]).matched then
-          (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", 4097))
-        else
-          if (hstrlog[4]).matched then
-            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", 4096))
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.readfile
+    L0_0 = L0_0(pe.foffset_va(hstrlog[2].VA - 7), 4)
+    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", mp.readu_u32(L0_0, 1)))
+  else
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if not L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[5]
+      L0_0 = L0_0.matched
+      if not L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[6]
+        L0_0 = L0_0.matched
+        if not L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[7]
+          L0_0 = L0_0.matched
+          if not L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[8]
+            L0_0 = L0_0.matched
+            if not L0_0 then
+              L0_0 = hstrlog
+              L0_0 = L0_0[9]
+              L0_0 = L0_0.matched
+            end
           end
         end
-        return mp.CLEAN
+      end
+    else
+      if L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.set_mpattribute
+        L0_0(string.format("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", 4097))
+    end
+    else
+      L0_0 = hstrlog
+      L0_0 = L0_0[4]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.set_mpattribute
+        L0_0(string.format("HSTR:VirTool:Win32/Obfuscator.PN!l1_cnt_%08X", 4096))
       end
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

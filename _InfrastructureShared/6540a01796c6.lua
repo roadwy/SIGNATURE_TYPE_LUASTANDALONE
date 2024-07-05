@@ -1,60 +1,72 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6540a01796c6 
-
--- params : ...
--- function num : 0
-local l_0_0 = mp.SIGATTR_LOG_SZ
-if mp.SIGATTR_LOG_SZ >= 3 then
-  l_0_0 = 3
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = mp
+L0_0 = L0_0.SIGATTR_LOG_SZ
+if L1_1 >= 3 then
+  L0_0 = 3
 end
-for l_0_4 = 1, l_0_0 do
-  local l_0_5 = mp.SIGATTR_LOG_SZ - l_0_4 + 1
-  if (sigattr_tail[l_0_5]).matched and (sigattr_tail[l_0_5]).attribute == 12312 then
-    local l_0_6 = (sigattr_tail[l_0_5]).p1
-    if (string.len)(l_0_6) == 71 and l_0_6:sub(-4) == ".exe" and (string.byte)(l_0_6, -21) == 92 then
-      if l_0_6:sub(-38, -22) ~= "\\Application Data" then
-        break
-      end
-      local l_0_7 = l_0_6:sub(-20)
-    end
-    if (string.byte)(l_0_7) >= 65 then
-      if (string.byte)(l_0_7) > 90 then
-        break
-      end
-      do
-        local l_0_8 = (string.len)(l_0_7)
-        for l_0_12 = 2, l_0_8 - 4 do
-          do
-            local l_0_13 = (string.byte)(l_0_7, l_0_12)
-            if l_0_13 >= 97 then
-              do
-                if l_0_13 > 122 then
-                  break
-                end
-                -- DECOMPILER ERROR at PC87: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC87: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC87: LeaveBlock: unexpected jumping out DO_STMT
-
-              end
+for L4_4 = 1, L0_0 do
+  L5_5 = mp
+  L5_5 = L5_5.SIGATTR_LOG_SZ
+  L5_5 = L5_5 - L4_4
+  L5_5 = L5_5 + 1
+  L6_6 = sigattr_tail
+  L6_6 = L6_6[L5_5]
+  L6_6 = L6_6.matched
+  if L6_6 then
+    L6_6 = sigattr_tail
+    L6_6 = L6_6[L5_5]
+    L6_6 = L6_6.attribute
+    if L6_6 == 12312 then
+      L6_6 = sigattr_tail
+      L6_6 = L6_6[L5_5]
+      L6_6 = L6_6.p1
+      L7_7 = string
+      L7_7 = L7_7.len
+      L8_8 = L6_6
+      L7_7 = L7_7(L8_8)
+      if L7_7 == 71 then
+        L8_8 = L6_6
+        L7_7 = L6_6.sub
+        L7_7 = L7_7(L8_8, L9_9)
+        if L7_7 == ".exe" then
+          L7_7 = string
+          L7_7 = L7_7.byte
+          L8_8 = L6_6
+          L7_7 = L7_7(L8_8, L9_9)
+          if L7_7 == 92 then
+            L8_8 = L6_6
+            L7_7 = L6_6.sub
+            L7_7 = L7_7(L8_8, L9_9, L10_10)
+            if L7_7 ~= "\\Application Data" then
+              break
+            end
+            L8_8 = L6_6
+            L7_7 = L6_6.sub
+            L7_7 = L7_7(L8_8, L9_9)
+            L8_8 = string
+            L8_8 = L8_8.byte
+            L8_8 = L8_8(L9_9)
+            if not (L8_8 < 65) then
+              L8_8 = string
+              L8_8 = L8_8.byte
+              L8_8 = L8_8(L9_9)
             end
           end
         end
-        ;
-        (mp.set_mpattribute)("SIGATTR:DorkbotFileName.A")
-        do return mp.INFECTED end
-        -- DECOMPILER ERROR at PC95: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC95: LeaveBlock: unexpected jumping out IF_STMT
-
-        -- DECOMPILER ERROR at PC95: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC95: LeaveBlock: unexpected jumping out IF_STMT
-
+      elseif L8_8 > 90 then
+        break
       end
+      L8_8 = string
+      L8_8 = L8_8.len
+      L8_8 = L8_8(L9_9)
+      for L12_12 = 2, L8_8 - 4 do
+        if string.byte(L7_7, L12_12) < 97 or string.byte(L7_7, L12_12) > 122 then
+          break
+        end
+      end
+      L9_9(L10_10)
+      return L9_9
     end
   end
 end
-return mp.CLEAN
-
+return L1_1

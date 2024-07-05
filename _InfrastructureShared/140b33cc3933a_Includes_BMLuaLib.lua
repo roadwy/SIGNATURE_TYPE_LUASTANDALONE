@@ -1,70 +1,121 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/140b33cc3933a_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_2, l_0_3, l_0_11, l_0_15, l_0_17 = nil, nil, nil, nil, nil
-if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-  local l_0_0, l_0_1, l_0_5, l_0_6, l_0_8, l_0_9, l_0_13 = ((this_sigattrlog[6]).utf8p2):lower()
-  l_0_9 = this_sigattrlog
-  l_0_9 = l_0_9[6]
-  l_0_6 = l_0_9.ppid
-  local l_0_4, l_0_12, l_0_16 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L5_5 = this_sigattrlog
+L5_5 = L5_5[6]
+L5_5 = L5_5.matched
+if L5_5 then
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[6]
+  L5_5 = L5_5.utf8p2
+  if L5_5 ~= nil then
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[6]
+    L5_5 = L5_5.utf8p2
+    L6_6 = L5_5
+    L5_5 = L5_5.lower
+    L5_5 = L5_5(L6_6)
+    L0_0 = L5_5
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[6]
+    L3_3 = L5_5.ppid
+  end
 else
-end
-do
-  do
-    if (not (this_sigattrlog[7]).matched or (this_sigattrlog[7]).utf8p2 == nil or (this_sigattrlog[4]).matched) and (this_sigattrlog[4]).utf8p1 ~= nil then
-      local l_0_7, l_0_10, l_0_14 = ((this_sigattrlog[7]).utf8p2):lower(), (string.match)((this_sigattrlog[4]).utf8p1, "\\([^\\]+)$")
-    end
-    -- DECOMPILER ERROR at PC58: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC59: Confused about usage of register: R1 in 'UnsetPending'
-
-    if not contains(l_0_7, l_0_10) then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC66: Confused about usage of register: R0 in 'UnsetPending'
-
-    if not l_0_7 then
-      return mp.CLEAN
-    end
-    local l_0_18 = nil
-    local l_0_19 = nil
-    if (mp.GetParentProcInfo)((this_sigattrlog[7]).ppid) == nil or not (string.lower)(((mp.GetParentProcInfo)((this_sigattrlog[7]).ppid)).image_path) then
-      return mp.CLEAN
-    end
-    local l_0_20 = nil
-    -- DECOMPILER ERROR at PC93: Confused about usage of register: R4 in 'UnsetPending'
-
-    if contains((string.lower)(((mp.GetParentProcInfo)((this_sigattrlog[7]).ppid)).image_path), {"certutil.exe", "mshta.exe"}) then
-      local l_0_21 = nil
-      -- DECOMPILER ERROR at PC105: Confused about usage of register: R4 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC121: Overwrote pending register: R2 in 'AssignReg'
-
-      if (not contains((string.lower)(((mp.GetParentProcInfo)((this_sigattrlog[7]).ppid)).image_path), {"winword.exe", "excel.exe", "powerpnt.exe"}) or l_0_20) and (sysio.IsFileExists)(l_0_20) then
-        local l_0_22 = nil
-        if ((sysio.GetLastResult)()).Success and (sysio.GetFileLastWriteTime)(l_0_20) ~= 0 then
-          local l_0_23 = true
-          -- DECOMPILER ERROR at PC147: Confused about usage of register: R9 in 'UnsetPending'
-
-          if (MpCommon.GetCurrentTimeT)() < (sysio.GetFileLastWriteTime)(l_0_20) / 10000000 - 11644473600 or (MpCommon.GetCurrentTimeT)() - ((sysio.GetFileLastWriteTime)(l_0_20) / 10000000 - 11644473600) > 3600 and l_0_23 == true then
-            (bm.add_related_file)(l_0_20)
-          else
-            return mp.CLEAN
-          end
-        end
-      end
-      do
-        -- DECOMPILER ERROR at PC160: Confused about usage of register: R5 in 'UnsetPending'
-
-        if l_0_23 then
-          return mp.INFECTED
-        end
-        return mp.CLEAN
-      end
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[7]
+  L5_5 = L5_5.matched
+  if L5_5 then
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[7]
+    L5_5 = L5_5.utf8p2
+    if L5_5 ~= nil then
+      L5_5 = this_sigattrlog
+      L5_5 = L5_5[7]
+      L5_5 = L5_5.utf8p2
+      L6_6 = L5_5
+      L5_5 = L5_5.lower
+      L5_5 = L5_5(L6_6)
+      L0_0 = L5_5
+      L5_5 = this_sigattrlog
+      L5_5 = L5_5[7]
+      L3_3 = L5_5.ppid
     end
   end
 end
-
+L5_5 = this_sigattrlog
+L5_5 = L5_5[4]
+L5_5 = L5_5.matched
+if L5_5 then
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[4]
+  L5_5 = L5_5.utf8p1
+  if L5_5 ~= nil then
+    L5_5 = string
+    L5_5 = L5_5.match
+    L6_6 = this_sigattrlog
+    L6_6 = L6_6[4]
+    L6_6 = L6_6.utf8p1
+    L7_7 = "\\([^\\]+)$"
+    L5_5 = L5_5(L6_6, L7_7)
+    L1_1 = L5_5
+  end
+end
+L5_5 = contains
+L6_6 = L0_0
+L7_7 = L1_1
+L5_5 = L5_5(L6_6, L7_7)
+if not L5_5 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+if not L0_0 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = false
+L6_6 = mp
+L6_6 = L6_6.GetParentProcInfo
+L7_7 = L3_3
+L6_6 = L6_6(L7_7)
+if L6_6 ~= nil then
+  L7_7 = string
+  L7_7 = L7_7.lower
+  L8_8 = L6_6.image_path
+  L7_7 = L7_7(L8_8)
+  L4_4 = L7_7
+end
+if not L4_4 then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7 = {L8_8, "mshta.exe"}
+L8_8 = "certutil.exe"
+L8_8 = contains
+L8_8 = L8_8(L4_4, L7_7)
+if L8_8 then
+  L5_5 = true
+end
+L8_8 = {
+  "winword.exe",
+  "excel.exe",
+  "powerpnt.exe"
+}
+if contains(L4_4, L8_8) then
+  L5_5 = true
+end
+L2_2 = extractDllForRegproc(L0_0)
+if L2_2 then
+  L2_2 = mp.ContextualExpandEnvironmentVariables(L2_2)
+  if sysio.IsFileExists(L2_2) and sysio.GetLastResult().Success and sysio.GetFileLastWriteTime(L2_2) ~= 0 then
+    if sysio.GetFileLastWriteTime(L2_2) / 10000000 - 11644473600 > MpCommon.GetCurrentTimeT() or MpCommon.GetCurrentTimeT() - (sysio.GetFileLastWriteTime(L2_2) / 10000000 - 11644473600) > 3600 and L5_5 == true then
+      bm.add_related_file(L2_2)
+    else
+      return mp.CLEAN
+    end
+  end
+end
+if L5_5 then
+  return mp.INFECTED
+end
+return mp.CLEAN

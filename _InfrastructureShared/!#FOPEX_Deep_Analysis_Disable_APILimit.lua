@@ -1,37 +1,83 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#FOPEX_Deep_Analysis_Disable_APILimit 
-
--- params : ...
--- function num : 0
-if peattributes.epinfirstsect ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.epinfirstsect
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.no_decription ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.no_decription
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 3 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).Characteristics ~= 1610612768 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 1610612768 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[2]).Characteristics ~= 3221225536 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 3221225536 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[3]).Characteristics ~= 1073741888 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[3]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 1073741888 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[2]).NameDW ~= 1952539694 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 1952539694 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[2]).VirtualAddress == 0 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.VirtualAddress
+if L0_0 == 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[2]).SizeOfRawData ~= 0 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[2]).PointerToRawData ~= 0 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.PointerToRawData
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

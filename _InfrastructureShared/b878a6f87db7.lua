@@ -1,10 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b878a6f87db7 
-
--- params : ...
--- function num : 0
-if pevars.epsec == 1 and (pesecs[pevars.epsec]).Name == ".text" and (pesecs[2]).Name == ".data" and (pesecs[3]).Name == ".rsrc" and peattributes.no_decription and peattributes.suspicious_image_version then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pevars
+L0_0 = L0_0.epsec
+if L0_0 == 1 then
+  L0_0 = pesecs
+  L1_1 = pevars
+  L1_1 = L1_1.epsec
+  L0_0 = L0_0[L1_1]
+  L0_0 = L0_0.Name
+  if L0_0 == ".text" then
+    L0_0 = pesecs
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.Name
+    if L0_0 == ".data" then
+      L0_0 = pesecs
+      L0_0 = L0_0[3]
+      L0_0 = L0_0.Name
+      if L0_0 == ".rsrc" then
+        L0_0 = peattributes
+        L0_0 = L0_0.no_decription
+        if L0_0 then
+          L0_0 = peattributes
+          L0_0 = L0_0.suspicious_image_version
+          if L0_0 then
+            L0_0 = mp
+            L0_0 = L0_0.INFECTED
+            return L0_0
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,16 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_Keylogging.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.lower)(l_0_0)
-    if (string.find)(l_0_1, "\\program files", 1, true) ~= nil or (string.find)(l_0_1, ":\\windows\\", 1, true) ~= nil then
-      return mp.CLEAN
-    end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_FILEPATH
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0)
+  if string.find(L1_1, "\\program files", 1, true) ~= nil or string.find(L1_1, ":\\windows\\", 1, true) ~= nil then
+    return mp.CLEAN
   end
-  return mp.INFECTED
 end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

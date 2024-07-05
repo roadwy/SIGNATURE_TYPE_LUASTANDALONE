@@ -1,24 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2e9574227fdc 
-
--- params : ...
--- function num : 0
-(mp.readprotection)(false)
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr, 100)
-local l_0_1 = (string.find)(l_0_0, "Yt", 1, true)
-local l_0_2 = (string.find)(l_0_0, "\015\132", 1, true)
-if l_0_2 ~= nil and l_0_1 ~= nil then
-  if l_0_1 <= l_0_2 then
-    local l_0_3 = (string.byte)(l_0_0, l_0_2 + 2)
-    local l_0_4 = (string.char)(l_0_2 - l_0_1 + l_0_3)
-    ;
-    (pe.mmap_patch_va)(pevars.sigaddr + l_0_1, (string.format)("\233%s\000\000\000", l_0_4))
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L2_2 = 100
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "Yt"
+L4_4 = 1
+L1_1 = L1_1(L2_2, L3_3, L4_4, true)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L0_0
+L4_4 = "\015\132"
+L2_2 = L2_2(L3_3, L4_4, 1, true)
+if L2_2 ~= nil and L1_1 ~= nil then
+  if L1_1 <= L2_2 then
+    L3_3 = string
+    L3_3 = L3_3.byte
+    L4_4 = L0_0
+    L3_3 = L3_3(L4_4, L2_2 + 2)
+    L4_4 = string
+    L4_4 = L4_4.char
+    L4_4 = L4_4(L2_2 - L1_1 + L3_3)
+    pe.mmap_patch_va(pevars.sigaddr + L1_1, string.format("\233%s\000\000\000", L4_4))
   else
-    do
-      ;
-      (pe.mmap_patch_va)(pevars.sigaddr + l_0_2 - 1, "é")
-      return mp.LOWFI
-    end
+    L3_3 = pe
+    L3_3 = L3_3.mmap_patch_va
+    L4_4 = pevars
+    L4_4 = L4_4.sigaddr
+    L4_4 = L4_4 + L2_2
+    L4_4 = L4_4 - 1
+    L3_3(L4_4, "\144\233")
   end
 end
-
+L3_3 = mp
+L3_3 = L3_3.LOWFI
+return L3_3

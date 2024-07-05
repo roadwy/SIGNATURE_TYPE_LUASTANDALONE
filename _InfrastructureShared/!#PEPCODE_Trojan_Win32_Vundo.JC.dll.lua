@@ -1,31 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Trojan_Win32_Vundo.JC.dll 
-
--- params : ...
--- function num : 0
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasexports == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasstandardentry == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasstandardentry
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections <= 4 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 <= 4 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfHeaders ~= 1024 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfHeaders
+if L0_0 ~= 1024 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfUninitializedData ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfUninitializedData
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.FileAlignment ~= 512 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.FileAlignment
+if L0_0 ~= 512 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.Subsystem ~= 2 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.Subsystem
+if L0_0 ~= 2 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

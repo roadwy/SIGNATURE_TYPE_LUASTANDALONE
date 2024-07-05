@@ -1,23 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b1b32f901ba4_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched == false or (this_sigattrlog[1]).timestamp == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 ~= false then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.timestamp
+elseif L0_0 == nil then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (this_sigattrlog[2]).matched == false or (this_sigattrlog[2]).timestamp == nil then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 ~= false then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.timestamp
+elseif L0_0 == nil then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (this_sigattrlog[1]).timestamp
-local l_0_1 = (this_sigattrlog[2]).timestamp
-if l_0_1 < l_0_0 then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.timestamp
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.timestamp
+if L0_0 > L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = l_0_1 - l_0_0
-if l_0_2 > 3000000000 then
+L2_2 = L1_1 - L0_0
+if L2_2 > 3000000000 then
   return mp.CLEAN
 end
 TrackPidAndTechniqueBM("BM", "T1548.002", "uac_bypass_src")
 return mp.INFECTED
-

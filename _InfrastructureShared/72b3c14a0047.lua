@@ -1,18 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/72b3c14a0047 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-local l_0_2 = nil
-for l_0_6,l_0_7 in ipairs(l_0_0) do
-  l_0_2 = l_0_7.image_path
-  if l_0_2 ~= nil then
-    l_0_2 = (string.lower)(l_0_2)
-    if l_0_2:find("excel.exe") or l_0_2:find("word.exe") then
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+L2_2 = nil
+for _FORV_6_, _FORV_7_ in ipairs(L0_0) do
+  L2_2 = _FORV_7_.image_path
+  if L2_2 ~= nil then
+    L2_2 = string.lower(L2_2)
+    if L2_2:find("excel.exe") or L2_2:find("word.exe") then
       return mp.INFECTED
     end
   end
 end
 return mp.CLEAN
-

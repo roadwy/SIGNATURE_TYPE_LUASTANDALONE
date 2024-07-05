@@ -1,23 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_LUA_Trojan_Win64_Winnti.S!dha 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 103000 or l_0_0 > 113000 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 103000 or L0_0 > 113000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if mp.HEADERPAGE_SZ < 10 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.HEADERPAGE_SZ
+if L1_1 < 10 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 1) ~= 0 or (mp.readu_u32)(headerpage, 5) ~= 0 or (mp.readu_u16)(headerpage, 9) ~= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(headerpage, 1)
+if L1_1 == 0 then
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L1_1 = L1_1(headerpage, 5)
+  if L1_1 == 0 then
+    L1_1 = mp
+    L1_1 = L1_1.readu_u16
+    L1_1 = L1_1(headerpage, 9)
+  end
+elseif L1_1 ~= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(l_0_0 - 8000, 4000)
-if (string.find)(l_0_1, "IsInfectedRun\000IsPassKavSucess\000IsPassSucess1\000IsPassSucess2\000IsRuninUAC", 1, true) ~= nil then
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L1_1(false)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L1_1 = L1_1(L0_0 - 8000, 4000)
+if string.find(L1_1, "IsInfectedRun\000IsPassKavSucess\000IsPassSucess1\000IsPassSucess2\000IsRuninUAC", 1, true) ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,19 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FileInStartupFolder_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-do
-  if l_0_0 ~= nil and l_0_0:len() > 28 then
-    local l_0_1 = (string.lower)(l_0_0)
-    if (string.sub)(l_0_1, -28) == "\\start menu\\programs\\startup" then
-      if (mp.get_mpattribute)("BM_LNK_FILE") then
-        (mp.set_mpattribute)("Lua:LnkFileInStartupFolder")
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_FILEPATH
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = L0_0.len
+  L1_1 = L1_1(L0_0)
+  if L1_1 > 28 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L0_0)
+    if string.sub(L1_1, -28) == "\\start menu\\programs\\startup" then
+      if mp.get_mpattribute("BM_LNK_FILE") then
+        mp.set_mpattribute("Lua:LnkFileInStartupFolder")
       end
       return mp.INFECTED
     end
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

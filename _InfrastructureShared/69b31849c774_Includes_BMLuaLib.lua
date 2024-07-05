@@ -1,61 +1,103 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b31849c774_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-getFirstChildPpid = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  if l_1_0 == nil then
+local L0_0, L1_1, L2_2
+function L0_0(A0_3, A1_4)
+  local L2_5, L3_6, L4_7, L5_8
+  if A0_3 == nil then
+    L2_5 = nil
+    return L2_5
+  end
+  L2_5 = true
+  L3_6 = 0
+  if A1_4 == nil then
+    L4_7 = string
+    L4_7 = L4_7.len
+    L5_8 = A1_4
+    L4_7 = L4_7(L5_8)
+  elseif L4_7 > 0 then
+    L2_5 = false
+    L4_7 = string
+    L4_7 = L4_7.len
+    L5_8 = A1_4
+    L4_7 = L4_7(L5_8)
+    L3_6 = L4_7
+  end
+  L4_7 = bm
+  L4_7 = L4_7.get_process_relationships
+  L5_8 = A0_3
+  L5_8 = L4_7(L5_8)
+  if L5_8 == nil or #L5_8 < 1 or #L5_8 > 4 then
     return nil
   end
-  local l_1_2 = true
-  local l_1_3 = 0
-  if l_1_1 ~= nil or (string.len)(l_1_1) > 0 then
-    l_1_2 = false
-    l_1_3 = (string.len)(l_1_1)
-  end
-  local l_1_4, l_1_5 = (bm.get_process_relationships)(l_1_0)
-  if l_1_5 == nil or #l_1_5 < 1 or #l_1_5 > 4 then
-    return nil
-  end
-  local l_1_6 = nil
-  for l_1_10,l_1_11 in ipairs(l_1_5) do
-    if (mp.bitand)(l_1_11.reason_ex, 1) == 1 and (l_1_2 == true or l_1_3 >= (string.len)(l_1_11.image_path) or (string.sub)(l_1_11.image_path, -l_1_3) == l_1_1) then
-      l_1_6 = l_1_11.ppid
+  for _FORV_10_, _FORV_11_ in ipairs(L5_8) do
+    if mp.bitand(_FORV_11_.reason_ex, 1) == 1 and (L2_5 == true or L3_6 < string.len(_FORV_11_.image_path) and string.sub(_FORV_11_.image_path, -L3_6) == A1_4) then
       break
     end
   end
-  do
-    return l_1_6
-  end
+  return _FORV_11_.ppid
 end
-
-local l_0_0, l_0_1 = nil, nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_0 = (this_sigattrlog[1]).ppid
-  l_0_1 = (this_sigattrlog[1]).utf8p2
+getFirstChildPpid = L0_0
+L0_0, L1_1 = nil, nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.ppid
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_0 = (this_sigattrlog[2]).ppid
-    l_0_1 = (this_sigattrlog[2]).utf8p2
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.ppid
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L1_1 = L2_2.utf8p2
+    end
   else
-    if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-      l_0_0 = (this_sigattrlog[3]).ppid
-      l_0_1 = (this_sigattrlog[3]).utf8p2
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L0_0 = L2_2.ppid
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L1_1 = L2_2.utf8p2
+      end
     end
   end
 end
-if l_0_0 == nil then
+if L0_0 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = getFirstChildPpid
+L2_2 = L2_2(L0_0, "\\cmd.exe")
+if L2_2 == nil then
   return mp.CLEAN
 end
-local l_0_2 = getFirstChildPpid(l_0_0, "\\cmd.exe")
-if l_0_2 == nil then
+if getFirstChildPpid(L2_2, "\\powershell.exe") == nil then
   return mp.CLEAN
 end
-local l_0_3 = getFirstChildPpid(l_0_2, "\\powershell.exe")
-if l_0_3 == nil then
-  return mp.CLEAN
-end
-bm_AddRelatedFileFromCommandLine(l_0_1)
+bm_AddRelatedFileFromCommandLine(L1_1)
 return mp.INFECTED
-

@@ -1,43 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1f7b343088b36 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p2
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L0_0 = L1_1.utf8p2
   else
-  end
-  -- DECOMPILER ERROR at PC25: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[3]).matched or (this_sigattrlog[4]).matched then
-      local l_0_1, l_0_2, l_0_3, l_0_4, l_0_5 = (this_sigattrlog[3]).utf8p2
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L0_0 = L1_1.utf8p2
     else
-    end
-    -- DECOMPILER ERROR at PC41: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC53: Confused about usage of register: R0 in 'UnsetPending'
-
-    do
-      if (not (this_sigattrlog[5]).matched or (this_sigattrlog[5]).utf8p2) and (string.find)((string.lower)((this_sigattrlog[5]).utf8p2), "\\appdata\\roaming\\microsoft", 1, true) then
-        local l_0_6, l_0_7 = , (string.match)((string.lower)((this_sigattrlog[5]).utf8p2), "(.+\\)([^\\]+)$")
-        if l_0_7 then
-          if (string.sub)(l_0_7, -27) == "\\appdata\\roaming\\microsoft\\" then
-            (mp.ReportLowfi)(l_0_6, 3312250037)
-            return mp.INFECTED
-          else
-            if (string.sub)(l_0_7, -35) == "\\appdata\\roaming\\microsoft\\windows\\" then
-              (mp.ReportLowfi)(l_0_6, 1550171407)
-              return mp.INFECTED
-            end
-          end
-        end
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[5]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L0_0 = L1_1.utf8p2
       end
-      return mp.CLEAN
     end
   end
 end
-
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L1_1 = L1_1(string.lower(L0_0), "\\appdata\\roaming\\microsoft", 1, true)
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.match
+    L1_1 = L1_1(string.lower(L0_0), "(.+\\)([^\\]+)$")
+    if L1_1 then
+      if string.sub(L1_1, -27) == "\\appdata\\roaming\\microsoft\\" then
+        mp.ReportLowfi(L0_0, 3312250037)
+        return mp.INFECTED
+      elseif string.sub(L1_1, -35) == "\\appdata\\roaming\\microsoft\\windows\\" then
+        mp.ReportLowfi(L0_0, 1550171407)
+        return mp.INFECTED
+      end
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

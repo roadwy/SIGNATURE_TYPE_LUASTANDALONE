@@ -1,8 +1,3 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Ransom_Win32_AvaddonCrypt.SP!MTB 
-
--- params : ...
--- function num : 0
 if peattributes.hasappendeddata == false or peattributes.x86_image == false or peattributes.isexe == false or peattributes.no_security == true then
   return mp.CLEAN
 end
@@ -15,25 +10,22 @@ end
 if peattributes.packersigmatched == true then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 1433600 or l_0_0 > 1843200 then
+if mp.getfilesize() < 1433600 or mp.getfilesize() > 1843200 then
   return mp.CLEAN
 end
-local l_0_1 = (pe.get_versioninfo)()
-if l_0_1 == nil then
+if pe.get_versioninfo() == nil then
   return mp.CLEAN
 end
-if l_0_1.FileVersion == nil then
+if pe.get_versioninfo().FileVersion == nil then
   return mp.CLEAN
 end
-if l_0_1.FileDescription ~= "AVG Virus scanner" then
+if pe.get_versioninfo().FileDescription ~= "AVG Virus scanner" then
   return mp.CLEAN
 end
-if l_0_1.InternalName ~= "aswQuick.exe" then
+if pe.get_versioninfo().InternalName ~= "aswQuick.exe" then
   return mp.CLEAN
 end
-if l_0_1.LegalCopyright ~= "Copyright (C) 2014 AVG Technologies CZ, s.r.o." then
+if pe.get_versioninfo().LegalCopyright ~= "Copyright (C) 2014 AVG Technologies CZ, s.r.o." then
   return mp.CLEAN
 end
 return mp.INFECTED
-

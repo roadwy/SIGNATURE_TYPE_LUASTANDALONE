@@ -1,22 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Trojan_Win32_ReverseLnkExtension.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0:len() < 12 then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if L0_0:len() < 12 then
   return mp.CLEAN
 end
-local l_0_1 = (string.sub)(l_0_0, -4)
-local l_0_2 = {}
-l_0_2[".lnk"] = ""
-if not l_0_2[l_0_1] then
+if not ({
+  [".lnk"] = ""
+})[string.sub(L0_0, -4)] then
   return mp.CLEAN
 end
-local l_0_3 = {}
-l_0_3["®cip.rcs"] = ""
-if l_0_3[(string.sub)(l_0_0, -12, -5)] then
+if ({
+  ["\174cip.rcs"] = ""
+})[string.sub(L0_0, -12, -5)] then
   return mp.INFECTED
 end
 return mp.CLEAN
-

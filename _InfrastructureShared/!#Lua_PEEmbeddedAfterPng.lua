@@ -1,20 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PEEmbeddedAfterPng 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-;
-(mp.readprotection)(false)
-if l_0_0 < 8192 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L1_1(false)
+if L0_0 < 8192 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 1) ~= 1196314761 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(headerpage, 1)
+if L1_1 ~= 1196314761 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.readfile)(256, 256)
-if (string.find)(l_0_1, "IEND", 1, true) ~= nil and (string.find)(l_0_1, "MZ", 1, true) ~= nil and (string.find)(l_0_1, "This program cannot be run in DOS mode", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:PEEmbeddedAfterPng")
+L1_1 = mp
+L1_1 = L1_1.readfile
+L1_1 = L1_1(256, 256)
+if string.find(L1_1, "IEND", 1, true) ~= nil and string.find(L1_1, "MZ", 1, true) ~= nil and string.find(L1_1, "This program cannot be run in DOS mode", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:PEEmbeddedAfterPng")
 end
 return mp.CLEAN
-

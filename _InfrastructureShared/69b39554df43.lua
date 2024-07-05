@@ -1,61 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b39554df43 
-
--- params : ...
--- function num : 0
-local l_0_3 = nil
-if (MpCommon.GetPersistContextNoPath)("TemplateInjc") ~= nil then
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    l_0_3 = (this_sigattrlog[1]).utf8p2
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L1_1 = MpCommon
+L1_1 = L1_1.GetPersistContextNoPath
+L2_2 = "TemplateInjc"
+L1_1 = L1_1(L2_2)
+if L1_1 ~= nil then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[1]
+      L0_0 = L2_2.utf8p2
+    end
   else
-    do
-      if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-        l_0_3 = (this_sigattrlog[2]).utf8p2
-      else
-        if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-          l_0_3 = (this_sigattrlog[3]).utf8p2
-          local l_0_1, l_0_2 = nil
-        end
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[2]
+        L0_0 = L2_2.utf8p2
       end
-      do
-        local l_0_4 = nil
-        if l_0_3 ~= nil then
-          local l_0_5 = nil
-          local l_0_6 = (mp.GetExecutablesFromCommandLine)(l_0_3)
-          for l_0_10,l_0_11 in ipairs(l_0_6) do
-            local l_0_7 = {[".xls"] = true, [".doc"] = true, [".ppt"] = true, [".pps"] = true, docx = true, pptx = true, ppsx = true, xlsx = true, [".rtf"] = true, [".xml"] = true, dotx = true, dotm = true, [".odt"] = true, xlsb = true, xltx = true, xltm = true, xlam = true, [".xla"] = true, docm = true, xlsm = true, pptm = true}
-            -- DECOMPILER ERROR at PC82: Confused about usage of register: R9 in 'UnsetPending'
-
-            if (sysio.IsFileExists)(R9_PC82) and l_0_7[(string.sub)(R9_PC82, -4)] then
-              l_0_5 = R9_PC82
-            end
-          end
-        end
-        do
-          l_0_6 = ipairs
-          l_0_6 = l_0_6(l_0_4)
-          for l_0_15,l_0_16 in l_0_6 do
-            local l_0_16 = nil
-            l_0_16 = string
-            l_0_16 = l_0_16.match
-            l_0_16 = l_0_16(l_0_5, R10_PC105)
-            if l_0_16 then
-              l_0_16 = mp
-              l_0_16 = l_0_16.INFECTED
-              return l_0_16
-            end
-          end
-          do
-            l_0_5 = mp
-            l_0_5 = l_0_5.CLEAN
-            do return l_0_5 end
-            -- DECOMPILER ERROR at PC116: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
-          end
+    else
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L2_2 = L2_2.utf8p2
+        if L2_2 ~= nil then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[3]
+          L0_0 = L2_2.utf8p2
         end
       end
     end
   end
+  L2_2 = nil
+  if L0_0 ~= nil then
+    L4_4[".xls"] = true
+    L4_4[".doc"] = true
+    L4_4[".ppt"] = true
+    L4_4[".pps"] = true
+    L4_4.docx = true
+    L4_4.pptx = true
+    L4_4.ppsx = true
+    L4_4.xlsx = true
+    L4_4[".rtf"] = true
+    L4_4[".xml"] = true
+    L4_4.dotx = true
+    L4_4.dotm = true
+    L4_4[".odt"] = true
+    L4_4.xlsb = true
+    L4_4.xltx = true
+    L4_4.xltm = true
+    L4_4.xlam = true
+    L4_4[".xla"] = true
+    L4_4.docm = true
+    L4_4.xlsm = true
+    L4_4.pptm = true
+    for L8_8, L9_9 in L5_5(L6_6) do
+      if sysio.IsFileExists(L9_9) and L4_4[string.sub(L9_9, -4)] then
+        L2_2 = L9_9
+      end
+    end
+  end
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = string
+    L8_8 = L8_8.match
+    L9_9 = L2_2
+    L8_8 = L8_8(L9_9, L7_7)
+    if L8_8 then
+      L8_8 = mp
+      L8_8 = L8_8.INFECTED
+      return L8_8
+    end
+  end
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

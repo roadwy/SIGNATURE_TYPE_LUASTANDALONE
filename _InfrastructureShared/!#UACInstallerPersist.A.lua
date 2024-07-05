@@ -1,16 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#UACInstallerPersist.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetUACMetadata)()
-do
-  if l_0_0 ~= nil and l_0_0.Type == mp.AMSI_UAC_REQUEST_TYPE_EXE and l_0_0.TrustState ~= mp.AMSI_UAC_TRUST_STATE_TRUSTED then
-    local l_0_1 = (string.lower)((l_0_0.Info).ApplicationName)
-    if (string.find)(l_0_1, "\\downloads", 1, true) then
-      (mp.ReportInternalDetection)((l_0_0.Info).ApplicationName, 3201970721, mp.TYPE_PERSIST)
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetUACMetadata
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.Type
+  if L1_1 == mp.AMSI_UAC_REQUEST_TYPE_EXE then
+    L1_1 = L0_0.TrustState
+    if L1_1 ~= mp.AMSI_UAC_TRUST_STATE_TRUSTED then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L1_1 = L1_1(L0_0.Info.ApplicationName)
+      if string.find(L1_1, "\\downloads", 1, true) then
+        mp.ReportInternalDetection(L0_0.Info.ApplicationName, 3201970721, mp.TYPE_PERSIST)
+      end
     end
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.FALSE
+return L1_1

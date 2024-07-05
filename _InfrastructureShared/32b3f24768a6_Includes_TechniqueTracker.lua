@@ -1,82 +1,84 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/32b3f24768a6_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-propagateTTParent = function(l_1_0, l_1_1, l_1_2)
-  -- function num : 0_0
-  local l_1_3 = (mp.GetParentProcInfo)(l_1_0)
-  if l_1_3 == nil then
-    return 
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+function L0_0(A0_6, A1_7, A2_8)
+  if mp.GetParentProcInfo(A0_6) == nil then
+    return
   end
-  l_1_0 = l_1_3.ppid
-  if l_1_0 == nil then
-    return 
+  A0_6 = mp.GetParentProcInfo(A0_6).ppid
+  if A0_6 == nil then
+    return
   end
-  TrackPidAndTechniqueBM(l_1_0, l_1_1, l_1_2)
-  return 
+  TrackPidAndTechniqueBM(A0_6, A1_7, A2_8)
+  return
 end
-
-isProcessExcluded = function(l_2_0, l_2_1)
-  -- function num : 0_1
-  local l_2_2 = {}
-  local l_2_3 = {}
-  -- DECOMPILER ERROR at PC4: No list found for R3 , SetList fails
-
-  local l_2_4 = {}
-  -- DECOMPILER ERROR at PC6: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC8: No list found for R4 , SetList fails
-
-  -- DECOMPILER ERROR at PC9: No list found for R2 , SetList fails
-
-  for i_1,i_2 in l_2_3 do
-    local l_2_8 = l_2_7[1]
-    local l_2_9 = l_2_7[2]
-    if (string.find)(l_2_0, l_2_8, 1, true) and (string.find)(l_2_1, l_2_9, 1, true) then
+propagateTTParent = L0_0
+function L0_0(A0_9, A1_10)
+  local L2_11, L3_12, L4_13, L5_14, L6_15, L7_16, L8_17, L9_18
+  L2_11 = {L3_12, L4_13}
+  L6_15 = "/opt/microsoft/omsagent/bin/omsadmin.sh"
+  for L6_15, L7_16 in L3_12(L4_13) do
+    L8_17 = L7_16[1]
+    L9_18 = L7_16[2]
+    if string.find(A0_9, L8_17, 1, true) and string.find(A1_10, L9_18, 1, true) then
       return true
     end
   end
-  do return false end
-  -- DECOMPILER ERROR at PC40: Confused about usage of register R4 for local variables in 'ReleaseLocals'
-
-  -- WARNING: undefined locals caused missing assignments!
+  return L3_12
 end
-
-local l_0_0, l_0_1, l_0_2, l_0_3 = nil, nil, nil, nil
-if (this_sigattrlog[1]).matched then
-  l_0_0 = (this_sigattrlog[1]).utf8p1
-  l_0_1 = (this_sigattrlog[1]).utf8p2
-  l_0_2 = (this_sigattrlog[1]).ppid
-  l_0_3 = (this_sigattrlog[1]).image_path
+isProcessExcluded = L0_0
+L0_0, L1_1, L2_2, L3_3 = nil, nil, nil, nil
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L0_0 = L4_4.utf8p1
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L1_1 = L4_4.utf8p2
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L2_2 = L4_4.ppid
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L3_3 = L4_4.image_path
 end
-local l_0_4 = (mp.GetProcessCommandLine)(l_0_2)
-if not l_0_0 or not l_0_1 or not l_0_2 or not l_0_3 or not l_0_4 then
-  return mp.CLEAN
+L4_4 = mp
+L4_4 = L4_4.GetProcessCommandLine
+L5_5 = L2_2
+L4_4 = L4_4(L5_5)
+if not L0_0 or not L1_1 or not L2_2 or not L3_3 or not L4_4 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-if not (string.match)(l_0_0, "T%d%d%d%d") or l_0_1 == "INFECTED" then
-  return mp.CLEAN
+L5_5 = string
+L5_5 = L5_5.match
+L5_5 = L5_5(L0_0, "T%d%d%d%d")
+if not L5_5 or L1_1 == "INFECTED" then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-if isProcessExcluded(l_0_3, l_0_4) then
-  return mp.CLEAN
+L5_5 = isProcessExcluded
+L5_5 = L5_5(L3_3, L4_4)
+if L5_5 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_5 = {}
--- DECOMPILER ERROR at PC63: No list found for R5 , SetList fails
-
--- DECOMPILER ERROR at PC64: Overwrote pending register: R6 in 'AssignReg'
-
--- DECOMPILER ERROR at PC65: Overwrote pending register: R7 in 'AssignReg'
-
-for l_0_9,l_0_10 in ("Execution_SuspiciousProcessLaunch")("Execution_SuspiciousCommandline") do
-  if l_0_1 == l_0_10 then
+L5_5 = {
+  "Execution_SuspiciousProcessLaunch",
+  "Execution_SuspiciousCommandline"
+}
+for _FORV_9_, _FORV_10_ in ipairs(L5_5) do
+  if L1_1 == _FORV_10_ then
     return mp.CLEAN
   end
 end
-local l_0_11 = IsDetectionThresholdMetLinux(l_0_2)
-if l_0_11 then
-  (bm.trigger_sig)("SuspiciousTTRel", "Detected")
+if IsDetectionThresholdMetLinux(L2_2) then
+  bm.trigger_sig("SuspiciousTTRel", "Detected")
   return mp.CLEAN
 end
-propagateTTParent(l_0_2, l_0_0, l_0_1)
+propagateTTParent(L2_2, L0_0, L1_1)
 return mp.CLEAN
-

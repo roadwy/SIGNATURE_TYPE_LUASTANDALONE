@@ -1,31 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c29bf7ff35c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetBruteMatchData)()
-local l_0_1 = l_0_0.match_offset
-local l_0_2 = ""
-local l_0_3 = ""
-if l_0_0.is_header then
-  l_0_2 = (tostring(headerpage)):sub(l_0_1 - 6, l_0_1 + 5)
-  l_0_3 = tostring(headerpage)
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = L0_0.match_offset
+L2_2 = ""
+L3_3 = ""
+if L0_0.is_header then
+  L2_2 = tostring(headerpage):sub(L1_1 - 6, L1_1 + 5)
+  L3_3 = tostring(headerpage)
 else
-  l_0_2 = (tostring(footerpage)):sub(l_0_1 - 6, l_0_1 + 5)
-  l_0_3 = tostring(footerpage)
+  L2_2 = tostring(footerpage):sub(L1_1 - 6, L1_1 + 5)
+  L3_3 = tostring(footerpage)
 end
-l_0_3 = (string.lower)(l_0_3)
-if (string.find)(l_0_3, "sentinel", 1, true) then
+L3_3 = string.lower(L3_3)
+if string.find(L3_3, "sentinel", 1, true) then
   return mp.CLEAN
 end
-if (string.find)(l_0_2, "{%d%d?}{%d%d?}\"%-f\'$") then
-  (mp.set_mpattribute)("MpIsExhaustiveScriptScan")
+if string.find(L2_2, "{%d%d?}{%d%d?}\"%-f'$") then
+  mp.set_mpattribute("MpIsExhaustiveScriptScan")
   return mp.INFECTED
 end
-l_0_2 = (string.gsub)(l_0_2, " ", "")
-if (string.find)(l_0_2, "{%d%d?}{%d%d?}\"%-f$") then
-  (mp.set_mpattribute)("MpIsExhaustiveScriptScan")
+L2_2 = string.gsub(L2_2, " ", "")
+if string.find(L2_2, "{%d%d?}{%d%d?}\"%-f$") then
+  mp.set_mpattribute("MpIsExhaustiveScriptScan")
   return mp.INFECTED
 end
 return mp.CLEAN
-

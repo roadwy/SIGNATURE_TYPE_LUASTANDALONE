@@ -1,24 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Dopplepaymer_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1 = (sysio.RegOpenKey)("HKLM\\SYSTEM")
-if l_0_1 then
-  local l_0_2 = (sysio.RegEnumKeys)(l_0_1)
-  if l_0_2 then
-    for l_0_6,l_0_7 in pairs(l_0_2) do
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = false
+L1_1 = sysio
+L1_1 = L1_1.RegOpenKey
+L2_2 = "HKLM\\SYSTEM"
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L2_2 = sysio
+  L2_2 = L2_2.RegEnumKeys
+  L2_2 = L2_2(L3_3)
+  if L2_2 then
+    for L6_6, L7_7 in L3_3(L4_4) do
+      if string.match(L7_7, "ControlSet%d%d%d") then
+        L0_0 = Infrastructure_RepairServiceAtPath("VSS", L7_7) or L0_0
+        L0_0 = Infrastructure_RepairServiceAtPath("WinDefend", L7_7) or L0_0
+        L0_0 = Infrastructure_RepairServiceAtPath("MsMpSvc", L7_7) or L0_0
+        L0_0 = Infrastructure_RepairServiceAtPath("eventlog", L7_7) or L0_0
+        L0_0 = Infrastructure_RepairServiceAtPath("WdNisSvc", L7_7) or L0_0
+      end
     end
   end
 end
-do
-  -- DECOMPILER ERROR at PC58: Unhandled construct in 'MakeBoolean' P3
-
-  if ((not (string.match)(l_0_7, "ControlSet%d%d%d") or (not Infrastructure_RepairServiceAtPath("VSS", l_0_7)) and not Infrastructure_RepairServiceAtPath("WinDefend", l_0_7) and not Infrastructure_RepairServiceAtPath("MsMpSvc", l_0_7) and Infrastructure_RepairServiceAtPath("eventlog", l_0_7)) or l_0_0) then
-    l_0_2 = Remediation
-    l_0_2 = l_0_2.SetRebootRequired
-    l_0_2()
-  end
+if L0_0 then
+  L2_2 = Remediation
+  L2_2 = L2_2.SetRebootRequired
+  L2_2()
 end
-

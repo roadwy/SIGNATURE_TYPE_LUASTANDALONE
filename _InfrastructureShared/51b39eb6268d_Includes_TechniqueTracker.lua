@@ -1,17 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51b39eb6268d_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-if l_0_1 ~= nil then
-  for l_0_5,l_0_6 in ipairs(l_0_1) do
-    if l_0_6.image_path ~= nil and l_0_6.ppid ~= nil then
-      TrackPidAndTechniqueBM(l_0_6.ppid, "T1218", "msdt_pcwdiag_target")
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+if L1_1 ~= nil then
+  for _FORV_5_, _FORV_6_ in ipairs(L1_1) do
+    if _FORV_6_.image_path ~= nil and _FORV_6_.ppid ~= nil then
+      TrackPidAndTechniqueBM(_FORV_6_.ppid, "T1218", "msdt_pcwdiag_target")
     end
   end
 end
-do
-  return mp.INFECTED
-end
-
+return mp.INFECTED

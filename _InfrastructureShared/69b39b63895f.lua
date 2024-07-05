@@ -1,38 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b39b63895f 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_2 = nil
-    local l_0_3 = ((string.lower)((string.sub)(l_0_0, -32))):match("\\([^\\]+)$")
-    if ({["pcpitstopscheduleservice.exe"] = true})[l_0_3] then
-      return mp.CLEAN
-    end
-    local l_0_4 = nil
-    for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_2)) do
-      local l_0_5 = nil
-      -- DECOMPILER ERROR at PC44: Confused about usage of register: R8 in 'UnsetPending'
-
-      if (sysio.IsFileExists)(R8_PC44) then
-        (bm.add_related_file)(R8_PC44)
-      end
-    end
-  end
-  do
-    l_0_3 = mp
-    l_0_3 = l_0_3.INFECTED
-    return l_0_3
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L0_0
+  L8_8 = L2_2(L3_3, L4_4)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2(L3_3, L4_4))
+  L2_2 = L1_1
+  L1_1 = L1_1.match
+  L3_3 = "\\([^\\]+)$"
+  L1_1 = L1_1(L2_2, L3_3)
+  L2_2 = {}
+  L2_2["pcpitstopscheduleservice.exe"] = true
+  L3_3 = L2_2[L1_1]
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+  L3_3 = mp
+  L3_3 = L3_3.GetExecutablesFromCommandLine
+  L3_3 = L3_3(L4_4)
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if sysio.IsFileExists(L8_8) then
+      bm.add_related_file(L8_8)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

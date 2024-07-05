@@ -1,49 +1,102 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Trojan_Win32_Zlob.AS 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasstandardentry == true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasstandardentry
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 4 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 4 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.TimeDateStamp ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.TimeDateStamp
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfHeaders ~= 1024 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfHeaders
+if L0_0 ~= 1024 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfCode < 1536 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfCode
+if L0_0 < 1536 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfCode > 2048 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfCode
+if L0_0 > 2048 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfInitializedData ~= 4608 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfInitializedData
+if L0_0 ~= 4608 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfUninitializedData ~= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfUninitializedData
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.BaseOfCode ~= 4096 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.BaseOfCode
+if L0_0 ~= 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.FileAlignment ~= 512 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.FileAlignment
+if L0_0 ~= 512 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfHeaders ~= 1024 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfHeaders
+if L0_0 ~= 1024 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.Subsystem ~= 2 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.Subsystem
+if L0_0 ~= 2 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.CheckSum ~= 94440 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.CheckSum
+if L0_0 ~= 94440 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

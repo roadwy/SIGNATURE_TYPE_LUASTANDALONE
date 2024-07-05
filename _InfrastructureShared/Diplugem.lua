@@ -1,32 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Diplugem 
-
--- params : ...
--- function num : 0
-local l_0_0 = Remediation.Threat
-if l_0_0.Name == "BrowserModifier:Win32/Diplugem" then
-  for l_0_4,l_0_5 in ipairs(l_0_0.Resources) do
-    if l_0_5.Schema == "file" and ((string.find)(l_0_5.Path, ".dll$") or (string.find)(l_0_5.Path, ".exe$")) then
-      local l_0_6 = nil
-      local l_0_7 = (string.sub)(l_0_5.Path, 0, -4)
-      if (string.find)(l_0_7, "%.x64%.$") then
-        l_0_7 = (string.sub)(l_0_7, 0, -5)
-        l_0_6 = l_0_7 .. "dll"
-      else
-        l_0_6 = l_0_7 .. "x64.dll"
-      end
-      if (sysio.IsFileExists)(l_0_6) then
-        (sysio.DeleteFile)(l_0_6)
-      end
-      l_0_6 = l_0_7 .. "dat"
-      if (sysio.IsFileExists)(l_0_6) then
-        (sysio.DeleteFile)(l_0_6)
-      end
-      l_0_6 = l_0_7 .. "tlb"
-      if (sysio.IsFileExists)(l_0_6) then
-        (sysio.DeleteFile)(l_0_6)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+if L1_1 == "BrowserModifier:Win32/Diplugem" then
+  for L4_4, L5_5 in L1_1(L2_2) do
+    L6_6 = L5_5.Schema
+    if L6_6 == "file" then
+      L6_6 = string
+      L6_6 = L6_6.find
+      L7_7 = L5_5.Path
+      L6_6 = L6_6(L7_7, ".dll$")
+      if not L6_6 then
+        L6_6 = string
+        L6_6 = L6_6.find
+        L7_7 = L5_5.Path
+        L6_6 = L6_6(L7_7, ".exe$")
+      elseif L6_6 then
+        L6_6 = nil
+        L7_7 = string
+        L7_7 = L7_7.sub
+        L7_7 = L7_7(L5_5.Path, 0, -4)
+        if string.find(L7_7, "%.x64%.$") then
+          L7_7 = string.sub(L7_7, 0, -5)
+          L6_6 = L7_7 .. "dll"
+        else
+          L6_6 = L7_7 .. "x64.dll"
+        end
+        if sysio.IsFileExists(L6_6) then
+          sysio.DeleteFile(L6_6)
+        end
+        L6_6 = L7_7 .. "dat"
+        if sysio.IsFileExists(L6_6) then
+          sysio.DeleteFile(L6_6)
+        end
+        L6_6 = L7_7 .. "tlb"
+        if sysio.IsFileExists(L6_6) then
+          sysio.DeleteFile(L6_6)
+        end
       end
     end
   end
 end
-

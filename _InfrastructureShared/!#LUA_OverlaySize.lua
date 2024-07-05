@@ -1,63 +1,79 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_OverlaySize 
-
--- params : ...
--- function num : 0
-if peattributes.isdamaged or peattributes.arm_image or peattributes.hasappendeddata == false then
-  return mp.CLEAN
-end
-local l_0_0 = pehdr.NumberOfSections
-if l_0_0 < 1 then
-  return mp.CLEAN
-end
-local l_0_1 = (pesecs[l_0_0]).PointerToRawData + (pesecs[l_0_0]).SizeOfRawData
-local l_0_2 = (mp.getfilesize)()
-if l_0_2 < l_0_1 then
-  return mp.CLEAN
-end
-local l_0_3 = l_0_2 - l_0_1
-local l_0_4 = "LUA:OverlaySize_gt_0x10000000"
-if l_0_3 <= 256 then
-  l_0_4 = (string.format)("LUA:OverlaySize_0x%x", l_0_3)
-  ;
-  (mp.set_mpattribute)("LUA:OverlaySize_1_to_0x100")
-else
-  if l_0_3 <= 4096 then
-    local l_0_5 = (mp.bitand)(l_0_3, 4080)
-    l_0_4 = (string.format)("LUA:OverlaySize_0x%x_to_0x%x", l_0_5, l_0_5 + 16)
-  else
-    do
-      if l_0_3 <= 65536 then
-        local l_0_6 = (mp.bitand)(l_0_3, 65280)
-        l_0_4 = (string.format)("LUA:OverlaySize_0x%x_to_0x%x", l_0_6, l_0_6 + 256)
-      else
-        do
-          if l_0_3 <= 1048576 then
-            local l_0_7 = (mp.bitand)(l_0_3, 1044480)
-            l_0_4 = (string.format)("LUA:OverlaySize_0x%x_to_0x%x", l_0_7, l_0_7 + 4096)
-          else
-            do
-              if l_0_3 <= 16777216 then
-                local l_0_8 = (mp.bitand)(l_0_3, 16711680)
-                l_0_4 = (string.format)("LUA:OverlaySize_0x%x_to_0x%x", l_0_8, l_0_8 + 65536)
-              else
-                do
-                  do
-                    if l_0_3 <= 268435456 then
-                      local l_0_9 = (mp.bitand)(l_0_3, 267386880)
-                      l_0_4 = (string.format)("LUA:OverlaySize_0x%x_to_0x%x", l_0_9, l_0_9 + 1048576)
-                    end
-                    ;
-                    (mp.set_mpattribute)(l_0_4)
-                    return mp.CLEAN
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = peattributes
+L0_0 = L0_0.isdamaged
+if not L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.arm_image
+  if not L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.hasappendeddata
   end
+elseif L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 < 1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = pesecs
+L1_1 = L1_1[L0_0]
+L1_1 = L1_1.PointerToRawData
+L2_2 = pesecs
+L2_2 = L2_2[L0_0]
+L2_2 = L2_2.SizeOfRawData
+L1_1 = L1_1 + L2_2
+L2_2 = mp
+L2_2 = L2_2.getfilesize
+L2_2 = L2_2()
+if L1_1 > L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = L2_2 - L1_1
+L4_4 = "LUA:OverlaySize_gt_0x10000000"
+if L3_3 <= 256 then
+  L5_5 = string
+  L5_5 = L5_5.format
+  L5_5 = L5_5("LUA:OverlaySize_0x%x", L3_3)
+  L4_4 = L5_5
+  L5_5 = mp
+  L5_5 = L5_5.set_mpattribute
+  L5_5("LUA:OverlaySize_1_to_0x100")
+elseif L3_3 <= 4096 then
+  L5_5 = mp
+  L5_5 = L5_5.bitand
+  L5_5 = L5_5(L3_3, 4080)
+  L4_4 = string.format("LUA:OverlaySize_0x%x_to_0x%x", L5_5, L5_5 + 16)
+elseif L3_3 <= 65536 then
+  L5_5 = mp
+  L5_5 = L5_5.bitand
+  L5_5 = L5_5(L3_3, 65280)
+  L4_4 = string.format("LUA:OverlaySize_0x%x_to_0x%x", L5_5, L5_5 + 256)
+elseif L3_3 <= 1048576 then
+  L5_5 = mp
+  L5_5 = L5_5.bitand
+  L5_5 = L5_5(L3_3, 1044480)
+  L4_4 = string.format("LUA:OverlaySize_0x%x_to_0x%x", L5_5, L5_5 + 4096)
+elseif L3_3 <= 16777216 then
+  L5_5 = mp
+  L5_5 = L5_5.bitand
+  L5_5 = L5_5(L3_3, 16711680)
+  L4_4 = string.format("LUA:OverlaySize_0x%x_to_0x%x", L5_5, L5_5 + 65536)
+elseif L3_3 <= 268435456 then
+  L5_5 = mp
+  L5_5 = L5_5.bitand
+  L5_5 = L5_5(L3_3, 267386880)
+  L4_4 = string.format("LUA:OverlaySize_0x%x_to_0x%x", L5_5, L5_5 + 1048576)
+end
+L5_5 = mp
+L5_5 = L5_5.set_mpattribute
+L5_5(L4_4)
+L5_5 = mp
+L5_5 = L5_5.CLEAN
+return L5_5

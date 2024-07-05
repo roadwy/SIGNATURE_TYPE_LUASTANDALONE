@@ -1,51 +1,112 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/cb78412006f6 
-
--- params : ...
--- function num : 0
-if peattributes.ismsil == false then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = peattributes
+L0_0 = L0_0.ismsil
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (pe.get_netmetadata)()
-if l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = pe
+L0_0 = L0_0.get_netmetadata
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = {}
--- DECOMPILER ERROR at PC28: No list found for R1 , SetList fails
-
--- DECOMPILER ERROR at PC29: Overwrote pending register: R2 in 'AssignReg'
-
--- DECOMPILER ERROR at PC36: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC40: Overwrote pending register: R4 in 'AssignReg'
-
-if ((((((((-1)[1]).matched ~= true or (hstrlog[2]).matched == true) and (hstrlog[3]).matched ~= true) or (hstrlog[4]).matched == true) and (hstrlog[5]).matched ~= true) or (hstrlog[6]).matched == true) and (hstrlog[7]).matched ~= true) or (hstrlog[8]).matched == true then
-  do
-    for l_0_5,l_0_6 in ipairs(l_0_1) do
-      -- DECOMPILER ERROR at PC147: Overwrote pending register: R7 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC149: Overwrote pending register: R8 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC150: Overwrote pending register: R9 in 'AssignReg'
-
-      if l_0_6 ~= -1 then
-        local l_0_7 = ((-1).readu_u32)(-1, -1)
-        local l_0_8 = l_0_0.strheap_RVA + (pe.metadata_decode)(l_0_7, 2)
-        local l_0_9 = (pe.mmap_rva)(l_0_8, 10)
-        if (string.find)(l_0_9, "Initialize", 1, true) ~= nil then
-          local l_0_10 = (pe.metadata_decode)(l_0_7, 1)
-          local l_0_11 = l_0_0.strheap_RVA + (pe.metadata_decode)(l_0_10, 3)
-          local l_0_12 = (pe.mmap_rva)(l_0_11, 22)
-          if (string.find)(l_0_9, "ScriptObject", 1, true) ~= nil and (string.find)(l_0_12, "System.Windows.Browser", 1, true) ~= nil then
-            return mp.INFECTED
-          end
-        end
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L1_1(L2_2)
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7,
+  L8_8,
+  L9_9
+}
+L5_5 = -1
+L6_6 = -1
+L7_7 = -1
+L8_8 = -1
+L9_9 = -1
+if L2_2 == true then
+  L1_1[1] = L2_2
+end
+if L2_2 == true then
+  L1_1[2] = L2_2
+end
+if L2_2 == true then
+  L1_1[3] = L2_2
+end
+if L2_2 == true then
+  L1_1[4] = L2_2
+end
+if L2_2 == true then
+  L1_1[5] = L2_2
+end
+if L2_2 == true then
+  L1_1[6] = L2_2
+end
+if L2_2 == true then
+  L1_1[7] = L2_2
+end
+if L2_2 == true then
+  L1_1[8] = L2_2
+end
+for L5_5, L6_6 in L2_2(L3_3) do
+  if L6_6 ~= -1 then
+    L7_7 = mp
+    L7_7 = L7_7.readu_u32
+    L8_8 = L6_6
+    L9_9 = 1
+    L7_7 = L7_7(L8_8, L9_9)
+    L8_8 = L0_0.strheap_RVA
+    L9_9 = pe
+    L9_9 = L9_9.metadata_decode
+    L10_10 = L7_7
+    L11_11 = 2
+    L9_9 = L9_9(L10_10, L11_11)
+    L8_8 = L8_8 + L9_9
+    L9_9 = pe
+    L9_9 = L9_9.mmap_rva
+    L10_10 = L8_8
+    L11_11 = 10
+    L9_9 = L9_9(L10_10, L11_11)
+    L10_10 = string
+    L10_10 = L10_10.find
+    L11_11 = L9_9
+    L12_12 = "Initialize"
+    L10_10 = L10_10(L11_11, L12_12, 1, true)
+    if L10_10 ~= nil then
+      L10_10 = pe
+      L10_10 = L10_10.metadata_decode
+      L11_11 = L7_7
+      L12_12 = 1
+      L10_10 = L10_10(L11_11, L12_12)
+      L11_11 = L0_0.strheap_RVA
+      L12_12 = pe
+      L12_12 = L12_12.metadata_decode
+      L12_12 = L12_12(L10_10, 2)
+      L8_8 = L11_11 + L12_12
+      L11_11 = L0_0.strheap_RVA
+      L12_12 = pe
+      L12_12 = L12_12.metadata_decode
+      L12_12 = L12_12(L10_10, 3)
+      L11_11 = L11_11 + L12_12
+      L12_12 = pe
+      L12_12 = L12_12.mmap_rva
+      L12_12 = L12_12(L8_8, 12)
+      L9_9 = L12_12
+      L12_12 = pe
+      L12_12 = L12_12.mmap_rva
+      L12_12 = L12_12(L11_11, 22)
+      if string.find(L9_9, "ScriptObject", 1, true) ~= nil and string.find(L12_12, "System.Windows.Browser", 1, true) ~= nil then
+        return mp.INFECTED
       end
     end
-    do return mp.CLEAN end
-    -- WARNING: undefined locals caused missing assignments!
   end
 end
-
+return L2_2

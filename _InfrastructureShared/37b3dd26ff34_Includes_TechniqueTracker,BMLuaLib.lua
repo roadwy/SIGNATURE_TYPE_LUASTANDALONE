@@ -1,16 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/37b3dd26ff34_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-do
-  if l_0_0 ~= nil and l_0_0.command_line ~= nil then
-    local l_0_1 = (string.lower)(l_0_0.command_line)
-    bm_AddRelatedFileFromCommandLine(l_0_1, nil, nil, 1)
-    AddResearchData(l_0_0.ppid, true)
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.command_line
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L0_0.command_line)
+    if L1_1:find("antimalware_provider.+\\frhook") then
+      return mp.CLEAN
+    end
+    if L1_1:find("c:\\sophrm\\invoke-blkeyescrow.ps1", 1, true) then
+      return mp.CLEAN
+    end
+    if L1_1:find("c:\\vpc10\\applicationupdate\\sub_settings_defender.vbs", 1, true) then
+      return mp.CLEAN
+    end
+    if (L1_1:find(":\\program files\\", 1, true) or L1_1:find(":\\program files (x86)\\", 1, true)) and (L1_1:find("checkpoint", 1, true) or L1_1:find("fortinet", 1, true)) then
+      return mp.CLEAN
+    end
+    bm_AddRelatedFileFromCommandLine(L1_1, nil, nil, 1)
+    AddResearchData(L0_0.ppid, true)
     return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

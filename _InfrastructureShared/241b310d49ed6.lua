@@ -1,14 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/241b310d49ed6 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if not l_0_0 then
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if not L0_0 then
   return mp.CLEAN
 end
-if (string.find)((string.lower)(l_0_0), "windows\\system32\\svchost.exe", 1, true) then
+if string.find(string.lower(L0_0), "windows\\system32\\svchost.exe", 1, true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

@@ -1,20 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4778bb18ddf9 
-
--- params : ...
--- function num : 0
-if pevars.epsec ~= 2 or (pesecs[2]).Name ~= ".rsrc" or (pesecs[2]).SizeOfRawData ~= 512 and (pesecs[2]).SizeOfRawData ~= 1024 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = pevars
+L0_0 = L0_0.epsec
+if L0_0 == 2 then
+  L0_0 = pesecs
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.Name
+  if L0_0 == ".rsrc" then
+    L0_0 = pesecs
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.SizeOfRawData
+    if L0_0 ~= 512 then
+      L0_0 = pesecs
+      L0_0 = L0_0[2]
+      L0_0 = L0_0.SizeOfRawData
+    end
+  end
+elseif L0_0 ~= 1024 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (hstrlog[2]).VA + 15
-local l_0_1 = (pe.mmap_va)(l_0_0, 6)
-local l_0_2 = (string.byte)((pe.mmap_va)(l_0_0 + 6, 1)) + (string.byte)((pe.mmap_va)(l_0_0 + 7, 1)) * 256
-local l_0_3 = (string.byte)((pe.mmap_va)(l_0_0 + 11, 1)) + (string.byte)((pe.mmap_va)(l_0_0 + 12, 1)) * 256
-for l_0_7 = 15, 105, 15 do
-  local l_0_8 = l_0_0 + l_0_7
-  if l_0_1 ~= (pe.mmap_va)(l_0_8, 6) or l_0_2 - l_0_7 ~= (string.byte)((pe.mmap_va)(l_0_8 + 6, 1)) + (string.byte)((pe.mmap_va)(l_0_8 + 7, 1)) * 256 or l_0_3 - l_0_7 ~= (string.byte)((pe.mmap_va)(l_0_8 + 11, 1)) + (string.byte)((pe.mmap_va)(l_0_8 + 12, 1)) * 256 then
+L0_0 = hstrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.VA
+L0_0 = L0_0 + 15
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = L0_0
+L3_3 = 6
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = pe
+L3_3 = L3_3.mmap_va
+L8_8 = L3_3(L4_4, L5_5)
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L3_3(L4_4, L5_5))
+L3_3 = string
+L3_3 = L3_3.byte
+L8_8 = L4_4(L5_5, L6_6)
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L4_4(L5_5, L6_6))
+L3_3 = L3_3 * 256
+L2_2 = L2_2 + L3_3
+L3_3 = string
+L3_3 = L3_3.byte
+L8_8 = L4_4(L5_5, L6_6)
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L4_4(L5_5, L6_6))
+L7_7 = 1
+L8_8 = L5_5(L6_6, L7_7)
+L3_3 = L3_3 + L4_4
+for L7_7 = 15, 105, 15 do
+  L8_8 = L0_0 + L7_7
+  if L1_1 ~= pe.mmap_va(L8_8, 6) or L2_2 - L7_7 ~= string.byte(pe.mmap_va(L8_8 + 6, 1)) + string.byte(pe.mmap_va(L8_8 + 7, 1)) * 256 or L3_3 - L7_7 ~= string.byte(pe.mmap_va(L8_8 + 11, 1)) + string.byte(pe.mmap_va(L8_8 + 12, 1)) * 256 then
     return mp.CLEAN
   end
 end
-return mp.INFECTED
-
+return L4_4

@@ -1,33 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_NonPeFileInStartUpFolder.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_0 == nil or #l_0_0 < 4 then
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILENAME
+L2_2 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2))
+if L0_0 ~= nil then
+  L1_1 = #L0_0
+elseif L1_1 < 4 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = {}
+L1_1.js = true
+L1_1.jse = true
+L1_1.vbs = true
+L1_1.vbe = true
+L1_1.wsf = true
+L1_1.jar = true
+L1_1.hta = true
+L1_1.lnk = true
+L1_1.cmd = true
+L1_1.bat = true
+L1_1.doc = true
+L1_1.docm = true
+L1_1.docx = true
+L1_1.xls = true
+L1_1.xlsx = true
+L2_2 = string
+L2_2 = L2_2.match
+L2_2 = L2_2(L0_0, "([^\\%.]+)$")
+if L2_2 == nil or #L2_2 < 2 or L1_1[L2_2] ~= true then
   return mp.CLEAN
 end
-local l_0_1 = {}
-l_0_1.js = true
-l_0_1.jse = true
-l_0_1.vbs = true
-l_0_1.vbe = true
-l_0_1.wsf = true
-l_0_1.jar = true
-l_0_1.hta = true
-l_0_1.lnk = true
-l_0_1.cmd = true
-l_0_1.bat = true
-l_0_1.doc = true
-l_0_1.docm = true
-l_0_1.docx = true
-l_0_1.xls = true
-l_0_1.xlsx = true
-local l_0_2 = (string.match)(l_0_0, "([^\\%.]+)$")
-if l_0_2 == nil or #l_0_2 < 2 or l_0_1[l_0_2] ~= true then
-  return mp.CLEAN
-end
-;
-(mp.set_mpattribute)("Lua:Context/NonPeFileInStartUpFolder.A!" .. l_0_2)
+mp.set_mpattribute("Lua:Context/NonPeFileInStartUpFolder.A!" .. L2_2)
 return mp.INFECTED
-

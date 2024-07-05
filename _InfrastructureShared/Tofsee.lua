@@ -1,25 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Tofsee 
-
--- params : ...
--- function num : 0
-local l_0_0 = Remediation.Threat
-if l_0_0.Active and (string.match)(l_0_0.Name, "Backdoor:Win32/Tofsee") then
-  local l_0_1 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")
-  for l_0_5,l_0_6 in pairs(l_0_1) do
-    local l_0_7 = "msconfig"
-    local l_0_8 = (sysio.RegOpenKey)(l_0_6)
-    if l_0_8 ~= nil then
-      local l_0_9 = (sysio.GetRegValueAsString)(l_0_8, l_0_7)
-      if l_0_9 ~= nil and (string.match)(l_0_9, "\\%l%l%l%l%l%l%l%l.exe") then
-        (sysio.DeleteRegValue)(l_0_8, l_0_7)
-        if (string.byte)(l_0_9) == 34 then
-          l_0_9 = (string.sub)(l_0_9, 2, -2)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L1_1 = L0_0.Active
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.match
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 then
+    L1_1 = sysio
+    L1_1 = L1_1.RegExpandUserKey
+    L1_1 = L1_1(L2_2)
+    for L5_5, L6_6 in L2_2(L3_3) do
+      L7_7 = "msconfig"
+      L8_8 = sysio
+      L8_8 = L8_8.RegOpenKey
+      L9_9 = L6_6
+      L8_8 = L8_8(L9_9)
+      if L8_8 ~= nil then
+        L9_9 = sysio
+        L9_9 = L9_9.GetRegValueAsString
+        L9_9 = L9_9(L8_8, L7_7)
+        if L9_9 ~= nil and string.match(L9_9, "\\%l%l%l%l%l%l%l%l.exe") then
+          sysio.DeleteRegValue(L8_8, L7_7)
+          if string.byte(L9_9) == 34 then
+            L9_9 = string.sub(L9_9, 2, -2)
+          end
+          sysio.DeleteFile(L9_9)
         end
-        ;
-        (sysio.DeleteFile)(l_0_9)
       end
     end
   end
 end
-

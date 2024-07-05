@@ -1,29 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_PEAnomaly_CertificateExpired_ObMpAttributes_g 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetCertificateInfo)()
-local l_0_1, l_0_2, l_0_3 = (MpCommon.GetDateFromTimeT)((MpCommon.GetCurrentTimeT)())
-for l_0_7,l_0_8 in ipairs(l_0_0) do
-  if l_0_8.AuthenticodeContentType ~= "PE" then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+L1_1 = MpCommon
+L1_1 = L1_1.GetDateFromTimeT
+L2_2 = MpCommon
+L2_2 = L2_2.GetCurrentTimeT
+L9_9 = L2_2()
+L3_3 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L2_2())
+for L7_7, L8_8 in L4_4(L5_5) do
+  L9_9 = L8_8.AuthenticodeContentType
+  if L9_9 ~= "PE" then
+    L9_9 = mp
+    L9_9 = L9_9.CLEAN
+    return L9_9
   end
-  local l_0_9 = l_0_8.Certificates
-  if l_0_9 ~= nil then
-    for l_0_13,l_0_14 in ipairs(l_0_9) do
-      local l_0_15 = l_0_14.ValidTo
-      if l_0_15 ~= nil then
-        local l_0_16 = l_0_15.Year
-        local l_0_17 = l_0_15.Month
-        if l_0_16 < l_0_3 or ((l_0_16 == l_0_3 and l_0_17 < l_0_2) or l_0_16 ~= l_0_3 or l_0_17 ~= l_0_2 or l_0_15.Day < l_0_1) then
-          return mp.INFECTED
-        end
+  L9_9 = L8_8.Certificates
+  if L9_9 ~= nil then
+    for _FORV_13_, _FORV_14_ in ipairs(L9_9) do
+      if _FORV_14_.ValidTo ~= nil and (L3_3 > _FORV_14_.ValidTo.Year or _FORV_14_.ValidTo.Year == L3_3 and L2_2 > _FORV_14_.ValidTo.Month or _FORV_14_.ValidTo.Year == L3_3 and _FORV_14_.ValidTo.Month == L2_2 and L1_1 > _FORV_14_.ValidTo.Day) then
+        return mp.INFECTED
       end
     end
   end
 end
-do return mp.CLEAN end
--- DECOMPILER ERROR at PC54: Confused about usage of register R4 for local variables in 'ReleaseLocals'
-
-
+return L4_4

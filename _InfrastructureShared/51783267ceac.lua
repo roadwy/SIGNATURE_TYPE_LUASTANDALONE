@@ -1,18 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51783267ceac 
-
--- params : ...
--- function num : 0
-if not peattributes.isdll or not peattributes.ismsil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.ismsil
+elseif not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (hstrlog[3]).VA
-local l_0_1 = (hstrlog[4]).VA
-if l_0_1 < l_0_0 then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.VA
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.VA
+if L0_0 > L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (pe.mmap_va)(l_0_0, l_0_1 - l_0_0 + 10)
-;
-(mp.vfo_add_buffer)(l_0_2, "[ShellDump]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L2_2 = L2_2(L0_0, L1_1 - L0_0 + 10)
+mp.vfo_add_buffer(L2_2, "[ShellDump]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

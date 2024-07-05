@@ -1,23 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b355f1c3d3 
-
--- params : ...
--- function num : 0
-if (bm.GetSignatureMatchDuration)() > 40000000 then
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 40000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(bm.get_imagepath())
+if L0_0 == nil or string.len(L0_0) < 1 then
   return mp.CLEAN
 end
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 == nil or (string.len)(l_0_0) < 1 then
+if string.find(string.lower(L0_0), "\\program files", 1, true) or string.find(string.lower(L0_0), "\\mpsigstub.exe", 1, true) or string.find(string.lower(L0_0), "\\mpcmdrun.exe", 1, true) then
   return mp.CLEAN
 end
-if (string.find)((string.lower)(l_0_0), "\\program files", 1, true) or (string.find)((string.lower)(l_0_0), "\\mpsigstub.exe", 1, true) or (string.find)((string.lower)(l_0_0), "\\mpcmdrun.exe", 1, true) then
+if not this_sigattrlog[4].matched then
   return mp.CLEAN
 end
-if not (this_sigattrlog[4]).matched then
-  return mp.CLEAN
-end
-if (string.match)(l_0_0, "([^\\]-[^\\%.]+)$") == (string.lower)((this_sigattrlog[4]).utf8p1) then
+if string.match(L0_0, "([^\\]-[^\\%.]+)$") == string.lower(this_sigattrlog[4].utf8p1) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

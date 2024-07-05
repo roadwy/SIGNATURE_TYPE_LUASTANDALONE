@@ -1,26 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b3cbdfd0e2 
-
--- params : ...
--- function num : 0
-local l_0_0 = "\\powershell.exe"
-local l_0_1 = (string.len)(l_0_0)
-local l_0_2 = false
-local l_0_3, l_0_4 = (bm.get_process_relationships)()
-for l_0_8,l_0_9 in ipairs(l_0_3) do
-  if l_0_9.image_path ~= nil and (mp.bitand)(l_0_9.reason_ex, 1) == 1 and l_0_1 < (string.len)(l_0_9.image_path) and (string.sub)(l_0_9.image_path, -l_0_1) == l_0_0 then
-    l_0_2 = true
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = "\\powershell.exe"
+L1_1 = string
+L1_1 = L1_1.len
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = false
+L3_3 = bm
+L3_3 = L3_3.get_process_relationships
+L4_4 = L3_3()
+for _FORV_8_, _FORV_9_ in L5_5(L6_6) do
+  if _FORV_9_.image_path ~= nil and mp.bitand(_FORV_9_.reason_ex, 1) == 1 and L1_1 < string.len(_FORV_9_.image_path) and string.sub(_FORV_9_.image_path, -L1_1) == L0_0 then
+    L2_2 = true
     break
   end
 end
-do
-  if l_0_2 == false then
-    return mp.CLEAN
-  end
-  local l_0_10 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-  if l_0_10 ~= nil then
-    (mp.ReportLowfi)(l_0_10, 3640120989)
-  end
-  return mp.INFECTED
+if L2_2 == false then
+  return L5_5
 end
-
+if L5_5 ~= nil then
+  L6_6(L5_5, 3640120989)
+end
+return L6_6

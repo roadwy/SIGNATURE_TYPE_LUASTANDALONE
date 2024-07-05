@@ -1,23 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ContextDataProcessName_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-  if l_0_0 == nil then
-    return mp.CLEAN
-  end
-  ;
-  (mp.set_mpattribute)("Lua:NewFileContextDataPresent")
-  ;
-  (mp.set_mpattribute)("Lua:NewFileContextData:ProcName!" .. l_0_0)
-  local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_2 ~= nil then
-    (mp.set_mpattribute)("Lua:NewFileContextData:FileName!" .. l_0_2)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.get_contextdata
+    L1_1 = mp
+    L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+    L0_0 = L0_0(L1_1)
+    if L0_0 == nil then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
+    L1_1 = mp
+    L1_1 = L1_1.set_mpattribute
+    L2_2 = "Lua:NewFileContextDataPresent"
+    L1_1(L2_2)
+    L1_1 = mp
+    L1_1 = L1_1.set_mpattribute
+    L2_2 = "Lua:NewFileContextData:ProcName!"
+    L3_3 = L0_0
+    L2_2 = L2_2 .. L3_3
+    L1_1(L2_2)
+    L1_1 = mp
+    L1_1 = L1_1.getfilename
+    L2_2 = mp
+    L2_2 = L2_2.bitor
+    L3_3 = mp
+    L3_3 = L3_3.bitor
+    L4_4 = mp
+    L4_4 = L4_4.FILEPATH_QUERY_FNAME
+    L5_5 = mp
+    L5_5 = L5_5.FILEPATH_QUERY_PATH
+    L3_3 = L3_3(L4_4, L5_5)
+    L4_4 = mp
+    L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+    L5_5 = L2_2(L3_3, L4_4)
+    L2_2 = L1_1(L2_2, L3_3, L4_4, L5_5, L2_2(L3_3, L4_4))
+    if L2_2 ~= nil then
+      L3_3 = mp
+      L3_3 = L3_3.set_mpattribute
+      L4_4 = "Lua:NewFileContextData:FileName!"
+      L5_5 = L2_2
+      L4_4 = L4_4 .. L5_5
+      L3_3(L4_4)
+    end
+    L3_3 = mp
+    L3_3 = L3_3.get_contextdata
+    L4_4 = mp
+    L4_4 = L4_4.CONTEXT_DATA_PROCESS_PPID
+    L3_3 = L3_3(L4_4)
+    if L3_3 ~= nil then
+      L4_4 = mp
+      L4_4 = L4_4.GetParentProcInfo
+      L5_5 = L3_3
+      L4_4 = L4_4(L5_5)
+      if L4_4 ~= nil then
+        L5_5 = L4_4.image_path
+        if L5_5 ~= nil then
+          L5_5 = string
+          L5_5 = L5_5.match
+          L5_5 = L5_5(L4_4.image_path, "([^\\]+)$")
+          if L5_5 then
+            L5_5 = string.lower(L5_5)
+            mp.set_mpattribute("Lua:NewFileContextData:Parent!" .. L5_5)
+          end
+        end
+      end
+    end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

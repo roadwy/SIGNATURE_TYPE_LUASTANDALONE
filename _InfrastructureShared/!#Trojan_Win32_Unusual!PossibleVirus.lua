@@ -1,8 +1,3 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Trojan_Win32_Unusual!PossibleVirus 
-
--- params : ...
--- function num : 0
 if peattributes.isdriver == true then
   return mp.CLEAN
 end
@@ -18,7 +13,7 @@ end
 if peattributes.hasappendeddata == true then
   return mp.CLEAN
 end
-if (mp.getfilesize)() < 4096 or (mp.getfilesize)() > 5242880 then
+if mp.getfilesize() < 4096 or mp.getfilesize() > 5242880 then
   return mp.CLEAN
 end
 if peattributes.epscn_islast == false then
@@ -27,7 +22,7 @@ end
 if peattributes.lastscn_executable == false then
   return mp.CLEAN
 end
-if (mp.bitand)((pesecs[pehdr.NumberOfSections]).Characteristics, 3758096384) ~= 3758096384 then
+if mp.bitand(pesecs[pehdr.NumberOfSections].Characteristics, 3758096384) ~= 3758096384 then
   return mp.CLEAN
 end
 if peattributes.no_security == false then
@@ -36,21 +31,19 @@ end
 if peattributes.no_resources == true then
   return mp.CLEAN
 end
-if pehdr.AddressOfEntryPoint < ((pehdr.DataDirectory)[3]).RVA then
+if pehdr.AddressOfEntryPoint < pehdr.DataDirectory[3].RVA then
   return mp.CLEAN
 end
 if pehdr.NumberOfSections < 3 then
   return mp.CLEAN
 end
-if (pesecs[pehdr.NumberOfSections]).NameDW ~= 1920168494 then
+if pesecs[pehdr.NumberOfSections].NameDW ~= 1920168494 then
   return mp.CLEAN
 end
-local l_0_0 = (pe.get_versioninfo)()
-if l_0_0 == nil then
+if pe.get_versioninfo() == nil then
   return mp.CLEAN
 end
-if l_0_0.CompanyName ~= "Microsoft Corporation" then
+if pe.get_versioninfo().CompanyName ~= "Microsoft Corporation" then
   return mp.CLEAN
 end
 return mp.LOWFI
-

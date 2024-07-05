@@ -1,26 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_AdnelFilename.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE or l_0_0 == mp.SCANREASON_ONWRITE then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  if (string.len)(l_0_2) == 15 and (string.sub)(l_0_2, -4) == ".exe" and ((string.sub)(l_0_1, -19) == "\\appdata\\local\\temp" or (string.sub)(l_0_1, -20) == "\\local settings\\temp") then
-    if (string.match)(l_0_2, "%l%l%l%l%l%l%l%l%l%l%l") == nil and (string.match)(l_0_2, "%u%u%u%u%u%u%u%u%u%u%u") == nil then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L2_2 = L2_2(mp.CONTEXT_DATA_FILEPATH)
+  L1_1 = L1_1(L2_2, L2_2(mp.CONTEXT_DATA_FILEPATH))
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L2_2 = L2_2(mp.CONTEXT_DATA_FILENAME)
+  if string.len(L2_2) == 15 and string.sub(L2_2, -4) == ".exe" and (string.sub(L1_1, -19) == "\\appdata\\local\\temp" or string.sub(L1_1, -20) == "\\local settings\\temp") then
+    if string.match(L2_2, "%l%l%l%l%l%l%l%l%l%l%l") == nil and string.match(L2_2, "%u%u%u%u%u%u%u%u%u%u%u") == nil then
       return mp.CLEAN
     end
-    local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-    if l_0_3 == "excel.exe" or l_0_3 == "winword.exe" then
-      (mp.set_mpattribute)("Lua:AdnelProcessFilename.A")
+    if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) == "excel.exe" or string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) == "winword.exe" then
+      mp.set_mpattribute("Lua:AdnelProcessFilename.A")
     else
-      ;
-      (mp.set_mpattribute)("Lua:AdnelFilename.A")
+      mp.set_mpattribute("Lua:AdnelFilename.A")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

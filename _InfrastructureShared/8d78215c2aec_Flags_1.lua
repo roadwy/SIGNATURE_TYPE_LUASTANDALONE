@@ -1,10 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8d78215c2aec_Flags_1 
-
--- params : ...
--- function num : 0
-if peattributes.isdamaged then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdamaged
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.SUSPICIOUS
-
+L0_0 = mp
+L0_0 = L0_0.SUSPICIOUS
+return L0_0

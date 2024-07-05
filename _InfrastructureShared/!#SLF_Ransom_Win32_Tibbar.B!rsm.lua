@@ -1,19 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_Ransom_Win32_Tibbar.B!rsm 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_1 ~= nil and l_0_1:len() > 7 and ((string.sub)(l_0_1, -8) == "cscc.dat" or (string.sub)(l_0_1, -10) == "infpub.dat") then
-    local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-    if l_0_2 ~= nil and l_0_2:len() > 9 and l_0_2:find("\\windows\\", 1, true) ~= nil then
-      return mp.INFECTED
-    end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.getfilename
+  L1_1 = L1_1(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+  if L1_1 ~= nil and L1_1:len() > 7 and (string.sub(L1_1, -8) == "cscc.dat" or string.sub(L1_1, -10) == "infpub.dat") and string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH)) ~= nil and string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH)):len() > 9 and string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH)):find("\\windows\\", 1, true) ~= nil then
+    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

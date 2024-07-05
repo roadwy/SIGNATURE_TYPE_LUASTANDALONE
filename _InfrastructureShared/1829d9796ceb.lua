@@ -1,26 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1829d9796ceb 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetBruteMatchData)()
-local l_0_1 = (mp.getfilesize)()
-local l_0_2 = 25
-if l_0_2 < l_0_1 - l_0_0.match_offset then
-  (mp.readprotection)(false)
-  local l_0_3 = (mp.readfile)(l_0_0.match_offset, l_0_2)
-  if (string.find)(l_0_3, "/usr/bin/env", 1, true) ~= nil or (string.find)(l_0_3, "/usr/bin/ruby", 1, true) ~= nil or (string.find)(l_0_3, "/usr/bin/osascript", 1, true) ~= nil then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+L2_2 = 25
+L3_3 = L0_0.match_offset
+L3_3 = L1_1 - L3_3
+if L2_2 < L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.readprotection
+  L3_3(false)
+  L3_3 = mp
+  L3_3 = L3_3.readfile
+  L3_3 = L3_3(L0_0.match_offset, L2_2)
+  if string.find(L3_3, "/usr/bin/env", 1, true) ~= nil or string.find(L3_3, "/usr/bin/ruby", 1, true) ~= nil or string.find(L3_3, "/usr/bin/osascript", 1, true) ~= nil or string.find(L3_3, "/usr/bin/perl", 1, true) ~= nil then
     return mp.CLEAN
   end
 end
-do
-  local l_0_4 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_4 == nil then
-    return mp.CLEAN
-  end
-  if (string.find)(l_0_4, ".app/contents/macos", 1, true) ~= nil then
-    return mp.INFECTED
-  end
+L3_3 = mp
+L3_3 = L3_3.getfilename
+L3_3 = L3_3(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE))
+if L3_3 == nil then
   return mp.CLEAN
 end
-
+if string.find(L3_3, ".app/contents/macos", 1, true) ~= nil then
+  return mp.INFECTED
+end
+return mp.CLEAN

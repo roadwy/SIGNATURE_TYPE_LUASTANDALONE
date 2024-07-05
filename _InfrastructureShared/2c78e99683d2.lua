@@ -1,16 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2c78e99683d2 
-
--- params : ...
--- function num : 0
 if not peattributes.isdll then
   return mp.CLEAN
 end
 if not peattributes.hasexports then
   return mp.CLEAN
 end
-if R1_PC17 ~= nil and (pe.get_exports)() == 1 then
+if pe.get_exports() ~= nil and pe.get_exports() == 1 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

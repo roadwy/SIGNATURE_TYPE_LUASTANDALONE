@@ -1,19 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ab78632f39f8 
-
--- params : ...
--- function num : 0
-if (hstrlog[1]).hitcount == 0 and (hstrlog[2]).hitcount == 0 then
-  return mp.LOWFI
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = mp
+    L0_0 = L0_0.LOWFI
+    return L0_0
+  end
 end
-if (hstrlog[3]).hitcount == 0 and (hstrlog[4]).hitcount == 0 then
-  return mp.LOWFI
+L0_0 = hstrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[4]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = mp
+    L0_0 = L0_0.LOWFI
+    return L0_0
+  end
 end
-if (hstrlog[5]).hitcount == 0 then
-  return mp.LOWFI
+L0_0 = hstrlog
+L0_0 = L0_0[5]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = mp
+  L0_0 = L0_0.LOWFI
+  return L0_0
 end
-if peattributes.ismsil then
-  return mp.INFECTED
+L0_0 = peattributes
+L0_0 = L0_0.ismsil
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-return mp.LOWFI
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

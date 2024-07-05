@@ -1,33 +1,169 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/85b39982a200 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
+  end
 else
-  do
-    do return mp.CLEAN end
-    local l_0_1 = nil
-    if (string.find)((string.lower)((bm.get_imagepath)()), "\\program files", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\windows\\system32\\svchost.exe", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\sources\\setup", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\windows\\system32\\winsat.exe", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\windows\\system32\\csrss.exe", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\appdata\\local\\microsoft\\onedrive\\", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\programdata\\bomgar", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\macromed\\flash", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\microsoft\\visualstudio\\", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\windows\\ccm", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\windows\\regedit.exe", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\setup.exe", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "}\\.cr\\", 1, true) or (string.find)((string.lower)((bm.get_imagepath)()), "\\appdata\\local\\logmein", 1, true) then
-      return mp.CLEAN
-    end
-    local l_0_2 = nil
-    if (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_1)), "\\program files", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_1)), "\\programdata\\package cache\\", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_1)), "\\advpack.dll,delnoderundll32", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_1)), "\\appdata\\local\\microsoft\\onedrive\\", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_1)), "}\\.cr\\", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_1)), "\\setup.exe", 1, true) or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_1)), "ctfmon.exe", 1, true) then
-      return mp.CLEAN
-    end
-    local l_0_3 = nil
-    for l_0_7,l_0_8 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_1)) do
-      local l_0_4 = nil
-      -- DECOMPILER ERROR at PC235: Confused about usage of register: R8 in 'UnsetPending'
-
-      if (sysio.IsFileExists)(R8_PC235) then
-        (bm.add_related_file)(R8_PC235)
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L8_8 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2())
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if not L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  if not L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    if not L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L3_3 = L1_1
+      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+      if not L2_2 then
+        L2_2 = string
+        L2_2 = L2_2.find
+        L3_3 = L1_1
+        L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+        if not L2_2 then
+          L2_2 = string
+          L2_2 = L2_2.find
+          L3_3 = L1_1
+          L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+          if not L2_2 then
+            L2_2 = string
+            L2_2 = L2_2.find
+            L3_3 = L1_1
+            L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+            if not L2_2 then
+              L2_2 = string
+              L2_2 = L2_2.find
+              L3_3 = L1_1
+              L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+              if not L2_2 then
+                L2_2 = string
+                L2_2 = L2_2.find
+                L3_3 = L1_1
+                L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                if not L2_2 then
+                  L2_2 = string
+                  L2_2 = L2_2.find
+                  L3_3 = L1_1
+                  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                  if not L2_2 then
+                    L2_2 = string
+                    L2_2 = L2_2.find
+                    L3_3 = L1_1
+                    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                    if not L2_2 then
+                      L2_2 = string
+                      L2_2 = L2_2.find
+                      L3_3 = L1_1
+                      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                      if not L2_2 then
+                        L2_2 = string
+                        L2_2 = L2_2.find
+                        L3_3 = L1_1
+                        L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                        if not L2_2 then
+                          L2_2 = string
+                          L2_2 = L2_2.find
+                          L3_3 = L1_1
+                          L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
       end
     end
-    return mp.INFECTED
+  end
+elseif L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = mp
+L3_3 = L3_3.ContextualExpandEnvironmentVariables
+L8_8 = L3_3(L4_4)
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L3_3(L4_4))
+L3_3 = string
+L3_3 = L3_3.find
+L7_7 = true
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+if not L3_3 then
+  L3_3 = string
+  L3_3 = L3_3.find
+  L7_7 = true
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+  if not L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.find
+    L7_7 = true
+    L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+    if not L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L7_7 = true
+      L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+      if not L3_3 then
+        L3_3 = string
+        L3_3 = L3_3.find
+        L7_7 = true
+        L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+        if not L3_3 then
+          L3_3 = string
+          L3_3 = L3_3.find
+          L7_7 = true
+          L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+          if not L3_3 then
+            L3_3 = string
+            L3_3 = L3_3.find
+            L7_7 = true
+            L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+          end
+        end
+      end
+    end
+  end
+elseif L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.GetExecutablesFromCommandLine
+L3_3 = L3_3(L4_4)
+for L7_7, L8_8 in L4_4(L5_5) do
+  if sysio.IsFileExists(L8_8) then
+    bm.add_related_file(L8_8)
   end
 end
-
+return L4_4

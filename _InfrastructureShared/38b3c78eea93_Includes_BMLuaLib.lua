@@ -1,37 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/38b3c78eea93_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0, l_0_1, l_0_2 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
+  end
 else
-  do
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC18: Confused about usage of register: R0 in 'UnsetPending'
-
-    if not contains(l_0_0, "%%.*:~.*%%", false) then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC28: Confused about usage of register: R0 in 'UnsetPending'
-
-    if contains(l_0_0, "echo %%%w+:~0,2%%", false) then
-      return mp.CLEAN
-    end
-    local l_0_3 = nil
-    local l_0_4 = {"%%allusersprofile:~", "%%appdata:~", "%%commonprogramfiles%(x86%):~", "%%commonprogramfiles:~", "%%commonprogramw6432:~", "%%comspec:~", "%%localappdata:~", "%%programdata:~", "%%programfiles%(x86%):~", "%%programfiles:~", "%%programw6432:~", "%%psmodulepath:~", "%%public:~", "%%systemdrive:~", "%%systemroot:~", "%%temp:~", "%%tmp:~", "%%userprofile:~", "%%windir:~"}
-    for l_0_8,l_0_9 in pairs(l_0_4) do
-      local l_0_5 = "%s*[%-%+]?%d+%s*,%s*[%-%+]?%d+%s*%%"
-      -- DECOMPILER ERROR at PC65: Confused about usage of register: R7 in 'UnsetPending'
-
-      if contains(l_0_3, "%%comspec:~" .. l_0_5, false) then
-        (bm.add_related_string)("ShellEncode_cmdline", l_0_3, bm.RelatedStringBMReport)
-        return mp.INFECTED
-      end
-    end
-    return mp.CLEAN
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = contains
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = contains
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7,
+  "%%localappdata:~",
+  "%%programdata:~",
+  "%%programfiles%(x86%):~",
+  "%%programfiles:~",
+  "%%programw6432:~",
+  "%%psmodulepath:~",
+  "%%public:~",
+  "%%systemdrive:~",
+  "%%systemroot:~",
+  "%%temp:~",
+  "%%tmp:~",
+  "%%userprofile:~",
+  "%%windir:~"
+}
+L2_2 = "%%allusersprofile:~"
+L6_6 = "%%commonprogramw6432:~"
+L7_7 = "%%comspec:~"
+L2_2 = "%s*[%-%+]?%d+%s*,%s*[%-%+]?%d+%s*%%"
+for L6_6, L7_7 in L3_3(L4_4) do
+  if contains(L0_0, L7_7 .. L2_2, false) then
+    bm.add_related_string("ShellEncode_cmdline", L0_0, bm.RelatedStringBMReport)
+    return mp.INFECTED
   end
 end
-
+return L3_3

@@ -1,35 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LUA_ZeroToleranceLockdown.A 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not peattributes.isexe or peattributes.isdamaged or (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) ~= true then
-  return mp.CLEAN
-end
-local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0:sub(1, 8) == "\\device\\" then
-  l_0_0 = ((MpCommon.PathToWin32Path)(l_0_0)):lower()
-end
-do
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC94: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC95: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC96: Overwrote pending register: R4 in 'AssignReg'
-
-  for l_0_6,l_0_7 in ((mp.ContextualExpandEnvironmentVariables)("%ProgramFiles%") or "")((mp.ContextualExpandEnvironmentVariables)("%ProgramFiles(x86)%") or "") do
-    if l_0_7 ~= "" and (l_0_0:sub(1, #l_0_7)):lower() == l_0_7:lower() then
-      return mp.CLEAN
-    end
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.isdamaged
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_contextdata
+    L1_1 = mp
+    L1_1 = L1_1.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+    L0_0 = L0_0(L1_1)
   end
-  if (mp.IsTrustedFile)(true) then
+elseif true ~= L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.bitor
+L2_2 = L2_2(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH)
+L2_2 = L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE)
+L1_1 = L0_0(L1_1, L2_2, L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE))
+L2_2 = L0_0.sub
+L2_2 = L2_2(L0_0, 1, 8)
+if L2_2 == "\\device\\" then
+  L2_2 = MpCommon
+  L2_2 = L2_2.PathToWin32Path
+  L2_2 = L2_2(L0_0)
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(L2_2)
+  L0_0 = L2_2
+end
+L2_2 = {
+  MpCommon.ExpandEnvironmentVariables("%ProgramFiles%") or "",
+  MpCommon.ExpandEnvironmentVariables("%ProgramFiles(x86)%") or "",
+  MpCommon.ExpandEnvironmentVariables("%windir%") or "",
+  mp.ContextualExpandEnvironmentVariables("%APPDATA%") or "",
+  mp.ContextualExpandEnvironmentVariables("%LOCALAPPDATA%") or ""
+}
+for _FORV_6_, _FORV_7_ in ipairs(L2_2) do
+  if "" ~= _FORV_7_ and L0_0:sub(1, #_FORV_7_):lower() == _FORV_7_:lower() then
     return mp.CLEAN
   end
-  do return mp.INFECTED end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+if mp.IsTrustedFile(true) then
+  return mp.CLEAN
+end
+return mp.INFECTED

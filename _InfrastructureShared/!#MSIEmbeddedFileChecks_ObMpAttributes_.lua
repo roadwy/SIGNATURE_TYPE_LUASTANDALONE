@@ -1,30 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#MSIEmbeddedFileChecks_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.enum_mpattributesubstring)("//Lua:MSIBinary:")
-if not l_0_0 then
+if not mp.enum_mpattributesubstring("//Lua:MSIBinary:") or #mp.enum_mpattributesubstring("//Lua:MSIBinary:") == 0 then
   return mp.CLEAN
 end
-local l_0_1 = #l_0_0
-if l_0_1 >= 10 then
-  (mp.set_mpattribute)("//Lua:MSIBinCount:GE10")
+if #mp.enum_mpattributesubstring("//Lua:MSIBinary:") >= 10 then
+  mp.set_mpattribute("//Lua:MSIBinCount:GE10")
+elseif #mp.enum_mpattributesubstring("//Lua:MSIBinary:") >= 5 then
+  mp.set_mpattribute("//Lua:MSIBinCount:GE5")
+elseif #mp.enum_mpattributesubstring("//Lua:MSIBinary:") >= 3 then
+  mp.set_mpattribute("//Lua:MSIBinCount:GE3")
+elseif #mp.enum_mpattributesubstring("//Lua:MSIBinary:") >= 2 then
+  mp.set_mpattribute("//Lua:MSIBinCount:GE2")
 else
-  if l_0_1 >= 5 then
-    (mp.set_mpattribute)("//Lua:MSIBinCount:GE5")
-  else
-    if l_0_1 >= 3 then
-      (mp.set_mpattribute)("//Lua:MSIBinCount:GE3")
-    else
-      if l_0_1 >= 2 then
-        (mp.set_mpattribute)("//Lua:MSIBinCount:GE2")
-      else
-        ;
-        (mp.set_mpattribute)("//Lua:MSIBinCount:GE1")
-      end
-    end
-  end
+  mp.set_mpattribute("//Lua:MSIBinCount:GE1")
 end
 return mp.CLEAN
-

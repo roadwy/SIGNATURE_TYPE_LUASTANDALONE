@@ -1,41 +1,79 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b32254ee95 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  end
-  local l_0_1 = nil
-  if (string.lower)((bm.get_imagepath)()) and (string.match)((string.lower)((bm.get_imagepath)()), "\\([^\\]+)$") == "installutil.exe" then
-    return mp.CLEAN
-  end
-  if l_0_1 ~= nil then
-    if not (string.find)((string.lower)(l_0_1), " /u ", 1, true) or not (string.find)((string.lower)(l_0_1), "/logfile= ", 1, true) then
-      return mp.CLEAN
-    end
-    if (string.find)((string.lower)(l_0_1), "\\program files", 1, true) or (string.find)((string.lower)(l_0_1), "/installstatedir=", 1, true) or (string.find)((string.lower)(l_0_1), "upmWmi", 1, true) then
-      return mp.CLEAN
-    end
-    local l_0_2 = nil
-    for l_0_6,l_0_7 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_1)) do
-      local l_0_3 = nil
-      -- DECOMPILER ERROR at PC109: Confused about usage of register: R7 in 'UnsetPending'
-
-      if (sysio.IsFileExists)(R7_PC109) then
-        (mp.ReportLowfi)(R7_PC109, 2023886462)
-        ;
-        (bm.add_related_file)(R7_PC109)
-      end
-    end
-  end
-  do
-    ;
-    (bm.add_action)("EmsScan", 3000)
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
 end
-
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L7_7 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2())
+if L1_1 then
+  L2_2 = string
+  L2_2 = L2_2.match
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 == "installutil.exe" then
+    return L3_3
+  end
+end
+if L0_0 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L6_6 = true
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  if L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L6_6 = true
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  elseif not L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
+  L2_2 = string
+  L2_2 = L2_2.find
+  L6_6 = true
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  if not L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L6_6 = true
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    if not L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L6_6 = true
+      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    end
+  elseif L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    if sysio.IsFileExists(L7_7) then
+      mp.ReportLowfi(L7_7, 2023886462)
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+L2_2 = bm
+L2_2 = L2_2.add_action
+L2_2(L3_3, L4_4)
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

@@ -1,21 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/33897731769f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr, 32)
-local l_0_1 = (mp.readu_u32)(l_0_0, 23)
-local l_0_2 = (mp.readu_u32)(l_0_0, 17)
-local l_0_3 = (pe.get_api_id)((mp.readu_u32)((pe.mmap_va)(l_0_1, 4), 1))
-if l_0_3 ~= 946125367 then
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L2_2 = 32
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = L0_0
+L3_3 = 23
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = L0_0
+L4_4 = 17
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = pe
+L3_3 = L3_3.get_api_id
+L4_4 = mp
+L4_4 = L4_4.readu_u32
+L4_4 = L4_4(pe.mmap_va(L1_1, 4), 1)
+L3_3 = L3_3(L4_4, L4_4(pe.mmap_va(L1_1, 4), 1))
+if L3_3 ~= 946125367 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = pe
+L4_4 = L4_4.mmap_va
+L4_4 = L4_4(L2_2, 32)
+if not string.find(L4_4, "c\000:\000\\\000m\000y\000a\000p\000p\000", 1, true) then
   return mp.CLEAN
 end
-local l_0_4 = (pe.mmap_va)(l_0_2, 32)
-local l_0_5 = (string.find)(l_0_4, "c\000:\000\\\000m\000y\000a\000p\000p\000", 1, true)
-if not l_0_5 then
-  return mp.CLEAN
-end
-;
-(pe.mmap_patch_va)(pevars.sigaddr + 30, "êê")
+pe.mmap_patch_va(pevars.sigaddr + 30, "\144\144")
 return mp.INFECTED
-

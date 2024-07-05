@@ -1,26 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Grenam 
-
--- params : ...
--- function num : 0
-local l_0_0 = Remediation.Threat
-if l_0_0.Name == "Virus:Win32/Grenam.A" or l_0_0.Name == "Virus:Win32/Grenam.B" then
-  for l_0_4,l_0_5 in ipairs(l_0_0.Resources) do
-    if l_0_5.Schema == "file" and (sysio.IsFileExists)(l_0_5.Path) then
-      local l_0_6, l_0_7 = (l_0_5.Path):match("(.+\\)([^\\]+)$")
-      local l_0_8 = nil
-      if l_0_0.Name == "Virus:Win32/Grenam.A" then
-        l_0_8 = "g"
-      else
-        if l_0_0.Name == "Virus:Win32/Grenam.B" then
-          l_0_8 = "v"
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+if L1_1 ~= "Virus:Win32/Grenam.A" then
+elseif L1_1 == "Virus:Win32/Grenam.B" then
+  for L4_4, L5_5 in L1_1(L2_2) do
+    L6_6 = L5_5.Schema
+    if L6_6 == "file" then
+      L6_6 = sysio
+      L6_6 = L6_6.IsFileExists
+      L7_7 = L5_5.Path
+      L6_6 = L6_6(L7_7)
+      if L6_6 then
+        L6_6 = L5_5.Path
+        L7_7 = L6_6
+        L6_6 = L6_6.match
+        L8_8 = "(.+\\)([^\\]+)$"
+        L7_7 = L6_6(L7_7, L8_8)
+        L8_8 = nil
+        L9_9 = L0_0.Name
+        if L9_9 == "Virus:Win32/Grenam.A" then
+          L8_8 = "g"
+        else
+          L9_9 = L0_0.Name
+          if L9_9 == "Virus:Win32/Grenam.B" then
+            L8_8 = "v"
+          end
         end
-      end
-      local l_0_9 = l_0_6 .. l_0_8 .. (string.sub)(l_0_7, 0, -4) .. "ico"
-      if (sysio.IsFileExists)(l_0_9) then
-        (sysio.DeleteFile)(l_0_9)
+        L9_9 = L6_6
+        L9_9 = L9_9 .. L8_8 .. string.sub(L7_7, 0, -4) .. "ico"
+        if sysio.IsFileExists(L9_9) then
+          sysio.DeleteFile(L9_9)
+        end
       end
     end
   end
 end
-

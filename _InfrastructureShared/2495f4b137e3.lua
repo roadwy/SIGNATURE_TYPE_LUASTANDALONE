@@ -1,11 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2495f4b137e3 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr, 80)
-local l_0_1 = (mp.readu_u32)(l_0_0, 31) - 1
-;
-(pe.set_regval)(pe.REG_ECX, l_0_1)
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L0_0 = L0_0(L1_1, 80)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 31)
+L1_1 = L1_1 - 1
+pe.set_regval(pe.REG_ECX, L1_1)
 return mp.CLEAN
-

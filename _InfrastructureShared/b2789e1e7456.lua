@@ -1,10 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b2789e1e7456 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT >= 21 and (hstrlog[3]).hitcount + (hstrlog[4]).hitcount + (hstrlog[5]).hitcount + (hstrlog[6]).hitcount >= 5 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 >= 21 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[3]
+  L0_0 = L0_0.hitcount
+  L1_1 = hstrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.hitcount
+  L0_0 = L0_0 + L1_1
+  L1_1 = hstrlog
+  L1_1 = L1_1[5]
+  L1_1 = L1_1.hitcount
+  L0_0 = L0_0 + L1_1
+  L1_1 = hstrlog
+  L1_1 = L1_1[6]
+  L1_1 = L1_1.hitcount
+  L0_0 = L0_0 + L1_1
+  if L0_0 >= 5 then
+    L0_0 = mp
+    L0_0 = L0_0.INFECTED
+    return L0_0
+  end
 end
-return mp.LOWFI
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

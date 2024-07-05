@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1978556bb499 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("BM_MZ_FILE") and ((mp.get_mpattribute)("pea_hasappendeddata") or (mp.get_mpattribute)("LoD:Lua:PossibleShellter")) then
+if mp.get_mpattribute("BM_MZ_FILE") and (mp.get_mpattribute("pea_hasappendeddata") or mp.get_mpattribute("LoD:Lua:PossibleShellter")) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

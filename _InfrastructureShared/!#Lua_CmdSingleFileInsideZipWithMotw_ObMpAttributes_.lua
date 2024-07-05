@@ -1,16 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_CmdSingleFileInsideZipWithMotw_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.UfsGetMetadataBool)("Lua:FileInZip", true) ~= 0 or not "Lua:FileInZip" then
+if mp.UfsGetMetadataBool("Lua:FileInZip", true) ~= 0 or not mp.UfsGetMetadataBool("Lua:FileInZip", true) then
   return mp.CLEAN
 end
-if (mp.UfsGetMetadataBool)("Lua:SingleFileInZip", true) ~= 0 or "Lua:SingleFileInZip" then
+if mp.UfsGetMetadataBool("Lua:SingleFileInZip", true) ~= 0 or mp.UfsGetMetadataBool("Lua:SingleFileInZip", true) then
   return mp.CLEAN
 end
-if (mp.UfsGetMetadataBool)("Lua:ZipWithMotw", true) ~= 0 or not "Lua:ZipWithMotw" then
+if mp.UfsGetMetadataBool("Lua:ZipWithMotw", true) ~= 0 or not mp.UfsGetMetadataBool("Lua:ZipWithMotw", true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

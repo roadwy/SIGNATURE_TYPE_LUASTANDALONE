@@ -1,54 +1,97 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7d41fee9bd3a_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0, l_0_1, l_0_3, l_0_5, l_0_7 = nil, nil, nil, nil
-  l_0_7 = this_sigattrlog
-  l_0_7 = l_0_7[1]
-  l_0_1 = l_0_7.utf8p2
-  local l_0_2, l_0_4, l_0_6, l_0_8 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L4_4 = L4_4.utf8p2
+  if L4_4 ~= nil then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[1]
+    L0_0 = L4_4.utf8p1
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[1]
+    L1_1 = L4_4.utf8p2
+  end
 else
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[2]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[2]
+    L4_4 = L4_4.utf8p2
+    if L4_4 ~= nil then
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[2]
+      L0_0 = L4_4.utf8p1
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[2]
+      L1_1 = L4_4.utf8p2
+    end
+  end
 end
-do
-  if not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or not contains((this_sigattrlog[2]).utf8p2, "/command/base64/") then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC44: Confused about usage of register: R1 in 'UnsetPending'
-
-  local l_0_9 = (this_sigattrlog[2]).utf8p1
-  if (string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}") == nil then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC55: Confused about usage of register: R2 in 'UnsetPending'
-
-  local l_0_10 = nil
-  -- DECOMPILER ERROR at PC62: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC71: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC80: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC89: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC98: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC107: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC116: Confused about usage of register: R3 in 'UnsetPending'
-
-  if (MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")) ~= nil and ((string.find)((MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")), "curl", 1, true) or (string.find)((MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")), "wget", 1, true) or (string.find)((MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")), "powershell", 1, true) or (string.find)((MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")), "python", 1, true) or (string.find)((MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")), "mshta", 1, true) or (string.find)((MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")), "certutil", 1, true) or (string.find)((MpCommon.Base64Decode)((string.match)((this_sigattrlog[2]).utf8p2, "Command%/Base64%/(.*)\"?\'?}")), "cmd", 1, true)) then
-    local l_0_11 = nil
-    local l_0_12 = nil
-    ;
-    (nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), {["[" .. l_0_9 .. "]"] = "[" .. l_0_10 .. "]"})
+L4_4 = contains
+L4_4 = L4_4(L1_1, "/command/base64/")
+if not L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = string
+L4_4 = L4_4.match
+L4_4 = L4_4(L1_1, "Command%/Base64%/(.*)\"?'?}")
+L2_2 = L4_4
+if L2_2 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = MpCommon
+L4_4 = L4_4.Base64Decode
+L4_4 = L4_4(L2_2)
+L3_3 = L4_4
+if L3_3 ~= nil then
+  L4_4 = string
+  L4_4 = L4_4.find
+  L4_4 = L4_4(L3_3, "curl", 1, true)
+  if not L4_4 then
+    L4_4 = string
+    L4_4 = L4_4.find
+    L4_4 = L4_4(L3_3, "wget", 1, true)
+    if not L4_4 then
+      L4_4 = string
+      L4_4 = L4_4.find
+      L4_4 = L4_4(L3_3, "powershell", 1, true)
+      if not L4_4 then
+        L4_4 = string
+        L4_4 = L4_4.find
+        L4_4 = L4_4(L3_3, "python", 1, true)
+        if not L4_4 then
+          L4_4 = string
+          L4_4 = L4_4.find
+          L4_4 = L4_4(L3_3, "mshta", 1, true)
+          if not L4_4 then
+            L4_4 = string
+            L4_4 = L4_4.find
+            L4_4 = L4_4(L3_3, "certutil", 1, true)
+            if not L4_4 then
+              L4_4 = string
+              L4_4 = L4_4.find
+              L4_4 = L4_4(L3_3, "cmd", 1, true)
+            end
+          end
+        end
+      end
+    end
+  elseif L4_4 then
+    L4_4 = {}
+    L4_4["[" .. L0_0 .. "]"] = "[" .. L1_1 .. "]"
+    nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L4_4)
     return mp.INFECTED
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

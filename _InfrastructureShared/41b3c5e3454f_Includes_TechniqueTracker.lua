@@ -1,20 +1,129 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3c5e3454f_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (bm.GetSignatureMatchDuration)() > 100000000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 100000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-if l_0_0 and ((string.find)(l_0_0, "\\system32\\svchost.exe", 1, true) or (string.find)(l_0_0, "\\system32\\lsass.exe", 1, true) or (string.find)(l_0_0, "\\system32\\dns.exe", 1, true) or (string.find)(l_0_0, "\\program files", 1, true) or (string.find)(l_0_0, "\\run_windows_", 1, true) or (string.find)(l_0_0, "f5fltsrv.exe", 1, true) or (string.find)(l_0_0, "nslookup.exe", 1, true) or (string.find)(l_0_0, "netsh.exe", 1, true) or (string.find)(l_0_0, "deepl.exe", 1, true) or (string.find)(l_0_0, "browsercore64.exe", 1, true) or (string.find)(l_0_0, "sihclient.exe", 1, true) or (string.find)(l_0_0, "vmnat.exe", 1, true) or (string.find)(l_0_0, "fabricdnsservice.exe", 1, true) or (string.find)(l_0_0, "msedge.exe", 1, true) or (string.find)(l_0_0, "btservice.exe", 1, true) or (string.find)(l_0_0, "\\loom\\", 1, true)) then
-  return mp.CLEAN
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L2_2 = L2_2()
+L2_2 = L1_1(L2_2, L2_2())
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2, L2_2()))
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2, "\\system32\\svchost.exe", 1, true)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2, "\\system32\\lsass.exe", 1, true)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L2_2 = L0_0
+      L1_1 = L1_1(L2_2, "\\system32\\dns.exe", 1, true)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L2_2 = L0_0
+        L1_1 = L1_1(L2_2, "\\program files", 1, true)
+        if not L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L2_2 = L0_0
+          L1_1 = L1_1(L2_2, "\\run_windows_", 1, true)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L2_2 = L0_0
+            L1_1 = L1_1(L2_2, "f5fltsrv.exe", 1, true)
+            if not L1_1 then
+              L1_1 = string
+              L1_1 = L1_1.find
+              L2_2 = L0_0
+              L1_1 = L1_1(L2_2, "nslookup.exe", 1, true)
+              if not L1_1 then
+                L1_1 = string
+                L1_1 = L1_1.find
+                L2_2 = L0_0
+                L1_1 = L1_1(L2_2, "netsh.exe", 1, true)
+                if not L1_1 then
+                  L1_1 = string
+                  L1_1 = L1_1.find
+                  L2_2 = L0_0
+                  L1_1 = L1_1(L2_2, "deepl.exe", 1, true)
+                  if not L1_1 then
+                    L1_1 = string
+                    L1_1 = L1_1.find
+                    L2_2 = L0_0
+                    L1_1 = L1_1(L2_2, "browsercore64.exe", 1, true)
+                    if not L1_1 then
+                      L1_1 = string
+                      L1_1 = L1_1.find
+                      L2_2 = L0_0
+                      L1_1 = L1_1(L2_2, "sihclient.exe", 1, true)
+                      if not L1_1 then
+                        L1_1 = string
+                        L1_1 = L1_1.find
+                        L2_2 = L0_0
+                        L1_1 = L1_1(L2_2, "vmnat.exe", 1, true)
+                        if not L1_1 then
+                          L1_1 = string
+                          L1_1 = L1_1.find
+                          L2_2 = L0_0
+                          L1_1 = L1_1(L2_2, "fabricdnsservice.exe", 1, true)
+                          if not L1_1 then
+                            L1_1 = string
+                            L1_1 = L1_1.find
+                            L2_2 = L0_0
+                            L1_1 = L1_1(L2_2, "msedge.exe", 1, true)
+                            if not L1_1 then
+                              L1_1 = string
+                              L1_1 = L1_1.find
+                              L2_2 = L0_0
+                              L1_1 = L1_1(L2_2, "btservice.exe", 1, true)
+                              if not L1_1 then
+                                L1_1 = string
+                                L1_1 = L1_1.find
+                                L2_2 = L0_0
+                                L1_1 = L1_1(L2_2, "\\loom\\", 1, true)
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
 end
-local l_0_1 = (bm.get_current_process_startup_info)()
-local l_0_2 = (string.lower)(l_0_1.command_line)
-if (string.find)(l_0_2, "clienthealth", 1, true) then
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(L1_1.command_line)
+if string.find(L2_2, "clienthealth", 1, true) then
   return mp.CLEAN
 end
 TrackPidAndTechniqueBM("BM", "T1071", "command_control_r")
 return mp.INFECTED
-

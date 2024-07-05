@@ -1,123 +1,131 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MSIL.SuspiciousCrypter.Tokens_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 >= 1048576 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 >= 1048576 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (pe.get_netmetadata)()
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = pe
+L1_1 = L1_1.get_netmetadata
+L1_1 = L1_1()
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = 0
-local l_0_3 = 0
-local l_0_4 = 0
-local l_0_5 = 0
-local l_0_6 = 0
-local l_0_7 = {}
--- DECOMPILER ERROR at PC41: No list found for R7 , SetList fails
-
--- DECOMPILER ERROR at PC42: Overwrote pending register: R8 in 'AssignReg'
-
--- DECOMPILER ERROR at PC43: Overwrote pending register: R9 in 'AssignReg'
-
--- DECOMPILER ERROR at PC44: Overwrote pending register: R10 in 'AssignReg'
-
-for l_0_11 = 1, 2, 3 do
-  -- DECOMPILER ERROR at PC46: Overwrote pending register: R12 in 'AssignReg'
-
-  local l_0_12 = 7
-  -- DECOMPILER ERROR at PC47: Overwrote pending register: R13 in 'AssignReg'
-
-  local l_0_13 = (9)[l_0_12]
-  -- DECOMPILER ERROR at PC64: Overwrote pending register: R14 in 'AssignReg'
-
+L2_2 = 0
+L3_3 = 0
+L4_4 = 0
+L5_5 = 0
+L6_6 = 0
+L7_7 = 0
+L8_8 = {
+  L9_9,
+  L10_10,
+  L11_11,
+  L12_12,
+  L13_13,
+  L14_14,
+  L15_15,
+  L16_16,
+  L17_17,
+  L18_18,
+  L19_19,
+  L20_20,
+  L21_21,
+  33,
+  36,
+  41,
+  42,
+  43,
+  44
+}
+L15_15 = 11
+L16_16 = 13
+L17_17 = 18
+L21_21 = 28
+for L12_12 = 1, #L8_8 do
+  if L13_13 == 1 then
+    L3_3 = L14_14.count
+  elseif L13_13 == 7 then
+    L4_4 = L14_14.count
+  elseif L13_13 == 9 then
+    L6_6 = L14_14.count
+  elseif L13_13 == 11 then
+    L7_7 = L14_14.count
+  elseif L13_13 == 33 then
+    L5_5 = L14_14.count
+  end
+  L15_15 = L14_14.count
+  L2_2 = L2_2 + L15_15
 end
-if ((l_0_12 ~= 1 or l_0_12 == 7) and l_0_12 ~= 9) or l_0_12 == 11 then
-  local l_0_14 = 300
-  if l_0_4 <= 300 then
-    local l_0_15 = false
-    local l_0_16 = false
-    if l_0_3 == 1 and (mp.get_mpattribute)("AGGR:IsDotNetAMSIScan") then
-      local l_0_17 = l_0_1.strheap_RVA + (pe.metadata_decode)(1, 3) + 9
-      local l_0_18 = (pe.mmap_string_rva)(l_0_17, 256)
-      -- DECOMPILER ERROR at PC100: Overwrote pending register: R15 in 'AssignReg'
-
-      if #l_0_18 == 12 and (string.find)(l_0_18, 13) == 1 then
-        (mp.set_mpattribute)("Lua:MSIL:PossiblyDynGenRuntimeClass.A")
-      end
-    end
-    do
-      ;
-      (mp.set_mpattribute)("Lua:MSIL.AbnormalModuleCount")
-      for l_0_22 = 1, l_0_14 do
-        -- DECOMPILER ERROR at PC118: Overwrote pending register: R16 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC120: Overwrote pending register: R17 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC121: Overwrote pending register: R18 in 'AssignReg'
-
-        local l_0_23 = l_0_1.strheap_RVA + ((18).metadata_decode)(22, 24)
-        local l_0_24 = (pe.mmap_string_rva)(l_0_23, 256)
-        -- DECOMPILER ERROR at PC133: Overwrote pending register: R19 in 'AssignReg'
-
-        if not l_0_15 then
-          for l_0_28 = 1, #l_0_24, 25 do
-            -- DECOMPILER ERROR at PC135: Overwrote pending register: R22 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC135: Overwrote pending register: R21 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC136: Overwrote pending register: R23 in 'AssignReg'
-
-            do
-              do
-                local l_0_29 = (33)(36, 41)
-                if l_0_29 >= 126 or l_0_29 <= 32 then
-                  break
-                end
-                -- DECOMPILER ERROR at PC144: LeaveBlock: unexpected jumping out DO_STMT
-
-              end
-            end
-          end
-        end
-      end
-      do
-        do
-          if (#l_0_24 == 0 and l_0_15) or l_0_16 then
-            (mp.set_mpattribute)("Lua:MSIL.AbnormalMethod.Name")
-          end
-          if l_0_2 < 100000 then
-            (mp.set_mpattribute)("Lua:MSIL.MetadataSum:" .. tostring(l_0_2))
-            ;
-            (mp.set_mpattribute)("Lua:MSIL.TotalMethods:" .. tostring(l_0_4))
-            ;
-            (mp.set_mpattribute)("Lua:MSIL.TotalParams:" .. tostring(l_0_5))
-            ;
-            (mp.set_mpattribute)("Lua:MSIL.TotalMemberRefs:" .. tostring(l_0_6))
-          end
-          if l_0_2 == 158 and l_0_4 == 10 and l_0_5 == 5 and l_0_6 == 46 then
-            (mp.set_mpattribute)("Lua:MSIL.SuspiciousCrypter.A")
-          else
-            if (l_0_4 == 625 or l_0_4 == 630) and l_0_5 == 135 and (l_0_6 == 288 or l_0_6 == 280) then
-              (mp.set_mpattribute)("Lua:MSIL.SuspiciousCrypter.B")
-            else
-              if l_0_2 == 236 and l_0_4 == 22 and l_0_5 == 15 and l_0_6 == 51 then
-                (mp.set_mpattribute)("Lua:MSIL.SuspiciousCrypter.C")
-              else
-                if l_0_2 == 263 and l_0_4 == 22 and l_0_5 == 8 and l_0_6 == 63 then
-                  (mp.set_mpattribute)("Lua:MSIL.SuspiciousCrypter.D")
-                end
-              end
-            end
-          end
-          do return mp.CLEAN end
-          -- WARNING: undefined locals caused missing assignments!
+if L3_3 == 1 then
+  if L12_12 then
+    L15_15 = 3
+    L15_15 = 64
+    if L13_13 then
+      if L14_14 == 12 then
+        L15_15 = L13_13
+        L16_16 = "[%l%d]+.[de][lx][le]"
+        if L14_14 == 1 then
+          L15_15 = "Lua:MSIL:PossiblyDynGenRuntimeClass.A"
+          L14_14(L15_15)
         end
       end
     end
   end
+else
+  L12_12(L13_13)
 end
-
+if L5_5 == 1 then
+  if L12_12 then
+    L15_15 = L12_12
+    if L13_13 == "0x00000000" then
+      L13_13(L14_14)
+    end
+  end
+end
+for L15_15 = 1, L9_9 do
+  L16_16 = L1_1.strheap_RVA
+  L17_17 = pe
+  L17_17 = L17_17.metadata_decode
+  L17_17 = L17_17(L18_18, L19_19)
+  L16_16 = L16_16 + L17_17
+  L17_17 = pe
+  L17_17 = L17_17.mmap_string_rva
+  L17_17 = L17_17(L18_18, L19_19)
+  if L17_17 and not L10_10 then
+    for L21_21 = 1, #L17_17 do
+      if L17_17:byte(L21_21) >= 126 or L17_17:byte(L21_21) <= 32 then
+        break
+      end
+    end
+  end
+  if L17_17 then
+  end
+end
+if L10_10 or L11_11 then
+  L12_12(L13_13)
+end
+if L2_2 < 100000 then
+  L15_15 = L2_2
+  L12_12(L13_13)
+  L15_15 = L4_4
+  L12_12(L13_13)
+  L15_15 = L6_6
+  L12_12(L13_13)
+  L15_15 = L7_7
+  L12_12(L13_13)
+end
+if L2_2 == 158 and L4_4 == 10 and L6_6 == 5 and L7_7 == 46 then
+  L12_12(L13_13)
+elseif (L4_4 == 625 or L4_4 == 630) and L6_6 == 135 and (L7_7 == 288 or L7_7 == 280) then
+  L12_12(L13_13)
+elseif L2_2 == 236 and L4_4 == 22 and L6_6 == 15 and L7_7 == 51 then
+  L12_12(L13_13)
+elseif L2_2 == 263 and L4_4 == 22 and L6_6 == 8 and L7_7 == 63 then
+  L12_12(L13_13)
+end
+return L12_12

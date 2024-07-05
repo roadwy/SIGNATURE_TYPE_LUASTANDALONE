@@ -1,29 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3d5cad436_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4, l_0_5 = nil
-  end
-  -- DECOMPILER ERROR at PC10: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC25: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC31: Confused about usage of register: R0 in 'UnsetPending'
-
-  if (string.sub)(l_0_0, -4) == ".php" and (string.sub)(l_0_0, 0, 9) == "/var/www/" then
-    if (sysio.IsFileExists)(l_0_0) then
-      (bm.add_related_file)(l_0_0)
-    end
-    TrackPidAndTechniqueBM("BM", "T1505.003", "Persistence_Webshell")
-    return mp.INFECTED
-  end
-  return mp.CLEAN
+local L0_0
+if this_sigattrlog[1].matched then
+  L0_0 = this_sigattrlog[1].utf8p1
 end
-
+if string.sub(L0_0, -4) == ".php" and string.sub(L0_0, 0, 9) == "/var/www/" then
+  if sysio.IsFileExists(L0_0) then
+    bm.add_related_file(L0_0)
+  end
+  TrackPidAndTechniqueBM("BM", "T1505.003", "Persistence_Webshell")
+  return mp.INFECTED
+end
+return mp.CLEAN

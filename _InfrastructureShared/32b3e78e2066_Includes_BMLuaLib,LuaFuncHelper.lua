@@ -1,59 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/32b3e78e2066_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (this_sigattrlog[1]).utf8p2
-  do
-    local l_0_1 = split(l_0_0, ",")
-    local l_0_2 = {}
-    processActions = function(l_1_0)
-  -- function num : 0_0 , upvalues : l_0_2
-  for l_1_4,l_1_5 in pairs(l_1_0) do
-    local l_1_6 = (MpCommon.Base64Decode)(l_1_5)
-    l_1_6 = explode(l_1_6, "_")
-    for l_1_10,l_1_11 in ipairs(l_1_6) do
-      l_1_11 = split(l_1_11, ":")
-      local l_1_12, l_1_13 = pcall(mp.GetPPidFromPid, l_1_11[1])
-      local l_1_14 = l_0_2
-      local l_1_15 = l_1_11[1]
-      local l_1_16 = {}
-      l_1_16.success = l_1_12
-      l_1_16.ppid = l_1_13
-      l_1_14[l_1_15] = l_1_16
-      if l_1_12 then
-        l_1_14 = l_1_11[2]
-        l_1_15 = bm
-        l_1_15 = l_1_15.trigger_sig
-        l_1_16 = "Heimdall_ProcessActions"
-        l_1_15(l_1_16, l_1_14, l_1_13)
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  L1_1 = split
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2, ",")
+  L2_2 = {}
+  function processActions(A0_3)
+    local L1_4, L2_5, L3_6, L4_7, L5_8, L6_9, L7_10, L8_11, L9_12, L10_13, L11_14, L12_15, L13_16, L14_17
+    for L4_7, L5_8 in L1_4(L2_5) do
+      L6_9 = MpCommon
+      L6_9 = L6_9.Base64Decode
+      L6_9 = L6_9(L7_10)
+      L6_9 = L7_10
+      for L10_13, L11_14 in L7_10(L8_11) do
+        L12_15 = split
+        L13_16 = L11_14
+        L14_17 = ":"
+        L12_15 = L12_15(L13_16, L14_17)
+        L11_14 = L12_15
+        L12_15 = pcall
+        L13_16 = mp
+        L13_16 = L13_16.GetPPidFromPid
+        L14_17 = L11_14[1]
+        L13_16 = L12_15(L13_16, L14_17)
+        L14_17 = _UPVALUE0_
+        L14_17[L11_14[1]] = {success = L12_15, ppid = L13_16}
+        if L12_15 then
+          L14_17 = L11_14[2]
+          bm.trigger_sig("Heimdall_ProcessActions", L14_17, L13_16)
+        end
       end
     end
   end
-  -- DECOMPILER ERROR at PC46: Confused about usage of register R1 for local variables in 'ReleaseLocals'
-
-end
-
-    local l_0_3, l_0_4 = pcall(processActions, l_0_1)
-    do
-      if not l_0_3 then
-        local l_0_5 = {}
-        l_0_5.error = l_0_4
-        l_0_2.error = l_0_5
-      end
-      local l_0_6 = pcall
-      local l_0_7 = mp.GetUrlReputation
-      local l_0_8 = {}
-      -- DECOMPILER ERROR at PC30: No list found for R7 , SetList fails
-
-      -- DECOMPILER ERROR at PC31: Overwrote pending register: R8 in 'AssignReg'
-
-      l_0_6(l_0_7, l_0_8, ("http://962b56e5-5eb2-4ed3-8757-3f22f190d202.report")(l_0_2))
-    end
-    do
-      return mp.CLEAN
-    end
+  if not pcall(processActions, L1_1) then
+    L2_2.error = {
+      error = pcall(processActions, L1_1)
+    }
+    L2_2.TAG = "NOLOOKUP"
   end
+  pcall(mp.GetUrlReputation, {
+    "http://962b56e5-5eb2-4ed3-8757-3f22f190d202.report"
+  }, safeJsonSerialize(L2_2))
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

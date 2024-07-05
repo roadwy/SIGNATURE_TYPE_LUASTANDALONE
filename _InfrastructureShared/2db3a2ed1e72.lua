@@ -1,31 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3a2ed1e72 
-
--- params : ...
--- function num : 0
-local l_0_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History")
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = sysio
+L0_0 = L0_0.RegOpenKey
+L1_1 = "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History"
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "MachineDomain")
-if l_0_1 == nil or #l_0_1 < 1 then
-  return mp.CLEAN
+L1_1 = sysio
+L1_1 = L1_1.GetRegValueAsString
+L2_2 = L0_0
+L3_3 = "MachineDomain"
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= nil then
+  L2_2 = #L1_1
+elseif L2_2 < 1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\Services\\WebClient")
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WebClient"
+L2_2 = L2_2(L3_3)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (sysio.GetRegValueAsString)(l_0_2, "Start")
-if l_0_3 == nil or l_0_3 >= 4 then
-  return mp.CLEAN
+L3_3 = sysio
+L3_3 = L3_3.GetRegValueAsString
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, "Start")
+if L3_3 == nil or L3_3 >= 4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_4 = (string.lower)((this_sigattrlog[1]).utf8p2)
-    if (sysio.IsFileExists)(l_0_4) then
-      (bm.add_related_file)(l_0_4)
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L4_4 = L4_4.utf8p2
+  if L4_4 ~= nil then
+    L4_4 = string
+    L4_4 = L4_4.lower
+    L4_4 = L4_4(this_sigattrlog[1].utf8p2)
+    if sysio.IsFileExists(L4_4) then
+      bm.add_related_file(L4_4)
     end
   end
-  return mp.INFECTED
 end
-
+L4_4 = mp
+L4_4 = L4_4.INFECTED
+return L4_4

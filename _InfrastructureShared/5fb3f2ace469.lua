@@ -1,17 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5fb3f2ace469 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-    if (string.find)(l_0_0, "kaspersky", 1, true) or (string.find)(l_0_0, "little snitch", 1, true) or (string.find)(l_0_0, "norton", 1, true) or (string.find)(l_0_0, "avast", 1, true) or (string.find)(l_0_0, "mcafee", 1, true) or (string.find)(l_0_0, "avira", 1, true) or (string.find)(l_0_0, "sophos", 1, true) or (string.find)(l_0_0, "malwarebytes", 1, true) or (string.find)(l_0_0, "trendmicro", 1, true) or (string.find)(l_0_0, "bitdefender", 1, true) then
-      return mp.INFECTED
-    end
+local L0_0
+if this_sigattrlog[1].utf8p2 ~= nil then
+  L0_0 = string.lower(this_sigattrlog[1].utf8p2)
+  if string.find(L0_0, "kaspersky", 1, true) or string.find(L0_0, "little snitch", 1, true) or string.find(L0_0, "norton", 1, true) or string.find(L0_0, "avast", 1, true) or string.find(L0_0, "mcafee", 1, true) or string.find(L0_0, "avira", 1, true) or string.find(L0_0, "sophos", 1, true) or string.find(L0_0, "malwarebytes", 1, true) or string.find(L0_0, "trendmicro", 1, true) or string.find(L0_0, "bitdefender", 1, true) then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+return mp.CLEAN

@@ -1,18 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/87d741487ca0 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 == nil then
+if mp.GetParentProcInfo() == nil then
   return mp.CLEAN
 end
-local l_0_1 = (string.lower)((string.sub)(l_0_0.image_path, -12))
-if l_0_1 ~= "wmiprvse.exe" or l_0_1 == "services.exe" then
+if string.lower(string.sub(mp.GetParentProcInfo().image_path, -12)) ~= "wmiprvse.exe" or string.lower(string.sub(mp.GetParentProcInfo().image_path, -12)) == "services.exe" then
   return mp.CLEAN
 end
-if (versioning.GetLocaleIdentifier)() == 1049 then
+if versioning.GetLocaleIdentifier() == 1049 then
   return mp.LOWFI
 end
 return mp.CLEAN
-

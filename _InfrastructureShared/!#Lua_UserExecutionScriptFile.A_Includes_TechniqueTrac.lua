@@ -1,44 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_UserExecutionScriptFile.A_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_AMSI then
-  local l_0_1, l_0_2 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME)
-  local l_0_3 = {}
-  l_0_3.vbs = true
-  l_0_3.ps1 = true
-  l_0_3[".js"] = true
-  l_0_3.jse = true
-  l_0_3.vbe = true
-  if l_0_1 then
-    local l_0_4, l_0_5 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME)
-    if l_0_4 and l_0_5 ~= nil then
-      local l_0_6 = (string.lower)(l_0_5)
-      local l_0_7 = (string.sub)(l_0_6, -3)
-      if l_0_7 ~= nil and l_0_3[l_0_7] == true then
-        if l_0_6:find("\\desktop\\", 1, true) and not l_0_6:find("\\tanium\\", 1, true) and (sysio.IsFileExists)(l_0_5) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_AMSI
+if L0_0 == L1_1 then
+  L1_1 = pcall
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_AMSI_APPNAME
+  L2_2 = L1_1(L2_2, L3_3)
+  L3_3 = {}
+  L3_3.vbs = true
+  L3_3.ps1 = true
+  L3_3[".js"] = true
+  L3_3.jse = true
+  L3_3.vbe = true
+  if L1_1 then
+    L4_4 = pcall
+    L5_5 = mp
+    L5_5 = L5_5.get_contextdata
+    L6_6 = mp
+    L6_6 = L6_6.CONTEXT_DATA_AMSI_CONTENTNAME
+    L5_5 = L4_4(L5_5, L6_6)
+    if L4_4 and L5_5 ~= nil then
+      L6_6 = string
+      L6_6 = L6_6.lower
+      L6_6 = L6_6(L5_5)
+      if string.sub(L6_6, -3) ~= nil and L3_3[string.sub(L6_6, -3)] == true then
+        if L6_6:find("\\desktop\\", 1, true) and not L6_6:find("\\tanium\\", 1, true) and sysio.IsFileExists(L5_5) then
           TrackPidAndTechnique("AMSI", "T1204", "UserExecution")
-          ;
-          (mp.ReportLowfi)(l_0_5, 2338371394)
+          mp.ReportLowfi(L5_5, 2338371394)
           return mp.INFECTED
-        else
-          if l_0_6:find("\\downloads\\", 1, true) and not l_0_6:find("\\tanium\\", 1, true) and (sysio.IsFileExists)(l_0_5) then
-            TrackPidAndTechnique("AMSI", "T1204", "UserExecution")
-            ;
-            (mp.ReportLowfi)(l_0_5, 4234643412)
-            return mp.INFECTED
-          end
+        elseif L6_6:find("\\downloads\\", 1, true) and not L6_6:find("\\tanium\\", 1, true) and sysio.IsFileExists(L5_5) then
+          TrackPidAndTechnique("AMSI", "T1204", "UserExecution")
+          mp.ReportLowfi(L5_5, 4234643412)
+          return mp.INFECTED
         end
       end
     end
   end
-  do
-    do
-      do return mp.CLEAN end
-      return mp.CLEAN
-    end
-  end
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

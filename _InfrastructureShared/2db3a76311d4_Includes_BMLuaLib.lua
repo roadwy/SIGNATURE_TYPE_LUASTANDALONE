@@ -1,24 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3a76311d4_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = nil
-  if l_0_0 ~= nil then
-    local l_0_1 = bm_AddRelatedFileFromCommandLine(l_0_0)
-    for l_0_5,l_0_6 in ipairs(l_0_1) do
-      if (mp.IsKnownFriendlyFile)(l_0_6, false, false) == false then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
+  if L0_0 ~= nil then
+    L1_1 = bm_AddRelatedFileFromCommandLine
+    L1_1 = L1_1(L2_2)
+    for L5_5, L6_6 in L2_2(L3_3) do
+      if mp.IsKnownFriendlyFile(L6_6, false, false) == false then
         return mp.INFECTED
       end
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

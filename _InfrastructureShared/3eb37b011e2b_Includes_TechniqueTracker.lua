@@ -1,39 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3eb37b011e2b_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 == nil or (string.len)(l_0_0) < 1 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+elseif L1_1 < 1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.find)((string.lower)(l_0_0), "\\program files", 1, true) or (string.find)((string.lower)(l_0_0), "\\mpsigstub.exe", 1, true) or (string.find)((string.lower)(l_0_0), "\\mpcmdrun.exe", 1, true) then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 == nil then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  if L2_2 == nil then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  end
+elseif L2_2 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (string.find)(l_0_0, "\\lsass.exe", 1, true) then
-  local l_0_1, l_0_2 = (bm.get_process_relationships)()
-  if l_0_1 then
-    for l_0_6,l_0_7 in ipairs(l_0_1) do
-      if l_0_7.image_path ~= nil and (mp.bitand)(l_0_7.reason_ex, 2) == 2 then
-        local l_0_8 = (string.lower)(l_0_7.image_path)
-        if (string.find)(l_0_8, "\\dell secureworks\\red cloak\\[^\\]+\\entwine.exe") or (string.find)(l_0_8, "\\program files\\morphisec\\bin\\protectorservice64.exe", 1, true) or (string.find)(l_0_8, "\\sentinelone\\sentinel agent[^\\]+\\sentinelagent.exe") then
-          return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.sub
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == "\\threatsonar.exe" then
+  L2_2 = mp
+  L2_2 = L2_2.IsKnownFriendlyFile
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4, L5_5)
+  if L2_2 ~= nil and L2_2 == true then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+end
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L0_0
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 then
+  L2_2 = bm
+  L2_2 = L2_2.get_process_relationships
+  L3_3 = L2_2()
+  if L2_2 then
+    for L7_7, L8_8 in L4_4(L5_5) do
+      L9_9 = L8_8.image_path
+      if L9_9 ~= nil then
+        L9_9 = mp
+        L9_9 = L9_9.bitand
+        L9_9 = L9_9(L8_8.reason_ex, 2)
+        if L9_9 == 2 then
+          L9_9 = string
+          L9_9 = L9_9.lower
+          L9_9 = L9_9(L8_8.image_path)
+          if string.find(L9_9, "\\dell secureworks\\red cloak\\[^\\]+\\entwine.exe") or string.find(L9_9, "\\program files\\morphisec\\bin\\protectorservice64.exe", 1, true) or string.find(L9_9, "\\sentinelone\\sentinel agent[^\\]+\\sentinelagent.exe") then
+            return mp.CLEAN
+          end
         end
       end
     end
   end
 end
-do
-  l_0_1 = TrackCustomPersistContextNameByPPID
-  l_0_2 = "query"
-  l_0_1 = l_0_1(l_0_2, "bm", "MimikatzTrigger")
-  if l_0_1 == true then
-    l_0_1 = mp
-    l_0_1 = l_0_1.INFECTED
-    return l_0_1
-  end
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
+L2_2 = TrackCustomPersistContextNameByPPID
+L3_3 = "query"
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+if L2_2 == true then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

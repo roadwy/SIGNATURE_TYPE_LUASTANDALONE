@@ -1,31 +1,56 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Leenstic.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  if (string.sub)(l_0_1, -17) == "\\application data" or (string.sub)(l_0_1, -16) == "\\appdata\\roaming" then
-    local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-    local l_0_3 = (string.len)(l_0_2)
-    if l_0_3 ~= 10 then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_FILEPATH
+  L7_7 = L2_2(L3_3)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2(L3_3))
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 ~= "\\application data" then
+    L2_2 = string
+    L2_2 = L2_2.sub
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3, L4_4)
+  elseif L2_2 == "\\appdata\\roaming" then
+    L2_2 = mp
+    L2_2 = L2_2.get_contextdata
+    L3_3 = mp
+    L3_3 = L3_3.CONTEXT_DATA_FILENAME
+    L2_2 = L2_2(L3_3)
+    L3_3 = string
+    L3_3 = L3_3.len
+    L3_3 = L3_3(L4_4)
+    if L3_3 ~= 10 then
+      return L4_4
     end
-    for l_0_7 = 1, l_0_3 - 4 do
-      local l_0_8 = (string.byte)(l_0_2, l_0_7)
-      if l_0_8 < 48 or l_0_8 > 57 then
+    for L7_7 = 1, L3_3 - 4 do
+      if string.byte(L2_2, L7_7) < 48 or string.byte(L2_2, L7_7) > 57 then
         return mp.CLEAN
       end
     end
-    local l_0_9 = (sysio.GetFileAttributes)((mp.getfilename)())
-    if (mp.bitand)(l_0_9, 3) ~= 0 then
-      (mp.set_mpattribute)("Lua:Leenstic.A")
-      return mp.INFECTED
+    L7_7 = 3
+    if L5_5 ~= 0 then
+      L5_5(L6_6)
+      return L5_5
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

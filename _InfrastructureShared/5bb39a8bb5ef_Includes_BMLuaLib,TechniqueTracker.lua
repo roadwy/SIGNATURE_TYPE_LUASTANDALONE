@@ -1,37 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bb39a8bb5ef_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC15: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  end
-  local l_0_1 = nil
-  if not IsProcNameInParentProcessTree("BM", {"winword.exe", "excel.exe", "powerpnt.exe", "mspub.exe"}) then
-    return mp.CLEAN
-  end
-  if contains(l_0_1, "process.*call.*create", false) then
-    local l_0_2 = nil
-    local l_0_3 = contains
-    local l_0_4 = l_0_1
-    l_0_3 = l_0_3(l_0_4, {" powershell", " mshta javascript:", " regsvr32", " rundll32", " mshta", " certutil"})
-    if l_0_3 then
-      l_0_3 = bm
-      l_0_3 = l_0_3.add_related_string
-      l_0_4 = "proc_cmdline"
-      l_0_3(l_0_4, l_0_1, bm.RelatedStringBMReport)
-      l_0_3 = add_parents
-      l_0_3()
-      l_0_3 = mp
-      l_0_3 = l_0_3.INFECTED
-      return l_0_3
-    end
-  end
-  do
-    return mp.CLEAN
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L1_1)
+    L0_0 = L1_1
   end
 end
-
+L1_1 = {
+  "winword.exe",
+  "excel.exe",
+  "powerpnt.exe",
+  "mspub.exe"
+}
+if not IsProcNameInParentProcessTree("BM", L1_1) then
+  return mp.CLEAN
+end
+if contains(L0_0, "process.*call.*create", false) and contains(L0_0, {
+  " powershell",
+  " mshta javascript:",
+  " regsvr32",
+  " rundll32",
+  " mshta",
+  " certutil"
+}) then
+  bm.add_related_string("proc_cmdline", L0_0, bm.RelatedStringBMReport)
+  add_parents()
+  return mp.INFECTED
+end
+return mp.CLEAN

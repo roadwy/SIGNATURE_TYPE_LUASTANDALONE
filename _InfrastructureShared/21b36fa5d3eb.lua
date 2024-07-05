@@ -1,45 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/21b36fa5d3eb 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC14: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  end
-  -- DECOMPILER ERROR at PC15: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC26: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    if (string.find)(l_0_0, "\\program files.+dropbox\\client\\dropboxext") or (string.find)(l_0_0, "\\appdata\\local\\microsoft\\teamsmeetingaddin\\.+\\microsoft.teams.addinloader.dll") then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC36: Confused about usage of register: R0 in 'UnsetPending'
-
-    local l_0_4 = nil
-    for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_0)) do
-      local l_0_5 = nil
-      -- DECOMPILER ERROR at PC42: Confused about usage of register: R6 in 'UnsetPending'
-
-      if R6_PC42 ~= nil and R6_PC42:len() > 3 and (sysio.IsFileExists)(R6_PC42) then
-        if (mp.IsKnownFriendlyFile)(R6_PC42, true, false) == true then
-          return mp.CLEAN
-        end
-        ;
-        (mp.ReportLowfi)(R6_PC42, 1891100223)
-        ;
-        (bm.add_related_file)(R6_PC42)
-      end
-    end
-    return mp.INFECTED
-  end
-  do
-    return mp.CLEAN
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L6_6 = L2_2(L3_3)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L2_2(L3_3))
+  L0_0 = L1_1
 end
-
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L1_1 = L1_1(L2_2, L3_3)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L1_1 = L1_1(L2_2, L3_3)
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    if L6_6 ~= nil and L6_6:len() > 3 and sysio.IsFileExists(L6_6) then
+      if mp.IsKnownFriendlyFile(L6_6, true, false) == true then
+        return mp.CLEAN
+      end
+      mp.ReportLowfi(L6_6, 1891100223)
+      bm.add_related_file(L6_6)
+    end
+  end
+  return L2_2
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

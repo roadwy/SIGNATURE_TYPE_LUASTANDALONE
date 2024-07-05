@@ -1,47 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2d416d246d58 
-
--- params : ...
--- function num : 0
-local l_0_0 = (MpCommon.GetCurrentTimeT)() / 100000
-if l_0_0 > 100 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = MpCommon
+L0_0 = L0_0.GetCurrentTimeT
+L0_0 = L0_0()
+L0_0 = L0_0 / 100000
+if L0_0 > 100 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = 140
-local l_0_2 = 141
-local l_0_3 = {}
-local l_0_4 = false
-local l_0_5 = false
-local l_0_6 = false
-if (this_sigattrlog[1]).matched == true then
-  local l_0_7 = (this_sigattrlog[1]).p1
-  local l_0_8, l_0_9 = (MpCommon.SNidSearch)(l_0_1, "00000000" .. l_0_7)
-  if l_0_8 == true and l_0_9:sub(1, 20) == "!#AvoidList:NRI:JA3:" then
-    l_0_5 = true
-    l_0_6 = true
+L1_1 = 140
+L2_2 = 141
+L3_3 = {}
+L4_4 = false
+L5_5 = false
+L6_6 = false
+L7_7 = this_sigattrlog
+L7_7 = L7_7[1]
+L7_7 = L7_7.matched
+if L7_7 == true then
+  L7_7 = this_sigattrlog
+  L7_7 = L7_7[1]
+  L7_7 = L7_7.p1
+  if MpCommon.SNidSearch(L1_1, "00000000" .. L7_7) == true and MpCommon.SNidSearch(L1_1, "00000000" .. L7_7):sub(1, 20) == "!#AvoidList:NRI:JA3:" then
+    L5_5 = true
+    L6_6 = true
   end
-  if l_0_5 == false then
-    l_0_3.TlsJa3CHash = l_0_7
-  end
-end
-do
-  if (this_sigattrlog[2]).matched == true then
-    local l_0_10 = (this_sigattrlog[2]).p1
-    local l_0_11, l_0_12 = (MpCommon.SNidSearch)(l_0_2, "00000000" .. l_0_10)
-    if l_0_11 == true and l_0_12:sub(1, 20) == "!#AvoidList:NRI:JA3:" then
-      l_0_5 = true
-    end
-    if l_0_5 == false and l_0_6 == false then
-      l_0_3.TlsJa3SHash = l_0_10
-      l_0_4 = true
-    end
-  end
-  do
-    if l_0_4 == true then
-      (nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), l_0_3)
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+  if L5_5 == false then
+    L3_3.TlsJa3CHash = L7_7
   end
 end
-
+L7_7 = this_sigattrlog
+L7_7 = L7_7[2]
+L7_7 = L7_7.matched
+if L7_7 == true then
+  L7_7 = this_sigattrlog
+  L7_7 = L7_7[2]
+  L7_7 = L7_7.p1
+  if MpCommon.SNidSearch(L2_2, "00000000" .. L7_7) == true and MpCommon.SNidSearch(L2_2, "00000000" .. L7_7):sub(1, 20) == "!#AvoidList:NRI:JA3:" then
+    L5_5 = true
+  end
+  if L5_5 == false and L6_6 == false then
+    L3_3.TlsJa3SHash = L7_7
+    L4_4 = true
+  end
+end
+if L4_4 == true then
+  L7_7 = nri
+  L7_7 = L7_7.AddTelemetry
+  L7_7(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L3_3)
+  L7_7 = mp
+  L7_7 = L7_7.INFECTED
+  return L7_7
+end
+L7_7 = mp
+L7_7 = L7_7.CLEAN
+return L7_7

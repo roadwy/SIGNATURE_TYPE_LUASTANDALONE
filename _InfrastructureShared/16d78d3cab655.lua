@@ -1,51 +1,119 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/16d78d3cab655 
-
--- params : ...
--- function num : 0
-if not peattributes.no_resources then
-  if mp.HSTR_WEIGHT > 6 then
-    local l_0_0 = nil
-    ;
-    (mp.readprotection)(false)
-    local l_0_1 = 4294967295
-    if (hstrlog[4]).matched then
-      l_0_1 = (pe.foffset_va)((hstrlog[4]).VA + 14)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = peattributes
+L0_0 = L0_0.no_resources
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.HSTR_WEIGHT
+  if L0_0 > 6 then
+    L0_0 = nil
+    L1_1 = mp
+    L1_1 = L1_1.readprotection
+    L2_2 = false
+    L1_1(L2_2)
+    L1_1 = 4294967295
+    L2_2 = hstrlog
+    L2_2 = L2_2[4]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = pe
+      L2_2 = L2_2.foffset_va
+      L3_3 = hstrlog
+      L3_3 = L3_3[4]
+      L3_3 = L3_3.VA
+      L3_3 = L3_3 + 14
+      L2_2 = L2_2(L3_3)
+      L1_1 = L2_2
     else
-      if (hstrlog[5]).matched then
-        l_0_1 = (pe.foffset_va)((hstrlog[5]).VA + 15)
+      L2_2 = hstrlog
+      L2_2 = L2_2[5]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = pe
+        L2_2 = L2_2.foffset_va
+        L3_3 = hstrlog
+        L3_3 = L3_3[5]
+        L3_3 = L3_3.VA
+        L3_3 = L3_3 + 15
+        L2_2 = L2_2(L3_3)
+        L1_1 = L2_2
       else
-        if (hstrlog[6]).matched then
-          l_0_1 = (pe.foffset_va)((hstrlog[6]).VA + 14)
+        L2_2 = hstrlog
+        L2_2 = L2_2[6]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = pe
+          L2_2 = L2_2.foffset_va
+          L3_3 = hstrlog
+          L3_3 = L3_3[6]
+          L3_3 = L3_3.VA
+          L3_3 = L3_3 + 14
+          L2_2 = L2_2(L3_3)
+          L1_1 = L2_2
         else
-          if (hstrlog[7]).matched then
-            l_0_1 = (pe.foffset_va)((hstrlog[7]).VA + 15)
+          L2_2 = hstrlog
+          L2_2 = L2_2[7]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = pe
+            L2_2 = L2_2.foffset_va
+            L3_3 = hstrlog
+            L3_3 = L3_3[7]
+            L3_3 = L3_3.VA
+            L3_3 = L3_3 + 15
+            L2_2 = L2_2(L3_3)
+            L1_1 = L2_2
           end
         end
       end
     end
-    if l_0_1 ~= 4294967295 then
-      l_0_0 = (mp.readfile)(l_0_1, 4)
+    if L1_1 ~= 4294967295 then
+      L2_2 = mp
+      L2_2 = L2_2.readfile
+      L3_3 = L1_1
+      L4_4 = 4
+      L2_2 = L2_2(L3_3, L4_4)
+      L0_0 = L2_2
     end
-    if l_0_0 ~= nil then
-      local l_0_2 = (mp.readu_u32)(l_0_0, 1)
-      l_0_1 = (pe.foffset_va)(l_0_2)
-      if l_0_1 ~= 4294967295 then
-        local l_0_3 = (mp.readfile)(l_0_1, 4)
-        local l_0_4 = (mp.readu_u32)(l_0_3, 1)
-        local l_0_5 = (pe.foffset_va)(l_0_4)
-        if l_0_5 ~= 4294967295 then
-          local l_0_6 = (string.format)("HSTR:Gamarue_RC4_password_at_%08X", l_0_4)
-          ;
-          (mp.set_mpattribute)(l_0_6)
+    if L0_0 ~= nil then
+      L2_2 = mp
+      L2_2 = L2_2.readu_u32
+      L3_3 = L0_0
+      L4_4 = 1
+      L2_2 = L2_2(L3_3, L4_4)
+      L3_3 = pe
+      L3_3 = L3_3.foffset_va
+      L4_4 = L2_2
+      L3_3 = L3_3(L4_4)
+      L1_1 = L3_3
+      if L1_1 ~= 4294967295 then
+        L3_3 = mp
+        L3_3 = L3_3.readfile
+        L4_4 = L1_1
+        L5_5 = 4
+        L3_3 = L3_3(L4_4, L5_5)
+        L4_4 = mp
+        L4_4 = L4_4.readu_u32
+        L5_5 = L3_3
+        L6_6 = 1
+        L4_4 = L4_4(L5_5, L6_6)
+        L5_5 = pe
+        L5_5 = L5_5.foffset_va
+        L6_6 = L4_4
+        L5_5 = L5_5(L6_6)
+        if L5_5 ~= 4294967295 then
+          L6_6 = string
+          L6_6 = L6_6.format
+          L6_6 = L6_6("HSTR:Gamarue_RC4_password_at_%08X", L4_4)
+          mp.set_mpattribute(L6_6)
         end
       end
     end
   end
-  do
-    ;
-    (mp.set_mpattribute)("HSTR:Gamarue_RC4DecryptionLowfi")
-    return mp.CLEAN
-  end
+  L0_0 = mp
+  L0_0 = L0_0.set_mpattribute
+  L1_1 = "HSTR:Gamarue_RC4DecryptionLowfi"
+  L0_0(L1_1)
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

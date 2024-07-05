@@ -1,10 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/16295601bf42 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("BM_RTF_FILE") then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+L0_0 = L0_0.lower
+L0_0 = L0_0(L0_0)
+if mp.get_mpattribute("BM_RTF_FILE") == true and string.find(L0_0, ".rtf", -4, true) ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

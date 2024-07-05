@@ -1,27 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/65b3c7e17502 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[3]).matched then
-  local l_0_0 = nil
-  if l_0_0 ~= nil and (string.len)(l_0_0) > 3 and (string.find)(l_0_0, " copy ", 1, true) and (string.find)(l_0_0, "\\windows\\temp\\", 1, true) and ((string.find)(l_0_0, "\\share$\\", 1, true) or (string.find)(l_0_0, " \\\\", 1, true) or (string.find)(l_0_0, " \"\"\\\\", 1, true)) then
-    local l_0_1 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-    if l_0_1 ~= nil then
-      for l_0_5,l_0_6 in ipairs(l_0_1) do
-        l_0_6 = (mp.ContextualExpandEnvironmentVariables)(l_0_6)
-        ;
-        (bm.add_related_file)(l_0_6)
-      end
-    end
-    do
-      do
-        do return mp.INFECTED end
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+  if L0_0 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.len
+    L1_1 = L1_1(L2_2)
+    if L1_1 > 3 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L5_5 = true
+      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      if L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L5_5 = true
+        L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+        if L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L5_5 = true
+          L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L5_5 = true
+            L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+            if not L1_1 then
+              L1_1 = string
+              L1_1 = L1_1.find
+              L5_5 = true
+              L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+            end
+          elseif L1_1 then
+            L1_1 = mp
+            L1_1 = L1_1.GetExecutablesFromCommandLine
+            L1_1 = L1_1(L2_2)
+            if L1_1 ~= nil then
+              for L5_5, L6_6 in L2_2(L3_3) do
+                L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+                bm.add_related_file(L6_6)
+              end
+            end
+            return L2_2
+          end
+        end
       end
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

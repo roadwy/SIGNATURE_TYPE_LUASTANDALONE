@@ -1,16 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/23b321f60520 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p2)
-if l_0_0:find(" /n ", 1, true) == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.utf8p2
+L0_0 = L0_0(L1_1)
+L2_2 = L0_0
+L1_1 = L0_0.find
+L1_1 = L1_1(L2_2, " /n ", 1, true)
+if L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = "|/xb|/in|/un|/u0|/u1|/rt|/i0|/i1|/i2|/b1|/p1|/up|/va|/vxxv|/mkey|/cp|"
-local l_0_2 = l_0_0:match("/i:\"(/%w+)\"")
-if l_0_2 == nil or l_0_2 == "" or l_0_1:find("|" .. l_0_2 .. "|", 1, true) == nil then
+L1_1 = "|/xb|/in|/un|/u0|/u1|/rt|/i0|/i1|/i2|/b1|/p1|/up|/va|/vxxv|/mkey|/cp|"
+L2_2 = L0_0.match
+L2_2 = L2_2(L0_0, "/i:\"(/%w+)\"")
+if L2_2 == nil or L2_2 == "" or L1_1:find("|" .. L2_2 .. "|", 1, true) == nil then
   return mp.CLEAN
 end
 return mp.INFECTED
-

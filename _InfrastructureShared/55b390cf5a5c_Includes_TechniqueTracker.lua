@@ -1,46 +1,38 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b390cf5a5c_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[3]).matched then
-  local l_0_0, l_0_1, l_0_3 = nil, nil
-  l_0_3 = this_sigattrlog
-  l_0_3 = l_0_3[3]
-  l_0_1 = l_0_3.image_path
-  local l_0_2, l_0_4 = nil
+local L0_0, L1_1, L2_2, L3_3
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L0_0 = L2_2.ppid
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L1_1 = L2_2.image_path
 end
-do
-  -- DECOMPILER ERROR at PC11: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R1 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil and l_0_1 ~= nil then
-    TrackPidAndTechniqueBM(l_0_0, "T1110.001", "CredentialAccess_FtpBruteForceOutgoing")
-  end
-  local l_0_5 = nil
-  if (mp.GetParentProcInfo)() ~= nil and ((mp.GetParentProcInfo)()).image_path ~= nil and not (string.find)(((mp.GetParentProcInfo)()).image_path, "/usr/sbin/sshd", -14, true) then
-    local l_0_6 = nil
-    do
-      do
-        if ((mp.GetParentProcInfo)()).image_path == l_0_6 then
-          local l_0_7 = nil
-          if (mp.GetParentProcInfo)(((mp.GetParentProcInfo)()).ppid) ~= nil then
-            TrackPidAndTechniqueBM(((mp.GetParentProcInfo)(((mp.GetParentProcInfo)()).ppid)).ppid, "T1110.001", "CredentialAccess_FtpBruteForceOutgoing")
-          end
-        end
-        -- DECOMPILER ERROR at PC53: Confused about usage of register: R2 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC55: Confused about usage of register: R3 in 'UnsetPending'
-
-        TrackPidAndTechniqueBM(l_0_7.ppid, "T1110.001", "CredentialAccess_FtpBruteForceOutgoing")
-        return mp.INFECTED
+if L0_0 ~= nil and L1_1 ~= nil then
+  L2_2 = TrackPidAndTechniqueBM
+  L3_3 = L0_0
+  L2_2(L3_3, "T1110.001", "CredentialAccess_FtpBruteForceOutgoing")
+end
+L2_2 = mp
+L2_2 = L2_2.GetParentProcInfo
+L2_2 = L2_2()
+if L2_2 ~= nil then
+  L3_3 = L2_2.image_path
+  if L3_3 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.find
+    L3_3 = L3_3(L2_2.image_path, "/usr/sbin/sshd", -14, true)
+    if not L3_3 then
+      L3_3 = "CredentialAccess_FtpBruteForceOutgoing"
+      if L2_2.image_path == L1_1 and mp.GetParentProcInfo(L2_2.ppid) ~= nil then
+        TrackPidAndTechniqueBM(mp.GetParentProcInfo(L2_2.ppid).ppid, "T1110.001", L3_3)
       end
+      TrackPidAndTechniqueBM(L2_2.ppid, "T1110.001", L3_3)
     end
   end
 end
-
+L3_3 = mp
+L3_3 = L3_3.INFECTED
+return L3_3

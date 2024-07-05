@@ -1,22 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bb32db68686 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2 = nil
-  end
-  -- DECOMPILER ERROR at PC10: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_3 = nil
-  if l_0_3 == nil or (mp.IsKnownFriendlyFile)((mp.ContextualExpandEnvironmentVariables)(l_0_0), true, false) then
-    return mp.CLEAN
-  end
-  ;
-  (bm.add_threat_file)(l_0_3)
-  return mp.INFECTED
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
 end
-
+L1_1 = mp
+L1_1 = L1_1.ContextualExpandEnvironmentVariables
+L1_1 = L1_1(L0_0)
+if L0_0 == nil or mp.IsKnownFriendlyFile(L1_1, true, false) then
+  return mp.CLEAN
+end
+bm.add_threat_file(L0_0)
+return mp.INFECTED

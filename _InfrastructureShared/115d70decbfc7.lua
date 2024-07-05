@@ -1,18 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/115d70decbfc7 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == nil then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(mp.GetProcessCommandLine(L0_0))
+if L1_1 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (string.lower)((mp.GetProcessCommandLine)(l_0_0))
-if l_0_1 == nil then
-  return mp.CLEAN
-end
-if (string.find)(l_0_1, "sdelete", 1, true) or (string.find)(l_0_1, "procdump", 1, true) or (string.find)(l_0_1, "psshutdown", 1, true) then
+if string.find(L1_1, "sdelete", 1, true) or string.find(L1_1, "procdump", 1, true) or string.find(L1_1, "psshutdown", 1, true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

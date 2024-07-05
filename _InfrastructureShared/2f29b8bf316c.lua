@@ -1,18 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2f29b8bf316c 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("//AGGR:OleFile") and not (mp.get_mpattribute)("Lua:FileSizeLT2000") then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "//AGGR:OleFile"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "Lua:FileSizeLT2000"
+  L0_0 = L0_0(L1_1)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
+end
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = tostring
+L2_2 = footerpage
+L3_3 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2))
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "(<a href%=\"http.-\">https%://businessonline%.o2%.co%.uk/)"
+L3_3 = L1_1(L2_2, L3_3)
+if nil == L3_3 then
   return mp.CLEAN
 end
-local l_0_0 = (string.lower)(tostring(footerpage))
-local l_0_1, l_0_2, l_0_3 = (string.find)(l_0_0, "(<a href%=\"http.-\">https%://businessonline%.o2%.co%.uk/)")
-if l_0_3 == nil then
-  return mp.CLEAN
-end
-if (string.match)(l_0_3, "<a href%=\"https%://businessonline%.o2%.co%.uk/.-\">https%://businessonline%.o2%.co%.uk/") == nil then
+if nil == string.match(L3_3, "<a href%=\"https%://businessonline%.o2%.co%.uk/.-\">https%://businessonline%.o2%.co%.uk/") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

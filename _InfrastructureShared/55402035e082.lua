@@ -1,12 +1,6 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55402035e082 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0.useragent = (nri.GetHttpRequestHeader)("User-Agent")
-l_0_0.referer = (nri.GetHttpRequestHeader)("referer")
-;
-(nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), l_0_0)
+local L0_0
+L0_0 = {}
+L0_0.useragent = nri.GetHttpRequestHeader("User-Agent")
+L0_0.referer = nri.GetHttpRequestHeader("referer")
+nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L0_0)
 return mp.INFECTED
-

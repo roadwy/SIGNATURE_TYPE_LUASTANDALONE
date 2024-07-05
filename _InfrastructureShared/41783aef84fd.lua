@@ -1,20 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41783aef84fd 
-
--- params : ...
--- function num : 0
-if (hstrlog[1]).hitcount >= 3 then
-  return mp.LOWFI
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.hitcount
+if L0_0 >= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.LOWFI
+  return L0_0
 else
-  if (hstrlog[2]).hitcount >= 3 then
-    return mp.LOWFI
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.hitcount
+  if L0_0 >= 3 then
+    L0_0 = mp
+    L0_0 = L0_0.LOWFI
+    return L0_0
   else
-    if (hstrlog[3]).hitcount >= 3 then
-      return mp.LOWFI
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.hitcount
+    if L0_0 >= 3 then
+      L0_0 = mp
+      L0_0 = L0_0.LOWFI
+      return L0_0
     else
-      return mp.CLEAN
+      L0_0 = mp
+      L0_0 = L0_0.CLEAN
+      return L0_0
     end
   end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,35 +1,88 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_B64StreamSerializedObj_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 983040 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 983040 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-l_0_1 = (string.gsub)(l_0_1, " ", "")
-l_0_1 = (string.gsub)(l_0_1, "\t", "")
-l_0_1 = (string.gsub)(l_0_1, "\n", "")
-l_0_1 = (string.gsub)(l_0_1, "\r", "")
-l_0_1 = (string.gsub)(l_0_1, "\"%+\"", "")
-l_0_1 = (string.gsub)(l_0_1, "\"%w-=%w-&\"", "")
-local l_0_2 = (string.match)(l_0_1, "=\"(AAEAAAD/////AQAAAAAAAAAEAQAAACJT.-)\"")
-if l_0_2 then
-  local l_0_3 = (MpCommon.Base64Decode)(l_0_2)
-  if l_0_3 == nil or l_0_3 == "" then
-    return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.gsub
+L3_3 = L1_1
+L4_4 = " "
+L5_5 = ""
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.gsub
+L3_3 = L1_1
+L4_4 = "\t"
+L5_5 = ""
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.gsub
+L3_3 = L1_1
+L4_4 = "\n"
+L5_5 = ""
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.gsub
+L3_3 = L1_1
+L4_4 = "\r"
+L5_5 = ""
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.gsub
+L3_3 = L1_1
+L4_4 = "\"%+\""
+L5_5 = ""
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.gsub
+L3_3 = L1_1
+L4_4 = "\"%w-=%w-&\""
+L5_5 = ""
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "=\"(AAEAAAD/////AQAAAAAAAAAEAQAAACJT.-)\""
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 then
+  L3_3 = MpCommon
+  L3_3 = L3_3.Base64Decode
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4)
+  if L3_3 == nil or L3_3 == "" then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  local l_0_4 = (string.find)(l_0_3, "MZ\144\000", 1, true)
-  if l_0_4 then
-    local l_0_5 = l_0_3:sub(l_0_4)
-    ;
-    (mp.vfo_add_buffer)(l_0_5, "[SerializedObj]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+  L4_4 = string
+  L4_4 = L4_4.find
+  L5_5 = L3_3
+  L4_4 = L4_4(L5_5, "MZ\144\000", 1, true)
+  if L4_4 then
+    L5_5 = L3_3.sub
+    L5_5 = L5_5(L3_3, L4_4)
+    mp.vfo_add_buffer(L5_5, "[SerializedObj]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
   end
 end
-do
-  return mp.INFECTED
-end
-
+L3_3 = mp
+L3_3 = L3_3.INFECTED
+return L3_3

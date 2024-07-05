@@ -1,40 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f9b391ecbcb2 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC38: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-      local l_0_1, l_0_2 = (this_sigattrlog[2]).utf8p2
-    end
-    -- DECOMPILER ERROR at PC39: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC43: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_1 ~= nil then
-      local l_0_3 = nil
-      for l_0_7,l_0_8 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_1)) do
-        local l_0_4 = nil
-        -- DECOMPILER ERROR at PC51: Confused about usage of register: R6 in 'UnsetPending'
-
-        R6_PC51 = (mp.ContextualExpandEnvironmentVariables)(R6_PC51)
-        if (string.lower)((string.sub)(R6_PC51, -4)) == ".inf" and (sysio.IsFileExists)(R6_PC51) then
-          (bm.add_related_file)(R6_PC51)
-          return mp.INFECTED
-        end
-      end
-    end
-    do
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.utf8p2
+  end
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L0_0 = L1_1.utf8p2
+  end
+end
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    if string.lower(string.sub(L6_6, -4)) == ".inf" and sysio.IsFileExists(L6_6) then
+      bm.add_related_file(L6_6)
       return mp.INFECTED
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

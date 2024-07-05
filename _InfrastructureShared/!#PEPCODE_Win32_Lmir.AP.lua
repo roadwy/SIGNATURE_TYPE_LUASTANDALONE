@@ -1,35 +1,71 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Win32_Lmir.AP 
-
--- params : ...
--- function num : 0
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[16] ~= 255 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[16]
+if L0_0 ~= 255 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.entrybyte55 ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.entrybyte55
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasexports ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[6]).Size <= 0 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[6]
+L0_0 = L0_0.Size
+if L0_0 <= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)((pe.foffset_rva)(((pehdr.DataDirectory)[1]).RVA), 32)
-if (mp.readu_u32)(l_0_0, 13) <= 0 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L1_1 = pe
+L1_1 = L1_1.foffset_rva
+L1_1 = L1_1(pehdr.DataDirectory[1].RVA)
+L0_0 = L0_0(L1_1, 32)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 13)
+if L1_1 <= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(l_0_0, 25) <= 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(L0_0, 25)
+if L1_1 <= 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.readfile)((pe.foffset_rva)((mp.readu_u32)(l_0_0, 13)), 12)
-if (mp.crc32)(-1, l_0_1, 1, 12) ~= 1965254513 then
+L1_1 = mp
+L1_1 = L1_1.readfile
+L1_1 = L1_1(pe.foffset_rva(mp.readu_u32(L0_0, 13)), 12)
+if mp.crc32(-1, L1_1, 1, 12) ~= 1965254513 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

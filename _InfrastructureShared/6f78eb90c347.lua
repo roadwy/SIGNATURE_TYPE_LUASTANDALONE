@@ -1,14 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6f78eb90c347 
-
--- params : ...
--- function num : 0
-local l_0_0 = (hstrlog[2]).VA + 45
-local l_0_1 = (pe.mmap_va)(l_0_0, 4)
-local l_0_2 = (mp.readu_u32)(l_0_1, 1)
-local l_0_3 = (pe.mmap_va)(l_0_2, 16)
-if (string.sub)(l_0_3, 1, 8) == "IExplore" then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = hstrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.VA
+L0_0 = L0_0 + 45
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = L0_0
+L3_3 = 4
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, 1)
+L3_3 = pe
+L3_3 = L3_3.mmap_va
+L3_3 = L3_3(L2_2, 16)
+if string.sub(L3_3, 1, 8) == "IExplore" then
   return mp.INFECTED
 end
 return mp.CLEAN
-

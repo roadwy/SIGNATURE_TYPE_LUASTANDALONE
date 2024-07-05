@@ -1,26 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2a29575fd3a6 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 98304 then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 98304 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+if L0_0 < 40960 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = tostring
+L1_1 = L1_1(headerpage)
+if string.find(L1_1, "\n", 1, true) ~= nil then
   return mp.CLEAN
 end
-if l_0_0 < 40960 then
+if #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") ~= #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") and #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") ~= #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") - 1 and #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") ~= #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") + 1 or #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") ~= #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") and #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") - 1 ~= #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") and #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") + 1 ~= #L1_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]") then
   return mp.CLEAN
 end
-local l_0_1 = tostring(headerpage)
-if (string.find)(l_0_1, "\n", 1, true) ~= nil then
-  return mp.CLEAN
-end
-local l_0_2, l_0_3, l_0_4 = l_0_1:match("function%((%l%l%l%l%l%l+),(%l%l%l%l%l%l+),(%l%l%l%l%l%l+)[^%l]")
-local l_0_5 = #l_0_3 - 1
-local l_0_6 = #l_0_3 + 1
-if (#l_0_2 ~= #l_0_3 and #l_0_2 ~= l_0_5 and #l_0_2 ~= l_0_6) or #l_0_3 ~= #l_0_4 and l_0_5 ~= #l_0_4 and l_0_6 ~= #l_0_4 then
-  return mp.CLEAN
-end
-;
-(mp.set_mpattribute)("SCRIPT:Worm:JS/Proslikefan_Lowfi")
+mp.set_mpattribute("SCRIPT:Worm:JS/Proslikefan_Lowfi")
 return mp.CLEAN
-

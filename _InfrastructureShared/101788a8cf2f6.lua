@@ -1,22 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/101788a8cf2f6 
-
--- params : ...
--- function num : 0
-if (hstrlog[4]).matched then
-  (mp.readprotection)(false)
-  local l_0_0 = (pe.mmap_va)((hstrlog[4]).VA - 27, 80)
-  local l_0_1 = (mp.readu_u32)(l_0_0, 2)
-  local l_0_2 = (pe.mmap_va)(l_0_1, 16)
-  for l_0_6 = 1, 16 do
-    local l_0_7 = (string.byte)(l_0_2, l_0_6)
-    if l_0_7 < 48 or l_0_7 > 90 or l_0_7 == 64 then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = hstrlog
+L0_0 = L0_0[4]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.readprotection
+  L1_1 = false
+  L0_0(L1_1)
+  L0_0 = pe
+  L0_0 = L0_0.mmap_va
+  L1_1 = hstrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.VA
+  L1_1 = L1_1 - 27
+  L2_2 = 80
+  L0_0 = L0_0(L1_1, L2_2)
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2, L3_3)
+  L2_2 = pe
+  L2_2 = L2_2.mmap_va
+  L2_2 = L2_2(L3_3, L4_4)
+  for L6_6 = 1, 16 do
+    if string.byte(L2_2, L6_6) < 48 or string.byte(L2_2, L6_6) > 90 or string.byte(L2_2, L6_6) == 64 then
       return mp.CLEAN
     end
   end
-  return mp.INFECTED
+  return L3_3
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

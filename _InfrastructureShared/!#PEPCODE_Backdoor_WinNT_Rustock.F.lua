@@ -1,31 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Backdoor_WinNT_Rustock.F 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections ~= 5 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SectionAlignment == 4096 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SectionAlignment
+if L0_0 == 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.FileAlignment == 512 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.FileAlignment
+if L0_0 == 512 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.FileAlignment == 4096 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.FileAlignment
+if L0_0 == 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < pevars.epsec then
-  return mp.CLEAN
+L0_0 = pevars
+L0_0 = L0_0.epsec
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+if L0_0 > L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).Characteristics ~= 1744830496 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 1744830496 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.ImageBase ~= 65536 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.ImageBase
+if L0_0 ~= 65536 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.Subsystem ~= 1 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.Subsystem
+if L0_0 ~= 1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

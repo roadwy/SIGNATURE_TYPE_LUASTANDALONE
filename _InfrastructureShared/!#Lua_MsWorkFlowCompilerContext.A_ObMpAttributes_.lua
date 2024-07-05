@@ -1,45 +1,94 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MsWorkFlowCompilerContext.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-if l_0_1 == nil or (string.len)(l_0_1) < 3 or l_0_0 == nil or (string.len)(l_0_0) < 5 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_FILENAME
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILEPATH
+L1_1 = L1_1(L2_2)
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  if not (L2_2 < 3) and L0_0 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.len
+    L3_3 = L0_0
+    L2_2 = L2_2(L3_3)
+  end
+elseif L2_2 < 5 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (string.lower)((MpCommon.PathToWin32Path)(l_0_1))
-l_0_2 = l_0_2:gsub("\\\\%?\\", "")
-local l_0_3 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%windir%"))
-if l_0_2 == nil or l_0_3 == nil or (string.len)(l_0_3) < 2 then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = MpCommon
+L3_3 = L3_3.PathToWin32Path
+L4_4 = L1_1
+L5_5 = L3_3(L4_4)
+L2_2 = L2_2(L3_3, L4_4, L5_5, L3_3(L4_4))
+L4_4 = L2_2
+L3_3 = L2_2.gsub
+L5_5 = "\\\\%?\\"
+L3_3 = L3_3(L4_4, L5_5, "")
+L2_2 = L3_3
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = MpCommon
+L4_4 = L4_4.ExpandEnvironmentVariables
+L5_5 = "%windir%"
+L5_5 = L4_4(L5_5)
+L3_3 = L3_3(L4_4, L5_5, L4_4(L5_5))
+if L2_2 ~= nil and L3_3 ~= nil then
+  L4_4 = string
+  L4_4 = L4_4.len
+  L5_5 = L3_3
+  L4_4 = L4_4(L5_5)
+elseif L4_4 < 2 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (string.len)(l_0_3)
-if l_0_4 < (string.len)(l_0_2) and (string.sub)(l_0_2, 0, l_0_4) == l_0_3 then
-  local l_0_5 = (string.match)(l_0_2, l_0_3 .. "(\\.-\\)")
-  if l_0_5 ~= nil and (string.len)(l_0_5) > 2 then
-    local l_0_6 = {}
-    l_0_6["\\microsoft.net\\"] = true
-    l_0_6["\\assembly\\"] = true
-    if l_0_6[l_0_5] then
-      return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.len
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+L5_5 = string
+L5_5 = L5_5.len
+L5_5 = L5_5(L2_2)
+if L4_4 < L5_5 then
+  L5_5 = string
+  L5_5 = L5_5.sub
+  L5_5 = L5_5(L2_2, 0, L4_4)
+  if L5_5 == L3_3 then
+    L5_5 = string
+    L5_5 = L5_5.match
+    L5_5 = L5_5(L2_2, L3_3 .. "(\\.-\\)")
+    if L5_5 ~= nil and string.len(L5_5) > 2 then
+      if ({
+        ["\\microsoft.net\\"] = true,
+        ["\\assembly\\"] = true
+      })[L5_5] then
+        return mp.CLEAN
+      end
     end
   end
 end
-do
-  local l_0_7 = (pe.get_versioninfo)()
-  if l_0_7 == nil or l_0_7.OriginalFilename == nil or (string.lower)(l_0_7.OriginalFilename) ~= "microsoft.workflow.compiler.exe" then
-    (mp.set_mpattribute)("Lua:MsWorkFlowCompilerContext.A!invalidversioninfo")
-    return mp.CLEAN
-  end
-  local l_0_8 = (string.lower)(l_0_7.OriginalFilename)
-  local l_0_9 = (string.lower)(l_0_0)
-  if l_0_9 == l_0_8 then
-    (mp.set_mpattribute)("Lua:MsWorkFlowCompilerContext.A!legitfilename")
-    return mp.INFECTED
-  end
-  ;
-  (mp.set_mpattribute)("Lua:MsWorkFlowCompilerContext.A!suspiciousfilename")
+L5_5 = pe
+L5_5 = L5_5.get_versioninfo
+L5_5 = L5_5()
+if L5_5 == nil or L5_5.OriginalFilename == nil or string.lower(L5_5.OriginalFilename) ~= "microsoft.workflow.compiler.exe" then
+  mp.set_mpattribute("Lua:MsWorkFlowCompilerContext.A!invalidversioninfo")
+  return mp.CLEAN
+end
+if string.lower(L0_0) == string.lower(L5_5.OriginalFilename) then
+  mp.set_mpattribute("Lua:MsWorkFlowCompilerContext.A!legitfilename")
   return mp.INFECTED
 end
-
+mp.set_mpattribute("Lua:MsWorkFlowCompilerContext.A!suspiciousfilename")
+return mp.INFECTED

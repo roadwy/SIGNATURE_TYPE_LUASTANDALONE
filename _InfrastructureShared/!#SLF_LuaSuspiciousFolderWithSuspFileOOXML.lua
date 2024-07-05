@@ -1,100 +1,149 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LuaSuspiciousFolderWithSuspFileOOXML 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE or (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN then
-  local l_0_0 = (string.lower)((mp.getfilename)())
-  if l_0_0 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+  L0_0 = L0_0(L1_1)
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONOPEN
+elseif L0_0 == L1_1 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L1_1 = mp
+  L1_1 = L1_1.getfilename
+  L11_11 = L1_1()
+  L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L1_1())
+  if L0_0 == nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if l_0_0:len() < 50 then
-    return mp.CLEAN
+  L2_2 = L0_0
+  L1_1 = L0_0.len
+  L1_1 = L1_1(L2_2)
+  if L1_1 < 50 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if not l_0_0:find("\\downloads", 1, true) then
-    return mp.CLEAN
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L3_3 = "\\downloads"
+  L4_4 = 1
+  L5_5 = true
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_1 = (mp.getfilesize)()
-  if l_0_1 > 1048576 then
-    return mp.CLEAN
+  L1_1 = mp
+  L1_1 = L1_1.getfilesize
+  L1_1 = L1_1()
+  if L1_1 > 1048576 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2, l_0_3 = l_0_0:match("(.+\\)([^\\]+)$")
-  if l_0_2 == nil then
-    return mp.CLEAN
+  L3_3 = L0_0
+  L2_2 = L0_0.match
+  L4_4 = "(.+\\)([^\\]+)$"
+  L3_3 = L2_2(L3_3, L4_4)
+  if L2_2 == nil then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  if l_0_2:len() > 40 and l_0_3 ~= nil then
-    if l_0_2:find("\\users\\[^\\]+\\downloads\\[0-9a-f]+\\") == nil then
-      return mp.CLEAN
+  L5_5 = L2_2
+  L4_4 = L2_2.len
+  L4_4 = L4_4(L5_5)
+  if L4_4 > 40 and L3_3 ~= nil then
+    L5_5 = L2_2
+    L4_4 = L2_2.find
+    L4_4 = L4_4(L5_5, L6_6)
+    if L4_4 == nil then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
     end
-    local l_0_4 = l_0_2:match("\\downloads\\[0-9a-f]+\\")
-    if l_0_4 == nil or l_0_4:len() < 44 then
-      return mp.CLEAN
+    L5_5 = L2_2
+    L4_4 = L2_2.match
+    L4_4 = L4_4(L5_5, L6_6)
+    if L4_4 ~= nil then
+      L5_5 = L4_4.len
+      L5_5 = L5_5(L6_6)
+    elseif L5_5 < 44 then
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
     end
-    local l_0_5 = {}
-    l_0_5[".xls->"] = "%.xls%->.+"
-    l_0_5["xlsx->"] = "%.xlsx%->.+"
-    l_0_5[".doc->"] = "%.doc%->.+"
-    l_0_5["docx->"] = "%.docx%->.+"
-    l_0_5[".rtf->"] = "%.rtf%->.+"
-    l_0_5["xlsm->"] = "%.xlsm%->.+"
-    l_0_5["xlsb->"] = "%.xlsb%->.+"
-    l_0_5["xltx->"] = "%.xltx%->.+"
-    l_0_5["xltm->"] = "%.xltm%->.+"
-    l_0_5["xlam->"] = "%.xlam%->.+"
-    l_0_5[".xla->"] = "%.xla%->.+"
-    l_0_5["docm->"] = "%.docm%->.+"
-    l_0_5["dotx->"] = "%.dotx%->.+"
-    l_0_5["dotm->"] = "%.dotm%->.+"
-    l_0_5[".ppt->"] = "%.ppt%->.+"
-    l_0_5["pptm->"] = "%.pptm%->.+"
-    l_0_5[".pps->"] = "%.pps%->.+"
-    l_0_5["pptx->"] = "%.pptx%->.+"
-    l_0_5["ppsx->"] = "%.ppsx%->.+"
-    l_0_5[".odt->"] = "%.odt%->.+"
-    l_0_5[".xml->"] = "%.xml%->.+"
-    for l_0_9,l_0_10 in pairs(l_0_5) do
-      if (string.find)(l_0_3, l_0_9, 1, true) then
-        do
-          do
-            local l_0_11 = (string.match)(l_0_3, l_0_10)
-            if l_0_11 == nil or (string.len)(l_0_11) < 4 then
-              return mp.CLEAN
-            end
-            -- DECOMPILER ERROR at PC170: Unhandled construct in 'MakeBoolean' P1
-
-            if (l_0_11:find(">word/", 1, true) or l_0_11:find(">xl/embeddings/", 1, true)) and (l_0_11:sub(-4) == ".bin" or l_0_11:sub(-4) == ".exe" or l_0_11:sub(-4) == ".scr") then
-              return mp.INFECTED
-            end
-            do break end
-            -- DECOMPILER ERROR at PC186: Unhandled construct in 'MakeBoolean' P1
-
-            if l_0_11:find(".jar->", 1, true) and l_0_11:sub(-6) == ".class" then
-              return mp.INFECTED
-            end
-            do break end
-            -- DECOMPILER ERROR at PC207: Unhandled construct in 'MakeBoolean' P1
-
-            if l_0_11:find(">word/embeddings/ole", 1, true) and (l_0_11:sub(-4) == ".bin" or l_0_11:sub(-4) == ".exe") then
-              return mp.INFECTED
-            end
-            do break end
-            if l_0_11:match(">%(ole stream .%)%->.+", 1, true) then
-              return mp.INFECTED
-            end
-            do break end
-            -- DECOMPILER ERROR at PC220: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC220: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC220: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
+    L5_5 = {}
+    L5_5[".xls->"] = "%.xls%->.+"
+    L5_5["xlsx->"] = "%.xlsx%->.+"
+    L5_5[".doc->"] = "%.doc%->.+"
+    L5_5["docx->"] = "%.docx%->.+"
+    L5_5[".rtf->"] = "%.rtf%->.+"
+    L5_5["xlsm->"] = "%.xlsm%->.+"
+    L5_5["xlsb->"] = "%.xlsb%->.+"
+    L5_5["xltx->"] = "%.xltx%->.+"
+    L5_5["xltm->"] = "%.xltm%->.+"
+    L5_5["xlam->"] = "%.xlam%->.+"
+    L5_5[".xla->"] = "%.xla%->.+"
+    L5_5["docm->"] = "%.docm%->.+"
+    L5_5["dotx->"] = "%.dotx%->.+"
+    L5_5["dotm->"] = "%.dotm%->.+"
+    L5_5[".ppt->"] = "%.ppt%->.+"
+    L5_5["pptm->"] = "%.pptm%->.+"
+    L5_5[".pps->"] = "%.pps%->.+"
+    L5_5["pptx->"] = "%.pptx%->.+"
+    L5_5["ppsx->"] = "%.ppsx%->.+"
+    L5_5[".odt->"] = "%.odt%->.+"
+    L5_5[".xml->"] = "%.xml%->.+"
+    for L9_9, L10_10 in L6_6(L7_7) do
+      L11_11 = string
+      L11_11 = L11_11.find
+      L11_11 = L11_11(L3_3, L9_9, 1, true)
+      if L11_11 then
+        L11_11 = string
+        L11_11 = L11_11.match
+        L11_11 = L11_11(L3_3, L10_10)
+        if L11_11 == nil or string.len(L11_11) < 4 then
+          return mp.CLEAN
         end
+        if L11_11:find(">word/", 1, true) or L11_11:find(">xl/embeddings/", 1, true) then
+          if L11_11:sub(-4) == ".bin" or L11_11:sub(-4) == ".exe" or L11_11:sub(-4) == ".scr" then
+            return mp.INFECTED
+          end
+          break
+        end
+        if L11_11:find(".jar->", 1, true) then
+          if L11_11:sub(-6) == ".class" then
+            return mp.INFECTED
+          end
+          break
+        end
+        if L11_11:find(">word/embeddings/ole", 1, true) then
+          if L11_11:sub(-4) == ".bin" or L11_11:sub(-4) == ".exe" then
+            return mp.INFECTED
+          end
+          break
+        end
+        if L11_11:match(">%(ole stream .%)%->.+", 1, true) then
+          return mp.INFECTED
+        end
+        break
       end
     end
   end
 end
-l_0_0 = mp
-l_0_0 = l_0_0.CLEAN
-return l_0_0
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

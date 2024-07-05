@@ -1,17 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Upatre_PostMessage 
-
--- params : ...
--- function num : 0
 if peattributes.isdll then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 17920 or l_0_0 > 70656 then
+if mp.getfilesize() < 17920 or mp.getfilesize() > 70656 then
   return mp.CLEAN
 end
-if (mp.get_mpattribute)("SIGATTR:PostMessage!Unusual") or (mp.get_mpattribute)("SIGATTR:SendMessage!Unusual") then
+if mp.get_mpattribute("SIGATTR:PostMessage!Unusual") or mp.get_mpattribute("SIGATTR:SendMessage!Unusual") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

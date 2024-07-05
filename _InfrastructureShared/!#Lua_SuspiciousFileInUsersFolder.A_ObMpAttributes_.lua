@@ -1,31 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspiciousFileInUsersFolder.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if not peattributes.isexe and not peattributes.isdll then
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if not L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.isdll
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
+end
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_FILEPATH
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(L0_0)
+L0_0 = L1_1
+if L0_0 ~= nil then
+  L1_1 = #L0_0
+  if not (L1_1 < 9) then
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L0_0, "\\users\\", 1, true)
+  end
+elseif L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.ContextualExpandEnvironmentVariables
+L1_1 = L1_1("%userprofile%")
+if L1_1 == nil then
   return mp.CLEAN
 end
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-if l_0_0 == nil or #l_0_0 < 9 or l_0_0:find("\\users\\", 1, true) == nil then
+L1_1 = string.lower(L1_1)
+if #L1_1 < 9 then
   return mp.CLEAN
 end
-local l_0_1 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%userprofile%"))
-if l_0_1 == nil or #l_0_1 < 9 then
-  return mp.CLEAN
+if string.sub(L0_0, 0, 4) == "\\\\?\\" then
+  L0_0 = string.sub(L0_0, 5)
 end
-if (string.sub)(l_0_0, 0, 4) == "\\\\?\\" then
-  l_0_0 = (string.sub)(l_0_0, 5)
-end
-if l_0_0 == l_0_1 then
+if L0_0 == L1_1 then
   if peattributes.isdll then
-    (mp.set_mpattribute)("Lua:SuspiciousFileInUsersFolder.A!dll")
-  else
-    if peattributes.isexe then
-      (mp.set_mpattribute)("Lua:SuspiciousFileInUsersFolder.A!exe")
-    end
+    mp.set_mpattribute("Lua:SuspiciousFileInUsersFolder.A!dll")
+  elseif peattributes.isexe then
+    mp.set_mpattribute("Lua:SuspiciousFileInUsersFolder.A!exe")
   end
   return mp.INFECTED
 end
 return mp.CLEAN
-

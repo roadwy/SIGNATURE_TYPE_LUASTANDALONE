@@ -1,15 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/23b3b21bc057 
-
--- params : ...
--- function num : 0
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p2)
-    if l_0_0 ~= nil and l_0_0:find("system", 1, true) and l_0_0:find("security", 1, true) then
-      return mp.INFECTED
-    end
-  end
-  return mp.CLEAN
+if this_sigattrlog[1].matched and string.lower(this_sigattrlog[1].utf8p2) ~= nil and string.lower(this_sigattrlog[1].utf8p2):find("system", 1, true) and string.lower(this_sigattrlog[1].utf8p2):find("security", 1, true) then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

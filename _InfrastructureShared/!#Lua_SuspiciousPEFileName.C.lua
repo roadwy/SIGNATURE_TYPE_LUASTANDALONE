@@ -1,16 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspiciousPEFileName.C 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-local l_0_1, l_0_2 = l_0_0:match("(.+\\)([^\\]+)$")
-if l_0_2 == nil then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.getfilename())
+if L0_0:match("(.+\\)([^\\]+)$") == nil then
   return mp.CLEAN
 end
-local l_0_3 = l_0_2:len()
-if l_0_3 > 14 and l_0_3 < 40 and l_0_2:find("^track_%d+%.exe") == 1 then
-  (mp.set_mpattribute)("Lua:SuspiciousPEFileName.C")
+if L0_0:match("(.+\\)([^\\]+)$"):len() > 14 and L0_0:match("(.+\\)([^\\]+)$"):len() < 40 and L0_0:match("(.+\\)([^\\]+)$"):find("^track_%d+%.exe") == 1 then
+  mp.set_mpattribute("Lua:SuspiciousPEFileName.C")
 end
 return mp.CLEAN
-

@@ -1,18 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MitreAttributesMasquerading.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = "SLF:Win32/PossibleMasquerading.EA"
-local l_0_1 = (mp.enum_mpattributesubstring)(l_0_0)
-if l_0_1 == nil or #l_0_1 == 0 or type(l_0_1) ~= "table" then
+local L0_0, L1_1
+L0_0 = "SLF:Win32/PossibleMasquerading.EA"
+L1_1 = mp
+L1_1 = L1_1.enum_mpattributesubstring
+L1_1 = L1_1(L0_0)
+if L1_1 == nil or #L1_1 == 0 or type(L1_1) ~= "table" then
   return mp.CLEAN
 end
-for l_0_5,l_0_6 in ipairs(l_0_1) do
-  if #l_0_6 > 32 then
-    (mp.set_mpattribute)("BM_MT1036.005")
+for _FORV_5_, _FORV_6_ in ipairs(L1_1) do
+  if #_FORV_6_ > 32 then
+    mp.set_mpattribute("BM_MT1036.005")
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

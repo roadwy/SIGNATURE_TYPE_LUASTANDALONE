@@ -1,37 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/154b30d45a3f3_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-do
-  if l_0_0 ~= nil and (string.len)(l_0_0) >= 15 then
-    local l_0_1 = {}
-    l_0_1["cmd.exe"] = true
-    l_0_1["powershell.exe"] = true
-    l_0_1["cscript.exe"] = true
-    l_0_1["wscript.exe"] = true
-    l_0_1["mshta.exe"] = true
-    l_0_1["pwsh.exe"] = true
-    l_0_1["rundll32.exe"] = true
-    l_0_1["regsvr32.exe"] = true
-    l_0_1["regasm.exe"] = true
-    l_0_1["regsvcs.exe"] = true
-    l_0_1["officesvcmgr.exe"] = true
-    l_0_1["officeclicktorun.exe"] = true
-    l_0_1["integrator.exe"] = true
-    if l_0_1[(string.lower)(l_0_0:match("\\([^\\]+)$"))] then
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L1_1 = L1_1(L0_0)
+  if L1_1 >= 15 then
+    L1_1 = {}
+    L1_1["cmd.exe"] = true
+    L1_1["powershell.exe"] = true
+    L1_1["cscript.exe"] = true
+    L1_1["wscript.exe"] = true
+    L1_1["mshta.exe"] = true
+    L1_1["pwsh.exe"] = true
+    L1_1["rundll32.exe"] = true
+    L1_1["regsvr32.exe"] = true
+    L1_1["regasm.exe"] = true
+    L1_1["regsvcs.exe"] = true
+    L1_1["officesvcmgr.exe"] = true
+    L1_1["officeclicktorun.exe"] = true
+    L1_1["integrator.exe"] = true
+    if L1_1[string.lower(L0_0:match("\\([^\\]+)$"))] then
       return mp.CLEAN
     end
   end
-  local l_0_2 = nil
-  if (this_sigattrlog[14]).matched and (this_sigattrlog[14]).utf8p2 ~= nil then
-    l_0_2 = (this_sigattrlog[14]).utf8p2
-  end
-  if l_0_2 ~= nil then
-    bm_AddRelatedFileFromCommandLine(l_0_2, nil, nil, 1)
-    return mp.INFECTED
-  end
-  return mp.CLEAN
 end
-
+L1_1 = nil
+if this_sigattrlog[14].matched and this_sigattrlog[14].utf8p2 ~= nil then
+  L1_1 = this_sigattrlog[14].utf8p2
+end
+if L1_1 ~= nil then
+  bm_AddRelatedFileFromCommandLine(L1_1, nil, nil, 1)
+  return mp.INFECTED
+end
+return mp.CLEAN

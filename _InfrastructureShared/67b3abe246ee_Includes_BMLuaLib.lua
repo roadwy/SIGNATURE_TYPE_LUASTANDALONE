@@ -1,41 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/67b3abe246ee_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_2 = nil
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = false
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L1_1 = false
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.utf8p2
+    L3_3 = L2_2
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L0_0 = L2_2
   end
-  local l_0_3 = nil
-  if not contains(l_0_2, {"/i", "/package"}) then
-    return mp.CLEAN
-  end
-  local l_0_4 = nil
-  local l_0_5 = {"OFFICE", "EMAILCLIENT"}
-  if QueryProcContext(l_0_5, {min = 1, max = 5}) then
-    l_0_3 = true
-  end
-  local l_0_6 = nil
-  local l_0_7 = QueryProcContext
-  local l_0_8 = {"SCRIPTENG"}
-  l_0_7 = l_0_7(l_0_8, {min = 1, max = 5})
-  if l_0_7 then
-    l_0_7 = contains
-    l_0_8 = l_0_2
-    l_0_7 = l_0_7(l_0_8, "%.msi", false)
-    if not l_0_7 then
-      l_0_3 = true
-    end
-  end
-  if l_0_3 then
-    l_0_7 = mp
-    l_0_7 = l_0_7.INFECTED
-    return l_0_7
-  end
-  l_0_7 = mp
-  l_0_7 = l_0_7.CLEAN
-  return l_0_7
 end
-
+L2_2 = {L3_3, L4_4}
+L3_3 = "/i"
+L4_4 = "/package"
+L3_3 = contains
+L4_4 = L0_0
+L3_3 = L3_3(L4_4, L2_2)
+if not L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = {
+  L4_4,
+  "EMAILCLIENT"
+}
+L4_4 = "OFFICE"
+L4_4 = {}
+L4_4.min = 1
+L4_4.max = 5
+if QueryProcContext(L3_3, L4_4) then
+  L1_1 = true
+end
+if QueryProcContext({"SCRIPTENG"}, {min = 1, max = 5}) and not contains(L0_0, "%.msi", false) then
+  L1_1 = true
+end
+if L1_1 then
+  return mp.INFECTED
+end
+return mp.CLEAN

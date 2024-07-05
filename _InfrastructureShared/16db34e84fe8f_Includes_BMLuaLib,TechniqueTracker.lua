@@ -1,109 +1,138 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/16db34e84fe8f_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R1 in 'AssignReg'
-
-if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).wp2 ~= nil then
-  local l_0_1 = nil
-  local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.wp2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L1_1 = L2_2.ppid
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L0_0 = L2_2
+  end
 else
-  do
-    -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-    if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).wp2 ~= nil then
-      local l_0_2, l_0_3 = l_0_1, (this_sigattrlog[4]).ppid
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[4]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[4]
+    L2_2 = L2_2.wp2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L1_1 = L2_2.ppid
+      L2_2 = string
+      L2_2 = L2_2.lower
+      L2_2 = L2_2(L3_3)
+      L0_0 = L2_2
+    end
+  else
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[5]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[5]
+      L2_2 = L2_2.wp2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[5]
+        L1_1 = L2_2.ppid
+        L2_2 = string
+        L2_2 = L2_2.lower
+        L2_2 = L2_2(L3_3)
+        L0_0 = L2_2
+      end
     else
-      do
-        if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).wp2 ~= nil then
-          local l_0_4 = nil
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[6]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[6]
+        L2_2 = L2_2.wp2
+        if L2_2 ~= nil then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[6]
+          L1_1 = L2_2.ppid
+          L2_2 = string
+          L2_2 = L2_2.lower
+          L2_2 = L2_2(L3_3)
+          L0_0 = L2_2
+        end
+      else
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[7]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[7]
+          L2_2 = L2_2.wp2
+          if L2_2 ~= nil then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[7]
+            L1_1 = L2_2.ppid
+            L2_2 = string
+            L2_2 = L2_2.lower
+            L2_2 = L2_2(L3_3)
+            L0_0 = L2_2
+          end
         else
-          do
-            -- DECOMPILER ERROR at PC75: Overwrote pending register: R1 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC82: Overwrote pending register: R0 in 'AssignReg'
-
-            if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).wp2 ~= nil then
-              local l_0_5, l_0_6 = l_0_4, (this_sigattrlog[5]).ppid
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[8]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[8]
+            L2_2 = L2_2.wp2
+            if L2_2 ~= nil then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[8]
+              L1_1 = L2_2.ppid
+              L2_2 = string
+              L2_2 = L2_2.lower
+              L2_2 = L2_2(L3_3)
+              L0_0 = L2_2
+            end
+          else
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[9]
+            L2_2 = L2_2.matched
+            if L2_2 then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[9]
+              L2_2 = L2_2.wp2
+              if L2_2 ~= nil then
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[9]
+                L1_1 = L2_2.ppid
+                L2_2 = string
+                L2_2 = L2_2.lower
+                L2_2 = L2_2(L3_3)
+                L0_0 = L2_2
+              end
             else
-              do
-                if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).wp2 ~= nil then
-                  local l_0_7 = nil
-                else
-                  do
-                    -- DECOMPILER ERROR at PC117: Overwrote pending register: R1 in 'AssignReg'
-
-                    -- DECOMPILER ERROR at PC124: Overwrote pending register: R0 in 'AssignReg'
-
-                    if (this_sigattrlog[8]).matched and (this_sigattrlog[8]).wp2 ~= nil then
-                      local l_0_8, l_0_9 = l_0_7, (this_sigattrlog[7]).ppid
-                    else
-                      do
-                        if (this_sigattrlog[9]).matched and (this_sigattrlog[9]).wp2 ~= nil then
-                          local l_0_10, l_0_12, l_0_21 = , (this_sigattrlog[9]).ppid
-                          l_0_21 = string
-                          l_0_21 = l_0_21.lower
-                          l_0_21 = l_0_21((this_sigattrlog[9]).utf8p2)
-                          l_0_10 = l_0_21
-                        else
-                          do
-                            do
-                              if (this_sigattrlog[10]).matched and (this_sigattrlog[10]).wp2 ~= nil then
-                                local l_0_11, l_0_13, l_0_14, l_0_15, l_0_16, l_0_17, l_0_18, l_0_19, l_0_20 = (string.lower)((this_sigattrlog[10]).utf8p2), (this_sigattrlog[10]).ppid
-                              end
-                              -- DECOMPILER ERROR at PC167: Confused about usage of register: R0 in 'UnsetPending'
-
-                              -- DECOMPILER ERROR at PC169: Confused about usage of register: R1 in 'UnsetPending'
-
-                              if l_0_11 == nil or l_0_13 == nil then
-                                return mp.CLEAN
-                              end
-                              -- DECOMPILER ERROR at PC181: Confused about usage of register: R0 in 'UnsetPending'
-
-                              -- DECOMPILER ERROR at PC190: Confused about usage of register: R0 in 'UnsetPending'
-
-                              if (this_sigattrlog[3]).matched and not (string.find)(l_0_11, " -w ", 1, true) and not (string.find)(l_0_11, " --wipe ", 1, true) then
-                                return mp.CLEAN
-                              else
-                                -- DECOMPILER ERROR at PC208: Confused about usage of register: R0 in 'UnsetPending'
-
-                                -- DECOMPILER ERROR at PC217: Confused about usage of register: R0 in 'UnsetPending'
-
-                                if (this_sigattrlog[7]).matched and not (string.find)(l_0_11, " --security-erase-enhanced ", 1, true) and not (string.find)(l_0_11, " --security-erase ", 1, true) then
-                                  return mp.CLEAN
-                                else
-                                  -- DECOMPILER ERROR at PC235: Confused about usage of register: R0 in 'UnsetPending'
-
-                                  -- DECOMPILER ERROR at PC244: Confused about usage of register: R0 in 'UnsetPending'
-
-                                  if (this_sigattrlog[8]).matched and not (string.find)(l_0_11, " --all ", 1, true) and not (string.find)(l_0_11, " -a ", 1, true) then
-                                    return mp.CLEAN
-                                  end
-                                end
-                              end
-                              -- DECOMPILER ERROR at PC256: Confused about usage of register: R0 in 'UnsetPending'
-
-                              local l_0_22 = nil
-                              for l_0_26,l_0_27 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_11)) do
-                                local l_0_23, l_0_24 = nil
-                                -- DECOMPILER ERROR at PC264: Confused about usage of register: R7 in 'UnsetPending'
-
-                                if (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)(l_0_19)) then
-                                  return mp.CLEAN
-                                end
-                              end
-                              -- DECOMPILER ERROR at PC279: Confused about usage of register: R1 in 'UnsetPending'
-
-                              TrackPidAndTechnique(l_0_23, "T1561.001", "Impact_DiskWiper")
-                              addRelatedProcess()
-                              return mp.INFECTED
-                            end
-                          end
-                        end
-                      end
-                    end
-                  end
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[10]
+              L2_2 = L2_2.matched
+              if L2_2 then
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[10]
+                L2_2 = L2_2.wp2
+                if L2_2 ~= nil then
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[10]
+                  L1_1 = L2_2.ppid
+                  L2_2 = string
+                  L2_2 = L2_2.lower
+                  L2_2 = L2_2(L3_3)
+                  L0_0 = L2_2
                 end
               end
             end
@@ -113,4 +142,83 @@ else
     end
   end
 end
-
+if L0_0 == nil or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L6_6 = true
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  if not L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L6_6 = true
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    if not L2_2 then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
+    end
+  end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[7]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L6_6 = true
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    if not L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L6_6 = true
+      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+      if not L2_2 then
+        L2_2 = mp
+        L2_2 = L2_2.CLEAN
+        return L2_2
+      end
+    end
+  else
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[8]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L6_6 = true
+      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+      if not L2_2 then
+        L2_2 = string
+        L2_2 = L2_2.find
+        L6_6 = true
+        L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+        if not L2_2 then
+          L2_2 = mp
+          L2_2 = L2_2.CLEAN
+          return L2_2
+        end
+      end
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.GetExecutablesFromCommandLine
+L2_2 = L2_2(L3_3)
+for L6_6, L7_7 in L3_3(L4_4) do
+  L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+  if sysio.IsFileExists(L7_7) then
+    return mp.CLEAN
+  end
+end
+L6_6 = "Impact_DiskWiper"
+L3_3(L4_4, L5_5, L6_6)
+L3_3()
+return L3_3

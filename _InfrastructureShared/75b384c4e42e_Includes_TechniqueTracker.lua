@@ -1,32 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75b384c4e42e_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1 = nil
-if (bm.get_current_process_startup_info)() ~= nil and ((bm.get_current_process_startup_info)()).ppid ~= nil then
-  l_0_1 = ((bm.get_current_process_startup_info)()).ppid
+local L0_0, L1_1, L2_2
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L0_0 = L1_1.ppid
+  end
 end
-local l_0_2 = nil
-if ((bm.get_imagepath)() ~= nil and (MpCommon.PathToWin32Path)((bm.get_imagepath)()) == nil) or l_0_1 == nil then
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L2_2 = L2_2()
+if L2_2 ~= nil then
+  L2_2 = MpCommon.PathToWin32Path(L2_2)
+end
+if L2_2 == nil or L0_0 == nil then
   return mp.CLEAN
 end
--- DECOMPILER ERROR at PC28: Confused about usage of register: R2 in 'UnsetPending'
-
--- DECOMPILER ERROR at PC38: Confused about usage of register: R2 in 'UnsetPending'
-
-if ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("microsoft\\onedrive\\", 1, true) or ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("windows\\ccm", 1, true) then
+L2_2 = string.lower(L2_2)
+if L2_2:find("microsoft\\onedrive\\", 1, true) or L2_2:find("windows\\ccm", 1, true) then
   return mp.CLEAN
 end
--- DECOMPILER ERROR at PC48: Confused about usage of register: R2 in 'UnsetPending'
-
-if ((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))):find("windows\\fortiemsinstaller", 1, true) then
+if L2_2:find("windows\\fortiemsinstaller", 1, true) then
   return mp.CLEAN
 end
-if IsDetectionThresholdMet(l_0_1) then
-  TrackPidAndTechniqueBM(l_0_1, "T1053.005", "tt_remediate_cantidate")
+if IsDetectionThresholdMet(L0_0) then
+  TrackPidAndTechniqueBM(L0_0, "T1053.005", "tt_remediate_cantidate")
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,7 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_CloudBlockLevelGT3 
-
--- params : ...
--- function num : 0
-return mp.INFECTED
-
+local L1_0
+L1_0 = mp
+L1_0 = L1_0.INFECTED
+return L1_0

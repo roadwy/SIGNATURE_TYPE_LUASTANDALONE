@@ -1,39 +1,102 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Lua_RansomAsepCloudRegKeyScan_ObMpAttributes_x 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 16 or l_0_0 > 3145728 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 16 or L0_0 > 3145728 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILE_AGE)
-if l_0_1 > 300 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILE_AGE
+L1_1 = L1_1(L2_2)
+if L1_1 > 300 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = {}
-l_0_2.ntrunkey = true
-l_0_2.runkey = true
-l_0_2.runonce = true
-l_0_2.runonceex = true
-local l_0_3 = (mp.GetResmgrBasePlugin)()
-l_0_3 = (l_0_3 == nil and "" or l_0_3):lower()
-if l_0_2[l_0_3] ~= true then
-  return mp.CLEAN
+L2_2 = {}
+L2_2.ntrunkey = true
+L2_2.runkey = true
+L2_2.runonce = true
+L2_2.runonceex = true
+L3_3 = mp
+L3_3 = L3_3.GetResmgrBasePlugin
+L3_3 = L3_3()
+if L3_3 == nil then
+  L4_4 = ""
+else
+  L4_4 = L4_4 or L3_3
 end
-local l_0_4 = (MpCommon.PathToWin32Path)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-l_0_4 = (l_0_4 == nil and "" or l_0_4):lower()
-local l_0_5 = (mp.ContextualExpandEnvironmentVariables)("%programfiles%")
-l_0_5 = (l_0_5 == nil and "" or l_0_5):lower()
-local l_0_6 = (mp.ContextualExpandEnvironmentVariables)("%programfiles(x86)%")
-l_0_6 = (l_0_6 == nil and "" or l_0_6):lower()
-if l_0_4:find(l_0_5, 1, true) ~= nil or l_0_4:find(l_0_6, 1, true) ~= nil then
-  return mp.CLEAN
+L5_5 = L4_4
+L4_4 = L4_4.lower
+L4_4 = L4_4(L5_5)
+L3_3 = L4_4
+L4_4 = L2_2[L3_3]
+if L4_4 ~= true then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_7 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-l_0_7 = (l_0_7 == nil and "" or l_0_7):lower()
-if not (sysio.IsFileExists)(l_0_4 .. "\\" .. l_0_7) then
+L4_4 = MpCommon
+L4_4 = L4_4.PathToWin32Path
+L5_5 = mp
+L5_5 = L5_5.get_contextdata
+L6_6 = mp
+L6_6 = L6_6.CONTEXT_DATA_FILEPATH
+L7_7 = L5_5(L6_6)
+L4_4 = L4_4(L5_5, L6_6, L7_7, L5_5(L6_6))
+if L4_4 == nil then
+  L5_5 = ""
+else
+  L5_5 = L5_5 or L4_4
+end
+L6_6 = L5_5
+L5_5 = L5_5.lower
+L5_5 = L5_5(L6_6)
+L4_4 = L5_5
+L5_5 = MpCommon
+L5_5 = L5_5.ExpandEnvironmentVariables
+L6_6 = "%programfiles%"
+L5_5 = L5_5(L6_6)
+if L5_5 == nil then
+  L6_6 = ""
+else
+  L6_6 = L6_6 or L5_5
+end
+L7_7 = L6_6
+L6_6 = L6_6.lower
+L6_6 = L6_6(L7_7)
+L5_5 = L6_6
+L6_6 = MpCommon
+L6_6 = L6_6.ExpandEnvironmentVariables
+L7_7 = "%programfiles(x86)%"
+L6_6 = L6_6(L7_7)
+if L6_6 == nil then
+  L7_7 = ""
+else
+  L7_7 = L7_7 or L6_6
+end
+L7_7 = L7_7.lower
+L7_7 = L7_7(L7_7)
+L6_6 = L7_7
+L7_7 = L4_4.find
+L7_7 = L7_7(L4_4, L5_5, 1, true)
+if L7_7 == nil then
+  L7_7 = L4_4.find
+  L7_7 = L7_7(L4_4, L6_6, 1, true)
+elseif L7_7 ~= nil then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7 = mp
+L7_7 = L7_7.get_contextdata
+L7_7 = L7_7(mp.CONTEXT_DATA_FILENAME)
+L7_7 = (L7_7 == nil and "" or L7_7):lower()
+if not sysio.IsFileExists(L4_4 .. "\\" .. L7_7) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

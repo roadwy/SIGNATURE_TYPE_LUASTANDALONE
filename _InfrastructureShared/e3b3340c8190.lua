@@ -1,63 +1,129 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e3b3340c8190 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[4]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[4]
+  L2_2 = L2_2.utf8p1
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[5]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[5]
+    L2_2 = L2_2.utf8p1
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   else
-  end
-  -- DECOMPILER ERROR at PC37: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[5]).matched or (this_sigattrlog[6]).matched then
-      local l_0_1 = (string.lower)((this_sigattrlog[5]).utf8p1)
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[6]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[6]
+      L2_2 = L2_2.utf8p1
+      L1_1 = L1_1(L2_2)
+      L0_0 = L1_1
     else
-    end
-    -- DECOMPILER ERROR at PC63: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if not (this_sigattrlog[7]).matched or (this_sigattrlog[8]).matched then
-        local l_0_2, l_0_3, l_0_4, l_0_5, l_0_6, l_0_7, l_0_8, l_0_9, l_0_10 = (string.lower)((this_sigattrlog[7]).utf8p1)
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[7]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.lower
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[7]
+        L2_2 = L2_2.utf8p1
+        L1_1 = L1_1(L2_2)
+        L0_0 = L1_1
       else
-      end
-      -- DECOMPILER ERROR at PC79: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC86: Confused about usage of register: R0 in 'UnsetPending'
-
-      if not (this_sigattrlog[9]).matched or (string.lower)((this_sigattrlog[9]).utf8p1) ~= nil then
-        if ((string.lower)((this_sigattrlog[9]).utf8p1)):find(":\\windows\\", 1, true) or ((string.lower)((this_sigattrlog[9]).utf8p1)):find("\\program file", 1, true) then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC96: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC103: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC110: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC117: Confused about usage of register: R0 in 'UnsetPending'
-
-        if ((string.lower)((this_sigattrlog[9]).utf8p1)):find("\\plugins\\", 1, true) or ((string.lower)((this_sigattrlog[9]).utf8p1)):find("install", 1, true) or ((string.lower)((this_sigattrlog[9]).utf8p1)):find("\\ccm\\", 1, true) or ((string.lower)((this_sigattrlog[9]).utf8p1)):find("\\office\\", 1, true) then
-          return mp.CLEAN
-        end
-        local l_0_11, l_0_12 = , (bm.get_process_relationships)()
-        for l_0_16,l_0_17 in ipairs(l_0_12) do
-          local l_0_13 = nil
-          -- DECOMPILER ERROR at PC136: Confused about usage of register: R7 in 'UnsetPending'
-
-          if (string.find)((string.lower)(l_0_9.image_path), "\\wmiprvse.exe", 1, true) or (string.find)((string.lower)(l_0_9.image_path), "\\winrshost.exe", 1, true) then
-            return mp.INFECTED
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[8]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.lower
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[8]
+          L2_2 = L2_2.utf8p1
+          L1_1 = L1_1(L2_2)
+          L0_0 = L1_1
+        else
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[9]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.lower
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[9]
+            L2_2 = L2_2.utf8p1
+            L1_1 = L1_1(L2_2)
+            L0_0 = L1_1
           end
         end
-        return mp.CLEAN
-      end
-      do
-        return mp.CLEAN
       end
     end
   end
 end
-
+if L0_0 ~= nil then
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L2_2 = L0_0
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L2_2 = L0_0
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if not L1_1 then
+      L2_2 = L0_0
+      L1_1 = L0_0.find
+      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      if not L1_1 then
+        L2_2 = L0_0
+        L1_1 = L0_0.find
+        L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      end
+    end
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = bm
+  L1_1 = L1_1.get_process_relationships
+  L2_2 = L1_1()
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = string
+    L8_8 = L8_8.lower
+    L8_8 = L8_8(L7_7.image_path)
+    if string.find(L8_8, "\\wmiprvse.exe", 1, true) or string.find(L8_8, "\\winrshost.exe", 1, true) then
+      return mp.INFECTED
+    end
+  end
+  return L3_3
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

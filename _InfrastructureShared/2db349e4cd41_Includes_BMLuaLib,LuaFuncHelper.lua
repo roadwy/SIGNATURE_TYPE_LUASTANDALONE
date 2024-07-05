@@ -1,37 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db349e4cd41_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_3 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_3 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  local l_0_0, l_0_1, l_0_2 = {"http", "://(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)", "-q-i"}
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4
+}
+if L2_2 then
+  if L2_2 ~= nil then
+    L0_0 = L2_2
+  end
 end
-do
-  -- DECOMPILER ERROR at PC37: Confused about usage of register: R1 in 'UnsetPending'
-
-  if l_0_3 ~= nil and not StringEndsWith(l_0_3, ".msi\"") and not StringEndsWith(l_0_3, ".msi\" ") then
-    for l_0_7 = 1, #l_0_0 do
-      local l_0_4 = nil
-      -- DECOMPILER ERROR at PC43: Confused about usage of register: R5 in 'UnsetPending'
-
-      if (string.find)(l_0_3, l_0_4[R5_PC43], 1, true) or (string.match)(l_0_3, l_0_4[R5_PC43]) then
-        for l_0_12,l_0_13 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_3)) do
-          local l_0_9 = nil
-          -- DECOMPILER ERROR at PC66: Confused about usage of register: R11 in 'UnsetPending'
-
-          R11_PC66 = (mp.ContextualExpandEnvironmentVariables)(R11_PC66)
-          if (sysio.IsFileExists)(R11_PC66) and ((string.lower)(R11_PC66)):match("(%w+%.exe)$") ~= nil then
-            (bm.add_related_file)(R11_PC66)
+if L0_0 ~= nil then
+  if not L2_2 then
+    if not L2_2 then
+      for L5_5 = 1, #L1_1 do
+        L6_6 = string
+        L6_6 = L6_6.find
+        L10_10 = true
+        L6_6 = L6_6(L7_7, L8_8, L9_9, L10_10)
+        if not L6_6 then
+          L6_6 = string
+          L6_6 = L6_6.match
+          L6_6 = L6_6(L7_7, L8_8)
+        elseif L6_6 then
+          L6_6 = mp
+          L6_6 = L6_6.GetExecutablesFromCommandLine
+          L6_6 = L6_6(L7_7)
+          for L10_10, L11_11 in L7_7(L8_8) do
+            L11_11 = mp.ContextualExpandEnvironmentVariables(L11_11)
+            if sysio.IsFileExists(L11_11) and string.lower(L11_11):match("(%w+%.exe)$") ~= nil then
+              bm.add_related_file(L11_11)
+            end
           end
+          return L7_7
         end
-        return mp.INFECTED
       end
     end
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+return L2_2

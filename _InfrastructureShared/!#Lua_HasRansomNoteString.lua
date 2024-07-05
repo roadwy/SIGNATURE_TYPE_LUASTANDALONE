@@ -1,11 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_HasRansomNoteString 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.enum_mpattributesubstring)("SCPT:RansomNote:")
-if l_0_0 ~= nil and #l_0_0 >= 5 then
+if mp.enum_mpattributesubstring("SCPT:RansomNote:") ~= nil and #mp.enum_mpattributesubstring("SCPT:RansomNote:") >= 5 then
+  mp.set_mpattribute("MpDisableCaching")
   return mp.INFECTED
 end
 return mp.CLEAN
-

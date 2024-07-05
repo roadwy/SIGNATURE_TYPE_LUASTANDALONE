@@ -1,57 +1,85 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PowerShell.RansomXorPE.S001_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 20480 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 20480 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = tostring((mp.readfooter)(0, 4096))
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfooter
+L2_2 = 0
+L3_3 = 4096
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_1 = (string.lower)(l_0_1)
-if (string.find)(l_0_1, "bxor", 1, true) == nil then
-  return mp.CLEAN
+L2_2 = tostring
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 == nil or L2_2 == "" then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_2 = (mp.readheader)(0, 4096)
-if l_0_2 == nil then
-  return mp.CLEAN
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+L2_2 = L3_3
+L3_3 = string
+L3_3 = L3_3.find
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+if L3_3 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = ""
-for l_0_7 in (string.gmatch)(l_0_1, "bxor%s+(0x%x%x)") do
-  if l_0_7 ~= nil and l_0_7 ~= "" then
-    for l_0_11 in (string.gmatch)(l_0_2, "(0x%x%x)") do
-      if l_0_11 ~= nil and l_0_11 ~= "" then
-        l_0_3 = l_0_3 .. (string.char)((mp.bitxor)(l_0_11, l_0_7))
+L3_3 = mp
+L3_3 = L3_3.readheader
+L4_4 = 0
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = ""
+for L8_8 in L5_5(L6_6, L7_7) do
+  if L8_8 ~= nil and L8_8 ~= "" then
+    for L12_12 in L9_9(L10_10, L11_11) do
+      if L12_12 ~= nil and L12_12 ~= "" then
+        L13_13 = L4_4
+        L4_4 = L13_13 .. string.char(mp.bitxor(L12_12, L8_8))
       end
     end
   end
 end
-if l_0_3 ~= nil and l_0_3 ~= "" then
-  l_0_3 = (string.lower)(l_0_3)
-  if (string.find)(l_0_3, "0x4d,0x5a,0x90,0x00,0x03,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0xff,0xff", 1, true) ~= nil then
-    (mp.set_mpattribute)("Lua:PEembedViaXOR.S001")
+if L4_4 ~= nil and L4_4 ~= "" then
+  L4_4 = L5_5
+  if L5_5 ~= nil then
+    L5_5(L6_6)
   end
 end
-local l_0_12 = ""
-for l_0_16 in (string.gmatch)(l_0_1, "bxor%s+(%d?%d%d?)") do
-  if l_0_16 ~= nil and l_0_16 ~= "" then
-    for l_0_20 in (string.gmatch)(l_0_2, "(0x%x%x)") do
-      if l_0_20 ~= nil and l_0_20 ~= "" then
-        l_0_12 = l_0_12 .. (string.char)((mp.bitxor)(l_0_20, l_0_16))
+for L9_9 in L6_6(L7_7, L8_8) do
+  if L9_9 ~= nil and L9_9 ~= "" then
+    for L13_13 in L10_10(L11_11, L12_12) do
+      if L13_13 ~= nil and L13_13 ~= "" then
       end
     end
   end
 end
-if l_0_12 ~= nil and l_0_12 ~= "" then
-  l_0_12 = (string.lower)(l_0_12)
-  if (string.find)(l_0_12, "0x4d,0x5a,0x90,0x00,0x03,0x00,0x00,0x00,0x04,0x00,0x00,0x00,0xff,0xff", 1, true) ~= nil then
-    (mp.set_mpattribute)("Lua:PEembedViaXOR.S001")
+if L5_5 ~= nil and L5_5 ~= "" then
+  if L6_6 ~= nil then
+    L6_6(L7_7)
   end
 end
-return mp.CLEAN
-
+return L6_6

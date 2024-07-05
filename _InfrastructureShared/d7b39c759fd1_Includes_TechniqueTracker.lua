@@ -1,26 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d7b39c759fd1_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(bm.get_current_process_startup_info)
-if l_0_0 and l_0_1 ~= nil then
-  local l_0_2 = l_0_1.command_line
-  local l_0_3 = l_0_1.ppid
-  if l_0_2 == nil then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = pcall
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L0_0(L1_1)
+if L0_0 and L1_1 ~= nil then
+  L2_2 = L1_1.command_line
+  L3_3 = L1_1.ppid
+  if L2_2 == nil then
     return mp.CLEAN
   end
-  if l_0_3 == nil then
+  if L3_3 == nil then
     return mp.CLEAN
   end
-  local l_0_4 = (string.lower)(l_0_2)
-  if (l_0_4:find("powershell.exe") or (l_0_4.find)("pwsh.exe")) and l_0_4:match("%s+[%-/]en?c?o?d?e?d?c?o?m?m?a?n?d?%s+") then
-    TrackPidAndTechniqueBM(l_0_3, "T1059.001", "powershell-enc")
+  if (string.lower(L2_2):find("powershell.exe") or string.lower(L2_2).find("pwsh.exe")) and string.lower(L2_2):match("%s+[%-/]en?c?o?d?e?d?c?o?m?m?a?n?d?%s+") then
+    TrackPidAndTechniqueBM(L3_3, "T1059.001", "powershell-enc")
   end
-  TrackPidAndTechniqueBM(l_0_3, "T1555.003", "webcreddiscovery")
+  TrackPidAndTechniqueBM(L3_3, "T1555.003", "webcreddiscovery")
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

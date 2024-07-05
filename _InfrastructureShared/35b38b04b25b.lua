@@ -1,31 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b38b04b25b 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((string.lower)((bm.get_imagepath)()))
-local l_0_1, l_0_2 = nil, nil
-l_0_1 = (string.find)(l_0_0, "/google-chrome", 1, true)
-if l_0_1 ~= nil and l_0_2 ~= nil then
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+L1_1, L2_2 = nil, nil
+L1_1, L2_2 = string.find(L0_0, "/google-chrome", 1, true)
+if L1_1 ~= nil and L2_2 ~= nil then
   return mp.INFECTED
 end
--- DECOMPILER ERROR at PC30: Overwrote pending register: R2 in 'AssignReg'
-
-l_0_1 = (string.find)(l_0_0, "/chromium-browser", 1, true)
-if l_0_1 ~= nil and l_0_2 ~= nil then
+L1_1, L2_2 = string.find(L0_0, "/chromium-browser", 1, true)
+if L1_1 ~= nil and L2_2 ~= nil then
   return mp.INFECTED
 end
--- DECOMPILER ERROR at PC46: Overwrote pending register: R2 in 'AssignReg'
-
-l_0_1 = (string.find)(l_0_0, "/soffice", 1, true)
-if l_0_1 ~= nil and l_0_2 ~= nil then
+L1_1, L2_2 = string.find(L0_0, "/soffice", 1, true)
+if L1_1 ~= nil and L2_2 ~= nil then
   return mp.INFECTED
 end
--- DECOMPILER ERROR at PC62: Overwrote pending register: R2 in 'AssignReg'
-
-l_0_1 = (string.find)(l_0_0, "/firefox", 1, true)
-if l_0_1 ~= nil and l_0_2 ~= nil then
+L1_1, L2_2 = string.find(L0_0, "/firefox", 1, true)
+if L1_1 ~= nil and L2_2 ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

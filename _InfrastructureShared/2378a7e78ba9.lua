@@ -1,10 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2378a7e78ba9 
-
--- params : ...
--- function num : 0
-if (pesecs[pehdr.NumberOfSections]).Name == ".UniKey" then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.Name
+if L0_0 == ".UniKey" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.LOWFI
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

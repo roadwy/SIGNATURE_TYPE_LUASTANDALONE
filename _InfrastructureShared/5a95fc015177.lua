@@ -1,29 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5a95fc015177 
-
--- params : ...
--- function num : 0
-local l_0_0 = 19
-if (string.byte)((pe.mmap_va)(pevars.sigaddr + 13, 1)) ~= 232 then
-  l_0_0 = 20
+local L0_0, L1_1, L2_2
+L0_0 = 19
+L1_1 = string
+L1_1 = L1_1.byte
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L2_2 = L2_2(pevars.sigaddr + 13, 1)
+L1_1 = L1_1(L2_2, L2_2(pevars.sigaddr + 13, 1))
+if L1_1 ~= 232 then
+  L0_0 = 20
 end
-local l_0_1 = (pe.mmap_va)(pevars.sigaddr + l_0_0, 16)
-if (string.find)(l_0_1, "ƒÁ", 1, true) == nil and (string.find)(l_0_1, "ƒé", 1, true) == nil and (string.find)(l_0_1, "ƒê", 1, true) == nil and (string.find)(l_0_1, "ƒë", 1, true) == nil and (string.find)(l_0_1, "ƒî", 1, true) == nil and (string.find)(l_0_1, "\128,", 1, true) ~= nil then
-  l_0_0 = l_0_0 - 1
-  -- DECOMPILER ERROR at PC81: Confused about usage of register: R2 in 'UnsetPending'
-
-  local l_0_2, l_0_3 = (string.find)(l_0_1, "\128,", 1, true) + 1
-end
-do
-  -- DECOMPILER ERROR at PC83: Confused about usage of register: R2 in 'UnsetPending'
-
-  for l_0_7 = 1, l_0_2 - 1 do
-    local l_0_4 = nil
-    -- DECOMPILER ERROR at PC91: Confused about usage of register: R6 in 'UnsetPending'
-
-    ;
-    (pe.mmap_patch_va)(pevars.sigaddr + (l_0_0) + 1 - 1, "\144")
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = pevars
+L2_2 = L2_2.sigaddr
+L2_2 = L2_2 + L0_0
+L1_1 = L1_1(L2_2, 16)
+L2_2 = string
+L2_2 = L2_2.find
+L2_2 = L2_2(L1_1, "\131\193", 1, true)
+if L2_2 == nil then
+  L2_2 = string.find(L1_1, "\131\233", 1, true)
+  if L2_2 == nil then
+    L2_2 = string.find(L1_1, "\131\234", 1, true)
+    if L2_2 == nil then
+      L2_2 = string.find(L1_1, "\131\235", 1, true)
+      if L2_2 == nil then
+        L2_2 = string.find(L1_1, "\131\238", 1, true)
+        if L2_2 == nil then
+          L2_2 = string.find(L1_1, "\128,", 1, true)
+          if L2_2 ~= nil then
+            L0_0 = L0_0 - 1
+            L2_2 = L2_2 + 1
+          end
+        end
+      end
+    end
   end
-  return mp.INFECTED
 end
-
+for _FORV_6_ = 1, L2_2 - 1 do
+  pe.mmap_patch_va(pevars.sigaddr + L0_0 + _FORV_6_ - 1, "\144")
+end
+return _FOR_.INFECTED

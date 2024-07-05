@@ -1,32 +1,97 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c955dc20319 
-
--- params : ...
--- function num : 0
-if pevars.sigaddr == 2138046464 then
-  (mp.readprotection)(false)
-  local l_0_0 = ((pe.mmap_va)(pevars.sigaddr, 512))
-  local l_0_1, l_0_2, l_0_3, l_0_4, l_0_5, l_0_6, l_0_7, l_0_8, l_0_9, l_0_10, l_0_11 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
-  l_0_1 = (string.gsub)(l_0_0, "ã¿", "")
-  l_0_1 = (string.gsub)(l_0_1, "ã“", "")
-  l_0_1 = (string.gsub)(l_0_1, "ä“", "")
-  l_0_1 = (string.gsub)(l_0_1, "\135\255", "")
-  l_0_1 = (string.gsub)(l_0_1, "ãˆ", "")
-  l_0_1 = (string.gsub)(l_0_1, "QY", "")
-  l_0_1 = (string.gsub)(l_0_1, "äÌ", "")
-  l_0_1 = (string.gsub)(l_0_1, "êê+", "")
-  l_0_1 = (string.gsub)(l_0_1, "á“", "")
-  l_0_1 = (string.gsub)(l_0_1, "V^", "")
-  local l_0_12 = l_0_2 + l_0_3 + l_0_4 + l_0_5 + l_0_6 + l_0_7 + l_0_8 + l_0_9 + l_0_10 + l_0_11
-  if l_0_12 < 65 then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = pevars
+L0_0 = L0_0.sigaddr
+if L0_0 == 2138046464 then
+  L0_0 = mp
+  L0_0 = L0_0.readprotection
+  L1_1 = false
+  L0_0(L1_1)
+  L0_0 = pe
+  L0_0 = L0_0.mmap_va
+  L1_1 = pevars
+  L1_1 = L1_1.sigaddr
+  L2_2 = 512
+  L0_0 = L0_0(L1_1, L2_2)
+  L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L0_0
+  L13_13 = L12_12(L13_13, "\139\192", "")
+  L2_2 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "\139\210", "")
+  L3_3 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "\138\210", "")
+  L4_4 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "\135\255", "")
+  L5_5 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "\139\246", "")
+  L6_6 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "QY", "")
+  L7_7 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "\138\237", "")
+  L8_8 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "\144\144+", "")
+  L10_10 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "\135\210", "")
+  L11_11 = L13_13
+  L1_1 = L12_12
+  L12_12 = string
+  L12_12 = L12_12.gsub
+  L13_13 = L1_1
+  L13_13 = L12_12(L13_13, "V^", "")
+  L9_9 = L13_13
+  L1_1 = L12_12
+  L12_12 = L2_2 + L3_3
+  L12_12 = L12_12 + L4_4
+  L12_12 = L12_12 + L5_5
+  L12_12 = L12_12 + L6_6
+  L12_12 = L12_12 + L7_7
+  L12_12 = L12_12 + L8_8
+  L12_12 = L12_12 + L9_9
+  L12_12 = L12_12 + L10_10
+  L12_12 = L12_12 + L11_11
+  if L12_12 < 65 then
+    L13_13 = mp
+    L13_13 = L13_13.CLEAN
+    return L13_13
   end
-  local l_0_13 = "!decrypted" .. l_0_1
-  ;
-  (mp.vfo_add_buffer)(l_0_13, "[Obfuscator.ZV]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+  L13_13 = "!decrypted"
+  L13_13 = L13_13 .. L1_1
+  mp.vfo_add_buffer(L13_13, "[Obfuscator.ZV]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
   return mp.LOWFI
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

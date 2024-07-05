@@ -1,34 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8eb3e153f672 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  do
-    if l_0_0 ~= nil then
-      local l_0_2 = nil
-      if l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)") ~= nil then
-        if (sysio.IsFileExists)(l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)")) == true then
-          (bm.add_related_file)(l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)"))
-        else
-          -- DECOMPILER ERROR at PC49: Confused about usage of register: R1 in 'UnsetPending'
-
-          if (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)("%appdata%\\microsoft\\addins\\\\" + l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)"))) == true then
-            (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)("%appdata%\\microsoft\\addins\\\\" + l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)")))
-          end
-        end
-      end
-    end
-    return mp.INFECTED
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+    L0_0 = L1_1
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = L0_0.match
+  L1_1 = L1_1(L0_0, "[^ ]+[\"]?(.*%.xll[\"]?)")
+  if L1_1 ~= nil then
+    if sysio.IsFileExists(L1_1) == true then
+      bm.add_related_file(L1_1)
+    else
+      L1_1 = "%appdata%\\microsoft\\addins\\\\" + L1_1
+      L1_1 = mp.ContextualExpandEnvironmentVariables(L1_1)
+      if sysio.IsFileExists(L1_1) == true then
+        bm.add_related_file(L1_1)
+      end
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

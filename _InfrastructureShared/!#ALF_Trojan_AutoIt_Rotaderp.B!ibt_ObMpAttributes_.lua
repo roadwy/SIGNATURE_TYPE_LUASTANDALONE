@@ -1,43 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_AutoIt_Rotaderp.B!ibt_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 20480 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 20480 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if mp.HEADERPAGE_SZ < 1792 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.HEADERPAGE_SZ
+if L1_1 < 1792 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)(tostring(headerpage))
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = tostring
+L3_3 = headerpage
+L10_10 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L2_2(L3_3))
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = {}
-local l_0_3 = 0
-for l_0_7 in l_0_1:gmatch("[s][e][t] [%w]+%s*=%s*[%w%.]+") do
-  local l_0_8 = l_0_7:match("([s][e][t] [%w.]+)", 1, true)
-  if l_0_8 ~= nil and #l_0_8 > 5 then
-    local l_0_9 = (string.sub)(l_0_8, 5)
-    if l_0_9 == nil then
-      return mp.CLEAN
-    end
-    if l_0_2[l_0_9] ~= 1 then
-      local l_0_10 = "%" .. l_0_9 .. "%"
-      l_0_2[l_0_9] = 1
-      if l_0_1:find(l_0_10, 1, true) ~= nil then
-        l_0_3 = l_0_3 + 1
-        ;
-        (mp.set_mpattribute)("Lua:ScrHasEnvWithPercent")
-      else
-        return mp.CLEAN
+L2_2 = {}
+L3_3 = 0
+for L7_7 in L4_4(L5_5, L6_6) do
+  L9_9 = L7_7
+  L8_8 = L7_7.match
+  L10_10 = "([s][e][t] [%w.]+)"
+  L8_8 = L8_8(L9_9, L10_10, 1, true)
+  if L8_8 ~= nil then
+    L9_9 = #L8_8
+    if L9_9 > 5 then
+      L9_9 = string
+      L9_9 = L9_9.sub
+      L10_10 = L8_8
+      L9_9 = L9_9(L10_10, 5)
+      if L9_9 == nil then
+        L10_10 = mp
+        L10_10 = L10_10.CLEAN
+        return L10_10
       end
-      if l_0_3 > 5 then
-        return mp.INFECTED
+      L10_10 = L2_2[L9_9]
+      if L10_10 ~= 1 then
+        L10_10 = "%"
+        L10_10 = L10_10 .. L9_9 .. "%"
+        L2_2[L9_9] = 1
+        if L1_1:find(L10_10, 1, true) ~= nil then
+          L3_3 = L3_3 + 1
+          mp.set_mpattribute("Lua:ScrHasEnvWithPercent")
+        else
+          return mp.CLEAN
+        end
+        if L3_3 > 5 then
+          return mp.INFECTED
+        end
       end
     end
   end
 end
-return mp.CLEAN
-
+return L4_4

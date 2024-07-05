@@ -1,17 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db36b9ef25f 
-
--- params : ...
--- function num : 0
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[1]).utf8p1))
-    if l_0_0 ~= nil and (string.find)(l_0_0, "\\dism\\dismcore.dll", 1, true) then
-      return mp.CLEAN
-    end
-    ;
-    (bm.add_related_file)(l_0_0)
+local L0_0
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L0_0 = L0_0(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[1].utf8p1))
+  if L0_0 ~= nil and string.find(L0_0, "\\dism\\dismcore.dll", 1, true) then
+    return mp.CLEAN
   end
-  return mp.INFECTED
+  bm.add_related_file(L0_0)
 end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

@@ -1,19 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_BlockOpeningOfOfficeDroppedXOMLByCompiler.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_1 = (MpCommon.QueryPersistContext)(l_0_0, "Lua:XOMLDroppedByOffice")
-if not l_0_1 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FULL
+L2_2 = L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE)
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE))
+L1_1 = MpCommon
+L1_1 = L1_1.QueryPersistContext
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, "Lua:XOMLDroppedByOffice")
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-if l_0_2 ~= nil and (string.lower)(l_0_2) == "microsoft.workflow.compiler.exe" then
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L2_2 = L2_2(mp.CONTEXT_DATA_PROCESSNAME)
+if L2_2 ~= nil and string.lower(L2_2) == "microsoft.workflow.compiler.exe" then
   return mp.INFECTED
 end
 return mp.CLEAN
-

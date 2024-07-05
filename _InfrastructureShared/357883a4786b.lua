@@ -1,10 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/357883a4786b 
-
--- params : ...
--- function num : 0
-if (pesecs[5]).Name == ".rsrc" and (pesecs[5]).VirtualSize > 93955 and (pesecs[5]).VirtualSize < 93961 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pesecs
+L0_0 = L0_0[5]
+L0_0 = L0_0.Name
+if L0_0 == ".rsrc" then
+  L0_0 = pesecs
+  L0_0 = L0_0[5]
+  L0_0 = L0_0.VirtualSize
+  if L0_0 > 93955 then
+    L0_0 = pesecs
+    L0_0 = L0_0[5]
+    L0_0 = L0_0.VirtualSize
+    if L0_0 < 93961 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

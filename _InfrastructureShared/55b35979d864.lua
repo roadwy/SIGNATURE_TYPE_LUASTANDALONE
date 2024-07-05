@@ -1,23 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b35979d864 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-if l_0_0 == nil then
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L0_0 = L0_0()
+if L0_0 == nil then
   return mp.CLEAN
 end
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  if l_0_6.image_path ~= nil then
-    local l_0_7 = ((string.lower)((string.sub)(l_0_6.image_path, -15))):match("\\([^\\]+)$")
-    local l_0_8 = {}
-    l_0_8["svchost.exe"] = true
-    l_0_8["taskhostw.exe"] = true
-    l_0_8["taskeng.exe"] = true
-    if l_0_8[l_0_7] then
+for _FORV_5_, _FORV_6_ in ipairs(L0_0) do
+  if _FORV_6_.image_path ~= nil then
+    if ({
+      ["svchost.exe"] = true,
+      ["taskhostw.exe"] = true,
+      ["taskeng.exe"] = true
+    })[string.lower(string.sub(_FORV_6_.image_path, -15)):match("\\([^\\]+)$")] then
       return mp.INFECTED
     end
   end
 end
 return mp.CLEAN
-

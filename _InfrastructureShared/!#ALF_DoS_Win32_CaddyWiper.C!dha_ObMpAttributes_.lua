@@ -1,57 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_DoS_Win32_CaddyWiper.C!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.readu_u32)(headerpage, 1)
-if l_0_0 < 2 or l_0_0 > 5 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 < 2 or L0_0 > 5 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.readu_u32)(headerpage, 5)
-local l_0_2 = l_0_1 + 32
-if mp.HEADERPAGE_SZ < l_0_2 or l_0_1 == 0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 5
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = L1_1 + 32
+L3_3 = mp
+L3_3 = L3_3.HEADERPAGE_SZ
+if L2_2 > L3_3 or L1_1 == 0 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (mp.readu_u32)(headerpage, 9)
-if l_0_2 < l_0_3 then
-  return mp.CLEAN
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = headerpage
+L5_5 = 9
+L3_3 = L3_3(L4_4, L5_5)
+if L2_2 < L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = "U‹ì"
-local l_0_5 = (string.len)(l_0_4)
-local l_0_6 = 20
-local l_0_7 = 0
-local l_0_8 = (mp.readheader)(12, l_0_6)
-for l_0_12 = 1, l_0_6 do
-  _t = (string.byte)(l_0_8, l_0_12)
-  l_0_7 = (mp.bitxor)(_t, l_0_7)
+L4_4 = "U\139\236"
+L5_5 = string
+L5_5 = L5_5.len
+L6_6 = L4_4
+L5_5 = L5_5(L6_6)
+L6_6 = 20
+L7_7 = 0
+L8_8 = mp
+L8_8 = L8_8.readheader
+L8_8 = L8_8(L9_9, L10_10)
+for L12_12 = 1, L6_6 do
+  _t = L13_13
+  L7_7 = L13_13
 end
-local l_0_13 = ""
-local l_0_14 = ""
-local l_0_15 = 0
-local l_0_16 = (mp.readheader)(32, l_0_5)
-for l_0_20 = 1, l_0_5 do
-  l_0_15 = (string.byte)(l_0_16, l_0_20)
-  l_0_14 = (mp.bitxor)(l_0_15, l_0_7)
-  l_0_13 = l_0_13 .. (string.char)(l_0_14)
+L12_12 = mp
+L12_12 = L12_12.readheader
+L12_12 = L12_12(L13_13, L14_14)
+for L16_16 = 1, L5_5 do
 end
-if l_0_13 ~= l_0_4 then
-  return mp.CLEAN
+if L9_9 ~= L4_4 then
+  return L13_13
 end
-local l_0_21 = 0
-local l_0_22 = (mp.readheader)(l_0_2 + 12, l_0_6)
-for l_0_26 = 1, l_0_6 do
-  l_0_15 = (string.byte)(l_0_22, l_0_26)
-  l_0_21 = (mp.bitxor)(l_0_15, l_0_21)
+for L18_18 = 1, L6_6 do
+  L20_20 = L14_14
+  L20_20 = L11_11
 end
-local l_0_27 = ""
-local l_0_28 = (mp.readheader)(l_0_2 + 32, l_0_5)
-for l_0_32 = 1, l_0_5 do
-  l_0_15 = (string.byte)(l_0_28, l_0_32)
-  l_0_14 = (mp.bitxor)(l_0_15, l_0_21)
-  l_0_27 = l_0_27 .. (string.char)(l_0_14)
+for L20_20 = 1, L5_5 do
 end
-if l_0_27 ~= l_0_4 then
-  return mp.CLEAN
+if L15_15 ~= L4_4 then
+  return L17_17
 end
-return mp.INFECTED
-
+return L17_17

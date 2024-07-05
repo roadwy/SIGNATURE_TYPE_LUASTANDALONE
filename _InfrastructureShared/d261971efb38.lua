@@ -1,11 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d261971efb38 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if ((l_0_0 >= 6291456 and l_0_0 <= 8388608) or l_0_0 < 2097152 or l_0_0 <= 4194304) and pehdr.NumberOfSections == 10 then
+if (mp.getfilesize() >= 6291456 and mp.getfilesize() <= 8388608 or mp.getfilesize() >= 2097152 and mp.getfilesize() <= 4194304) and pehdr.NumberOfSections == 10 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,32 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_OpenAfterDropBySystem.C 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN then
-  local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-  if l_0_0:sub(1, 8) == "\\device\\" then
-    l_0_0 = (MpCommon.PathToWin32Path)(l_0_0)
-    if l_0_0 == nil then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.getfilename
+  L1_1 = mp
+  L1_1 = L1_1.FILEPATH_QUERY_LOWERCASE
+  L0_0 = L0_0(L1_1)
+  L2_2 = L0_0
+  L1_1 = L0_0.sub
+  L3_3 = 1
+  L1_1 = L1_1(L2_2, L3_3, L4_4)
+  if L1_1 == "\\device\\" then
+    L1_1 = MpCommon
+    L1_1 = L1_1.PathToWin32Path
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
+    if L0_0 == nil then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     end
-    l_0_0 = (string.lower)(l_0_0)
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
-  local l_0_1 = false
-  local l_0_2 = {}
-  l_0_2.SuspExeFileDroppedBySystemProcessC_sysdir = "Lua:Context/OpenExeAfterDropBySystem.C!sysdir"
-  l_0_2.SuspFileDroppedBySystemProcessC_sysdir = "Lua:Context/OpenAfterDropBySystem.C!sysdir"
-  for l_0_6,l_0_7 in pairs(l_0_2) do
-    if (MpCommon.QueryPersistContext)(l_0_0, l_0_6) then
-      (mp.set_mpattribute)(l_0_7)
-      l_0_1 = true
+  L1_1 = false
+  L2_2 = MpCommon
+  L2_2 = L2_2.GetPersistContext
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3)
+  if L2_2 == nil then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+  L3_3 = {}
+  L3_3.SuspExeFileDroppedBySystemProcessC_sysdir = "Lua:Context/OpenExeAfterDropBySystem.C!sysdir"
+  L3_3.SuspFileDroppedBySystemProcessC_sysdir = "Lua:Context/OpenAfterDropBySystem.C!sysdir"
+  L3_3.SuspExeFileDroppedBySystemProcessC_windir = "Lua:Context/OpenExeAfterDropBySystem.C!windir"
+  L3_3.SuspFileDroppedBySystemProcessC_windir = "Lua:Context/OpenAfterDropBySystem.C!windir"
+  for L7_7, L8_8 in L4_4(L5_5) do
+    for L12_12, L13_13 in L9_9(L10_10) do
+      if L8_8 == L12_12 then
+        mp.set_mpattribute(L13_13)
+        L1_1 = true
+      end
     end
   end
-  if l_0_1 == true then
-    return mp.INFECTED
+  if L1_1 == true then
+    return L4_4
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

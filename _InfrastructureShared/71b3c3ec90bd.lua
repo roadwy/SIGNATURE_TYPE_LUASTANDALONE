@@ -1,28 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/71b3c3ec90bd 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  do
-    if l_0_0 ~= nil then
-      local l_0_2 = nil
-      -- DECOMPILER ERROR at PC37: Confused about usage of register: R1 in 'UnsetPending'
-
-      if l_0_0:match("/e:javascript%S?(\"?[^/]*\")") ~= nil and (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)(l_0_0:match("/e:javascript%S?(\"?[^/]*\")"))) == true then
-        (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(l_0_0:match("/e:javascript%S?(\"?[^/]*\")")))
-      end
-    end
-    return mp.INFECTED
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+    L0_0 = L1_1
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = L0_0.match
+  L1_1 = L1_1(L0_0, "/e:javascript%S?(\"?[^/]*\")")
+  if L1_1 ~= nil then
+    L1_1 = mp.ContextualExpandEnvironmentVariables(L1_1)
+    if sysio.IsFileExists(L1_1) == true then
+      bm.add_related_file(L1_1)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

@@ -1,21 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2729ce79e679 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetBruteMatchData)()
-local l_0_1 = l_0_0.match_offset
-local l_0_2 = ""
-if l_0_0.is_header then
-  l_0_2 = (tostring(headerpage)):sub(l_0_1 - 256, l_0_1 + 1)
-  l_0_2 = (string.gsub)(l_0_2, "(.)(.)", "%2")
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = L0_0.match_offset
+L2_2 = ""
+if L0_0.is_header then
+  L2_2 = tostring(headerpage):sub(L1_1 - 256, L1_1 + 1)
+  L2_2 = string.gsub(L2_2, "(.)(.)", "%2")
 else
-  l_0_2 = (tostring(footerpage)):sub(l_0_1 - 256, l_0_1 + 1)
-  l_0_2 = (string.gsub)(l_0_2, "(.)(.)", "%2")
+  L2_2 = tostring(footerpage):sub(L1_1 - 256, L1_1 + 1)
+  L2_2 = string.gsub(L2_2, "(.)(.)", "%2")
 end
-l_0_2 = (string.lower)(l_0_2)
-if (string.find)(l_0_2, ".connected -or $", 1, true) then
+L2_2 = string.lower(L2_2)
+if string.find(L2_2, ".connected -or $", 1, true) then
   return mp.INFECTED
 end
 return mp.LOWFI
-

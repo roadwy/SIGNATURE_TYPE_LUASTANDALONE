@@ -1,18 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/267858bf006b 
-
--- params : ...
--- function num : 0
-if peattributes.isdll == true then
-  local l_0_0 = (mp.getfilesize)()
-  if l_0_0 >= 400000 and l_0_0 <= 750000 then
-    local l_0_1 = (string.lower)((mp.getfilename)())
-    if l_0_1:find("\\appdata\\roaming\\microsoft\\windows\\templates\\", 1, true) then
-      return mp.INFECTED
-    end
-  end
+if true == peattributes.isdll and mp.getfilesize() >= 400000 and mp.getfilesize() <= 750000 and string.lower(mp.getfilename()):find("\\appdata\\roaming\\microsoft\\windows\\templates\\", 1, true) then
+  return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

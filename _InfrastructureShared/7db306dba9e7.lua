@@ -1,76 +1,129 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7db306dba9e7 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[5]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4 = nil, nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L2_2 = this_sigattrlog
+L2_2 = L2_2[5]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[5]
+  L0_0 = L2_2.utf8p2
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[6]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[6]
+    L0_0 = L2_2.utf8p2
   end
-  -- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC27: Confused about usage of register: R0 in 'UnsetPending'
-
-  if (not (this_sigattrlog[6]).matched or (this_sigattrlog[6]).utf8p2 ~= nil) and (string.len)((this_sigattrlog[6]).utf8p2) > 3 then
-    local l_0_5 = nil
-    -- DECOMPILER ERROR at PC41: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC50: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC59: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC68: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC77: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC86: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC95: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC104: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC113: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC120: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC127: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC136: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC145: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC154: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC163: Unhandled construct in 'MakeBoolean' P3
-
-    -- DECOMPILER ERROR at PC163: Unhandled construct in 'MakeBoolean' P3
-
-    -- DECOMPILER ERROR at PC163: Unhandled construct in 'MakeBoolean' P3
-
-    -- DECOMPILER ERROR at PC163: Unhandled construct in 'MakeBoolean' P3
-
-    if ((string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".dll", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".cpl", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".ocx", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".tmp", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".dat", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".tlb", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), "-", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".exe", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), ".xll", 1, true) == nil and (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), "\\microsoft\\word\\startup\\%a+.%a") ~= nil) or (string.find)((string.lower)((this_sigattrlog[6]).utf8p2), "\\appdata\\roaming\\%a+.dll") ~= nil then
-      local l_0_6 = nil
-      if (mp.GetExecutablesFromCommandLine)(l_0_5) ~= nil then
-        for l_0_10,l_0_11 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_5)) do
-          local l_0_7 = nil
-          -- DECOMPILER ERROR at PC171: Confused about usage of register: R7 in 'UnsetPending'
-
-          R7_PC171 = (mp.ContextualExpandEnvironmentVariables)(R7_PC171)
-          ;
-          (bm.add_related_file)(R7_PC171)
+end
+if L0_0 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L2_2 = L2_2(L3_3)
+  if L2_2 > 3 then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L1_1 = L2_2
+    L2_2 = string
+    L2_2 = L2_2.find
+    L6_6 = true
+    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    if L2_2 == nil then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L6_6 = true
+      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+      if L2_2 == nil then
+        L2_2 = string
+        L2_2 = L2_2.find
+        L6_6 = true
+        L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+        if L2_2 == nil then
+          L2_2 = string
+          L2_2 = L2_2.find
+          L6_6 = true
+          L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+          if L2_2 == nil then
+            L2_2 = string
+            L2_2 = L2_2.find
+            L6_6 = true
+            L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+            if L2_2 == nil then
+              L2_2 = string
+              L2_2 = L2_2.find
+              L6_6 = true
+              L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+              if L2_2 == nil then
+                L2_2 = string
+                L2_2 = L2_2.find
+                L6_6 = true
+                L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                if L2_2 == nil then
+                  L2_2 = string
+                  L2_2 = L2_2.find
+                  L6_6 = true
+                  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                  if L2_2 == nil then
+                    L2_2 = string
+                    L2_2 = L2_2.find
+                    L6_6 = true
+                    L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+                    if L2_2 == nil then
+                      L2_2 = string
+                      L2_2 = L2_2.find
+                      L2_2 = L2_2(L3_3, L4_4)
+                    end
+                  end
+                end
+              end
+            end
+          end
         end
       end
-      do
-        do
-          do return mp.INFECTED end
-          return mp.CLEAN
+    else
+      if L2_2 == nil then
+        L2_2 = string
+        L2_2 = L2_2.find
+        L2_2 = L2_2(L3_3, L4_4)
+        if L2_2 == nil then
+          L2_2 = string
+          L2_2 = L2_2.find
+          L6_6 = true
+          L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+          if L2_2 == nil then
+            L2_2 = string
+            L2_2 = L2_2.find
+            L6_6 = true
+            L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+            if L2_2 == nil then
+              L2_2 = string
+              L2_2 = L2_2.find
+              L6_6 = true
+              L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+              if L2_2 == nil then
+                L2_2 = string
+                L2_2 = L2_2.find
+                L2_2 = L2_2(L3_3, L4_4)
+              end
+            end
+          end
+        end
+    end
+    elseif L2_2 ~= nil then
+      L2_2 = mp
+      L2_2 = L2_2.GetExecutablesFromCommandLine
+      L2_2 = L2_2(L3_3)
+      if L2_2 ~= nil then
+        for L6_6, L7_7 in L3_3(L4_4) do
+          L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+          bm.add_related_file(L7_7)
         end
       end
+      return L3_3
     end
   end
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

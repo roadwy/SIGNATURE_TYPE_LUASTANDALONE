@@ -1,15 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/32b3e0531aec_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
 TrackPidAndTechniqueBM("BM", "T1571", "CommandAndControl")
 TrackPidAndTechniqueBM("BM", "T1021.004", "LateralMovement")
-local l_0_1 = (mp.GetParentProcInfo)()
-if l_0_1 ~= nil and (not (string.find)(l_0_0, "/usr/sbin/sshd", -14, true) or not (string.find)(l_0_1.image_path, "/usr/sbin/sshd", -14, true)) then
-  TrackPidAndTechniqueBM(l_0_1.ppid, "T1571", "CommandAndControl")
-  TrackPidAndTechniqueBM(l_0_1.ppid, "T1021.004", "LateralMovement")
+if mp.GetParentProcInfo() ~= nil and (not string.find(L0_0, "/usr/sbin/sshd", -14, true) or not string.find(mp.GetParentProcInfo().image_path, "/usr/sbin/sshd", -14, true)) then
+  TrackPidAndTechniqueBM(mp.GetParentProcInfo().ppid, "T1571", "CommandAndControl")
+  TrackPidAndTechniqueBM(mp.GetParentProcInfo().ppid, "T1021.004", "LateralMovement")
 end
 return mp.INFECTED
-

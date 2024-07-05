@@ -1,25 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2eb39ff64e75 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC15: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_2 = nil
-  for l_0_6,l_0_7 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_0)) do
-    local l_0_3 = nil
-    -- DECOMPILER ERROR at PC23: Confused about usage of register: R6 in 'UnsetPending'
-
-    R6_PC23 = (mp.ContextualExpandEnvironmentVariables)(R6_PC23)
-    ;
-    (bm.add_threat_file)(R6_PC23)
-  end
-  return mp.INFECTED
 end
-
+L1_1 = mp
+L1_1 = L1_1.GetExecutablesFromCommandLine
+L1_1 = L1_1(L2_2)
+for L5_5, L6_6 in L2_2(L3_3) do
+  L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+  bm.add_threat_file(L6_6)
+end
+return L2_2

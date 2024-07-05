@@ -1,47 +1,71 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3b987f923 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0.integrity_level < MpCommon.SECURITY_MANDATORY_HIGH_RID then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.integrity_level
+L2_2 = MpCommon
+L2_2 = L2_2.SECURITY_MANDATORY_HIGH_RID
+if L1_1 < L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (bm.get_imagepath)()
-do
-  if l_0_1 ~= nil and (string.len)(l_0_1) >= 15 then
-    local l_0_2 = {}
-    l_0_2["devenv.exe"] = true
-    l_0_2["w3wp.exe"] = true
-    l_0_2["iisexpress.exe"] = true
-    l_0_2["encompass.exe"] = true
-    l_0_2["dtexec.exe"] = true
-    l_0_2["sqlnexus.exe"] = true
-    l_0_2["mesclient.exe"] = true
-    l_0_2["ssms.exe"] = true
-    l_0_2["msbuild.exe"] = true
-    l_0_2["isserverexec.exe"] = true
-    if l_0_2[((string.lower)((string.sub)(l_0_1, -15))):match("\\([^\\]+)$")] then
-      return mp.CLEAN
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  if L2_2 >= 15 then
+    L2_2 = {}
+    L2_2["devenv.exe"] = true
+    L2_2["w3wp.exe"] = true
+    L2_2["iisexpress.exe"] = true
+    L2_2["encompass.exe"] = true
+    L2_2["dtexec.exe"] = true
+    L2_2["sqlnexus.exe"] = true
+    L2_2["mesclient.exe"] = true
+    L2_2["ssms.exe"] = true
+    L2_2["msbuild.exe"] = true
+    L2_2["isserverexec.exe"] = true
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L8_8 = L4_4(L5_5, L6_6)
+    L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L4_4(L5_5, L6_6))
+    L3_3 = L3_3.match
+    L3_3 = L3_3(L4_4, L5_5)
+    if L4_4 then
+      return L4_4
     end
   end
-  local l_0_3 = nil
-  if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-    l_0_3 = (this_sigattrlog[3]).utf8p2
-  end
-  if l_0_3 ~= nil then
-    local l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_3)
-    for l_0_8,l_0_9 in ipairs(l_0_4) do
-      l_0_9 = (mp.ContextualExpandEnvironmentVariables)(l_0_9)
-      if (sysio.IsFileExists)(l_0_9) then
-        (bm.add_related_file)(l_0_9)
-      end
-    end
-  end
-  do
-    l_0_4 = mp
-    l_0_4 = l_0_4.INFECTED
-    return l_0_4
+end
+L2_2 = nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[3]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[3]
+  L3_3 = L3_3.utf8p2
+  if L3_3 ~= nil then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[3]
+    L2_2 = L3_3.utf8p2
   end
 end
-
+if L2_2 ~= nil then
+  L3_3 = mp
+  L3_3 = L3_3.GetExecutablesFromCommandLine
+  L3_3 = L3_3(L4_4)
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+    if sysio.IsFileExists(L8_8) then
+      bm.add_related_file(L8_8)
+    end
+  end
+end
+L3_3 = mp
+L3_3 = L3_3.INFECTED
+return L3_3

@@ -1,43 +1,68 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a1d78a074718_Includes_LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = ((mp.GetProcessCommandLine)(l_0_0)):lower()
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = L1_1
+L1_1 = L1_1.lower
+L1_1 = L1_1(L2_2)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (string.match)(l_0_1, " scrobj.dll") then
-  return mp.LOWFI
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = " scrobj.dll"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.LOWFI
+  return L2_2
 end
-l_0_1 = l_0_1:match("^(.*%S)%s*$")
-do
-  if not (string.match)(l_0_1, "i:http.*%s+(.*)$") then
-    local l_0_2, l_0_3 = (string.match)(l_0_1, "i:ftp.*%s+(.*)$")
-  end
-  -- DECOMPILER ERROR at PC48: Confused about usage of register: R2 in 'UnsetPending'
-
-  local l_0_4, l_0_5 = , IsKeyInRollingQueue("scrobj.dll", l_0_2, true)
-  if l_0_5 then
-    return mp.LOWFI
-  end
-  local l_0_6 = nil
-  if GetRollingQueue("scrobj.dll") ~= nil and type(GetRollingQueue("scrobj.dll")) == "table" then
-    for l_0_10 in pairs(GetRollingQueue("scrobj.dll")) do
-      local l_0_7 = nil
-      -- DECOMPILER ERROR at PC73: Confused about usage of register: R9 in 'UnsetPending'
-
-      if (string.find)(l_0_1, (l_0_7[R9_PC73]).key) then
-        return mp.LOWFI
-      end
+L3_3 = L1_1
+L2_2 = L1_1.match
+L4_4 = "^(.*%S)%s*$"
+L2_2 = L2_2(L3_3, L4_4)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "i:http.*%s+(.*)$"
+L2_2 = L2_2(L3_3, L4_4)
+if not L2_2 then
+  L3_3 = string
+  L3_3 = L3_3.match
+  L4_4 = L1_1
+  L5_5 = "i:ftp.*%s+(.*)$"
+  L3_3 = L3_3(L4_4, L5_5)
+  L2_2 = L3_3
+end
+L3_3 = IsKeyInRollingQueue
+L4_4 = "scrobj.dll"
+L5_5 = L2_2
+L4_4 = L3_3(L4_4, L5_5, true)
+if L3_3 then
+  L5_5 = mp
+  L5_5 = L5_5.LOWFI
+  return L5_5
+end
+L5_5 = GetRollingQueue
+L5_5 = L5_5("scrobj.dll")
+if L5_5 ~= nil and type(L5_5) == "table" then
+  for _FORV_9_ in pairs(L5_5) do
+    if string.find(L1_1, L5_5[_FORV_9_].key) then
+      return mp.LOWFI
     end
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+return mp.CLEAN

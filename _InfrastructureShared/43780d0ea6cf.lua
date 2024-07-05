@@ -1,13 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/43780d0ea6cf 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-local l_0_2 = (MpCommon.PathToWin32Path)(l_0_1)
-local l_0_3 = l_0_2 .. "\\" .. l_0_0
-;
-(mp.set_mpattribute)("MpInternal_researchdata=parentProcessPath=" .. l_0_3)
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSDEVICEPATH
+L1_1 = L1_1(L2_2)
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L3_3 = L2_2
+L3_3 = L3_3 .. "\\" .. L0_0
+mp.set_mpattribute("MpInternal_researchdata=parentProcessPath=" .. L3_3)
 return mp.INFECTED
-

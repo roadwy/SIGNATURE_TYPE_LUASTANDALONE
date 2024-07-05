@@ -1,45 +1,53 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/397890413061_Includes_HstrLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-if (mp.GetHSTRCallerId)() ~= mp.HSTR_CALLER_SMS then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.GetHSTRCallerId
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.HSTR_CALLER_SMS
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.GetSMSProcArchitecture)() ~= mp.SMS_PROC_ARCH_X64 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.GetSMSProcArchitecture
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.SMS_PROC_ARCH_X64
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.GetSMSMemRanges)()
-local l_0_1 = (mp.hstr_full_log)()
-local l_0_2 = 0
-for l_0_6,l_0_7 in ipairs(l_0_1) do
-  if l_0_7.matched and isSafeToRead(l_0_0, l_0_7.VA, 8) then
-    local l_0_8 = (mp.ReadProcMem)(l_0_7.VA, 8)
-    if (mp.readu_u32)(l_0_8, 1) == 16 then
-      do
-        do
-          l_0_2 = l_0_7.VA + 1
-          do break end
-          -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_STMT
-
-          -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
+L0_0 = mp
+L0_0 = L0_0.GetSMSMemRanges
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.hstr_full_log
+L1_1 = L1_1()
+L2_2 = 0
+for L6_6, L7_7 in L3_3(L4_4) do
+  L8_8 = L7_7.matched
+  if L8_8 then
+    L8_8 = isSafeToRead
+    L8_8 = L8_8(L0_0, L7_7.VA, 8)
+    if L8_8 then
+      L8_8 = mp
+      L8_8 = L8_8.ReadProcMem
+      L8_8 = L8_8(L7_7.VA, 8)
+      if mp.readu_u32(L8_8, 1) == 16 then
+        L2_2 = L7_7.VA + 1
+        break
       end
     end
   end
 end
-if l_0_2 == 0 then
-  return mp.CLEAN
+if L2_2 == 0 then
+  return L3_3
 end
-if not pcallEx("maceExtract_CobaltStrike", maceExtract_CobaltStrike, l_0_2) or #"maceExtract_CobaltStrike" < 3000 then
-  return mp.CLEAN
+L6_6 = L2_2
+if L3_3 then
+elseif L5_5 < 3000 then
+  return L5_5
 end
-return mp.INFECTED
-
+return L5_5

@@ -1,51 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LuaZipWithSingleFile_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
 if mp.HEADERPAGE_SZ < 128 or mp.FOOTERPAGE_SZ < 22 then
   return mp.CLEAN
 end
-if (mp.readu_u32)(headerpage, 1) ~= 67324752 then
+if mp.readu_u32(headerpage, 1) ~= 67324752 then
   return mp.CLEAN
 end
-local l_0_0 = (mp.readu_u32)(headerpage, 19)
-if l_0_0 > 4194304 then
+if mp.readu_u32(headerpage, 19) > 4194304 then
   return mp.CLEAN
 end
-local l_0_1 = (mp.readu_u16)(headerpage, 27)
-if l_0_1 > 128 or l_0_1 < 4 or mp.HEADERPAGE_SZ < l_0_1 + 31 then
+if 128 < mp.readu_u16(headerpage, 27) or mp.readu_u16(headerpage, 27) < 4 or mp.readu_u16(headerpage, 27) + 31 > mp.HEADERPAGE_SZ then
   return mp.CLEAN
 end
-local l_0_2 = (mp.getfilesize)()
--- DECOMPILER ERROR at PC71: Unhandled construct in 'MakeBoolean' P1
-
-if (mp.readu_u32)(footerpage, mp.FOOTERPAGE_SZ - 21) == 101010256 and (mp.readu_u16)(footerpage, mp.FOOTERPAGE_SZ - 11) ~= 1 then
-  return mp.CLEAN
-end
-local l_0_3 = 30 + l_0_1 + l_0_0 + (mp.readu_u16)(headerpage, 29) + 1
-local l_0_4 = l_0_3 + 46 + l_0_1
-do
-  local l_0_5 = l_0_2 - l_0_4
-  if (mp.readu_u32)(footerpage, mp.FOOTERPAGE_SZ - l_0_5) ~= 101010256 then
+if mp.readu_u32(footerpage, mp.FOOTERPAGE_SZ - 21) == 101010256 then
+  if mp.readu_u16(footerpage, mp.FOOTERPAGE_SZ - 11) ~= 1 then
     return mp.CLEAN
   end
-  if (mp.readu_u16)(footerpage, mp.FOOTERPAGE_SZ - l_0_5 + 10) ~= 1 then
+else
+  if mp.readu_u32(footerpage, mp.FOOTERPAGE_SZ - (mp.getfilesize() - (30 + mp.readu_u16(headerpage, 27) + mp.readu_u32(headerpage, 19) + mp.readu_u16(headerpage, 29) + 1 + 46 + mp.readu_u16(headerpage, 27)))) ~= 101010256 then
     return mp.CLEAN
   end
-  local l_0_6 = (string.lower)((string.char)(headerpage[31 + l_0_1 - 3], headerpage[31 + l_0_1 - 2], headerpage[31 + l_0_1 - 1]))
-  if l_0_6 ~= "exe" and l_0_6 ~= "pif" and l_0_6 ~= "scr" and l_0_6 ~= ".js" and l_0_6 ~= "jse" and l_0_6 ~= "vbs" and l_0_6 ~= "vbe" and l_0_6 ~= "diagcab" then
+  if mp.readu_u16(footerpage, mp.FOOTERPAGE_SZ - (mp.getfilesize() - (30 + mp.readu_u16(headerpage, 27) + mp.readu_u32(headerpage, 19) + mp.readu_u16(headerpage, 29) + 1 + 46 + mp.readu_u16(headerpage, 27))) + 10) ~= 1 then
     return mp.CLEAN
   end
-  if l_0_6 == ".js" or l_0_6 == "jse" then
-    (mp.set_mpattribute)("//LuaZipWithSingleJS")
-  end
-  if l_0_6 == ".diagcab" then
-    (mp.set_mpattribute)("//LuaZipWithSingleDiagCab")
-  end
-  if l_0_2 < 4000 then
-    (mp.set_mpattribute)("//LuaZipLT4kbWithSingleFile")
-  end
-  return mp.INFECTED
 end
-
+if string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= "exe" and string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= "pif" and string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= "scr" and string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= ".js" and string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= "jse" and string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= "vbs" and string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= "vbe" and string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) ~= "diagcab" then
+  return mp.CLEAN
+end
+if string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) == ".js" or string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) == "jse" then
+  mp.set_mpattribute("//LuaZipWithSingleJS")
+end
+if string.lower(string.char(headerpage[31 + mp.readu_u16(headerpage, 27) - 3], headerpage[31 + mp.readu_u16(headerpage, 27) - 2], headerpage[31 + mp.readu_u16(headerpage, 27) - 1])) == ".diagcab" then
+  mp.set_mpattribute("//LuaZipWithSingleDiagCab")
+end
+if mp.getfilesize() < 4000 then
+  mp.set_mpattribute("//LuaZipLT4kbWithSingleFile")
+end
+return mp.INFECTED

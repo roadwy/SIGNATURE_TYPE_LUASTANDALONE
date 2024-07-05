@@ -1,131 +1,117 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PowerShell.TrojanXorPE.S001_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 4096 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 4096 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = tostring((mp.readfooter)(0, 4096))
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = tostring
+L2_2 = mp
+L2_2 = L2_2.readfooter
+L17_17 = L2_2(L3_3, L4_4)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L2_2(L3_3, L4_4))
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_1 = (string.lower)(l_0_1)
-if (string.find)(l_0_1, "bxor", 1, true) == nil then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.find
+L6_6 = true
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.readheader)(0, 4096)
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readheader
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  return L3_3
 end
-for l_0_6 in (string.gmatch)(l_0_1, "bxor%s+(0x%x%x)") do
-  if l_0_6 ~= nil and l_0_6 ~= "" then
-    local l_0_7 = ""
-    local l_0_8 = ""
-    for l_0_12 in (string.gmatch)(l_0_2, "([A-Za-z0-9+/=]+)") do
-      if l_0_12 ~= nil and (string.len)(l_0_12) > 100 then
-        l_0_7 = (MpCommon.Base64Decode)(l_0_12)
-        if l_0_7 ~= nil and l_0_7 ~= "" then
-          for l_0_16 in l_0_7:gmatch(".") do
-            l_0_8 = l_0_8 .. (mp.bitxor)((string.byte)(l_0_16), l_0_6)
+for L6_6 in L3_3(L4_4, L5_5) do
+  if L6_6 ~= nil and L6_6 ~= "" then
+    L7_7 = ""
+    L8_8 = ""
+    for L12_12 in L9_9(L10_10, L11_11) do
+      if L12_12 ~= nil then
+        if L13_13 > 100 then
+          L7_7 = L13_13
+          if L7_7 ~= nil and L7_7 ~= "" then
+            for L16_16 in L13_13(L14_14, L15_15) do
+              L17_17 = L8_8
+              L8_8 = L17_17 .. mp.bitxor(string.byte(L16_16), L6_6)
+            end
           end
         end
       end
     end
-    do
-      if l_0_8 ~= nil and l_0_8 ~= "" then
-        local l_0_17 = (string.match)(l_0_8, "^77902320000")
-        if l_0_17 ~= nil and l_0_17 ~= "" then
-          (mp.set_mpattribute)("Lua:ShellBytesXorInB64.S001")
-        end
-      end
-      local l_0_18 = ""
-      for l_0_22 in (string.gmatch)(l_0_2, "%((%d+,%d+,%d+,%d+,%d+,%d+,%d+,[%d,]+)") do
-        if l_0_22 ~= nil and (string.len)(l_0_22) > 100 then
-          for l_0_26 in l_0_22:gmatch("%d+") do
-            l_0_18 = l_0_18 .. (string.char)((mp.bitxor)(l_0_26, l_0_6))
-          end
-        end
-      end
-      if l_0_18 ~= nil and l_0_18 ~= "" then
-        local l_0_27 = ""
-        local l_0_28 = ""
-        if (string.find)(l_0_18, "MZ", 1, true) ~= nil then
-          l_0_27 = "Found"
-        end
-        if (string.find)(l_0_18, "This program cannot be run", 1, true) ~= nil then
-          l_0_28 = "Found"
-        end
-        if l_0_27 ~= nil and l_0_28 ~= nil and l_0_27 ~= "" and l_0_28 ~= "" then
-          (mp.set_mpattribute)("Lua:PEembedViaXOR.S002")
-        end
-      end
-      do
-        -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out DO_STMT
-
-        -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC192: LeaveBlock: unexpected jumping out IF_STMT
-
+    if L8_8 ~= nil and L8_8 ~= "" then
+      if L9_9 ~= nil and L9_9 ~= "" then
+        L10_10(L11_11)
       end
     end
-  end
-end
-for l_0_32 in (string.gmatch)(l_0_1, "bxor%s+(%d?%d%d?)") do
-  if l_0_32 ~= nil and l_0_32 ~= "" then
-    local l_0_33 = ""
-    local l_0_34 = ""
-    for l_0_38 in (string.gmatch)(l_0_2, "([A-Za-z0-9+/=]+)") do
-      if l_0_38 ~= nil and (string.len)(l_0_38) > 100 then
-        l_0_33 = (MpCommon.Base64Decode)(l_0_38)
-        if l_0_33 ~= nil and l_0_33 ~= "" then
-          for l_0_42 in l_0_33:gmatch(".") do
-            l_0_34 = l_0_34 .. (mp.bitxor)((string.byte)(l_0_42), l_0_32)
+    for L13_13 in L10_10(L11_11, L12_12) do
+      if L13_13 ~= nil then
+        if L14_14 > 100 then
+          for L17_17 in L14_14(L15_15, L16_16) do
           end
         end
       end
     end
-    do
-      if l_0_34 ~= nil and l_0_34 ~= "" then
-        local l_0_43 = (string.match)(l_0_34, "^77902320000")
-        if l_0_43 ~= nil and l_0_43 ~= "" then
-          (mp.set_mpattribute)("Lua:ShellBytesXorInB64.S001")
-        end
-      end
-      local l_0_44 = ""
-      for l_0_48 in (string.gmatch)(l_0_2, "%((%d+,%d+,%d+,%d+,%d+,%d+,%d+,[%d,]+)") do
-        if l_0_48 ~= nil and (string.len)(l_0_48) > 100 then
-          for l_0_52 in l_0_48:gmatch("(%d+),") do
-            l_0_44 = l_0_44 .. (string.char)((mp.bitxor)(l_0_52, l_0_32))
-          end
-        end
-      end
-      if l_0_44 ~= nil and l_0_44 ~= "" then
-        local l_0_53 = ""
-        local l_0_54 = ""
-        if (string.find)(l_0_44, "MZ", 1, true) ~= nil then
-          l_0_53 = "Found"
-        end
-        if (string.find)(l_0_44, "This program cannot be run", 1, true) ~= nil then
-          l_0_54 = "Found"
-        end
-        if l_0_53 ~= nil and l_0_54 ~= nil and l_0_53 ~= "" and l_0_54 ~= "" then
-          (mp.set_mpattribute)("Lua:PEembedViaXOR.S002")
-        end
-      end
-      do
-        -- DECOMPILER ERROR at PC335: LeaveBlock: unexpected jumping out DO_STMT
-
-        -- DECOMPILER ERROR at PC335: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC335: LeaveBlock: unexpected jumping out IF_STMT
-
+    if L9_9 ~= nil and L9_9 ~= "" then
+      if L10_10 ~= nil and L11_11 ~= nil and L10_10 ~= "" and L11_11 ~= "" then
+        L12_12(L13_13)
       end
     end
   end
 end
-return mp.CLEAN
-
+for L6_6 in L3_3(L4_4, L5_5) do
+  if L6_6 ~= nil and L6_6 ~= "" then
+    L7_7 = ""
+    L8_8 = ""
+    for L12_12 in L9_9(L10_10, L11_11) do
+      if L12_12 ~= nil then
+        if L13_13 > 100 then
+          L7_7 = L13_13
+          if L7_7 ~= nil and L7_7 ~= "" then
+            for L16_16 in L13_13(L14_14, L15_15) do
+              L17_17 = L8_8
+              L8_8 = L17_17 .. mp.bitxor(string.byte(L16_16), L6_6)
+            end
+          end
+        end
+      end
+    end
+    if L8_8 ~= nil and L8_8 ~= "" then
+      if L9_9 ~= nil and L9_9 ~= "" then
+        L10_10(L11_11)
+      end
+    end
+    for L13_13 in L10_10(L11_11, L12_12) do
+      if L13_13 ~= nil then
+        if L14_14 > 100 then
+          for L17_17 in L14_14(L15_15, L16_16) do
+          end
+        end
+      end
+    end
+    if L9_9 ~= nil and L9_9 ~= "" then
+      if L10_10 ~= nil and L11_11 ~= nil and L10_10 ~= "" and L11_11 ~= "" then
+        L12_12(L13_13)
+      end
+    end
+  end
+end
+return L3_3

@@ -1,41 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b347b1c4c1_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched then
-  local l_0_0, l_0_2, l_0_3, l_0_4, l_0_6, l_0_8, l_0_10, l_0_12, l_0_14 = nil, nil
-  l_0_3 = this_sigattrlog
-  l_0_3 = l_0_3[2]
-  l_0_2 = l_0_3.ppid
-  local l_0_1, l_0_5, l_0_7, l_0_9, l_0_11, l_0_13, l_0_15 = nil
+local L0_0, L1_1
+if this_sigattrlog[2].matched then
+  L0_0 = this_sigattrlog[2].utf8p1
+  L1_1 = this_sigattrlog[2].ppid
 else
-  do
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC16: Confused about usage of register: R1 in 'UnsetPending'
-
-    if isParentPackageManager(l_0_2) then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC23: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC27: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_0 then
-      (bm.add_related_file)(l_0_0)
-    end
-    -- DECOMPILER ERROR at PC29: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC32: Confused about usage of register: R1 in 'UnsetPending'
-
-    if l_0_2 ~= nil then
-      TrackPidAndTechnique(l_0_2, "T1053.003", "Persistence")
-    end
-    reportRelatedBmHits()
-    addRelatedProcess()
-    return mp.INFECTED
-  end
+  return mp.CLEAN
 end
-
+if isParentPackageManager(L1_1) then
+  return mp.CLEAN
+end
+if L0_0 then
+  bm.add_related_file(L0_0)
+end
+if L1_1 ~= nil then
+  TrackPidAndTechniqueBM(L1_1, "T1053.003", "Persistence")
+end
+reportRelatedBmHits()
+addRelatedProcess()
+return mp.INFECTED

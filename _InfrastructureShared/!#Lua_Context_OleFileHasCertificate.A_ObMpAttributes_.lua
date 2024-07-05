@@ -1,24 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_OleFileHasCertificate.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1 = (mp.GetCertificateInfo)()
-for l_0_5,l_0_6 in pairs(l_0_1) do
-  if l_0_6.Signers ~= nil then
-    l_0_0 = true
+local L0_0, L1_1
+L0_0 = false
+L1_1 = mp
+L1_1 = L1_1.GetCertificateInfo
+L1_1 = L1_1()
+for _FORV_5_, _FORV_6_ in pairs(L1_1) do
+  if _FORV_6_.Signers ~= nil then
+    L0_0 = true
     break
   end
 end
-do
-  if l_0_0 == true then
-    (mp.set_mpattribute)("Lua:OleFileHasCertificate")
-  else
-    if l_0_0 == false then
-      (mp.set_mpattribute)("Lua:OleFileHasNoCertificate")
-    end
-  end
-  return mp.CLEAN
+if L0_0 == true then
+  mp.set_mpattribute("Lua:OleFileHasCertificate")
+elseif L0_0 == false then
+  mp.set_mpattribute("Lua:OleFileHasNoCertificate")
 end
-
+return mp.CLEAN

@@ -1,41 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51b3004a81d1_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched then
-  local l_0_0, l_0_1, l_0_2 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p1
 else
-  do
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC14: Confused about usage of register: R0 in 'UnsetPending'
-
-    ;
-    (bm.add_related_file)(l_0_0)
-    local l_0_3 = nil
-    if (bm.get_current_process_startup_info)() == nil or ((bm.get_current_process_startup_info)()).ppid == nil then
-      return mp.CLEAN
-    end
-    local l_0_4 = nil
-    local l_0_5, l_0_6, l_0_7 = ((bm.get_current_process_startup_info)()).ppid, l_0_3:match("[^>](.-)([^\\/]-%.?([^%.\\/]*))$")
-    if l_0_7 == nil then
-      return mp.CLEAN
-    end
-    if isTainted(l_0_3, "remote_file_created_taint") and checkFilePathInProcessCommandline(l_0_5, l_0_7, true) then
-      reportRelatedBmHits()
-      addRelatedProcess()
-      TrackPidAndTechniqueBM("BM", "T1486", "Impact_GpgEncryption")
-      return mp.INFECTED
-    end
-    if ((string.sub)(l_0_3, 0, 5) == "/tmp/" or (string.sub)(l_0_3, 0, 9) == "/var/tmp/" or (string.sub)(l_0_3, 0, 9) == "/dev/shm/") and checkFilePathInProcessCommandline(l_0_5, l_0_7, true) then
-      reportRelatedBmHits()
-      addRelatedProcess()
-      TrackPidAndTechniqueBM("BM", "T1486", "Impact_GpgEncryption")
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-
+L1_1 = bm
+L1_1 = L1_1.add_related_file
+L2_2 = L0_0
+L1_1(L2_2)
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+elseif L2_2 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = L1_1.ppid
+L4_4 = L0_0
+L3_3 = L0_0.match
+L4_4 = L3_3(L4_4, "[^>](.-)([^\\/]-%.?([^%.\\/]*))$")
+if L4_4 == nil then
+  return mp.CLEAN
+end
+if isTainted(L0_0, "remote_file_created_taint") and checkFilePathInProcessCommandline(L2_2, L4_4, true) then
+  reportRelatedBmHits()
+  addRelatedProcess()
+  TrackPidAndTechniqueBM("BM", "T1486", "Impact_GpgEncryption")
+  return mp.INFECTED
+end
+if (string.sub(L0_0, 0, 5) == "/tmp/" or string.sub(L0_0, 0, 9) == "/var/tmp/" or string.sub(L0_0, 0, 9) == "/dev/shm/") and checkFilePathInProcessCommandline(L2_2, L4_4, true) then
+  reportRelatedBmHits()
+  addRelatedProcess()
+  TrackPidAndTechniqueBM("BM", "T1486", "Impact_GpgEncryption")
+  return mp.INFECTED
+end
+return mp.CLEAN

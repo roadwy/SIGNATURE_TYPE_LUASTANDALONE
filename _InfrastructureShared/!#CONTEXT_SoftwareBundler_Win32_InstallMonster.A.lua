@@ -1,27 +1,76 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#CONTEXT_SoftwareBundler_Win32_InstallMonster.A 
-
--- params : ...
--- function num : 0
-if peattributes.isdll then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-if (string.sub)(l_0_1, -10) ~= "\\downloads" and (string.find)(l_0_1, "\\temp\\", 1, true) == nil and (string.sub)(l_0_1, -5) ~= "\\temp" then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_FILEPATH
+L4_4 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L2_2(L3_3))
+L2_2 = string
+L2_2 = L2_2.sub
+L3_3 = L1_1
+L4_4 = -10
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= "\\downloads" then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L1_1
+  L4_4 = "\\temp\\"
+  L2_2 = L2_2(L3_3, L4_4, 1, true)
+  if L2_2 == nil then
+    L2_2 = string
+    L2_2 = L2_2.sub
+    L3_3 = L1_1
+    L4_4 = -5
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 ~= "\\temp" then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
+    end
+  end
 end
-local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-local l_0_3 = (string.match)(l_0_2, "(.+)%(.%).exe$")
-if l_0_3 == nil then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = mp
+L3_3 = L3_3.get_contextdata
+L4_4 = mp
+L4_4 = L4_4.CONTEXT_DATA_FILENAME
+L4_4 = L3_3(L4_4)
+L2_2 = L2_2(L3_3, L4_4, L3_3(L4_4))
+L3_3 = string
+L3_3 = L3_3.match
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, "(.+)%(.%).exe$")
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if (string.match)(l_0_4, "(.+).exe$") ~= l_0_3 then
+L4_4 = string
+L4_4 = L4_4.lower
+L4_4 = L4_4(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))
+if string.match(L4_4, "(.+).exe$") ~= L3_3 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

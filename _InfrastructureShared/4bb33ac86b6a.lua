@@ -1,33 +1,53 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4bb33ac86b6a 
-
--- params : ...
--- function num : 0
-local l_0_0 = ""
-local l_0_1 = (string.lower)((bm.get_imagepath)())
-if (this_sigattrlog[1]).matched or (string.find)(l_0_1, "\\avclean.exe", 1, true) then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = ""
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L3_3 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L2_2())
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if not L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, "\\avclean.exe", 1, true)
 else
-  if (this_sigattrlog[2]).matched then
-    l_0_0 = (this_sigattrlog[2]).utf8p2
+  if L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.INFECTED
+    return L2_2
+end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L0_0 = L2_2.utf8p2
   end
 end
-local l_0_2 = {}
--- DECOMPILER ERROR at PC40: No list found for R2 , SetList fails
-
--- DECOMPILER ERROR at PC41: Overwrote pending register: R3 in 'AssignReg'
-
-local l_0_3 = "defender"
--- DECOMPILER ERROR at PC44: Overwrote pending register: R4 in 'AssignReg'
-
--- DECOMPILER ERROR at PC46: Overwrote pending register: R5 in 'AssignReg'
-
--- DECOMPILER ERROR at PC47: Overwrote pending register: R6 in 'AssignReg'
-
--- DECOMPILER ERROR at PC48: Overwrote pending register: R7 in 'AssignReg'
-
-if l_0_0 ~= "" and (("eset").find)("symantec", "avtest", "general", true) and (string.find)(l_0_0, " -i ", 1, true) and (string.find)(l_0_0, " -a ", 1, true) and l_0_3(l_0_2, l_0_0) then
+L2_2 = {
+  L3_3,
+  "eset",
+  "symantec",
+  "avtest",
+  "general",
+  "dyncheck"
+}
+L3_3 = "defender"
+function L3_3(A0_4, A1_5)
+  for _FORV_5_ in ipairs(A0_4) do
+    if string.find(A1_5, A0_4[_FORV_5_], 1, true) then
+      return true
+    end
+  end
+  return false
+end
+if L0_0 ~= "" and string.find(L0_0, " -m ", 1, true) and string.find(L0_0, " -i ", 1, true) and string.find(L0_0, " -a ", 1, true) and L3_3(L2_2, L0_0) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

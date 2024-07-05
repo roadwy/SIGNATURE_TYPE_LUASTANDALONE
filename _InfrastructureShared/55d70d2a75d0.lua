@@ -1,23 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55d70d2a75d0 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 ~= nil then
-  local l_0_1 = (string.lower)(l_0_0.image_path)
-  local l_0_2 = l_0_1:match("([^\\]+)$")
-  if l_0_2 == "powershell.exe" or (string.find)(l_0_2, "^%d+%.exe") then
-    local l_0_3 = (mp.GetScannedPPID)()
-    if l_0_3 == nil then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = L0_0.image_path
+  L1_1 = L1_1(L2_2)
+  L3_3 = L1_1
+  L2_2 = L1_1.match
+  L2_2 = L2_2(L3_3, "([^\\]+)$")
+  if L2_2 ~= "powershell.exe" then
+    L3_3 = string
+    L3_3 = L3_3.find
+    L3_3 = L3_3(L2_2, "^%d+%.exe")
+  elseif L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.GetScannedPPID
+    L3_3 = L3_3()
+    if L3_3 == nil then
       return mp.CLEAN
     end
-    ;
-    (MpCommon.RequestSmsOnProcess)(l_0_3, MpCommon.SMS_SCAN_LOW)
+    MpCommon.RequestSmsOnProcess(L3_3, MpCommon.SMS_SCAN_LOW)
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

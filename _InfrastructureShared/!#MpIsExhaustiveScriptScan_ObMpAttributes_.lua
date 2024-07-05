@@ -1,10 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#MpIsExhaustiveScriptScan_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() > 3000000 then
+if mp.getfilesize() > 2097152 then
   return mp.CLEAN
 end
-return mp.INFECTED
-
+if mp.BMSearchFile(0, 4096, "<job\144\000") == -1 then
+  return mp.INFECTED
+end
+return mp.CLEAN

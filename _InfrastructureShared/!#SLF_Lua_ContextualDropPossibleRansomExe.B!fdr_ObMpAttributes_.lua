@@ -1,9 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_Lua_ContextualDropPossibleRansomExe.B!fdr_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and mp.get_contextdata(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
   if not peattributes.isexe then
     return mp.CLEAN
   end
@@ -13,40 +8,30 @@ if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDH
   if peattributes.no_security == false or peattributes.no_exports == false then
     return mp.CLEAN
   end
-  local l_0_0 = (mp.getfilesize)()
-  local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_0 >= 32768 and l_0_0 <= 524288 then
-    if l_0_1:find("\\temp\\", 1, true) == nil and l_0_1:find("\\desktop\\", 1, true) == nil and l_0_1:find("\\downloads\\", 1, true) == nil then
+  if mp.getfilesize() >= 32768 and mp.getfilesize() <= 524288 then
+    if mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("\\temp\\", 1, true) == nil and mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("\\desktop\\", 1, true) == nil and mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("\\downloads\\", 1, true) == nil then
       return mp.CLEAN
     end
-    local l_0_3 = {}
-    l_0_3["pitupi20.exe"] = true
-    l_0_3["build.exe"] = true
-    l_0_3["rcfcngzxx.exe"] = true
-    l_0_3["galaperidol8.exe"] = true
-    l_0_3["bruhadson8.exe"] = true
-    l_0_3["miniramon8.exe"] = true
-    if l_0_3[l_0_2] or l_0_2:find("^skm_c%x+.exe$") then
-      (mp.set_mpattribute)("MpRequestHookwowM")
+    if ({
+      ["pitupi20.exe"] = true,
+      ["build.exe"] = true,
+      ["rcfcngzxx.exe"] = true,
+      ["galaperidol8.exe"] = true,
+      ["bruhadson8.exe"] = true,
+      ["miniramon8.exe"] = true
+    })[mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE))] or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("^skm_c%x+.exe$") then
       return mp.INFECTED
     end
-  else
-    do
-      do
-        if l_0_0 >= 65536 and l_0_0 <= 196608 then
-          if pevars.epsec ~= 1 or pehdr.NumberOfSections ~= 4 then
-            return mp.CLEAN
-          end
-          if l_0_1:find("\\temp\\", 1, true) == nil and l_0_1:find("\\downloads\\", 1, true) == nil then
-            return mp.CLEAN
-          end
-          if l_0_2:find("^chrome font[ %w%.]*%.exe$") ~= nil or l_0_2:find("^%d%d%d%d%d%d%-%d%d%d%d%d%d%d%d%d%d%.exe$") ~= nil or l_0_2:find("^%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%.exe$") ~= nil then
-            return mp.INFECTED
-          end
-        end
-        return mp.CLEAN
-      end
+  elseif mp.getfilesize() >= 65536 and mp.getfilesize() <= 196608 then
+    if pevars.epsec ~= 1 or pehdr.NumberOfSections ~= 4 then
+      return mp.CLEAN
+    end
+    if mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("\\temp\\", 1, true) == nil and mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("\\downloads\\", 1, true) == nil then
+      return mp.CLEAN
+    end
+    if mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("^chrome font[ %w%.]*%.exe$") ~= nil or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("^%d%d%d%d%d%d%-%d%d%d%d%d%d%d%d%d%d%.exe$") ~= nil or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE)):find("^%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%.exe$") ~= nil then
+      return mp.INFECTED
     end
   end
 end
-
+return mp.CLEAN

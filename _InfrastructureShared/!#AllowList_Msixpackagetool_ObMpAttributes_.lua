@@ -1,16 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#AllowList_Msixpackagetool_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-do
-  if l_0_0 == mp.SCANREASON_AMSI then
-    local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-    if l_0_1:find("msixpackagetool.exe", 1, true) then
-      return mp.INFECTED
-    end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_AMSI
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L1_1 = L1_1(mp.CONTEXT_DATA_PROCESSNAME)
+  if not L1_1 then
+    return mp.CLEAN
   end
-  return mp.CLEAN
+  L1_1 = string.lower(L1_1)
+  if L1_1:find("msixpackagetool.exe", 1, true) then
+    return mp.INFECTED
+  end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

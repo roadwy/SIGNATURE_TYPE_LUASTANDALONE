@@ -1,18 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_LUA_CryptoSteal_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = 0
-local l_0_1 = "//SCPT:HTML/DoubleCryptoFraudKey"
-for l_0_5 = 1, 30 do
-  local l_0_6 = l_0_1 .. l_0_5
-  if (mp.get_mpattribute)(l_0_6) then
-    l_0_0 = l_0_0 + 1
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = 0
+L1_1 = "//SCPT:HTML/DoubleCryptoFraudKey"
+for L5_5 = 1, 30 do
+  L6_6 = L1_1
+  L6_6 = L6_6 .. L5_5
+  if mp.get_mpattribute(L6_6) then
+    L0_0 = L0_0 + 1
   end
 end
-if l_0_0 > 1 then
-  return mp.INFECTED
+if L0_0 > 1 then
+  return L2_2
 end
-return mp.CLEAN
-
+return L2_2

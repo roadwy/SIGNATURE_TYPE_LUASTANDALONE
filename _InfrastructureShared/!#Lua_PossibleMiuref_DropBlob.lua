@@ -1,42 +1,105 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PossibleMiuref_DropBlob 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1 = nil
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN or (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  if l_0_1 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_SCANREASON
+L1_1 = L1_1(L2_2)
+L2_2 = mp
+L2_2 = L2_2.SCANREASON_ONOPEN
+if L1_1 ~= L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L1_1 == L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = mp
+  L3_3 = L3_3.get_contextdata
+  L4_4 = mp
+  L4_4 = L4_4.CONTEXT_DATA_FILENAME
+  L5_5 = L3_3(L4_4)
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L3_3(L4_4))
+  L0_0 = L2_2
+  if L0_0 == nil then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  if (l_0_1:sub(-4)):lower() == ".lck" or (l_0_1:sub(-4)):lower() == ".idx" then
-    local l_0_2 = nil
-    -- DECOMPILER ERROR at PC50: Overwrote pending register: R2 in 'AssignReg'
-
-    if nil == nil then
-      return mp.CLEAN
+  L3_3 = L0_0
+  L2_2 = L0_0.sub
+  L4_4 = -4
+  L2_2 = L2_2(L3_3, L4_4)
+  L3_3 = L2_2
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(L3_3)
+  if L2_2 ~= ".lck" then
+    L3_3 = L0_0
+    L2_2 = L0_0.sub
+    L4_4 = -4
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = L2_2
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+  elseif L2_2 == ".idx" then
+    L2_2 = nil
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L4_4 = mp
+    L4_4 = L4_4.get_contextdata
+    L5_5 = mp
+    L5_5 = L5_5.CONTEXT_DATA_FILEPATH
+    L5_5 = L4_4(L5_5)
+    L3_3 = L3_3(L4_4, L5_5, L4_4(L5_5))
+    L2_2 = L3_3
+    if L2_2 == nil then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
     end
-    -- DECOMPILER ERROR at PC58: Confused about usage of register: R2 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC67: Confused about usage of register: R2 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC76: Confused about usage of register: R2 in 'UnsetPending'
-
-    if ((string.find)(nil, "\\application data", 1, true) or (string.find)(nil, "\\appdata\\roaming", 1, true) or (string.find)(nil, "\\appdata\\local", 1, true)) and ((string.find)(l_0_1, "%w+%.lck", 1, true) or (string.find)(l_0_1, "%w+%.idx", 1, true)) then
-      local l_0_3, l_0_4, l_0_5 = , nil, nil
-      -- DECOMPILER ERROR at PC107: Overwrote pending register: R5 in 'AssignReg'
-
-      if l_0_4 == nil or l_0_5 == nil then
-        return mp.CLEAN
+    L3_3 = string
+    L3_3 = L3_3.find
+    L4_4 = L2_2
+    L5_5 = "\\application data"
+    L3_3 = L3_3(L4_4, L5_5, 1, true)
+    if not L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L4_4 = L2_2
+      L5_5 = "\\appdata\\roaming"
+      L3_3 = L3_3(L4_4, L5_5, 1, true)
+      if not L3_3 then
+        L3_3 = string
+        L3_3 = L3_3.find
+        L4_4 = L2_2
+        L5_5 = "\\appdata\\local"
+        L3_3 = L3_3(L4_4, L5_5, 1, true)
       end
-      if (string.sub)(l_0_4, -4) == ".exe" then
-        (mp.ReportLowfi)((MpCommon.PathToWin32Path)(l_0_5) .. "\\" .. nil, 2068892749)
+    elseif L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L4_4 = L0_0
+      L5_5 = "%w+%.lck"
+      L3_3 = L3_3(L4_4, L5_5, 1, true)
+      if not L3_3 then
+        L3_3 = string
+        L3_3 = L3_3.find
+        L4_4 = L0_0
+        L5_5 = "%w+%.idx"
+        L3_3 = L3_3(L4_4, L5_5, 1, true)
+      elseif L3_3 then
+        L3_3, L4_4, L5_5 = nil, nil, nil
+        L5_5 = mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)
+        L3_3 = string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))
+        L4_4 = mp.get_contextdata(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
+        if L3_3 == nil or L4_4 == nil then
+          return mp.CLEAN
+        end
+        if string.sub(L3_3, -4) == ".exe" then
+          mp.ReportLowfi(MpCommon.PathToWin32Path(L4_4) .. "\\" .. L5_5, 2068892749)
+        end
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

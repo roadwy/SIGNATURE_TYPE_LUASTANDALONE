@@ -1,23 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_Trojan_O97M_DorpDoc.B_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if not l_0_0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(l_0_0 - 6912, 2912)
-;
-(mp.readprotection)(true)
-if not l_0_1 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = L0_0 - 6912
+L3_3 = 2912
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = true
+L2_2(L3_3)
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2, l_0_3 = (string.find)(l_0_1, "Dorp.kock", 1, true)
-if l_0_2 and (string.find)(l_0_1, "D\000o\000c\000u\000S\000i\000g\000n\000\174\000", l_0_3, true) then
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L3_3 = L2_2(L3_3, "Dorp.kock", 1, true)
+if L2_2 and string.find(L1_1, "D\000o\000c\000u\000S\000i\000g\000n\000\174\000", L3_3, true) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,28 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1db3fb025421_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4 = nil
-  end
-  -- DECOMPILER ERROR at PC12: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC24: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC32: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC40: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 and ((string.sub)(l_0_0, 0, 5) == "/bin/" or (string.sub)(l_0_0, 0, 6) == "/sbin/" or (string.sub)(l_0_0, 0, 9) == "/usr/bin/" or (string.sub)(l_0_0, 0, 10) == "/usr/sbin/") then
-    return mp.CLEAN
-  end
-  TrackPidAndTechniqueBM("BM", "T1003.008", "CredentialAccess")
-  return mp.INFECTED
+local L0_0
+if this_sigattrlog[1].matched then
+  L0_0 = string.lower(this_sigattrlog[1].utf8p1)
 end
-
+if L0_0 and (string.sub(L0_0, 0, 5) == "/bin/" or string.sub(L0_0, 0, 6) == "/sbin/" or string.sub(L0_0, 0, 9) == "/usr/bin/" or string.sub(L0_0, 0, 10) == "/usr/sbin/") then
+  return mp.CLEAN
+end
+TrackPidAndTechniqueBM("BM", "T1003.008", "CredentialAccess")
+return mp.INFECTED

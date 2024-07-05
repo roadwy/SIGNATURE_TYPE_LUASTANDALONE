@@ -1,26 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#RtfMso_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 4096 or l_0_0 > 1048576 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 4096 or L0_0 > 1048576 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_2 = 1
-for l_0_6 in (string.gmatch)(l_0_1, "base64.+Content%-Type:.+application/x%-mso([%s%w+/]+=?=?)") do
-  if l_0_2 > 10 then
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = true
+L2_2(L3_3)
+L2_2 = "base64.+Content%-Type:.+application/x%-mso([%s%w+/]+=?=?)"
+L3_3 = 0
+L4_4 = 1
+while L3_3 <= 10 do
+  L5_5 = string
+  L5_5 = L5_5.find
+  L6_6 = L1_1
+  L7_7 = L2_2
+  L7_7 = L5_5(L6_6, L7_7, L4_4)
+  if not L5_5 then
     break
   end
-  if #l_0_6 > 100 then
-    (mp.vfo_add_buffer)((MpCommon.Base64Decode)(l_0_6), "[RtfMso]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+  if #L7_7 > 100 then
+    L3_3 = L3_3 + 1
+    mp.vfo_add_buffer(MpCommon.Base64Decode(L7_7), "[RtfMso]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
   end
-  l_0_2 = l_0_2 + 1
+  L4_4 = L6_6 + 1
 end
-do
-  return mp.CLEAN
-end
-
+L5_5 = mp
+L5_5 = L5_5.CLEAN
+return L5_5

@@ -1,17 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/176b3f1aed950 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.lower)(l_0_0.image_path)
-    if l_0_1:match("([^\\]+)$") == "msdt.exe" or l_0_1:match("([^\\]+)$") == "sihost.exe" or l_0_1:match("([^\\]+)$") == "explorer.exe" or l_0_1:match("([^\\]+)$") == "systemsettings.exe" or l_0_1:match("([^\\]+)$") == "runtimebroker.exe" or l_0_1:match("([^\\]+)$") == "svchost.exe" or l_0_1:match("([^\\]+)$") == "pcwrun.exe" or l_0_1:match("([^\\]+)$") == "interop.exe" then
-      return mp.CLEAN
-    end
-    return mp.INFECTED
+if mp.GetParentProcInfo() ~= nil then
+  if string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "msdt.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "sihost.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "explorer.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "systemsettings.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "runtimebroker.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "svchost.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "pcwrun.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "interop.exe" then
+    return mp.CLEAN
   end
-  return mp.CLEAN
+  return mp.INFECTED
 end
-
+return mp.CLEAN

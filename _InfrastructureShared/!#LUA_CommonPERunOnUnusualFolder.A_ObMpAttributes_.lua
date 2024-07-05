@@ -1,61 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_CommonPERunOnUnusualFolder.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  if #l_0_1 < 8 or #l_0_1 > 22 then
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and mp.get_contextdata(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
+  if #mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)) < 8 or #mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)) > 22 then
     return mp.CLEAN
   end
-  if l_0_0:find("winsxs", 1, true) or l_0_0:find("\\os\\", 1, true) or l_0_0:find("\\device\\", 1, true) or l_0_0:find("\\src\\", 1, true) or l_0_0:find("amd64", 1, true) or l_0_0:find("x86fre", 1, true) or l_0_0:find("ia64fre", 1, true) or l_0_0:find("\\extractedfiles\\", 1, true) or l_0_0:find("\\windowsapps\\", 1, true) or l_0_0:find("\\x86", 1, true) or l_0_0:find("\\program files\\", 1, true) or l_0_0:find("\\debug\\", 1, true) or l_0_0:find("\\release\\", 1, true) or l_0_0:find("\\obj\\", 1, true) or l_0_0:find("\\bin\\", 1, true) or l_0_0:find("\\stubexe\\", 1, true) or l_0_0:find("backup", 1, true) or l_0_0:find("atosc2", 1, true) or l_0_0:find("system32", 1, true) or l_0_0:find("syswow64", 1, true) or l_0_0:find("nservices", 1, true) then
+  if mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("winsxs", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\os\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\device\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\src\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("amd64", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("x86fre", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("ia64fre", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\extractedfiles\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\windowsapps\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\x86", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\program files\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\debug\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\release\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\obj\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\bin\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("\\stubexe\\", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("backup", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("atosc2", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("system32", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("syswow64", 1, true) or mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE)):find("nservices", 1, true) then
     return mp.CLEAN
   end
-  local l_0_2 = {}
-  l_0_2["wininit.exe"] = true
-  l_0_2["smss.exe"] = true
-  l_0_2["explorer.exe"] = true
-  l_0_2["lsass.exe"] = true
-  l_0_2["svchost.exe"] = true
-  l_0_2["conhost.exe"] = true
-  l_0_2["consent.exe"] = true
-  l_0_2["csrss.exe"] = true
-  l_0_2["dllhost.exe"] = true
-  l_0_2["fontdrvhost.exe"] = true
-  l_0_2["ie4uinit.exe"] = true
-  l_0_2["lsaiso.exe"] = true
-  l_0_2["msdtc.exe"] = true
-  l_0_2["mshta.exe"] = true
-  l_0_2["ntoskrnl.exe"] = true
-  l_0_2["runonce.exe"] = true
-  l_0_2["runtimebroker.exe"] = true
-  l_0_2["sdiagnhost.exe"] = true
-  l_0_2["searchfilterhost.exe"] = true
-  l_0_2["searchindexer.exe"] = true
-  l_0_2["searchprotocolhost.exe"] = true
-  l_0_2["services.exe"] = true
-  l_0_2["spoolsv.exe"] = true
-  l_0_2["synchost.exe"] = true
-  l_0_2["taskmgr.exe"] = true
-  l_0_2["werfault.exe"] = true
-  l_0_2["werfaultsecure.exe"] = true
-  l_0_2["winlogon.exe"] = true
-  l_0_2["audiodg.exe"] = true
-  l_0_2["taskhostw.exe"] = true
-  l_0_2["appvclient.exe"] = true
-  l_0_2["splwow64.exe"] = true
-  l_0_2["wmiprvse.exe"] = true
-  l_0_2["wuauclt.exe"] = true
-  l_0_2["vssvc.exe"] = true
-  l_0_2["wsmprovhost.exe"] = true
-  l_0_2["wmiapsrv.exe"] = true
-  l_0_2["sppsvc.exe"] = true
-  l_0_2["fxssvc.exe"] = true
-  if l_0_2[l_0_1] then
+  if ({
+    ["wininit.exe"] = true,
+    ["smss.exe"] = true,
+    ["explorer.exe"] = true,
+    ["lsass.exe"] = true,
+    ["svchost.exe"] = true,
+    ["conhost.exe"] = true,
+    ["consent.exe"] = true,
+    ["csrss.exe"] = true,
+    ["dllhost.exe"] = true,
+    ["fontdrvhost.exe"] = true,
+    ["ie4uinit.exe"] = true,
+    ["lsaiso.exe"] = true,
+    ["msdtc.exe"] = true,
+    ["mshta.exe"] = true,
+    ["ntoskrnl.exe"] = true,
+    ["runonce.exe"] = true,
+    ["runtimebroker.exe"] = true,
+    ["sdiagnhost.exe"] = true,
+    ["searchfilterhost.exe"] = true,
+    ["searchindexer.exe"] = true,
+    ["searchprotocolhost.exe"] = true,
+    ["services.exe"] = true,
+    ["spoolsv.exe"] = true,
+    ["synchost.exe"] = true,
+    ["taskmgr.exe"] = true,
+    ["werfault.exe"] = true,
+    ["werfaultsecure.exe"] = true,
+    ["winlogon.exe"] = true,
+    ["audiodg.exe"] = true,
+    ["taskhostw.exe"] = true,
+    ["appvclient.exe"] = true,
+    ["splwow64.exe"] = true,
+    ["wmiprvse.exe"] = true,
+    ["wuauclt.exe"] = true,
+    ["vssvc.exe"] = true,
+    ["wsmprovhost.exe"] = true,
+    ["wmiapsrv.exe"] = true,
+    ["sppsvc.exe"] = true,
+    ["fxssvc.exe"] = true
+  })[mp.getfilename(mp.bitor(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))] then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

@@ -1,23 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7db300fd0ff9 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-local l_0_1 = l_0_0:match("(%w+%.exe)$")
-if l_0_0 == nil or l_0_1 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L2_2 = L2_2()
+L2_2 = L1_1(L2_2, L2_2())
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2, L2_2()))
+L2_2 = L0_0
+L1_1 = L0_0.match
+L1_1 = L1_1(L2_2, "(%w+%.exe)$")
+if L0_0 == nil or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\SYSTEM32"))
-local l_0_3 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\SYSWOW64"))
-if ((l_0_2 and l_0_0:find(l_0_2, 1, true)) or not l_0_3 or l_0_0:find(l_0_3, 1, true)) and l_0_1 == "rundll32.exe" then
-  if (this_sigattrlog[4]).matched then
-    (mp.ReportLowfi)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p1), 2471941984)
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(MpCommon.ExpandEnvironmentVariables("%WINDIR%"))
+if (L0_0:find(L2_2 .. "\\system32", 1, true) or L0_0:find(L2_2 .. "\\syswow64", 1, true)) and L1_1 == "rundll32.exe" then
+  if this_sigattrlog[4].matched then
+    mp.ReportLowfi(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[2].utf8p1), 2471941984)
   else
-    ;
-    (mp.ReportLowfi)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p1), 1925377452)
+    mp.ReportLowfi(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[2].utf8p1), 1925377452)
   end
   return mp.INFECTED
 end
 return mp.CLEAN
-

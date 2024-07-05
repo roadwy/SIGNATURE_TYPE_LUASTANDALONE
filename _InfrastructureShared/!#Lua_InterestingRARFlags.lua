@@ -1,81 +1,221 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_InterestingRARFlags 
-
--- params : ...
--- function num : 0
-local l_0_0 = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = headerpage[l_1_0 + 2]
-  -- DECOMPILER ERROR at PC30: Unhandled construct in 'MakeBoolean' P1
-
-  if l_1_1 == 122 and l_1_0 + 48 < mp.HEADERPAGE_SZ and headerpage[l_1_0 + 26] == 3 and (mp.readu_u16)(headerpage, l_1_0 + 32) == 19779 and headerpage[l_1_0 + 34] == 84 then
-    (mp.set_mpattribute)("Lua:RarHasCommentBlock")
-  end
-  if l_1_1 == 116 and l_1_0 + 128 < mp.HEADERPAGE_SZ then
-    if headerpage[l_1_0 + 25] == 48 then
-      (mp.set_mpattribute)("Lua:RarHasStoredFile")
-    end
-    local l_1_2 = (mp.readu_u16)(headerpage, l_1_0 + 3)
-    if (mp.bitand)(l_1_2, 4) == 4 then
-      (mp.set_mpattribute)("Lua:RarHasEncryptedFile")
-    end
-    local l_1_3 = (mp.readu_u16)(headerpage, l_1_0 + 26)
-    if l_1_3 > 4 and l_1_3 < 96 then
-      do
-        if (mp.bitand)(l_1_2, 256) == 256 then
-          local l_1_4, l_1_9, l_1_10 = 32 + 8
+local L0_0, L1_1
+function L0_0(A0_2)
+  local L1_3, L2_4, L3_5, L4_6, L5_7, L6_8, L7_9, L8_10, L9_11
+  L1_3 = headerpage
+  L2_4 = A0_2 + 2
+  L1_3 = L1_3[L2_4]
+  if L1_3 == 122 then
+    L2_4 = A0_2 + 48
+    L3_5 = mp
+    L3_5 = L3_5.HEADERPAGE_SZ
+    if L2_4 < L3_5 then
+      L2_4 = headerpage
+      L3_5 = A0_2 + 26
+      L2_4 = L2_4[L3_5]
+      if L2_4 == 3 then
+        L2_4 = mp
+        L2_4 = L2_4.readu_u16
+        L3_5 = headerpage
+        L4_6 = A0_2 + 32
+        L2_4 = L2_4(L3_5, L4_6)
+        if L2_4 == 19779 then
+          L2_4 = headerpage
+          L3_5 = A0_2 + 34
+          L2_4 = L2_4[L3_5]
+          if L2_4 == 84 then
+            L2_4 = mp
+            L2_4 = L2_4.set_mpattribute
+            L3_5 = "Lua:RarHasCommentBlock"
+            L2_4(L3_5)
+          end
         end
-        for l_1_8 = 0, l_1_3 do
-          local l_1_5 = nil
-          -- DECOMPILER ERROR at PC92: Confused about usage of register: R8 in 'UnsetPending'
-
-          if (mp.bitor)((mp.readu_u32)(headerpage, l_1_0 + l_1_5 + R8_PC92), 538976288) == 1936941424 and (mp.bitor)((mp.readu_u32)(headerpage, l_1_0 + l_1_5 + R8_PC92 + 4), 538976288) == 1685221239 then
-            (mp.set_mpattribute)("Lua:RarHasFileNameWithPassword")
+      end
+    end
+  elseif L1_3 == 116 then
+    L2_4 = A0_2 + 128
+    L3_5 = mp
+    L3_5 = L3_5.HEADERPAGE_SZ
+    if L2_4 < L3_5 then
+      L2_4 = headerpage
+      L3_5 = A0_2 + 25
+      L2_4 = L2_4[L3_5]
+      if L2_4 == 48 then
+        L2_4 = mp
+        L2_4 = L2_4.set_mpattribute
+        L3_5 = "Lua:RarHasStoredFile"
+        L2_4(L3_5)
+      end
+      L2_4 = mp
+      L2_4 = L2_4.readu_u16
+      L3_5 = headerpage
+      L4_6 = A0_2 + 3
+      L2_4 = L2_4(L3_5, L4_6)
+      L3_5 = mp
+      L3_5 = L3_5.bitand
+      L4_6 = L2_4
+      L5_7 = 4
+      L3_5 = L3_5(L4_6, L5_7)
+      if L3_5 == 4 then
+        L3_5 = mp
+        L3_5 = L3_5.set_mpattribute
+        L4_6 = "Lua:RarHasEncryptedFile"
+        L3_5(L4_6)
+      end
+      L3_5 = mp
+      L3_5 = L3_5.readu_u32
+      L4_6 = headerpage
+      L5_7 = A0_2 + 7
+      L3_5 = L3_5(L4_6, L5_7)
+      L4_6 = mp
+      L4_6 = L4_6.readu_u32
+      L5_7 = headerpage
+      L6_8 = A0_2 + 11
+      L4_6 = L4_6(L5_7, L6_8)
+      L5_7 = 80
+      if L3_5 ~= 0 and L4_6 > 104857600 then
+        L6_8 = L4_6 / L3_5
+        if L5_7 < L6_8 then
+          L6_8 = mp
+          L6_8 = L6_8.set_mpattribute
+          L7_9 = "Lua:RarHasHighlyCompressedFile"
+          L6_8(L7_9)
+          L6_8 = L4_6 / L3_5
+          if L6_8 >= 100 then
+            L7_9 = mp
+            L7_9 = L7_9.set_mpattribute
+            L7_9(L8_10)
+          end
+          if L6_8 >= 250 then
+            L7_9 = mp
+            L7_9 = L7_9.set_mpattribute
+            L7_9(L8_10)
+          end
+          if L6_8 >= 500 then
+            L7_9 = mp
+            L7_9 = L7_9.set_mpattribute
+            L7_9(L8_10)
+          end
+          if L6_8 >= 1000 then
+            L7_9 = mp
+            L7_9 = L7_9.set_mpattribute
+            L7_9(L8_10)
+          end
+        end
+      end
+      L6_8 = mp
+      L6_8 = L6_8.readu_u16
+      L7_9 = headerpage
+      L6_8 = L6_8(L7_9, L8_10)
+      if L6_8 > 4 and L6_8 < 96 then
+        L7_9 = 32
+        if L8_10 == 256 then
+          L7_9 = L7_9 + 8
+        end
+        for _FORV_11_ = 0, L6_8 do
+          if mp.bitor(mp.readu_u32(headerpage, A0_2 + L7_9 + _FORV_11_), 538976288) == 1936941424 and mp.bitor(mp.readu_u32(headerpage, A0_2 + L7_9 + _FORV_11_ + 4), 538976288) == 1685221239 then
+            mp.set_mpattribute("Lua:RarHasFileNameWithPassword")
             break
           end
         end
-        do
-          local l_1_11 = nil
-          local l_1_12 = {[1952539182] = "", [1684890414] = "", [1836016430] = "", [1819304750] = "", [1702389038] = "", [1718186030] = "", [1919120174] = "", [1935832622] = "", [1802398766] = "", [1718843182] = "", [1700951598] = "", [1702062638] = "", [1635018798] = "", [1936338432] = "", [1819042862] = "", [2019782446] = "", [829648942] = "", [1918986798] = "", [1668511534] = "", [1752397614] = ""}
-          do
-            local l_1_13 = nil
-            if l_1_12[l_1_13] or l_1_12[(mp.bitand)((mp.bitor)((mp.readu_u32)(headerpage, l_1_0 + l_1_11 + l_1_3 - 4), 538976288), 4294967040)] then
-              (mp.set_mpattribute)("Lua:RarHasFileWithExeExtension")
-              if (mp.bitand)(l_1_2, 4) == 4 then
-                (mp.set_mpattribute)("Lua:RarHasEncryptedFileWithExeExtension")
-              end
-              if headerpage[l_1_0 + 25] == 48 then
-                (mp.set_mpattribute)("Lua:RarHasStoredFileWithExeExtension")
-              end
-            end
-            return l_1_0 + (mp.readu_u16)(headerpage, l_1_0 + 5) + (mp.readu_u32)(headerpage, l_1_0 + 7)
+        L8_10[1952539182] = ""
+        L8_10[1684890414] = ""
+        L8_10[1836016430] = ""
+        L8_10[1819304750] = ""
+        L8_10[1702389038] = ""
+        L8_10[1718186030] = ""
+        L8_10[1919120174] = ""
+        L8_10[1935832622] = ""
+        L8_10[1802398766] = ""
+        L8_10[1718843182] = ""
+        L8_10[1700951598] = ""
+        L8_10[1702062638] = ""
+        L8_10[1635018798] = ""
+        L8_10[1936338432] = ""
+        L8_10[1819042862] = ""
+        L8_10[2019782446] = ""
+        L8_10[829648942] = ""
+        L8_10[1918986798] = ""
+        L8_10[1668511534] = ""
+        L8_10[1752397614] = ""
+        if L8_10[L9_11] or L8_10[mp.bitand(L9_11, 4294967040)] then
+          mp.set_mpattribute("Lua:RarHasFileWithExeExtension")
+          if mp.bitand(L2_4, 4) == 4 then
+            mp.set_mpattribute("Lua:RarHasEncryptedFileWithExeExtension")
+          end
+          if headerpage[A0_2 + 25] == 48 then
+            mp.set_mpattribute("Lua:RarHasStoredFileWithExeExtension")
           end
         end
       end
     end
   end
+  L2_4 = mp
+  L2_4 = L2_4.readu_u16
+  L3_5 = headerpage
+  L4_6 = A0_2 + 5
+  L2_4 = L2_4(L3_5, L4_6)
+  L2_4 = A0_2 + L2_4
+  L3_5 = mp
+  L3_5 = L3_5.readu_u32
+  L4_6 = headerpage
+  L5_7 = A0_2 + 7
+  L3_5 = L3_5(L4_6, L5_7)
+  L2_4 = L2_4 + L3_5
+  return L2_4
 end
-
-if mp.HEADERPAGE_SZ < 1024 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.HEADERPAGE_SZ
+if L1_1 < 1024 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 1) ~= 561144146 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L1_1 = L1_1(headerpage, 1)
+if L1_1 ~= 561144146 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u16)(headerpage, 5) ~= 1818 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u16
+L1_1 = L1_1(headerpage, 5)
+if L1_1 ~= 1818 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if headerpage[14] == 4 then
-  (mp.set_mpattribute)("Lua:RarHasEncryptionHeader")
-end
-do
-  local l_0_1 = 21
-  while 0 < 3 and l_0_1 + 4 < mp.HEADERPAGE_SZ do
-    l_0_1 = l_0_0(l_0_1)
-    -- DECOMPILER ERROR at PC49: Confused about usage of register: R2 in 'UnsetPending'
-
+L1_1 = headerpage
+L1_1 = L1_1[7]
+if L1_1 == 1 then
+  L1_1 = mp
+  L1_1 = L1_1.set_mpattribute
+  L1_1("Lua:Rar50")
+  L1_1 = headerpage
+  L1_1 = L1_1[14]
+  if L1_1 == 4 then
+    L1_1 = mp
+    L1_1 = L1_1.set_mpattribute
+    L1_1("Lua:RarHasEncryptionHeader")
   end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
+else
+  L1_1 = headerpage
+  L1_1 = L1_1[7]
+  if L1_1 == 0 then
+    L1_1 = mp
+    L1_1 = L1_1.set_mpattribute
+    L1_1("Lua:Rar4x")
+    L1_1 = mp
+    L1_1 = L1_1.readu_u16
+    L1_1 = L1_1(headerpage, 11)
+    if mp.bitand(L1_1, 128) == 128 then
+      mp.set_mpattribute("Lua:RarHasEncryptionHeader")
+    end
+  end
 end
-
+L1_1 = 21
+while 0 < 3 and L1_1 + 4 < mp.HEADERPAGE_SZ do
+  L1_1 = L0_0(L1_1)
+end
+return mp.CLEAN

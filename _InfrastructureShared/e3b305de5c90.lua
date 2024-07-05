@@ -1,20 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e3b305de5c90 
-
--- params : ...
--- function num : 0
-local l_0_0 = (MpCommon.GetPersistContextNoPath)("ServiceCreationScript")
-if l_0_0 ~= nil then
-  for l_0_4,l_0_5 in ipairs(l_0_0) do
-    if (sysio.IsFileExists)(l_0_5) then
-      (mp.ReportLowfi)(l_0_5, 1919899276)
-      ;
-      (bm.add_related_file)(l_0_5)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = MpCommon
+L0_0 = L0_0.GetPersistContextNoPath
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  for L4_4, L5_5 in L1_1(L2_2) do
+    if sysio.IsFileExists(L5_5) then
+      mp.ReportLowfi(L5_5, 1919899276)
+      bm.add_related_file(L5_5)
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return L1_1

@@ -1,44 +1,54 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_PossibleDllPreloading.B!persistcontext_Includes_Path_ObMpAttr 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) then
-  local l_0_0 = {}
-  l_0_0.BM_FaceFodUninstaller_EXE = "facefoduninstaller.exe"
-  l_0_0.BM_POWERSHELL_EXE = "powershell.exe"
-  l_0_0.BM_RUNDLL32_EXE = "rundll32.exe"
-  l_0_0.BM_OSK_EXE = "osk.exe"
-  local l_0_1, l_0_2 = nil, nil
-  for l_0_6,l_0_7 in pairs(l_0_0) do
-    if (mp.get_mpattribute)(l_0_6) then
-      l_0_1 = l_0_6
-      l_0_2 = l_0_7
-      break
-    end
-  end
-  do
-    if l_0_1 == nil or l_0_2 == nil then
-      return mp.CLEAN
-    end
-    local l_0_8 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-    if l_0_8 == nil then
-      return mp.CLEAN
-    end
-    if #l_0_2 > 0 and (string.lower)(l_0_2) == l_0_8 then
-      return mp.CLEAN
-    end
-    local l_0_9 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-    l_0_9 = normalize_path(l_0_9)
-    local l_0_10 = l_0_9 .. "\\" .. l_0_8
-    do
-      local l_0_11 = (MpCommon.QueryPersistContext)(l_0_10, l_0_1)
-      if not l_0_11 then
-        (MpCommon.AppendPersistContext)(l_0_10, l_0_1, 100)
-        return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L0_0 = {}
+    L0_0.BM_FaceFodUninstaller_EXE = "facefoduninstaller.exe"
+    L0_0.BM_POWERSHELL_EXE = "powershell.exe"
+    L0_0.BM_RUNDLL32_EXE = "rundll32.exe"
+    L0_0.BM_OSK_EXE = "osk.exe"
+    L1_1, L2_2 = nil, nil
+    for L6_6, _FORV_7_ in L3_3(L4_4) do
+      if mp.get_mpattribute(L6_6) then
+        L1_1 = L6_6
+        L2_2 = _FORV_7_
+        break
       end
-      return mp.CLEAN
+    end
+    if L1_1 == nil or L2_2 == nil then
+      return L3_3
+    end
+    L6_6 = L4_4(L5_5)
+    if L3_3 == nil then
+      return L4_4
+    end
+    if L4_4 > 0 then
+      if L4_4 == L3_3 then
+        return L4_4
+      end
+    end
+    L6_6 = L4_4
+    L6_6 = "\\"
+    L6_6 = MpCommon
+    L6_6 = L6_6.QueryPersistContext
+    L6_6 = L6_6(L5_5, L1_1)
+    if not L6_6 then
+      MpCommon.AppendPersistContext(L5_5, L1_1, 100)
+      return mp.INFECTED
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

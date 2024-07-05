@@ -1,41 +1,54 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d4b359e24510_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC23: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[2]).matched or (this_sigattrlog[3]).matched then
-      local l_0_1 = (this_sigattrlog[2]).utf8p2
-    end
-    -- DECOMPILER ERROR at PC39: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if not (this_sigattrlog[4]).matched or (this_sigattrlog[5]).matched then
-        local l_0_2, l_0_3, l_0_4 = (this_sigattrlog[4]).utf8p2
-      end
-      -- DECOMPILER ERROR at PC40: Confused about usage of register: R0 in 'UnsetPending'
-
-      if not l_0_2 then
-        return mp.CLEAN
-      end
-      -- DECOMPILER ERROR at PC47: Confused about usage of register: R0 in 'UnsetPending'
-
-      local l_0_5 = nil
-      if (sysio.CommandLineScan)(l_0_2, 0) then
-        (bm.add_related_string)("ScrpService_cmdline", l_0_5, bm.RelatedStringBMReport)
-        ;
-        (bm.add_related_string)("ScrpService", tostring((sysio.CommandLineScan)(l_0_2, 0)), bm.RelatedStringBMReport)
-      end
-      return mp.INFECTED
-    end
-  end
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
 end
-
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[5]
+  L0_0 = L1_1.utf8p2
+end
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = sysio
+L1_1 = L1_1.CommandLineScan
+L1_1 = L1_1(L0_0, 0)
+if L1_1 then
+  bm.add_related_string("ScrpService_cmdline", L0_0, bm.RelatedStringBMReport)
+  bm.add_related_string("ScrpService", tostring(L1_1), bm.RelatedStringBMReport)
+end
+return mp.INFECTED

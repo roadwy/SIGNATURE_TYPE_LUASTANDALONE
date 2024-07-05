@@ -1,26 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALFPER_VirTool_Win32_ShadowRaptor.AG!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 ~= nil and l_0_0:len() > 34 and (l_0_0:find("ole db", 1, true) ~= nil or l_0_0:find("migwiz", 1, true) ~= nil or l_0_0:find("aspdotnet", 1, true) ~= nil) then
-  local l_0_1 = "\\common files\\system\\ole db\\oledbjbn.inc"
-  local l_0_2 = "\\common files\\system\\ole db\\oledbjml.inc"
-  local l_0_3 = "\\windows\\system32\\migwiz\\sfcbn.dat"
-  local l_0_4 = "\\windows\\system32\\migwiz\\sfcml.dat"
-  local l_0_5 = "\\windows\\microsoft.net\\framework\\v2.0.50727\\asp.netwebadminfiles\\images\\aspdotnet_logo.gif"
-  local l_0_6 = "\\windows\\microsoft.net\\framework\\v2.0.50727\\asp.netwebadminfiles\\images\\aspdotnet_logo_small.gif"
-  if l_0_0:sub(-(string.len)(l_0_1)) == l_0_1 or l_0_0:sub(-(string.len)(l_0_2)) == l_0_2 or l_0_0:sub(-(string.len)(l_0_3)) == l_0_3 or l_0_0:sub(-(string.len)(l_0_4)) == l_0_4 or l_0_0:sub(-(string.len)(l_0_5)) == l_0_5 or l_0_0:sub(-(string.len)(l_0_6)) == l_0_6 then
-    (mp.set_mpattribute)("MpNonPIIFileType")
-    return mp.INFECTED
-  else
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FULL
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L6_6 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L1_1(L2_2, L3_3))
+if L0_0 ~= nil then
+  L2_2 = L0_0
+  L1_1 = L0_0.len
+  L1_1 = L1_1(L2_2)
+  if L1_1 > 34 then
+    L2_2 = L0_0
+    L1_1 = L0_0.find
+    L3_3 = "ole db"
+    L4_4 = 1
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if L1_1 == nil then
+      L2_2 = L0_0
+      L1_1 = L0_0.find
+      L3_3 = "migwiz"
+      L4_4 = 1
+      L5_5 = true
+      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      if L1_1 == nil then
+        L2_2 = L0_0
+        L1_1 = L0_0.find
+        L3_3 = "aspdotnet"
+        L4_4 = 1
+        L5_5 = true
+        L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      end
+    elseif L1_1 ~= nil then
+      L1_1 = "\\common files\\system\\ole db\\oledbjbn.inc"
+      L2_2 = "\\common files\\system\\ole db\\oledbjml.inc"
+      L3_3 = "\\windows\\system32\\migwiz\\sfcbn.dat"
+      L4_4 = "\\windows\\system32\\migwiz\\sfcml.dat"
+      L5_5 = "\\windows\\microsoft.net\\framework\\v2.0.50727\\asp.netwebadminfiles\\images\\aspdotnet_logo.gif"
+      L6_6 = "\\windows\\microsoft.net\\framework\\v2.0.50727\\asp.netwebadminfiles\\images\\aspdotnet_logo_small.gif"
+      if L0_0:sub(-string.len(L1_1)) == L1_1 or L0_0:sub(-string.len(L2_2)) == L2_2 or L0_0:sub(-string.len(L3_3)) == L3_3 or L0_0:sub(-string.len(L4_4)) == L4_4 or L0_0:sub(-string.len(L5_5)) == L5_5 or L0_0:sub(-string.len(L6_6)) == L6_6 then
+        mp.set_mpattribute("MpNonPIIFileType")
+        return mp.INFECTED
+      else
+        return mp.CLEAN
+      end
+    end
   end
 else
-  do
-    do return mp.CLEAN end
-    return mp.CLEAN
-  end
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

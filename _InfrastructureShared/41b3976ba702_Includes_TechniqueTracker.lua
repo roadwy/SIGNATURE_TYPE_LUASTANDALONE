@@ -1,60 +1,280 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3976ba702_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if (string.find)(l_0_0, "\\windows\\explorer.exe", 1, true) or (string.find)(l_0_0, "\\system32\\svchost.exe", 1, true) or (string.find)(l_0_0, "\\syswow64\\svchost.exe", 1, true) or (string.find)(l_0_0, "\\microsoft visual studio\\", 1, true) or (string.find)(l_0_0, "\\program files", 1, true) or (string.find)(l_0_0, "\\adobe\\acrobat", 1, true) or (string.find)(l_0_0, "chrome.exe", 1, true) or (string.find)(l_0_0, "teams.exe", 1, true) or (string.find)(l_0_0, "msedge.exe", 1, true) or (string.find)(l_0_0, "iexplore.exe", 1, true) or (string.find)(l_0_0, "openwith.exe", 1, true) or (string.find)(l_0_0, "\\modernwarfare.exe", 1, true) or (string.find)(l_0_0, "\\league of legends.exe", 1, true) or (string.find)(l_0_0, "\\wowclassic.exe", 1, true) or (string.find)(l_0_0, "\\battle.net\\battle.net.exe", 1, true) or (string.find)(l_0_0, "\\grand theft auto v\\gta5.exe", 1, true) or (string.find)(l_0_0, "\\acrord32.exe", 1, true) or (string.find)(l_0_0, "\\firefox.exe", 1, true) or (string.find)(l_0_0, "git.exe", 1, true) then
-  return mp.CLEAN
-end
-local l_0_1 = false
-local l_0_2, l_0_3, l_0_4, l_0_5 = nil, nil, nil, nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-  l_0_5 = (string.lower)((this_sigattrlog[1]).utf8p1)
-  _ = (string.match)(l_0_5, "(.-)([^\\]-)$")
-end
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-    local l_0_6 = (string.lower)((this_sigattrlog[2]).utf8p1)
-    _ = (string.match)(l_0_6, "(.-)([^\\]-)$")
-  end
-  if l_0_2 ~= nil and l_0_3 ~= nil and l_0_2 == l_0_3 then
-    l_0_1 = true
-  end
-  do
-    if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p1 ~= nil then
-      local l_0_7 = (string.lower)((this_sigattrlog[3]).utf8p1)
-      _ = (string.match)(l_0_7, "(.-)([^\\]-)$")
-    end
-    if l_0_2 ~= nil and l_0_4 ~= nil and l_0_2 == l_0_4 then
-      l_0_1 = true
-    end
-    do
-      if l_0_1 == true then
-        local l_0_8, l_0_9 = (bm.get_process_relationships)()
-        for l_0_13,l_0_14 in ipairs(l_0_9) do
-          local l_0_15 = (mp.bitand)(l_0_14.reason_ex, bm.RELATIONSHIP_CREATED)
-          if l_0_15 == bm.RELATIONSHIP_CREATED and l_0_5 == (string.lower)((MpCommon.PathToWin32Path)(l_0_14.image_path)) then
-            TrackPidAndTechniqueBM(l_0_14.ppid, "T1055.002", "processinjection_target_s")
-            ;
-            (bm.request_SMS)(l_0_14.ppid, "M")
-            ;
-            (bm.add_action)("SmsAsyncScanEvent", 1000)
-          end
-          l_0_15 = (mp.bitand)(l_0_14.reason_ex, bm.RELATIONSHIP_INJECTION)
-          if l_0_15 == bm.RELATIONSHIP_INJECTION then
-            TrackPidAndTechniqueBM(l_0_14.ppid, "T1055.002", "processinjection_target_s")
-            ;
-            (bm.request_SMS)(l_0_14.ppid, "M")
-            ;
-            (bm.add_action)("SmsAsyncScanEvent", 1000)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L13_13 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L1_1())
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "\\windows\\explorer.exe"
+L4_4 = 1
+L5_5 = true
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+if not L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L3_3 = "\\system32\\svchost.exe"
+  L4_4 = 1
+  L5_5 = true
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L3_3 = "\\syswow64\\svchost.exe"
+    L4_4 = 1
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L2_2 = L0_0
+      L3_3 = "\\microsoft visual studio\\"
+      L4_4 = 1
+      L5_5 = true
+      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L2_2 = L0_0
+        L3_3 = "\\program files"
+        L4_4 = 1
+        L5_5 = true
+        L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+        if not L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L2_2 = L0_0
+          L3_3 = "\\adobe\\acrobat"
+          L4_4 = 1
+          L5_5 = true
+          L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L2_2 = L0_0
+            L3_3 = "chrome.exe"
+            L4_4 = 1
+            L5_5 = true
+            L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+            if not L1_1 then
+              L1_1 = string
+              L1_1 = L1_1.find
+              L2_2 = L0_0
+              L3_3 = "teams.exe"
+              L4_4 = 1
+              L5_5 = true
+              L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+              if not L1_1 then
+                L1_1 = string
+                L1_1 = L1_1.find
+                L2_2 = L0_0
+                L3_3 = "msedge.exe"
+                L4_4 = 1
+                L5_5 = true
+                L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                if not L1_1 then
+                  L1_1 = string
+                  L1_1 = L1_1.find
+                  L2_2 = L0_0
+                  L3_3 = "iexplore.exe"
+                  L4_4 = 1
+                  L5_5 = true
+                  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                  if not L1_1 then
+                    L1_1 = string
+                    L1_1 = L1_1.find
+                    L2_2 = L0_0
+                    L3_3 = "openwith.exe"
+                    L4_4 = 1
+                    L5_5 = true
+                    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                    if not L1_1 then
+                      L1_1 = string
+                      L1_1 = L1_1.find
+                      L2_2 = L0_0
+                      L3_3 = "\\modernwarfare.exe"
+                      L4_4 = 1
+                      L5_5 = true
+                      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                      if not L1_1 then
+                        L1_1 = string
+                        L1_1 = L1_1.find
+                        L2_2 = L0_0
+                        L3_3 = "\\league of legends.exe"
+                        L4_4 = 1
+                        L5_5 = true
+                        L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                        if not L1_1 then
+                          L1_1 = string
+                          L1_1 = L1_1.find
+                          L2_2 = L0_0
+                          L3_3 = "\\wowclassic.exe"
+                          L4_4 = 1
+                          L5_5 = true
+                          L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                          if not L1_1 then
+                            L1_1 = string
+                            L1_1 = L1_1.find
+                            L2_2 = L0_0
+                            L3_3 = "\\battle.net\\battle.net.exe"
+                            L4_4 = 1
+                            L5_5 = true
+                            L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                            if not L1_1 then
+                              L1_1 = string
+                              L1_1 = L1_1.find
+                              L2_2 = L0_0
+                              L3_3 = "\\grand theft auto v\\gta5.exe"
+                              L4_4 = 1
+                              L5_5 = true
+                              L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                              if not L1_1 then
+                                L1_1 = string
+                                L1_1 = L1_1.find
+                                L2_2 = L0_0
+                                L3_3 = "\\acrord32.exe"
+                                L4_4 = 1
+                                L5_5 = true
+                                L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                                if not L1_1 then
+                                  L1_1 = string
+                                  L1_1 = L1_1.find
+                                  L2_2 = L0_0
+                                  L3_3 = "\\firefox.exe"
+                                  L4_4 = 1
+                                  L5_5 = true
+                                  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                                  if not L1_1 then
+                                    L1_1 = string
+                                    L1_1 = L1_1.find
+                                    L2_2 = L0_0
+                                    L3_3 = "git.exe"
+                                    L4_4 = 1
+                                    L5_5 = true
+                                    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
           end
         end
-        TrackPidAndTechniqueBM("BM", "T1055.002", "processinjection_source_s")
-        return mp.INFECTED
       end
-      return mp.CLEAN
     end
   end
+elseif L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-
+L1_1 = false
+L2_2, L3_3, L4_4, L5_5 = nil, nil, nil, nil
+L6_6 = this_sigattrlog
+L6_6 = L6_6[1]
+L6_6 = L6_6.matched
+if L6_6 then
+  L6_6 = this_sigattrlog
+  L6_6 = L6_6[1]
+  L6_6 = L6_6.utf8p1
+  if L6_6 ~= nil then
+    L6_6 = string
+    L6_6 = L6_6.lower
+    L7_7 = this_sigattrlog
+    L7_7 = L7_7[1]
+    L7_7 = L7_7.utf8p1
+    L6_6 = L6_6(L7_7)
+    L5_5 = L6_6
+    L6_6 = string
+    L6_6 = L6_6.match
+    L7_7 = L5_5
+    L7_7 = L6_6(L7_7, L8_8)
+    L2_2 = L7_7
+    _ = L6_6
+  end
+end
+L6_6 = this_sigattrlog
+L6_6 = L6_6[2]
+L6_6 = L6_6.matched
+if L6_6 then
+  L6_6 = this_sigattrlog
+  L6_6 = L6_6[2]
+  L6_6 = L6_6.utf8p1
+  if L6_6 ~= nil then
+    L6_6 = string
+    L6_6 = L6_6.lower
+    L7_7 = this_sigattrlog
+    L7_7 = L7_7[2]
+    L7_7 = L7_7.utf8p1
+    L6_6 = L6_6(L7_7)
+    L7_7 = string
+    L7_7 = L7_7.match
+    L7_7 = L7_7(L8_8, L9_9)
+    L3_3 = L8_8
+    _ = L7_7
+  end
+end
+if L2_2 ~= nil and L3_3 ~= nil and L2_2 == L3_3 then
+  L1_1 = true
+end
+L6_6 = this_sigattrlog
+L6_6 = L6_6[3]
+L6_6 = L6_6.matched
+if L6_6 then
+  L6_6 = this_sigattrlog
+  L6_6 = L6_6[3]
+  L6_6 = L6_6.utf8p1
+  if L6_6 ~= nil then
+    L6_6 = string
+    L6_6 = L6_6.lower
+    L7_7 = this_sigattrlog
+    L7_7 = L7_7[3]
+    L7_7 = L7_7.utf8p1
+    L6_6 = L6_6(L7_7)
+    L7_7 = string
+    L7_7 = L7_7.match
+    L7_7 = L7_7(L8_8, L9_9)
+    L4_4 = L8_8
+    _ = L7_7
+  end
+end
+if L2_2 ~= nil and L4_4 ~= nil and L2_2 == L4_4 then
+  L1_1 = true
+end
+if L1_1 == true then
+  L6_6 = bm
+  L6_6 = L6_6.get_process_relationships
+  L7_7 = L6_6()
+  for L11_11, L12_12 in L8_8(L9_9) do
+    L13_13 = mp
+    L13_13 = L13_13.bitand
+    L13_13 = L13_13(L12_12.reason_ex, bm.RELATIONSHIP_CREATED)
+    if L13_13 == bm.RELATIONSHIP_CREATED and L5_5 == string.lower(MpCommon.PathToWin32Path(L12_12.image_path)) then
+      TrackPidAndTechniqueBM(L12_12.ppid, "T1055.002", "processinjection_target_s")
+      bm.request_SMS(L12_12.ppid, "M")
+      bm.add_action("SmsAsyncScanEvent", 1000)
+    end
+    L13_13 = mp.bitand(L12_12.reason_ex, bm.RELATIONSHIP_INJECTION)
+    if L13_13 == bm.RELATIONSHIP_INJECTION then
+      TrackPidAndTechniqueBM(L12_12.ppid, "T1055.002", "processinjection_target_s")
+      bm.request_SMS(L12_12.ppid, "M")
+      bm.add_action("SmsAsyncScanEvent", 1000)
+    end
+  end
+  L11_11 = "processinjection_source_s"
+  L8_8(L9_9, L10_10, L11_11)
+  return L8_8
+end
+L6_6 = mp
+L6_6 = L6_6.CLEAN
+return L6_6

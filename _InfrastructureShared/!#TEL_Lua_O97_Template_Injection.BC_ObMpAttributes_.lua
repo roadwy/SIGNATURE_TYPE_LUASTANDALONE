@@ -1,21 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Lua_O97_Template_Injection.BC_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-if l_0_0:find("->word/_rels/", 1, true) or l_0_0:find("/drawings/_rels/", 1, true) or l_0_0:find("/worksheets/_rels/", 1, true) then
-  local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_FNAME)
-  local l_0_2 = (string.find)(l_0_1, "->")
-  local l_0_3 = (string.sub)(l_0_1, 0, l_0_2 - 1)
-  local l_0_4 = {}
-  ;
-  (table.insert)(l_0_4, l_0_3)
-  ;
-  (MpCommon.SetPersistContextNoPath)("TemplateInjc", l_0_4, 100)
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L4_4 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L1_1())
+L2_2 = L0_0
+L1_1 = L0_0.find
+L3_3 = "->word/_rels/"
+L4_4 = 1
+L1_1 = L1_1(L2_2, L3_3, L4_4, true)
+if not L1_1 then
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L3_3 = "/drawings/_rels/"
+  L4_4 = 1
+  L1_1 = L1_1(L2_2, L3_3, L4_4, true)
+  if not L1_1 then
+    L2_2 = L0_0
+    L1_1 = L0_0.find
+    L3_3 = "/worksheets/_rels/"
+    L4_4 = 1
+    L1_1 = L1_1(L2_2, L3_3, L4_4, true)
+  end
+elseif L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.getfilename
+  L2_2 = mp
+  L2_2 = L2_2.FILEPATH_QUERY_FNAME
+  L1_1 = L1_1(L2_2)
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L1_1
+  L4_4 = "->"
+  L2_2 = L2_2(L3_3, L4_4)
+  L3_3 = string
+  L3_3 = L3_3.sub
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4, 0, L2_2 - 1)
+  L4_4 = {}
+  table.insert(L4_4, L3_3)
+  MpCommon.SetPersistContextNoPath("TemplateInjc", L4_4, 100)
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

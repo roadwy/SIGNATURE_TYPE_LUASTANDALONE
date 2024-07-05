@@ -1,50 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3fc463927_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-local l_0_1 = {}
--- DECOMPILER ERROR at PC4: No list found for R1 , SetList fails
-
-local l_0_2 = {}
--- DECOMPILER ERROR at PC6: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC8: No list found for R2 , SetList fails
-
--- DECOMPILER ERROR at PC9: No list found for R0 , SetList fails
-
--- DECOMPILER ERROR at PC11: Overwrote pending register: R4 in 'AssignReg'
-
--- DECOMPILER ERROR at PC11: Overwrote pending register: R3 in 'AssignReg'
-
-local l_0_3, l_0_4 = "/var/lib/waagent", "/lib/systemd/systemd"
--- DECOMPILER ERROR at PC19: Overwrote pending register: R2 in 'AssignReg'
-
-if (this_sigattrlog[3]).matched then
-  l_0_3 = (this_sigattrlog[3]).image_path
-  l_0_4 = (this_sigattrlog[3]).utf8p2
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = {
+  L1_1,
+  L2_2,
+  L3_3
+}
+L1_1 = {L2_2, L3_3}
+L2_2 = "python"
+L3_3 = "/var/lib/waagent"
+L2_2 = {L3_3, L4_4}
+L3_3 = "/lib/systemd/systemd"
+L4_4 = "/lib/systemd/systemd"
+L3_3 = {L4_4, L5_5}
+L4_4 = "sapstartsrv"
+L5_5 = "/usr/sap/"
+L1_1 = "remote_file_created_taint"
+L2_2, L3_3, L4_4 = nil, nil, nil
+L5_5 = this_sigattrlog
+L5_5 = L5_5[3]
+L5_5 = L5_5.matched
+if L5_5 then
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[3]
+  L2_2 = L5_5.ppid
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[3]
+  L3_3 = L5_5.image_path
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[3]
+  L4_4 = L5_5.utf8p2
 end
-local l_0_5 = (mp.GetParentProcInfo)()
-if l_0_3 ~= nil and l_0_5 ~= nil and l_0_5.image_path ~= nil and not isTainted(l_0_5.image_path, l_0_1) and not isTainted(l_0_3, l_0_1) then
-  return mp.CLEAN
+L5_5 = mp
+L5_5 = L5_5.GetParentProcInfo
+L5_5 = L5_5()
+if L3_3 ~= nil and L5_5 ~= nil then
+  if L6_6 ~= nil then
+    if not L6_6 then
+      if not L6_6 then
+        return L6_6
+      end
+    end
+  end
 end
-if l_0_3 ~= nil and l_0_4 ~= nil then
-  for l_0_9,l_0_10 in ipairs(l_0_0) do
-    local l_0_11 = l_0_10[1]
-    local l_0_12 = l_0_10[2]
-    if (string.find)(l_0_3, l_0_11, 1, true) and (string.find)(l_0_4, l_0_12, 1, true) then
+if L3_3 ~= nil and L4_4 ~= nil then
+  for L9_9, L10_10 in L6_6(L7_7) do
+    L11_11 = L10_10[1]
+    L12_12 = L10_10[2]
+    if string.find(L3_3, L11_11, 1, true) and string.find(L4_4, L12_12, 1, true) then
       return mp.CLEAN
     end
   end
 end
-do
-  if l_0_2 ~= nil and not isParentPackageManager(l_0_2, true) and not checkParentCmdline(l_0_2, l_0_0, 2) and (versioning.GetCloudBlockLevel)() >= 4 then
-    TrackPidAndTechniqueBM(l_0_2, "T1543.002", "Persistence")
-    addRelatedProcess()
-    reportRelatedBmHits()
-    return mp.INFECTED
+if L2_2 ~= nil then
+  if not L6_6 then
+    L9_9 = 2
+    if not L6_6 then
+      if L6_6 >= 4 then
+        L9_9 = "Persistence"
+        L6_6(L7_7, L8_8, L9_9)
+        L6_6()
+        L6_6()
+        return L6_6
+      end
+    end
   end
-  return mp.CLEAN
 end
-
+return L6_6

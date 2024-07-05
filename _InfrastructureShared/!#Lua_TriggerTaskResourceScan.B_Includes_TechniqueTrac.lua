@@ -1,96 +1,141 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_TriggerTaskResourceScan.B_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilename)()
-if l_0_0 == nil or l_0_0:find("%-%>%(UTF%-16LE%)$") == nil then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L3_3 = "%-%>%(UTF%-16LE%)$"
+  L1_1 = L1_1(L2_2, L3_3)
+elseif L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-local l_0_2 = "|explorer.exe|"
-if l_0_2:find(l_0_1) then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_PROCESSNAME
+L14_14 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L2_2(L3_3))
+L2_2 = "|explorer.exe|"
+L4_4 = L2_2
+L3_3 = L2_2.find
+L5_5 = L1_1
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = tostring(headerpage)
-local l_0_4 = (string.match)(l_0_3, "<Exec>.*<Command>(.*)</Command>.*</Exec>")
-local l_0_5 = (string.match)(l_0_3, "<Exec>.*<Arguments>(.*)</Arguments>.*</Exec>")
-local l_0_6 = (string.match)(l_0_3, "<Exec>.*<WorkingDirectory>(.*)</WorkingDirectory>.*</Exec>")
-if l_0_4 == nil then
-  return mp.CLEAN
+L3_3 = tostring
+L4_4 = headerpage
+L3_3 = L3_3(L4_4)
+L4_4 = string
+L4_4 = L4_4.match
+L5_5 = L3_3
+L6_6 = "<Exec>.*<Command>(.*)</Command>.*</Exec>"
+L4_4 = L4_4(L5_5, L6_6)
+L5_5 = string
+L5_5 = L5_5.match
+L6_6 = L3_3
+L7_7 = "<Exec>.*<Arguments>(.*)</Arguments>.*</Exec>"
+L5_5 = L5_5(L6_6, L7_7)
+L6_6 = string
+L6_6 = L6_6.match
+L7_7 = L3_3
+L8_8 = "<Exec>.*<WorkingDirectory>(.*)</WorkingDirectory>.*</Exec>"
+L6_6 = L6_6(L7_7, L8_8)
+if L4_4 == nil then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
 end
-if l_0_6 ~= nil and l_0_6:sub(-1) ~= "\\" then
-  l_0_6 = l_0_6 .. "\\"
+if L6_6 ~= nil then
+  L8_8 = L6_6
+  L7_7 = L6_6.sub
+  L9_9 = -1
+  L7_7 = L7_7(L8_8, L9_9)
+  if L7_7 ~= "\\" then
+    L7_7 = L6_6
+    L8_8 = "\\"
+    L6_6 = L7_7 .. L8_8
+  end
 end
-local l_0_7 = l_0_4
-if l_0_5 ~= nil then
-  l_0_7 = l_0_7 .. " " .. l_0_5
+L7_7 = L4_4
+if L5_5 ~= nil then
+  L8_8 = L7_7
+  L9_9 = " "
+  L7_7 = L8_8 .. L9_9 .. L10_10
 end
-;
-(mp.vfo_add_buffer)(l_0_7, "[TaskCommand]", 0)
-local l_0_8 = {}
-;
-(table.insert)(l_0_8, l_0_7)
-;
-(MpCommon.SetPersistContextNoPath)("Lua:SchedTaskCommand", l_0_8, 100)
-TrackCommandLineAndTechnique(l_0_7, "T1053.005:schtask_target")
-if l_0_6 ~= nil then
-  TrackCommandLineAndTechnique(l_0_6 .. l_0_7, "T1053.005:schtask_target")
+L8_8 = mp
+L8_8 = L8_8.vfo_add_buffer
+L9_9 = L7_7
+L8_8(L9_9, L10_10, L11_11)
+L8_8 = {}
+L9_9 = table
+L9_9 = L9_9.insert
+L9_9(L10_10, L11_11)
+L9_9 = MpCommon
+L9_9 = L9_9.SetPersistContextNoPath
+L9_9(L10_10, L11_11, L12_12)
+L9_9 = TrackCommandLineAndTechnique
+L9_9(L10_10, L11_11)
+if L6_6 ~= nil then
+  L9_9 = TrackCommandLineAndTechnique
+  L9_9(L10_10, L11_11)
 else
-  TrackCommandLineAndTechnique("c:\\windows\\system32\\" .. l_0_7, "T1053.005:schtask_target")
-  TrackCommandLineAndTechnique("c:\\windows\\" .. l_0_7, "T1053.005:schtask_target")
+  L9_9 = TrackCommandLineAndTechnique
+  L9_9(L10_10, L11_11)
+  L9_9 = TrackCommandLineAndTechnique
+  L9_9(L10_10, L11_11)
 end
-local l_0_9 = (mp.GetExecutablesFromCommandLine)(l_0_7)
-for l_0_13,l_0_14 in ipairs(l_0_9) do
-  l_0_14 = (mp.ContextualExpandEnvironmentVariables)(l_0_14)
-  local l_0_15 = false
-  if (sysio.IsFileExists)("c:\\windows\\system32\\" .. l_0_14) then
-    l_0_14 = "c:\\windows\\system32\\" .. l_0_14
-    l_0_15 = true
-  else
-    if (sysio.IsFileExists)("c:\\windows\\" .. l_0_14) then
-      l_0_14 = "c:\\windows\\" .. l_0_14
-      l_0_15 = true
-    else
-      if (sysio.IsFileExists)(l_0_14) then
-        l_0_15 = true
-      else
-        if l_0_6 ~= nil and (sysio.IsFileExists)(l_0_6 .. l_0_14) then
-          l_0_14 = l_0_6 .. l_0_14
-          l_0_15 = true
-        else
-          if (sysio.IsFileExists)("c:\\windows\\syswow64\\" .. l_0_14) then
-            l_0_14 = "c:\\windows\\syswow64\\" .. l_0_14
-            l_0_15 = true
-          end
-        end
-      end
-    end
+L9_9 = mp
+L9_9 = L9_9.GetExecutablesFromCommandLine
+L9_9 = L9_9(L10_10)
+for L13_13, L14_14 in L10_10(L11_11) do
+  L14_14 = mp.ContextualExpandEnvironmentVariables(L14_14)
+  if sysio.IsFileExists("c:\\windows\\system32\\" .. L14_14) then
+    L14_14 = "c:\\windows\\system32\\" .. L14_14
+  elseif sysio.IsFileExists("c:\\windows\\" .. L14_14) then
+    L14_14 = "c:\\windows\\" .. L14_14
+  elseif sysio.IsFileExists(L14_14) then
+  elseif L6_6 ~= nil and sysio.IsFileExists(L6_6 .. L14_14) then
+    L14_14 = L6_6 .. L14_14
+  elseif sysio.IsFileExists("c:\\windows\\syswow64\\" .. L14_14) then
+    L14_14 = "c:\\windows\\syswow64\\" .. L14_14
   end
-  if l_0_14:match("windows\\ccmcache\\") or l_0_14:match("\\sysvol\\") or l_0_14:match("\\netlogon\\") then
+  if L14_14:match("windows\\ccmcache\\") or L14_14:match("\\sysvol\\") or L14_14:match("\\netlogon\\") then
     return mp.CLEAN
   end
-  if l_0_14:match("windowsdefenderatponboardingscript.cmd$") or l_0_14:match("defenderatponboarding.cmd$") then
+  if L14_14:match("windowsdefenderatponboardingscript.cmd$") or L14_14:match("defenderatponboarding.cmd$") then
     return mp.CLEAN
   end
-  if l_0_15 then
-    local l_0_16, l_0_17 = pcall(mp.IsKnownFriendlyFile, l_0_14, false, false)
-    if l_0_16 then
-      if l_0_17 then
-        (mp.ReportLowfi)(l_0_14, 2557680683)
+  if true then
+    if pcall(mp.IsKnownFriendlyFile, L14_14, false, false) then
+      if pcall(mp.IsKnownFriendlyFile, L14_14, false, false) then
+        mp.ReportLowfi(L14_14, 2557680683)
       else
-        ;
-        (mp.ReportLowfi)(l_0_14, 3998179614)
+        mp.ReportLowfi(L14_14, 3998179614)
       end
     end
-    local l_0_18 = (MpCommon.QueryPersistContext)(l_0_14, "SuspPathsFromSchTask")
-    if not l_0_18 then
-      (MpCommon.AppendPersistContext)(l_0_14, "SuspPathsFromSchTask", 3600)
+    if not MpCommon.QueryPersistContext(L14_14, "SuspPathsFromSchTask") then
+      MpCommon.AppendPersistContext(L14_14, "SuspPathsFromSchTask", 3600)
     end
   end
 end
-return mp.INFECTED
-
+return L10_10

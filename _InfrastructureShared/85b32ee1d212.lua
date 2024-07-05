@@ -1,19 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/85b32ee1d212 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = (string.lower)(l_0_0.command_line)
-if (string.find)(l_0_1, "\\program files", 1, true) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0.command_line
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.find
+L6_6 = true
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.enum_mpattributesubstring)("Behavior:")
-if #l_0_2 == 0 or l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.enum_mpattributesubstring
+L2_2 = L2_2(L3_3)
+if L3_3 == 0 or L2_2 == nil then
+  return L3_3
 end
-for l_0_6,l_0_7 in ipairs(l_0_2) do
-  (bm.add_related_string)("RelatedBMHits", l_0_7, bm.RelatedStringBMReport)
+for L6_6, L7_7 in L3_3(L4_4) do
+  bm.add_related_string("RelatedBMHits", L7_7, bm.RelatedStringBMReport)
 end
-return mp.INFECTED
-
+return L3_3

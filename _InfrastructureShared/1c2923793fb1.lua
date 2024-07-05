@@ -1,27 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c2923793fb1 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetBruteMatchData)()
-local l_0_1 = l_0_0.match_offset + 9
-local l_0_2 = 256
-local l_0_3 = ""
-local l_0_4 = 0
-local l_0_5 = 0
-if l_0_0.is_header then
-  l_0_3 = (tostring(headerpage)):sub(l_0_1, l_0_1 + l_0_2)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = L0_0.match_offset
+L1_1 = L1_1 + 9
+L2_2 = 256
+L3_3 = ""
+L4_4 = 0
+L5_5 = 0
+if L0_0.is_header then
+  L3_3 = tostring(headerpage):sub(L1_1, L1_1 + L2_2)
 else
-  l_0_3 = (tostring(footerpage)):sub(l_0_1, l_0_1 + l_0_2)
+  L3_3 = tostring(footerpage):sub(L1_1, L1_1 + L2_2)
 end
-l_0_3 = (string.gsub)(l_0_3, "%^", "")
-l_0_3 = (string.gsub)(l_0_3, "`", "")
-l_0_3 = (string.lower)(l_0_3)
-if l_0_4 + l_0_5 > 10 and (string.find)(l_0_3, "powershell", 1, true) then
-  (mp.set_mpattribute)("SCPT:rtcShellPSObfus.A")
+L3_3, L4_4 = string.gsub(L3_3, "%^", "")
+L3_3, L5_5 = string.gsub(L3_3, "`", "")
+L3_3 = string.lower(L3_3)
+if L4_4 + L5_5 > 10 and string.find(L3_3, "powershell", 1, true) then
+  mp.set_mpattribute("SCPT:rtcShellPSObfus.A")
 end
-if l_0_4 > 20 and (string.find)(l_0_3, "cmd", 1, true) then
-  (mp.set_mpattribute)("SCPT:rtcShellCmdObfus.A")
+if L4_4 > 20 and string.find(L3_3, "cmd", 1, true) then
+  mp.set_mpattribute("SCPT:rtcShellCmdObfus.A")
 end
 return mp.INFECTED
-

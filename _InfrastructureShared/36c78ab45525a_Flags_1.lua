@@ -1,10 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/36c78ab45525a_Flags_1 
-
--- params : ...
--- function num : 0
-if (((((((((((not (hstrlog[1]).matched or (hstrlog[2]).matched) and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and not (hstrlog[5]).matched) or (hstrlog[6]).matched) and not (hstrlog[7]).matched) or (hstrlog[8]).matched) and not (hstrlog[9]).matched) or (hstrlog[10]).matched) and not (hstrlog[11]).matched) or (mp.getfilesize)() < 800000) and (0 + 1 + 1 + 1 + 1 + 1 + 1 >= 2 or 0 + 1 + 1 + 1 + 1 + 1 == 5) then
+local L0_0, L1_1
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+if hstrlog[7].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[8].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[9].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[10].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[11].matched then
+  L1_1 = L1_1 + 1
+end
+if mp.getfilesize() < 800000 and (L0_0 >= 2 or L1_1 == 5) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

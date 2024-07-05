@@ -1,102 +1,116 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1e9b3560bb941_Includes_BMLuaLib,Tech 
-
--- params : ...
--- function num : 0
-DefrayExtensionCheck = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = 0
-  local l_1_2 = nil
-  for l_1_6,l_1_7 in pairs(l_1_0) do
-    local l_1_8, l_1_9 = l_1_6:match("([.%w]+)-([0-9a-fA-F]+)")
-    if l_1_8 ~= nil and l_1_9 ~= nil and l_1_9:len() == 8 and l_1_8:len() > 3 then
-      if l_1_2 == nil then
-        l_1_2 = l_1_8
-        l_1_1 = l_1_1 + 1
-      else
-        if l_1_2 == l_1_8 then
-          l_1_1 = l_1_1 + 1
-        end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19
+function L0_0(A0_20)
+  local L1_21, L2_22
+  L1_21 = 0
+  L2_22 = nil
+  for _FORV_6_, _FORV_7_ in pairs(A0_20) do
+    if _FORV_6_:match("([.%w]+)-([0-9a-fA-F]+)") ~= nil and _FORV_6_:match("([.%w]+)-([0-9a-fA-F]+)") ~= nil and _FORV_6_:match("([.%w]+)-([0-9a-fA-F]+)"):len() == 8 and _FORV_6_:match("([.%w]+)-([0-9a-fA-F]+)"):len() > 3 then
+      if L2_22 == nil then
+        L2_22 = _FORV_6_:match("([.%w]+)-([0-9a-fA-F]+)")
+        L1_21 = L1_21 + 1
+      elseif L2_22 == _FORV_6_:match("([.%w]+)-([0-9a-fA-F]+)") then
+        L1_21 = L1_21 + 1
       end
     end
   end
-  return l_1_1
+  return L1_21
 end
-
-if (bm.GetSignatureMatchDuration)() > 100000000 then
-  return mp.CLEAN
+DefrayExtensionCheck = L0_0
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 100000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = mp.SIGATTR_LOG_SZ
-local l_0_1 = {}
-for l_0_5 = 1, l_0_0 do
-  if (sigattr_tail[l_0_5]).attribute == 16385 then
-    local l_0_6 = ((sigattr_tail[l_0_5]).utf8p1):lower()
-    l_0_1[(mp.crc32)(0, l_0_6, 1, #l_0_6)] = 1
+L0_0 = mp
+L0_0 = L0_0.SIGATTR_LOG_SZ
+L1_1 = {}
+for L5_5 = 1, L0_0 do
+  L6_6 = sigattr_tail
+  L6_6 = L6_6[L5_5]
+  L6_6 = L6_6.attribute
+  if L6_6 == 16385 then
+    L6_6 = sigattr_tail
+    L6_6 = L6_6[L5_5]
+    L6_6 = L6_6.utf8p1
+    L7_7 = L6_6
+    L6_6 = L6_6.lower
+    L6_6 = L6_6(L7_7)
+    L7_7 = mp
+    L7_7 = L7_7.crc32
+    L8_8 = 0
+    L7_7 = L7_7(L8_8, L9_9, L10_10, L11_11)
+    L1_1[L7_7] = 1
   end
 end
-local l_0_7 = {}
-local l_0_8 = {}
-local l_0_9 = 0
-local l_0_10 = 0
-local l_0_11 = {}
-local l_0_12 = 0
-local l_0_13 = 8
-for l_0_17 = 1, l_0_0 do
-  if (sigattr_tail[l_0_17]).attribute == 16386 then
-    local l_0_18 = ((sigattr_tail[l_0_17]).utf8p2):lower()
-    local l_0_19 = ((sigattr_tail[l_0_17]).utf8p1):lower()
-    local l_0_20 = (mp.crc32)(0, l_0_18, 1, #l_0_18)
-    local l_0_21 = (mp.crc32)(0, l_0_19, 1, #l_0_19)
-    if (l_0_1[l_0_21] ~= nil or l_0_1[l_0_20] ~= nil) and l_0_11[l_0_20] == nil then
-      local l_0_22 = l_0_18:match("%.[^/%.]+$")
-      if l_0_22 ~= nil and (mp.GetExtensionClass)(l_0_22) ~= 3 and #l_0_18 < #l_0_19 and l_0_19:find(l_0_18, 1, true) == 1 and l_0_19:byte(#l_0_18 + 1) ~= 58 then
-        l_0_11[l_0_20] = 1
-        local l_0_23 = l_0_19:match("%.[^/%.]+$")
-        if (mp.GetExtensionClass)(l_0_23) ~= 4 and IsExtensionDatePattern(l_0_23) == false then
-          local l_0_24 = (string.sub)(l_0_19, #l_0_18 + 1)
-          -- DECOMPILER ERROR at PC140: Unhandled construct in 'MakeBoolean' P1
-
-          if l_0_7[l_0_24] ~= nil and l_0_8[l_0_24] ~= nil then
-            l_0_8[l_0_24] = nil
-            l_0_9 = l_0_9 - 1
-          end
-          do
-            local l_0_25 = {}
-            -- DECOMPILER ERROR at PC145: No list found for R20 , SetList fails
-
-            -- DECOMPILER ERROR at PC149: Overwrote pending register: R21 in 'AssignReg'
-
-            l_0_8[l_0_24], l_0_25 = l_0_25, {l_0_17}
-            l_0_9 = l_0_9 + 1
-            if l_0_13 <= l_0_9 then
-              do
-                do
-                  l_0_12 = 1
-                  do break end
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out DO_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out DO_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC157: LeaveBlock: unexpected jumping out IF_STMT
-
+L5_5 = 0
+L6_6 = {}
+L7_7 = 0
+L8_8 = 8
+for L12_12 = 1, L0_0 do
+  L13_13 = sigattr_tail
+  L13_13 = L13_13[L12_12]
+  L13_13 = L13_13.attribute
+  if L13_13 == 16386 then
+    L13_13 = sigattr_tail
+    L13_13 = L13_13[L12_12]
+    L13_13 = L13_13.utf8p2
+    L14_14 = L13_13
+    L13_13 = L13_13.lower
+    L13_13 = L13_13(L14_14)
+    L14_14 = sigattr_tail
+    L14_14 = L14_14[L12_12]
+    L14_14 = L14_14.utf8p1
+    L15_15 = L14_14
+    L14_14 = L14_14.lower
+    L14_14 = L14_14(L15_15)
+    L15_15 = mp
+    L15_15 = L15_15.crc32
+    L19_19 = #L13_13
+    L15_15 = L15_15(L16_16, L17_17, L18_18, L19_19)
+    L19_19 = 1
+    if L17_17 == nil then
+    elseif L17_17 ~= nil then
+      if L17_17 == nil then
+        L19_19 = "%.[^/%.]+$"
+        if L17_17 ~= nil then
+          L19_19 = L17_17
+          if L18_18 ~= 3 then
+            L19_19 = #L14_14
+            if L18_18 < L19_19 then
+              L19_19 = L14_14
+              if L18_18 == 1 then
+                L19_19 = L14_14
+                if L18_18 ~= 58 then
+                  L6_6[L15_15] = 1
+                  L19_19 = L14_14
+                  L19_19 = mp
+                  L19_19 = L19_19.GetExtensionClass
+                  L19_19 = L19_19(L18_18)
+                  if L19_19 ~= 4 then
+                    L19_19 = IsExtensionDatePattern
+                    L19_19 = L19_19(L18_18)
+                    if L19_19 == false then
+                      L19_19 = string
+                      L19_19 = L19_19.sub
+                      L19_19 = L19_19(L14_14, #L13_13 + 1)
+                      if L2_2[L19_19] ~= nil then
+                        if L3_3[L19_19] ~= nil then
+                          L3_3[L19_19] = nil
+                        end
+                      else
+                        L2_2[L19_19] = {L12_12}
+                        L5_5 = L5_5 + 1
+                        L3_3[L19_19] = {L12_12}
+                      end
+                      if L8_8 <= L4_4 then
+                        L7_7 = 1
+                        break
+                      end
+                    end
+                  end
                 end
               end
             end
@@ -106,57 +120,54 @@ for l_0_17 = 1, l_0_0 do
     end
   end
 end
-if l_0_12 == 1 then
-  local l_0_26 = "Type4"
-  local l_0_27 = "genf_linux_ransom_meta"
-  local l_0_28 = {}
-  local l_0_29 = (string.lower)((bm.get_imagepath)())
-  -- DECOMPILER ERROR at PC176: Overwrote pending register: R13 in 'AssignReg'
-
-  if (bm.get_current_process_startup_info)() ~= nil then
-    do
-      local l_0_30, l_0_31, l_0_32, l_0_33 = ((bm.get_current_process_startup_info)()).ppid
-      AppendToRollingQueue(l_0_27, "cur_image_path", l_0_29)
-      -- DECOMPILER ERROR at PC185: Confused about usage of register: R13 in 'UnsetPending'
-
-      AppendToRollingQueue(l_0_27, "proc_info", l_0_30)
-      local l_0_34 = nil
-      if l_0_13 <= DefrayExtensionCheck(l_0_8) then
-        l_0_26 = "Defray.GenF"
-      end
-      do
-        local l_0_35 = nil
-        for l_0_39,l_0_40 in pairs(l_0_8) do
-          local l_0_36 = ""
-          l_0_36 = l_0_36 .. "," .. l_0_40
-        end
-        -- DECOMPILER ERROR at PC207: Confused about usage of register: R15 in 'UnsetPending'
-
-        ;
-        (bm.add_related_string)("ransom_extension", l_0_36, bm.RelatedStringBMReport)
-        -- DECOMPILER ERROR at PC214: Confused about usage of register: R15 in 'UnsetPending'
-
-        AppendToRollingQueue(l_0_27, "appended_ext", l_0_36)
-        for l_0_44,l_0_45 in pairs(l_0_8) do
-          local l_0_41 = nil
-          for l_0_49,l_0_50 in pairs(l_0_8[l_0_45]) do
-            -- DECOMPILER ERROR at PC227: Confused about usage of register: R25 in 'UnsetPending'
-
-            (bm.add_related_file)((sigattr_tail[R25_PC227]).utf8p1)
-            ;
-            (table.insert)(l_0_28, (sigattr_tail[R25_PC227]).utf8p1)
-          end
-        end
-        AppendToRollingQueue(l_0_27, "renamed_file_path", (table.concat)(l_0_28, ","))
-        addRelatedProcess()
-        reportRelatedBmHits()
-        TrackPidAndTechniqueBM("BM", "T1486", "Impact_FileEncryption")
-        ;
-        (bm.trigger_sig)("GenericLinuxRansomware", l_0_26)
-        do return mp.INFECTED end
-        return mp.CLEAN
-      end
+if L7_7 == 1 then
+  L12_12 = string
+  L12_12 = L12_12.lower
+  L13_13 = bm
+  L13_13 = L13_13.get_imagepath
+  L19_19 = L13_13()
+  L12_12 = L12_12(L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L13_13())
+  L13_13 = bm
+  L13_13 = L13_13.get_current_process_startup_info
+  L13_13 = L13_13()
+  if L13_13 ~= nil then
+    L13_13 = L13_13.ppid
+  else
+    L13_13 = "-1"
+  end
+  L14_14 = AppendToRollingQueue
+  L15_15 = L10_10
+  L14_14(L15_15, L16_16, L17_17)
+  L14_14 = AppendToRollingQueue
+  L15_15 = L10_10
+  L14_14(L15_15, L16_16, L17_17)
+  L14_14 = DefrayExtensionCheck
+  L15_15 = L3_3
+  L14_14 = L14_14(L15_15)
+  L15_15 = ""
+  for L19_19, _FORV_20_ in L16_16(L17_17) do
+    L15_15 = L15_15 .. "," .. L19_19
+  end
+  L19_19 = bm
+  L19_19 = L19_19.RelatedStringBMReport
+  L16_16(L17_17, L18_18, L19_19)
+  L19_19 = L15_15
+  L16_16(L17_17, L18_18, L19_19)
+  for L19_19, _FORV_20_ in L16_16(L17_17) do
+    for _FORV_24_, _FORV_25_ in pairs(L3_3[L19_19]) do
+      bm.add_related_file(sigattr_tail[_FORV_25_].utf8p1)
+      table.insert(L11_11, sigattr_tail[_FORV_25_].utf8p1)
     end
   end
+  L19_19 = table
+  L19_19 = L19_19.concat
+  L19_19 = L19_19(L11_11, ",")
+  L16_16(L17_17, L18_18, L19_19, L19_19(L11_11, ","))
+  L16_16()
+  L16_16()
+  L19_19 = "Impact_FileEncryption"
+  L16_16(L17_17, L18_18, L19_19)
+  L16_16(L17_17, L18_18)
+  return L16_16
 end
-
+return L9_9

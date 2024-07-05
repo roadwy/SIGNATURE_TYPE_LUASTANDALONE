@@ -1,24 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VendorFilename.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 == nil or #l_0_0 <= 5 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L2_2 = L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE)
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2, mp.FILEPATH_QUERY_LOWERCASE))
+if L0_0 ~= nil then
+  L1_1 = #L0_0
+elseif L1_1 <= 5 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = {}
-l_0_1["hiphandlers.dll"] = "mcafee"
-l_0_1["hiphandlers64.dll"] = "mcafee"
-l_0_1["kevlarsigs.dll"] = "mcafee"
-l_0_1["kevlarsigs64.dll"] = "mcafee"
-do
-  if l_0_1[l_0_0] ~= nil and type(l_0_1[l_0_0]) == "string" then
-    local l_0_2 = "Lua:VendorFilename.A!" .. l_0_1[l_0_0]
-    ;
-    (mp.set_mpattribute)(l_0_2)
+L1_1 = {}
+L1_1["hiphandlers.dll"] = "mcafee"
+L1_1["hiphandlers64.dll"] = "mcafee"
+L1_1["kevlarsigs.dll"] = "mcafee"
+L1_1["kevlarsigs64.dll"] = "mcafee"
+L2_2 = L1_1[L0_0]
+if L2_2 ~= nil then
+  L2_2 = type
+  L2_2 = L2_2(L1_1[L0_0])
+  if L2_2 == "string" then
+    L2_2 = "Lua:VendorFilename.A!"
+    L2_2 = L2_2 .. L1_1[L0_0]
+    mp.set_mpattribute(L2_2)
     return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

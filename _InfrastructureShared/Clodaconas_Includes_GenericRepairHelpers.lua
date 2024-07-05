@@ -1,12 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Clodaconas_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = (MpDetection.GetCurrentThreat)()
-for l_0_4,l_0_5 in pairs(l_0_0.Resources) do
-  if l_0_5.Schema == "file" and (crypto.bitand)(l_0_5.Type, MpCommon.MPRESOURCE_TYPE_CONCRETE) == MpCommon.MPRESOURCE_TYPE_CONCRETE then
-    Infrastructure_DetectionReportFolder(805306489, l_0_5.Path, true)
+for _FORV_4_, _FORV_5_ in pairs(MpDetection.GetCurrentThreat().Resources) do
+  if _FORV_5_.Schema == "file" and crypto.bitand(_FORV_5_.Type, MpCommon.MPRESOURCE_TYPE_CONCRETE) == MpCommon.MPRESOURCE_TYPE_CONCRETE then
+    Infrastructure_DetectionReportFolder(805306489, _FORV_5_.Path, true)
   end
 end
-

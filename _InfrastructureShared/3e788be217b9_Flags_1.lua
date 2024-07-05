@@ -1,31 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3e788be217b9_Flags_1 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections == 3 and (pesecs[1]).SizeOfRawData > 151552 and ((pehdr.DataDirectory)[2]).Size > 74 and ((pehdr.DataDirectory)[2]).Size < 90 and peattributes.isexe and (hstrlog[1]).matched then
-  (mp.set_mpattribute)("LowFi:Kurei_PNG")
-  ;
-  (mp.readprotection)(false)
-  local l_0_0 = (pe.foffset_va)((hstrlog[1]).VA)
-  local l_0_1 = {}
-  -- DECOMPILER ERROR at PC47: No list found for R1 , SetList fails
-
-  -- DECOMPILER ERROR at PC48: Overwrote pending register: R2 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC50: Overwrote pending register: R3 in 'AssignReg'
-
-  local l_0_2 = ((3058425074).readfile)(8654206, 1168)
-  if (mp.crc32)(-1, l_0_2, 1, 0) == l_0_1[1] then
-    l_0_2 = (mp.readfile)(l_0_0 + 61440, 1168)
-    if (mp.crc32)(-1, l_0_2, 1, 0) == l_0_1[2] then
-      return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 3 then
+  L0_0 = pesecs
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.SizeOfRawData
+  if L0_0 > 151552 then
+    L0_0 = pehdr
+    L0_0 = L0_0.DataDirectory
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.Size
+    if L0_0 > 74 then
+      L0_0 = pehdr
+      L0_0 = L0_0.DataDirectory
+      L0_0 = L0_0[2]
+      L0_0 = L0_0.Size
+      if L0_0 < 90 then
+        L0_0 = peattributes
+        L0_0 = L0_0.isexe
+        if L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[1]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = mp
+            L0_0 = L0_0.set_mpattribute
+            L1_1 = "LowFi:Kurei_PNG"
+            L0_0(L1_1)
+            L0_0 = mp
+            L0_0 = L0_0.readprotection
+            L1_1 = false
+            L0_0(L1_1)
+            L0_0 = pe
+            L0_0 = L0_0.foffset_va
+            L1_1 = hstrlog
+            L1_1 = L1_1[1]
+            L1_1 = L1_1.VA
+            L0_0 = L0_0(L1_1)
+            L1_1 = {L2_2, L3_3}
+            L2_2 = 3058425074
+            L3_3 = 8654206
+            L2_2 = mp
+            L2_2 = L2_2.readfile
+            L3_3 = L0_0 + 2000
+            L2_2 = L2_2(L3_3, 1168)
+            L3_3 = mp
+            L3_3 = L3_3.crc32
+            L3_3 = L3_3(-1, L2_2, 1, 0)
+            if L3_3 == L1_1[1] then
+              L2_2 = mp.readfile(L0_0 + 61440, 1168)
+              L3_3 = mp.crc32(-1, L2_2, 1, 0)
+              if L3_3 == L1_1[2] then
+                return mp.INFECTED
+              end
+              return mp.LOWFI
+            end
+            return mp.LOWFI
+          end
+        end
+      end
     end
-    return mp.LOWFI
   end
-  return mp.LOWFI
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

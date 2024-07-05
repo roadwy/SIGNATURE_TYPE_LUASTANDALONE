@@ -1,33 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Worm_VBS_Jenxcus!CrypterRepsRev_Includes_ConversionToBinary_fastHex2Bin 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("SCPT:Worm:VBS/Jenxcus!CryptRepsRev") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "SCPT:Worm:VBS/Jenxcus!CryptRepsRev"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 50000 or l_0_0 > 200000 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 50000 or L0_0 > 200000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_2 = (string.match)(l_0_1, "[\']([^0-9]-)%s")
-if l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "[']([^0-9]-)%s"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3, l_0_4 = nil, nil
-for l_0_8 = 0, 9 do
-  l_0_4 = (string.format)("[Rr][Ee][Pp][Ll][Aa][Cc][Ee]%%s-%%(%%a-%%s-,%%s-\"([^0-9]-)\"%%s-,%%s-\"[%d]\"", l_0_8)
-  l_0_3 = (string.match)(l_0_1, l_0_4)
-  if l_0_3 == nil then
+L3_3, L4_4 = nil, nil
+for L8_8 = 0, 9 do
+  L4_4 = string.format("[Rr][Ee][Pp][Ll][Aa][Cc][Ee]%%s-%%(%%a-%%s-,%%s-\"([^0-9]-)\"%%s-,%%s-\"[%d]\"", L8_8)
+  L3_3 = string.match(L1_1, L4_4)
+  if L3_3 == nil then
     return mp.CLEAN
   end
-  l_0_2 = l_0_2:gsub(l_0_3, l_0_8)
+  L2_2 = L2_2:gsub(L3_3, L8_8)
 end
-l_0_2 = l_0_2:reverse()
-;
-(mp.vfo_add_buffer)(fastHex2Bin(l_0_2, "(..)"), "[CrypterRepsRev]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-return mp.CLEAN
-
+L2_2 = L5_5
+L8_8 = "(..)"
+L8_8 = mp
+L8_8 = L8_8.ADD_VFO_TAKE_ACTION_ON_DAD
+L5_5(L6_6, L7_7, L8_8)
+return L5_5

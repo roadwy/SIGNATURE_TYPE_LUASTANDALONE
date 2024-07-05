@@ -1,64 +1,98 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_RemoteCopyExclusions_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_2 = (mp.getfilesize)()
-local l_0_3 = l_0_1:sub(-3)
-local l_0_4 = "tmf|emf|wmf|ost|spl|off|bak|m4a|mp4|mp3|wav|bmp|avi|kgx|idx|etl|log|ico|ttf|qml|bak|tmp|dat|"
-if l_0_4:find(l_0_3, 1, true) then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_FNAME
+L2_2 = L2_2(L3_3, mp.FILEPATH_QUERY_PATH)
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L3_3 = L1_1(L2_2, L3_3)
+L1_1 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2, L3_3))
+L2_2 = mp
+L2_2 = L2_2.getfilesize
+L2_2 = L2_2()
+L3_3 = L1_1.sub
+L3_3 = L3_3(L1_1, -3)
+if ("tmf|emf|wmf|ost|spl|off|bak|m4a|mp4|mp3|bmp|avi|kgx|idx|etl|log|ico|ttf|qml|bak|dat|"):find(L3_3, 1, true) then
   return mp.INFECTED
 end
-if (mp.get_mpattribute)("Lua:PeInExcludedOsPath") then
+if mp.get_mpattribute("Lua:PeInExcludedOsPath") then
   return mp.INFECTED
 end
-if l_0_2 > 268435456 then
+if mp.get_mpattribute("Lua:TTExclusion") then
   return mp.INFECTED
 end
-local l_0_5 = "cachedata|moduleanalysiscache|ntbtlog.txt|remcomsvc.exe|install_fsprocsvc.exe|remoteauditservice.exe|fsprocsvc.exe|citrix workspace.lnk|user work log.lnk|oa user work log.lnk|.ses|local state|"
-if l_0_5:find(l_0_1) then
+if L2_2 > 268435456 then
   return mp.INFECTED
 end
-local l_0_6 = "idc_database.sqlite-journal|startupprofiledata-noninteractive|default.vg1|isbew64.exe|dismhost.exe|mighost.exe|qdaw3v01.exe|logmeinrescue.exe"
-if l_0_6:find(l_0_1) then
+if ("cachedata|moduleanalysiscache|ntbtlog.txt|remcomsvc.exe|install_fsprocsvc.exe|remoteauditservice.exe|fsprocsvc.exe|citrix workspace.lnk|user work log.lnk|oa user work log.lnk|.ses|local state|"):find(L1_1) then
   return mp.INFECTED
 end
-if l_0_1:find("av%-%d%d%d?%d?%d?-%d%d?%d?%d?-%d%d?%d?%d?") or l_0_1:match("^%.pyd") or l_0_1:match("pdq.+%.exe") then
+if ("idc_database.sqlite-journal|startupprofiledata-noninteractive|default.vg1|isbew64.exe|dismhost.exe|mighost.exe|qdaw3v01.exe|logmeinrescue.exe|isagenix.domainobjects.resources.dll|microsoft.win32.taskscheduler.resources.dll"):find(L1_1) then
   return mp.INFECTED
 end
-if l_0_1 == "moduleanalysiscache" or l_0_1:find("powershell_analysiscacheentry", 1, true) or l_0_1:find("psscriptpolicytest", 1, true) then
+if L1_1:find("av%-%d%d%d?%d?%d?-%d%d?%d?%d?-%d%d?%d?%d?") or L1_1:match("^%.pyd") or L1_1:match("pdq.+%.exe") then
   return mp.INFECTED
 end
-if l_0_1:find("citrix workspace", 1, true) or l_0_1:find("user work log", 1, true) then
+if L1_1 == "moduleanalysiscache" or L1_1:find("powershell_analysiscacheentry", 1, true) or L1_1:find("psscriptpolicytest", 1, true) then
   return mp.INFECTED
 end
-if l_0_1:match("%.store_?n?e?w?$") or l_0_1:match("wk.+%.---$") then
+if L1_1:find("citrix workspace", 1, true) or L1_1:find("user work log", 1, true) then
   return mp.INFECTED
 end
-if l_0_1:match("zam.+%.trace$") then
+if L1_1:match("%.store_?n?e?w?$") or L1_1:match("wk.+%.---$") then
   return mp.INFECTED
 end
-if l_0_0:find("windows\\ccm", 1, true) then
+if L1_1:match("zam.+%.trace$") then
   return mp.INFECTED
 end
-if l_0_0:find("windows.~bt\\newos\\", 1, true) then
+if L0_0:find("windows\\ccm", 1, true) then
   return mp.INFECTED
 end
-if l_0_0:match("\\appdata\\.+\\google\\chrome\\user data\\") then
+if L0_0:find("windows.~bt\\newos\\", 1, true) then
   return mp.INFECTED
 end
-if l_0_0:match("\\appdata\\.+\\microsoft\\edge\\user data\\") then
+if L0_0:match("\\appdata\\.+\\google\\chrome\\user data\\") then
   return mp.INFECTED
 end
-if l_0_0:find("\\~bromium\\", 1, true) then
+if L0_0:match("\\appdata\\.+\\microsoft\\edge\\user data\\") then
   return mp.INFECTED
 end
-if l_0_0:find("\\service worker\\cachestorage\\", 1, true) then
+if L0_0:find("\\~bromium\\", 1, true) then
   return mp.INFECTED
 end
-if l_0_0:find("\\appdata\\", 1, true) and (l_0_2 < 54 or l_0_2 > 1048575) then
+if L0_0:find("\\service worker\\cachestorage\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\appdata\\", 1, true) and (L2_2 < 54 or L2_2 > 1048575) then
+  return mp.INFECTED
+end
+if L0_0:find("\\riskserver\\riskserver\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\production-qa6\\webservices\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\production-qa4\\webservices\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\pdqinventory-scanner\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\pdqdeployrunner\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\datacaptor interface server\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\nsrconsole\\", 1, true) then
+  return mp.INFECTED
+end
+if L0_0:find("\\technicalsolutions\\riskserver\\", 1, true) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

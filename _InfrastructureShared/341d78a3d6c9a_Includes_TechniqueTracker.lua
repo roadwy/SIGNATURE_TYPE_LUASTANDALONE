@@ -1,24 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/341d78a3d6c9a_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 ~= nil then
-  local l_0_1 = (string.lower)(l_0_0.image_path)
-  local l_0_2 = (MpCommon.QueryPersistContext)(l_0_1, "NewWrittenBySystemProcessDetected")
-  if l_0_2 then
-    local l_0_3 = (mp.GetParentProcInfo)(l_0_0.ppid)
-    if l_0_3 ~= nil then
-      local l_0_4 = (string.lower)(l_0_3.image_path)
-      if (string.find)(l_0_4, "\\system32\\services.exe", 1, true) then
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = L0_0.image_path
+  L1_1 = L1_1(L2_2)
+  L2_2 = MpCommon
+  L2_2 = L2_2.QueryPersistContext
+  L3_3 = L1_1
+  L4_4 = "NewWrittenBySystemProcessDetected"
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 then
+    L3_3 = mp
+    L3_3 = L3_3.GetParentProcInfo
+    L4_4 = L0_0.ppid
+    L3_3 = L3_3(L4_4)
+    if L3_3 ~= nil then
+      L4_4 = string
+      L4_4 = L4_4.lower
+      L4_4 = L4_4(L3_3.image_path)
+      if string.find(L4_4, "\\system32\\services.exe", 1, true) then
         TrackPidAndTechnique("CMDHSTR", "T1021.002", "remoteservice_created_c")
         return mp.INFECTED
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

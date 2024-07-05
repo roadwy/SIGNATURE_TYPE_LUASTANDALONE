@@ -1,31 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7fd746b5960a_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = GetRealPidForScenario("CMDHSTR")
-if IsPidExcluded(l_0_0) then
+local L0_0
+L0_0 = GetRealPidForScenario
+L0_0 = L0_0("CMDHSTR")
+if IsPidExcluded(L0_0) then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetParentProcInfo)()
-if l_0_1 ~= nil and l_0_1.image_path ~= nil then
-  local l_0_2 = l_0_1.image_path
-  local l_0_3 = (string.lower)(l_0_2:match("([^\\]+)$"))
-  local l_0_4 = {}
-  l_0_4["ccmexec.exe"] = true
-  l_0_4["gpscript.exe"] = true
-  l_0_4["mpcmdrun.exe"] = true
-  l_0_4["mssense.exe"] = true
-  l_0_4["senseir.exe"] = true
-  if l_0_4[l_0_3] then
+if mp.GetParentProcInfo() ~= nil and mp.GetParentProcInfo().image_path ~= nil then
+  if ({
+    ["ccmexec.exe"] = true,
+    ["gpscript.exe"] = true,
+    ["mpcmdrun.exe"] = true,
+    ["mssense.exe"] = true,
+    ["senseir.exe"] = true
+  })[string.lower(mp.GetParentProcInfo().image_path:match("([^\\]+)$"))] then
     return mp.CLEAN
   end
 end
-do
-  TrackPidAndTechnique(l_0_0, "T1003", "shadowcopy_create")
-  if IsDetectionThresholdMet(l_0_0) then
-    return mp.INFECTED
-  end
-  return mp.LOWFI
+TrackPidAndTechnique(L0_0, "T1003", "shadowcopy_create")
+if IsDetectionThresholdMet(L0_0) then
+  return mp.INFECTED
 end
-
+return mp.LOWFI

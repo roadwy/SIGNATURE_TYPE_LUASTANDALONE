@@ -1,16 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/11ad73ef595e9_Flags_1_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-do
-  if l_0_0 then
-    local l_0_1 = (string.lower)(l_0_0.image_path)
-    if (string.find)(l_0_1, "\\programdata\\microsoft\\azurewatson\\0\\awdumpifeo.exe", 1, true) or (string.find)(l_0_1, "\\windows\\system32\\werfault.exe", 1, true) or (string.find)(l_0_1, "\\windows\\syswow64\\werfault.exe", 1, true) then
-      return mp.CLEAN
-    end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0.image_path)
+  if string.find(L1_1, "\\programdata\\microsoft\\azurewatson\\0\\awdumpifeo.exe", 1, true) or string.find(L1_1, "\\windows\\system32\\werfault.exe", 1, true) or string.find(L1_1, "\\windows\\syswow64\\werfault.exe", 1, true) then
+    return mp.CLEAN
   end
-  return mp.SUSPICIOUS
 end
-
+L1_1 = mp
+L1_1 = L1_1.SUSPICIOUS
+return L1_1

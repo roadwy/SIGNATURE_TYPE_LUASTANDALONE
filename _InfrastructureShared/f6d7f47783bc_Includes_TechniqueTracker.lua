@@ -1,42 +1,62 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f6d7f47783bc_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = GetRealPidForScenario("CMDHSTR")
-if IsPidExcluded(l_0_0) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = GetRealPidForScenario
+L1_1 = "CMDHSTR"
+L0_0 = L0_0(L1_1)
+L1_1 = IsPidExcluded
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.GetParentProcInfo
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L2_2 = L1_1.image_path
+  end
+elseif L2_2 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = L1_1.image_path
+L3_3 = string
+L3_3 = L3_3.lower
+L5_5 = L2_2
+L4_4 = L2_2.match
+L5_5 = L4_4(L5_5, "([^\\]+)$")
+L3_3 = L3_3(L4_4, L5_5, L4_4(L5_5, "([^\\]+)$"))
+L4_4 = {}
+L4_4["ccmexec.exe"] = true
+L4_4["gpscript.exe"] = true
+L4_4["mpcmdrun.exe"] = true
+L4_4["mssense.exe"] = true
+L4_4["senseir.exe"] = true
+L5_5 = L4_4[L3_3]
+if L5_5 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = mp
+L5_5 = L5_5.GetProcessCommandLine
+L5_5 = L5_5(L1_1.ppid)
+if L5_5 == "" or L5_5 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetParentProcInfo)()
-if l_0_1 == nil or l_0_1.ppid == nil or l_0_1.image_path == nil then
+L5_5 = string.lower(L5_5)
+if L5_5:find("\\nessus", 1, true) then
   return mp.CLEAN
 end
-local l_0_2 = l_0_1.image_path
-local l_0_3 = (string.lower)(l_0_2:match("([^\\]+)$"))
-local l_0_4 = {}
-l_0_4["ccmexec.exe"] = true
-l_0_4["gpscript.exe"] = true
-l_0_4["mpcmdrun.exe"] = true
-l_0_4["mssense.exe"] = true
-l_0_4["senseir.exe"] = true
-if l_0_4[l_0_3] then
-  return mp.CLEAN
-end
-local l_0_5 = (mp.GetProcessCommandLine)(l_0_1.ppid)
-if l_0_5 == "" or l_0_5 == nil then
-  return mp.CLEAN
-end
-l_0_5 = (string.lower)(l_0_5)
-if l_0_5:find("\\nessus", 1, true) then
-  return mp.CLEAN
-end
-local l_0_6 = GetTacticsTableForPid(l_0_1.ppid)
-if l_0_6.winrshost_childproc or l_0_6.wsmprovhost_childproc or l_0_6.wmi_childproc or l_0_6.remotedropexe_childproc or l_0_6.python_childproc or l_0_6.rundll32_childproc or l_0_6.wscript_childproc or l_0_6.cscript_childproc or l_0_6.mshta_childproc or l_0_6.webshell_childproc or l_0_6.exec_remotedroppedscript_a then
+if GetTacticsTableForPid(L1_1.ppid).winrshost_childproc or GetTacticsTableForPid(L1_1.ppid).wsmprovhost_childproc or GetTacticsTableForPid(L1_1.ppid).wmi_childproc or GetTacticsTableForPid(L1_1.ppid).remotedropexe_childproc or GetTacticsTableForPid(L1_1.ppid).python_childproc or GetTacticsTableForPid(L1_1.ppid).rundll32_childproc or GetTacticsTableForPid(L1_1.ppid).wscript_childproc or GetTacticsTableForPid(L1_1.ppid).cscript_childproc or GetTacticsTableForPid(L1_1.ppid).mshta_childproc or GetTacticsTableForPid(L1_1.ppid).webshell_childproc or GetTacticsTableForPid(L1_1.ppid).exec_remotedroppedscript_a then
   return mp.INFECTED
 end
-TrackPidAndTechnique(l_0_0, "T1003", "shadowcopy_access")
-if IsDetectionThresholdMet(l_0_0) then
+TrackPidAndTechnique(L0_0, "T1003", "shadowcopy_access")
+if IsDetectionThresholdMet(L0_0) then
   return mp.INFECTED
 end
 return mp.LOWFI
-

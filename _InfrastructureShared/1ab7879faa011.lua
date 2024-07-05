@@ -1,149 +1,287 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1ab7879faa011 
-
--- params : ...
--- function num : 0
-(mp.readprotection)(false)
-if (hstrlog[1]).matched then
-  local l_0_0 = (pe.mmap_va_nofastfail)((hstrlog[1]).VA + 4, 4)
-  local l_0_1 = (pe.mmap_va_nofastfail)((hstrlog[1]).VA + 9, 4)
-  ;
-  (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", (string.byte)(l_0_0, 4), (string.byte)(l_0_0, 3), (string.byte)(l_0_0, 2), (string.byte)(l_0_0, 1), (string.byte)(l_0_1, 4), (string.byte)(l_0_1, 3), (string.byte)(l_0_1, 2), (string.byte)(l_0_1, 1)))
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = pe
+  L0_0 = L0_0.mmap_va_nofastfail
+  L1_1 = hstrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.VA
+  L1_1 = L1_1 + 4
+  L0_0 = L0_0(L1_1, 4)
+  L1_1 = pe
+  L1_1 = L1_1.mmap_va_nofastfail
+  L1_1 = L1_1(hstrlog[1].VA + 9, 4)
+  mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1), string.byte(L1_1, 4), string.byte(L1_1, 3), string.byte(L1_1, 2), string.byte(L1_1, 1)))
 else
-  do
-    if (hstrlog[2]).matched then
-      local l_0_2 = (pe.mmap_va_nofastfail)((hstrlog[2]).VA + 4, 4)
-      local l_0_3 = (pe.mmap_va_nofastfail)((hstrlog[2]).VA + 9, 4)
-      ;
-      (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", (string.byte)(l_0_2, 4), (string.byte)(l_0_2, 3), (string.byte)(l_0_2, 2), (string.byte)(l_0_2, 1), (string.byte)(l_0_3, 4), (string.byte)(l_0_3, 3), (string.byte)(l_0_3, 2), (string.byte)(l_0_3, 1)))
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = pe
+    L0_0 = L0_0.mmap_va_nofastfail
+    L1_1 = hstrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.VA
+    L1_1 = L1_1 + 4
+    L0_0 = L0_0(L1_1, 4)
+    L1_1 = pe
+    L1_1 = L1_1.mmap_va_nofastfail
+    L1_1 = L1_1(hstrlog[2].VA + 9, 4)
+    mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1), string.byte(L1_1, 4), string.byte(L1_1, 3), string.byte(L1_1, 2), string.byte(L1_1, 1)))
+  else
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = pe
+      L0_0 = L0_0.mmap_va_nofastfail
+      L1_1 = hstrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.VA
+      L1_1 = L1_1 - 1
+      L0_0 = L0_0(L1_1, 4)
+      L1_1 = pe
+      L1_1 = L1_1.mmap_va_nofastfail
+      L1_1 = L1_1(hstrlog[3].VA + 4, 4)
+      mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1), string.byte(L1_1, 4), string.byte(L1_1, 3), string.byte(L1_1, 2), string.byte(L1_1, 1)))
     else
-      do
-        if (hstrlog[3]).matched then
-          local l_0_4 = (pe.mmap_va_nofastfail)((hstrlog[3]).VA - 1, 4)
-          local l_0_5 = (pe.mmap_va_nofastfail)((hstrlog[3]).VA + 4, 4)
-          ;
-          (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", (string.byte)(l_0_4, 4), (string.byte)(l_0_4, 3), (string.byte)(l_0_4, 2), (string.byte)(l_0_4, 1), (string.byte)(l_0_5, 4), (string.byte)(l_0_5, 3), (string.byte)(l_0_5, 2), (string.byte)(l_0_5, 1)))
+      L0_0 = hstrlog
+      L0_0 = L0_0[4]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = pe
+        L0_0 = L0_0.mmap_va_nofastfail
+        L1_1 = hstrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.VA
+        L1_1 = L1_1 - 1
+        L0_0 = L0_0(L1_1, 4)
+        L1_1 = pe
+        L1_1 = L1_1.mmap_va_nofastfail
+        L1_1 = L1_1(hstrlog[4].VA + 4, 4)
+        mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1), string.byte(L1_1, 4), string.byte(L1_1, 3), string.byte(L1_1, 2), string.byte(L1_1, 1)))
+      else
+        L0_0 = hstrlog
+        L0_0 = L0_0[5]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = pe
+          L0_0 = L0_0.mmap_va_nofastfail
+          L1_1 = hstrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.VA
+          L1_1 = L1_1 - 1
+          L0_0 = L0_0(L1_1, 4)
+          L1_1 = pe
+          L1_1 = L1_1.mmap_va_nofastfail
+          L1_1 = L1_1(hstrlog[5].VA + 4, 4)
+          mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1), string.byte(L1_1, 4), string.byte(L1_1, 3), string.byte(L1_1, 2), string.byte(L1_1, 1)))
         else
-          do
-            if (hstrlog[4]).matched then
-              local l_0_6 = (pe.mmap_va_nofastfail)((hstrlog[4]).VA - 1, 4)
-              local l_0_7 = (pe.mmap_va_nofastfail)((hstrlog[4]).VA + 4, 4)
-              ;
-              (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", (string.byte)(l_0_6, 4), (string.byte)(l_0_6, 3), (string.byte)(l_0_6, 2), (string.byte)(l_0_6, 1), (string.byte)(l_0_7, 4), (string.byte)(l_0_7, 3), (string.byte)(l_0_7, 2), (string.byte)(l_0_7, 1)))
+          L0_0 = hstrlog
+          L0_0 = L0_0[6]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = pe
+            L0_0 = L0_0.mmap_va_nofastfail
+            L1_1 = hstrlog
+            L1_1 = L1_1[6]
+            L1_1 = L1_1.VA
+            L1_1 = L1_1 - 1
+            L0_0 = L0_0(L1_1, 4)
+            L1_1 = pe
+            L1_1 = L1_1.mmap_va_nofastfail
+            L1_1 = L1_1(hstrlog[6].VA + 4, 4)
+            mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1), string.byte(L1_1, 4), string.byte(L1_1, 3), string.byte(L1_1, 2), string.byte(L1_1, 1)))
+          else
+            L0_0 = hstrlog
+            L0_0 = L0_0[7]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = pe
+              L0_0 = L0_0.mmap_va_nofastfail
+              L1_1 = hstrlog
+              L1_1 = L1_1[7]
+              L1_1 = L1_1.VA
+              L1_1 = L1_1 - 1
+              L0_0 = L0_0(L1_1, 4)
+              L1_1 = pe
+              L1_1 = L1_1.mmap_va_nofastfail
+              L1_1 = L1_1(hstrlog[7].VA + 4, 4)
+              mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1), string.byte(L1_1, 4), string.byte(L1_1, 3), string.byte(L1_1, 2), string.byte(L1_1, 1)))
             else
-              do
-                if (hstrlog[5]).matched then
-                  local l_0_8 = (pe.mmap_va_nofastfail)((hstrlog[5]).VA - 1, 4)
-                  local l_0_9 = (pe.mmap_va_nofastfail)((hstrlog[5]).VA + 4, 4)
-                  ;
-                  (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", (string.byte)(l_0_8, 4), (string.byte)(l_0_8, 3), (string.byte)(l_0_8, 2), (string.byte)(l_0_8, 1), (string.byte)(l_0_9, 4), (string.byte)(l_0_9, 3), (string.byte)(l_0_9, 2), (string.byte)(l_0_9, 1)))
+              L0_0 = hstrlog
+              L0_0 = L0_0[8]
+              L0_0 = L0_0.matched
+              if L0_0 then
+                L0_0 = mp
+                L0_0 = L0_0.readfile
+                L1_1 = pe
+                L1_1 = L1_1.foffset_va
+                L1_1 = L1_1(hstrlog[8].VA - 4)
+                L0_0 = L0_0(L1_1, 4)
+                L1_1 = mp
+                L1_1 = L1_1.set_mpattribute
+                L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
+              else
+                L0_0 = hstrlog
+                L0_0 = L0_0[9]
+                L0_0 = L0_0.matched
+                if L0_0 then
+                  L0_0 = mp
+                  L0_0 = L0_0.readfile
+                  L1_1 = pe
+                  L1_1 = L1_1.foffset_va
+                  L1_1 = L1_1(hstrlog[9].VA - 4)
+                  L0_0 = L0_0(L1_1, 4)
+                  L1_1 = mp
+                  L1_1 = L1_1.set_mpattribute
+                  L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
                 else
-                  do
-                    if (hstrlog[6]).matched then
-                      local l_0_10 = (pe.mmap_va_nofastfail)((hstrlog[6]).VA - 1, 4)
-                      local l_0_11 = (pe.mmap_va_nofastfail)((hstrlog[6]).VA + 4, 4)
-                      ;
-                      (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", (string.byte)(l_0_10, 4), (string.byte)(l_0_10, 3), (string.byte)(l_0_10, 2), (string.byte)(l_0_10, 1), (string.byte)(l_0_11, 4), (string.byte)(l_0_11, 3), (string.byte)(l_0_11, 2), (string.byte)(l_0_11, 1)))
+                  L0_0 = hstrlog
+                  L0_0 = L0_0[10]
+                  L0_0 = L0_0.matched
+                  if L0_0 then
+                    L0_0 = mp
+                    L0_0 = L0_0.readfile
+                    L1_1 = pe
+                    L1_1 = L1_1.foffset_va
+                    L1_1 = L1_1(hstrlog[10].VA - 4)
+                    L0_0 = L0_0(L1_1, 4)
+                    L1_1 = mp
+                    L1_1 = L1_1.set_mpattribute
+                    L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
+                  else
+                    L0_0 = hstrlog
+                    L0_0 = L0_0[11]
+                    L0_0 = L0_0.matched
+                    if L0_0 then
+                      L0_0 = mp
+                      L0_0 = L0_0.readfile
+                      L1_1 = pe
+                      L1_1 = L1_1.foffset_va
+                      L1_1 = L1_1(hstrlog[11].VA + 10)
+                      L0_0 = L0_0(L1_1, 4)
+                      L1_1 = mp
+                      L1_1 = L1_1.set_mpattribute
+                      L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
                     else
-                      do
-                        if (hstrlog[7]).matched then
-                          local l_0_12 = (pe.mmap_va_nofastfail)((hstrlog[7]).VA - 1, 4)
-                          local l_0_13 = (pe.mmap_va_nofastfail)((hstrlog[7]).VA + 4, 4)
-                          ;
-                          (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", (string.byte)(l_0_12, 4), (string.byte)(l_0_12, 3), (string.byte)(l_0_12, 2), (string.byte)(l_0_12, 1), (string.byte)(l_0_13, 4), (string.byte)(l_0_13, 3), (string.byte)(l_0_13, 2), (string.byte)(l_0_13, 1)))
+                      L0_0 = hstrlog
+                      L0_0 = L0_0[12]
+                      L0_0 = L0_0.matched
+                      if L0_0 then
+                        L0_0 = mp
+                        L0_0 = L0_0.readfile
+                        L1_1 = pe
+                        L1_1 = L1_1.foffset_va
+                        L1_1 = L1_1(hstrlog[12].VA + 11)
+                        L0_0 = L0_0(L1_1, 4)
+                        L1_1 = mp
+                        L1_1 = L1_1.set_mpattribute
+                        L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
+                      else
+                        L0_0 = hstrlog
+                        L0_0 = L0_0[13]
+                        L0_0 = L0_0.matched
+                        if L0_0 then
+                          L0_0 = mp
+                          L0_0 = L0_0.readfile
+                          L1_1 = pe
+                          L1_1 = L1_1.foffset_va
+                          L1_1 = L1_1(hstrlog[13].VA + 10)
+                          L0_0 = L0_0(L1_1, 4)
+                          L1_1 = mp
+                          L1_1 = L1_1.set_mpattribute
+                          L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
                         else
-                          do
-                            if (hstrlog[8]).matched then
-                              local l_0_14 = (mp.readfile)((pe.foffset_va)((hstrlog[8]).VA - 4), 4)
-                              ;
-                              (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_14, 4), (string.byte)(l_0_14, 3), (string.byte)(l_0_14, 2), (string.byte)(l_0_14, 1)))
+                          L0_0 = hstrlog
+                          L0_0 = L0_0[14]
+                          L0_0 = L0_0.matched
+                          if L0_0 then
+                            L0_0 = mp
+                            L0_0 = L0_0.readfile
+                            L1_1 = pe
+                            L1_1 = L1_1.foffset_va
+                            L1_1 = L1_1(hstrlog[14].VA + 4)
+                            L0_0 = L0_0(L1_1, 4)
+                            L1_1 = mp
+                            L1_1 = L1_1.set_mpattribute
+                            L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
+                          else
+                            L0_0 = hstrlog
+                            L0_0 = L0_0[15]
+                            L0_0 = L0_0.matched
+                            if L0_0 then
+                              L0_0 = mp
+                              L0_0 = L0_0.readfile
+                              L1_1 = pe
+                              L1_1 = L1_1.foffset_va
+                              L1_1 = L1_1(hstrlog[15].VA + 2)
+                              L0_0 = L0_0(L1_1, 4)
+                              L1_1 = mp
+                              L1_1 = L1_1.set_mpattribute
+                              L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
                             else
-                              do
-                                if (hstrlog[9]).matched then
-                                  local l_0_15 = (mp.readfile)((pe.foffset_va)((hstrlog[9]).VA - 4), 4)
-                                  ;
-                                  (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_15, 4), (string.byte)(l_0_15, 3), (string.byte)(l_0_15, 2), (string.byte)(l_0_15, 1)))
+                              L0_0 = hstrlog
+                              L0_0 = L0_0[16]
+                              L0_0 = L0_0.matched
+                              if L0_0 then
+                                L0_0 = mp
+                                L0_0 = L0_0.readfile
+                                L1_1 = pe
+                                L1_1 = L1_1.foffset_va
+                                L1_1 = L1_1(hstrlog[16].VA - 4)
+                                L0_0 = L0_0(L1_1, 4)
+                                L1_1 = mp
+                                L1_1 = L1_1.set_mpattribute
+                                L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
+                              else
+                                L0_0 = hstrlog
+                                L0_0 = L0_0[17]
+                                L0_0 = L0_0.matched
+                                if L0_0 then
+                                  L0_0 = mp
+                                  L0_0 = L0_0.readfile
+                                  L1_1 = pe
+                                  L1_1 = L1_1.foffset_va
+                                  L1_1 = L1_1(hstrlog[17].VA + 4)
+                                  L0_0 = L0_0(L1_1, 4)
+                                  L1_1 = mp
+                                  L1_1 = L1_1.set_mpattribute
+                                  L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
                                 else
-                                  do
-                                    if (hstrlog[10]).matched then
-                                      local l_0_16 = (mp.readfile)((pe.foffset_va)((hstrlog[10]).VA - 4), 4)
-                                      ;
-                                      (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_16, 4), (string.byte)(l_0_16, 3), (string.byte)(l_0_16, 2), (string.byte)(l_0_16, 1)))
-                                    else
-                                      do
-                                        if (hstrlog[11]).matched then
-                                          local l_0_17 = (mp.readfile)((pe.foffset_va)((hstrlog[11]).VA + 10), 4)
-                                          ;
-                                          (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_17, 4), (string.byte)(l_0_17, 3), (string.byte)(l_0_17, 2), (string.byte)(l_0_17, 1)))
-                                        else
-                                          do
-                                            if (hstrlog[12]).matched then
-                                              local l_0_18 = (mp.readfile)((pe.foffset_va)((hstrlog[12]).VA + 11), 4)
-                                              ;
-                                              (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_18, 4), (string.byte)(l_0_18, 3), (string.byte)(l_0_18, 2), (string.byte)(l_0_18, 1)))
-                                            else
-                                              do
-                                                if (hstrlog[13]).matched then
-                                                  local l_0_19 = (mp.readfile)((pe.foffset_va)((hstrlog[13]).VA + 10), 4)
-                                                  ;
-                                                  (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_19, 4), (string.byte)(l_0_19, 3), (string.byte)(l_0_19, 2), (string.byte)(l_0_19, 1)))
-                                                else
-                                                  do
-                                                    if (hstrlog[14]).matched then
-                                                      local l_0_20 = (mp.readfile)((pe.foffset_va)((hstrlog[14]).VA + 4), 4)
-                                                      ;
-                                                      (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_20, 4), (string.byte)(l_0_20, 3), (string.byte)(l_0_20, 2), (string.byte)(l_0_20, 1)))
-                                                    else
-                                                      do
-                                                        if (hstrlog[15]).matched then
-                                                          local l_0_21 = (mp.readfile)((pe.foffset_va)((hstrlog[15]).VA + 2), 4)
-                                                          ;
-                                                          (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_21, 4), (string.byte)(l_0_21, 3), (string.byte)(l_0_21, 2), (string.byte)(l_0_21, 1)))
-                                                        else
-                                                          do
-                                                            if (hstrlog[16]).matched then
-                                                              local l_0_22 = (mp.readfile)((pe.foffset_va)((hstrlog[16]).VA - 4), 4)
-                                                              ;
-                                                              (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_22, 4), (string.byte)(l_0_22, 3), (string.byte)(l_0_22, 2), (string.byte)(l_0_22, 1)))
-                                                            else
-                                                              do
-                                                                if (hstrlog[17]).matched then
-                                                                  local l_0_23 = (mp.readfile)((pe.foffset_va)((hstrlog[17]).VA + 4), 4)
-                                                                  ;
-                                                                  (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_23, 4), (string.byte)(l_0_23, 3), (string.byte)(l_0_23, 2), (string.byte)(l_0_23, 1)))
-                                                                else
-                                                                  do
-                                                                    if (hstrlog[18]).matched then
-                                                                      local l_0_24 = (mp.readfile)((pe.foffset_va)((hstrlog[18]).VA + 4), 4)
-                                                                      ;
-                                                                      (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_24, 4), (string.byte)(l_0_24, 3), (string.byte)(l_0_24, 2), (string.byte)(l_0_24, 1)))
-                                                                    else
-                                                                      do
-                                                                        do
-                                                                          if (hstrlog[19]).matched then
-                                                                            local l_0_25 = (mp.readfile)((pe.foffset_va)((hstrlog[19]).VA - 4), 4)
-                                                                            ;
-                                                                            (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, (string.byte)(l_0_25, 4), (string.byte)(l_0_25, 3), (string.byte)(l_0_25, 2), (string.byte)(l_0_25, 1)))
-                                                                          end
-                                                                          return mp.CLEAN
-                                                                        end
-                                                                      end
-                                                                    end
-                                                                  end
-                                                                end
-                                                              end
-                                                            end
-                                                          end
-                                                        end
-                                                      end
-                                                    end
-                                                  end
-                                                end
-                                              end
-                                            end
-                                          end
-                                        end
-                                      end
+                                  L0_0 = hstrlog
+                                  L0_0 = L0_0[18]
+                                  L0_0 = L0_0.matched
+                                  if L0_0 then
+                                    L0_0 = mp
+                                    L0_0 = L0_0.readfile
+                                    L1_1 = pe
+                                    L1_1 = L1_1.foffset_va
+                                    L1_1 = L1_1(hstrlog[18].VA + 4)
+                                    L0_0 = L0_0(L1_1, 4)
+                                    L1_1 = mp
+                                    L1_1 = L1_1.set_mpattribute
+                                    L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
+                                  else
+                                    L0_0 = hstrlog
+                                    L0_0 = L0_0[19]
+                                    L0_0 = L0_0.matched
+                                    if L0_0 then
+                                      L0_0 = mp
+                                      L0_0 = L0_0.readfile
+                                      L1_1 = pe
+                                      L1_1 = L1_1.foffset_va
+                                      L1_1 = L1_1(hstrlog[19].VA - 4)
+                                      L0_0 = L0_0(L1_1, 4)
+                                      L1_1 = mp
+                                      L1_1 = L1_1.set_mpattribute
+                                      L1_1(string.format("HSTR:Obfuscator.PN!crc_key.3_%02X%02X%02X%02X_%02X%02X%02X%02X", 0, 0, 0, 0, string.byte(L0_0, 4), string.byte(L0_0, 3), string.byte(L0_0, 2), string.byte(L0_0, 1)))
                                     end
                                   end
                                 end
@@ -163,4 +301,6 @@ else
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

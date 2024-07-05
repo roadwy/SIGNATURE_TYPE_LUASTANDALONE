@@ -1,10 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/247fb5f066ac 
-
--- params : ...
--- function num : 0
-if pevars.sigaddr == pehdr.ImageBase + pehdr.AddressOfEntryPoint then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2
+L0_0 = pevars
+L0_0 = L0_0.sigaddr
+L1_1 = pehdr
+L1_1 = L1_1.ImageBase
+L2_2 = pehdr
+L2_2 = L2_2.AddressOfEntryPoint
+L1_1 = L1_1 + L2_2
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

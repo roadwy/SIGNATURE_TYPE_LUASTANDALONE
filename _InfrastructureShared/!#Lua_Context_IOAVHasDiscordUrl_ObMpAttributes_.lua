@@ -1,19 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_IOAVHasDiscordUrl_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.IOAVGetDownloadUrl)()
-if l_0_0:find("cdn.discordapp.com/attachments/", 1, true) then
-  local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-  local l_0_2 = "IOAVHasDiscordUrl"
-  local l_0_3 = (MpCommon.QueryPersistContext)(l_0_1, l_0_2)
-  if not l_0_3 then
-    (MpCommon.AppendPersistContext)(l_0_1, l_0_2, 100)
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.IOAVGetDownloadUrl
+L0_0 = L0_0()
+L2_2 = L0_0
+L1_1 = L0_0.find
+L1_1 = L1_1(L2_2, "cdn.discordapp.com/attachments/", 1, true)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.getfilename
+  L2_2 = mp
+  L2_2 = L2_2.FILEPATH_QUERY_LOWERCASE
+  L1_1 = L1_1(L2_2)
+  L2_2 = "IOAVHasDiscordUrl"
+  if not MpCommon.QueryPersistContext(L1_1, L2_2) then
+    MpCommon.AppendPersistContext(L1_1, L2_2, 100)
   end
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,32 +1,54 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d2b3069281a2 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).utf8p2 ~= nil then
-  local l_0_0 = (string.lower)((this_sigattrlog[5]).utf8p2)
-  local l_0_1 = l_0_0:match("/c ([^\\].*)")
-  if l_0_1 ~= nil and (sysio.IsFileExists)(l_0_1) then
-    (bm.add_related_file)(l_0_1)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = this_sigattrlog
+L0_0 = L0_0[5]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[5]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[5]
+    L1_1 = L1_1.utf8p2
+    L0_0 = L0_0(L1_1)
+    L1_1 = L0_0.match
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 ~= nil then
+      if L2_2 then
+        L2_2(L3_3)
+      end
+    end
   end
 end
-do
-  if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).utf8p2 ~= nil then
-    local l_0_2 = (string.lower)((this_sigattrlog[7]).utf8p2)
-    if l_0_2 ~= nil then
-      local l_0_3 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-      for l_0_7,l_0_8 in ipairs(l_0_3) do
-        l_0_8 = (mp.ContextualExpandEnvironmentVariables)(l_0_8)
-        if (sysio.IsFileExists)(l_0_8) then
-          (bm.add_related_file)(l_0_8)
+L0_0 = this_sigattrlog
+L0_0 = L0_0[7]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[7]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[7]
+    L1_1 = L1_1.utf8p2
+    L0_0 = L0_0(L1_1)
+    if L0_0 ~= nil then
+      L1_1 = mp
+      L1_1 = L1_1.GetExecutablesFromCommandLine
+      L1_1 = L1_1(L2_2)
+      for L5_5, L6_6 in L2_2(L3_3) do
+        L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+        if sysio.IsFileExists(L6_6) then
+          bm.add_related_file(L6_6)
         end
       end
     end
   end
-  do
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    return l_0_2
-  end
 end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

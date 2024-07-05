@@ -1,33 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5141b91458bb 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[3]).matched then
-  do
-    if (this_sigattrlog[3]).utf8p1 ~= nil then
-      local l_0_0, l_0_2, l_0_4 = nil, nil
-    end
-    do
-      if (this_sigattrlog[3]).np2 ~= nil then
-        local l_0_1, l_0_3, l_0_5 = , (this_sigattrlog[3]).np2
-      end
-      -- DECOMPILER ERROR at PC21: Confused about usage of register: R1 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC23: Confused about usage of register: R1 in 'UnsetPending'
-
-      if l_0_3 == 3 or l_0_3 == 0 then
-        return mp.CLEAN
-      end
-      local l_0_6 = nil
-      -- DECOMPILER ERROR at PC35: Confused about usage of register: R1 in 'UnsetPending'
-
-      ;
-      (nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), {useragent = (nri.GetHttpRequestHeader)("User-Agent"), SmartScreen_category = l_0_6, SmartScreen_determination = l_0_3})
-      return mp.INFECTED
-    end
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L0_0 = L2_2.utf8p1
+  end
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.np2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L1_1 = L2_2.np2
   end
 end
-
+if not L0_0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(L0_0)
+L0_0 = L2_2
+if L1_1 == 3 or L1_1 == 0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+if L0_0 == "customblocklist" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = {}
+L2_2.useragent = nri.GetHttpRequestHeader("User-Agent")
+L2_2.SmartScreen_category = L0_0
+L2_2.SmartScreen_determination = L1_1
+nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L2_2)
+return mp.INFECTED

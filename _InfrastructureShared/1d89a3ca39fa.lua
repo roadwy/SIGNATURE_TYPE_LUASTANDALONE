@@ -1,77 +1,104 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1d89a3ca39fa 
-
--- params : ...
--- function num : 0
-if ((pe.mmap_va)(pevars.sigaddr + 1, 1) == "\255" or (pe.mmap_va)(pevars.sigaddr + 1, 1) == "\254") and ((pe.mmap_va)(pevars.sigaddr + 11, 1) == "\001" or (pe.mmap_va)(pevars.sigaddr + 11, 1) == "\016" or (pe.mmap_va)(pevars.sigaddr + 11, 1) == "\000") then
-  (pe.mmap_patch_va)(pevars.sigaddr + 6, "")
-  ;
-  (pe.mmap_patch_va)(pevars.sigaddr + 12, "\235")
-  ;
-  (mp.set_mpattribute)("FOPEX:Deep_Analysis_Disable_APILimit")
-  local l_0_0 = 256
-  local l_0_1 = (pe.mmap_va)(pevars.sigaddr, l_0_0)
-  local l_0_2 = (string.find)(l_0_1, "h@B\015%z")
-  local l_0_3 = (string.find)(l_0_1, "`\174\n%z")
-  local l_0_4 = (string.find)(l_0_1, "j%z")
-  local l_0_5 = (string.find)(l_0_1, "j\002", 1, true)
-  local l_0_6 = (string.find)(l_0_1, "\255%z%z%zj")
-  local l_0_7 = (string.find)(l_0_1, "\255%z%z%zh")
-  local l_0_8 = (string.find)(l_0_1, "j\001", 1, true)
-  local l_0_9 = (string.find)(l_0_1, "h\001%z\031%z")
-  local l_0_10 = (string.find)(l_0_1, "h\132\003%z%z")
-  if l_0_2 and l_0_3 then
-    for l_0_14 = 1, 256 - l_0_2 do
-      if (pe.mmap_va)(pevars.sigaddr + l_0_14 + l_0_3, 3) == "P\255\021" then
-        (pe.mmap_patch_va)(pevars.sigaddr + l_0_14 + l_0_3 + 1, "YYY\144")
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 1
+L0_0 = L0_0(L1_1, 1)
+if L0_0 ~= "\255" then
+  L0_0 = pe
+  L0_0 = L0_0.mmap_va
+  L1_1 = pevars
+  L1_1 = L1_1.sigaddr
+  L1_1 = L1_1 + 1
+  L0_0 = L0_0(L1_1, 1)
+elseif L0_0 == "\254" then
+  L0_0 = pe
+  L0_0 = L0_0.mmap_va
+  L1_1 = pevars
+  L1_1 = L1_1.sigaddr
+  L1_1 = L1_1 + 11
+  L0_0 = L0_0(L1_1, 1)
+  if L0_0 ~= "\001" then
+    L0_0 = pe
+    L0_0 = L0_0.mmap_va
+    L1_1 = pevars
+    L1_1 = L1_1.sigaddr
+    L1_1 = L1_1 + 11
+    L0_0 = L0_0(L1_1, 1)
+    if L0_0 ~= "\016" then
+      L0_0 = pe
+      L0_0 = L0_0.mmap_va
+      L1_1 = pevars
+      L1_1 = L1_1.sigaddr
+      L1_1 = L1_1 + 11
+      L0_0 = L0_0(L1_1, 1)
+    end
+  elseif L0_0 == "\000" then
+    L0_0 = pe
+    L0_0 = L0_0.mmap_patch_va
+    L1_1 = pevars
+    L1_1 = L1_1.sigaddr
+    L1_1 = L1_1 + 6
+    L0_0(L1_1, "\144\144")
+    L0_0 = pe
+    L0_0 = L0_0.mmap_patch_va
+    L1_1 = pevars
+    L1_1 = L1_1.sigaddr
+    L1_1 = L1_1 + 12
+    L0_0(L1_1, "\235")
+    L0_0 = mp
+    L0_0 = L0_0.set_mpattribute
+    L1_1 = "FOPEX:Deep_Analysis_Disable_APILimit"
+    L0_0(L1_1)
+    L0_0 = 256
+    L1_1 = pe
+    L1_1 = L1_1.mmap_va
+    L1_1 = L1_1(pevars.sigaddr, L0_0)
+    if string.find(L1_1, "h@B\015%z") and string.find(L1_1, "`\174\n%z") then
+      for _FORV_14_ = 1, 256 - string.find(L1_1, "h@B\015%z") do
+        if pe.mmap_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "`\174\n%z"), 3) == "P\255\021" then
+          pe.mmap_patch_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "`\174\n%z") + 1, "YYY\144\144\144")
+        end
+      end
+      if string.find(L1_1, "j%z") and string.find(L1_1, "j\002", 1, true) then
+        for _FORV_14_ = 1, 48 do
+          if pe.mmap_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "j\002", 1, true), 3) == "\000\255\021" then
+            pe.mmap_patch_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "j\002", 1, true) + 1, "YYY\144\144\144")
+          end
+        end
+      end
+      if (string.find(L1_1, "\255%z%z%zj") or string.find(L1_1, "\255%z%z%zh")) and string.find(L1_1, "j\001", 1, true) then
+        for _FORV_14_ = 1, 48 do
+          if pe.mmap_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "j\001", 1, true), 3) == "\000\255\021" then
+            pe.mmap_patch_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "j\001", 1, true) + 1, "YYY\144\144\144")
+          end
+        end
+      end
+      if string.find(L1_1, "h\001%z\031%z") then
+        for _FORV_14_ = 1, 48 do
+          if pe.mmap_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\001%z\031%z"), 3) == "\000\255\021" then
+            pe.mmap_patch_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\001%z\031%z") + 1, "YYY\144\144\144")
+          end
+        end
+      end
+      if string.find(L1_1, "h\132\003%z%z") then
+        for _FORV_14_ = 1, 96 do
+          if pe.mmap_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\132\003%z%z"), 1) == "\232" then
+            pe.mmap_patch_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\132\003%z%z"), "\144\144\144\144\144")
+          end
+          if pe.mmap_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\132\003%z%z"), 3) == "Q\255\021" then
+            pe.mmap_patch_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\132\003%z%z") + 1, "YY\144\144\144\144")
+          end
+          if pe.mmap_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\132\003%z%z"), 3) == "\000\255\021" then
+            pe.mmap_patch_va(pevars.sigaddr + _FORV_14_ + string.find(L1_1, "h\132\003%z%z") + 1, "\144\144\144\144\144\144")
+          end
+        end
       end
     end
-    if l_0_4 and l_0_5 then
-      for l_0_18 = 1, 48 do
-        if (pe.mmap_va)(pevars.sigaddr + l_0_18 + l_0_5, 3) == "\000\255\021" then
-          (pe.mmap_patch_va)(pevars.sigaddr + l_0_18 + l_0_5 + 1, "YYY\144")
-        end
-      end
-    end
-    do
-      if (l_0_6 or l_0_7) and l_0_8 then
-        for l_0_22 = 1, 48 do
-          if (pe.mmap_va)(pevars.sigaddr + l_0_22 + l_0_8, 3) == "\000\255\021" then
-            (pe.mmap_patch_va)(pevars.sigaddr + l_0_22 + l_0_8 + 1, "YYY\144")
-          end
-        end
-      end
-      do
-        if l_0_9 then
-          for l_0_26 = 1, 48 do
-            if (pe.mmap_va)(pevars.sigaddr + l_0_26 + l_0_9, 3) == "\000\255\021" then
-              (pe.mmap_patch_va)(pevars.sigaddr + l_0_26 + l_0_9 + 1, "YYY\144")
-            end
-          end
-        end
-        do
-          if l_0_10 then
-            for l_0_30 = 1, 96 do
-              if (pe.mmap_va)(pevars.sigaddr + l_0_30 + l_0_10, 1) == "\232" then
-                (pe.mmap_patch_va)(pevars.sigaddr + l_0_30 + l_0_10, "\144")
-              end
-              if (pe.mmap_va)(pevars.sigaddr + l_0_30 + l_0_10, 3) == "Q\255\021" then
-                (pe.mmap_patch_va)(pevars.sigaddr + l_0_30 + l_0_10 + 1, "YY")
-              end
-              if (pe.mmap_va)(pevars.sigaddr + l_0_30 + l_0_10, 3) == "\000\255\021" then
-                (pe.mmap_patch_va)(pevars.sigaddr + l_0_30 + l_0_10 + 1, "")
-              end
-            end
-          end
-          do
-            do
-              do return mp.INFECTED end
-              return mp.CLEAN
-            end
-          end
-        end
-      end
-    end
+    return _FOR_.INFECTED
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

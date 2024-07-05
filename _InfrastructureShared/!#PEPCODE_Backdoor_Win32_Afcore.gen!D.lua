@@ -1,25 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Backdoor_Win32_Afcore.gen!D 
-
--- params : ...
--- function num : 0
-if ((pehdr.DataDirectory)[2]).RVA ~= 8256 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.RVA
+if L0_0 ~= 8256 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[2]).Size >= 80 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 >= 80 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[3]).RVA ~= 16384 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[3]
+L0_0 = L0_0.RVA
+if L0_0 ~= 16384 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[3]).Size <= 98304 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[3]
+L0_0 = L0_0.Size
+if L0_0 <= 98304 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[13]).RVA ~= 8192 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[13]
+L0_0 = L0_0.RVA
+if L0_0 ~= 8192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[13]).Size >= 80 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[13]
+L0_0 = L0_0.Size
+if L0_0 >= 80 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

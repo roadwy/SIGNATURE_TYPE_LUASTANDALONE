@@ -1,29 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Trojan_Win32_BlockWebExecContent.B_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScanSource)()
-if l_0_0 ~= mp.SCANSOURCE_IOAV_WEB then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetScanSource
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.SCANSOURCE_IOAV_WEB
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.IOAVGetDownloadUrl
+L1_1 = L1_1()
+if L1_1 == nil or L1_1 == "" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.match
+L2_2 = L2_2(string.lower(L1_1), "https?://([^/]+)/")
+if L2_2 == nil or L2_2 == "" then
   return mp.CLEAN
 end
-local l_0_1 = (mp.IOAVGetDownloadUrl)()
-if l_0_1 == nil or l_0_1 == "" then
-  return mp.CLEAN
+if string.find(L2_2, "dropbox%.com") then
 end
-local l_0_2 = (string.match)((string.lower)(l_0_1), "https?://([^/]+)/")
-if l_0_2 == nil or l_0_2 == "" then
-  return mp.CLEAN
+if string.find(L2_2, "drive%.google%.com") then
 end
-local l_0_3 = false
-if (string.find)(l_0_2, "dropbox%.com") then
-  l_0_3 = true
-end
-if (string.find)(l_0_2, "drive%.google%.com") then
-  l_0_3 = true
-end
-if l_0_3 == false then
+if true == false then
   return mp.CLEAN
 end
 return mp.INFECTED
-

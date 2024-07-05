@@ -1,19 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#999980_Last_HighRiskReferrer 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_SCANREASON)
-do
-  if l_0_0 and l_0_1 ~= mp.SCANREASON_VALIDATION_PRESCAN then
-    local l_0_2, l_0_3 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_REFERRERURL)
-    if l_0_2 and ((string.match)(l_0_3, "dojki%.ru") or (string.match)(l_0_3, "youporn%.com") or (string.match)(l_0_3, "pizta%.ru")) then
-      (mp.aggregate_mpattribute)("Context:HighRiskReferrerUrl")
-      ;
-      (mp.aggregate_mpattribute)("//MpIsIEVScan")
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = pcall
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_SCANREASON
+L1_1 = L0_0(L1_1, L2_2)
+if L0_0 then
+  L2_2 = mp
+  L2_2 = L2_2.SCANREASON_VALIDATION_PRESCAN
+  if L1_1 ~= L2_2 then
+    L2_2 = pcall
+    L3_3 = mp
+    L3_3 = L3_3.get_contextdata
+    L3_3 = L2_2(L3_3, mp.CONTEXT_DATA_REFERRERURL)
+    if L2_2 and (string.match(L3_3, "dojki%.ru") or string.match(L3_3, "youporn%.com") or string.match(L3_3, "pizta%.ru")) then
+      mp.aggregate_mpattribute("Context:HighRiskReferrerUrl")
+      mp.aggregate_mpattribute("//MpIsIEVScan")
       return mp.TRUE
     end
   end
-  return mp.FALSE
 end
-
+L2_2 = mp
+L2_2 = L2_2.FALSE
+return L2_2

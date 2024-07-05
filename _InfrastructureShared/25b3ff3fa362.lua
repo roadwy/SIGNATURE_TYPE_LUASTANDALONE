@@ -1,21 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b3ff3fa362 
-
--- params : ...
--- function num : 0
-for l_0_3 = 1, mp.SIGATTR_LOG_SZ do
-  if (sigattr_tail[l_0_3]).matched and (sigattr_tail[l_0_3]).attribute == 16393 then
-    local l_0_4 = (sigattr_tail[l_0_3]).utf8p1
-    if l_0_4 then
-      l_0_4 = (string.lower)(l_0_4)
-      if l_0_4 and ((string.find)(l_0_4, "useraccountcontrolsettings.exe") or (string.find)(l_0_4, "taskmgr.exe")) then
-        local l_0_5 = (sigattr_tail[l_0_3]).utf8p2
-        if (string.len)(l_0_5) > 1 then
-          return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+for L3_3 = 1, L1_1.SIGATTR_LOG_SZ do
+  L4_4 = sigattr_tail
+  L4_4 = L4_4[L3_3]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = sigattr_tail
+    L4_4 = L4_4[L3_3]
+    L4_4 = L4_4.attribute
+    if L4_4 == 16393 then
+      L4_4 = sigattr_tail
+      L4_4 = L4_4[L3_3]
+      L4_4 = L4_4.utf8p1
+      if L4_4 then
+        L5_5 = string
+        L5_5 = L5_5.lower
+        L5_5 = L5_5(L4_4)
+        L4_4 = L5_5
+        if L4_4 then
+          L5_5 = string
+          L5_5 = L5_5.find
+          L5_5 = L5_5(L4_4, "useraccountcontrolsettings.exe")
+          if not L5_5 then
+            L5_5 = string
+            L5_5 = L5_5.find
+            L5_5 = L5_5(L4_4, "taskmgr.exe")
+          elseif L5_5 then
+            L5_5 = sigattr_tail
+            L5_5 = L5_5[L3_3]
+            L5_5 = L5_5.utf8p2
+            if 1 < string.len(L5_5) then
+              return mp.INFECTED
+            end
+          end
         end
       end
     end
   end
 end
-return mp.CLEAN
-
+return L0_0

@@ -1,54 +1,53 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c7b3fc771171 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[5]).matched then
-    local l_0_0, l_0_1, l_0_8, l_0_9, l_0_10 = nil
-  end
-  -- DECOMPILER ERROR at PC12: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    if (string.sub)(l_0_0, -4) == ".php" then
-      local l_0_2 = nil
-      for l_0_6,l_0_7 in ipairs({"/image", "/img", "/media", "/file", "/gallery", "/misc", "/photo", "/assets", "/upload"}) do
-        local l_0_3 = nil
-        -- DECOMPILER ERROR at PC39: Confused about usage of register: R6 in 'UnsetPending'
-
-        if (string.find)(l_0_2, "/gallery", 1, true) then
-          return mp.INFECTED
-        end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+end
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.sub
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 == ".php" then
+    L1_1 = {
+      L2_2,
+      L3_3,
+      L4_4,
+      L5_5,
+      L6_6,
+      "/misc",
+      "/photo",
+      "/assets",
+      "/upload"
+    }
+    L6_6 = "/gallery"
+    for L5_5, L6_6 in L2_2(L3_3) do
+      if string.find(L0_0, L6_6, 1, true) then
+        return mp.INFECTED
       end
-    else
-      do
-        -- DECOMPILER ERROR at PC53: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC60: Confused about usage of register: R0 in 'UnsetPending'
-
-        if (string.match)(l_0_2, "(.+.php.+%a%a%a)") then
-          local l_0_11 = nil
-          local l_0_12 = (string.match)((string.sub)(l_0_2, -5), "%.(.*)")
-          for l_0_16,l_0_17 in ipairs({"jpg", "jpeg", "png", "gif", "pdf"}) do
-            local l_0_13 = nil
-            -- DECOMPILER ERROR at PC80: Confused about usage of register: R7 in 'UnsetPending'
-
-            if "pdf" == l_0_12 then
-              return mp.INFECTED
-            end
-          end
-        end
-        do
-          l_0_12 = mp
-          l_0_12 = l_0_12.CLEAN
-          return l_0_12
+    end
+  else
+    L1_1 = string
+    L1_1 = L1_1.match
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.sub
+      L1_1 = L1_1(L2_2, L3_3)
+      L1_1 = L2_2
+      L6_6 = "gif"
+      for L6_6, _FORV_7_ in L3_3(L4_4) do
+        if _FORV_7_ == L1_1 then
+          return mp.INFECTED
         end
       end
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

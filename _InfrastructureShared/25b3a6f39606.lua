@@ -1,17 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b3a6f39606 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = l_0_0.command_line
-l_0_1 = (string.lower)((string.gsub)(l_0_1, "`", ""))
-local l_0_2 = (string.gsub)(l_0_1, " ", "")
-if (string.find)(l_0_2, ").downloadstring(", 1, true) or (string.find)(l_0_2, ")).readtoend()", 1, true) or (string.find)(l_0_1, "[wmiclass] ", 1, true) then
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.command_line
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(string.gsub(L1_1, "`", ""))
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.gsub
+L2_2 = L2_2(L1_1, " ", "")
+if string.find(L2_2, ").downloadstring(", 1, true) or string.find(L2_2, ")).readtoend()", 1, true) or string.find(L1_1, "[wmiclass] ", 1, true) then
   return mp.INFECTED
 end
-if (string.len)(l_0_1) > 2048 and ((string.find)(l_0_1, " -e ", 1, true) or (string.find)(l_0_1, " -ec ", 1, true)) then
+if string.len(L1_1) > 2048 and (string.find(L1_1, " -e ", 1, true) or string.find(L1_1, " -ec ", 1, true)) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

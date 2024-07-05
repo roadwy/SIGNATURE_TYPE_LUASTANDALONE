@@ -1,26 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Rebhip_Config!B 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("SCPT:Rebhip_Config!B") then
+if not mp.get_mpattribute("SCPT:Rebhip_Config!B") then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 50000 or l_0_0 > 500000 then
+if mp.getfilesize() < 50000 or mp.getfilesize() > 500000 then
   return mp.CLEAN
 end
-local l_0_1 = headerpage[1]
-if l_0_1 ~= 67 and l_0_1 ~= 99 then
+if 67 ~= headerpage[1] and 99 ~= headerpage[1] then
   return mp.CLEAN
 end
-l_0_1 = headerpage[2]
-if l_0_1 ~= 58 then
+if 58 ~= headerpage[2] then
   return mp.CLEAN
 end
-l_0_1 = headerpage[3]
-if l_0_1 ~= 92 then
+if 92 ~= headerpage[3] then
   return mp.CLEAN
 end
 return mp.INFECTED
-

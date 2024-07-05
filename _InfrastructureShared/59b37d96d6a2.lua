@@ -1,30 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/59b37d96d6a2 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if MpCommon.SECURITY_MANDATORY_HIGH_RID < l_0_0.integrity_level then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.integrity_level
+L2_2 = MpCommon
+L2_2 = L2_2.SECURITY_MANDATORY_HIGH_RID
+if L1_1 > L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (bm.get_imagepath)()
-do
-  if l_0_1 ~= nil then
-    local l_0_2 = {}
-    l_0_2["rpcnetp.exe"] = true
-    l_0_2["services.exe"] = true
-    l_0_2["svchost.exe"] = true
-    if l_0_2[((string.lower)((string.sub)(l_0_1, -30))):match("\\system32\\([^\\]+%.exe)$")] then
-      return mp.CLEAN
-    end
-  end
-  local l_0_3 = nil
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_3 = (this_sigattrlog[2]).utf8p2
-  end
-  if l_0_3 ~= nil and (string.find)(l_0_3, "UnistackSvcGroup", 1, true) then
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = {}
+  L2_2["rpcnetp.exe"] = true
+  L2_2["services.exe"] = true
+  L2_2["svchost.exe"] = true
+  if L2_2[string.lower(string.sub(L1_1, -30)):match("\\system32\\([^\\]+%.exe)$")] then
     return mp.CLEAN
   end
-  return mp.INFECTED
 end
-
+L2_2 = nil
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p2 ~= nil then
+  L2_2 = this_sigattrlog[2].utf8p2
+end
+if L2_2 ~= nil and string.find(L2_2, "UnistackSvcGroup", 1, true) then
+  return mp.CLEAN
+end
+return mp.INFECTED

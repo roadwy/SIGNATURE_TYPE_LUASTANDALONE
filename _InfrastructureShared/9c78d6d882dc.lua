@@ -1,10 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/9c78d6d882dc 
-
--- params : ...
--- function num : 0
-if peattributes.x86_image == true and peattributes.hasexports == true and peattributes.epinfirstsect == true and peattributes.suspicious_linker_version == true and peattributes.no_security == true and peattributes.nx_bit_set == true and peattributes.headerchecksum0 == true then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.x86_image
+if L0_0 == true then
+  L0_0 = peattributes
+  L0_0 = L0_0.hasexports
+  if L0_0 == true then
+    L0_0 = peattributes
+    L0_0 = L0_0.epinfirstsect
+    if L0_0 == true then
+      L0_0 = peattributes
+      L0_0 = L0_0.suspicious_linker_version
+      if L0_0 == true then
+        L0_0 = peattributes
+        L0_0 = L0_0.no_security
+        if L0_0 == true then
+          L0_0 = peattributes
+          L0_0 = L0_0.nx_bit_set
+          if L0_0 == true then
+            L0_0 = peattributes
+            L0_0 = L0_0.headerchecksum0
+            if L0_0 == true then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

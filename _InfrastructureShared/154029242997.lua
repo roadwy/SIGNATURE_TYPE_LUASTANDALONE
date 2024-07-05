@@ -1,22 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/154029242997 
-
--- params : ...
--- function num : 0
-if peattributes.hasappendeddata then
-  local l_0_0 = pehdr.NumberOfSections
-  local l_0_1 = (pesecs[l_0_0]).PointerToRawData + (pesecs[l_0_0]).SizeOfRawData
-  ;
-  (mp.readprotection)(false)
-  local l_0_2 = (mp.readfile)(l_0_1, 16)
-  if l_0_2 == "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000" then
-    if (mp.getfilesize)() >= 4194304 then
-      (mp.set_mpattribute)("AutoItIgnoreMaxSizes")
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.hasappendeddata
+if L0_0 then
+  L0_0 = pehdr
+  L0_0 = L0_0.NumberOfSections
+  L1_1 = pesecs
+  L1_1 = L1_1[L0_0]
+  L1_1 = L1_1.PointerToRawData
+  L1_1 = L1_1 + pesecs[L0_0].SizeOfRawData
+  mp.readprotection(false)
+  if mp.readfile(L1_1, 16) == "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000" then
+    if mp.getfilesize() >= 4194304 then
+      mp.set_mpattribute("AutoItIgnoreMaxSizes")
     end
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

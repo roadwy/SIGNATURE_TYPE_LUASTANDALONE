@@ -1,38 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4e780e1d1f13 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT == 1 then
-  local l_0_0 = nil
-  if (hstrlog[1]).matched then
-    l_0_0 = (hstrlog[1]).VA
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 == 1 then
+  L0_0 = nil
+  L1_1 = hstrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.VA
   end
-  if (hstrlog[2]).matched then
-    l_0_0 = (hstrlog[2]).VA
+  L1_1 = hstrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.VA
   end
-  if (hstrlog[3]).matched then
-    l_0_0 = (hstrlog[3]).VA
+  L1_1 = hstrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[3]
+    L0_0 = L1_1.VA
   end
-  if (hstrlog[4]).matched then
-    l_0_0 = (hstrlog[4]).VA
+  L1_1 = hstrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[4]
+    L0_0 = L1_1.VA
   end
-  if (hstrlog[5]).matched then
-    l_0_0 = (hstrlog[5]).VA
+  L1_1 = hstrlog
+  L1_1 = L1_1[5]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[5]
+    L0_0 = L1_1.VA
   end
-  if (hstrlog[6]).matched then
-    l_0_0 = (hstrlog[6]).VA
+  L1_1 = hstrlog
+  L1_1 = L1_1[6]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[6]
+    L0_0 = L1_1.VA
   end
-  if (hstrlog[7]).matched then
-    l_0_0 = (hstrlog[7]).VA
+  L1_1 = hstrlog
+  L1_1 = L1_1[7]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[7]
+    L0_0 = L1_1.VA
   end
-  if l_0_0 ~= nil then
-    local l_0_1 = "HSTR:VirTool:Win32/Obfuscator.WU.offset_" .. (string.format)("%.08x", l_0_0)
-    ;
-    (mp.set_mpattribute)(l_0_1)
+  if L0_0 ~= nil then
+    L1_1 = "HSTR:VirTool:Win32/Obfuscator.WU.offset_"
+    L1_1 = L1_1 .. string.format("%.08x", L0_0)
+    mp.set_mpattribute(L1_1)
   end
 end
-do
-  return mp.INFECTED
-end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

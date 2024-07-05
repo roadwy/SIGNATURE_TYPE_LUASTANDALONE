@@ -1,35 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4878714a6327 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONOPEN and l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN and mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
   return mp.CLEAN
 end
-local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-do
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC37: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC38: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC39: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R5 in 'AssignReg'
-
-  for l_0_6 = "autohotkey", "autohotkeysc%.bin", "ahk2exe%.exe" do
-    -- DECOMPILER ERROR at PC42: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC42: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC43: Overwrote pending register: R9 in 'AssignReg'
-
-    if ("uninst%.exe")("au3_spy%.exe", "andy[%w]+%.exe") ~= nil then
-      return mp.CLEAN
-    end
+for _FORV_6_ = 1, #{
+  "autohotkey",
+  "autohotkeysc%.bin",
+  "ahk2exe%.exe",
+  "infomisc%.exe",
+  "uninst%.exe",
+  "au3_spy%.exe",
+  "andy[%w]+%.exe",
+  "setup%.exe",
+  "traymenu%.exe",
+  "volhotkey%.exe"
+} do
+  if mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)):find(({
+    "autohotkey",
+    "autohotkeysc%.bin",
+    "ahk2exe%.exe",
+    "infomisc%.exe",
+    "uninst%.exe",
+    "au3_spy%.exe",
+    "andy[%w]+%.exe",
+    "setup%.exe",
+    "traymenu%.exe",
+    "volhotkey%.exe"
+  })[_FORV_6_]) ~= nil then
+    return mp.CLEAN
   end
-  do return mp.INFECTED end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+return _FOR_.INFECTED

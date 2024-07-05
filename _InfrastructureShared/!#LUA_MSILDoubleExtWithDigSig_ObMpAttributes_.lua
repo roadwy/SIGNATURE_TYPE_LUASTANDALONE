@@ -1,17 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_MSILDoubleExtWithDigSig_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if l_0_0 == nil or (string.len)(l_0_0) <= 5 then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.FILEPATH_QUERY_LOWERCASE)
+if L0_0 == nil or string.len(L0_0) <= 5 then
   return mp.CLEAN
 end
-if (mp.getfilesize)() > 1024000 then
+if mp.getfilesize() > 1024000 then
   return mp.CLEAN
 end
-if (string.find)(l_0_0, ".xls.scr", 1, true) ~= nil or (string.find)(l_0_0, ",pdf.exe", 1, true) ~= nil then
+if string.find(L0_0, ".xls.scr", 1, true) ~= nil or string.find(L0_0, ",pdf.exe", 1, true) ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

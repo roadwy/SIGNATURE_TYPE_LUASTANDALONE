@@ -1,56 +1,68 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/91b36786b456 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R1 in 'AssignReg'
-
-if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-  local l_0_4, l_0_12, l_0_14, l_0_16 = nil, nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L1_1 = L2_2.utf8p2
+  end
 else
-  do
-    do return mp.CLEAN end
-    do
-      if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-        local l_0_0, l_0_1, l_0_2, l_0_3, l_0_11, l_0_13, l_0_15 = (this_sigattrlog[1]).utf8p2
-      else
-      end
-      -- DECOMPILER ERROR at PC48: Confused about usage of register: R0 in 'UnsetPending'
-
-      if not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[2]).utf8p2 ~= nil then
-        local l_0_5 = nil
-        for l_0_9,l_0_10 in ipairs((mp.GetExecutablesFromCommandLine)((this_sigattrlog[2]).utf8p2)) do
-          local l_0_6, l_0_7 = nil
-          -- DECOMPILER ERROR at PC56: Confused about usage of register: R7 in 'UnsetPending'
-
-          if (sysio.IsFileExists)(R7_PC56) then
-            (bm.add_related_file)(R7_PC56)
-          end
-        end
-      end
-      do
-        -- DECOMPILER ERROR at PC66: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC70: Confused about usage of register: R1 in 'UnsetPending'
-
-        if l_0_6 ~= nil then
-          local l_0_17 = nil
-          for l_0_21,l_0_22 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_6)) do
-            local l_0_18 = nil
-            -- DECOMPILER ERROR at PC78: Confused about usage of register: R7 in 'UnsetPending'
-
-            -- DECOMPILER ERROR at PC84: Confused about usage of register: R7 in 'UnsetPending'
-
-            if (sysio.IsFileExists)(R7_PC56) then
-              (bm.add_related_file)(R7_PC56)
-            end
-          end
-        end
-        do
-          return mp.INFECTED
-        end
-      end
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p2
+  end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.utf8p2
     end
   end
 end
-
+if L0_0 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+if L1_1 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

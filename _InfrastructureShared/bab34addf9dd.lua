@@ -1,20 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/bab34addf9dd 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1 = nil
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_2 = "docker_start"
-    l_0_1 = (string.match)((string.lower)((this_sigattrlog[2]).utf8p1), "/([0-9a-f]+)/hosts$")
-  end
-  -- DECOMPILER ERROR at PC22: Confused about usage of register: R1 in 'UnsetPending'
-
-  if l_0_1 ~= nil then
-    (MpCommon.AppendPersistContextNoPath)(l_0_2, l_0_1, 3600)
-  end
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L1_1 = "docker_start"
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(this_sigattrlog[2].utf8p1)
+  L0_0 = string.match(L2_2, "/([0-9a-f]+)/hosts$")
 end
-
+if L0_0 ~= nil then
+  L2_2 = MpCommon
+  L2_2 = L2_2.AppendPersistContextNoPath
+  L2_2(L1_1, L0_0, 3600)
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

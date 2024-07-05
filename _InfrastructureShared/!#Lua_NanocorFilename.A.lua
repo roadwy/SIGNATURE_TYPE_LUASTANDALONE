@@ -1,19 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_NanocorFilename.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  if l_0_1 == "run.dat" then
-    local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-    if l_0_2:sub(-36) == "7f5ed85d-6828-4f92-858c-f40b0ac68138" or l_0_2:sub(-4) == "nano" then
-      (mp.set_mpattribute)("Lua:NanocorFilename.A")
-    end
-  end
+if (mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN or mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE) and string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) == "run.dat" and (string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH)):sub(-36) == "7f5ed85d-6828-4f92-858c-f40b0ac68138" or string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH)):sub(-4) == "nano") then
+  mp.set_mpattribute("Lua:NanocorFilename.A")
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

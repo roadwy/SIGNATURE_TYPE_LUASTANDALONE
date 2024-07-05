@@ -1,49 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_BladaAnsiToString_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 2097152 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 2097152 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = tostring(l_0_1)
-local l_0_3, l_0_4, l_0_5, l_0_6, l_0_7 = (string.find)(l_0_2, "\"(.-)\".-\"(.-)\".+[Ss][Pp][Ll][Ii][Tt]%(.-%- ?[0-9].-%- ?(%d-)%)")
-if l_0_5 == nil then
-  return mp.CLEAN
+L2_2 = tostring
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L3_3 = string
+L3_3 = L3_3.find
+L4_4 = L2_2
+L5_5 = "\"(.-)\".-\"(.-)\".+[Ss][Pp][Ll][Ii][Tt]%(.-%- ?[0-9].-%- ?(%d-)%)"
+L7_7 = L3_3(L4_4, L5_5)
+if L5_5 == nil then
+  L8_8 = mp
+  L8_8 = L8_8.CLEAN
+  return L8_8
 end
-local l_0_8, l_0_9 = (string.gsub)(l_0_6, "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])", "%%%1")
-if l_0_5:match("^%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8 .. "%d-" .. l_0_8) == nil then
-  return mp.CLEAN
+L8_8 = string
+L8_8 = L8_8.gsub
+L9_9 = L6_6
+L10_10 = "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])"
+L11_11 = "%%%1"
+L9_9 = L8_8(L9_9, L10_10, L11_11)
+L11_11 = L5_5
+L10_10 = L5_5.match
+L12_12 = "^%d-"
+L13_13 = L8_8
+L12_12 = L12_12 .. L13_13 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8 .. "%d-" .. L8_8
+L10_10 = L10_10(L11_11, L12_12)
+if L10_10 == nil then
+  L10_10 = mp
+  L10_10 = L10_10.CLEAN
+  return L10_10
 end
-local l_0_10 = string.format
-do
-  local l_0_12, l_0_13 = , (string.gsub)(l_0_5, "(%d-)" .. l_0_8, function(l_1_0)
-  -- function num : 0_0 , upvalues : l_0_10, l_0_7
-  local l_1_1 = l_0_10
-  local l_1_2 = "%c"
-  do
-    local l_1_5 = tonumber
-    l_1_5 = l_1_5(l_1_0, 10)
-    local l_1_4 = l_0_7
-    l_1_5 = l_1_5 - l_1_4
-    local l_1_3 = nil
-    do return l_1_1(l_1_2, l_1_5) end
-    -- DECOMPILER ERROR at PC10: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+L10_10 = string
+L10_10 = L10_10.format
+function L11_11(A0_14)
+  return _UPVALUE0_("%c", tonumber(A0_14, 10) - _UPVALUE1_)
 end
-, 8000)
-  ;
-  (mp.vfo_add_buffer)(l_0_13:sub(1, R18_PC106), "[BladaToStr]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-  do return mp.CLEAN end
-  -- DECOMPILER ERROR at PC114: freeLocal<0 in 'ReleaseLocals'
-
-end
-
+L12_12 = string
+L12_12 = L12_12.gsub
+L13_13 = L5_5
+L13_13 = L12_12(L13_13, "(%d-)" .. L8_8, L11_11, 8000)
+mp.vfo_add_buffer(L12_12:sub(1, L13_13), "[BladaToStr]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+return mp.CLEAN

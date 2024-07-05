@@ -1,11 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2995aa251426 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.get_regval)(pe.REG_EDI) - 262148
-if l_0_0 == 7749888 then
-  (pe.mmap_patch_va)(l_0_0, "h\000Az\000\195")
+local L0_0
+L0_0 = pe
+L0_0 = L0_0.get_regval
+L0_0 = L0_0(pe.REG_EDI)
+L0_0 = L0_0 - 262148
+if L0_0 == 7749888 then
+  pe.mmap_patch_va(L0_0, "h\000Az\000\195")
 end
 return mp.INFECTED
-

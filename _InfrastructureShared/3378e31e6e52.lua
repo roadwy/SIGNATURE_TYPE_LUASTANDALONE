@@ -1,10 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3378e31e6e52 
-
--- params : ...
--- function num : 0
-if ((pesecs[1]).Name == "CODE" and (pesecs[2]).Name == "DATA" and (pesecs[3]).Name == "BSS") or (pesecs[1]).Name == "UPX0" and (pesecs[2]).Name == "UPX1" then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.Name
+if L0_0 == "CODE" then
+  L0_0 = pesecs
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.Name
+  if L0_0 == "DATA" then
+    L0_0 = pesecs
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.Name
+  end
+else
+  if L0_0 ~= "BSS" then
+    L0_0 = pesecs
+    L0_0 = L0_0[1]
+    L0_0 = L0_0.Name
+    if L0_0 == "UPX0" then
+      L0_0 = pesecs
+      L0_0 = L0_0[2]
+      L0_0 = L0_0.Name
+    end
 end
-return mp.CLEAN
-
+elseif L0_0 == "UPX1" then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

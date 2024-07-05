@@ -1,10 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4e29f8c14e9c 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() < 10240 then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.getfilename())
+if string.find(L0_0, "websettings.xml.rels") ~= nil and mp.getfilesize() < 400 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

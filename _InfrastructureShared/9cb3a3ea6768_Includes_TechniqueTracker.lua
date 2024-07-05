@@ -1,35 +1,77 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/9cb3a3ea6768_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil and (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-  local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p1)
-  local l_0_1 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  local l_0_2 = (string.lower)((this_sigattrlog[3]).utf8p2)
-  local l_0_3 = (string.match)(l_0_0, "\\classes\\(.+)\\shell")
-  if l_0_2 ~= l_0_3 then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = this_sigattrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = this_sigattrlog
+      L0_0 = L0_0[3]
+      L0_0 = L0_0.utf8p2
+      if L0_0 ~= nil then
+        L0_0 = string
+        L0_0 = L0_0.lower
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[1]
+        L1_1 = L1_1.utf8p1
+        L0_0 = L0_0(L1_1)
+        L1_1 = string
+        L1_1 = L1_1.lower
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[1]
+        L2_2 = L2_2.utf8p2
+        L1_1 = L1_1(L2_2)
+        L2_2 = string
+        L2_2 = L2_2.lower
+        L3_3 = this_sigattrlog
+        L3_3 = L3_3[3]
+        L3_3 = L3_3.utf8p2
+        L2_2 = L2_2(L3_3)
+        L3_3 = string
+        L3_3 = L3_3.match
+        L4_4 = L0_0
+        L3_3 = L3_3(L4_4, "\\classes\\(.+)\\shell")
+        if L2_2 ~= L3_3 then
+          L4_4 = mp
+          L4_4 = L4_4.CLEAN
+          return L4_4
+        end
+        L4_4 = string
+        L4_4 = L4_4.len
+        L4_4 = L4_4(L1_1)
+        if L4_4 < 4 then
+          L4_4 = mp
+          L4_4 = L4_4.CLEAN
+          return L4_4
+        end
+        L4_4 = string
+        L4_4 = L4_4.find
+        L4_4 = L4_4(L1_1, "%1", 1, true)
+        if L4_4 then
+          L4_4 = mp
+          L4_4 = L4_4.CLEAN
+          return L4_4
+        end
+        L4_4 = TrackPidAndTechniqueBM
+        L4_4("BM", "T1548.002", "uac_bypass_src")
+        L4_4 = {}
+        table.insert(L4_4, L1_1)
+        if versioning.IsSeville() and 4 <= versioning.GetCloudBlockLevel() then
+          MpCommon.SetPersistContextNoPath("UACBypassExp.X!ShieldUp", L4_4, 300)
+          return mp.INFECTED
+        end
+        MpCommon.SetPersistContextNoPath("UACBypassExp.X!regset", L4_4, 10)
+        return mp.INFECTED
+      end
+    end
   end
-  if (string.len)(l_0_1) < 4 then
-    return mp.CLEAN
-  end
-  if (string.find)(l_0_1, "%1", 1, true) then
-    return mp.CLEAN
-  end
-  TrackPidAndTechniqueBM("BM", "T1548.002", "uac_bypass_src")
-  local l_0_4 = {}
-  ;
-  (table.insert)(l_0_4, l_0_1)
-  if (versioning.IsSeville)() and (versioning.GetCloudBlockLevel)() >= 4 then
-    (MpCommon.SetPersistContextNoPath)("UACBypassExp.X!ShieldUp", l_0_4, 300)
-    return mp.INFECTED
-  end
-  ;
-  (MpCommon.SetPersistContextNoPath)("UACBypassExp.X!regset", l_0_4, 10)
-  return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

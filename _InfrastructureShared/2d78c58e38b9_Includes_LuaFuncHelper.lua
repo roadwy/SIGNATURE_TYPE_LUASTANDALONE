@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2d78c58e38b9_Includes_LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_FULL)
-if CheckVulnerableUEFIImage(l_0_0, "!#TEL:Trojan:UEFI/InsyVul.D") then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.FILEPATH_QUERY_FULL)
+if CheckVulnerableUEFIImage(L0_0, "!#TEL:Trojan:UEFI/InsyVul.D") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

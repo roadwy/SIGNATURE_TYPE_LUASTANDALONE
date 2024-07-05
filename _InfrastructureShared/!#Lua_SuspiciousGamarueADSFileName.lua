@@ -1,51 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspiciousGamarueADSFileName 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() > 2097152 then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 2097152 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0, L1_1, L2_2 = nil, nil, nil
+L3_3 = 0
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN or mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  L1_1 = mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)
+  L0_0 = mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH)
+end
+if L1_1 == nil then
+  L2_2 = mp.getfilename()
+  if L2_2 == nil then
+    return mp.CLEAN
+  end
+  if string.find(L2_2:reverse(), "\\", 1, true) == nil then
+    return mp.CLEAN
+  end
+  L3_3 = #L2_2 - string.find(L2_2:reverse(), "\\", 1, true)
+  L1_1 = L2_2:sub(L3_3 + 2)
+end
+if #L1_1 < 16 or #L1_1 > 27 then
   return mp.CLEAN
 end
-local l_0_0, l_0_1, l_0_2 = nil, nil, nil
-local l_0_3 = 0
-local l_0_4 = 0
-local l_0_5 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_5 == mp.SCANREASON_ONOPEN or l_0_5 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-end
-if l_0_1 == nil then
-  l_0_2 = (mp.getfilename)()
-  if l_0_2 == nil then
+if L1_1:match("^ms%l%l%l+%.exe:%d%d%d%d%d%d+$") ~= nil then
+  if 1 == 0 then
+    L0_0 = MpCommon.PathToWin32Path(L0_0)
+  elseif 1 == 1 then
+    L0_0 = L2_2:sub(1, L3_3)
+  end
+  if L0_0 == nil then
     return mp.CLEAN
   end
-  local l_0_6 = (string.find)(l_0_2:reverse(), "\\", 1, true)
-  if l_0_6 == nil then
-    return mp.CLEAN
-  end
-  l_0_3 = #l_0_2 - l_0_6
-  l_0_1 = l_0_2:sub(l_0_3 + 2)
-  l_0_4 = 1
+  mp.ReportLowfi(L0_0 .. "\\" .. L1_1:match("([^:]+)"), 1634353817)
+  return mp.INFECTED
 end
-do
-  if #l_0_1 < 16 or #l_0_1 > 27 then
-    return mp.CLEAN
-  end
-  if l_0_1:match("^ms%l%l%l+%.exe:%d%d%d%d%d%d+$") ~= nil then
-    if l_0_4 == 0 then
-      l_0_0 = (MpCommon.PathToWin32Path)(l_0_0)
-    else
-      if l_0_4 == 1 then
-        l_0_0 = l_0_2:sub(1, l_0_3)
-      end
-    end
-    if l_0_0 == nil then
-      return mp.CLEAN
-    end
-    ;
-    (mp.ReportLowfi)(l_0_0 .. "\\" .. l_0_1:match("([^:]+)"), 1634353817)
-    return mp.INFECTED
-  end
-  return mp.CLEAN
-end
-
+return mp.CLEAN

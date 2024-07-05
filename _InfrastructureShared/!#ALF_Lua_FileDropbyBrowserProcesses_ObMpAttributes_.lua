@@ -1,23 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Lua_FileDropbyBrowserProcesses_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = "chrome.exe|msedge.exe|firefox.exe|iexplore.exe"
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and l_0_0:find((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)) then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  local l_0_2 = {}
-  l_0_2.vbs = true
-  l_0_2.ps1 = true
-  l_0_2[".js"] = true
-  l_0_2.jse = true
-  l_0_2.vbe = true
-  local l_0_3 = (string.sub)(l_0_1, -3)
-  if l_0_3 ~= nil and l_0_2[l_0_3] == true then
-    return mp.INFECTED
+local L0_0, L1_1
+L0_0 = "chrome.exe|msedge.exe|firefox.exe|iexplore.exe"
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L1_1(mp.CONTEXT_DATA_SCANREASON)
+if L1_1 == mp.SCANREASON_ONOPEN then
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L0_0, mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME))
+    if string.sub(L1_1, -3) ~= nil and ({
+      ["vbs"] = true,
+      ["ps1"] = true,
+      [".js"] = true,
+      ["jse"] = true,
+      ["vbe"] = true
+    })[string.sub(L1_1, -3)] == true then
+      return mp.INFECTED
+    end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

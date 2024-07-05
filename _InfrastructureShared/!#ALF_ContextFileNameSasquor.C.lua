@@ -1,29 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_ContextFileNameSasquor.C 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-local l_0_1, l_0_2 = l_0_0:match("(.+\\)([^\\]+)$")
-if l_0_2 == nil or l_0_1 == nil then
+local L0_0, L1_1
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L1_1 = L1_1()
+L0_0 = L0_0(L1_1, L1_1())
+L1_1 = L0_0.match
+L1_1 = L1_1(L0_0, "(.+\\)([^\\]+)$")
+if L1_1(L0_0, "(.+\\)([^\\]+)$") == nil or L1_1 == nil then
   return mp.CLEAN
 end
-do
-  if l_0_1:len() > 20 and (string.sub)(l_0_1, -20) == "\\chrome\\application\\" then
-    local l_0_3 = {}
-    l_0_3["winmm.dll"] = true
-    l_0_3["wtsapi32.dll"] = true
-    l_0_3["rpcrt4.dll"] = true
-    l_0_3["advapi32.dll"] = true
-    l_0_3["version.dll"] = true
-    l_0_3["userenv.dll"] = true
-    l_0_3["user32.dll"] = true
-    l_0_3["kernel32.dll"] = true
-    l_0_3["winhttp.dll"] = true
-    if l_0_3[l_0_2] then
-      return mp.INFECTED
-    end
+if L1_1:len() > 20 and string.sub(L1_1, -20) == "\\chrome\\application\\" then
+  if ({
+    ["winmm.dll"] = true,
+    ["wtsapi32.dll"] = true,
+    ["rpcrt4.dll"] = true,
+    ["advapi32.dll"] = true,
+    ["version.dll"] = true,
+    ["userenv.dll"] = true,
+    ["user32.dll"] = true,
+    ["kernel32.dll"] = true,
+    ["winhttp.dll"] = true
+  })[L1_1(L0_0, "(.+\\)([^\\]+)$")] then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+return mp.CLEAN

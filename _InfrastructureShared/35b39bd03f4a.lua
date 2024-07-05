@@ -1,24 +1,62 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b39bd03f4a 
-
--- params : ...
--- function num : 0
-local l_0_0 = 3
-if l_0_0 * 10000000 < (bm.GetSignatureMatchDuration)() then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = 3
+L1_1 = bm
+L1_1 = L1_1.GetSignatureMatchDuration
+L1_1 = L1_1()
+L2_2 = L0_0 * 10000000
+if L1_1 > L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((bm.get_imagepath)())
-if l_0_1 == nil or (string.len)(l_0_1) < 1 then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L3_3 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L2_2())
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+elseif L2_2 < 1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (string.find)((string.lower)(l_0_1), "\\program files", 1, true) or (string.find)((string.lower)(l_0_1), "\\mpsigstub.exe", 1, true) or (string.find)((string.lower)(l_0_1), "\\mpcmdrun.exe", 1, true) then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = string
+L3_3 = L3_3.lower
+L3_3 = L3_3(L4_4)
+L2_2 = L2_2(L3_3, L4_4, L5_5, true)
+if not L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(L4_4)
+  L2_2 = L2_2(L3_3, L4_4, L5_5, true)
+  if not L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(L4_4)
+    L2_2 = L2_2(L3_3, L4_4, L5_5, true)
+  end
+elseif L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2, l_0_3 = (bm.get_process_relationships)()
-for l_0_7,l_0_8 in ipairs(l_0_2) do
-  if l_0_8.image_path ~= nil and (mp.bitand)(l_0_8.reason_ex, 1) == 1 and (string.find)((string.lower)(l_0_8.image_path), "\\powershell.exe", 1, true) then
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+for _FORV_7_, _FORV_8_ in L4_4(L5_5) do
+  if _FORV_8_.image_path ~= nil and mp.bitand(_FORV_8_.reason_ex, 1) == 1 and string.find(string.lower(_FORV_8_.image_path), "\\powershell.exe", 1, true) then
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L4_4

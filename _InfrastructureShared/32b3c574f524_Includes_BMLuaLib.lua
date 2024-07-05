@@ -1,18 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/32b3c574f524_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 == nil then
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = L0_0.command_line
+if L1_1 == nil or L1_1 == "" then
   return mp.CLEAN
 end
-local l_0_1 = l_0_0.command_line
-if l_0_1 == nil or l_0_1 == "" then
-  return mp.CLEAN
-end
-if analyzeEsxcliProcessPattern(l_0_1) == mp.INFECTED then
+if analyzeEsxcliProcessPattern(L1_1) == mp.INFECTED then
   return mp.INFECTED
 end
 return mp.CLEAN
-

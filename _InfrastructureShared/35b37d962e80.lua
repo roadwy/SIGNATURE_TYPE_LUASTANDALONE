@@ -1,17 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b37d962e80 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if (string.sub)(l_0_0, -17) == "\\inetsrv\\w3wp.exe" then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L1_1())
+L1_1 = string
+L1_1 = L1_1.sub
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == "\\inetsrv\\w3wp.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
 end
-local l_0_1, l_0_2 = (bm.get_process_relationships)()
-for l_0_6,l_0_7 in ipairs(l_0_1) do
-  if l_0_7.image_path ~= nil and (mp.bitand)(l_0_7.reason_ex, 1) == 1 and (string.lower)((string.sub)(l_0_7.image_path, -17)) == "\\inetsrv\\w3wp.exe" then
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L2_2 = L1_1()
+for _FORV_6_, _FORV_7_ in L3_3(L4_4) do
+  if _FORV_7_.image_path ~= nil and mp.bitand(_FORV_7_.reason_ex, 1) == 1 and string.lower(string.sub(_FORV_7_.image_path, -17)) == "\\inetsrv\\w3wp.exe" then
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L3_3

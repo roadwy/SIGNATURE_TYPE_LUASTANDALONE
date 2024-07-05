@@ -1,0 +1,7 @@
+if IsTechniqueObservedGlobal("CredentialAccess_SshBruteForceIncoming", true) then
+  TrackPidAndTechniqueBM("BM", "T1003.008", "CredentialAccess_OSCredentialDumping_mt2023")
+  addRelatedProcess()
+  reportRelatedBmHits()
+  return mp.INFECTED
+end
+return mp.CLEAN

@@ -1,8 +1,2 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/27897924cfbc 
-
--- params : ...
--- function num : 0
-(pe.set_regval)(pe.REG_EDX, 32078)
+pe.set_regval(pe.REG_EDX, 32078)
 return mp.LOWFI
-

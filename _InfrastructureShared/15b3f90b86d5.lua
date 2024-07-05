@@ -1,32 +1,92 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b3f90b86d5 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1 = nil
-if (bm.get_current_process_startup_info)() ~= nil and ((bm.get_current_process_startup_info)()).ppid ~= nil then
-  local l_0_2 = nil
-  if (mp.GetProcessCommandLine)(((bm.get_current_process_startup_info)()).ppid) == nil then
-    return mp.CLEAN
-  end
-  l_0_1 = (string.lower)((mp.GetProcessCommandLine)(((bm.get_current_process_startup_info)()).ppid))
-  if (string.find)(l_0_1, "/create", 1, true) and (string.find)(l_0_1, "cmd.exe", 1, true) and (string.find)(l_0_1, "wordpad.exe", 1, true) and (string.find)(l_0_1, "/sc", 1, true) and (string.find)(l_0_1, "/tr", 1, true) and (string.find)(l_0_1, "/st", 1, true) and (string.find)(l_0_1, "/sd", 1, true) then
-    (bm.request_SMS)(l_0_2.ppid, "M")
-    local l_0_3 = nil
-    local l_0_4, l_0_5 = (bm.get_imagepath)(), (bm.get_process_relationships)()
-    for l_0_9,l_0_10 in ipairs(R7_PC98) do
-      local l_0_6 = nil
-      -- DECOMPILER ERROR at PC100: Confused about usage of register: R10 in 'UnsetPending'
-
-      if R10_PC100.image_path == l_0_4 then
-        (bm.request_SMS)(l_0_2.ppid, "M")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L2_2 = mp
+    L2_2 = L2_2.GetProcessCommandLine
+    L3_3 = L1_1.ppid
+    L2_2 = L2_2(L3_3)
+    if L2_2 == nil then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
+    end
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L4_4 = L2_2
+    L3_3 = L3_3(L4_4)
+    L0_0 = L3_3
+    L3_3 = string
+    L3_3 = L3_3.find
+    L4_4 = L0_0
+    L5_5 = "/create"
+    L3_3 = L3_3(L4_4, L5_5, 1, true)
+    if L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L4_4 = L0_0
+      L5_5 = "cmd.exe"
+      L3_3 = L3_3(L4_4, L5_5, 1, true)
+      if L3_3 then
+        L3_3 = string
+        L3_3 = L3_3.find
+        L4_4 = L0_0
+        L5_5 = "wordpad.exe"
+        L3_3 = L3_3(L4_4, L5_5, 1, true)
+        if L3_3 then
+          L3_3 = string
+          L3_3 = L3_3.find
+          L4_4 = L0_0
+          L5_5 = "/sc"
+          L3_3 = L3_3(L4_4, L5_5, 1, true)
+          if L3_3 then
+            L3_3 = string
+            L3_3 = L3_3.find
+            L4_4 = L0_0
+            L5_5 = "/tr"
+            L3_3 = L3_3(L4_4, L5_5, 1, true)
+            if L3_3 then
+              L3_3 = string
+              L3_3 = L3_3.find
+              L4_4 = L0_0
+              L5_5 = "/st"
+              L3_3 = L3_3(L4_4, L5_5, 1, true)
+              if L3_3 then
+                L3_3 = string
+                L3_3 = L3_3.find
+                L4_4 = L0_0
+                L5_5 = "/sd"
+                L3_3 = L3_3(L4_4, L5_5, 1, true)
+                if L3_3 then
+                  L3_3 = bm
+                  L3_3 = L3_3.request_SMS
+                  L4_4 = L1_1.ppid
+                  L5_5 = "M"
+                  L3_3(L4_4, L5_5)
+                  L3_3 = bm
+                  L3_3 = L3_3.get_imagepath
+                  L3_3 = L3_3()
+                  L4_4 = bm
+                  L4_4 = L4_4.get_process_relationships
+                  L5_5 = L4_4()
+                  for _FORV_9_, _FORV_10_ in ipairs(L5_5) do
+                    if _FORV_10_.image_path == L3_3 then
+                      bm.request_SMS(L1_1.ppid, "M")
+                    end
+                  end
+                  return mp.INFECTED
+                end
+              end
+            end
+          end
+        end
       end
     end
-    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

@@ -1,35 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b39731c954 
-
--- params : ...
--- function num : 0
-local l_0_0 = tonumber((this_sigattrlog[2]).utf8p1)
-if l_0_0 == nil or l_0_0 < 315392 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = tonumber
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.utf8p1
+L0_0 = L0_0(L1_1)
+if L0_0 == nil or L0_0 < 315392 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (bm.get_process_relationships)()
-if l_0_1 ~= nil then
-  for l_0_6,l_0_7 in ipairs(l_0_1) do
-    if l_0_7.image_path ~= nil then
-      local l_0_8 = (string.lower)((MpCommon.PathToWin32Path)(l_0_7.image_path))
-      if (sysio.IsFileExists)(l_0_8) and not (mp.IsKnownFriendlyFile)(l_0_8, true, false) then
-        (bm.add_related_file)(l_0_8)
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L2_2 = L1_1()
+if L1_1 ~= nil then
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = L7_7.image_path
+    if L8_8 ~= nil then
+      L8_8 = string
+      L8_8 = L8_8.lower
+      L8_8 = L8_8(MpCommon.PathToWin32Path(L7_7.image_path))
+      if sysio.IsFileExists(L8_8) and not mp.IsKnownFriendlyFile(L8_8, true, false) then
+        bm.add_related_file(L8_8)
       end
     end
   end
 end
-do
-  local l_0_9 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-  if (sysio.IsFileExists)(l_0_9) and not (mp.IsKnownFriendlyFile)(l_0_9, true, false) then
-    (bm.add_related_file)(l_0_9)
+L8_8 = L5_5()
+L8_8 = L4_4(L5_5, L6_6, L7_7, L8_8, L5_5())
+if L4_4 then
+  L6_6 = true
+  L7_7 = false
+  if not L4_4 then
+    L4_4(L5_5)
   end
-  ;
-  (bm.trigger_sig)("Svchost", "RwToX")
-  local l_0_10 = (bm.get_current_process_startup_info)()
-  ;
-  (bm.request_SMS)(l_0_10.ppid, "m+")
-  ;
-  (bm.add_action)("SmsAsyncScanEvent", 1)
-  return mp.INFECTED
 end
-
+L6_6 = "RwToX"
+L4_4(L5_5, L6_6)
+L6_6 = L4_4.ppid
+L7_7 = "m+"
+L5_5(L6_6, L7_7)
+L6_6 = "SmsAsyncScanEvent"
+L7_7 = 1
+L5_5(L6_6, L7_7)
+return L5_5

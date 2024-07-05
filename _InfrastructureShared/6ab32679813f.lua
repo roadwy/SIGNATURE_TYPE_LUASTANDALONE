@@ -1,36 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6ab32679813f 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC23: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[2]).matched or (this_sigattrlog[3]).matched then
-      local l_0_1, l_0_2 = (this_sigattrlog[2]).utf8p2
-    end
-    -- DECOMPILER ERROR at PC24: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_1 == nil then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC31: Confused about usage of register: R0 in 'UnsetPending'
-
-    local l_0_3 = nil
-    local l_0_4 = nil
-    if (string.find)(((mp.GetExecutablesFromCommandLine)(l_0_1))[2], ",", 1, true) == nil then
-      return mp.CLEAN
-    end
-    local l_0_5 = nil
-    ;
-    (mp.ReportLowfi)((string.sub)(l_0_4[2], 1, (string.find)(((mp.GetExecutablesFromCommandLine)(l_0_1))[2], ",", 1, true) - 1), 2300354182)
-    return mp.INFECTED
-  end
+local L0_0, L1_1, L2_2, L3_3
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
 end
-
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L0_0 = L1_1.utf8p2
+end
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.GetExecutablesFromCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1[2]
+L2_2 = L2_2(L3_3, ",", 1, true)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = string
+L3_3 = L3_3.sub
+L3_3 = L3_3(L1_1[2], 1, L2_2 - 1)
+mp.ReportLowfi(L3_3, 2300354182)
+return mp.INFECTED

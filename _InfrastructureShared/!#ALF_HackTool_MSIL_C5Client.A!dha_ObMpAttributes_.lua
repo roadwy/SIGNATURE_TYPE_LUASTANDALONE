@@ -1,11 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_HackTool_MSIL_C5Client.A!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.get_versioninfo)()
-if (l_0_0.ProductName ~= nil and (l_0_0.ProductName):find("C5.Client", 1, true) == 1) or l_0_0.FileDescription ~= nil and (l_0_0.FileDescription):find("C5.Client", 1, true) == 1 then
+if pe.get_versioninfo() ~= nil and (pe.get_versioninfo().ProductName ~= nil and pe.get_versioninfo().ProductName:find("C5.Client", 1, true) == 1 or pe.get_versioninfo().FileDescription ~= nil and pe.get_versioninfo().FileDescription:find("C5.Client", 1, true) == 1) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

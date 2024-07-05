@@ -1,23 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_Base64InEmail_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 10000 or l_0_0 > 50000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 10000 or L0_0 > 50000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = tostring(headerpage)
-if (string.match)(l_0_1, "Received: from.*%(HELO.*Message%-ID%:.*Content%-Type%:  multipart/x%-zip.*Content%-Transfer%-Encoding%: base64.*Content%-Disposition%: attachment") == nil then
-  return mp.CLEAN
+L1_1 = tostring
+L2_2 = headerpage
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "Received: from.*%(HELO.*Message%-ID%:.*Content%-Type%:  multipart/x%-zip.*Content%-Transfer%-Encoding%: base64.*Content%-Disposition%: attachment"
+L2_2 = L2_2(L3_3, L4_4)
+if nil == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(mp.set_mpattribute)("//LUA:Base64InEmail")
-;
-(mp.readprotection)(false)
-local l_0_2 = (mp.readfile)(0, l_0_0)
-local l_0_3, l_0_4, l_0_5 = (string.find)(l_0_2, "Content%-Type%:  multipart/x%-zip.*Content%-Transfer%-Encoding%: base64.*Content%-Disposition%: attachment\r\n\r\n(.*)\r\n\r\n%-%-%-%-boundary")
-;
-(mp.vfo_add_buffer)(l_0_5, "[MSG_Base64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L2_2 = mp
+L2_2 = L2_2.set_mpattribute
+L3_3 = "//LUA:Base64InEmail"
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = 0
+L4_4 = L0_0
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = string
+L3_3 = L3_3.find
+L4_4 = L2_2
+L5_5 = "Content%-Type%:  multipart/x%-zip.*Content%-Transfer%-Encoding%: base64.*Content%-Disposition%: attachment\r\n\r\n(.*)\r\n\r\n%-%-%-%-boundary"
+L5_5 = L3_3(L4_4, L5_5)
+mp.vfo_add_buffer(L5_5, "[MSG_Base64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

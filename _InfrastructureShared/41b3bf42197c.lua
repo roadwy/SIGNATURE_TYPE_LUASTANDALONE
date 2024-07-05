@@ -1,29 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3bf42197c 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched == false then
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.ppid
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L1_1 = L1_1(L0_0)
+if L1_1 == nil or #L1_1 < 1 then
   return mp.CLEAN
 end
-local l_0_0 = (this_sigattrlog[1]).ppid
-local l_0_1, l_0_2 = (bm.get_process_relationships)(l_0_0)
-if l_0_1 == nil or #l_0_1 < 1 then
-  return mp.CLEAN
-end
-local l_0_3 = nil
-for l_0_7,l_0_8 in ipairs(l_0_1) do
-  if (mp.bitand)(l_0_8.reason_ex, 1) == 1 and (string.len)(l_0_8.image_path) > 15 and (string.sub)(l_0_8.image_path, -15) == "\\powershell.exe" then
-    l_0_3 = l_0_8.ppid
-    ;
-    (bm.add_related_process)(l_0_8.ppid)
+for _FORV_7_, _FORV_8_ in ipairs(L1_1) do
+  if mp.bitand(_FORV_8_.reason_ex, 1) == 1 and string.len(_FORV_8_.image_path) > 15 and string.sub(_FORV_8_.image_path, -15) == "\\powershell.exe" then
+    bm.add_related_process(_FORV_8_.ppid)
     break
   end
 end
-do
-  if l_0_3 == nil then
-    return mp.CLEAN
-  end
-  return mp.INFECTED
+if _FORV_8_.ppid == nil then
+  return mp.CLEAN
 end
-
+return mp.INFECTED

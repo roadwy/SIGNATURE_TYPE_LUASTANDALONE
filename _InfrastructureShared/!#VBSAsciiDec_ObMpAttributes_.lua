@@ -1,26 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#VBSAsciiDec_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() < 524288 then
-  (mp.readprotection)(false)
-  local l_0_0 = (mp.readfile)(0, (mp.getfilesize)())
-  local l_0_1 = l_0_0:find("=\"", 1, true)
-  if l_0_1 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 524288 then
+  L0_0 = mp
+  L0_0 = L0_0.readprotection
+  L1_1 = false
+  L0_0(L1_1)
+  L0_0 = mp
+  L0_0 = L0_0.readfile
+  L1_1 = 0
+  L2_2 = mp
+  L2_2 = L2_2.getfilesize
+  L7_7 = L2_2()
+  L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2())
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L3_3 = "=\""
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if L1_1 == nil then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = l_0_0:match("[%d,]+", l_0_1 + 2)
-  local l_0_3 = {}
-  for l_0_7 = 0, 255 do
-    local l_0_8 = (string.format)("%d", l_0_7)
-    l_0_3[l_0_8] = (string.format)("%c", l_0_7)
+  L3_3 = L0_0
+  L2_2 = L0_0.match
+  L2_2 = L2_2(L3_3, L4_4, L5_5)
+  L3_3 = {}
+  for L7_7 = 0, 255 do
+    L3_3[string.format("%d", L7_7)] = string.format("%c", L7_7)
   end
-  local l_0_9 = (string.gsub)(l_0_2, "(%d+),", l_0_3)
-  ;
-  (mp.vfo_add_buffer)(l_0_9, "[Ascii]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+  L7_7 = L3_3
+  L7_7 = "[Ascii]"
+  L5_5(L6_6, L7_7, mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

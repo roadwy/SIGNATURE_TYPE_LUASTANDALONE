@@ -1,34 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/60d79ac70697_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 ~= nil then
-  local l_0_1 = (string.lower)(l_0_0.image_path)
-  if l_0_1 == nil then
+if mp.GetParentProcInfo() ~= nil then
+  if string.lower(mp.GetParentProcInfo().image_path) == nil then
     return mp.CLEAN
   end
-  local l_0_2 = l_0_1:match("([^\\]+)$")
-  local l_0_3 = {}
-  l_0_3["node.exe"] = true
-  l_0_3["msbuild.exe"] = true
-  l_0_3["editbin.exe"] = true
-  l_0_3["link.exe"] = true
-  l_0_3["signtool.exe"] = true
-  l_0_3["symchk.exe"] = true
-  l_0_3["microsoft.servicehub.controller.exe"] = true
-  l_0_3["servicehub.host.node.x86.exe"] = true
-  l_0_3["servicehub.host.clr.exe"] = true
-  l_0_3["vs_installershell.exe"] = true
-  l_0_3["testhost.net472.x86.exe"] = true
-  l_0_3["symbolarchiveverifier.exe"] = true
-  if l_0_3[l_0_2] then
+  if ({
+    ["node.exe"] = true,
+    ["msbuild.exe"] = true,
+    ["editbin.exe"] = true,
+    ["link.exe"] = true,
+    ["signtool.exe"] = true,
+    ["symchk.exe"] = true,
+    ["microsoft.servicehub.controller.exe"] = true,
+    ["servicehub.host.node.x86.exe"] = true,
+    ["servicehub.host.clr.exe"] = true,
+    ["vs_installershell.exe"] = true,
+    ["testhost.net472.x86.exe"] = true,
+    ["symbolarchiveverifier.exe"] = true
+  })[string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$")] then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
-do
-  return mp.LOWFI
-end
-
+return mp.LOWFI

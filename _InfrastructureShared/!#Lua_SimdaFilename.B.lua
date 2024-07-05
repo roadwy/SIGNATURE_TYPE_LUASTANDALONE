@@ -1,17 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SimdaFilename.B 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-local l_0_1 = (string.sub)(l_0_0, -4)
-do
-  if l_0_0 and (l_0_1 == ".exe" or l_0_1 == ".zip" or l_0_1 == ".tmp") then
-    local l_0_2 = l_0_0:match("\\([^\\]+)$")
-    if l_0_2 and (l_0_2 == "scandisk.exe" or l_0_2 == "scandisc.exe" or l_0_2 == "chrome_update.zip" or (string.match)(l_0_2, "^video%.hd_[%d%[%]]*%.zip$") or (string.match)(l_0_2, "^hd%.gallery_[%d%[%]]*%.zip$") or (string.match)(l_0_2, "^~%w%w%w%w%w%w%w%w%w%w%w%w%.tmp$")) then
-      (mp.set_mpattribute)("Lua:SimdaFilename.B")
-    end
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+L1_1 = string
+L1_1 = L1_1.sub
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, -4)
+if L0_0 and (L1_1 == ".exe" or L1_1 == ".zip" or L1_1 == ".tmp") then
+  L2_2 = L0_0.match
+  L2_2 = L2_2(L0_0, "\\([^\\]+)$")
+  if L2_2 and (L2_2 == "scandisk.exe" or L2_2 == "scandisc.exe" or L2_2 == "chrome_update.zip" or string.match(L2_2, "^video%.hd_[%d%[%]]*%.zip$") or string.match(L2_2, "^hd%.gallery_[%d%[%]]*%.zip$") or string.match(L2_2, "^~%w%w%w%w%w%w%w%w%w%w%w%w%.tmp$")) then
+    mp.set_mpattribute("Lua:SimdaFilename.B")
   end
-  return mp.CLEAN
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

@@ -1,10 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b3e9d3bcd1 
-
--- params : ...
--- function num : 0
-if (string.lower)((string.sub)((bm.get_imagepath)(), -10)) == "\\mshta.exe" then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(string.sub(bm.get_imagepath(), -10))
+if L0_0 == "\\mshta.exe" then
   return mp.INFECTED
 end
 return mp.CLEAN
-

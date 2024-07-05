@@ -1,40 +1,74 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_DropSuspiciousNonPEFiles 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  if l_0_1 == nil or (string.len)(l_0_1) < 4 then
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_FILENAME
+  L1_1 = L1_1(L2_2)
+  if L1_1 == nil then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  L1_1 = L2_2
+  if L1_1 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.len
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3)
+  elseif L2_2 < 4 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L1_1
+  L4_4 = -4
+  L2_2 = L2_2(L3_3, L4_4)
+  L3_3 = string
+  L3_3 = L3_3.sub
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4, -3)
+  L4_4 = mp
+  L4_4 = L4_4.get_contextdata
+  L4_4 = L4_4(mp.CONTEXT_DATA_PROCESSNAME)
+  if L4_4 == nil then
     return mp.CLEAN
   end
-  local l_0_2 = (string.sub)(l_0_1, -4)
-  local l_0_3 = (string.sub)(l_0_1, -3)
-  local l_0_4 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-  if l_0_4 == nil or (string.len)(l_0_4) < 4 then
+  L4_4 = string.lower(L4_4)
+  if string.len(L4_4) < 4 then
     return mp.CLEAN
   end
-  local l_0_5 = (string.sub)(l_0_4, -4)
-  if l_0_5 == ".exe" then
-    if l_0_2 == ".lnk" then
-      (mp.set_mpattribute)("Lua:LNKdroppedByProcess")
+  if string.sub(L4_4, -4) == ".exe" then
+    if L2_2 == ".lnk" then
+      mp.set_mpattribute("Lua:LNKdroppedByProcess")
     end
-    if l_0_3 == ".js" then
-      (mp.set_mpattribute)("Lua:JSdroppedByProcess")
+    if L3_3 == ".js" then
+      mp.set_mpattribute("Lua:JSdroppedByProcess")
     end
-    if l_0_2 == ".vbs" then
-      (mp.set_mpattribute)("Lua:VBSdroppedByProcess")
+    if L2_2 == ".vbs" then
+      mp.set_mpattribute("Lua:VBSdroppedByProcess")
     end
-    if l_0_2 == ".com" then
-      (mp.set_mpattribute)("Lua:COMdroppedByProcess")
+    if L2_2 == ".com" then
+      mp.set_mpattribute("Lua:COMdroppedByProcess")
     end
-    if l_0_2 == ".ps1" then
-      (mp.set_mpattribute)("Lua:PSdroppedByProcess")
+    if L2_2 == ".ps1" then
+      mp.set_mpattribute("Lua:PSdroppedByProcess")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,29 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/64b316071405 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched == false then
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.ppid
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.ppid
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.ppid
+if L0_0 ~= L1_1 then
   return mp.CLEAN
 end
-if (this_sigattrlog[2]).matched == false then
+if 2 > #bm.get_process_relationships() then
   return mp.CLEAN
 end
-if (this_sigattrlog[3]).matched == false then
-  return mp.CLEAN
-end
-local l_0_0 = (this_sigattrlog[1]).ppid
-local l_0_1 = (this_sigattrlog[2]).ppid
-local l_0_2 = (this_sigattrlog[3]).ppid
-if l_0_0 ~= l_0_1 then
-  return mp.CLEAN
-end
-local l_0_3, l_0_4 = (bm.get_process_relationships)()
-if #l_0_4 < 2 then
-  return mp.CLEAN
-end
-if (l_0_4[2]).ppid ~= l_0_2 then
+if bm.get_process_relationships()[2].ppid ~= L2_2 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

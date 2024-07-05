@@ -1,40 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/58b3eccb07a3 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched then
-  local l_0_0, l_0_1, l_0_2 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p2
 else
-  do
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC12: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC22: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_0 ~= nil and (string.len)(l_0_0) > 3 then
-      local l_0_3 = nil
-      if (mp.GetExecutablesFromCommandLine)(l_0_0) ~= nil then
-        for l_0_7,l_0_8 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_0)) do
-          local l_0_4 = nil
-          -- DECOMPILER ERROR at PC32: Confused about usage of register: R6 in 'UnsetPending'
-
-          R6_PC32 = (mp.ContextualExpandEnvironmentVariables)(R6_PC32)
-          ;
-          (bm.add_related_file)(R6_PC32)
-        end
-      end
-      do
-        do
-          do return mp.INFECTED end
-          return mp.CLEAN
-        end
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L1_1 = L1_1(L2_2)
+  if L1_1 > 3 then
+    L1_1 = mp
+    L1_1 = L1_1.GetExecutablesFromCommandLine
+    L1_1 = L1_1(L2_2)
+    if L1_1 ~= nil then
+      for L5_5, L6_6 in L2_2(L3_3) do
+        L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+        bm.add_related_file(L6_6)
       end
     end
+    return L2_2
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

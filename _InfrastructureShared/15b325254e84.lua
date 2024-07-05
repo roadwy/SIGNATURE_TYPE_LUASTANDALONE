@@ -1,19 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b325254e84 
-
--- params : ...
--- function num : 0
-local l_0_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\sethc.exe")
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "Debugger")
-    if l_0_1 ~= nil and (string.len)(l_0_1) > 1 then
-      if (sysio.IsFileExists)(l_0_1) then
-        (mp.ReportLowfi)(l_0_1, 2782132239)
-      end
-      return mp.INFECTED
+local L0_0, L1_1
+L0_0 = sysio
+L0_0 = L0_0.RegOpenKey
+L1_1 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\sethc.exe"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = sysio
+  L1_1 = L1_1.GetRegValueAsString
+  L1_1 = L1_1(L0_0, "Debugger")
+  if L1_1 ~= nil and string.len(L1_1) > 1 then
+    if sysio.IsFileExists(L1_1) then
+      mp.ReportLowfi(L1_1, 2782132239)
     end
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,51 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_ProcessForDllSideLoading.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) then
-  local l_0_0 = {}
-  l_0_0.BM_Process_Hacker_EXE = ""
-  local l_0_1, l_0_2 = nil, nil
-  for l_0_6,l_0_7 in pairs(l_0_0) do
-    if (mp.get_mpattribute)(l_0_6) then
-      l_0_1 = l_0_6
-      l_0_2 = (string.lower)(l_0_7)
-      break
-    end
-  end
-  do
-    if l_0_1 == nil or l_0_2 == nil then
-      return mp.CLEAN
-    end
-    local l_0_8 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-    if l_0_8 == nil then
-      return mp.CLEAN
-    end
-    if #l_0_2 > 0 and l_0_2 == l_0_8 then
-      return mp.CLEAN
-    end
-    local l_0_9 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-    if l_0_9:sub(1, 8) == "\\device\\" then
-      l_0_9 = (MpCommon.PathToWin32Path)(l_0_9)
-      if l_0_9 == nil then
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L0_0 = {}
+    L0_0.BM_Process_Hacker_EXE = ""
+    L1_1, L2_2 = nil, nil
+    for L6_6, L7_7 in L3_3(L4_4) do
+      if mp.get_mpattribute(L6_6) then
+        L1_1 = L6_6
+        L2_2 = string.lower(L7_7)
+        break
       end
-      l_0_9 = (string.lower)(l_0_9)
     end
-    if l_0_9:sub(1, 4) == "\\\\?\\" then
-      l_0_9 = l_0_9:sub(5)
+    if L1_1 == nil or L2_2 == nil then
+      return L3_3
     end
-    local l_0_10 = l_0_9 .. "\\" .. l_0_8
-    local l_0_11 = "CheckPossibleDllSideLoadingA"
-    do
-      local l_0_12 = (MpCommon.QueryPersistContext)(l_0_10, l_0_11)
-      if not l_0_12 then
-        (MpCommon.AppendPersistContext)(l_0_10, l_0_11, 100)
-        return mp.INFECTED
+    L7_7 = L4_4(L5_5)
+    if L3_3 == nil then
+      return L4_4
+    end
+    if L4_4 > 0 and L2_2 == L3_3 then
+      return L4_4
+    end
+    L6_6 = L4_4
+    L7_7 = 1
+    if L5_5 == "\\device\\" then
+      L6_6 = L4_4
+      if L4_4 == nil then
+        return L5_5
       end
-      return mp.CLEAN
+      L6_6 = L4_4
+    end
+    L6_6 = L4_4
+    L7_7 = 1
+    if L5_5 == "\\\\?\\" then
+      L6_6 = L4_4
+      L7_7 = 5
+    end
+    L6_6 = "\\"
+    L7_7 = L3_3
+    L6_6 = "CheckPossibleDllSideLoadingA"
+    L7_7 = MpCommon
+    L7_7 = L7_7.QueryPersistContext
+    L7_7 = L7_7(L5_5, L6_6)
+    if not L7_7 then
+      MpCommon.AppendPersistContext(L5_5, L6_6, 100)
+      return mp.INFECTED
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

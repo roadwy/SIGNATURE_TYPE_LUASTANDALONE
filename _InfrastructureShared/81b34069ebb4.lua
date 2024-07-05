@@ -1,11 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/81b34069ebb4 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 and MpCommon.SECURITY_MANDATORY_MEDIUM_RID < l_0_0.integrity_level then
+if bm.get_current_process_startup_info() and bm.get_current_process_startup_info().integrity_level > MpCommon.SECURITY_MANDATORY_MEDIUM_RID then
   return mp.CLEAN
 end
 return mp.INFECTED
-

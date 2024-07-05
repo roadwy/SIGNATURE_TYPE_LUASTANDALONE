@@ -1,120 +1,269 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/117b33e216a0c 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2 = nil
-if MpCommon.SECURITY_MANDATORY_MEDIUM_RID < ((bm.get_current_process_startup_info)()).integrity_level then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17
+L2_2 = bm
+L2_2 = L2_2.get_current_process_startup_info
+L2_2 = L2_2()
+L3_3 = L2_2.integrity_level
+L4_4 = MpCommon
+L4_4 = L4_4.SECURITY_MANDATORY_MEDIUM_RID
+if L3_3 > L4_4 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = nil
-if MpCommon.SECURITY_MANDATORY_MEDIUM_RID < ((MpCommon.GetProcessElevationAndIntegrityLevel)(((bm.get_current_process_startup_info)()).ppid)).IntegrityLevel then
-  return mp.CLEAN
+L3_3 = MpCommon
+L3_3 = L3_3.GetProcessElevationAndIntegrityLevel
+L4_4 = L2_2.ppid
+L3_3 = L3_3(L4_4)
+L4_4 = L3_3.IntegrityLevel
+if L4_4 > L5_5 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-if (this_sigattrlog[1]).matched then
-  l_0_2 = (string.lower)((this_sigattrlog[1]).utf8p1)
-  l_0_3 = (this_sigattrlog[1]).utf8p2
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = string
+  L4_4 = L4_4.lower
+  L4_4 = L4_4(L5_5)
+  L0_0 = L4_4
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L1_1 = L4_4.utf8p2
 else
-  if (this_sigattrlog[2]).matched then
-    l_0_2 = (string.lower)((this_sigattrlog[2]).utf8p1)
-    l_0_3 = (this_sigattrlog[2]).utf8p2
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[2]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = string
+    L4_4 = L4_4.lower
+    L4_4 = L4_4(L5_5)
+    L0_0 = L4_4
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[2]
+    L1_1 = L4_4.utf8p2
   else
-    return mp.CLEAN
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
 end
-local l_0_4 = nil
-for l_0_8,l_0_9 in pairs({"c343ed84-a129-11d3-b799-0060b0f159ef", "5d09dd40-cdc4-4c56-b615-0d1e3b357c2b", "e81fb43c-b144-4d30-8033-c9338aa0ecb8", "c442ac41-9200-4770-8cc0-7cdb4f245c55", "00024512-0000-0000-c000-000000000046", "08d512d2-7d97-4e22-b7db-82791106c086", "83b0e426-d4ee-11d4-bedf-bab7f1eea455", "2d0e74b6-021a-11d5-9054-00508bf70a94", "9dc963f3-00ec-4bb0-a344-2d6cc1da19ab", "f90026a8-a02e-4f1c-a0c6-76955a119600", "c4f0910e-e0b4-4e68-8086-452730c7a26a", "6a481801-e531-11cf-a115-00a024158daf", "cd2425e4-8141-11d0-8ce4-444553540000", "fb2fe984-05f5-4512-9d9b-69d3de61f6d9", "c3101a8b-0ee1-4612-bfe9-41ffc1a3c19d", "99e2b362-3e4e-4255-9b29-41a7f40777ba", "32e26fd9-f435-4a20-a561-35d4b987cfdc", "017ce1a6-416f-4684-ae6a-02064420b30a"}) do
-  local l_0_5, l_0_6 = nil
-  -- DECOMPILER ERROR at PC85: Confused about usage of register: R9 in 'UnsetPending'
-
-  if (string.find)(l_0_2, "00024512-0000-0000-c000-000000000046", 1, true) then
-    return mp.CLEAN
+L4_4 = {
+  L5_5,
+  L6_6,
+  L7_7,
+  L8_8,
+  L9_9,
+  L10_10,
+  L11_11,
+  L12_12,
+  L13_13,
+  L14_14,
+  L15_15,
+  L16_16,
+  L17_17,
+  "fb2fe984-05f5-4512-9d9b-69d3de61f6d9",
+  "c3101a8b-0ee1-4612-bfe9-41ffc1a3c19d",
+  "99e2b362-3e4e-4255-9b29-41a7f40777ba",
+  "32e26fd9-f435-4a20-a561-35d4b987cfdc",
+  "017ce1a6-416f-4684-ae6a-02064420b30a"
+}
+L8_8 = "c442ac41-9200-4770-8cc0-7cdb4f245c55"
+L9_9 = "00024512-0000-0000-c000-000000000046"
+L10_10 = "08d512d2-7d97-4e22-b7db-82791106c086"
+L11_11 = "83b0e426-d4ee-11d4-bedf-bab7f1eea455"
+L12_12 = "2d0e74b6-021a-11d5-9054-00508bf70a94"
+L13_13 = "9dc963f3-00ec-4bb0-a344-2d6cc1da19ab"
+L14_14 = "f90026a8-a02e-4f1c-a0c6-76955a119600"
+L15_15 = "c4f0910e-e0b4-4e68-8086-452730c7a26a"
+L16_16 = "6a481801-e531-11cf-a115-00a024158daf"
+L17_17 = "cd2425e4-8141-11d0-8ce4-444553540000"
+for L8_8, L9_9 in L5_5(L6_6) do
+  L10_10 = string
+  L10_10 = L10_10.find
+  L11_11 = L0_0
+  L12_12 = L9_9
+  L13_13 = 1
+  L14_14 = true
+  L10_10 = L10_10(L11_11, L12_12, L13_13, L14_14)
+  if L10_10 then
+    L10_10 = mp
+    L10_10 = L10_10.CLEAN
+    return L10_10
   end
 end
-local l_0_10 = nil
-if (string.match)(l_0_2, "inprocserver32.*") ~= nil and (string.len)((string.match)(l_0_2, "inprocserver32.*")) > 15 then
-  return mp.CLEAN
+if L5_5 ~= nil then
+  if L6_6 > 15 then
+    return L6_6
+  end
 end
-l_0_3 = (string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_3))
-if (sysio.IsFileExists)(l_0_3) then
-  if (string.find)(l_0_3, ":\\program files\\", 1, true) or (string.find)(l_0_3, ":\\program files (x86)\\", 1, true) or (string.find)(l_0_3, ":\\windows\\", 1, true) or (string.find)(l_0_3, "\\root\\office15\\interceptor.dll", -30, true) or (string.find)(l_0_3, "\\microsoft shared\\office15\\msoxev.dll", -37, true) or (string.find)(l_0_3, "\\appdata\\roaming\\microsoft\\mslang\\xml32.dll", -43, true) or (string.find)(l_0_3, "\\appdata\\local\\microsoft\\onedrive\\", 1, true) or (string.find)(l_0_3, "\\appdata\\local\\kingsoft\\wps office\\", 1, true) or (string.find)(l_0_3, "\\appdata\\local\\chromium\\update\\", 1, true) or (mp.IsKnownFriendlyFile)(l_0_3, true, false) == true then
-    return mp.CLEAN
-  end
-  local l_0_11 = nil
-  if (string.match)(l_0_3, "(v8_[a-f0-9]*_[a-f0-9]*%.tmp)$") ~= nil and (string.len)((string.match)(l_0_3, "(v8_[a-f0-9]*_[a-f0-9]*%.tmp)$")) <= 16 then
-    return mp.CLEAN
-  end
-  local l_0_12 = nil
-  do
-    if ((sysio.GetLastResult)()).Success and (sysio.GetFileLastWriteTime)(l_0_3) ~= 0 then
-      local l_0_13 = nil
-      -- DECOMPILER ERROR at PC253: Confused about usage of register: R7 in 'UnsetPending'
-
-      if (MpCommon.GetCurrentTimeT)() < (sysio.GetFileLastWriteTime)(l_0_3) / 10000000 - 11644473600 or (MpCommon.GetCurrentTimeT)() - ((sysio.GetFileLastWriteTime)(l_0_3) / 10000000 - 11644473600) > 600 then
-        return mp.CLEAN
-      end
-    end
-    if l_0_2 ~= nil and (string.len)(l_0_2) > 24 then
-      local l_0_14 = nil
-      -- DECOMPILER ERROR at PC277: Overwrote pending register: R8 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC282: Confused about usage of register: R8 in 'UnsetPending'
-
-      if nil ~= nil then
-        local l_0_15 = nil
-        -- DECOMPILER ERROR at PC297: Confused about usage of register: R9 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC301: Confused about usage of register: R9 in 'UnsetPending'
-
-        if (string.lower)((mp.ContextualExpandEnvironmentVariables)((sysio.GetRegValueAsString)(nil, ""))) ~= nil and (string.len)((string.lower)((mp.ContextualExpandEnvironmentVariables)((sysio.GetRegValueAsString)(nil, "")))) > 0 and (string.lower)((mp.ContextualExpandEnvironmentVariables)((sysio.GetRegValueAsString)(nil, ""))) ~= l_0_3 then
-          local l_0_16 = nil
-          local l_0_17 = nil
-          local l_0_18 = 1
-          local l_0_19 = nil
-          local l_0_20 = 0
-          local l_0_21, l_0_22 = 0, 0
-          while 1 do
-            -- DECOMPILER ERROR at PC318: Overwrote pending register: R16 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC319: Overwrote pending register: R15 in 'AssignReg'
-
-            if l_0_20 < 8 then
-              if nil == nil then
-                break
-              end
-              -- DECOMPILER ERROR at PC327: Confused about usage of register: R15 in 'UnsetPending'
-
-              do
-                local l_0_24, l_0_25 = , nil
-                if (string.find)(l_0_3, "\\", l_0_18, true) == l_0_24 and (string.find)(l_0_3, l_0_19, l_0_18, true) then
-                  l_0_21 = l_0_21 + 1
+if L6_6 then
+  L8_8 = L6_6
+  L1_1 = L7_7
+end
+L8_8 = L1_1
+if L7_7 then
+  L8_8 = L1_1
+  L9_9 = ":\\program files\\"
+  L10_10 = 1
+  L11_11 = true
+  if not L7_7 then
+    L8_8 = L1_1
+    L9_9 = ":\\program files (x86)\\"
+    L10_10 = 1
+    L11_11 = true
+    if not L7_7 then
+      L8_8 = L1_1
+      L9_9 = ":\\windows\\"
+      L10_10 = 1
+      L11_11 = true
+      if not L7_7 then
+        L8_8 = L1_1
+        L9_9 = "\\root\\office15\\interceptor.dll"
+        L10_10 = -30
+        L11_11 = true
+        if not L7_7 then
+          L8_8 = L1_1
+          L9_9 = "\\microsoft shared\\office15\\msoxev.dll"
+          L10_10 = -37
+          L11_11 = true
+          if not L7_7 then
+            L8_8 = L1_1
+            L9_9 = "\\appdata\\roaming\\microsoft\\mslang\\xml32.dll"
+            L10_10 = -43
+            L11_11 = true
+            if not L7_7 then
+              L8_8 = L1_1
+              L9_9 = "\\appdata\\local\\microsoft\\onedrive\\"
+              L10_10 = 1
+              L11_11 = true
+              if not L7_7 then
+                L8_8 = L1_1
+                L9_9 = "\\appdata\\local\\kingsoft\\wps office\\"
+                L10_10 = 1
+                L11_11 = true
+                if not L7_7 then
+                  L8_8 = L1_1
+                  L9_9 = "\\appdata\\local\\chromium\\update\\"
+                  L10_10 = 1
+                  L11_11 = true
+                  if not L7_7 then
+                    L8_8 = L1_1
+                    L9_9 = true
+                    L10_10 = false
+                  end
                 end
-                l_0_18 = l_0_25 + 1
-                l_0_22 = l_0_22 + 1
-                -- DECOMPILER ERROR at PC351: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC351: LeaveBlock: unexpected jumping out IF_STMT
-
               end
             end
-          end
-          if l_0_21 < 2 and l_0_22 > 2 then
-            local l_0_23 = nil
-            ;
-            (bm.add_related_file)(l_0_3)
-            ;
-            (bm.add_threat_file)(l_0_3)
-            ;
-            (mp.ReportLowfi)(l_0_3, 1827652614)
-            return mp.INFECTED
           end
         end
       end
     end
-    do
-      return mp.CLEAN
+  elseif L7_7 == true then
+    return L7_7
+  end
+  L8_8 = L1_1
+  L9_9 = "(v8_[a-f0-9]*_[a-f0-9]*%.tmp)$"
+  if L7_7 ~= nil then
+    L8_8 = string
+    L8_8 = L8_8.len
+    L9_9 = L7_7
+    L8_8 = L8_8(L9_9)
+    if L8_8 <= 16 then
+      L8_8 = mp
+      L8_8 = L8_8.CLEAN
+      return L8_8
+    end
+  end
+  L8_8 = sysio
+  L8_8 = L8_8.GetFileLastWriteTime
+  L9_9 = L1_1
+  L8_8 = L8_8(L9_9)
+  L9_9 = sysio
+  L9_9 = L9_9.GetLastResult
+  L9_9 = L9_9()
+  L9_9 = L9_9.Success
+  if L9_9 and L8_8 ~= 0 then
+    L9_9 = L8_8 / 10000000
+    L8_8 = L9_9 - 11644473600
+    L9_9 = MpCommon
+    L9_9 = L9_9.GetCurrentTimeT
+    L9_9 = L9_9()
+    if not (L8_8 > L9_9) then
+      L10_10 = L9_9 - L8_8
+    elseif L10_10 > 600 then
+      L10_10 = mp
+      L10_10 = L10_10.CLEAN
+      return L10_10
+    end
+  end
+  if L0_0 ~= nil then
+    L9_9 = string
+    L9_9 = L9_9.len
+    L10_10 = L0_0
+    L9_9 = L9_9(L10_10)
+    if L9_9 > 24 then
+      L9_9 = nil
+      L11_11 = L0_0
+      L10_10 = L0_0.gsub
+      L12_12 = "hkcu"
+      L13_13 = "hklm"
+      L10_10 = L10_10(L11_11, L12_12, L13_13)
+      L0_0 = L10_10
+      L10_10 = sysio
+      L10_10 = L10_10.RegOpenKey
+      L11_11 = L0_0
+      L10_10 = L10_10(L11_11)
+      L9_9 = L10_10
+      if L9_9 ~= nil then
+        L10_10 = sysio
+        L10_10 = L10_10.GetRegValueAsString
+        L11_11 = L9_9
+        L12_12 = ""
+        L10_10 = L10_10(L11_11, L12_12)
+        L11_11 = string
+        L11_11 = L11_11.lower
+        L12_12 = mp
+        L12_12 = L12_12.ContextualExpandEnvironmentVariables
+        L13_13 = L10_10
+        L17_17 = L12_12(L13_13)
+        L11_11 = L11_11(L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L12_12(L13_13))
+        L10_10 = L11_11
+        if L10_10 ~= nil then
+          L11_11 = string
+          L11_11 = L11_11.len
+          L12_12 = L10_10
+          L11_11 = L11_11(L12_12)
+          if L11_11 > 0 and L10_10 ~= L1_1 then
+            L11_11 = 1
+            L12_12 = nil
+            L13_13 = 0
+            L14_14 = 0
+            L15_15 = 0
+            L16_16, L17_17 = nil, nil
+            while L13_13 < 8 do
+              L16_16, L17_17 = string.find(L10_10, "\\", L11_11, true)
+              if L16_16 == nil then
+                break
+              end
+              L12_12 = string.sub(L10_10, L11_11, L16_16)
+              if string.find(L1_1, "\\", L11_11, true) == L16_16 and string.find(L1_1, L12_12, L11_11, true) then
+                L14_14 = L14_14 + 1
+              end
+              L11_11 = L17_17 + 1
+              L15_15 = L15_15 + 1
+            end
+            if L14_14 < 2 and L15_15 > 2 then
+              bm.add_related_file(L1_1)
+              bm.add_threat_file(L1_1)
+              mp.ReportLowfi(L1_1, 1827652614)
+              return mp.INFECTED
+            end
+          end
+        end
+      end
     end
   end
 end
-
+return L7_7

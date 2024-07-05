@@ -1,148 +1,296 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/557b343a5367c 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched then
-  do
-    if (this_sigattrlog[1]).utf8p1 ~= nil then
-      local l_0_0, l_0_1 = nil, nil
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p1
+  end
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
+  end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p1
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.utf8p1
     end
-    do
-      if (this_sigattrlog[1]).utf8p2 ~= nil then
-        local l_0_2 = nil
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L1_1 = L2_2.utf8p2
+    end
+  else
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p1
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L0_0 = L2_2.utf8p1
       end
-      -- DECOMPILER ERROR at PC42: Overwrote pending register: R1 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC56: Overwrote pending register: R0 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC57: Unhandled construct in 'MakeBoolean' P1
-
-      if (this_sigattrlog[2]).matched and ((this_sigattrlog[2]).utf8p1 == nil or (this_sigattrlog[2]).utf8p2 ~= nil) then
-        if (this_sigattrlog[3]).matched then
-          do
-            if (this_sigattrlog[3]).utf8p1 ~= nil then
-              local l_0_3, l_0_4 = (this_sigattrlog[2]).utf8p1, (this_sigattrlog[1]).utf8p2
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L1_1 = L2_2.utf8p2
+      end
+    else
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[4]
+        L2_2 = L2_2.utf8p1
+        if L2_2 ~= nil then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[4]
+          L0_0 = L2_2.utf8p1
+        end
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[4]
+        L2_2 = L2_2.utf8p2
+        if L2_2 ~= nil then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[4]
+          L1_1 = L2_2.utf8p2
+        end
+      else
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[5]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[5]
+          L2_2 = L2_2.utf8p1
+          if L2_2 ~= nil then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[5]
+            L0_0 = L2_2.utf8p1
+          end
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[5]
+          L2_2 = L2_2.utf8p2
+          if L2_2 ~= nil then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[5]
+            L1_1 = L2_2.utf8p2
+          end
+        else
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[6]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[6]
+            L2_2 = L2_2.utf8p1
+            if L2_2 ~= nil then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[6]
+              L0_0 = L2_2.utf8p1
             end
-            do
-              if (this_sigattrlog[3]).utf8p2 ~= nil then
-                local l_0_5 = nil
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[6]
+            L2_2 = L2_2.utf8p2
+            if L2_2 ~= nil then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[6]
+              L1_1 = L2_2.utf8p2
+            end
+          else
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[7]
+            L2_2 = L2_2.matched
+            if L2_2 then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[7]
+              L2_2 = L2_2.utf8p1
+              if L2_2 ~= nil then
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[7]
+                L0_0 = L2_2.utf8p1
               end
-              -- DECOMPILER ERROR at PC86: Overwrote pending register: R1 in 'AssignReg'
-
-              -- DECOMPILER ERROR at PC100: Overwrote pending register: R0 in 'AssignReg'
-
-              -- DECOMPILER ERROR at PC101: Unhandled construct in 'MakeBoolean' P1
-
-              if (this_sigattrlog[4]).matched and ((this_sigattrlog[4]).utf8p1 == nil or (this_sigattrlog[4]).utf8p2 ~= nil) then
-                if (this_sigattrlog[5]).matched then
-                  do
-                    if (this_sigattrlog[5]).utf8p1 ~= nil then
-                      local l_0_6, l_0_7 = (this_sigattrlog[4]).utf8p1, (this_sigattrlog[3]).utf8p2
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[7]
+              L2_2 = L2_2.utf8p2
+              if L2_2 ~= nil then
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[7]
+                L1_1 = L2_2.utf8p2
+              end
+            else
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[8]
+              L2_2 = L2_2.matched
+              if L2_2 then
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[8]
+                L2_2 = L2_2.utf8p1
+                if L2_2 ~= nil then
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[8]
+                  L0_0 = L2_2.utf8p1
+                end
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[8]
+                L2_2 = L2_2.utf8p2
+                if L2_2 ~= nil then
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[8]
+                  L1_1 = L2_2.utf8p2
+                end
+              else
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[9]
+                L2_2 = L2_2.matched
+                if L2_2 then
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[9]
+                  L2_2 = L2_2.utf8p1
+                  if L2_2 ~= nil then
+                    L2_2 = this_sigattrlog
+                    L2_2 = L2_2[9]
+                    L0_0 = L2_2.utf8p1
+                  end
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[9]
+                  L2_2 = L2_2.utf8p2
+                  if L2_2 ~= nil then
+                    L2_2 = this_sigattrlog
+                    L2_2 = L2_2[9]
+                    L1_1 = L2_2.utf8p2
+                  end
+                else
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[10]
+                  L2_2 = L2_2.matched
+                  if L2_2 then
+                    L2_2 = this_sigattrlog
+                    L2_2 = L2_2[10]
+                    L2_2 = L2_2.utf8p1
+                    if L2_2 ~= nil then
+                      L2_2 = this_sigattrlog
+                      L2_2 = L2_2[10]
+                      L0_0 = L2_2.utf8p1
                     end
-                    do
-                      if (this_sigattrlog[5]).utf8p2 ~= nil then
-                        local l_0_8 = nil
+                    L2_2 = this_sigattrlog
+                    L2_2 = L2_2[10]
+                    L2_2 = L2_2.utf8p2
+                    if L2_2 ~= nil then
+                      L2_2 = this_sigattrlog
+                      L2_2 = L2_2[10]
+                      L1_1 = L2_2.utf8p2
+                    end
+                  else
+                    L2_2 = this_sigattrlog
+                    L2_2 = L2_2[11]
+                    L2_2 = L2_2.matched
+                    if L2_2 then
+                      L2_2 = this_sigattrlog
+                      L2_2 = L2_2[11]
+                      L2_2 = L2_2.utf8p1
+                      if L2_2 ~= nil then
+                        L2_2 = this_sigattrlog
+                        L2_2 = L2_2[11]
+                        L0_0 = L2_2.utf8p1
                       end
-                      -- DECOMPILER ERROR at PC130: Overwrote pending register: R1 in 'AssignReg'
-
-                      -- DECOMPILER ERROR at PC144: Overwrote pending register: R0 in 'AssignReg'
-
-                      -- DECOMPILER ERROR at PC145: Unhandled construct in 'MakeBoolean' P1
-
-                      if (this_sigattrlog[6]).matched and ((this_sigattrlog[6]).utf8p1 == nil or (this_sigattrlog[6]).utf8p2 ~= nil) then
-                        if (this_sigattrlog[7]).matched then
-                          do
-                            if (this_sigattrlog[7]).utf8p1 ~= nil then
-                              local l_0_9, l_0_10 = (this_sigattrlog[6]).utf8p1, (this_sigattrlog[5]).utf8p2
+                      L2_2 = this_sigattrlog
+                      L2_2 = L2_2[11]
+                      L2_2 = L2_2.utf8p2
+                      if L2_2 ~= nil then
+                        L2_2 = this_sigattrlog
+                        L2_2 = L2_2[11]
+                        L1_1 = L2_2.utf8p2
+                      end
+                    else
+                      L2_2 = this_sigattrlog
+                      L2_2 = L2_2[12]
+                      L2_2 = L2_2.matched
+                      if L2_2 then
+                        L2_2 = this_sigattrlog
+                        L2_2 = L2_2[12]
+                        L2_2 = L2_2.utf8p1
+                        if L2_2 ~= nil then
+                          L2_2 = this_sigattrlog
+                          L2_2 = L2_2[12]
+                          L0_0 = L2_2.utf8p1
+                        end
+                        L2_2 = this_sigattrlog
+                        L2_2 = L2_2[12]
+                        L2_2 = L2_2.utf8p2
+                        if L2_2 ~= nil then
+                          L2_2 = this_sigattrlog
+                          L2_2 = L2_2[12]
+                          L1_1 = L2_2.utf8p2
+                        end
+                      else
+                        L2_2 = this_sigattrlog
+                        L2_2 = L2_2[13]
+                        L2_2 = L2_2.matched
+                        if L2_2 then
+                          L2_2 = this_sigattrlog
+                          L2_2 = L2_2[13]
+                          L2_2 = L2_2.utf8p1
+                          if L2_2 ~= nil then
+                            L2_2 = this_sigattrlog
+                            L2_2 = L2_2[13]
+                            L0_0 = L2_2.utf8p1
+                          end
+                          L2_2 = this_sigattrlog
+                          L2_2 = L2_2[13]
+                          L2_2 = L2_2.utf8p2
+                          if L2_2 ~= nil then
+                            L2_2 = this_sigattrlog
+                            L2_2 = L2_2[13]
+                            L1_1 = L2_2.utf8p2
+                          end
+                        else
+                          L2_2 = this_sigattrlog
+                          L2_2 = L2_2[14]
+                          L2_2 = L2_2.matched
+                          if L2_2 then
+                            L2_2 = this_sigattrlog
+                            L2_2 = L2_2[14]
+                            L2_2 = L2_2.utf8p1
+                            if L2_2 ~= nil then
+                              L2_2 = this_sigattrlog
+                              L2_2 = L2_2[14]
+                              L0_0 = L2_2.utf8p1
                             end
-                            do
-                              if (this_sigattrlog[7]).utf8p2 ~= nil then
-                                local l_0_11 = nil
-                              end
-                              -- DECOMPILER ERROR at PC174: Overwrote pending register: R1 in 'AssignReg'
-
-                              -- DECOMPILER ERROR at PC188: Overwrote pending register: R0 in 'AssignReg'
-
-                              -- DECOMPILER ERROR at PC189: Unhandled construct in 'MakeBoolean' P1
-
-                              if (this_sigattrlog[8]).matched and ((this_sigattrlog[8]).utf8p1 == nil or (this_sigattrlog[8]).utf8p2 ~= nil) then
-                                if (this_sigattrlog[9]).matched then
-                                  do
-                                    if (this_sigattrlog[9]).utf8p1 ~= nil then
-                                      local l_0_12, l_0_13 = (this_sigattrlog[8]).utf8p1, (this_sigattrlog[7]).utf8p2
-                                    end
-                                    do
-                                      if (this_sigattrlog[9]).utf8p2 ~= nil then
-                                        local l_0_14 = nil
-                                      end
-                                      -- DECOMPILER ERROR at PC218: Overwrote pending register: R1 in 'AssignReg'
-
-                                      -- DECOMPILER ERROR at PC232: Overwrote pending register: R0 in 'AssignReg'
-
-                                      -- DECOMPILER ERROR at PC233: Unhandled construct in 'MakeBoolean' P1
-
-                                      if (this_sigattrlog[10]).matched and ((this_sigattrlog[10]).utf8p1 == nil or (this_sigattrlog[10]).utf8p2 ~= nil) then
-                                        if (this_sigattrlog[11]).matched then
-                                          do
-                                            if (this_sigattrlog[11]).utf8p1 ~= nil then
-                                              local l_0_15, l_0_16 = (this_sigattrlog[10]).utf8p1, (this_sigattrlog[9]).utf8p2
-                                            end
-                                            do
-                                              if (this_sigattrlog[11]).utf8p2 ~= nil then
-                                                local l_0_17 = nil
-                                              end
-                                              -- DECOMPILER ERROR at PC262: Overwrote pending register: R1 in 'AssignReg'
-
-                                              -- DECOMPILER ERROR at PC276: Overwrote pending register: R0 in 'AssignReg'
-
-                                              -- DECOMPILER ERROR at PC277: Unhandled construct in 'MakeBoolean' P1
-
-                                              if (this_sigattrlog[12]).matched and ((this_sigattrlog[12]).utf8p1 == nil or (this_sigattrlog[12]).utf8p2 ~= nil) then
-                                                if (this_sigattrlog[13]).matched then
-                                                  do
-                                                    if (this_sigattrlog[13]).utf8p1 ~= nil then
-                                                      local l_0_18, l_0_19, l_0_21 = (this_sigattrlog[12]).utf8p1, (this_sigattrlog[11]).utf8p2
-                                                    end
-                                                    do
-                                                      if (this_sigattrlog[13]).utf8p2 ~= nil then
-                                                        local l_0_20, l_0_22 = , (this_sigattrlog[13]).utf8p2
-                                                      end
-                                                      if (this_sigattrlog[14]).matched and ((this_sigattrlog[14]).utf8p1 == nil or (this_sigattrlog[14]).utf8p2 ~= nil) then
-                                                        local l_0_23 = (this_sigattrlog[14]).utf8p1
-                                                        if ((string.lower)((bm.get_imagepath)())):find("browser", 1, true) then
-                                                          return mp.CLEAN
-                                                        end
-                                                        if l_0_23 ~= nil and (sysio.IsFileExists)(l_0_23) then
-                                                          (bm.add_related_file)(l_0_23)
-                                                        end
-                                                        -- DECOMPILER ERROR at PC339: Confused about usage of register: R1 in 'UnsetPending'
-
-                                                        -- DECOMPILER ERROR at PC345: Confused about usage of register: R1 in 'UnsetPending'
-
-                                                        if (this_sigattrlog[14]).utf8p2 ~= nil and (sysio.IsFileExists)((this_sigattrlog[14]).utf8p2) then
-                                                          (bm.add_threat_file)((this_sigattrlog[14]).utf8p2)
-                                                          -- DECOMPILER ERROR at PC349: Confused about usage of register: R1 in 'UnsetPending'
-
-                                                          ;
-                                                          (bm.add_related_file)((this_sigattrlog[14]).utf8p2)
-                                                        end
-                                                        return mp.INFECTED
-                                                      end
-                                                    end
-                                                  end
-                                                end
-                                              end
-                                            end
-                                          end
-                                        end
-                                      end
-                                    end
-                                  end
-                                end
-                              end
+                            L2_2 = this_sigattrlog
+                            L2_2 = L2_2[14]
+                            L2_2 = L2_2.utf8p2
+                            if L2_2 ~= nil then
+                              L2_2 = this_sigattrlog
+                              L2_2 = L2_2[14]
+                              L1_1 = L2_2.utf8p2
                             end
                           end
                         end
@@ -158,4 +306,17 @@ if (this_sigattrlog[1]).matched then
     end
   end
 end
-
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(bm.get_imagepath())
+if L2_2:find("browser", 1, true) then
+  return mp.CLEAN
+end
+if L0_0 ~= nil and sysio.IsFileExists(L0_0) then
+  bm.add_related_file(L0_0)
+end
+if L1_1 ~= nil and sysio.IsFileExists(L1_1) then
+  bm.add_threat_file(L1_1)
+  bm.add_related_file(L1_1)
+end
+return mp.INFECTED

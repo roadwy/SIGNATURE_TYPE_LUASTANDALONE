@@ -1,21 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_CompanyNameSigned_ObMpAttributes_g 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.get_versioninfo)()
-if l_0_0 == nil then
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.get_versioninfo
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = L0_0.CompanyName
+if L1_1 == nil then
   return mp.CLEAN
 end
-local l_0_1 = l_0_0.CompanyName
-if l_0_1 == nil then
-  return mp.CLEAN
-end
-l_0_1 = (string.lower)(l_0_1)
-local l_0_2 = {}
-l_0_2["microsoft corporation"] = "Lua:Company_Microsoft"
-if l_0_2[l_0_1] ~= nil then
-  (mp.set_mpattribute)(l_0_2[l_0_1])
+L1_1 = string.lower(L1_1)
+if ({
+  ["microsoft corporation"] = "Lua:Company_Microsoft"
+})[L1_1] ~= nil then
+  mp.set_mpattribute(({
+    ["microsoft corporation"] = "Lua:Company_Microsoft"
+  })[L1_1])
 end
 return mp.CLEAN
-

@@ -1,39 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4fb3c1b63e86_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched then
-  local l_0_0, l_0_1, l_0_3, l_0_4, l_0_6, l_0_7, l_0_9 = nil, nil
-  l_0_3 = this_sigattrlog
-  l_0_3 = l_0_3[2]
-  l_0_1 = l_0_3.ppid
-  local l_0_2, l_0_5, l_0_8, l_0_10 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L0_0 = L2_2.utf8p1
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L1_1 = L2_2.ppid
 else
-end
-do
-  -- DECOMPILER ERROR at PC28: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC35: Confused about usage of register: R1 in 'UnsetPending'
-
-  do
-    if (not (this_sigattrlog[3]).matched or (this_sigattrlog[3]).utf8p1 ~= nil) and (this_sigattrlog[3]).ppid ~= nil and isTainted((this_sigattrlog[3]).utf8p1, "remote_file_created_taint") then
-      local l_0_11, l_0_12 = nil
-      for l_0_16,l_0_17 in ipairs((bm.get_process_relationships)((this_sigattrlog[3]).ppid)) do
-        local l_0_13, l_0_14 = nil
-        -- DECOMPILER ERROR at PC43: Confused about usage of register: R8 in 'UnsetPending'
-
-        ;
-        (bm.add_related_process)(l_0_5.ppid)
-        -- DECOMPILER ERROR at PC46: Confused about usage of register: R8 in 'UnsetPending'
-
-        TrackPidAndTechniqueBM(l_0_5.ppid, "T1547.006", "Persistence")
-      end
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L0_0 = L2_2.utf8p1
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L1_1 = L2_2.ppid
   end
 end
-
+if L0_0 ~= nil and L1_1 ~= nil then
+  L2_2 = isTainted
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 then
+    L2_2 = bm
+    L2_2 = L2_2.get_process_relationships
+    L3_3 = L1_1
+    L3_3 = L2_2(L3_3)
+    for _FORV_7_, _FORV_8_ in L4_4(L5_5) do
+      bm.add_related_process(_FORV_8_.ppid)
+      TrackPidAndTechniqueBM(_FORV_8_.ppid, "T1547.006", "Persistence")
+    end
+    return L4_4
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

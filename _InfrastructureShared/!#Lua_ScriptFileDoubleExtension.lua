@@ -1,66 +1,92 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ScriptFileDoubleExtension 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-if l_0_0:len() < 8 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L3_3 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1())
+L2_2 = L0_0
+L1_1 = L0_0.len
+L1_1 = L1_1(L2_2)
+if L1_1 < 8 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.sub)(l_0_0, -4)
-if l_0_1 ~= ".exe" and l_0_1 ~= ".vbs" and l_0_1 ~= ".jar" then
-  l_0_1 = (string.sub)(l_0_0, -3)
-  if l_0_1 ~= ".js" then
-    return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.sub
+L2_2 = L0_0
+L3_3 = -4
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= ".exe" and L1_1 ~= ".vbs" and L1_1 ~= ".jar" then
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3, -3)
+  L1_1 = L2_2
+  if L1_1 ~= ".js" then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
 end
-if l_0_0:len() > 20 and (string.sub)(l_0_0, -16) == "_captions.mp3.js" then
-  return mp.CLEAN
+L3_3 = L0_0
+L2_2 = L0_0.len
+L2_2 = L2_2(L3_3)
+if L2_2 > 20 then
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3, -16)
+  if L2_2 == "_captions.mp3.js" then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
 end
-local l_0_2 = {}
-l_0_2[".doc"] = ""
-l_0_2[".xls"] = ""
-l_0_2[".ppt"] = ""
-l_0_2[".pdf"] = ""
-l_0_2[".jpg"] = ""
-l_0_2[".gif"] = ""
-l_0_2[".png"] = ""
-l_0_2[".pic"] = ""
-l_0_2[".txt"] = ""
-l_0_2[".mp3"] = ""
-l_0_2[".docx"] = ""
-l_0_2[".xlsx"] = ""
-l_0_2[".pptx"] = ""
-local l_0_3 = (string.sub)(l_0_0, -7)
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".js" then
-  (mp.set_mpattribute)("Lua:ContextJSDoubleExtension")
-  ;
-  (mp.set_mpattribute)("NScript:JSEnableEmulation")
+L2_2 = {}
+L2_2[".doc"] = ""
+L2_2[".xls"] = ""
+L2_2[".ppt"] = ""
+L2_2[".pdf"] = ""
+L2_2[".jpg"] = ""
+L2_2[".gif"] = ""
+L2_2[".png"] = ""
+L2_2[".pic"] = ""
+L2_2[".txt"] = ""
+L2_2[".mp3"] = ""
+L2_2[".docx"] = ""
+L2_2[".xlsx"] = ""
+L2_2[".pptx"] = ""
+L3_3 = string
+L3_3 = L3_3.sub
+L3_3 = L3_3(L0_0, -7)
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".js" then
+  mp.set_mpattribute("Lua:ContextJSDoubleExtension")
+  mp.set_mpattribute("NScript:JSEnableEmulation")
 end
-l_0_3 = (string.sub)(l_0_0, -8)
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".vbs" then
-  (mp.set_mpattribute)("Lua:ContextVBSDoubleExtension")
+L3_3 = string.sub(L0_0, -8)
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".vbs" then
+  mp.set_mpattribute("Lua:ContextVBSDoubleExtension")
 end
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".jar" then
-  (mp.set_mpattribute)("Lua:ContextJARDoubleExtension")
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".jar" then
+  mp.set_mpattribute("Lua:ContextJARDoubleExtension")
 end
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".exe" then
-  (mp.set_mpattribute)("Lua:ContextEXEDoubleExtension")
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".exe" then
+  mp.set_mpattribute("Lua:ContextEXEDoubleExtension")
 end
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".js" then
-  (mp.set_mpattribute)("Lua:ContextJSDoubleExtension")
-  ;
-  (mp.set_mpattribute)("NScript:JSEnableEmulation")
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".js" then
+  mp.set_mpattribute("Lua:ContextJSDoubleExtension")
+  mp.set_mpattribute("NScript:JSEnableEmulation")
 end
-l_0_3 = (string.sub)(l_0_0, -9)
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".vbs" then
-  (mp.set_mpattribute)("Lua:ContextVBSDoubleExtension")
+L3_3 = string.sub(L0_0, -9)
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".vbs" then
+  mp.set_mpattribute("Lua:ContextVBSDoubleExtension")
 end
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".jar" then
-  (mp.set_mpattribute)("Lua:ContextJARDoubleExtension")
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".jar" then
+  mp.set_mpattribute("Lua:ContextJARDoubleExtension")
 end
-if l_0_2[(string.sub)(l_0_3, 1, 4)] and l_0_1 == ".exe" then
-  (mp.set_mpattribute)("Lua:ContextEXEDoubleExtension")
+if L2_2[string.sub(L3_3, 1, 4)] and L1_1 == ".exe" then
+  mp.set_mpattribute("Lua:ContextEXEDoubleExtension")
 end
 return mp.CLEAN
-

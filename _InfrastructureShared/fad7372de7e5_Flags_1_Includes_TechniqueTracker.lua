@@ -1,39 +1,80 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/fad7372de7e5_Flags_1_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-do
-  if l_0_0 then
-    local l_0_1 = (string.lower)(l_0_0.image_path)
-    if (string.find)(l_0_1, "\\programdata\\microsoft\\azurewatson\\0\\awdumpifeo.exe", 1, true) or (string.find)(l_0_1, "\\windows\\system32\\werfault.exe", 1, true) or (string.find)(l_0_1, "\\windows\\syswow64\\werfault.exe", 1, true) then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = L0_0.image_path
+  L1_1 = L1_1(L2_2)
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L1_1
+  L4_4 = "\\programdata\\microsoft\\azurewatson\\0\\awdumpifeo.exe"
+  L2_2 = L2_2(L3_3, L4_4, 1, true)
+  if not L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L3_3 = L1_1
+    L4_4 = "\\windows\\system32\\werfault.exe"
+    L2_2 = L2_2(L3_3, L4_4, 1, true)
+    if not L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L3_3 = L1_1
+      L4_4 = "\\windows\\syswow64\\werfault.exe"
+      L2_2 = L2_2(L3_3, L4_4, 1, true)
     end
+  elseif L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = (mp.GetScannedPPID)()
-  if not l_0_2 then
-    return mp.CLEAN
-  end
-  local l_0_3 = (mp.GetProcessCommandLine)(l_0_2)
-  if not l_0_3 or #l_0_3 <= 18 then
-    return mp.CLEAN
-  end
-  l_0_3 = (string.lower)(l_0_3)
-  local l_0_4 = (string.match)(l_0_3, "[%-/]m[acdkmp] \"?([%d]+)\"?")
-  if not l_0_4 then
-    return mp.CLEAN
-  end
-  l_0_4 = tonumber(l_0_4)
-  local l_0_5 = (mp.GetPPidFromPid)(l_0_4)
-  local l_0_6 = (MpCommon.GetImagePathFromPid)(l_0_5)
-  if not l_0_6 then
-    return mp.CLEAN
-  end
-  if (string.find)(l_0_6:lower(), "\\windows\\system32\\lsass.exe", 1, true) then
-    TrackPidAndTechnique("CMDHSTR", "T1003.001", "credentialdumping_concrete", 86400)
-    return mp.INFECTED
-  end
+end
+L1_1 = mp
+L1_1 = L1_1.GetScannedPPID
+L1_1 = L1_1()
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.GetProcessCommandLine
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 then
+  L3_3 = #L2_2
+elseif L3_3 <= 18 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+L2_2 = L3_3
+L3_3 = string
+L3_3 = L3_3.match
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, "[%-/]m[acdkmp] \"?([%d]+)\"?")
+if not L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = tonumber
+L4_4 = L4_4(L3_3)
+L3_3 = L4_4
+L4_4 = mp
+L4_4 = L4_4.GetPPidFromPid
+L4_4 = L4_4(L3_3)
+if not MpCommon.GetImagePathFromPid(L4_4) then
   return mp.CLEAN
 end
-
+if string.find(MpCommon.GetImagePathFromPid(L4_4):lower(), "\\windows\\system32\\lsass.exe", 1, true) then
+  TrackPidAndTechnique("CMDHSTR", "T1003.001", "credentialdumping_concrete", 86400)
+  return mp.INFECTED
+end
+return mp.CLEAN

@@ -1,37 +1,77 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_CloudLowfiForE5_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC52: Unhandled construct in 'MakeBoolean' P3
-
-if ((mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and (mp.bitand)((mp.get_contextdata)(mp.CONTEXT_DATA_DEVICE_CHARACTERISTICS), 264193) == 264193) or (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  if l_0_0 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.bitand
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_DEVICE_CHARACTERISTICS
+  L1_1 = L1_1(L2_2)
+  L2_2 = 264193
+  L0_0 = L0_0(L1_1, L2_2)
+  if L0_0 ~= 264193 then
+    L0_0 = mp
+    L0_0 = L0_0.bitand
+    L1_1 = mp
+    L1_1 = L1_1.get_contextdata
+    L2_2 = mp
+    L2_2 = L2_2.CONTEXT_DATA_DEVICE_CHARACTERISTICS
+    L1_1 = L1_1(L2_2)
+    L2_2 = 16
+    L0_0 = L0_0(L1_1, L2_2)
   end
-  local l_0_1 = {}
-  l_0_1[".hta"] = true
-  l_0_1[".js"] = true
-  l_0_1[".jse"] = true
-  l_0_1[".ps1"] = true
-  l_0_1[".vbs"] = true
-  l_0_1[".vbe"] = true
-  l_0_1[".wsh"] = true
-  do
-    do
-      if (l_0_0:sub(-5)):match("(%.%w+)$") ~= nil or not "" then
-        local l_0_3, l_0_4 = ((l_0_0:sub(-5)):match("(%.%w+)$")):lower()
-      end
-      -- DECOMPILER ERROR at PC79: Confused about usage of register: R2 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC85: Confused about usage of register: R2 in 'UnsetPending'
-
-      if l_0_1[l_0_3] == true then
-        (mp.set_mpattribute)("Lua:CloudLowfiForE5!" .. l_0_3:sub(2))
-      end
-      return mp.CLEAN
+else
+  if L0_0 ~= 16 then
+    L0_0 = mp
+    L0_0 = L0_0.get_contextdata
+    L1_1 = mp
+    L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+    L0_0 = L0_0(L1_1)
+    L1_1 = mp
+    L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+    if L0_0 == L1_1 then
+      L0_0 = mp
+      L0_0 = L0_0.get_contextdata
+      L1_1 = mp
+      L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+      L0_0 = L0_0(L1_1)
     end
+end
+elseif L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_FILENAME
+  L0_0 = L0_0(L1_1)
+  if nil == L0_0 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = {}
+  L1_1[".hta"] = true
+  L1_1[".js"] = true
+  L1_1[".jse"] = true
+  L1_1[".ps1"] = true
+  L1_1[".vbs"] = true
+  L1_1[".vbe"] = true
+  L1_1[".wsh"] = true
+  L2_2 = L0_0.sub
+  L2_2 = L2_2(L0_0, -5)
+  L2_2 = L2_2.match
+  L2_2 = L2_2(L2_2, "(%.%w+)$")
+  L2_2 = nil == L2_2 and "" or L2_2:lower()
+  if true == L1_1[L2_2] then
+    mp.set_mpattribute("Lua:CloudLowfiForE5!" .. L2_2:sub(2))
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

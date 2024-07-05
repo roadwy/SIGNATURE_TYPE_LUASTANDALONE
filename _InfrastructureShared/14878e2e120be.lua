@@ -1,36 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/14878e2e120be 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections < 1 then
+local L0_0
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 < 1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = {
+  {
+    sig = "\255\208\131\236\b\199D$\016@\000\000\000\199D$\f\0000\000\000",
+    xray_type = 11,
+    bytes_to_decrypt = 0
+  }
+}
+if pesecs[1].SizeOfRawData >= 65536 then
   return mp.CLEAN
 end
-local l_0_0 = {}
-local l_0_1 = {}
-l_0_1.sig = "\255Ðƒ\236\bÇD$\016@\000\000\000ÇD$\f\0000\000\000"
-l_0_1.xray_type = 11
-l_0_1.bytes_to_decrypt = 0
--- DECOMPILER ERROR at PC12: No list found for R0 , SetList fails
-
-l_0_1 = pesecs
-l_0_1 = l_0_1[1]
-l_0_1 = l_0_1.SizeOfRawData
-if l_0_1 >= 65536 then
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-l_0_1 = pe
-l_0_1 = l_0_1.xray_block
-local l_0_2 = l_0_0
-local l_0_3 = 1
-local l_0_4 = 0
-local l_0_5 = 0
-do
-  local l_0_6 = (pesecs[1]).SizeOfRawData
-  do return l_0_1(l_0_2, l_0_3, l_0_4, l_0_5, l_0_6) end
-  -- DECOMPILER ERROR at PC32: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-end
-
+return pe.xray_block(L0_0, 1, 0, 0, pesecs[1].SizeOfRawData)

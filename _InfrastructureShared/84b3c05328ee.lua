@@ -1,29 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b3c05328ee 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p1
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p1
   end
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC26: Overwrote pending register: R1 in 'AssignReg'
-
-  if not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p1 == nil or not (string.find)(l_0_1, "\\windows mail\\", 1, true) then
-    return mp.INFECTED
+end
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L1_1 = L2_2.utf8p1
   end
-  local l_0_2 = nil
-  if (string.sub)((string.lower)(nil), 1, 1) == "%" and (string.find)((string.lower)(nil), "%commonprogramfiles%\\system", 1, true) then
-    return mp.CLEAN
-  end
-  l_0_2 = (string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_2))
-  if not (string.find)(l_0_2, "\\outlook express\\", 1, true) then
-    (bm.add_related_file)(l_0_2)
-    return mp.INFECTED
-  end
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(mp.ContextualExpandEnvironmentVariables(L0_0))
+L0_0 = L2_2
+L2_2 = string
+L2_2 = L2_2.find
+L2_2 = L2_2(L0_0, "\\windows mail\\", 1, true)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(L1_1)
+if string.sub(L2_2, 1, 1) == "%" and string.find(L2_2, "%commonprogramfiles%\\system", 1, true) then
   return mp.CLEAN
 end
-
+L1_1 = string.lower(mp.ContextualExpandEnvironmentVariables(L1_1))
+if not string.find(L1_1, "\\outlook express\\", 1, true) then
+  bm.add_related_file(L1_1)
+  return mp.INFECTED
+end
+return mp.CLEAN

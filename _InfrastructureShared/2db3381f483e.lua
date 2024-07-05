@@ -1,35 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3381f483e 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.lower)(l_0_0)
-    local l_0_2 = l_0_1:match("(.+)\\svchost%.exe")
-    l_0_2 = (MpCommon.PathToWin32Path)(l_0_2)
-    if l_0_2 == nil then
-      return mp.CLEAN
-    end
-    l_0_2 = (mp.ContextualExpandEnvironmentVariables)(l_0_2)
-    if l_0_2 == nil then
-      return mp.CLEAN
-    end
-    if l_0_2:match("\\windows\\system32") or l_0_2:match("\\windows\\syswow64") then
-      return mp.CLEAN
-    end
-  end
-  do
-    return mp.INFECTED
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p1
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p1
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0)
+  L0_0 = L1_1
+  L1_1 = L0_0.match
+  L1_1 = L1_1(L0_0, "(.+)\\svchost%.exe")
+  L1_1 = MpCommon.PathToWin32Path(L1_1)
+  if L1_1 == nil then
+    return mp.CLEAN
+  end
+  L1_1 = mp.ContextualExpandEnvironmentVariables(L1_1)
+  if L1_1 == nil then
+    return mp.CLEAN
+  end
+  if L1_1:match("\\windows\\system32") or L1_1:match("\\windows\\syswow64") then
+    return mp.CLEAN
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

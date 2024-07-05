@@ -1,53 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Dopplepaymer 
-
--- params : ...
--- function num : 0
-if (string.find)((Remediation.Threat).Name, "^Ransom:Win32/Dopplepaymer") == nil then
-  return 
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25
+L0_0 = string
+L0_0 = L0_0.find
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 == nil then
+  return
 end
-local l_0_0 = nil
-for l_0_4,l_0_5 in ipairs((Remediation.Threat).Resources) do
-  if (l_0_5.Schema == "file" or l_0_5.Schema == "process") and l_0_5.Path ~= nil and l_0_5.Path ~= "" then
-    l_0_0 = (string.lower)(l_0_5.Path)
-    if (string.sub)(l_0_0, 1, 4) == "\\\\?\\" then
-      l_0_0 = (string.sub)(l_0_0, 5)
-    end
-    if l_0_0 ~= nil and #l_0_0 > 1 then
-      for l_0_9,l_0_10 in pairs((sysio.EnumerateServices)()) do
-        local l_0_11 = l_0_10.ServiceName
-        local l_0_12 = (string.lower)((sysio.GetCommandLineFromService)(l_0_11))
-        if l_0_12 ~= nil and (string.find)(l_0_12, "^" .. l_0_0) then
-          local l_0_13 = "HKLM\\System\\CurrentControlSet\\Services\\" .. l_0_11
-          local l_0_14 = (sysio.RegOpenKey)(l_0_13)
-          local l_0_15 = "ImagePath "
-          local l_0_16 = (sysio.GetRegValueAsString)(l_0_14, l_0_15)
-          if l_0_16 ~= nil then
-            local l_0_17 = "FailureActionsBackup"
-            local l_0_18 = (sysio.GetRegValueAsBinary)(l_0_14, "FailureActions")
-            if l_0_18 ~= nil then
-              (sysio.SetRegValueAsBinary)(l_0_14, l_0_17, l_0_18)
-              ;
-              (sysio.DeleteRegValue)(l_0_14, "FailureActions")
+L0_0 = nil
+for L4_4, L5_5 in L1_1(L2_2) do
+  if L6_6 ~= "file" then
+  elseif L6_6 == "process" then
+    if L6_6 ~= nil then
+      if L6_6 ~= "" then
+        L0_0 = L6_6
+        L9_9 = 4
+        if L6_6 == "\\\\?\\" then
+          L0_0 = L6_6
+        end
+        if L0_0 ~= nil then
+          if L6_6 > 1 then
+            L25_25 = L7_7()
+            for L9_9, L10_10 in L6_6(L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L7_7()) do
+              L11_11 = L10_10.ServiceName
+              L12_12 = string
+              L12_12 = L12_12.lower
+              L13_13 = sysio
+              L13_13 = L13_13.GetCommandLineFromService
+              L14_14 = L11_11
+              L25_25 = L13_13(L14_14)
+              L12_12 = L12_12(L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L13_13(L14_14))
+              if L12_12 ~= nil then
+                L13_13 = string
+                L13_13 = L13_13.find
+                L14_14 = L12_12
+                L15_15 = "^"
+                L16_16 = L0_0
+                L15_15 = L15_15 .. L16_16
+                L13_13 = L13_13(L14_14, L15_15)
+                if L13_13 then
+                  L13_13 = "HKLM\\System\\CurrentControlSet\\Services\\"
+                  L14_14 = L11_11
+                  L13_13 = L13_13 .. L14_14
+                  L14_14 = sysio
+                  L14_14 = L14_14.RegOpenKey
+                  L15_15 = L13_13
+                  L14_14 = L14_14(L15_15)
+                  L15_15 = "ImagePath "
+                  L16_16 = sysio
+                  L16_16 = L16_16.GetRegValueAsString
+                  L17_17 = L14_14
+                  L18_18 = L15_15
+                  L16_16 = L16_16(L17_17, L18_18)
+                  if L16_16 ~= nil then
+                    L17_17 = "FailureActionsBackup"
+                    L18_18 = sysio
+                    L18_18 = L18_18.GetRegValueAsBinary
+                    L19_19 = L14_14
+                    L18_18 = L18_18(L19_19, L20_20)
+                    if L18_18 ~= nil then
+                      L19_19 = sysio
+                      L19_19 = L19_19.SetRegValueAsBinary
+                      L19_19(L20_20, L21_21, L22_22)
+                      L19_19 = sysio
+                      L19_19 = L19_19.DeleteRegValue
+                      L19_19(L20_20, L21_21)
+                    end
+                    L19_19 = sysio
+                    L19_19 = L19_19.GetProcessFromFileName
+                    L19_19 = L19_19(L20_20)
+                    for L23_23, L24_24 in L20_20(L21_21) do
+                      L25_25 = string
+                      L25_25 = L25_25.format
+                      L25_25 = L25_25("pid:%d,ProcessStart:%u", L24_24.pid, L24_24.starttime)
+                      sysio.TerminateProcess(L25_25)
+                    end
+                    L23_23 = L16_16
+                    L20_20(L21_21, L22_22, L23_23)
+                    L20_20(L21_21, L22_22)
+                    L23_23 = L18_18
+                    L20_20(L21_21, L22_22, L23_23)
+                    L20_20(L21_21, L22_22)
+                  end
+                end
+              end
             end
-            local l_0_19 = (sysio.GetProcessFromFileName)(l_0_0)
-            for l_0_23,l_0_24 in pairs(l_0_19) do
-              local l_0_25 = (string.format)("pid:%d,ProcessStart:%u", l_0_24.pid, l_0_24.starttime)
-              ;
-              (sysio.TerminateProcess)(l_0_25)
-            end
-            ;
-            (sysio.SetRegValueAsString)(l_0_14, "ImagePath", l_0_16)
-            ;
-            (sysio.DeleteRegValue)(l_0_14, l_0_15)
-            ;
-            (sysio.SetRegValueAsBinary)(l_0_14, "FailureActions", l_0_18)
-            ;
-            (sysio.DeleteRegValue)(l_0_14, l_0_17)
           end
         end
       end
     end
   end
 end
-

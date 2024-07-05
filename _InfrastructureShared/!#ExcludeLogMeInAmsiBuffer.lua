@@ -1,19 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ExcludeLogMeInAmsiBuffer 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_AMSI then
-  local l_0_1, l_0_2 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME)
-  if l_0_1 and l_0_2 == "JScript" then
-    local l_0_3, l_0_4 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME)
-    if l_0_3 and l_0_4 ~= nil and l_0_4 == "%common_appdata%\\LogMeIn\\avfilter.js" then
-      (mp.set_mpattribute)("MpAmsiJsExclude")
-    end
-  end
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_AMSI and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME) and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME) == "JScript" and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME) and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME) ~= nil and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_CONTENTNAME) == "%common_appdata%\\LogMeIn\\avfilter.js" then
+  mp.set_mpattribute("MpAmsiJsExclude")
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

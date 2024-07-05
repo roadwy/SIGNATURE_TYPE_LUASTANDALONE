@@ -1,30 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_ObfJsDownloaderDrop_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) then
-  local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-  if (MpCommon.QueryPersistContext)(l_0_0, "isErik") then
-    return mp.INFECTED
-  end
-  local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  if #l_0_2 < 4 or #l_0_2 > 8 then
-    return mp.CLEAN
-  end
-  local l_0_3 = "programdata\\{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}$"
-  if not (string.find)(l_0_1, l_0_3) then
-    return mp.CLEAN
-  end
-  local l_0_4 = {}
-  l_0_4["wscript.exe"] = true
-  l_0_4["cscript.exe"] = true
-  local l_0_5 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-  if l_0_5 and l_0_4[l_0_5] then
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.getfilename
+    L1_1 = mp
+    L1_1 = L1_1.bitor
+    L2_2 = mp
+    L2_2 = L2_2.FILEPATH_QUERY_FULL
+    L3_3 = mp
+    L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+    L3_3 = L1_1(L2_2, L3_3)
+    L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2, L3_3))
+    L1_1 = MpCommon
+    L1_1 = L1_1.QueryPersistContext
+    L2_2 = L0_0
+    L3_3 = "isErik"
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.INFECTED
+      return L1_1
+    end
+    L1_1 = mp
+    L1_1 = L1_1.getfilename
+    L2_2 = mp
+    L2_2 = L2_2.bitor
+    L3_3 = mp
+    L3_3 = L3_3.bitor
+    L3_3 = L3_3(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH)
+    L3_3 = L2_2(L3_3, mp.FILEPATH_QUERY_LOWERCASE)
+    L2_2 = L1_1(L2_2, L3_3, L2_2(L3_3, mp.FILEPATH_QUERY_LOWERCASE))
+    L3_3 = #L2_2
+    if not (L3_3 < 4) then
+      L3_3 = #L2_2
+    elseif L3_3 > 8 then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
+    end
+    L3_3 = "programdata\\{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}$"
+    if not string.find(L1_1, L3_3) then
+      return mp.CLEAN
+    end
+    if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) and ({
+      ["wscript.exe"] = true,
+      ["cscript.exe"] = true
+    })[string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))] then
+      return mp.INFECTED
+    end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

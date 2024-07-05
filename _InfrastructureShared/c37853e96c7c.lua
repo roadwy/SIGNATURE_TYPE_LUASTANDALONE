@@ -1,10 +1,98 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c37853e96c7c 
-
--- params : ...
--- function num : 0
-if peattributes.isdll and peattributes.hasexports and peattributes.epinfirstsect and pehdr.NumberOfSections == 5 and peattributes.no_tls and pehdr.SizeOfImage >= 700416 and pehdr.SizeOfImage <= 851968 and (pesecs[pevars.epsec]).SizeOfRawData >= 196608 and (pesecs[pevars.epsec]).SizeOfRawData <= 294912 and (pesecs[2]).SizeOfRawData >= 12288 and (pesecs[2]).SizeOfRawData <= 16384 and (pesecs[5]).VirtualSize >= 12288 and (pesecs[5]).VirtualSize <= 24576 and (pesecs[3]).SizeOfRawData == 2560 and (pesecs[3]).VirtualSize >= 425984 and (pesecs[3]).VirtualSize <= 491520 and (pesecs[pehdr.NumberOfSections]).Name == ".reloc" and (pesecs[pevars.epsec]).Name == ".text" then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.hasexports
+  if L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.epinfirstsect
+    if L0_0 then
+      L0_0 = pehdr
+      L0_0 = L0_0.NumberOfSections
+      if L0_0 == 5 then
+        L0_0 = peattributes
+        L0_0 = L0_0.no_tls
+        if L0_0 then
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 700416 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 851968 then
+              L0_0 = pesecs
+              L1_1 = pevars
+              L1_1 = L1_1.epsec
+              L0_0 = L0_0[L1_1]
+              L0_0 = L0_0.SizeOfRawData
+              if L0_0 >= 196608 then
+                L0_0 = pesecs
+                L1_1 = pevars
+                L1_1 = L1_1.epsec
+                L0_0 = L0_0[L1_1]
+                L0_0 = L0_0.SizeOfRawData
+                if L0_0 <= 294912 then
+                  L0_0 = pesecs
+                  L0_0 = L0_0[2]
+                  L0_0 = L0_0.SizeOfRawData
+                  if L0_0 >= 12288 then
+                    L0_0 = pesecs
+                    L0_0 = L0_0[2]
+                    L0_0 = L0_0.SizeOfRawData
+                    if L0_0 <= 16384 then
+                      L0_0 = pesecs
+                      L0_0 = L0_0[5]
+                      L0_0 = L0_0.VirtualSize
+                      if L0_0 >= 12288 then
+                        L0_0 = pesecs
+                        L0_0 = L0_0[5]
+                        L0_0 = L0_0.VirtualSize
+                        if L0_0 <= 24576 then
+                          L0_0 = pesecs
+                          L0_0 = L0_0[3]
+                          L0_0 = L0_0.SizeOfRawData
+                          if L0_0 == 2560 then
+                            L0_0 = pesecs
+                            L0_0 = L0_0[3]
+                            L0_0 = L0_0.VirtualSize
+                            if L0_0 >= 425984 then
+                              L0_0 = pesecs
+                              L0_0 = L0_0[3]
+                              L0_0 = L0_0.VirtualSize
+                              if L0_0 <= 491520 then
+                                L0_0 = pesecs
+                                L1_1 = pehdr
+                                L1_1 = L1_1.NumberOfSections
+                                L0_0 = L0_0[L1_1]
+                                L0_0 = L0_0.Name
+                                if L0_0 == ".reloc" then
+                                  L0_0 = pesecs
+                                  L1_1 = pevars
+                                  L1_1 = L1_1.epsec
+                                  L0_0 = L0_0[L1_1]
+                                  L0_0 = L0_0.Name
+                                  if L0_0 == ".text" then
+                                    L0_0 = mp
+                                    L0_0 = L0_0.INFECTED
+                                    return L0_0
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

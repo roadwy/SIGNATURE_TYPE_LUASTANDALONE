@@ -1,67 +1,117 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#DestructiveCMD_Includes_AgePrevalence 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-if l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-if l_0_1 == nil or l_0_1 == "" then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSDEVICEPATH
+L1_1 = L1_1(L2_2)
+if L1_1 == nil or L1_1 == "" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (MpCommon.PathToWin32Path)(l_0_1)
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = l_0_2 .. "\\" .. l_0_0
-l_0_3 = (string.lower)(l_0_3)
-if not (MpCommon.QueryPersistContext)(l_0_3, "RunsDestructiveCMDsParent") then
-  return mp.CLEAN
+L3_3 = L2_2
+L4_4 = "\\"
+L5_5 = L0_0
+L3_3 = L3_3 .. L4_4 .. L5_5
+L4_4 = string
+L4_4 = L4_4.lower
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+L3_3 = L4_4
+L4_4 = MpCommon
+L4_4 = L4_4.QueryPersistContext
+L5_5 = L3_3
+L6_6 = "RunsDestructiveCMDsParent"
+L4_4 = L4_4(L5_5, L6_6)
+if not L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-;
-(mp.set_mpattribute)("BM_FileModByDestructiveCMDParent")
-if (MpCommon.QueryPersistContext)(l_0_3, "RunsDestructiveCMDsParentBlock") or (MpCommon.QueryPersistContext)(l_0_3, "RunsDestructiveCMDsParentStopLookup") then
-  clearPersistContext(l_0_3, "disableCachingQueryAgePrev")
-  return mp.CLEAN
+L4_4 = mp
+L4_4 = L4_4.set_mpattribute
+L5_5 = "BM_FileModByDestructiveCMDParent"
+L4_4(L5_5)
+L4_4 = MpCommon
+L4_4 = L4_4.QueryPersistContext
+L5_5 = L3_3
+L6_6 = "RunsDestructiveCMDsParentBlock"
+L4_4 = L4_4(L5_5, L6_6)
+if not L4_4 then
+  L4_4 = MpCommon
+  L4_4 = L4_4.QueryPersistContext
+  L5_5 = L3_3
+  L6_6 = "RunsDestructiveCMDsParentStopLookup"
+  L4_4 = L4_4(L5_5, L6_6)
+elseif L4_4 then
+  L4_4 = clearPersistContext
+  L5_5 = L3_3
+  L6_6 = "disableCachingQueryAgePrev"
+  L4_4(L5_5, L6_6)
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = -1
-local l_0_5 = -1
-local l_0_6 = (MpCommon.GetPersistContext)(l_0_3)
-if l_0_6 ~= nil then
-  for l_0_10,l_0_11 in ipairs(l_0_6) do
-    local l_0_12 = tonumber((string.match)(l_0_11, "^Age:([0-9]+)$"))
-    if l_0_12 ~= nil and l_0_4 < l_0_12 then
-      l_0_4 = l_0_12
+L4_4 = -1
+L5_5 = -1
+L6_6 = MpCommon
+L6_6 = L6_6.GetPersistContext
+L6_6 = L6_6(L7_7)
+if L6_6 ~= nil then
+  for L10_10, L11_11 in L7_7(L8_8) do
+    if tonumber(string.match(L11_11, "^Age:([0-9]+)$")) ~= nil and L4_4 < tonumber(string.match(L11_11, "^Age:([0-9]+)$")) then
+      L4_4 = tonumber(string.match(L11_11, "^Age:([0-9]+)$"))
     end
-    local l_0_13 = tonumber((string.match)(l_0_11, "^Prevalence:([0-9]+)$"))
-    if l_0_13 ~= nil and l_0_5 < l_0_13 then
-      l_0_5 = l_0_13
+    if tonumber(string.match(L11_11, "^Prevalence:([0-9]+)$")) ~= nil and L5_5 < tonumber(string.match(L11_11, "^Prevalence:([0-9]+)$")) then
+      L5_5 = tonumber(string.match(L11_11, "^Prevalence:([0-9]+)$"))
     end
   end
 end
-do
-  if l_0_4 > -1 and l_0_4 <= 1 and l_0_5 > -1 and l_0_5 <= 100 then
-    if not (MpCommon.QueryPersistContext)(l_0_3, "RunsDestructiveCMDsParentBlock") then
-      (MpCommon.AppendPersistContext)(l_0_3, "RunsDestructiveCMDsParentBlock", 0)
-    end
-    clearPersistContext(l_0_3, "disableCachingQueryAgePrev")
-  else
-    if l_0_4 > 1 or l_0_5 > 100 then
-      if not (MpCommon.QueryPersistContext)(l_0_3, "RunsDestructiveCMDsParentStopLookup") then
-        (MpCommon.AppendPersistContext)(l_0_3, "RunsDestructiveCMDsParentStopLookup", 0)
-      end
-      clearPersistContext(l_0_3, "disableCachingQueryAgePrev")
-    else
-      if not (MpCommon.QueryPersistContext)(l_0_3, "disableCachingQueryAgePrev") then
-        (MpCommon.AppendPersistContext)(l_0_3, "disableCachingQueryAgePrev", 0)
-      end
-    end
+if L4_4 > -1 and L4_4 <= 1 and L5_5 > -1 and L5_5 <= 100 then
+  if not L7_7 then
+    L10_10 = 0
+    L7_7(L8_8, L9_9, L10_10)
   end
-  return mp.CLEAN
+  L7_7(L8_8, L9_9)
+elseif L4_4 > 1 or L5_5 > 100 then
+  if not L7_7 then
+    L10_10 = 0
+    L7_7(L8_8, L9_9, L10_10)
+  end
+  L7_7(L8_8, L9_9)
+elseif not L7_7 then
+  L10_10 = 0
+  L7_7(L8_8, L9_9, L10_10)
 end
-
+return L7_7

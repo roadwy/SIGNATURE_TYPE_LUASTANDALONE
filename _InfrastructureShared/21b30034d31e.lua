@@ -1,22 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/21b30034d31e 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0 = 0
-  local l_0_1 = (this_sigattrlog[1]).utf8p2
-  l_0_1 = (string.gsub)(l_0_1, "`", "")
-  if l_0_0 > 3 then
-    l_0_1 = (string.lower)(l_0_1)
-    if (string.find)(l_0_1, "frombase64string", 1, true) or (string.find)(l_0_1, "webclient", 1, true) or (string.find)(l_0_1, "newscriptblock", 1, true) or (string.find)(l_0_1, "http", 1, true) then
-      return mp.INFECTED
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = 0
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    L1_1, L0_0 = string.gsub(L1_1, "`", "")
+    if L0_0 > 3 then
+      L1_1 = string.lower(L1_1)
+      if string.find(L1_1, "frombase64string", 1, true) or string.find(L1_1, "webclient", 1, true) or string.find(L1_1, "newscriptblock", 1, true) or string.find(L1_1, "http", 1, true) then
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  -- DECOMPILER ERROR at PC68: Overwrote pending register: R0 in 'AssignReg'
-
-  return l_0_0.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

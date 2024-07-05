@@ -1,16 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2397823344cdd 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.hstr_full_log)()
-for l_0_4,l_0_5 in pairs(l_0_0) do
-  if l_0_5.matched and (string.byte)((pe.mmap_va)(l_0_5.VA + 4, 1)) == (string.byte)((pe.mmap_va)(l_0_5.VA - 4, 1)) then
-    (mp.set_mpattribute)("HSTR:Trojan:Win32/Medfos_Packer")
-    ;
-    (mp.set_mpattribute)("do_exhaustivehstr_rescan")
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.hstr_full_log
+L0_0 = L0_0()
+for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+  if _FORV_5_.matched and string.byte(pe.mmap_va(_FORV_5_.VA + 4, 1)) == string.byte(pe.mmap_va(_FORV_5_.VA - 4, 1)) then
+    mp.set_mpattribute("HSTR:Trojan:Win32/Medfos_Packer")
+    mp.set_mpattribute("do_exhaustivehstr_rescan")
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

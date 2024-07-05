@@ -1,40 +1,86 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_DorkbotFileName.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  if (string.lower)(l_0_1) == "flashdefaultpack.exe" then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_FILENAME
+  L1_1 = L1_1(L2_2)
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  if L2_2 == "flashdefaultpack.exe" then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  if (string.sub)(l_0_1, -4) ~= ".exe" or (string.len)(l_0_1) ~= 20 then
-    return mp.CLEAN
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 == ".exe" then
+    L2_2 = string
+    L2_2 = L2_2.len
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3)
+  elseif L2_2 ~= 20 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  if (string.sub)(l_0_2, -17) == "\\application data" or (string.sub)(l_0_2, -16) == "\\appdata\\roaming" then
-    if (string.byte)(l_0_1) < 65 or (string.byte)(l_0_1) > 90 then
-      return mp.CLEAN
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = mp
+  L3_3 = L3_3.get_contextdata
+  L7_7 = L3_3(L4_4)
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L3_3(L4_4))
+  L3_3 = string
+  L3_3 = L3_3.sub
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 ~= "\\application data" then
+    L3_3 = string
+    L3_3 = L3_3.sub
+    L3_3 = L3_3(L4_4, L5_5)
+  elseif L3_3 == "\\appdata\\roaming" then
+    L3_3 = string
+    L3_3 = L3_3.byte
+    L3_3 = L3_3(L4_4)
+    if not (L3_3 < 65) then
+      L3_3 = string
+      L3_3 = L3_3.byte
+      L3_3 = L3_3(L4_4)
+    elseif L3_3 > 90 then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
     end
-    local l_0_3 = (string.len)(l_0_1)
-    for l_0_7 = 2, l_0_3 - 4 do
-      local l_0_8 = (string.byte)(l_0_1, l_0_7)
-      if l_0_8 < 97 or l_0_8 > 122 then
+    L3_3 = string
+    L3_3 = L3_3.len
+    L3_3 = L3_3(L4_4)
+    for L7_7 = 2, L3_3 - 4 do
+      if string.byte(L1_1, L7_7) < 97 or string.byte(L1_1, L7_7) > 122 then
         return mp.CLEAN
       end
     end
-    local l_0_9 = (sysio.GetFileAttributes)((mp.getfilename)())
-    if (mp.bitand)(l_0_9, 3) ~= 0 then
-      (mp.set_mpattribute)("Lua:DorkbotFileName.A!RH")
-      return mp.INFECTED
+    L7_7 = 3
+    if L5_5 ~= 0 then
+      L5_5(L6_6)
+      return L5_5
     end
-    ;
-    (mp.set_mpattribute)("Lua:DorkbotFileName.A")
-    return mp.INFECTED
+    L5_5(L6_6)
+    return L5_5
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,26 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ddd7a23542f8_Includes_HstrLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.GetProcessCommandLine
+L3_3 = L0_0
+L3_3 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L2_2(L3_3))
+L2_2 = false
+L3_3 = "(set-service[\\w\\s-]+(windefend|microsoft defender antivirus service)[\\w\\s-]+(disabled|manual))"
+L2_2, _ = MpCommon.StringRegExpSearch(L3_3, L1_1)
+if L2_2 == false then
   return mp.CLEAN
 end
-local l_0_1 = (string.lower)((mp.GetProcessCommandLine)(l_0_0))
-local l_0_2 = false
-local l_0_3 = "(set-service[\\w\\s-]+(windefend|microsoft defender antivirus service)[\\w\\s-]+(disabled|manual))"
-l_0_2 = (MpCommon.StringRegExpSearch)(l_0_3, l_0_1)
-if l_0_2 == false then
-  return mp.CLEAN
-end
-local l_0_4 = (mp.GetParentProcInfo)()
-if l_0_4 ~= nil then
-  (MpCommon.RequestSmsOnProcess)(l_0_4.ppid, MpCommon.SMS_SCAN_MED)
-  TrackPidAndTechnique(l_0_4.ppid, "T1562.001", "mptamper_av")
+if mp.GetParentProcInfo() ~= nil then
+  MpCommon.RequestSmsOnProcess(mp.GetParentProcInfo().ppid, MpCommon.SMS_SCAN_MED)
+  TrackPidAndTechnique(mp.GetParentProcInfo().ppid, "T1562.001", "mptamper_av")
 end
 if not isTamperProtectionOn() then
   return mp.LOWFI
 end
 return mp.INFECTED
-

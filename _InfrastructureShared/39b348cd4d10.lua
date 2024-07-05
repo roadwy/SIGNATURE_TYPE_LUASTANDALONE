@@ -1,20 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/39b348cd4d10 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (this_sigattrlog[1]).ppid
-  local l_0_1, l_0_2 = (bm.get_process_relationships)()
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    if l_0_7.ppid == l_0_0 then
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.ppid
+  L1_1 = bm
+  L1_1 = L1_1.get_process_relationships
+  L2_2 = L1_1()
+  for _FORV_6_, _FORV_7_ in ipairs(L2_2) do
+    if _FORV_7_.ppid == L0_0 then
       return mp.INFECTED
     end
   end
 end
-do
-  l_0_0 = mp
-  l_0_0 = l_0_0.CLEAN
-  return l_0_0
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

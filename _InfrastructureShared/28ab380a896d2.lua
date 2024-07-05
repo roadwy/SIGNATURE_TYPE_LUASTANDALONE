@@ -1,85 +1,99 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/28ab380a896d2 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[3]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L0_0 = L2_2.utf8p2
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[4]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[4]
+    L0_0 = L2_2.utf8p2
   else
-  end
-  -- DECOMPILER ERROR at PC25: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[4]).matched or (this_sigattrlog[5]).matched then
-      local l_0_1, l_0_2, l_0_4 = (this_sigattrlog[4]).utf8p2, nil
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[5]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[5]
+      L0_0 = L2_2.utf8p2
     else
-    end
-    do
-      if not (this_sigattrlog[6]).matched or (this_sigattrlog[7]).matched then
-        local l_0_3, l_0_5 = (this_sigattrlog[6]).utf8p2, (this_sigattrlog[7]).utf8p2
-      else
-      end
-      if (this_sigattrlog[8]).matched then
-        local l_0_6, l_0_7 = , (this_sigattrlog[8]).utf8p2
-        if (bm.get_process_relationships)() then
-          for l_0_11,l_0_12 in ipairs((bm.get_process_relationships)()) do
-            local l_0_8, l_0_9 = nil
-            -- DECOMPILER ERROR at PC61: Confused about usage of register: R8 in 'UnsetPending'
-
-            -- DECOMPILER ERROR at PC87: Overwrote pending register: R9 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC91: Confused about usage of register: R9 in 'UnsetPending'
-
-            if R8_PC61.image_path and (mp.bitand)(R8_PC61.reason_ex, 1) == 1 and (string.find)(R8_PC61.image_path, "\\explorer.exe", 1, true) then
-              if l_0_6 and nil then
-                for l_0_17,l_0_18 in ipairs(nil) do
-                  local l_0_15 = nil
-                  -- DECOMPILER ERROR at PC96: Confused about usage of register: R14 in 'UnsetPending'
-
-                  R14_PC96 = (mp.ContextualExpandEnvironmentVariables)(R14_PC96)
-                  if (sysio.IsFileExists)(R14_PC96) then
-                    (bm.add_related_file)(R14_PC96)
-                  end
-                end
-              end
-              do
-                -- DECOMPILER ERROR at PC121: Confused about usage of register: R9 in 'UnsetPending'
-
-                if l_0_7 and (mp.GetExecutablesFromCommandLine)(l_0_7) then
-                  for l_0_22,l_0_23 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_7)) do
-                    local l_0_19, l_0_20 = nil
-                    -- DECOMPILER ERROR at PC126: Confused about usage of register: R14 in 'UnsetPending'
-
-                    -- DECOMPILER ERROR at PC137: Confused about usage of register: R14 in 'UnsetPending'
-
-                    if (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)(R14_PC96)) then
-                      (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(R14_PC96))
-                    end
-                  end
-                end
-                do
-                  do
-                    do return mp.INFECTED end
-                    -- DECOMPILER ERROR at PC144: LeaveBlock: unexpected jumping out DO_STMT
-
-                    -- DECOMPILER ERROR at PC144: LeaveBlock: unexpected jumping out DO_STMT
-
-                    -- DECOMPILER ERROR at PC144: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC144: LeaveBlock: unexpected jumping out IF_STMT
-
-                  end
-                end
-              end
-            end
-          end
-        end
-        return mp.CLEAN
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[6]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[6]
+        L0_0 = L2_2.utf8p2
       end
     end
   end
 end
-
+L2_2 = this_sigattrlog
+L2_2 = L2_2[7]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[7]
+  L1_1 = L2_2.utf8p2
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[8]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[8]
+    L1_1 = L2_2.utf8p2
+  end
+end
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+if L2_2 then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L9_9 = L8_8.image_path
+    if L9_9 then
+      L9_9 = mp
+      L9_9 = L9_9.bitand
+      L9_9 = L9_9(L10_10, L11_11)
+      if L9_9 == 1 then
+        L9_9 = string
+        L9_9 = L9_9.find
+        L13_13 = true
+        L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+        if L9_9 then
+          L9_9 = nil
+          if L0_0 then
+            L9_9 = L10_10
+            if L9_9 then
+              for L13_13, L14_14 in L10_10(L11_11) do
+                L14_14 = mp.ContextualExpandEnvironmentVariables(L14_14)
+                if sysio.IsFileExists(L14_14) then
+                  bm.add_related_file(L14_14)
+                end
+              end
+            end
+          end
+          if L1_1 then
+            L9_9 = L10_10
+            if L9_9 then
+              for L13_13, L14_14 in L10_10(L11_11) do
+                L14_14 = mp.ContextualExpandEnvironmentVariables(L14_14)
+                if sysio.IsFileExists(L14_14) then
+                  bm.add_related_file(L14_14)
+                end
+              end
+            end
+          end
+          return L10_10
+        end
+      end
+    end
+  end
+end
+return L4_4

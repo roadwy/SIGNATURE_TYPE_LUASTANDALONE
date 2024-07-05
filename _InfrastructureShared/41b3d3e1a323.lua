@@ -1,41 +1,61 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3d3e1a323 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.utf8p2
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_2, l_0_3 = (string.lower)((this_sigattrlog[2]).utf8p2), (bm.get_process_relationships)()
-    if l_0_3 == nil then
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
+  end
+end
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L2_2 = L1_1()
+if L1_1 == nil then
+  return L3_3
+end
+for L6_6, L7_7 in L3_3(L4_4) do
+  L8_8 = L7_7.image_path
+  if L8_8 ~= nil then
+    L8_8 = string
+    L8_8 = L8_8.lower
+    L8_8 = L8_8(string.match(L7_7.image_path, "\\([^\\]+)$"))
+    if L8_8 == "msiexec.exe" then
       return mp.CLEAN
-    end
-    for l_0_7,l_0_8 in ipairs(l_0_3) do
-      local l_0_4 = nil
-      -- DECOMPILER ERROR at PC46: Confused about usage of register: R7 in 'UnsetPending'
-
-      if R7_PC46.image_path ~= nil and (string.lower)((string.match)(R7_PC46.image_path, "\\([^\\]+)$")) == "msiexec.exe" then
-        return mp.CLEAN
-      end
-    end
-    if l_0_2 ~= nil then
-      local l_0_9 = nil
-      for l_0_13,l_0_14 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_2)) do
-        local l_0_10 = nil
-        -- DECOMPILER ERROR at PC87: Confused about usage of register: R8 in 'UnsetPending'
-
-        if (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)((string.lower)((string.match)(R7_PC46.image_path, "\\([^\\]+)$")))) == true then
-          (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)((string.lower)((string.match)(R7_PC46.image_path, "\\([^\\]+)$"))))
-        end
-      end
-    end
-    do
-      return mp.INFECTED
     end
   end
 end
-
+if L0_0 ~= nil then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+    if sysio.IsFileExists(L8_8) == true then
+      bm.add_related_file(L8_8)
+    end
+  end
+end
+return L3_3

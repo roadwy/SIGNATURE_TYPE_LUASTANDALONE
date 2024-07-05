@@ -1,58 +1,150 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!Skintrim 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections ~= 3 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfImage < 282624 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfImage
+if L0_0 < 282624 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfImage > 344064 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfImage
+if L0_0 > 344064 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[2]).Size < 192 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 < 192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[2]).Size > 240 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 > 240 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epinfirstsect ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epinfirstsect
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.lastscn_writable ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.lastscn_writable
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.no_relocs ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.no_relocs
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < pevars.epsec then
-  return mp.CLEAN
+L0_0 = pevars
+L0_0 = L0_0.epsec
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+if L0_0 > L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).VirtualAddress ~= 4096 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.VirtualAddress
+if L0_0 ~= 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).SizeOfRawData < 4096 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 < 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pevars.epsec]).SizeOfRawData > 8192 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pevars
+L1_1 = L1_1.epsec
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 > 8192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).VirtualAddress > 20480 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.VirtualAddress
+if L0_0 > 20480 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).VirtualAddress < 12288 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.VirtualAddress
+if L0_0 < 12288 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).SizeOfRawData < 262144 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 < 262144 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).SizeOfRawData > 323584 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 > 323584 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

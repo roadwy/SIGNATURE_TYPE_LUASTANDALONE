@@ -1,20 +1,6 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e9b3733de18b_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (mp.IsHipsRuleEnabled)("c1db55ab-c21a-4637-bb3f-a12568109d35") then
-  local l_0_0 = (bm.get_current_process_startup_info)()
-  if l_0_0 ~= nil and l_0_0.command_line ~= nil then
-    local l_0_1 = GetTacticsTableForPid(l_0_0.ppid)
-    if IsDetectionThresholdMet(l_0_0.ppid) or l_0_1.winrshost_childproc or l_0_1.wsmprovhost_childproc or l_0_1.wmi_childproc or l_0_1.remotedropexe_childproc or l_0_1.python_childproc or l_0_1.rundll32_childproc or l_0_1.wscript_childproc or l_0_1.cscript_childproc or l_0_1.mshta_childproc or l_0_1.webshell_childproc or l_0_1.exec_remotedroppedscript_a then
-      bm_AddRelatedFileFromCommandLine(l_0_0.command_line, nil, nil, 1)
-      TrackPidAndTechniqueBM(l_0_0.ppid, "T1003", "tt_remediate")
-      return mp.INFECTED
-    end
-  end
+if mp.IsHipsRuleEnabled("c1db55ab-c21a-4637-bb3f-a12568109d35") and bm.get_current_process_startup_info() ~= nil and bm.get_current_process_startup_info().command_line ~= nil and (IsDetectionThresholdMet(bm.get_current_process_startup_info().ppid) or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).winrshost_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).wsmprovhost_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).wmi_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).remotedropexe_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).python_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).rundll32_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).wscript_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).cscript_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).mshta_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).webshell_childproc or GetTacticsTableForPid(bm.get_current_process_startup_info().ppid).exec_remotedroppedscript_a) then
+  bm_AddRelatedFileFromCommandLine(bm.get_current_process_startup_info().command_line, nil, nil, 1)
+  TrackPidAndTechniqueBM(bm.get_current_process_startup_info().ppid, "T1003", "tt_remediate")
+  return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

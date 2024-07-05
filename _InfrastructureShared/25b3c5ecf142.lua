@@ -1,30 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b3c5ecf142 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-for l_0_4 = 1, mp.SIGATTR_LOG_SZ do
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC8: Confused about usage of register: R4 in 'UnsetPending'
-
-  l_0_1 = (string.lower)((sigattr_head[R4_PC8]).utf8p1)
-  do
-    do
-      -- DECOMPILER ERROR at PC61: Unhandled construct in 'MakeBoolean' P1
-
-      -- DECOMPILER ERROR at PC61: Unhandled construct in 'MakeBoolean' P1
-
-      if (sigattr_head[R4_PC8]).matched and (sigattr_head[R4_PC8]).attribute == 16384 and (string.find)(l_0_1, ":\\", 1, true) == 2 and (string.find)(l_0_1, "\\", 4, true) == nil and (string.len)((string.sub)(l_0_1, 0, 1)) == 1 and (string.match)((string.sub)(l_0_1, 0, 1), "[A-Za-z]") then
-        return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+for L4_4 = 1, L2_2.SIGATTR_LOG_SZ do
+  L5_5 = string
+  L5_5 = L5_5.lower
+  L5_5 = L5_5(sigattr_head[L4_4].utf8p1)
+  L0_0 = L5_5
+  L5_5 = sigattr_head
+  L5_5 = L5_5[L4_4]
+  L5_5 = L5_5.matched
+  if L5_5 then
+    L5_5 = sigattr_head
+    L5_5 = L5_5[L4_4]
+    L5_5 = L5_5.attribute
+    if L5_5 == 16384 then
+      L5_5 = string
+      L5_5 = L5_5.find
+      L5_5 = L5_5(L0_0, ":\\", 1, true)
+      if L5_5 == 2 then
+        L5_5 = string
+        L5_5 = L5_5.find
+        L5_5 = L5_5(L0_0, "\\", 4, true)
+        if L5_5 == nil then
+          L5_5 = string
+          L5_5 = L5_5.sub
+          L5_5 = L5_5(L0_0, 0, 1)
+          if string.len(L5_5) == 1 and string.match(L5_5, "[A-Za-z]") then
+            return mp.INFECTED
+          end
+        end
+      else
+        L5_5 = string
+        L5_5 = L5_5.find
+        L5_5 = L5_5(L0_0, "\\\\", 1, true)
+        if L5_5 == 0 then
+          L5_5 = string
+          L5_5 = L5_5.find
+          L5_5 = L5_5(L0_0, "\\", 3, true)
+          if L5_5 == nil then
+            L5_5 = mp
+            L5_5 = L5_5.INFECTED
+            return L5_5
+          end
+        end
       end
-      if (string.find)(l_0_1, "\\\\", 1, true) == 0 and (string.find)(l_0_1, "\\", 3, true) == nil then
-        return mp.INFECTED
-      end
-      -- DECOMPILER ERROR at PC84: LeaveBlock: unexpected jumping out DO_STMT
-
     end
   end
 end
-return mp.CLEAN
-
+return L1_1

@@ -1,15 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Pdumpint.a 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattribute)("HSTR:Pdumpint.A") then
-    local l_0_0 = (mp.getfilename)()
-    if (string.find)(l_0_0, "pd.exe") ~= nil then
-      return mp.INFECTED
-    end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("HSTR:Pdumpint.A")
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.getfilename
+  L0_0 = L0_0()
+  if string.find(L0_0, "pd.exe") ~= nil then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

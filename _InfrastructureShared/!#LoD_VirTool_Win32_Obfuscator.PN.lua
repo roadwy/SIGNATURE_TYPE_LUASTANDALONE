@@ -1,19 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LoD_VirTool_Win32_Obfuscator.PN 
-
--- params : ...
--- function num : 0
-if peattributes.hasexports ~= true then
-  return mp.CLEAN
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 11 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 11 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)(640, 6)
-if (mp.crc32)(-1, l_0_0, 1, 6) ~= 3246015244 then
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L0_0 = L0_0(640, 6)
+if mp.crc32(-1, L0_0, 1, 6) ~= 3246015244 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

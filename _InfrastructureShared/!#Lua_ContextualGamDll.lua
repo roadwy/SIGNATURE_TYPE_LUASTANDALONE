@@ -1,60 +1,188 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ContextualGamDll 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  if (mp.bitand)((mp.get_contextdata)(mp.CONTEXT_DATA_DEVICE_CHARACTERISTICS), 264193) ~= 264193 then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.bitand
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_DEVICE_CHARACTERISTICS
+  L2_2 = L2_2(L3_3)
+  L3_3 = 264193
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 ~= 264193 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if not peattributes.isdll then
-    return mp.CLEAN
+  L1_1 = peattributes
+  L1_1 = L1_1.isdll
+  if not L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if not peattributes.hasexports then
-    return mp.CLEAN
+  L1_1 = peattributes
+  L1_1 = L1_1.hasexports
+  if not L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if ((pehdr.DataDirectory)[1]).Size == 0 then
-    return mp.CLEAN
+  L1_1 = pehdr
+  L1_1 = L1_1.DataDirectory
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.Size
+  if L1_1 == 0 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  local l_0_2 = {}
-  l_0_2[".exe"] = true
-  l_0_2[".dll"] = true
-  l_0_2[".cpl"] = true
-  l_0_2[".ocx"] = true
-  l_0_2[".pyd"] = true
-  if l_0_2[l_0_1:sub(-4)] then
-    return mp.CLEAN
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_FILENAME
+  L1_1 = L1_1(L2_2)
+  L2_2 = {}
+  L2_2[".exe"] = true
+  L2_2[".dll"] = true
+  L2_2[".cpl"] = true
+  L2_2[".ocx"] = true
+  L2_2[".pyd"] = true
+  L4_4 = L1_1
+  L3_3 = L1_1.sub
+  L5_5 = -4
+  L3_3 = L3_3(L4_4, L5_5)
+  L3_3 = L2_2[L3_3]
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   end
-  local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-  if not l_0_3:find("\160", 1, true) then
-    return mp.CLEAN
+  L3_3 = mp
+  L3_3 = L3_3.get_contextdata
+  L4_4 = mp
+  L4_4 = L4_4.CONTEXT_DATA_FILEPATH
+  L3_3 = L3_3(L4_4)
+  L5_5 = L3_3
+  L4_4 = L3_3.find
+  L6_6 = "\160"
+  L7_7 = 1
+  L8_8 = true
+  L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8)
+  if not L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  if l_0_1:find("^%l+%.%l%l%l$") or l_0_1:find("^~%$%l+%.%l%l%l$") or l_0_1:find("^%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+$") or l_0_1:find("^%w%w%w%w%w+%.%w+$") then
-    local l_0_4 = ((pehdr.DataDirectory)[1]).RVA
-    ;
-    (mp.readprotection)(false)
-    local l_0_5 = (mp.readfile)((pe.foffset_rva)(l_0_4), 36)
-    if (mp.readu_u32)(l_0_5, 21) ~= 1 then
-      return mp.CLEAN
+  L5_5 = L1_1
+  L4_4 = L1_1.find
+  L6_6 = "^%l+%.%l%l%l$"
+  L4_4 = L4_4(L5_5, L6_6)
+  if not L4_4 then
+    L5_5 = L1_1
+    L4_4 = L1_1.find
+    L6_6 = "^~%$%l+%.%l%l%l$"
+    L4_4 = L4_4(L5_5, L6_6)
+    if not L4_4 then
+      L5_5 = L1_1
+      L4_4 = L1_1.find
+      L6_6 = "^%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+$"
+      L4_4 = L4_4(L5_5, L6_6)
+      if not L4_4 then
+        L5_5 = L1_1
+        L4_4 = L1_1.find
+        L6_6 = "^%w%w%w%w%w+%.%w+$"
+        L4_4 = L4_4(L5_5, L6_6)
+      end
     end
-    if (mp.readu_u32)(l_0_5, 25) ~= 1 then
-      return mp.CLEAN
+  elseif L4_4 then
+    L4_4 = pehdr
+    L4_4 = L4_4.DataDirectory
+    L4_4 = L4_4[1]
+    L4_4 = L4_4.RVA
+    L5_5 = mp
+    L5_5 = L5_5.readprotection
+    L6_6 = false
+    L5_5(L6_6)
+    L5_5 = mp
+    L5_5 = L5_5.readfile
+    L6_6 = pe
+    L6_6 = L6_6.foffset_rva
+    L7_7 = L4_4
+    L6_6 = L6_6(L7_7)
+    L7_7 = 36
+    L5_5 = L5_5(L6_6, L7_7)
+    L6_6 = mp
+    L6_6 = L6_6.readu_u32
+    L7_7 = L5_5
+    L8_8 = 21
+    L6_6 = L6_6(L7_7, L8_8)
+    if L6_6 ~= 1 then
+      L6_6 = mp
+      L6_6 = L6_6.CLEAN
+      return L6_6
     end
-    local l_0_6 = (mp.readu_u32)(l_0_5, 33)
-    l_0_5 = (pe.mmap_rva)(l_0_6, 4)
-    local l_0_7 = (mp.readu_u32)(l_0_5, 1)
-    local l_0_8 = (pe.mmap_rva)(l_0_7, 32)
-    if l_0_8:find("^%l+") and ((string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)) == "msiexec.exe" or (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)) == "rundll32.exe") then
-      local l_0_9 = (MpCommon.PathToWin32Path)(l_0_3) .. "\\IndexerVolumeGuid"
-      ;
-      (mp.ReportLowfi)(l_0_9, 162679141)
-      return mp.INFECTED
+    L6_6 = mp
+    L6_6 = L6_6.readu_u32
+    L7_7 = L5_5
+    L8_8 = 25
+    L6_6 = L6_6(L7_7, L8_8)
+    if L6_6 ~= 1 then
+      L6_6 = mp
+      L6_6 = L6_6.CLEAN
+      return L6_6
+    end
+    L6_6 = mp
+    L6_6 = L6_6.readu_u32
+    L7_7 = L5_5
+    L8_8 = 33
+    L6_6 = L6_6(L7_7, L8_8)
+    L7_7 = pe
+    L7_7 = L7_7.mmap_rva
+    L8_8 = L6_6
+    L9_9 = 4
+    L7_7 = L7_7(L8_8, L9_9)
+    L5_5 = L7_7
+    L7_7 = mp
+    L7_7 = L7_7.readu_u32
+    L8_8 = L5_5
+    L9_9 = 1
+    L7_7 = L7_7(L8_8, L9_9)
+    L8_8 = pe
+    L8_8 = L8_8.mmap_rva
+    L9_9 = L7_7
+    L8_8 = L8_8(L9_9, 32)
+    L9_9 = L8_8.find
+    L9_9 = L9_9(L8_8, "^%l+")
+    if L9_9 then
+      L9_9 = string
+      L9_9 = L9_9.lower
+      L9_9 = L9_9(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))
+      if L9_9 ~= "msiexec.exe" then
+        L9_9 = string
+        L9_9 = L9_9.lower
+        L9_9 = L9_9(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))
+      elseif L9_9 == "rundll32.exe" then
+        L9_9 = MpCommon
+        L9_9 = L9_9.PathToWin32Path
+        L9_9 = L9_9(L3_3)
+        L9_9 = L9_9 .. "\\IndexerVolumeGuid"
+        mp.ReportLowfi(L9_9, 162679141)
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

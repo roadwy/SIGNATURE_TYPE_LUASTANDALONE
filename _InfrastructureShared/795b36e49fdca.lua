@@ -1,21 +1,635 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/795b36e49fdca 
-
--- params : ...
--- function num : 0
-for l_0_3 = 1, mp.SIGATTR_LOG_SZ do
-  if (sigattr_tail[l_0_3]).matched and (sigattr_tail[l_0_3]).attribute == 16393 then
-    local l_0_4 = (sigattr_tail[l_0_3]).utf8p1
-    if l_0_4 then
-      l_0_4 = (string.lower)(l_0_4)
-      if l_0_4 and ((string.find)(l_0_4, "mbam.exe") or (string.find)(l_0_4, "mbamscheduler.exe") or (string.find)(l_0_4, "mbamservice.exe") or (string.find)(l_0_4, "bgscan.exe") or (string.find)(l_0_4, "bullguard.exe") or (string.find)(l_0_4, "bullguardbhvscanner.exe") or (string.find)(l_0_4, "bullguarscanner.exe") or (string.find)(l_0_4, "littlehook.exe") or (string.find)(l_0_4, "bullguardupdate.exe") or (string.find)(l_0_4, "clamscan.exe") or (string.find)(l_0_4, "clamtray.exe") or (string.find)(l_0_4, "clamwin.exe") or (string.find)(l_0_4, "freshclam.exe") or (string.find)(l_0_4, "freshclamwrap.exe") or (string.find)(l_0_4, "cis.exe") or (string.find)(l_0_4, "cistray.exe") or (string.find)(l_0_4, "cmdagent.exe") or (string.find)(l_0_4, "cavwp.exe") or (string.find)(l_0_4, "dragon_updater.exe") or (string.find)(l_0_4, "mwagent.exe") or (string.find)(l_0_4, "mwaswer.exe") or (string.find)(l_0_4, "consctlx.exe") or (string.find)(l_0_4, "avpmapp.exe") or (string.find)(l_0_4, "econceal.exe") or (string.find)(l_0_4, "escanmon.exe") or (string.find)(l_0_4, "escanpro.exe") or (string.find)(l_0_4, "traysser.exe") or (string.find)(l_0_4, "trayicos.exe") or (string.find)(l_0_4, "econser.exe") or (string.find)(l_0_4, "fshdll64.exe") or (string.find)(l_0_4, "fsgk32.exe") or (string.find)(l_0_4, "fhoster32.exe") or (string.find)(l_0_4, "fsma32.exe") or (string.find)(l_0_4, "fsorsp.exe") or (string.find)(l_0_4, "fssm32.exe") or (string.find)(l_0_4, "fsm32.exe") or (string.find)(l_0_4, "trigger.exe") or (string.find)(l_0_4, "fprottray.exe") or (string.find)(l_0_4, "fpwin.exe") or (string.find)(l_0_4, "fpavserver.exe") or (string.find)(l_0_4, "avk.exe") or (string.find)(l_0_4, "gdbginx64.exe") or (string.find)(l_0_4, "avkproxy.exe") or (string.find)(l_0_4, "gdscan.exe") or (string.find)(l_0_4, "avkwctlx64.exe") or (string.find)(l_0_4, "avkservice.exe") or (string.find)(l_0_4, "avktray.exe") or (string.find)(l_0_4, "gdkbfltexe32.exe") or (string.find)(l_0_4, "gdsc.exe") or (string.find)(l_0_4, "virusutilities.exe") or (string.find)(l_0_4, "guardxservice.exe") or (string.find)(l_0_4, "guardxkickoff_x64.exe") or (string.find)(l_0_4, "iptray.exe") or (string.find)(l_0_4, "k7rtscan.exe") or (string.find)(l_0_4, "k7fwsrvc.exe") or (string.find)(l_0_4, "k7pssrvc.exe") or (string.find)(l_0_4, "k7emlpxy.exe") or (string.find)(l_0_4, "k7tsecurity.exe") or (string.find)(l_0_4, "k7avscan.exe") or (string.find)(l_0_4, "k7crvsvc.exe") or (string.find)(l_0_4, "k7sysmon.exe") or (string.find)(l_0_4, "k7tsmain.exe") or (string.find)(l_0_4, "k7tsmngr.exe") or (string.find)(l_0_4, "nanosvc.exe") or (string.find)(l_0_4, "nanoav.exe") or (string.find)(l_0_4, "nnf.exe") or (string.find)(l_0_4, "nvcsvc.exe") or (string.find)(l_0_4, "nbrowser.exe") or (string.find)(l_0_4, "nseupdatesvc.exe") or (string.find)(l_0_4, "nfservice.exe") or (string.find)(l_0_4, "nwscmon.exe") or (string.find)(l_0_4, "nfservice.exe") or (string.find)(l_0_4, "njeeves2.exe") or (string.find)(l_0_4, "nvcod.exe") or (string.find)(l_0_4, "nvoy.exe") or (string.find)(l_0_4, "zllh.exe") or (string.find)(l_0_4, "zlh.exe") or (string.find)(l_0_4, "nprosec.exe") or (string.find)(l_0_4, "zanda.exe") or (string.find)(l_0_4, "ns.exe") or (string.find)(l_0_4, "acs.exe") or (string.find)(l_0_4, "op_mon.exe") or (string.find)(l_0_4, "psanhost.exe") or (string.find)(l_0_4, "psuaservice.exe") or (string.find)(l_0_4, "psuamain.exe") or (string.find)(l_0_4, "agentsvc.exe") or (string.find)(l_0_4, "bdssvc.exe") or (string.find)(l_0_4, "emlproxy.exe") or (string.find)(l_0_4, "opssvc.exe") or (string.find)(l_0_4, "onlinent.exe") or (string.find)(l_0_4, "quhlpsvc.exe") or (string.find)(l_0_4, "sapissvc.exe") or (string.find)(l_0_4, "scanner.exe") or (string.find)(l_0_4, "scanwscs.exe") or (string.find)(l_0_4, "scproxysrv.exe") or (string.find)(l_0_4, "scsecsvc.exe") or (string.find)(l_0_4, "superantispyware.exe") or (string.find)(l_0_4, "sascore64.exe") or (string.find)(l_0_4, "ssupdate64.exe") or (string.find)(l_0_4, "uiseagnt.exe") or (string.find)(l_0_4, "ptwatchdog.exe") or (string.find)(l_0_4, "ptsvchost.exe") or (string.find)(l_0_4, "ptsessionagent.exe") or (string.find)(l_0_4, "coreframeworkhost.exe") or (string.find)(l_0_4, "coreserviceshell.exe") or (string.find)(l_0_4, "uiupdatetray.exe") or (string.find)(l_0_4, "vipreui.exe") or (string.find)(l_0_4, "sbamsvc.exe") or (string.find)(l_0_4, "sbamtray.exe") or (string.find)(l_0_4, "sbpimsvc.exe") or (string.find)(l_0_4, "bavhm.exe") or (string.find)(l_0_4, "bavsvc.exe") or (string.find)(l_0_4, "bavtray.exe") or (string.find)(l_0_4, "bav.exe") or (string.find)(l_0_4, "bavwebclient.exe") or (string.find)(l_0_4, "bavupdater.exe") or (string.find)(l_0_4, "sdscan.exe") or (string.find)(l_0_4, "sdfssvc.exe") or (string.find)(l_0_4, "sdtray.exe") or (string.find)(l_0_4, "unthreat.exe") or (string.find)(l_0_4, "utsvc.exe")) then
-        local l_0_5 = (sigattr_tail[l_0_3]).utf8p2
-        if (string.len)(l_0_5) > 1 then
-          return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+for L3_3 = 1, L1_1.SIGATTR_LOG_SZ do
+  L4_4 = sigattr_tail
+  L4_4 = L4_4[L3_3]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = sigattr_tail
+    L4_4 = L4_4[L3_3]
+    L4_4 = L4_4.attribute
+    if L4_4 == 16393 then
+      L4_4 = sigattr_tail
+      L4_4 = L4_4[L3_3]
+      L4_4 = L4_4.utf8p1
+      if L4_4 then
+        L5_5 = string
+        L5_5 = L5_5.lower
+        L5_5 = L5_5(L4_4)
+        L4_4 = L5_5
+        if L4_4 then
+          L5_5 = string
+          L5_5 = L5_5.find
+          L5_5 = L5_5(L4_4, "mbam.exe")
+          if not L5_5 then
+            L5_5 = string
+            L5_5 = L5_5.find
+            L5_5 = L5_5(L4_4, "mbamscheduler.exe")
+            if not L5_5 then
+              L5_5 = string
+              L5_5 = L5_5.find
+              L5_5 = L5_5(L4_4, "mbamservice.exe")
+              if not L5_5 then
+                L5_5 = string
+                L5_5 = L5_5.find
+                L5_5 = L5_5(L4_4, "bgscan.exe")
+                if not L5_5 then
+                  L5_5 = string
+                  L5_5 = L5_5.find
+                  L5_5 = L5_5(L4_4, "bullguard.exe")
+                  if not L5_5 then
+                    L5_5 = string
+                    L5_5 = L5_5.find
+                    L5_5 = L5_5(L4_4, "bullguardbhvscanner.exe")
+                    if not L5_5 then
+                      L5_5 = string
+                      L5_5 = L5_5.find
+                      L5_5 = L5_5(L4_4, "bullguarscanner.exe")
+                      if not L5_5 then
+                        L5_5 = string
+                        L5_5 = L5_5.find
+                        L5_5 = L5_5(L4_4, "littlehook.exe")
+                        if not L5_5 then
+                          L5_5 = string
+                          L5_5 = L5_5.find
+                          L5_5 = L5_5(L4_4, "bullguardupdate.exe")
+                          if not L5_5 then
+                            L5_5 = string
+                            L5_5 = L5_5.find
+                            L5_5 = L5_5(L4_4, "clamscan.exe")
+                            if not L5_5 then
+                              L5_5 = string
+                              L5_5 = L5_5.find
+                              L5_5 = L5_5(L4_4, "clamtray.exe")
+                              if not L5_5 then
+                                L5_5 = string
+                                L5_5 = L5_5.find
+                                L5_5 = L5_5(L4_4, "clamwin.exe")
+                                if not L5_5 then
+                                  L5_5 = string
+                                  L5_5 = L5_5.find
+                                  L5_5 = L5_5(L4_4, "freshclam.exe")
+                                  if not L5_5 then
+                                    L5_5 = string
+                                    L5_5 = L5_5.find
+                                    L5_5 = L5_5(L4_4, "freshclamwrap.exe")
+                                    if not L5_5 then
+                                      L5_5 = string
+                                      L5_5 = L5_5.find
+                                      L5_5 = L5_5(L4_4, "cis.exe")
+                                      if not L5_5 then
+                                        L5_5 = string
+                                        L5_5 = L5_5.find
+                                        L5_5 = L5_5(L4_4, "cistray.exe")
+                                        if not L5_5 then
+                                          L5_5 = string
+                                          L5_5 = L5_5.find
+                                          L5_5 = L5_5(L4_4, "cmdagent.exe")
+                                          if not L5_5 then
+                                            L5_5 = string
+                                            L5_5 = L5_5.find
+                                            L5_5 = L5_5(L4_4, "cavwp.exe")
+                                            if not L5_5 then
+                                              L5_5 = string
+                                              L5_5 = L5_5.find
+                                              L5_5 = L5_5(L4_4, "dragon_updater.exe")
+                                              if not L5_5 then
+                                                L5_5 = string
+                                                L5_5 = L5_5.find
+                                                L5_5 = L5_5(L4_4, "mwagent.exe")
+                                                if not L5_5 then
+                                                  L5_5 = string
+                                                  L5_5 = L5_5.find
+                                                  L5_5 = L5_5(L4_4, "mwaswer.exe")
+                                                  if not L5_5 then
+                                                    L5_5 = string
+                                                    L5_5 = L5_5.find
+                                                    L5_5 = L5_5(L4_4, "consctlx.exe")
+                                                    if not L5_5 then
+                                                      L5_5 = string
+                                                      L5_5 = L5_5.find
+                                                      L5_5 = L5_5(L4_4, "avpmapp.exe")
+                                                      if not L5_5 then
+                                                        L5_5 = string
+                                                        L5_5 = L5_5.find
+                                                        L5_5 = L5_5(L4_4, "econceal.exe")
+                                                        if not L5_5 then
+                                                          L5_5 = string
+                                                          L5_5 = L5_5.find
+                                                          L5_5 = L5_5(L4_4, "escanmon.exe")
+                                                          if not L5_5 then
+                                                            L5_5 = string
+                                                            L5_5 = L5_5.find
+                                                            L5_5 = L5_5(L4_4, "escanpro.exe")
+                                                            if not L5_5 then
+                                                              L5_5 = string
+                                                              L5_5 = L5_5.find
+                                                              L5_5 = L5_5(L4_4, "traysser.exe")
+                                                              if not L5_5 then
+                                                                L5_5 = string
+                                                                L5_5 = L5_5.find
+                                                                L5_5 = L5_5(L4_4, "trayicos.exe")
+                                                                if not L5_5 then
+                                                                  L5_5 = string
+                                                                  L5_5 = L5_5.find
+                                                                  L5_5 = L5_5(L4_4, "econser.exe")
+                                                                  if not L5_5 then
+                                                                    L5_5 = string
+                                                                    L5_5 = L5_5.find
+                                                                    L5_5 = L5_5(L4_4, "fshdll64.exe")
+                                                                    if not L5_5 then
+                                                                      L5_5 = string
+                                                                      L5_5 = L5_5.find
+                                                                      L5_5 = L5_5(L4_4, "fsgk32.exe")
+                                                                      if not L5_5 then
+                                                                        L5_5 = string
+                                                                        L5_5 = L5_5.find
+                                                                        L5_5 = L5_5(L4_4, "fhoster32.exe")
+                                                                        if not L5_5 then
+                                                                          L5_5 = string
+                                                                          L5_5 = L5_5.find
+                                                                          L5_5 = L5_5(L4_4, "fsma32.exe")
+                                                                          if not L5_5 then
+                                                                            L5_5 = string
+                                                                            L5_5 = L5_5.find
+                                                                            L5_5 = L5_5(L4_4, "fsorsp.exe")
+                                                                            if not L5_5 then
+                                                                              L5_5 = string
+                                                                              L5_5 = L5_5.find
+                                                                              L5_5 = L5_5(L4_4, "fssm32.exe")
+                                                                              if not L5_5 then
+                                                                                L5_5 = string
+                                                                                L5_5 = L5_5.find
+                                                                                L5_5 = L5_5(L4_4, "fsm32.exe")
+                                                                                if not L5_5 then
+                                                                                  L5_5 = string
+                                                                                  L5_5 = L5_5.find
+                                                                                  L5_5 = L5_5(L4_4, "trigger.exe")
+                                                                                  if not L5_5 then
+                                                                                    L5_5 = string
+                                                                                    L5_5 = L5_5.find
+                                                                                    L5_5 = L5_5(L4_4, "fprottray.exe")
+                                                                                    if not L5_5 then
+                                                                                      L5_5 = string
+                                                                                      L5_5 = L5_5.find
+                                                                                      L5_5 = L5_5(L4_4, "fpwin.exe")
+                                                                                      if not L5_5 then
+                                                                                        L5_5 = string
+                                                                                        L5_5 = L5_5.find
+                                                                                        L5_5 = L5_5(L4_4, "fpavserver.exe")
+                                                                                        if not L5_5 then
+                                                                                          L5_5 = string
+                                                                                          L5_5 = L5_5.find
+                                                                                          L5_5 = L5_5(L4_4, "avk.exe")
+                                                                                          if not L5_5 then
+                                                                                            L5_5 = string
+                                                                                            L5_5 = L5_5.find
+                                                                                            L5_5 = L5_5(L4_4, "gdbginx64.exe")
+                                                                                            if not L5_5 then
+                                                                                              L5_5 = string
+                                                                                              L5_5 = L5_5.find
+                                                                                              L5_5 = L5_5(L4_4, "avkproxy.exe")
+                                                                                              if not L5_5 then
+                                                                                                L5_5 = string
+                                                                                                L5_5 = L5_5.find
+                                                                                                L5_5 = L5_5(L4_4, "gdscan.exe")
+                                                                                                if not L5_5 then
+                                                                                                  L5_5 = string
+                                                                                                  L5_5 = L5_5.find
+                                                                                                  L5_5 = L5_5(L4_4, "avkwctlx64.exe")
+                                                                                                  if not L5_5 then
+                                                                                                    L5_5 = string
+                                                                                                    L5_5 = L5_5.find
+                                                                                                    L5_5 = L5_5(L4_4, "avkservice.exe")
+                                                                                                    if not L5_5 then
+                                                                                                      L5_5 = string
+                                                                                                      L5_5 = L5_5.find
+                                                                                                      L5_5 = L5_5(L4_4, "avktray.exe")
+                                                                                                      if not L5_5 then
+                                                                                                        L5_5 = string
+                                                                                                        L5_5 = L5_5.find
+                                                                                                        L5_5 = L5_5(L4_4, "gdkbfltexe32.exe")
+                                                                                                        if not L5_5 then
+                                                                                                          L5_5 = string
+                                                                                                          L5_5 = L5_5.find
+                                                                                                          L5_5 = L5_5(L4_4, "gdsc.exe")
+                                                                                                          if not L5_5 then
+                                                                                                            L5_5 = string
+                                                                                                            L5_5 = L5_5.find
+                                                                                                            L5_5 = L5_5(L4_4, "virusutilities.exe")
+                                                                                                            if not L5_5 then
+                                                                                                              L5_5 = string
+                                                                                                              L5_5 = L5_5.find
+                                                                                                              L5_5 = L5_5(L4_4, "guardxservice.exe")
+                                                                                                              if not L5_5 then
+                                                                                                                L5_5 = string
+                                                                                                                L5_5 = L5_5.find
+                                                                                                                L5_5 = L5_5(L4_4, "guardxkickoff_x64.exe")
+                                                                                                                if not L5_5 then
+                                                                                                                  L5_5 = string
+                                                                                                                  L5_5 = L5_5.find
+                                                                                                                  L5_5 = L5_5(L4_4, "iptray.exe")
+                                                                                                                  if not L5_5 then
+                                                                                                                    L5_5 = string
+                                                                                                                    L5_5 = L5_5.find
+                                                                                                                    L5_5 = L5_5(L4_4, "k7rtscan.exe")
+                                                                                                                    if not L5_5 then
+                                                                                                                      L5_5 = string
+                                                                                                                      L5_5 = L5_5.find
+                                                                                                                      L5_5 = L5_5(L4_4, "k7fwsrvc.exe")
+                                                                                                                      if not L5_5 then
+                                                                                                                        L5_5 = string
+                                                                                                                        L5_5 = L5_5.find
+                                                                                                                        L5_5 = L5_5(L4_4, "k7pssrvc.exe")
+                                                                                                                        if not L5_5 then
+                                                                                                                          L5_5 = string
+                                                                                                                          L5_5 = L5_5.find
+                                                                                                                          L5_5 = L5_5(L4_4, "k7emlpxy.exe")
+                                                                                                                          if not L5_5 then
+                                                                                                                            L5_5 = string
+                                                                                                                            L5_5 = L5_5.find
+                                                                                                                            L5_5 = L5_5(L4_4, "k7tsecurity.exe")
+                                                                                                                            if not L5_5 then
+                                                                                                                              L5_5 = string
+                                                                                                                              L5_5 = L5_5.find
+                                                                                                                              L5_5 = L5_5(L4_4, "k7avscan.exe")
+                                                                                                                              if not L5_5 then
+                                                                                                                                L5_5 = string
+                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                L5_5 = L5_5(L4_4, "k7crvsvc.exe")
+                                                                                                                                if not L5_5 then
+                                                                                                                                  L5_5 = string
+                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                  L5_5 = L5_5(L4_4, "k7sysmon.exe")
+                                                                                                                                  if not L5_5 then
+                                                                                                                                    L5_5 = string
+                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                    L5_5 = L5_5(L4_4, "k7tsmain.exe")
+                                                                                                                                    if not L5_5 then
+                                                                                                                                      L5_5 = string
+                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                      L5_5 = L5_5(L4_4, "k7tsmngr.exe")
+                                                                                                                                      if not L5_5 then
+                                                                                                                                        L5_5 = string
+                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                        L5_5 = L5_5(L4_4, "nanosvc.exe")
+                                                                                                                                        if not L5_5 then
+                                                                                                                                          L5_5 = string
+                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                          L5_5 = L5_5(L4_4, "nanoav.exe")
+                                                                                                                                          if not L5_5 then
+                                                                                                                                            L5_5 = string
+                                                                                                                                            L5_5 = L5_5.find
+                                                                                                                                            L5_5 = L5_5(L4_4, "nnf.exe")
+                                                                                                                                            if not L5_5 then
+                                                                                                                                              L5_5 = string
+                                                                                                                                              L5_5 = L5_5.find
+                                                                                                                                              L5_5 = L5_5(L4_4, "nvcsvc.exe")
+                                                                                                                                              if not L5_5 then
+                                                                                                                                                L5_5 = string
+                                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                                L5_5 = L5_5(L4_4, "nbrowser.exe")
+                                                                                                                                                if not L5_5 then
+                                                                                                                                                  L5_5 = string
+                                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                                  L5_5 = L5_5(L4_4, "nseupdatesvc.exe")
+                                                                                                                                                  if not L5_5 then
+                                                                                                                                                    L5_5 = string
+                                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                                    L5_5 = L5_5(L4_4, "nfservice.exe")
+                                                                                                                                                    if not L5_5 then
+                                                                                                                                                      L5_5 = string
+                                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                                      L5_5 = L5_5(L4_4, "nwscmon.exe")
+                                                                                                                                                      if not L5_5 then
+                                                                                                                                                        L5_5 = string
+                                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                                        L5_5 = L5_5(L4_4, "nfservice.exe")
+                                                                                                                                                        if not L5_5 then
+                                                                                                                                                          L5_5 = string
+                                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                                          L5_5 = L5_5(L4_4, "njeeves2.exe")
+                                                                                                                                                          if not L5_5 then
+                                                                                                                                                            L5_5 = string
+                                                                                                                                                            L5_5 = L5_5.find
+                                                                                                                                                            L5_5 = L5_5(L4_4, "nvcod.exe")
+                                                                                                                                                            if not L5_5 then
+                                                                                                                                                              L5_5 = string
+                                                                                                                                                              L5_5 = L5_5.find
+                                                                                                                                                              L5_5 = L5_5(L4_4, "nvoy.exe")
+                                                                                                                                                              if not L5_5 then
+                                                                                                                                                                L5_5 = string
+                                                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                                                L5_5 = L5_5(L4_4, "zllh.exe")
+                                                                                                                                                                if not L5_5 then
+                                                                                                                                                                  L5_5 = string
+                                                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                                                  L5_5 = L5_5(L4_4, "zlh.exe")
+                                                                                                                                                                  if not L5_5 then
+                                                                                                                                                                    L5_5 = string
+                                                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                                                    L5_5 = L5_5(L4_4, "nprosec.exe")
+                                                                                                                                                                    if not L5_5 then
+                                                                                                                                                                      L5_5 = string
+                                                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                                                      L5_5 = L5_5(L4_4, "zanda.exe")
+                                                                                                                                                                      if not L5_5 then
+                                                                                                                                                                        L5_5 = string
+                                                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                                                        L5_5 = L5_5(L4_4, "ns.exe")
+                                                                                                                                                                        if not L5_5 then
+                                                                                                                                                                          L5_5 = string
+                                                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                                                          L5_5 = L5_5(L4_4, "acs.exe")
+                                                                                                                                                                          if not L5_5 then
+                                                                                                                                                                            L5_5 = string
+                                                                                                                                                                            L5_5 = L5_5.find
+                                                                                                                                                                            L5_5 = L5_5(L4_4, "op_mon.exe")
+                                                                                                                                                                            if not L5_5 then
+                                                                                                                                                                              L5_5 = string
+                                                                                                                                                                              L5_5 = L5_5.find
+                                                                                                                                                                              L5_5 = L5_5(L4_4, "psanhost.exe")
+                                                                                                                                                                              if not L5_5 then
+                                                                                                                                                                                L5_5 = string
+                                                                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                                                                L5_5 = L5_5(L4_4, "psuaservice.exe")
+                                                                                                                                                                                if not L5_5 then
+                                                                                                                                                                                  L5_5 = string
+                                                                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                                                                  L5_5 = L5_5(L4_4, "psuamain.exe")
+                                                                                                                                                                                  if not L5_5 then
+                                                                                                                                                                                    L5_5 = string
+                                                                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                                                                    L5_5 = L5_5(L4_4, "agentsvc.exe")
+                                                                                                                                                                                    if not L5_5 then
+                                                                                                                                                                                      L5_5 = string
+                                                                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                                                                      L5_5 = L5_5(L4_4, "bdssvc.exe")
+                                                                                                                                                                                      if not L5_5 then
+                                                                                                                                                                                        L5_5 = string
+                                                                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                                                                        L5_5 = L5_5(L4_4, "emlproxy.exe")
+                                                                                                                                                                                        if not L5_5 then
+                                                                                                                                                                                          L5_5 = string
+                                                                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                                                                          L5_5 = L5_5(L4_4, "opssvc.exe")
+                                                                                                                                                                                          if not L5_5 then
+                                                                                                                                                                                            L5_5 = string
+                                                                                                                                                                                            L5_5 = L5_5.find
+                                                                                                                                                                                            L5_5 = L5_5(L4_4, "onlinent.exe")
+                                                                                                                                                                                            if not L5_5 then
+                                                                                                                                                                                              L5_5 = string
+                                                                                                                                                                                              L5_5 = L5_5.find
+                                                                                                                                                                                              L5_5 = L5_5(L4_4, "quhlpsvc.exe")
+                                                                                                                                                                                              if not L5_5 then
+                                                                                                                                                                                                L5_5 = string
+                                                                                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                                                                                L5_5 = L5_5(L4_4, "sapissvc.exe")
+                                                                                                                                                                                                if not L5_5 then
+                                                                                                                                                                                                  L5_5 = string
+                                                                                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                                                                                  L5_5 = L5_5(L4_4, "scanner.exe")
+                                                                                                                                                                                                  if not L5_5 then
+                                                                                                                                                                                                    L5_5 = string
+                                                                                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                                                                                    L5_5 = L5_5(L4_4, "scanwscs.exe")
+                                                                                                                                                                                                    if not L5_5 then
+                                                                                                                                                                                                      L5_5 = string
+                                                                                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                                                                                      L5_5 = L5_5(L4_4, "scproxysrv.exe")
+                                                                                                                                                                                                      if not L5_5 then
+                                                                                                                                                                                                        L5_5 = string
+                                                                                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                                                                                        L5_5 = L5_5(L4_4, "scsecsvc.exe")
+                                                                                                                                                                                                        if not L5_5 then
+                                                                                                                                                                                                          L5_5 = string
+                                                                                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                                                                                          L5_5 = L5_5(L4_4, "superantispyware.exe")
+                                                                                                                                                                                                          if not L5_5 then
+                                                                                                                                                                                                            L5_5 = string
+                                                                                                                                                                                                            L5_5 = L5_5.find
+                                                                                                                                                                                                            L5_5 = L5_5(L4_4, "sascore64.exe")
+                                                                                                                                                                                                            if not L5_5 then
+                                                                                                                                                                                                              L5_5 = string
+                                                                                                                                                                                                              L5_5 = L5_5.find
+                                                                                                                                                                                                              L5_5 = L5_5(L4_4, "ssupdate64.exe")
+                                                                                                                                                                                                              if not L5_5 then
+                                                                                                                                                                                                                L5_5 = string
+                                                                                                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                                                                                                L5_5 = L5_5(L4_4, "uiseagnt.exe")
+                                                                                                                                                                                                                if not L5_5 then
+                                                                                                                                                                                                                  L5_5 = string
+                                                                                                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                                                                                                  L5_5 = L5_5(L4_4, "ptwatchdog.exe")
+                                                                                                                                                                                                                  if not L5_5 then
+                                                                                                                                                                                                                    L5_5 = string
+                                                                                                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                                                                                                    L5_5 = L5_5(L4_4, "ptsvchost.exe")
+                                                                                                                                                                                                                    if not L5_5 then
+                                                                                                                                                                                                                      L5_5 = string
+                                                                                                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                                                                                                      L5_5 = L5_5(L4_4, "ptsessionagent.exe")
+                                                                                                                                                                                                                      if not L5_5 then
+                                                                                                                                                                                                                        L5_5 = string
+                                                                                                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                                                                                                        L5_5 = L5_5(L4_4, "coreframeworkhost.exe")
+                                                                                                                                                                                                                        if not L5_5 then
+                                                                                                                                                                                                                          L5_5 = string
+                                                                                                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                                                                                                          L5_5 = L5_5(L4_4, "coreserviceshell.exe")
+                                                                                                                                                                                                                          if not L5_5 then
+                                                                                                                                                                                                                            L5_5 = string
+                                                                                                                                                                                                                            L5_5 = L5_5.find
+                                                                                                                                                                                                                            L5_5 = L5_5(L4_4, "uiupdatetray.exe")
+                                                                                                                                                                                                                            if not L5_5 then
+                                                                                                                                                                                                                              L5_5 = string
+                                                                                                                                                                                                                              L5_5 = L5_5.find
+                                                                                                                                                                                                                              L5_5 = L5_5(L4_4, "vipreui.exe")
+                                                                                                                                                                                                                              if not L5_5 then
+                                                                                                                                                                                                                                L5_5 = string
+                                                                                                                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                                                                                                                L5_5 = L5_5(L4_4, "sbamsvc.exe")
+                                                                                                                                                                                                                                if not L5_5 then
+                                                                                                                                                                                                                                  L5_5 = string
+                                                                                                                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                                                                                                                  L5_5 = L5_5(L4_4, "sbamtray.exe")
+                                                                                                                                                                                                                                  if not L5_5 then
+                                                                                                                                                                                                                                    L5_5 = string
+                                                                                                                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                                                                                                                    L5_5 = L5_5(L4_4, "sbpimsvc.exe")
+                                                                                                                                                                                                                                    if not L5_5 then
+                                                                                                                                                                                                                                      L5_5 = string
+                                                                                                                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                                                                                                                      L5_5 = L5_5(L4_4, "bavhm.exe")
+                                                                                                                                                                                                                                      if not L5_5 then
+                                                                                                                                                                                                                                        L5_5 = string
+                                                                                                                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                                                                                                                        L5_5 = L5_5(L4_4, "bavsvc.exe")
+                                                                                                                                                                                                                                        if not L5_5 then
+                                                                                                                                                                                                                                          L5_5 = string
+                                                                                                                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                                                                                                                          L5_5 = L5_5(L4_4, "bavtray.exe")
+                                                                                                                                                                                                                                          if not L5_5 then
+                                                                                                                                                                                                                                            L5_5 = string
+                                                                                                                                                                                                                                            L5_5 = L5_5.find
+                                                                                                                                                                                                                                            L5_5 = L5_5(L4_4, "bav.exe")
+                                                                                                                                                                                                                                            if not L5_5 then
+                                                                                                                                                                                                                                              L5_5 = string
+                                                                                                                                                                                                                                              L5_5 = L5_5.find
+                                                                                                                                                                                                                                              L5_5 = L5_5(L4_4, "bavwebclient.exe")
+                                                                                                                                                                                                                                              if not L5_5 then
+                                                                                                                                                                                                                                                L5_5 = string
+                                                                                                                                                                                                                                                L5_5 = L5_5.find
+                                                                                                                                                                                                                                                L5_5 = L5_5(L4_4, "bavupdater.exe")
+                                                                                                                                                                                                                                                if not L5_5 then
+                                                                                                                                                                                                                                                  L5_5 = string
+                                                                                                                                                                                                                                                  L5_5 = L5_5.find
+                                                                                                                                                                                                                                                  L5_5 = L5_5(L4_4, "sdscan.exe")
+                                                                                                                                                                                                                                                  if not L5_5 then
+                                                                                                                                                                                                                                                    L5_5 = string
+                                                                                                                                                                                                                                                    L5_5 = L5_5.find
+                                                                                                                                                                                                                                                    L5_5 = L5_5(L4_4, "sdfssvc.exe")
+                                                                                                                                                                                                                                                    if not L5_5 then
+                                                                                                                                                                                                                                                      L5_5 = string
+                                                                                                                                                                                                                                                      L5_5 = L5_5.find
+                                                                                                                                                                                                                                                      L5_5 = L5_5(L4_4, "sdtray.exe")
+                                                                                                                                                                                                                                                      if not L5_5 then
+                                                                                                                                                                                                                                                        L5_5 = string
+                                                                                                                                                                                                                                                        L5_5 = L5_5.find
+                                                                                                                                                                                                                                                        L5_5 = L5_5(L4_4, "unthreat.exe")
+                                                                                                                                                                                                                                                        if not L5_5 then
+                                                                                                                                                                                                                                                          L5_5 = string
+                                                                                                                                                                                                                                                          L5_5 = L5_5.find
+                                                                                                                                                                                                                                                          L5_5 = L5_5(L4_4, "utsvc.exe")
+                                                                                                                                                                                                                                                        end
+                                                                                                                                                                                                                                                      end
+                                                                                                                                                                                                                                                    end
+                                                                                                                                                                                                                                                  end
+                                                                                                                                                                                                                                                end
+                                                                                                                                                                                                                                              end
+                                                                                                                                                                                                                                            end
+                                                                                                                                                                                                                                          end
+                                                                                                                                                                                                                                        end
+                                                                                                                                                                                                                                      end
+                                                                                                                                                                                                                                    end
+                                                                                                                                                                                                                                  end
+                                                                                                                                                                                                                                end
+                                                                                                                                                                                                                              end
+                                                                                                                                                                                                                            end
+                                                                                                                                                                                                                          end
+                                                                                                                                                                                                                        end
+                                                                                                                                                                                                                      end
+                                                                                                                                                                                                                    end
+                                                                                                                                                                                                                  end
+                                                                                                                                                                                                                end
+                                                                                                                                                                                                              end
+                                                                                                                                                                                                            end
+                                                                                                                                                                                                          end
+                                                                                                                                                                                                        end
+                                                                                                                                                                                                      end
+                                                                                                                                                                                                    end
+                                                                                                                                                                                                  end
+                                                                                                                                                                                                end
+                                                                                                                                                                                              end
+                                                                                                                                                                                            end
+                                                                                                                                                                                          end
+                                                                                                                                                                                        end
+                                                                                                                                                                                      end
+                                                                                                                                                                                    end
+                                                                                                                                                                                  end
+                                                                                                                                                                                end
+                                                                                                                                                                              end
+                                                                                                                                                                            end
+                                                                                                                                                                          end
+                                                                                                                                                                        end
+                                                                                                                                                                      end
+                                                                                                                                                                    end
+                                                                                                                                                                  end
+                                                                                                                                                                end
+                                                                                                                                                              end
+                                                                                                                                                            end
+                                                                                                                                                          end
+                                                                                                                                                        end
+                                                                                                                                                      end
+                                                                                                                                                    end
+                                                                                                                                                  end
+                                                                                                                                                end
+                                                                                                                                              end
+                                                                                                                                            end
+                                                                                                                                          end
+                                                                                                                                        end
+                                                                                                                                      end
+                                                                                                                                    end
+                                                                                                                                  end
+                                                                                                                                end
+                                                                                                                              end
+                                                                                                                            end
+                                                                                                                          end
+                                                                                                                        end
+                                                                                                                      end
+                                                                                                                    end
+                                                                                                                  end
+                                                                                                                end
+                                                                                                              end
+                                                                                                            end
+                                                                                                          end
+                                                                                                        end
+                                                                                                      end
+                                                                                                    end
+                                                                                                  end
+                                                                                                end
+                                                                                              end
+                                                                                            end
+                                                                                          end
+                                                                                        end
+                                                                                      end
+                                                                                    end
+                                                                                  end
+                                                                                end
+                                                                              end
+                                                                            end
+                                                                          end
+                                                                        end
+                                                                      end
+                                                                    end
+                                                                  end
+                                                                end
+                                                              end
+                                                            end
+                                                          end
+                                                        end
+                                                      end
+                                                    end
+                                                  end
+                                                end
+                                              end
+                                            end
+                                          end
+                                        end
+                                      end
+                                    end
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          elseif L5_5 then
+            L5_5 = sigattr_tail
+            L5_5 = L5_5[L3_3]
+            L5_5 = L5_5.utf8p2
+            if 1 < string.len(L5_5) then
+              return mp.INFECTED
+            end
+          end
         end
       end
     end
   end
 end
-return mp.CLEAN
-
+return L0_0

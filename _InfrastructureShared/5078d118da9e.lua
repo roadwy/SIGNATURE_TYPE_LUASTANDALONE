@@ -1,51 +1,90 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5078d118da9e 
-
--- params : ...
--- function num : 0
-bytes_to_int = function(l_1_0, l_1_1, l_1_2, l_1_3)
-  -- function num : 0_0
-  if not l_1_3 then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+function L0_0(A0_12, A1_13, A2_14, A3_15)
+  if not A3_15 then
     error("need four bytes to convert to int", 2)
   end
-  return l_1_0 + l_1_1 * 256 + l_1_2 * 65536 + l_1_3 * 16777216
+  return A0_12 + A1_13 * 256 + A2_14 * 65536 + A3_15 * 16777216
 end
-
-pointer2int = function(l_2_0, l_2_1)
-  -- function num : 0_1
-  local l_2_2 = (string.byte)(l_2_0, l_2_1)
-  local l_2_3 = (string.byte)(l_2_0, l_2_1 + 1)
-  local l_2_4 = (string.byte)(l_2_0, l_2_1 + 2)
-  local l_2_5 = (string.byte)(l_2_0, l_2_1 + 3)
-  return bytes_to_int(l_2_2, l_2_3, l_2_4, l_2_5)
+bytes_to_int = L0_0
+function L0_0(A0_16, A1_17)
+  local L2_18, L3_19, L4_20, L5_21
+  L2_18 = string
+  L2_18 = L2_18.byte
+  L3_19 = A0_16
+  L4_20 = A1_17
+  L2_18 = L2_18(L3_19, L4_20)
+  L3_19 = string
+  L3_19 = L3_19.byte
+  L4_20 = A0_16
+  L5_21 = A1_17 + 1
+  L3_19 = L3_19(L4_20, L5_21)
+  L4_20 = string
+  L4_20 = L4_20.byte
+  L5_21 = A0_16
+  L4_20 = L4_20(L5_21, A1_17 + 2)
+  L5_21 = string
+  L5_21 = L5_21.byte
+  L5_21 = L5_21(A0_16, A1_17 + 3)
+  return (bytes_to_int(L2_18, L3_19, L4_20, L5_21))
 end
-
-local l_0_0 = (hstrlog[1]).VA
-local l_0_1 = 20
-local l_0_2 = ((pe.mmap_va)(l_0_0 - l_0_1, l_0_1))
-local l_0_3 = nil
-for l_0_7 = 1, l_0_1 do
-  if (string.byte)(l_0_2, l_0_7) == 138 and (string.byte)(l_0_2, l_0_7 + 5) == 0 then
-    l_0_3 = pointer2int(l_0_2, l_0_7 + 2)
-    break
-  end
-end
-do
-  if l_0_3 ~= nil then
-    local l_0_8 = (pe.mmap_va)(l_0_3, 64)
-    local l_0_9 = 13
-    local l_0_10 = (string.byte)(l_0_8, l_0_9)
-    local l_0_11 = (string.byte)(l_0_8, l_0_9 + 2)
-    local l_0_12 = (string.byte)(l_0_8, l_0_9 + 3)
-    local l_0_13 = (string.byte)(l_0_8, l_0_9 + 32)
-    local l_0_14 = (string.byte)(l_0_8, l_0_9 + 34)
-    local l_0_15 = (string.byte)(l_0_8, l_0_9 + 35)
-    if (mp.bitxor)(l_0_10, l_0_13) == 117 and (mp.bitxor)(l_0_11, l_0_14) == 255 and (mp.bitxor)(l_0_12, l_0_15) == 85 then
-      return mp.SUSPICIOUS
+pointer2int = L0_0
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.VA
+L1_1 = 20
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L3_3 = L0_0 - L1_1
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = nil
+for L7_7 = 1, L1_1 do
+  L8_8 = string
+  L8_8 = L8_8.byte
+  L9_9 = L2_2
+  L10_10 = L7_7
+  L8_8 = L8_8(L9_9, L10_10)
+  if L8_8 == 138 then
+    L9_9 = string
+    L9_9 = L9_9.byte
+    L10_10 = L2_2
+    L11_11 = L7_7 + 5
+    L9_9 = L9_9(L10_10, L11_11)
+    if L9_9 == 0 then
+      L10_10 = pointer2int
+      L11_11 = L2_2
+      L10_10 = L10_10(L11_11, L7_7 + 2)
+      L3_3 = L10_10
+      break
     end
   end
-  do
-    return mp.CLEAN
+end
+if L3_3 ~= nil then
+  L7_7 = L4_4
+  L8_8 = L5_5
+  L7_7 = string
+  L7_7 = L7_7.byte
+  L8_8 = L4_4
+  L9_9 = L5_5 + 2
+  L7_7 = L7_7(L8_8, L9_9)
+  L8_8 = string
+  L8_8 = L8_8.byte
+  L9_9 = L4_4
+  L10_10 = L5_5 + 3
+  L8_8 = L8_8(L9_9, L10_10)
+  L9_9 = string
+  L9_9 = L9_9.byte
+  L10_10 = L4_4
+  L11_11 = L5_5 + 32
+  L9_9 = L9_9(L10_10, L11_11)
+  L10_10 = string
+  L10_10 = L10_10.byte
+  L11_11 = L4_4
+  L10_10 = L10_10(L11_11, L5_5 + 34)
+  L11_11 = string
+  L11_11 = L11_11.byte
+  L11_11 = L11_11(L4_4, L5_5 + 35)
+  if mp.bitxor(L6_6, L9_9) == 117 and mp.bitxor(L7_7, L10_10) == 255 and mp.bitxor(L8_8, L11_11) == 85 then
+    return mp.SUSPICIOUS
   end
 end
-
+return L4_4

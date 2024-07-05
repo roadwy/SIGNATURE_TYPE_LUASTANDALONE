@@ -1,16 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3489d107de81 
-
--- params : ...
--- function num : 0
-local l_0_0 = pevars.sigaddr
-local l_0_1 = (pe.vm_search)(l_0_0, l_0_0 + 144, "\129=\144\001\004ðI\002\000s\144\000", nil, pe.VM_SEARCH_BM)
-if l_0_1 == 4294967295 then
+local L0_0
+L0_0 = pevars
+L0_0 = L0_0.sigaddr
+if pe.vm_search(L0_0, L0_0 + 144, "\129=\144\001\004\240I\002\000s\144\000", nil, pe.VM_SEARCH_BM) == 4294967295 then
   return mp.CLEAN
 end
-;
-(pe.mmap_patch_va)(l_0_0 + 52, "j\001\144")
-;
-(pe.mmap_patch_va)(l_0_1 + 6, "\001\000\000")
+pe.mmap_patch_va(L0_0 + 52, "j\001\144")
+pe.mmap_patch_va(pe.vm_search(L0_0, L0_0 + 144, "\129=\144\001\004\240I\002\000s\144\000", nil, pe.VM_SEARCH_BM) + 6, "\001\000\000")
 return mp.INFECTED
-

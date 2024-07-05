@@ -1,39 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/19b3e6b3d6e1_Includes_TechniqueTracker,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[1]).utf8p2
-local l_0_1 = split(l_0_0, " ")
-local l_0_2 = {}
--- DECOMPILER ERROR at PC14: No list found for R2 , SetList fails
-
--- DECOMPILER ERROR at PC15: Overwrote pending register: R3 in 'AssignReg'
-
-do
-  local l_0_3 = "telemetrydv1"
-  -- DECOMPILER ERROR at PC16: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC17: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC18: Overwrote pending register: R6 in 'AssignReg'
-
-  for l_0_7 = "mdatp", "wdavdaemonunprivileged", "wdavdaemonenterprise" do
-    -- DECOMPILER ERROR at PC20: Overwrote pending register: R8 in 'AssignReg'
-
-    local l_0_8 = ("tccd")(l_0_1[l_0_7])
-    local l_0_9 = l_0_8:gsub("%W", "")
-    if #l_0_9 >= 3 then
-      for l_0_13 = 1, l_0_3 do
-        local l_0_14 = l_0_2[l_0_13]
-        if (string.find)(l_0_14, l_0_9, 1, true) then
-          TrackPidAndTechniqueBM("BM", "T1562.001", "DefenseEvasion-FriendlyPkill")
-          return mp.INFECTED
-        end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.utf8p2
+L1_1 = split
+L2_2 = L0_0
+L3_3 = " "
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = {
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7,
+  L8_8
+}
+L3_3 = "telemetrydv1"
+L7_7 = "dlpagent"
+L8_8 = "tccd"
+L3_3 = #L2_2
+for L7_7 = 1, #L1_1 do
+  L8_8 = tostring
+  L9_9 = L1_1[L7_7]
+  L8_8 = L8_8(L9_9)
+  L9_9 = L8_8.gsub
+  L9_9 = L9_9(L10_10, L11_11, L12_12)
+  if L10_10 >= 3 then
+    for L13_13 = 1, L3_3 do
+      L14_14 = L2_2[L13_13]
+      if string.find(L14_14, L9_9, 1, true) then
+        TrackPidAndTechniqueBM("BM", "T1562.001", "DefenseEvasion-FriendlyPkill")
+        return mp.INFECTED
       end
     end
   end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+return L4_4

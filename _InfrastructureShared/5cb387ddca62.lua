@@ -1,26 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5cb387ddca62 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[3]).matched then
-  local l_0_0, l_0_1 = (bm.get_process_relationships)()
-  for l_0_5,l_0_6 in ipairs(l_0_1) do
-    if (string.find)((string.lower)(l_0_6.image_path), "\\powershell.exe", 1, true) then
-      (MpCommon.TurnNriOnProcess)(l_0_6.ppid)
-      local l_0_7, l_0_8 = (string.match)(l_0_6.ppid, "^pid:(%w+),ProcessStart:(%w+)$")
-      local l_0_9 = tonumber(l_0_7)
-      local l_0_10 = tonumber(l_0_8)
-      local l_0_11, l_0_12 = (mp.bsplit)(l_0_10, 32)
-      local l_0_13 = (string.format)("ppids:{{%d,%d,%d}}\000", l_0_9, l_0_11, l_0_12)
-      ;
-      (mp.TriggerScanResource)("ems", l_0_13)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = bm
+  L0_0 = L0_0.get_process_relationships
+  L1_1 = L0_0()
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L7_7 = string
+    L7_7 = L7_7.find
+    L8_8 = string
+    L8_8 = L8_8.lower
+    L9_9 = L6_6.image_path
+    L8_8 = L8_8(L9_9)
+    L9_9 = "\\powershell.exe"
+    L10_10 = 1
+    L11_11 = true
+    L7_7 = L7_7(L8_8, L9_9, L10_10, L11_11)
+    if L7_7 then
+      L7_7 = MpCommon
+      L7_7 = L7_7.TurnNriOnProcess
+      L8_8 = L6_6.ppid
+      L7_7(L8_8)
+      L7_7 = string
+      L7_7 = L7_7.match
+      L8_8 = L6_6.ppid
+      L9_9 = "^pid:(%w+),ProcessStart:(%w+)$"
+      L8_8 = L7_7(L8_8, L9_9)
+      L9_9 = tonumber
+      L10_10 = L7_7
+      L9_9 = L9_9(L10_10)
+      L10_10 = tonumber
+      L11_11 = L8_8
+      L10_10 = L10_10(L11_11)
+      L11_11 = mp
+      L11_11 = L11_11.bsplit
+      L12_12 = L10_10
+      L13_13 = 32
+      L12_12 = L11_11(L12_12, L13_13)
+      L13_13 = string
+      L13_13 = L13_13.format
+      L13_13 = L13_13("ppids:{{%d,%d,%d}}\000", L9_9, L11_11, L12_12)
+      mp.TriggerScanResource("ems", L13_13)
     end
   end
 end
-do
-  l_0_0 = mp
-  l_0_0 = l_0_0.INFECTED
-  return l_0_0
-end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

@@ -1,156 +1,263 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/22878e8d4404b 
-
--- params : ...
--- function num : 0
-local l_0_0 = mp.HSTR_WEIGHT
-local l_0_1 = 0
-local l_0_2, l_0_3, l_0_4, l_0_5 = nil, nil, nil, nil
-local l_0_6 = 0
-local l_0_7, l_0_8 = nil, nil
-local l_0_9 = 0
-if (hstrlog[5]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[5]).match_offsets_count
-  l_0_3 = (hstrlog[5]).match_offsets
-  l_0_4 = (hstrlog[5]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+L1_1 = 0
+L2_2, L3_3, L4_4, L5_5 = nil, nil, nil, nil
+L6_6 = 0
+L7_7, L8_8 = nil, nil
+L9_9 = 0
+L10_10 = hstrlog
+L10_10 = L10_10[5]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[5]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[5]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[5]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[6]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[6]).match_offsets_count
-  l_0_3 = (hstrlog[6]).match_offsets
-  l_0_4 = (hstrlog[6]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+L10_10 = hstrlog
+L10_10 = L10_10[6]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[6]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[6]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[6]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[7]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[7]).match_offsets_count
-  l_0_3 = (hstrlog[7]).match_offsets
-  l_0_4 = (hstrlog[7]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+L10_10 = hstrlog
+L10_10 = L10_10[7]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[7]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[7]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[7]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[8]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[8]).match_offsets_count
-  l_0_3 = (hstrlog[8]).match_offsets
-  l_0_4 = (hstrlog[8]).VA
-  l_0_6 = 2
-  l_0_7 = 1
-  l_0_8 = 2
+L10_10 = hstrlog
+L10_10 = L10_10[8]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[8]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[8]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[8]
+  L4_4 = L10_10.VA
+  L6_6 = 2
+  L7_7 = 1
+  L8_8 = 2
 end
-if (hstrlog[9]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[9]).match_offsets_count
-  l_0_3 = (hstrlog[9]).match_offsets
-  l_0_4 = (hstrlog[9]).VA
-  l_0_6 = 2
-  l_0_7 = 1
-  l_0_8 = 2
+L10_10 = hstrlog
+L10_10 = L10_10[9]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[9]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[9]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[9]
+  L4_4 = L10_10.VA
+  L6_6 = 2
+  L7_7 = 1
+  L8_8 = 2
 end
-if (hstrlog[10]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[10]).match_offsets_count
-  l_0_3 = (hstrlog[10]).match_offsets
-  l_0_4 = (hstrlog[10]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+L10_10 = hstrlog
+L10_10 = L10_10[10]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[10]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[10]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[10]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[11]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[11]).match_offsets_count
-  l_0_3 = (hstrlog[11]).match_offsets
-  l_0_4 = (hstrlog[11]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+L10_10 = hstrlog
+L10_10 = L10_10[11]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[11]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[11]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[11]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[12]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[12]).match_offsets_count
-  l_0_3 = (hstrlog[12]).match_offsets
-  l_0_4 = (hstrlog[12]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+L10_10 = hstrlog
+L10_10 = L10_10[12]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[12]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[12]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[12]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[13]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[13]).match_offsets_count
-  l_0_3 = (hstrlog[13]).match_offsets
-  l_0_4 = (hstrlog[13]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+L10_10 = hstrlog
+L10_10 = L10_10[13]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[13]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[13]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[13]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[14]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[14]).match_offsets_count
-  l_0_3 = (hstrlog[14]).match_offsets
-  l_0_4 = (hstrlog[14]).VA
-  l_0_6 = 1
-  l_0_7 = 2
-  l_0_8 = 3
+L10_10 = hstrlog
+L10_10 = L10_10[14]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[14]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[14]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[14]
+  L4_4 = L10_10.VA
+  L6_6 = 1
+  L7_7 = 2
+  L8_8 = 3
 end
-if (hstrlog[15]).matched then
-  l_0_1 = 3
-  l_0_0 = l_0_0 - l_0_1
-  l_0_2 = (hstrlog[15]).match_offsets_count
-  l_0_3 = (hstrlog[15]).match_offsets
-  l_0_4 = (hstrlog[15]).VA
-  l_0_6 = 6
-  l_0_7 = 1
-  l_0_8 = 3
-  l_0_9 = 2
+L10_10 = hstrlog
+L10_10 = L10_10[15]
+L10_10 = L10_10.matched
+if L10_10 then
+  L1_1 = 3
+  L0_0 = L0_0 - L1_1
+  L10_10 = hstrlog
+  L10_10 = L10_10[15]
+  L2_2 = L10_10.match_offsets_count
+  L10_10 = hstrlog
+  L10_10 = L10_10[15]
+  L3_3 = L10_10.match_offsets
+  L10_10 = hstrlog
+  L10_10 = L10_10[15]
+  L4_4 = L10_10.VA
+  L6_6 = 6
+  L7_7 = 1
+  L8_8 = 3
+  L9_9 = 2
 end
-if l_0_6 ~= 0 and l_0_2 >= 3 then
-  local l_0_10 = (pe.mmap_va)(l_0_4, l_0_3[l_0_8] + 5)
-  local l_0_11 = (mp.readu_u32)(l_0_10, l_0_3[l_0_7] + 1)
-  local l_0_12 = ((mp.readu_u32)(l_0_10, l_0_3[l_0_8] + 1))
-  local l_0_13 = nil
-  if l_0_9 ~= 0 then
-    l_0_13 = (mp.readu_u32)(l_0_10, l_0_3[l_0_9] + 1)
+if L6_6 ~= 0 and L2_2 >= 3 then
+  L10_10 = pe
+  L10_10 = L10_10.mmap_va
+  L11_11 = L4_4
+  L12_12 = L3_3[L8_8]
+  L12_12 = L12_12 + 5
+  L10_10 = L10_10(L11_11, L12_12)
+  L11_11 = mp
+  L11_11 = L11_11.readu_u32
+  L12_12 = L10_10
+  L13_13 = L3_3[L7_7]
+  L13_13 = L13_13 + 1
+  L11_11 = L11_11(L12_12, L13_13)
+  L12_12 = mp
+  L12_12 = L12_12.readu_u32
+  L13_13 = L10_10
+  L12_12 = L12_12(L13_13, L3_3[L8_8] + 1)
+  L13_13 = nil
+  if L9_9 ~= 0 then
+    L13_13 = mp.readu_u32(L10_10, L3_3[L9_9] + 1)
   end
-  if l_0_6 == 2 then
-    l_0_5 = (mp.bitand)(l_0_11 + l_0_12, 65535)
-  else
-    if l_0_6 == 1 then
-      l_0_5 = (mp.bitxor)(l_0_11, l_0_12)
-    else
-      if l_0_6 == 6 then
-        l_0_5 = (mp.bitand)((mp.bitxor)(l_0_12, l_0_13) + l_0_11, 65535)
-      end
-    end
+  if L6_6 == 2 then
+    L5_5 = mp.bitand(L11_11 + L12_12, 65535)
+  elseif L6_6 == 1 then
+    L5_5 = mp.bitxor(L11_11, L12_12)
+  elseif L6_6 == 6 then
+    L5_5 = mp.bitand(mp.bitxor(L12_12, L13_13) + L11_11, 65535)
   end
-  if l_0_5 == 23117 then
-    l_0_0 = l_0_0 + l_0_1
+  if L5_5 == 23117 then
+    L0_0 = L0_0 + L1_1
   end
 end
-do
-  if l_0_0 >= 10 then
-    return mp.INFECTED
-  else
-    if l_0_0 >= 4 then
-      (mp.set_mpattribute)("HSTR:Rogue:Win32/Trapwot_Lowfi")
-    end
-  end
-  return mp.CLEAN
+if L0_0 >= 10 then
+  L10_10 = mp
+  L10_10 = L10_10.INFECTED
+  return L10_10
+elseif L0_0 >= 4 then
+  L10_10 = mp
+  L10_10 = L10_10.set_mpattribute
+  L11_11 = "HSTR:Rogue:Win32/Trapwot_Lowfi"
+  L10_10(L11_11)
 end
-
+L10_10 = mp
+L10_10 = L10_10.CLEAN
+return L10_10

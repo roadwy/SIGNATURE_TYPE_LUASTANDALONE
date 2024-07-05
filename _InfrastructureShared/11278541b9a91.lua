@@ -1,18 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/11278541b9a91 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattribute)("pea_amd64_image") then
-    local l_0_0 = (mp.GetCertificateInfo)()
-    for l_0_4,l_0_5 in pairs(l_0_0) do
-      if l_0_5.Signers ~= nil then
-        return mp.CLEAN
-      end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("pea_amd64_image")
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.GetCertificateInfo
+  L0_0 = L0_0()
+  for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+    if _FORV_5_.Signers ~= nil then
+      return mp.CLEAN
     end
-    return mp.INFECTED
   end
-  return mp.CLEAN
+  return mp.INFECTED
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

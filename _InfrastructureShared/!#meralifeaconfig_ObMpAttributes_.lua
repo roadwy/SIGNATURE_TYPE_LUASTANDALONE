@@ -1,32 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#meralifeaconfig_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 256 or l_0_0 > 16777216 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 256 or L0_0 > 16777216 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 1) ~= 2254718286 and (mp.readu_u32)(headerpage, 1) ~= 21775694 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 1
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= 2254718286 then
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L2_2 = headerpage
+  L3_3 = 1
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 ~= 21775694 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
 end
-local l_0_1 = (mp.readu_u16)(headerpage, 3)
-local l_0_2 = (mp.readu_u32)(headerpage, 5)
-if l_0_2 < 8 or l_0_0 < l_0_2 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u16
+L2_2 = headerpage
+L3_3 = 3
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = headerpage
+L2_2 = L2_2(L3_3, 5)
+if L2_2 < 8 or L0_0 < L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-;
-(mp.readprotection)(false)
-local l_0_3 = (mp.readfile)(0, l_0_0)
-;
-(mp.writeu_u16)(l_0_3, 1, 23117)
-;
-(mp.writeu_u32)(l_0_3, 61, l_0_2)
-;
-(mp.writeu_u32)(l_0_3, l_0_2 + 1, 17744)
-;
-(mp.writeu_u16)(l_0_3, l_0_2 + 5, l_0_1)
-;
-(mp.vfo_add_buffer)(l_0_3, "MeraCfg", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L3_3 = mp
+L3_3 = L3_3.readprotection
+L3_3(false)
+L3_3 = mp
+L3_3 = L3_3.readfile
+L3_3 = L3_3(0, L0_0)
+mp.writeu_u16(L3_3, 1, 23117)
+mp.writeu_u32(L3_3, 61, L2_2)
+mp.writeu_u32(L3_3, L2_2 + 1, 17744)
+mp.writeu_u16(L3_3, L2_2 + 5, L1_1)
+mp.vfo_add_buffer(L3_3, "MeraCfg", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

@@ -1,24 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f5b33717dcf3_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 ~= nil then
-    local l_0_0 = nil
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 == nil then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC18: Confused about usage of register: R0 in 'UnsetPending'
-
-  if #l_0_0 > 80 then
-    return mp.CLEAN
-  end
-  return mp.INFECTED
 end
-
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = #L0_0
+if L1_1 > 80 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

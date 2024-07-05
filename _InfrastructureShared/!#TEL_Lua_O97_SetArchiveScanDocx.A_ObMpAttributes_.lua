@@ -1,32 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Lua_O97_SetArchiveScanDocx.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.readu_u32)(headerpage, 1) == 67324752 and (mp.readu_u32)(footerpage, mp.FOOTERPAGE_SZ - 21) == 101010256 then
-  local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-  if l_0_0 ~= mp.SCANREASON_ONOPEN and l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-    return mp.CLEAN
-  end
-  local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-  local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-  if (string.find)(l_0_1, "\\microsoft office\\office..\\....\\quickstyles") or (string.find)(l_0_1, "wordlr%.cab") or (string.find)(l_0_1, "DevExpress.Snap.v.....Core.dll") or (string.find)(l_0_1, "\\kingsoft\\wps cloud files\\userdata\\qing\\filecache", 1, true) then
-    return mp.CLEAN
-  end
-  if (string.find)("winword.exe|wps.exe|dropbox.exe", l_0_2) and (string.find)(l_0_1, "%.tmp$") then
-    return mp.CLEAN
-  end
-  local l_0_3 = tostring(footerpage)
-  local l_0_4 = (string.find)(l_0_3, "word/_rels/document.xml.rels")
-  if l_0_4 >= 22 then
-    local l_0_5 = (mp.readu_u32)(l_0_3, l_0_4 - 22)
-    if l_0_5 > 204800 then
-      (mp.set_mpattribute)("MpForceScanArchives")
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 == 67324752 then
+  L0_0 = mp
+  L0_0 = L0_0.readu_u32
+  L1_1 = footerpage
+  L2_2 = mp
+  L2_2 = L2_2.FOOTERPAGE_SZ
+  L2_2 = L2_2 - 21
+  L0_0 = L0_0(L1_1, L2_2)
+  if L0_0 == 101010256 then
+    L0_0 = mp
+    L0_0 = L0_0.get_contextdata
+    L1_1 = mp
+    L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+    L0_0 = L0_0(L1_1)
+    L1_1 = mp
+    L1_1 = L1_1.SCANREASON_ONOPEN
+    if L0_0 ~= L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+      if L0_0 ~= L1_1 then
+        L1_1 = mp
+        L1_1 = L1_1.CLEAN
+        return L1_1
+      end
+    end
+    L1_1 = mp
+    L1_1 = L1_1.getfilename
+    L2_2 = mp
+    L2_2 = L2_2.bitor
+    L3_3 = mp
+    L3_3 = L3_3.FILEPATH_QUERY_FULL
+    L3_3 = L2_2(L3_3, mp.FILEPATH_QUERY_LOWERCASE)
+    L1_1 = L1_1(L2_2, L3_3, L2_2(L3_3, mp.FILEPATH_QUERY_LOWERCASE))
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = mp
+    L3_3 = L3_3.get_contextdata
+    L3_3 = L3_3(mp.CONTEXT_DATA_PROCESSNAME)
+    L2_2 = L2_2(L3_3, L3_3(mp.CONTEXT_DATA_PROCESSNAME))
+    L3_3 = string
+    L3_3 = L3_3.find
+    L3_3 = L3_3(L1_1, "\\microsoft office\\office..\\....\\quickstyles")
+    if not L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L3_3 = L3_3(L1_1, "wordlr%.cab")
+      if not L3_3 then
+        L3_3 = string
+        L3_3 = L3_3.find
+        L3_3 = L3_3(L1_1, "devexpress%.snap%.v.....core%.dll")
+        if not L3_3 then
+          L3_3 = string
+          L3_3 = L3_3.find
+          L3_3 = L3_3(L1_1, "\\kingsoft\\wps cloud files\\userdata\\qing\\filecache", 1, true)
+        end
+      end
+    elseif L3_3 then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
+    end
+    L3_3 = string
+    L3_3 = L3_3.find
+    L3_3 = L3_3("winword.exe|wps.exe|dropbox.exe", L2_2)
+    if L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L3_3 = L3_3(L1_1, "%.tmp$")
+      if L3_3 then
+        L3_3 = mp
+        L3_3 = L3_3.CLEAN
+        return L3_3
+      end
+    end
+    L3_3 = tostring
+    L3_3 = L3_3(footerpage)
+    if string.find(L3_3, "word/_rels/document.xml.rels") >= 22 and mp.readu_u32(L3_3, string.find(L3_3, "word/_rels/document.xml.rels") - 22) > 204800 then
+      mp.set_mpattribute("MpForceScanArchives")
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

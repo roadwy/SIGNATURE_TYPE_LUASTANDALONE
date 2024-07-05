@@ -1,89 +1,71 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Necurs_Includes_Necurs 
-
--- params : ...
--- function num : 0
-NecursServiceRepair = function()
-  -- function num : 0_0
-  local l_1_0 = nil
-  local l_1_1 = nil
-  for l_1_5,l_1_6 in pairs((sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")) do
-    local l_1_2 = nil
-    -- DECOMPILER ERROR at PC10: Confused about usage of register: R6 in 'UnsetPending'
-
-    if (sysio.RegOpenKey)(R6_PC10) then
-      l_1_1 = (sysio.GetRegValueAsString)((sysio.RegOpenKey)(R6_PC10), "syshost32")
-      if l_1_1 then
-        do
-          do
-            (sysio.DeleteRegValue)((sysio.RegOpenKey)(R6_PC10), "syshost32")
-            do break end
-            -- DECOMPILER ERROR at PC28: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC28: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC28: LeaveBlock: unexpected jumping out IF_STMT
-
-            -- DECOMPILER ERROR at PC28: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC28: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
+function NecursServiceRepair()
+  local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+  L1_1 = sysio
+  L1_1 = L1_1.RegExpandUserKey
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L7_7 = sysio
+    L7_7 = L7_7.RegOpenKey
+    L7_7 = L7_7(L6_6)
+    if L7_7 then
+      L0_0 = sysio.GetRegValueAsString(L7_7, "syshost32")
+      if L0_0 then
+        sysio.DeleteRegValue(L7_7, "syshost32")
+        break
       end
     end
   end
-  local l_1_8 = nil
-  if (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run") then
-    l_1_1 = (sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run"), "syshost32")
-    if l_1_1 then
-      (sysio.DeleteRegValue)((sysio.RegOpenKey)("HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Run"), "syshost32")
+  if L2_2 then
+    L5_5 = "syshost32"
+    L0_0 = L3_3
+    if L0_0 then
+      L5_5 = "syshost32"
+      L3_3(L4_4, L5_5)
     end
   end
-  do
-    if not l_1_1 then
-      local l_1_9 = nil
-      if not (sysio.RegOpenKey)("HKLM\\System\\CurrentControlSet\\Services\\syshost32") then
-        return false
-      else
-        l_1_1 = (sysio.GetRegValueAsString)((sysio.RegOpenKey)("HKLM\\System\\CurrentControlSet\\Services\\syshost32"), "ImagePath")
-        if not l_1_1 then
-          return false
-        end
-        l_1_1 = (string.match)((string.lower)(l_1_1), "%a:\\windows\\installer\\{[%w-]+}\\syshost.exe")
-        if not l_1_1 then
-          return false
-        end
-      end
-    end
-    if l_1_1 then
-      l_1_1 = "\\\\?\\" .. l_1_1
-      ;
-      (Remediation.BtrDeleteFile)(l_1_1)
-    end
-  end
-end
-
-NecursGenericBTRRemoval = function()
-  -- function num : 0_1
-  local l_2_0 = Remediation.Threat
-  for l_2_4,l_2_5 in pairs(l_2_0.Resources) do
-    if l_2_5.Schema == "hiddendriver" then
-      (Remediation.FfrDriverDeleteByDriverName)(l_2_5.Path)
+  if not L0_0 then
+    if not L3_3 then
+      return L4_4
     else
-      if l_2_5.Schema == "hiddenfile" then
-        (Remediation.BtrDeleteFile)(l_2_5.Path)
+      L5_5 = L3_3
+      L6_6 = "ImagePath"
+      L0_0 = L4_4
+      if not L0_0 then
+        return L4_4
+      end
+      L5_5 = string
+      L5_5 = L5_5.lower
+      L6_6 = L0_0
+      L5_5 = L5_5(L6_6)
+      L6_6 = "%a:\\windows\\installer\\{[%w-]+}\\syshost.exe"
+      L0_0 = L4_4
+      if not L0_0 then
+        return L4_4
       end
     end
   end
+  if L0_0 then
+    L0_0 = L3_3 .. L4_4
+    L3_3(L4_4)
+  end
 end
-
-if (Remediation.Threat).Active then
-  if (string.match)((Remediation.Threat).Name, "WinNT/Necurs") then
+function NecursGenericBTRRemoval()
+  local L0_8
+  L0_8 = Remediation
+  L0_8 = L0_8.Threat
+  for _FORV_4_, _FORV_5_ in pairs(L0_8.Resources) do
+    if _FORV_5_.Schema == "hiddendriver" then
+      Remediation.FfrDriverDeleteByDriverName(_FORV_5_.Path)
+    elseif _FORV_5_.Schema == "hiddenfile" then
+      Remediation.BtrDeleteFile(_FORV_5_.Path)
+    end
+  end
+end
+if Remediation.Threat.Active then
+  if string.match(Remediation.Threat.Name, "WinNT/Necurs") then
     NecursServiceRepair()
   end
-  if (string.match)((Remediation.Threat).Name, "Trojan:Win[N6][T4]/Necurs") then
+  if string.match(Remediation.Threat.Name, "Trojan:Win[N6][T4]/Necurs") then
     NecursGenericBTRRemoval()
   end
 end
-

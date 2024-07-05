@@ -1,43 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b3ca82dd20 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p1)
-  local l_0_1 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  l_0_0 = (string.gsub)(l_0_0, "\\\\", "\\")
-  l_0_1 = (string.gsub)(l_0_1, "\\\\", "\\")
-  if l_0_0 == l_0_1 then
-    local l_0_2 = (string.lower)((bm.get_imagepath)())
-    if l_0_2 then
-      local l_0_3 = {}
-      l_0_3["powershell.exe"] = true
-      l_0_3["wscript.exe"] = true
-      l_0_3["cscript.exe"] = true
-      l_0_3["mshta.exe"] = true
-      l_0_3["cmd.exe"] = true
-      l_0_3["rundll32.exe"] = true
-      l_0_3["regsvr32.exe"] = true
-      l_0_3["msbuild.exe"] = true
-      l_0_3["vbcscompiler.exe"] = true
-      l_0_3["csc.exe"] = true
-      l_0_3["python.exe"] = true
-      l_0_3["pythonw.exe"] = true
-      l_0_3["winword.exe"] = true
-      l_0_3["excel.exe"] = true
-      l_0_3["powerpnt.exe"] = true
-      if l_0_3[(string.match)(l_0_2, "\\([^\\]+)$")] then
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p1
+  L0_0 = L0_0(L1_1)
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  L1_1 = L1_1(L2_2)
+  L2_2 = string
+  L2_2 = L2_2.gsub
+  L2_2 = L2_2(L0_0, "\\\\", "\\")
+  L0_0 = L2_2
+  L2_2 = string
+  L2_2 = L2_2.gsub
+  L2_2 = L2_2(L1_1, "\\\\", "\\")
+  L1_1 = L2_2
+  if L0_0 == L1_1 then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(bm.get_imagepath())
+    if L2_2 then
+      if ({
+        ["powershell.exe"] = true,
+        ["wscript.exe"] = true,
+        ["cscript.exe"] = true,
+        ["mshta.exe"] = true,
+        ["cmd.exe"] = true,
+        ["rundll32.exe"] = true,
+        ["regsvr32.exe"] = true,
+        ["msbuild.exe"] = true,
+        ["vbcscompiler.exe"] = true,
+        ["csc.exe"] = true,
+        ["python.exe"] = true,
+        ["pythonw.exe"] = true,
+        ["winword.exe"] = true,
+        ["excel.exe"] = true,
+        ["powerpnt.exe"] = true
+      })[string.match(L2_2, "\\([^\\]+)$")] then
         return mp.INFECTED
       end
-      if (string.find)(l_0_2, "\\windows\\", 1, true) or (string.find)(l_0_2, "\\program files", 1, true) or (string.find)(l_0_2, "\\scanner\\", 1, true) or (string.find)(l_0_2, "\\chrome", 1, true) or (string.find)(l_0_2, "\\programfiles\\", 1, true) then
+      if string.find(L2_2, "\\windows\\", 1, true) or string.find(L2_2, "\\program files", 1, true) or string.find(L2_2, "\\scanner\\", 1, true) or string.find(L2_2, "\\chrome", 1, true) or string.find(L2_2, "\\programfiles\\", 1, true) then
         return mp.CLEAN
       end
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,65 +1,125 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Trickbot_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-local l_0_1 = {}
--- DECOMPILER ERROR at PC3: No list found for R1 , SetList fails
-
--- DECOMPILER ERROR at PC6: Overwrote pending register: R2 in 'AssignReg'
-
-l_0_0["hklm\\software\\microsoft\\windows defender\\spynet"], l_0_1 = l_0_1, {"DisablePrivacyMode"}
-l_0_0["hklm\\software\\microsoft\\windows defender\\real-time protection"], l_0_1 = l_0_1, {"DisableBehaviorMonitoring", "DisableIOAVProtection", "DisableIntrusionPreventionSystem", "DisableOnAccessProtection", "DisableRealtimeMonitoring", "DisableScanOnRealtimeEnable", "DisableScriptScanning"}
-l_0_0["hklm\\software\\microsoft\\windows defender\\threats\\threatseveritydefaultaction"], l_0_1 = l_0_1, {"1", "2", "4", "5"}
-l_0_0["hklm\\software\\policies\\microsoft\\windows defender"], l_0_1 = l_0_1, {"DisableAntiSpyware", "DisableAntiVirus"}
-l_0_0["hklm\\software\\policies\\microsoft\\windows defender\\real-time protection"], l_0_1 = l_0_1, {"DisableBehaviorMonitoring", "DisableIOAVProtection", "DisableIntrusionPreventionSystem", "DisableOnAccessProtection", "DisableScanOnRealtimeEnable", "DisableScriptScanning"}
-l_0_0["hklm\\software\\policies\\microsoft\\windows defender\\spynet"], l_0_1 = l_0_1, {"DisableBlockAtFirstSeen"}
-l_0_0["hklm\\software\\policies\\microsoft\\windows defender\\threats\\threatseveritydefaultaction"], l_0_1 = l_0_1, {"1", "2", "4", "5"}
-l_0_0["hklm\\software\\policies\\microsoft\\windows defender\\policy manager"], l_0_1 = l_0_1, {"AllowBehaviorMonitoring", "AllowIOAVProtection", "AllowOnAccessProtection", "AllowScriptScanning", "DisableIntrusionPreventionSystem"}
-l_0_0["hklm\\software\\policies\\microsoft\\windows defender\\policy manager\\threatseveritydefaultaction"], l_0_1 = l_0_1, {"1", "2", "4", "5"}
-local l_0_2 = {}
--- DECOMPILER ERROR at PC69: No list found for R2 , SetList fails
-
--- DECOMPILER ERROR at PC72: Overwrote pending register: R3 in 'AssignReg'
-
-l_0_2 = {"DisableRealtimeMonitoring"}
-local l_0_3 = Infrastructure_IsE5()
-local l_0_4 = Infrastructure_IsE3()
-for l_0_8,l_0_9 in pairs(l_0_0) do
-  local l_0_10 = (sysio.RegOpenKey)(l_0_8)
-  if l_0_10 then
-    Infrastructure_DeleteRegistryEntriesOnValueMatch(l_0_10, l_0_9)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17
+L0_0 = {}
+L1_1 = {L2_2}
+L2_2 = "DisablePrivacyMode"
+L0_0["hklm\\software\\microsoft\\windows defender\\ux configuration"] = L1_1
+L1_1 = {L2_2}
+L2_2 = "DisableBlockAtFirstSeen"
+L0_0["hklm\\software\\microsoft\\windows defender\\spynet"] = L1_1
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7,
+  L8_8
+}
+L2_2 = "DisableBehaviorMonitoring"
+L3_3 = "DisableIOAVProtection"
+L4_4 = "DisableIntrusionPreventionSystem"
+L8_8 = "DisableScriptScanning"
+L0_0["hklm\\software\\microsoft\\windows defender\\real-time protection"] = L1_1
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5
+}
+L2_2 = "1"
+L3_3 = "2"
+L4_4 = "4"
+L0_0["hklm\\software\\microsoft\\windows defender\\threats\\threatseveritydefaultaction"] = L1_1
+L1_1 = {L2_2, L3_3}
+L2_2 = "DisableAntiSpyware"
+L3_3 = "DisableAntiVirus"
+L0_0["hklm\\software\\policies\\microsoft\\windows defender"] = L1_1
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7
+}
+L2_2 = "DisableBehaviorMonitoring"
+L3_3 = "DisableIOAVProtection"
+L4_4 = "DisableIntrusionPreventionSystem"
+L0_0["hklm\\software\\policies\\microsoft\\windows defender\\real-time protection"] = L1_1
+L1_1 = {L2_2}
+L2_2 = "DisableBlockAtFirstSeen"
+L0_0["hklm\\software\\policies\\microsoft\\windows defender\\spynet"] = L1_1
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5
+}
+L2_2 = "1"
+L3_3 = "2"
+L4_4 = "4"
+L0_0["hklm\\software\\policies\\microsoft\\windows defender\\threats\\threatseveritydefaultaction"] = L1_1
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6
+}
+L2_2 = "AllowBehaviorMonitoring"
+L3_3 = "AllowIOAVProtection"
+L4_4 = "AllowOnAccessProtection"
+L0_0["hklm\\software\\policies\\microsoft\\windows defender\\policy manager"] = L1_1
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5
+}
+L2_2 = "1"
+L3_3 = "2"
+L4_4 = "4"
+L0_0["hklm\\software\\policies\\microsoft\\windows defender\\policy manager\\threatseveritydefaultaction"] = L1_1
+L1_1 = {}
+L2_2 = {L3_3}
+L3_3 = "DisableRealtimeMonitoring"
+L1_1["hklm\\software\\policies\\microsoft\\windows defender\\real-time protection"] = L2_2
+L2_2 = {L3_3}
+L3_3 = "AllowRealtimeMonitoring"
+L1_1["hklm\\software\\policies\\microsoft\\windows defender\\policy manager"] = L2_2
+L2_2 = {}
+L2_2.DisableRealtimeMonitoring = 0
+L2_2.AllowRealtimeMonitoring = 1
+L3_3 = Infrastructure_IsE5
+L3_3 = L3_3()
+L4_4 = Infrastructure_IsE3
+L4_4 = L4_4()
+for L8_8, L9_9 in L5_5(L6_6) do
+  L10_10 = sysio
+  L10_10 = L10_10.RegOpenKey
+  L10_10 = L10_10(L11_11)
+  if L10_10 then
+    L11_11(L12_12, L13_13)
   end
 end
-for l_0_14,l_0_15 in pairs(l_0_1) do
-  local l_0_16 = (sysio.RegOpenKey)(l_0_14)
-  if l_0_16 then
-    if l_0_4 or l_0_3 then
-      for l_0_20,l_0_21 in pairs(l_0_15) do
-        local l_0_22 = (sysio.GetRegValueAsDword)(l_0_16, l_0_21)
-        local l_0_23 = l_0_2[l_0_21]
-        if l_0_22 and l_0_23 and l_0_22 ~= l_0_23 then
-          (sysio.SetRegValueAsDword)(l_0_16, l_0_21, l_0_23)
+for L8_8, L9_9 in L5_5(L6_6) do
+  L10_10 = sysio
+  L10_10 = L10_10.RegOpenKey
+  L10_10 = L10_10(L11_11)
+  if L10_10 then
+    if L4_4 or L3_3 then
+      for L14_14, L15_15 in L11_11(L12_12) do
+        L16_16 = sysio
+        L16_16 = L16_16.GetRegValueAsDword
+        L17_17 = L10_10
+        L16_16 = L16_16(L17_17, L15_15)
+        L17_17 = L2_2[L15_15]
+        if L16_16 and L17_17 and L16_16 ~= L17_17 then
+          sysio.SetRegValueAsDword(L10_10, L15_15, L17_17)
         end
       end
     else
-      do
-        do
-          Infrastructure_DeleteRegistryEntriesOnValueMatch(l_0_16, l_0_15)
-          -- DECOMPILER ERROR at PC141: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC141: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-          -- DECOMPILER ERROR at PC141: LeaveBlock: unexpected jumping out IF_STMT
-
-          -- DECOMPILER ERROR at PC141: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC141: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
-      end
+      L11_11(L12_12, L13_13)
     end
   end
 end
-

@@ -1,41 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c2411e8eb771 
-
--- params : ...
--- function num : 0
-local l_0_1 = nil
-local l_0_2 = "ssh-brute-"
-local l_0_3 = 100
-local l_0_4 = 30
-local l_0_5 = 0
-do
-  if (this_sigattrlog[3]).matched then
-    local l_0_0 = 10
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = "ssh-brute-"
+L2_2 = 100
+L3_3 = 30
+L4_4 = 0
+L5_5 = 10
+L6_6 = this_sigattrlog
+L6_6 = L6_6[3]
+L6_6 = L6_6.matched
+if L6_6 then
+  L6_6 = this_sigattrlog
+  L6_6 = L6_6[3]
+  L0_0 = L6_6.utf8p1
+end
+if L0_0 ~= nil then
+  L6_6 = L1_1
+  L7_7 = L0_0
+  L6_6 = L6_6 .. L7_7
+  L7_7 = pcall
+  L8_8 = MpCommon
+  L8_8 = L8_8.RollingQueueCreate
+  L8_8 = L7_7(L8_8, L6_6, L2_2, L3_3, 0)
+  if not L7_7 then
+    return mp.CLEAN
   end
-  if l_0_1 ~= nil then
-    local l_0_6 = nil
-    local l_0_7, l_0_8 = , pcall(MpCommon.RollingQueueCreate, l_0_2 .. l_0_1, l_0_3, l_0_4, 0)
-    if not l_0_8 then
-      return mp.CLEAN
-    end
-    if not l_0_8 then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC52: Overwrote pending register: R7 in 'AssignReg'
-
-    if not l_0_8 then
-      return mp.CLEAN
-    end
-    if l_0_6 <= l_0_5 then
-      pcall(MpCommon.RollingQueueErase, l_0_7)
-      return mp.INFECTED
-    end
+  L7_7, L8_8 = pcall(MpCommon.RollingQueueAppend, L6_6, "1", "1", L3_3)
+  if not L7_7 then
+    return mp.CLEAN
   end
-  do
-    do
-      do return mp.CLEAN end
-      -- WARNING: undefined locals caused missing assignments!
-    end
+  L7_7, L4_4 = pcall(MpCommon.RollingQueueCount, L6_6)
+  if not L7_7 then
+    return mp.CLEAN
+  end
+  if L5_5 <= L4_4 then
+    pcall(MpCommon.RollingQueueErase, L6_6)
+    return mp.INFECTED
   end
 end
-
+L6_6 = mp
+L6_6 = L6_6.CLEAN
+return L6_6

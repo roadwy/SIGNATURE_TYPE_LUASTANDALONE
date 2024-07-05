@@ -1,14 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_DisableDefenderPassive_ObMpAttributes_x 
-
--- params : ...
--- function num : 0
-if (mp.GetResmgrBasePlugin)() ~= "Regkeyvalue" then
-  return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.GetResmgrBasePlugin
+L0_0 = L0_0()
+if L0_0 ~= "Regkeyvalue" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-if not l_0_0 or (string.find)(l_0_0, "Wow64", 13, true) then
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_FILEPATH)
+if not L0_0 or string.find(L0_0, "Wow64", 13, true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

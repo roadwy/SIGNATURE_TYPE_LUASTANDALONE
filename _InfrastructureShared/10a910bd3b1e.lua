@@ -1,21 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/10a910bd3b1e 
-
--- params : ...
--- function num : 0
-local l_0_0 = (nri.GetHttpCommand)()
-local l_0_1 = "verb_" .. tostring(l_0_0)
-if l_0_0 == nri.HTTP_GET then
-  l_0_1 = "GET"
+local L0_0, L1_1, L2_2
+L0_0 = nri
+L0_0 = L0_0.GetHttpCommand
+L0_0 = L0_0()
+L1_1 = "verb_"
+L2_2 = tostring
+L2_2 = L2_2(L0_0)
+L1_1 = L1_1 .. L2_2
+L2_2 = nri
+L2_2 = L2_2.HTTP_GET
+if L0_0 == L2_2 then
+  L1_1 = "GET"
 else
-  if l_0_0 == nri.HTTP_POST then
-    l_0_1 = "POST"
+  L2_2 = nri
+  L2_2 = L2_2.HTTP_POST
+  if L0_0 == L2_2 then
+    L1_1 = "POST"
   end
 end
-local l_0_2 = {}
-l_0_2.verb = l_0_1
-l_0_2.useragent = (nri.GetHttpRequestHeader)("User-Agent")
-;
-(nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), (mp.bitor)(nri.Telemetry_QUERY, nri.Telemetry_REFERER)), l_0_2)
+L2_2 = {}
+L2_2.verb = L1_1
+L2_2.useragent = nri.GetHttpRequestHeader("User-Agent")
+nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), mp.bitor(nri.Telemetry_QUERY, nri.Telemetry_REFERER)), L2_2)
 return mp.INFECTED
-

@@ -1,53 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8941751240d5_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = tonumber((nri.GetHttpResponseHeader)("Content-Length"))
-if l_0_0 > 15000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = tonumber
+L1_1 = nri
+L1_1 = L1_1.GetHttpResponseHeader
+L2_2 = "Content-Length"
+L3_3 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2))
+if L0_0 > 15000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (nri.GetRawResponseBlob)()
-if l_0_1 ~= nil then
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC21: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC22: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC23: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC24: Overwrote pending register: R5 in 'AssignReg'
-
-  if ("exec")("exploit", "binary") then
-    local l_0_3 = {}
-    -- DECOMPILER ERROR at PC31: Overwrote pending register: R6 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC38: No list found for R3 , SetList fails
-
-    -- DECOMPILER ERROR at PC39: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC40: Overwrote pending register: R5 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC41: Overwrote pending register: R6 in 'AssignReg'
-
-    if ("wget")("curl", "start") then
-      local l_0_4 = reportHeaders
-      local l_0_5 = {}
-      -- DECOMPILER ERROR at PC48: Overwrote pending register: R7 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC49: No list found for R5 , SetList fails
-
-      l_0_4(l_0_5)
-      -- DECOMPILER ERROR at PC52: Overwrote pending register: R4 in 'AssignReg'
-
-      return l_0_4
+L1_1 = nri
+L1_1 = L1_1.GetRawResponseBlob
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = {
+    L3_3,
+    "exploit",
+    "binary",
+    "start"
+  }
+  L3_3 = "exec"
+  L3_3 = contains
+  L3_3 = L3_3(L1_1, L2_2)
+  if L3_3 then
+    L3_3 = {
+      "wget",
+      "curl",
+      "powershell",
+      "bash",
+      "certutil",
+      "cmd",
+      "mshta",
+      "python",
+      "bitsadmin"
+    }
+    if contains(L1_1, L3_3) then
+      reportHeaders({"Host", "User-Agent"})
+      return mp.INFECTED
     end
   end
 end
-do
-  do
-    do return mp.CLEAN end
-    -- WARNING: undefined locals caused missing assignments!
-  end
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

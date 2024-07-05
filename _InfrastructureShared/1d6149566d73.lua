@@ -1,40 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1d6149566d73 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections < 5 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 < 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (pesecs[pehdr.NumberOfSections]).PointerToRawData + (pesecs[pehdr.NumberOfSections]).SizeOfRawData
-if (mp.getfilesize)() < l_0_0 + 2048 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.PointerToRawData
+L1_1 = pesecs
+L2_2 = pehdr
+L2_2 = L2_2.NumberOfSections
+L1_1 = L1_1[L2_2]
+L1_1 = L1_1.SizeOfRawData
+L0_0 = L0_0 + L1_1
+L1_1 = L0_0 + 2048
+L2_2 = mp
+L2_2 = L2_2.getfilesize
+L2_2 = L2_2()
+if L1_1 > L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(l_0_0, 12)
-do
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC49: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC50: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC52: Overwrote pending register: R5 in 'AssignReg'
-
-  for l_0_6 = 88, 77, 67 do
-    -- DECOMPILER ERROR at PC54: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC56: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC57: Overwrote pending register: R9 in 'AssignReg'
-
-    if ((1).byte)(0, 0) ~= l_0_2[l_0_6] then
-      return mp.CLEAN
-    end
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = {
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  1,
+  0,
+  0,
+  0,
+  90,
+  66,
+  76,
+  0
+}
+L6_6 = 70
+for L6_6 = 1, 12 do
+  if string.byte(L1_1, L6_6) ~= L2_2[L6_6] then
+    return mp.CLEAN
   end
-  do return mp.INFECTED end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+return L3_3

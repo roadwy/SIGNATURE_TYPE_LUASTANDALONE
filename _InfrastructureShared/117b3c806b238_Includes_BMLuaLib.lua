@@ -1,16 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/117b3c806b238_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-do
-  if isTamperProtectionOn(false) then
-    local l_0_0 = (bm.get_imagepath)()
-    if l_0_0 then
-      (mp.ReportLowfi)(l_0_0, 1443100823)
-    end
-    return mp.INFECTED
+local L0_0
+L0_0 = isTamperProtectionOn
+L0_0 = L0_0(false)
+if L0_0 then
+  L0_0 = bm
+  L0_0 = L0_0.get_imagepath
+  L0_0 = L0_0()
+  if L0_0 then
+    mp.ReportLowfi(L0_0, 1443100823)
   end
-  return mp.CLEAN
+  return mp.INFECTED
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

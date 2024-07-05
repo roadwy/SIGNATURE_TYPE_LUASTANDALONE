@@ -1,25 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b371da5826 
-
--- params : ...
--- function num : 0
-local l_0_0 = "(.+\\)[^\\]+%."
-local l_0_1 = (string.match)((string.lower)((this_sigattrlog[1]).utf8p1), l_0_0)
-local l_0_2 = (string.match)((string.lower)((this_sigattrlog[2]).utf8p1), l_0_0)
-local l_0_3 = ((string.match)((string.lower)((this_sigattrlog[3]).utf8p1), l_0_0))
-local l_0_4 = nil
-if (this_sigattrlog[4]).matched then
-  l_0_4 = (this_sigattrlog[4]).utf8p1
-else
-  if (this_sigattrlog[5]).matched then
-    l_0_4 = (this_sigattrlog[5]).utf8p1
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = "(.+\\)[^\\]+%."
+L1_1 = string
+L1_1 = L1_1.match
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.utf8p1
+L2_2 = L2_2(L3_3)
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = this_sigattrlog
+L4_4 = L4_4[2]
+L4_4 = L4_4.utf8p1
+L3_3 = L3_3(L4_4)
+L4_4 = L0_0
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = string
+L3_3 = L3_3.match
+L4_4 = string
+L4_4 = L4_4.lower
+L4_4 = L4_4(this_sigattrlog[3].utf8p1)
+L3_3 = L3_3(L4_4, L0_0)
+L4_4 = nil
+if this_sigattrlog[4].matched then
+  L4_4 = this_sigattrlog[4].utf8p1
+elseif this_sigattrlog[5].matched then
+  L4_4 = this_sigattrlog[5].utf8p1
 end
-if l_0_4 == nil then
+if L4_4 == nil then
   return mp.CLEAN
 end
-if l_0_1 ~= nil and l_0_1 == l_0_2 and l_0_1 == l_0_3 and l_0_1 == (string.match)((string.lower)(l_0_4), l_0_0) then
+if L1_1 ~= nil and L1_1 == L2_2 and L1_1 == L3_3 and L1_1 == string.match(string.lower(L4_4), L0_0) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

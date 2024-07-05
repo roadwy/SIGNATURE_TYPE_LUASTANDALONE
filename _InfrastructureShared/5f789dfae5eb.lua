@@ -1,10 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5f789dfae5eb 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSymbols > 80 and pehdr.NumberOfSections > 10 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSymbols
+if L0_0 > 80 then
+  L0_0 = pehdr
+  L0_0 = L0_0.NumberOfSections
+  if L0_0 > 10 then
+    L0_0 = mp
+    L0_0 = L0_0.INFECTED
+    return L0_0
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

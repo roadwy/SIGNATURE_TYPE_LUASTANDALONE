@@ -1,33 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3dacebb76 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-local l_0_2 = true
-local l_0_3 = false
-for l_0_7,l_0_8 in ipairs(l_0_1) do
-  local l_0_9 = (mp.bitand)(l_0_8.reason_ex, bm.RELATIONSHIP_CREATED)
-  if l_0_9 == bm.RELATIONSHIP_CREATED then
-    local l_0_10 = (string.lower)(l_0_8.image_path)
-    if (string.find)(l_0_10, "\\windows\\sys", 1, true) or (string.find)(l_0_10, "\\program files", 1, true) or (string.find)(l_0_10, "\\choco", 1, true) or (string.find)(l_0_10, "\\wlanscan", 1, true) or (string.find)(l_0_10, "\\csc.exe", 1, true) or (string.find)(l_0_10, "\\7z", 1, true) or (string.find)(l_0_10, "\\bginfo", 1, true) or (string.find)(l_0_10, "\\cloudbuild\\", 1, true) or (string.find)(l_0_10, "\\winscp.exe", 1, true) or (string.find)(l_0_10, "\\dismhost", 1, true) then
-      l_0_2 = false
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+L2_2 = true
+L3_3 = false
+for L7_7, L8_8 in L4_4(L5_5) do
+  L9_9 = mp
+  L9_9 = L9_9.bitand
+  L10_10 = L8_8.reason_ex
+  L9_9 = L9_9(L10_10, bm.RELATIONSHIP_CREATED)
+  L10_10 = bm
+  L10_10 = L10_10.RELATIONSHIP_CREATED
+  if L9_9 == L10_10 then
+    L10_10 = string
+    L10_10 = L10_10.lower
+    L10_10 = L10_10(L8_8.image_path)
+    if string.find(L10_10, "\\windows\\sys", 1, true) or string.find(L10_10, "\\program files", 1, true) or string.find(L10_10, "\\choco", 1, true) or string.find(L10_10, "\\wlanscan", 1, true) or string.find(L10_10, "\\csc.exe", 1, true) or string.find(L10_10, "\\7z", 1, true) or string.find(L10_10, "\\bginfo", 1, true) or string.find(L10_10, "\\cloudbuild\\", 1, true) or string.find(L10_10, "\\winscp.exe", 1, true) or string.find(L10_10, "\\dismhost", 1, true) then
+      L2_2 = false
     else
-      l_0_2 = true
+      L2_2 = true
     end
-    if (string.find)(l_0_10, "regsvr32.exe", 1, true) or (string.find)(l_0_10, "rundll32.exe", 1, true) or (string.find)(l_0_10, "\\java", 1, true) then
-      l_0_2 = true
+    if string.find(L10_10, "regsvr32.exe", 1, true) or string.find(L10_10, "rundll32.exe", 1, true) or string.find(L10_10, "\\java", 1, true) then
+      L2_2 = true
     end
-    if l_0_2 == true then
-      (MpCommon.TurnNriOnProcess)(l_0_8.ppid)
-      ;
-      (bm.trigger_sig)("AmsiDownloadExecProc", "Trigger", l_0_8.ppid)
-      l_0_3 = true
+    if L2_2 == true then
+      MpCommon.TurnNriOnProcess(L8_8.ppid)
+      bm.trigger_sig("AmsiDownloadExecProc", "Trigger", L8_8.ppid)
+      L3_3 = true
     end
   end
 end
-if l_0_3 == true then
-  return mp.INFECTED
+if L3_3 == true then
+  return L4_4
 end
-return mp.CLEAN
-
+return L4_4

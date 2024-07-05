@@ -1,44 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/31b3340182ba 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if (string.find)(l_0_0, "\\narrator.exe$") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L11_11 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L1_1())
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "\\narrator.exe$"
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-do
-  if (string.find)(l_0_0, "\\systray.exe$") then
-    local l_0_1 = (versioning.GetOrgID)()
-    if l_0_1 ~= nil and (string.lower)(l_0_1) == "a58b13d8-a8f3-4b11-b655-2d93970f6374" then
-      return mp.CLEAN
-    end
-  end
-  local l_0_2 = (mp.ContextualExpandEnvironmentVariables)("%windir%\\system32\\LogonUI.exe")
-  local l_0_3 = (sysio.GetProcessFromFileName)(l_0_2)
-  if l_0_3 == nil or #l_0_3 == 0 then
-    return mp.CLEAN
-  end
-  local l_0_4 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\narrator.exe")
-  if l_0_4 ~= nil then
-    local l_0_5 = (sysio.GetRegValueAsString)(l_0_4, "Debugger")
-    if l_0_5 == nil or (string.len)(l_0_5) <= 1 then
-      return mp.CLEAN
-    end
-  else
-    do
-      do return mp.CLEAN end
-      local l_0_6, l_0_7 = (bm.get_process_relationships)()
-      for l_0_11,l_0_12 in ipairs(l_0_6) do
-        if l_0_12.image_path ~= nil then
-          local l_0_13 = (string.lower)(l_0_12.image_path)
-          if (string.find)(l_0_13, "atbroker.exe", 1, true) or (string.find)(l_0_13, "utilman.exe", 1, true) then
-            return mp.INFECTED
-          end
-        end
-      end
-      return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "\\systray.exe$"
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 then
+  L1_1 = versioning
+  L1_1 = L1_1.GetOrgID
+  L1_1 = L1_1()
+  if L1_1 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3)
+    if L2_2 == "a58b13d8-a8f3-4b11-b655-2d93970f6374" then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
     end
   end
 end
-
+L1_1 = MpCommon
+L1_1 = L1_1.ExpandEnvironmentVariables
+L2_2 = "%windir%\\system32\\LogonUI.exe"
+L1_1 = L1_1(L2_2)
+L2_2 = sysio
+L2_2 = L2_2.GetProcessFromFileName
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 ~= nil then
+  L3_3 = #L2_2
+elseif L3_3 == 0 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = sysio
+L3_3 = L3_3.RegOpenKey
+L4_4 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\narrator.exe"
+L3_3 = L3_3(L4_4)
+if L3_3 ~= nil then
+  L4_4 = sysio
+  L4_4 = L4_4.GetRegValueAsString
+  L5_5 = L3_3
+  L4_4 = L4_4(L5_5, L6_6)
+  if L4_4 ~= nil then
+    L5_5 = string
+    L5_5 = L5_5.len
+    L5_5 = L5_5(L6_6)
+  elseif L5_5 <= 1 then
+    L5_5 = mp
+    L5_5 = L5_5.CLEAN
+    return L5_5
+  end
+else
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = bm
+L4_4 = L4_4.get_process_relationships
+L5_5 = L4_4()
+for L9_9, L10_10 in L6_6(L7_7) do
+  L11_11 = L10_10.image_path
+  if L11_11 ~= nil then
+    L11_11 = string
+    L11_11 = L11_11.lower
+    L11_11 = L11_11(L10_10.image_path)
+    if string.find(L11_11, "atbroker.exe", 1, true) or string.find(L11_11, "utilman.exe", 1, true) then
+      return mp.INFECTED
+    end
+  end
+end
+return L6_6

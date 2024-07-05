@@ -1,22 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3c550e78f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = (mp.GetParentProcInfo)(l_0_0.ppid)
-do
-  if l_0_1 ~= nil then
-    local l_0_2 = (string.lower)(l_0_1.image_path)
-    if l_0_2:match("([^\\]+)$") == "svchost.exe" then
-      (MpCommon.TurnNriOnProcess)(l_0_0.ppid)
-      ;
-      (bm.request_SMS)(l_0_0.ppid, "M")
-      ;
-      (bm.add_action)("SmsAsyncScanEvent", 1000)
-      return mp.INFECTED
-    end
-  end
-  return mp.CLEAN
+if mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid) ~= nil and string.lower(mp.GetParentProcInfo(bm.get_current_process_startup_info().ppid).image_path):match("([^\\]+)$") == "svchost.exe" then
+  MpCommon.TurnNriOnProcess(bm.get_current_process_startup_info().ppid)
+  bm.request_SMS(bm.get_current_process_startup_info().ppid, "M")
+  bm.add_action("SmsAsyncScanEvent", 1000)
+  return mp.INFECTED
 end
-
+return mp.CLEAN

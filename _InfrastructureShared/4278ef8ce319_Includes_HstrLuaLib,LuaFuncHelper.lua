@@ -1,0 +1,2 @@
+reportDetectedRegions()
+return mp.INFECTED

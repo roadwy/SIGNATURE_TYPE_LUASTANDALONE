@@ -1,27 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ExtractPowershellFromXML_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 200000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 200000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-;
-(mp.readprotection)(true)
-l_0_1 = (string.gsub)(l_0_1, "%z", "")
-local l_0_2 = l_0_1:gmatch("[%w+/]+=?=?")
-for l_0_6 in l_0_2 do
-  if #l_0_6 > 80 then
-    if (mp.get_mpattribute)("BM_SCHEDULEDTASK_JOBFILE") then
-      (mp.set_mpattribute)("/BM_SCHEDULEDTASK_JOBFILE")
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L2_2(L3_3)
+L2_2 = string
+L2_2 = L2_2.gsub
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+L1_1 = L2_2
+L2_2 = L1_1.gmatch
+L2_2 = L2_2(L3_3, L4_4)
+for L6_6 in L2_2, nil, nil do
+  if #L6_6 > 80 then
+    if mp.get_mpattribute("BM_SCHEDULEDTASK_JOBFILE") then
+      mp.set_mpattribute("/BM_SCHEDULEDTASK_JOBFILE")
     end
-    ;
-    (mp.vfo_add_buffer)((MpCommon.Base64Decode)(l_0_6), "[PwsCode]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+    mp.vfo_add_buffer(MpCommon.Base64Decode(L6_6), "[PwsCode]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
   end
 end
-return mp.CLEAN
-
+return L3_3

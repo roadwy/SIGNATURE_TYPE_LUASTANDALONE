@@ -1,60 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1a0b329b45dbb 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4 = nil
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.ContextualExpandEnvironmentVariables
+  L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+  L0_0 = L1_1
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.ContextualExpandEnvironmentVariables
+    L1_1 = L1_1(this_sigattrlog[2].utf8p2)
+    L0_0 = L1_1
   else
-  end
-  if (this_sigattrlog[2]).matched then
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC31: Confused about usage of register: R0 in 'UnsetPending'
-
-    if (mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2) == nil or (mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2) == "" then
-      return mp.CLEAN
-    end
-    local l_0_5 = nil
-    -- DECOMPILER ERROR at PC45: Overwrote pending register: R1 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC48: Confused about usage of register: R1 in 'UnsetPending'
-
-    if nil == nil or nil == "" then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC55: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC61: Confused about usage of register: R1 in 'UnsetPending'
-
-    if (sysio.IsFileExists)(nil) then
-      (bm.add_related_file)(nil)
-    end
-    -- DECOMPILER ERROR at PC71: Overwrote pending register: R1 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC74: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC78: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC84: Confused about usage of register: R1 in 'UnsetPending'
-
-    if (this_sigattrlog[4]).matched and nil ~= nil and nil ~= "" and (sysio.IsFileExists)(nil) then
-      (bm.add_related_file)(nil)
-    end
-    -- DECOMPILER ERROR at PC94: Overwrote pending register: R1 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC97: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC101: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC107: Confused about usage of register: R1 in 'UnsetPending'
-
-    if (this_sigattrlog[5]).matched and nil ~= nil and nil ~= "" and (sysio.IsFileExists)(nil) then
-      (bm.add_related_file)(nil)
-    end
-    return mp.INFECTED
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+if L0_0 == nil or L0_0 == "" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = nil
+L1_1 = string.match(string.lower(L0_0), "[%s]+\"?(%a:[^\"]+)\"?$")
+if L1_1 == nil or L1_1 == "" then
+  return mp.CLEAN
+end
+if sysio.IsFileExists(L1_1) then
+  bm.add_related_file(L1_1)
+end
+L1_1 = nil
+if this_sigattrlog[4].matched then
+  L1_1 = this_sigattrlog[4].utf8p1
+  if L1_1 ~= nil and L1_1 ~= "" and sysio.IsFileExists(L1_1) then
+    bm.add_related_file(L1_1)
+  end
+end
+L1_1 = nil
+if this_sigattrlog[5].matched then
+  L1_1 = this_sigattrlog[5].utf8p1
+  if L1_1 ~= nil and L1_1 ~= "" and sysio.IsFileExists(L1_1) then
+    bm.add_related_file(L1_1)
+  end
+end
+return mp.INFECTED

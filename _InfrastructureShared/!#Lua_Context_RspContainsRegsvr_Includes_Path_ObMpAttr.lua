@@ -1,37 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_RspContainsRegsvr_Includes_Path_ObMpAttr 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if (l_0_0 == "odbcconf.exe" or l_0_0 == "explorer.exe") and (mp.getfilesize)() <= 4096 then
-  local l_0_1 = (string.lower)(tostring(headerpage))
-  local l_0_2 = l_0_1:gmatch("regsvr%s+([%a%d\\.]*)")
-  local l_0_3 = 5
-  local l_0_4 = 0
-  local l_0_5 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_LOWERCASE))
-  l_0_5 = normalize_path(l_0_5)
-  for l_0_9 in l_0_2 do
-    local l_0_10 = l_0_5 .. "\\" .. l_0_9
-    local l_0_11 = "DllFromRsp"
-    do
-      do
-        local l_0_12 = (MpCommon.QueryPersistContext)(l_0_10, l_0_11)
-        if not l_0_12 then
-          (MpCommon.AppendPersistContext)(l_0_10, l_0_11, 100)
-          l_0_4 = l_0_4 + 1
-        end
-        if l_0_3 <= l_0_4 then
-          break
-        end
-        -- DECOMPILER ERROR at PC67: LeaveBlock: unexpected jumping out DO_STMT
-
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSNAME
+L11_11 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L1_1(L2_2))
+if L0_0 == "odbcconf.exe" or L0_0 == "explorer.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.getfilesize
+  L1_1 = L1_1()
+  if L1_1 <= 4096 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = tostring
+    L3_3 = headerpage
+    L11_11 = L2_2(L3_3)
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L2_2(L3_3))
+    L3_3 = L1_1
+    L2_2 = L1_1.gmatch
+    L4_4 = "regsvr%s+([%a%d\\.]*)"
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = 5
+    L4_4 = 0
+    L5_5 = mp
+    L5_5 = L5_5.getfilename
+    L11_11 = L6_6(L7_7, L8_8)
+    L5_5 = L5_5(L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L6_6(L7_7, L8_8))
+    L5_5 = L6_6
+    for L9_9 in L2_2, nil, nil do
+      L10_10 = L5_5
+      L11_11 = "\\"
+      L10_10 = L10_10 .. L11_11 .. L9_9
+      L11_11 = "DllFromRsp"
+      if not MpCommon.QueryPersistContext(L10_10, L11_11) then
+        MpCommon.AppendPersistContext(L10_10, L11_11, 100)
+        L4_4 = L4_4 + 1
+      end
+      if L3_3 <= L4_4 then
+        break
       end
     end
+    return L6_6
   end
-  return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

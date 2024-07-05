@@ -1,11 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/76784652c5aa 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 >= 262144 and l_0_0 <= 458752 and peattributes.isdll == true and peattributes.hasexports == true then
+if mp.getfilesize() >= 262144 and mp.getfilesize() <= 458752 and peattributes.isdll == true and peattributes.hasexports == true then
   return mp.INFECTED
 end
 return mp.CLEAN
-

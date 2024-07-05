@@ -1,25 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/42a9f75c9635 
-
--- params : ...
--- function num : 0
-local l_0_0 = 0
-local l_0_1 = 0
-local l_0_2 = {}
-local l_0_3 = (nri.GetConnectionHistory)()
-for l_0_7,l_0_8 in pairs(l_0_3) do
-  if l_0_8.DestinationPort == 3389 then
-    if l_0_2[l_0_8.DestinationAddressLow] == nil then
-      l_0_2[l_0_8.DestinationAddressLow] = 1
-      l_0_1 = l_0_1 + 1
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = 0
+L1_1 = 0
+L2_2 = {}
+L3_3 = nri
+L3_3 = L3_3.GetConnectionHistory
+L3_3 = L3_3()
+for _FORV_7_, _FORV_8_ in pairs(L3_3) do
+  if _FORV_8_.DestinationPort == 3389 then
+    if L2_2[_FORV_8_.DestinationAddressLow] == nil then
+      L2_2[_FORV_8_.DestinationAddressLow] = 1
+      L1_1 = L1_1 + 1
     end
-    l_0_0 = l_0_0 + 1
+    L0_0 = L0_0 + 1
   end
 end
-do
-  if l_0_1 > 5 or l_0_0 > 10 then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
+if L1_1 > 5 or L0_0 > 10 then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

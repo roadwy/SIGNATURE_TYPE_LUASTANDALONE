@@ -1,15 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_SingleLetterExeNameInRTF_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-if (string.find)(l_0_0, "%-%>%(rtf[0-9]+%)%-%>[a-z].[a-z]$") ~= nil then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.getfilename())
+if string.find(L0_0, "%-%>%(rtf[0-9]+%)%-%>[a-z].[a-z]$") ~= nil then
   return mp.INFECTED
-else
-  if (string.find)(l_0_0, "%-%>%(rtf[0-9]+%)%-%>") ~= nil then
-    (mp.set_mpattribute)("//LUA:ExeInRTF")
-  end
+elseif string.find(L0_0, "%-%>%(rtf[0-9]+%)%-%>") ~= nil then
+  mp.set_mpattribute("//LUA:ExeInRTF")
 end
 return mp.CLEAN
-

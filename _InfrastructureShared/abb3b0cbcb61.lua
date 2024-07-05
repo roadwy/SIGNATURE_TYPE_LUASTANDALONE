@@ -1,14 +1,13 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/abb3b0cbcb61 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((string.lower)((this_sigattrlog[2]).utf8p2)):match("|app=(.-)|")
-if l_0_0 ~= nil then
-  l_0_0 = (mp.ContextualExpandEnvironmentVariables)(l_0_0)
-  if l_0_0 ~= nil and (sysio.IsFileExists)(l_0_0) then
-    (mp.ReportLowfi)(l_0_0, 2240217800)
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(this_sigattrlog[2].utf8p2)
+L0_0 = L0_0.match
+L0_0 = L0_0(L0_0, "|app=(.-)|")
+if L0_0 ~= nil then
+  L0_0 = mp.ContextualExpandEnvironmentVariables(L0_0)
+  if L0_0 ~= nil and sysio.IsFileExists(L0_0) then
+    mp.ReportLowfi(L0_0, 2240217800)
   end
 end
 return mp.INFECTED
-

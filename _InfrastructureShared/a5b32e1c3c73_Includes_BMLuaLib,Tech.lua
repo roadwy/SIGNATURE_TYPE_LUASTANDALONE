@@ -1,47 +1,94 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a5b32e1c3c73_Includes_BMLuaLib,Tech 
-
--- params : ...
--- function num : 0
-local l_0_0 = "remote_file_created_taint"
-local l_0_1 = "queue_pid_taintfactory_a"
-local l_0_2, l_0_3, l_0_4 = nil, nil, nil
-if (this_sigattrlog[2]).matched then
-  l_0_2 = (this_sigattrlog[2]).ppid
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = "remote_file_created_taint"
+L1_1 = "queue_pid_taintfactory_a"
+L2_2, L3_3, L4_4 = nil, nil, nil
+L5_5 = this_sigattrlog
+L5_5 = L5_5[2]
+L5_5 = L5_5.matched
+if L5_5 then
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[2]
+  L2_2 = L5_5.ppid
 else
-  if (this_sigattrlog[3]).matched then
-    l_0_2 = (this_sigattrlog[3]).ppid
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[3]
+  L5_5 = L5_5.matched
+  if L5_5 then
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[3]
+    L2_2 = L5_5.ppid
   else
-    if (this_sigattrlog[4]).matched then
-      l_0_2 = (this_sigattrlog[4]).ppid
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[4]
+    L5_5 = L5_5.matched
+    if L5_5 then
+      L5_5 = this_sigattrlog
+      L5_5 = L5_5[4]
+      L2_2 = L5_5.ppid
     end
   end
 end
-if (this_sigattrlog[5]).matched then
-  l_0_3 = (this_sigattrlog[5]).utf8p1
+L5_5 = this_sigattrlog
+L5_5 = L5_5[5]
+L5_5 = L5_5.matched
+if L5_5 then
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[5]
+  L3_3 = L5_5.utf8p1
 else
-  if (this_sigattrlog[6]).matched then
-    l_0_3 = (this_sigattrlog[6]).utf8p1
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[6]
+  L5_5 = L5_5.matched
+  if L5_5 then
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[6]
+    L3_3 = L5_5.utf8p1
   else
-    if (this_sigattrlog[7]).matched then
-      l_0_3 = (this_sigattrlog[7]).utf8p1
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[7]
+    L5_5 = L5_5.matched
+    if L5_5 then
+      L5_5 = this_sigattrlog
+      L5_5 = L5_5[7]
+      L3_3 = L5_5.utf8p1
     end
   end
 end
-if (this_sigattrlog[8]).matched then
-  l_0_4 = (this_sigattrlog[8]).utf8p1
+L5_5 = this_sigattrlog
+L5_5 = L5_5[8]
+L5_5 = L5_5.matched
+if L5_5 then
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[8]
+  L4_4 = L5_5.utf8p1
 end
-if l_0_2 ~= nil and l_0_3 ~= nil and l_0_4 ~= nil and not isParentPackageManager(l_0_2, true) and isTainted(l_0_3, l_0_0) then
-  AppendToRollingQueue(l_0_1, l_0_2, 1, 600)
-  taint(l_0_4, l_0_0, 3600)
-  local l_0_5, l_0_6 = (bm.get_process_relationships)(l_0_2)
-  for l_0_10,l_0_11 in ipairs(l_0_5) do
-    (bm.add_related_process)(l_0_11.ppid)
-    TrackPidAndTechniqueBM(l_0_11.ppid, "T1105", "CommandAndControl")
+if L2_2 ~= nil and L3_3 ~= nil and L4_4 ~= nil then
+  L5_5 = isParentPackageManager
+  L6_6 = L2_2
+  L5_5 = L5_5(L6_6, L7_7)
+  if not L5_5 then
+    L5_5 = isTainted
+    L6_6 = L3_3
+    L5_5 = L5_5(L6_6, L7_7)
+    if L5_5 then
+      L5_5 = AppendToRollingQueue
+      L6_6 = L1_1
+      L5_5(L6_6, L7_7, L8_8, 600)
+      L5_5 = taint
+      L6_6 = L4_4
+      L5_5(L6_6, L7_7, L8_8)
+      L5_5 = bm
+      L5_5 = L5_5.get_process_relationships
+      L6_6 = L2_2
+      L6_6 = L5_5(L6_6)
+      for _FORV_10_, _FORV_11_ in L7_7(L8_8) do
+        bm.add_related_process(_FORV_11_.ppid)
+        TrackPidAndTechniqueBM(_FORV_11_.ppid, "T1105", "CommandAndControl")
+      end
+      return L7_7
+    end
   end
-  return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L5_5 = mp
+L5_5 = L5_5.CLEAN
+return L5_5

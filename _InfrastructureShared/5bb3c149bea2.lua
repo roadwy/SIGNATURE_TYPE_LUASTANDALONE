@@ -1,18 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bb3c149bea2 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 ~= nil and l_0_0.ppid ~= nil then
-  (MpCommon.RequestSmsOnProcess)(l_0_0.ppid, MpCommon.SMS_SCAN_MED)
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.ppid
+  if L1_1 ~= nil then
+    L1_1 = MpCommon
+    L1_1 = L1_1.RequestSmsOnProcess
+    L2_2 = L0_0.ppid
+    L3_3 = MpCommon
+    L3_3 = L3_3.SMS_SCAN_MED
+    L1_1(L2_2, L3_3)
+  end
 end
-local l_0_1 = (bm.get_imagepath)()
-local l_0_2, l_0_3 = (bm.get_process_relationships)()
-for l_0_7,l_0_8 in ipairs(l_0_3) do
-  if l_0_8.image_path == l_0_1 then
-    (MpCommon.RequestSmsOnProcess)(l_0_8.ppid, MpCommon.SMS_SCAN_MED)
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+for _FORV_7_, _FORV_8_ in ipairs(L3_3) do
+  if _FORV_8_.image_path == L1_1 then
+    MpCommon.RequestSmsOnProcess(_FORV_8_.ppid, MpCommon.SMS_SCAN_MED)
   end
 end
 return mp.INFECTED
-

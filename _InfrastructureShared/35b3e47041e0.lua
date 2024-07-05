@@ -1,17 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3e47041e0 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_0 = nil
-    if (string.find)(l_0_0, "\\seal systems\\p2p_scripts\\", 1, true) then
-      return mp.CLEAN
-    end
+local L0_0
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p2 ~= nil then
+  L0_0 = string.lower(this_sigattrlog[2].utf8p2)
+  if string.find(L0_0, "\\seal systems\\p2p_scripts\\", 1, true) then
+    return mp.CLEAN
   end
-  return mp.INFECTED
 end
-
+return mp.INFECTED

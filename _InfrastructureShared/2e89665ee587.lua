@@ -1,12 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2e89665ee587 
-
--- params : ...
--- function num : 0
-if (mp.readu_u32)((pe.mmap_va)(pevars.sigaddr + 13, 4), 1) < 1048576 then
+if mp.readu_u32(pe.mmap_va(pevars.sigaddr + 13, 4), 1) < 1048576 then
   return mp.CLEAN
 end
-;
-(pe.mmap_patch_va)(pevars.sigaddr + 17, "")
+pe.mmap_patch_va(pevars.sigaddr + 17, "\144\144")
 return mp.INFECTED
-

@@ -1,135 +1,306 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#WebShellCreation_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONOPEN and l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
-end
-if not (mp.IsHipsRuleEnabled)("a8f5898e-1dc8-49a9-9878-85004b8a61e6") then
-  return mp.CLEAN
-end
-local l_0_1 = "enghipscpy:blockaccess:a8f5898e-1dc8-49a9-9878-85004b8a61e6"
-local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-if l_0_2 == nil or l_0_2 == "" then
-  return mp.CLEAN
-end
-l_0_2 = (string.lower)(l_0_2)
-local l_0_3 = (MpCommon.PathToWin32Path)((mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)))
-if l_0_3 == nil or l_0_3 == "" then
-  return mp.CLEAN
-end
-if l_0_0 == mp.SCANREASON_ONOPEN then
-  if not (MpCommon.QueryPersistContext)(l_0_3, l_0_1) then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L0_0 ~= L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  ;
-  (mp.set_mpattribute)("MpDisableCaching")
-  ;
-  (mp.SetHipsRule)("a8f5898e-1dc8-49a9-9878-85004b8a61e6")
-  return mp.BLOCKEXECUTION
+end
+L1_1 = mp
+L1_1 = L1_1.IsHipsRuleEnabled
+L2_2 = "a8f5898e-1dc8-49a9-9878-85004b8a61e6"
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = "enghipscpy:blockaccess:a8f5898e-1dc8-49a9-9878-85004b8a61e6"
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_FILENAME
+L2_2 = L2_2(L3_3)
+if L2_2 == nil or L2_2 == "" then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+L2_2 = L3_3
+L3_3 = mp
+L3_3 = L3_3.getfilename
+L4_4 = mp
+L4_4 = L4_4.bitor
+L5_5 = mp
+L5_5 = L5_5.FILEPATH_QUERY_FULL
+L6_6 = mp
+L6_6 = L6_6.FILEPATH_QUERY_LOWERCASE
+L15_15 = L4_4(L5_5, L6_6)
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L4_4(L5_5, L6_6))
+if L3_3 == nil or L3_3 == "" then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = string
+L4_4 = L4_4.lower
+L5_5 = MpCommon
+L5_5 = L5_5.PathToWin32Path
+L6_6 = L3_3
+L15_15 = L5_5(L6_6)
+L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L5_5(L6_6))
+L3_3 = L4_4
+L4_4 = mp
+L4_4 = L4_4.IsPathExcludedForHipsRule
+L5_5 = L3_3
+L6_6 = "a8f5898e-1dc8-49a9-9878-85004b8a61e6"
+L4_4 = L4_4(L5_5, L6_6)
+if L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.SCANREASON_ONOPEN
+if L0_0 == L4_4 then
+  L4_4 = MpCommon
+  L4_4 = L4_4.QueryPersistContext
+  L5_5 = L3_3
+  L6_6 = L1_1
+  L4_4 = L4_4(L5_5, L6_6)
+  if not L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
+  end
+  L4_4 = mp
+  L4_4 = L4_4.set_mpattribute
+  L5_5 = "MpDisableCaching"
+  L4_4(L5_5)
+  L4_4 = mp
+  L4_4 = L4_4.SetHipsRule
+  L5_5 = "a8f5898e-1dc8-49a9-9878-85004b8a61e6"
+  L4_4(L5_5)
+  L4_4 = mp
+  L4_4 = L4_4.BLOCKEXECUTION
+  return L4_4
 else
-  if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-    if not (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) then
-      return mp.CLEAN
+  L4_4 = mp
+  L4_4 = L4_4.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L0_0 == L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.get_contextdata
+    L5_5 = mp
+    L5_5 = L5_5.CONTEXT_DATA_NEWLYCREATEDHINT
+    L4_4 = L4_4(L5_5)
+    if not L4_4 then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
     end
-    local l_0_4 = (MpCommon.ExpandEnvironmentVariables)("%ExchangeInstallPath%")
-    if l_0_4 == nil or l_0_4 == "" then
-      return mp.CLEAN
+    L4_4 = MpCommon
+    L4_4 = L4_4.ExpandEnvironmentVariables
+    L5_5 = "%ExchangeInstallPath%"
+    L4_4 = L4_4(L5_5)
+    if L4_4 == nil or L4_4 == "" then
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
     end
-    if not (sysio.IsFileExists)(l_0_4 .. "bin\\Microsoft.Exchange.Store.Service.exe") then
-      return mp.CLEAN
+    L5_5 = sysio
+    L5_5 = L5_5.IsFileExists
+    L6_6 = L4_4
+    L7_7 = "bin\\Microsoft.Exchange.Store.Service.exe"
+    L6_6 = L6_6 .. L7_7
+    L5_5 = L5_5(L6_6)
+    if not L5_5 then
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
     end
-    local l_0_5 = (string.lower)(l_0_4)
-    if (string.find)(l_0_3, l_0_5 .. "clientaccess\\oab\\temp\\", 1, true) ~= nil then
-      return mp.CLEAN
+    L5_5 = string
+    L5_5 = L5_5.lower
+    L6_6 = L4_4
+    L5_5 = L5_5(L6_6)
+    L6_6 = string
+    L6_6 = L6_6.find
+    L7_7 = L3_3
+    L8_8 = L5_5
+    L9_9 = "clientaccess\\oab\\temp\\"
+    L8_8 = L8_8 .. L9_9
+    L9_9 = 1
+    L6_6 = L6_6(L7_7, L8_8, L9_9, L10_10)
+    if L6_6 ~= nil then
+      L6_6 = mp
+      L6_6 = L6_6.CLEAN
+      return L6_6
     end
-    if l_0_2 == "asrtestfile-a8f5898e-1dc8-49a9-9878-85004b8a61e6.asp" then
-      (mp.set_mpattribute)("MpDisableCaching")
-      if (MpCommon.GetPersistContextCount)(l_0_3) == 0 then
-        local l_0_6 = {}
-        ;
-        (table.insert)(l_0_6, l_0_1)
-        ;
-        (MpCommon.SetPersistContext)(l_0_3, l_0_6, 0)
+    if L2_2 == "asrtestfile-a8f5898e-1dc8-49a9-9878-85004b8a61e6.asp" then
+      L6_6 = mp
+      L6_6 = L6_6.set_mpattribute
+      L7_7 = "MpDisableCaching"
+      L6_6(L7_7)
+      L6_6 = MpCommon
+      L6_6 = L6_6.GetPersistContextCount
+      L7_7 = L3_3
+      L6_6 = L6_6(L7_7)
+      if L6_6 == 0 then
+        L6_6 = {}
+        L7_7 = table
+        L7_7 = L7_7.insert
+        L8_8 = L6_6
+        L9_9 = L1_1
+        L7_7(L8_8, L9_9)
+        L7_7 = MpCommon
+        L7_7 = L7_7.SetPersistContext
+        L8_8 = L3_3
+        L9_9 = L6_6
+        L7_7(L8_8, L9_9, L10_10)
       else
-        do
-          if not (MpCommon.QueryPersistContext)(l_0_3, l_0_1) then
-            (MpCommon.AppendPersistContext)(l_0_3, l_0_1, 0)
+        L6_6 = MpCommon
+        L6_6 = L6_6.QueryPersistContext
+        L7_7 = L3_3
+        L8_8 = L1_1
+        L6_6 = L6_6(L7_7, L8_8)
+        if not L6_6 then
+          L6_6 = MpCommon
+          L6_6 = L6_6.AppendPersistContext
+          L7_7 = L3_3
+          L8_8 = L1_1
+          L9_9 = 0
+          L6_6(L7_7, L8_8, L9_9)
+        end
+      end
+      L6_6 = mp
+      L6_6 = L6_6.SetHipsRule
+      L7_7 = "a8f5898e-1dc8-49a9-9878-85004b8a61e6"
+      L6_6(L7_7)
+      L6_6 = mp
+      L6_6 = L6_6.BLOCKACCESS
+      return L6_6
+    else
+      L6_6 = MpCommon
+      L6_6 = L6_6.ExpandEnvironmentVariables
+      L7_7 = "%SystemDrive%\\inetpub\\wwwroot"
+      L6_6 = L6_6(L7_7)
+      if L6_6 == nil or L6_6 == "" then
+        L7_7 = mp
+        L7_7 = L7_7.CLEAN
+        return L7_7
+      end
+      L7_7 = string
+      L7_7 = L7_7.lower
+      L8_8 = L6_6
+      L7_7 = L7_7(L8_8)
+      if L7_7 == nil or L7_7 == "" then
+        L8_8 = mp
+        L8_8 = L8_8.CLEAN
+        return L8_8
+      end
+      L8_8 = string
+      L8_8 = L8_8.find
+      L9_9 = L3_3
+      L8_8 = L8_8(L9_9, L10_10, L11_11, L12_12)
+      if L8_8 then
+        L8_8 = mp
+        L8_8 = L8_8.set_mpattribute
+        L9_9 = "MpDisableCaching"
+        L8_8(L9_9)
+        L8_8 = MpCommon
+        L8_8 = L8_8.GetPersistContextCount
+        L9_9 = L3_3
+        L8_8 = L8_8(L9_9)
+        if L8_8 == 0 then
+          L8_8 = {}
+          L9_9 = table
+          L9_9 = L9_9.insert
+          L9_9(L10_10, L11_11)
+          L9_9 = MpCommon
+          L9_9 = L9_9.SetPersistContext
+          L9_9(L10_10, L11_11, L12_12)
+        else
+          L8_8 = MpCommon
+          L8_8 = L8_8.QueryPersistContext
+          L9_9 = L3_3
+          L8_8 = L8_8(L9_9, L10_10)
+          if not L8_8 then
+            L8_8 = MpCommon
+            L8_8 = L8_8.AppendPersistContext
+            L9_9 = L3_3
+            L8_8(L9_9, L10_10, L11_11)
           end
-          ;
-          (mp.SetHipsRule)("a8f5898e-1dc8-49a9-9878-85004b8a61e6")
-          do return mp.BLOCKACCESS end
-          local l_0_7 = (MpCommon.ExpandEnvironmentVariables)("%SystemDrive%\\inetpub\\wwwroot")
-          if l_0_7 == nil or l_0_7 == "" then
-            return mp.CLEAN
-          end
-          local l_0_8 = (string.lower)(l_0_7)
-          if l_0_8 == nil or l_0_8 == "" then
-            return mp.CLEAN
-          end
-          if (string.find)(l_0_3, l_0_8, 1, true) then
-            (mp.set_mpattribute)("MpDisableCaching")
-            if (MpCommon.GetPersistContextCount)(l_0_3) == 0 then
-              local l_0_9 = {}
-              ;
-              (table.insert)(l_0_9, l_0_1)
-              ;
-              (MpCommon.SetPersistContext)(l_0_3, l_0_9, 0)
-            else
-              do
-                if not (MpCommon.QueryPersistContext)(l_0_3, l_0_1) then
-                  (MpCommon.AppendPersistContext)(l_0_3, l_0_1, 0)
+        end
+        L8_8 = mp
+        L8_8 = L8_8.SetHipsRule
+        L9_9 = "a8f5898e-1dc8-49a9-9878-85004b8a61e6"
+        L8_8(L9_9)
+        L8_8 = mp
+        L8_8 = L8_8.BLOCKACCESS
+        return L8_8
+      end
+      L8_8 = MpCommon
+      L8_8 = L8_8.ExpandEnvironmentVariables
+      L9_9 = "%windir%\\system32\\inetsrv\\config\\applicationHost.config"
+      L8_8 = L8_8(L9_9)
+      if L8_8 == nil or L8_8 == "" then
+        L9_9 = mp
+        L9_9 = L9_9.CLEAN
+        return L9_9
+      end
+      L9_9 = MpCommon
+      L9_9 = L9_9.GetIisInstallPaths
+      L9_9 = L9_9(L10_10)
+      if L9_9 == nil or L9_9 == "" then
+        return L10_10
+      end
+      for L13_13, L14_14 in L10_10(L11_11) do
+        L15_15 = L14_14.Path
+        if L15_15 ~= nil then
+          L15_15 = L14_14.Path
+          if L15_15 ~= "" then
+            L15_15 = string
+            L15_15 = L15_15.find
+            L15_15 = L15_15(L3_3, string.lower(L14_14.Path), 1, true)
+            if L15_15 then
+              L15_15 = mp
+              L15_15 = L15_15.set_mpattribute
+              L15_15("MpDisableCaching")
+              L15_15 = MpCommon
+              L15_15 = L15_15.GetPersistContextCount
+              L15_15 = L15_15(L3_3)
+              if L15_15 == 0 then
+                L15_15 = {}
+                table.insert(L15_15, L1_1)
+                MpCommon.SetPersistContext(L3_3, L15_15, 0)
+              else
+                L15_15 = MpCommon
+                L15_15 = L15_15.QueryPersistContext
+                L15_15 = L15_15(L3_3, L1_1)
+                if not L15_15 then
+                  L15_15 = MpCommon
+                  L15_15 = L15_15.AppendPersistContext
+                  L15_15(L3_3, L1_1, 0)
                 end
-                ;
-                (mp.SetHipsRule)("a8f5898e-1dc8-49a9-9878-85004b8a61e6")
-                do return mp.BLOCKACCESS end
-                local l_0_10 = (MpCommon.ExpandEnvironmentVariables)("%windir%\\system32\\inetsrv\\config\\applicationHost.config")
-                if l_0_10 == nil or l_0_10 == "" then
-                  return mp.CLEAN
-                end
-                local l_0_11 = (MpCommon.GetIisInstallPaths)(l_0_10)
-                if l_0_11 == nil or l_0_11 == "" then
-                  return mp.CLEAN
-                end
-                for l_0_15,l_0_16 in ipairs(l_0_11) do
-                  if l_0_16.Path ~= nil and l_0_16.Path ~= "" and (string.find)(l_0_3, (string.lower)(l_0_16.Path), 1, true) then
-                    (mp.set_mpattribute)("MpDisableCaching")
-                    if (MpCommon.GetPersistContextCount)(l_0_3) == 0 then
-                      local l_0_17 = {}
-                      ;
-                      (table.insert)(l_0_17, l_0_1)
-                      ;
-                      (MpCommon.SetPersistContext)(l_0_3, l_0_17, 0)
-                    else
-                      do
-                        do
-                          if not (MpCommon.QueryPersistContext)(l_0_3, l_0_1) then
-                            (MpCommon.AppendPersistContext)(l_0_3, l_0_1, 0)
-                          end
-                          ;
-                          (mp.SetHipsRule)("a8f5898e-1dc8-49a9-9878-85004b8a61e6")
-                          do return mp.BLOCKACCESS end
-                          -- DECOMPILER ERROR at PC350: LeaveBlock: unexpected jumping out DO_STMT
-
-                          -- DECOMPILER ERROR at PC350: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                          -- DECOMPILER ERROR at PC350: LeaveBlock: unexpected jumping out IF_STMT
-
-                          -- DECOMPILER ERROR at PC350: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                          -- DECOMPILER ERROR at PC350: LeaveBlock: unexpected jumping out IF_STMT
-
-                        end
-                      end
-                    end
-                  end
-                end
-                l_0_4 = mp
-                l_0_4 = l_0_4.CLEAN
-                return l_0_4
               end
+              L15_15 = mp
+              L15_15 = L15_15.SetHipsRule
+              L15_15("a8f5898e-1dc8-49a9-9878-85004b8a61e6")
+              L15_15 = mp
+              L15_15 = L15_15.BLOCKACCESS
+              return L15_15
             end
           end
         end
@@ -137,4 +308,6 @@ else
     end
   end
 end
-
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

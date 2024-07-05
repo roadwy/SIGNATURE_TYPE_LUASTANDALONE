@@ -1,81 +1,155 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8dd73fcbdbe6 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1, l_0_2, l_0_3 = nil, nil, nil, nil
-local l_0_4 = nil
-local l_0_5 = nil
-local l_0_6 = nil
-local l_0_7 = nil
-local l_0_8 = true
-if (mp.GetScannedPPID)() == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L4_4 = true
+L5_5 = false
+L6_6 = false
+L7_7 = false
+L8_8 = mp
+L8_8 = L8_8.GetScannedPPID
+L8_8 = L8_8()
+if L8_8 == nil then
+  L9_9 = mp
+  L9_9 = L9_9.CLEAN
+  return L9_9
 end
-local l_0_9 = false
-if (((not (string.find)((string.lower)((mp.GetProcessCommandLine)((mp.GetScannedPPID)())), " /all", 1, true) or (string.find)((string.lower)((mp.GetProcessCommandLine)((mp.GetScannedPPID)())), " /oldest", 1, true)) and not (string.find)((string.lower)((mp.GetProcessCommandLine)((mp.GetScannedPPID)())), " /shadow=", 1, true)) or l_0_9 ~= true) and (true or true) then
-  return mp.CLEAN
+L9_9 = string
+L9_9 = L9_9.lower
+L10_10 = mp
+L10_10 = L10_10.GetProcessCommandLine
+L11_11 = L8_8
+L11_11 = L10_10(L11_11)
+L9_9 = L9_9(L10_10, L11_11, L10_10(L11_11))
+L10_10 = string
+L10_10 = L10_10.find
+L11_11 = L9_9
+L10_10 = L10_10(L11_11, " /all", 1, true)
+if L10_10 then
+  L5_5 = true
 end
-local l_0_10 = nil
-while 1 do
-  -- DECOMPILER ERROR at PC61: Confused about usage of register: R10 in 'UnsetPending'
-
-  if 0 <= 5 then
-    if 0 == 0 then
-      l_0_8 = pcall(mp.GetParentProcInfo)
-    else
-      -- DECOMPILER ERROR at PC75: Overwrote pending register: R0 in 'AssignReg'
-
-      l_0_8 = pcall(mp.GetParentProcInfo, l_0_5)
-    end
+L10_10 = string
+L10_10 = L10_10.find
+L11_11 = L9_9
+L10_10 = L10_10(L11_11, " /oldest", 1, true)
+if L10_10 then
+  L6_6 = true
+end
+L10_10 = string
+L10_10 = L10_10.find
+L11_11 = L9_9
+L10_10 = L10_10(L11_11, " /shadow=", 1, true)
+if L10_10 then
+  L7_7 = true
+end
+if L5_5 ~= true and (L6_6 or L7_7) then
+  L10_10 = mp
+  L10_10 = L10_10.CLEAN
+  return L10_10
+end
+L10_10 = 0
+while L10_10 <= 5 do
+  if L10_10 == 0 then
+    L11_11 = pcall
+    L0_0, L11_11 = mp.GetParentProcInfo, L11_11(mp.GetParentProcInfo)
+    L4_4 = L11_11
+  else
+    L11_11 = pcall
+    L0_0, L11_11 = mp.GetParentProcInfo, L11_11(mp.GetParentProcInfo, L1_1)
+    L4_4 = L11_11
   end
-  if l_0_8 == true then
-    if l_0_4 == nil then
-      break
-    end
-    l_0_5 = l_0_4.ppid
-  end
-  if l_0_5 == nil then
+  if L4_4 ~= true or L0_0 == nil then
     break
   end
-  l_0_6 = l_0_4.image_path
-  if l_0_6 == nil then
+  L1_1 = L0_0.ppid
+  if L1_1 == nil then
     break
   end
-  l_0_6 = (string.lower)(l_0_6)
-  -- DECOMPILER ERROR at PC104: Confused about usage of register: R9 in 'UnsetPending'
-
-  do
-    if (mp.GetProcessCommandLine)(l_0_5) ~= nil then
-      local l_0_11 = nil
-      if (string.match)((string.lower)((mp.GetProcessCommandLine)(l_0_5)), "[a-zA-Z] (.+)$") ~= nil and ((string.find)((string.match)((string.lower)((mp.GetProcessCommandLine)(l_0_5)), "[a-zA-Z] (.+)$"), ":\\windows", 1, true) or (string.find)((string.match)((string.lower)((mp.GetProcessCommandLine)(l_0_5)), "[a-zA-Z] (.+)$"), ":\\program files", 1, true)) then
-        return mp.CLEAN
-      end
-    end
-    l_0_7 = (string.match)(l_0_6, "\\([^\\]+)$")
-    if l_0_7 ~= nil then
-      if l_0_7 == "" then
-        break
-      end
-      if l_0_7 == "psexecsvc.exe" or l_0_7 == "wmiprvse.exe" or l_0_7 == "gpscript.exe" or l_0_7 == "svchost.exe" or (string.find)(l_0_6, ":\\windows\\", 2, true) == nil and (string.find)(l_0_6, ":\\program files", 2, true) == nil then
-        return mp.CLEAN
-      end
-      if ((string.find)(l_0_6, "^:\\program files", 2) or (string.find)(l_0_6, ":\\windows\\system32\\nxtcod.exe", 2, true) or (string.find)(l_0_6, ":\\windows\\ccm\\", 2, true)) and ((string.find)(l_0_6, "\\easeus\\easeus partition master\\bin\\", 2, true) or (string.find)(l_0_6, "\\common files\\mcafee\\systemcore\\", 2, true) or (string.find)(l_0_6, "\\mcafee\\endpoint security\\threat prevention\\", 2, true) or (mp.IsKnownFriendlyFile)(l_0_6, true, true) == true) then
-        return mp.CLEAN
-      end
-      -- DECOMPILER ERROR at PC239: Confused about usage of register: R10 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC240: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-      -- DECOMPILER ERROR at PC240: LeaveBlock: unexpected jumping out IF_STMT
-
-      -- DECOMPILER ERROR at PC240: LeaveBlock: unexpected jumping out DO_STMT
-
+  L2_2 = L0_0.image_path
+  if L2_2 == nil then
+    break
+  end
+  L11_11 = string
+  L11_11 = L11_11.lower
+  L11_11 = L11_11(L2_2)
+  L2_2 = L11_11
+  L11_11 = mp
+  L11_11 = L11_11.GetProcessCommandLine
+  L11_11 = L11_11(L1_1)
+  L9_9 = L11_11
+  if L9_9 ~= nil then
+    L11_11 = string
+    L11_11 = L11_11.lower
+    L11_11 = L11_11(L9_9)
+    L9_9 = L11_11
+    L11_11 = string
+    L11_11 = L11_11.match
+    L11_11 = L11_11(L9_9, "[a-zA-Z] (.+)$")
+    if L11_11 ~= nil and (string.find(L11_11, ":\\windows", 1, true) or string.find(L11_11, ":\\program files", 1, true)) then
+      return mp.CLEAN
     end
   end
+  L11_11 = string
+  L11_11 = L11_11.match
+  L11_11 = L11_11(L2_2, "\\([^\\]+)$")
+  L3_3 = L11_11
+  if L3_3 == nil or L3_3 == "" then
+    break
+  end
+  if L3_3 ~= "psexecsvc.exe" and L3_3 ~= "wmiprvse.exe" and L3_3 ~= "gpscript.exe" and L3_3 ~= "svchost.exe" then
+    L11_11 = string
+    L11_11 = L11_11.find
+    L11_11 = L11_11(L2_2, ":\\windows\\", 2, true)
+    if L11_11 == nil then
+      L11_11 = string
+      L11_11 = L11_11.find
+      L11_11 = L11_11(L2_2, ":\\program files", 2, true)
+    end
+  elseif L11_11 == nil then
+    L11_11 = mp
+    L11_11 = L11_11.CLEAN
+    return L11_11
+  end
+  L11_11 = string
+  L11_11 = L11_11.find
+  L11_11 = L11_11(L2_2, "^:\\program files", 2)
+  if not L11_11 then
+    L11_11 = string
+    L11_11 = L11_11.find
+    L11_11 = L11_11(L2_2, ":\\windows\\system32\\nxtcod.exe", 2, true)
+    if not L11_11 then
+      L11_11 = string
+      L11_11 = L11_11.find
+      L11_11 = L11_11(L2_2, ":\\windows\\ccm\\", 2, true)
+    end
+  elseif L11_11 then
+    L11_11 = string
+    L11_11 = L11_11.find
+    L11_11 = L11_11(L2_2, "\\easeus\\easeus partition master\\bin\\", 2, true)
+    if not L11_11 then
+      L11_11 = string
+      L11_11 = L11_11.find
+      L11_11 = L11_11(L2_2, "\\common files\\mcafee\\systemcore\\", 2, true)
+      if not L11_11 then
+        L11_11 = string
+        L11_11 = L11_11.find
+        L11_11 = L11_11(L2_2, "\\mcafee\\endpoint security\\threat prevention\\", 2, true)
+        if not L11_11 then
+          L11_11 = mp
+          L11_11 = L11_11.IsKnownFriendlyFile
+          L11_11 = L11_11(L2_2, true, true)
+        end
+      end
+    elseif L11_11 == true then
+      L11_11 = mp
+      L11_11 = L11_11.CLEAN
+      return L11_11
+    end
+  end
+  L10_10 = L10_10 + 1
 end
-if 0 + 1 < 2 then
-  return mp.CLEAN
+if L10_10 < 2 then
+  L11_11 = mp
+  L11_11 = L11_11.CLEAN
+  return L11_11
 end
-return mp.INFECTED
-
+L11_11 = mp
+L11_11 = L11_11.INFECTED
+return L11_11

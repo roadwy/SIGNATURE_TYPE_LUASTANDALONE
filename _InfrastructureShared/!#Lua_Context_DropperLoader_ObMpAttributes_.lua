@@ -1,76 +1,134 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_DropperLoader_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-local l_0_1 = (MpCommon.PathToWin32Path)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH))
-if l_0_1 == nil or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSDEVICEPATH
+L1_1 = L1_1(L2_2)
+if L1_1 == nil or L0_0 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1 == "" or l_0_0 == "" then
-  return mp.CLEAN
+if L1_1 == "" or L0_0 == "" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = l_0_1 .. "\\" .. l_0_0
-local l_0_3 = (MpCommon.GetOriginalFileName)(l_0_2)
-if l_0_3 ~= "regsvr32.exe" and l_0_3 ~= "rundll32.exe" and l_0_0 ~= "regsvr32.exe" and l_0_0 ~= "rundll32.exe" then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L0_0
+L2_2 = L2_2(L3_3)
+L0_0 = L2_2
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 == nil or L0_0 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_4 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if (MpCommon.QueryPersistContext)(l_0_4, "DllDroppedByExcel") or (MpCommon.QueryPersistContext)(l_0_4, "CabDroppedByExcel") then
-  if l_0_0 == "regsvr32.exe" or l_0_3 ~= nil and l_0_3 == "regsvr32.exe" then
-    (mp.set_mpattribute)("Lua:Context/ExcelDropRegsvrLoad")
-  else
-    if l_0_0 == "rundll32.exe" or l_0_3 ~= nil and l_0_3 == "rundll32.exe" then
-      (mp.set_mpattribute)("Lua:Context/ExcelDropRundllLoad")
-    end
+L2_2 = L1_1
+L3_3 = "\\"
+L4_4 = L0_0
+L2_2 = L2_2 .. L3_3 .. L4_4
+L3_3 = MpCommon
+L3_3 = L3_3.GetOriginalFileName
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+if L3_3 ~= "regsvr32.exe" and L3_3 ~= "rundll32.exe" and L0_0 ~= "regsvr32.exe" and L0_0 ~= "rundll32.exe" then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.getfilename
+L5_5 = mp
+L5_5 = L5_5.FILEPATH_QUERY_LOWERCASE
+L4_4 = L4_4(L5_5)
+L5_5 = MpCommon
+L5_5 = L5_5.QueryPersistContext
+L6_6 = L4_4
+L5_5 = L5_5(L6_6, "DllDroppedByExcel")
+if not L5_5 then
+  L5_5 = MpCommon
+  L5_5 = L5_5.QueryPersistContext
+  L6_6 = L4_4
+  L5_5 = L5_5(L6_6, "CabDroppedByExcel")
+elseif L5_5 then
+  if L0_0 == "regsvr32.exe" or L3_3 ~= nil and L3_3 == "regsvr32.exe" then
+    L5_5 = mp
+    L5_5 = L5_5.set_mpattribute
+    L6_6 = "Lua:Context/ExcelDropRegsvrLoad"
+    L5_5(L6_6)
+  elseif L0_0 == "rundll32.exe" or L3_3 ~= nil and L3_3 == "rundll32.exe" then
+    L5_5 = mp
+    L5_5 = L5_5.set_mpattribute
+    L6_6 = "Lua:Context/ExcelDropRundllLoad"
+    L5_5(L6_6)
   end
 end
-local l_0_5 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if (MpCommon.QueryPersistContext)(l_0_5, "DllDroppedByWord") then
-  if l_0_0 == "regsvr32.exe" or l_0_3 ~= nil and l_0_3 == "regsvr32.exe" then
-    (mp.set_mpattribute)("Lua:Context/WordDropRegsvrLoad")
-  else
-    if l_0_0 == "rundll32.exe" or l_0_3 ~= nil and l_0_3 == "rundll32.exe" then
-      (mp.set_mpattribute)("Lua:Context/WordDropRundllLoad")
-    end
+L5_5 = mp
+L5_5 = L5_5.getfilename
+L6_6 = mp
+L6_6 = L6_6.FILEPATH_QUERY_LOWERCASE
+L5_5 = L5_5(L6_6)
+L6_6 = MpCommon
+L6_6 = L6_6.QueryPersistContext
+L6_6 = L6_6(L5_5, "DllDroppedByWord")
+if L6_6 then
+  if L0_0 == "regsvr32.exe" or L3_3 ~= nil and L3_3 == "regsvr32.exe" then
+    L6_6 = mp
+    L6_6 = L6_6.set_mpattribute
+    L6_6("Lua:Context/WordDropRegsvrLoad")
+  elseif L0_0 == "rundll32.exe" or L3_3 ~= nil and L3_3 == "rundll32.exe" then
+    L6_6 = mp
+    L6_6 = L6_6.set_mpattribute
+    L6_6("Lua:Context/WordDropRundllLoad")
   end
 end
-if (MpCommon.QueryPersistContext)(l_0_5, "DllDroppedByPowerShell") then
-  if l_0_0 == "regsvr32.exe" or l_0_3 ~= nil and l_0_3 == "regsvr32.exe" then
-    (mp.set_mpattribute)("Lua:Context/PowershellDropRegsvrLoad")
-  else
-    if l_0_0 == "rundll32.exe" or l_0_3 ~= nil and l_0_3 == "rundll32.exe" then
-      (mp.set_mpattribute)("Lua:Context/PowershellDropRundllLoad")
-    end
+L6_6 = mp
+L6_6 = L6_6.getfilename
+L6_6 = L6_6(mp.FILEPATH_QUERY_LOWERCASE)
+if MpCommon.QueryPersistContext(L6_6, "DllDroppedByNotepadpp") then
+  if L0_0 == "regsvr32.exe" or L3_3 ~= nil and L3_3 == "regsvr32.exe" then
+    mp.set_mpattribute("Lua:Context/NotepadppDropRegsvrLoad")
+  elseif L0_0 == "rundll32.exe" or L3_3 ~= nil and L3_3 == "rundll32.exe" then
+    mp.set_mpattribute("Lua:Context/NotepadppDropRundllLoad")
   end
 end
-if (MpCommon.QueryPersistContext)(l_0_5, "DllDroppedByWscript") then
-  if l_0_0 == "regsvr32.exe" or l_0_3 ~= nil and l_0_3 == "regsvr32.exe" then
-    (mp.set_mpattribute)("Lua:Context/WscriptDropRegsvrLoad")
-  else
-    if l_0_0 == "rundll32.exe" or l_0_3 ~= nil and l_0_3 == "rundll32.exe" then
-      (mp.set_mpattribute)("Lua:Context/WscriptDropRundllLoad")
-    end
+if MpCommon.QueryPersistContext(L6_6, "DllDroppedByPowerShell") then
+  if L0_0 == "regsvr32.exe" or L3_3 ~= nil and L3_3 == "regsvr32.exe" then
+    mp.set_mpattribute("Lua:Context/PowershellDropRegsvrLoad")
+  elseif L0_0 == "rundll32.exe" or L3_3 ~= nil and L3_3 == "rundll32.exe" then
+    mp.set_mpattribute("Lua:Context/PowershellDropRundllLoad")
   end
 end
-if (MpCommon.QueryPersistContext)(l_0_5, "DllDroppedByCscript") then
-  if l_0_0 == "regsvr32.exe" or l_0_3 ~= nil and l_0_3 == "regsvr32.exe" then
-    (mp.set_mpattribute)("Lua:Context/CscriptDropRegsvrLoad")
-  else
-    if l_0_0 == "rundll32.exe" or l_0_3 ~= nil and l_0_3 == "rundll32.exe" then
-      (mp.set_mpattribute)("Lua:Context/CscriptDropRundllLoad")
-    end
+if MpCommon.QueryPersistContext(L6_6, "DllDroppedByWscript") then
+  if L0_0 == "regsvr32.exe" or L3_3 ~= nil and L3_3 == "regsvr32.exe" then
+    mp.set_mpattribute("Lua:Context/WscriptDropRegsvrLoad")
+  elseif L0_0 == "rundll32.exe" or L3_3 ~= nil and L3_3 == "rundll32.exe" then
+    mp.set_mpattribute("Lua:Context/WscriptDropRundllLoad")
   end
 end
-if (MpCommon.QueryPersistContext)(l_0_5, "DllDroppedByCurl") then
-  if l_0_0 == "regsvr32.exe" or l_0_3 ~= nil and l_0_3 == "regsvr32.exe" then
-    (mp.set_mpattribute)("Lua:Context/CurlDropRegsvrLoad")
-  else
-    if l_0_0 == "rundll32.exe" or l_0_3 ~= nil and l_0_3 == "rundll32.exe" then
-      (mp.set_mpattribute)("Lua:Context/CurlDropRundllLoad")
-    end
+if MpCommon.QueryPersistContext(L6_6, "DllDroppedByCscript") then
+  if L0_0 == "regsvr32.exe" or L3_3 ~= nil and L3_3 == "regsvr32.exe" then
+    mp.set_mpattribute("Lua:Context/CscriptDropRegsvrLoad")
+  elseif L0_0 == "rundll32.exe" or L3_3 ~= nil and L3_3 == "rundll32.exe" then
+    mp.set_mpattribute("Lua:Context/CscriptDropRundllLoad")
+  end
+end
+if MpCommon.QueryPersistContext(L6_6, "DllDroppedByCurl") then
+  if L0_0 == "regsvr32.exe" or L3_3 ~= nil and L3_3 == "regsvr32.exe" then
+    mp.set_mpattribute("Lua:Context/CurlDropRegsvrLoad")
+  elseif L0_0 == "rundll32.exe" or L3_3 ~= nil and L3_3 == "rundll32.exe" then
+    mp.set_mpattribute("Lua:Context/CurlDropRundllLoad")
   end
 end
 return mp.CLEAN
-

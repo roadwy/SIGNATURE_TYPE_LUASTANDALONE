@@ -1,320 +1,321 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspiciousStackedExtensionsSensor.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)()
-local l_0_1 = (string.lower)((string.sub)(l_0_0, -4))
-local l_0_2 = false
-local l_0_3 = false
-local l_0_4 = 0
-local l_0_5 = {}
-l_0_5[".bat"] = ""
-l_0_5[".cmd"] = ""
-l_0_5[".com"] = ""
-l_0_5[".cpl"] = ""
-l_0_5[".exe"] = ""
-l_0_5[".htt"] = ""
-l_0_5[".jar"] = ""
-l_0_5[".pif"] = ""
-l_0_5[".ps1"] = ""
-l_0_5[".scr"] = ""
-l_0_5[".vbs"] = ""
-if l_0_5[l_0_1] then
-  local l_0_6 = (string.reverse)((string.lower)((string.sub)(l_0_0, 0, (string.len)(l_0_0) - 4)))
-  for l_0_10 in (string.gmatch)(l_0_6, "[%.%%s^]*(%w+)[%.%%s>_\\/]") do
-    l_0_4 = l_0_4 + 1
-    if (string.len)(l_0_10) >= 2 then
-      local l_0_11 = {}
-      l_0_11.exe = ""
-      l_0_11.tab = ""
-      l_0_11.bat = ""
-      l_0_11.dmc = ""
-      l_0_11.cmd = ""
-      l_0_11.moc = ""
-      l_0_11.com = ""
-      l_0_11.lpc = ""
-      l_0_11.cpl = ""
-      l_0_11.tth = ""
-      l_0_11.htt = ""
-      l_0_11.raj = ""
-      l_0_11.jar = ""
-      l_0_11.fip = ""
-      l_0_11.pif = ""
-      l_0_11["1sp"] = ""
-      l_0_11.ps1 = ""
-      l_0_11.rcs = ""
-      l_0_11.scr = ""
-      l_0_11.sbv = ""
-      l_0_11.vbs = ""
-      l_0_11.lld = ""
-      l_0_11.dll = ""
-      local l_0_12 = {}
-      l_0_12.exe = ""
-      l_0_12.txt = ""
-      l_0_12.rcs = ""
-      l_0_12.scr = ""
-      l_0_12.fdp = ""
-      l_0_12.pdf = ""
-      l_0_12.gnp = ""
-      l_0_12.png = ""
-      l_0_12.gpj = ""
-      l_0_12.jpg = ""
-      l_0_12.ftr = ""
-      l_0_12.rtf = ""
-      l_0_12.tpp = ""
-      l_0_12.ppt = ""
-      l_0_12.piz = ""
-      l_0_12.zip = ""
-      l_0_12.slx = ""
-      l_0_12.xls = ""
-      local l_0_13 = {}
-      l_0_13.bac = ""
-      l_0_13.cab = ""
-      l_0_13.pizg = ""
-      l_0_13.gzip = ""
-      l_0_13.osi = ""
-      l_0_13.iso = ""
-      l_0_13.rat = ""
-      l_0_13.tar = ""
-      l_0_13.dhv = ""
-      l_0_13.vhd = ""
-      l_0_13.piz = ""
-      l_0_13.zip = ""
-      l_0_13.mhc = ""
-      l_0_13.chm = ""
-      do
-        do
-          local l_0_14 = {}
-          l_0_14.cod = ""
-          l_0_14.doc = ""
-          l_0_14.mcod = ""
-          l_0_14.docm = ""
-          l_0_14.xcod = ""
-          l_0_14.docx = ""
-          l_0_14.tod = ""
-          l_0_14.dot = ""
-          l_0_14.mtod = ""
-          l_0_14.dotm = ""
-          l_0_14.xtod = ""
-          l_0_14.dotx = ""
-          l_0_14.tdo = ""
-          l_0_14.odt = ""
-          l_0_14.ftr = ""
-          l_0_14.rtf = ""
-          l_0_14.sdo = ""
-          l_0_14.ods = ""
-          l_0_14.alx = ""
-          l_0_14.xla = ""
-          l_0_14.slx = ""
-          l_0_14.xls = ""
-          l_0_14.malx = ""
-          l_0_14.xlam = ""
-          l_0_14.bslx = ""
-          l_0_14.xlsb = ""
-          l_0_14.mslx = ""
-          l_0_14.xlsm = ""
-          l_0_14.xslx = ""
-          l_0_14.xlsx = ""
-          l_0_14.tlx = ""
-          l_0_14.xlt = ""
-          l_0_14.mtlx = ""
-          l_0_14.xltm = ""
-          l_0_14.xtlx = ""
-          l_0_14.xltx = ""
-          l_0_14.pdo = ""
-          l_0_14.odp = ""
-          l_0_14.top = ""
-          l_0_14.pot = ""
-          l_0_14.mtop = ""
-          l_0_14.potm = ""
-          l_0_14.xtop = ""
-          l_0_14.potx = ""
-          l_0_14.app = ""
-          l_0_14.ppa = ""
-          l_0_14.mapp = ""
-          l_0_14.ppam = ""
-          l_0_14.spp = ""
-          l_0_14.pps = ""
-          l_0_14.mspp = ""
-          l_0_14.ppsm = ""
-          l_0_14.xspp = ""
-          l_0_14.ppsx = ""
-          l_0_14.tpp = ""
-          l_0_14.ppt = ""
-          l_0_14.mtpp = ""
-          l_0_14.pptm = ""
-          l_0_14.xtpp = ""
-          l_0_14.pptx = ""
-          l_0_14.ina = ""
-          l_0_14.ani = ""
-          l_0_14.pmb = ""
-          l_0_14.bmp = ""
-          l_0_14.ruc = ""
-          l_0_14.cur = ""
-          l_0_14.fme = ""
-          l_0_14.emf = ""
-          l_0_14.fig = ""
-          l_0_14.gif = ""
-          l_0_14.oci = ""
-          l_0_14.ico = ""
-          l_0_14.gepj = ""
-          l_0_14.jpeg = ""
-          l_0_14.gpj = ""
-          l_0_14.jpg = ""
-          l_0_14.gnp = ""
-          l_0_14.png = ""
-          l_0_14.war = ""
-          l_0_14.raw = ""
-          l_0_14.fit = ""
-          l_0_14.tif = ""
-          l_0_14.ffit = ""
-          l_0_14.tiff = ""
-          l_0_14.fmw = ""
-          l_0_14.wmf = ""
-          l_0_14.fifj = ""
-          l_0_14.jfif = ""
-          l_0_14.pg3 = ""
-          l_0_14["3gp"] = ""
-          l_0_14.caa = ""
-          l_0_14.aac = ""
-          l_0_14.fsa = ""
-          l_0_14.asf = ""
-          l_0_14.iva = ""
-          l_0_14.avi = ""
-          l_0_14.alf = ""
-          l_0_14.fla = ""
-          l_0_14.calf = ""
-          l_0_14.flac = ""
-          l_0_14.vlf = ""
-          l_0_14.flv = ""
-          l_0_14.u3m = ""
-          l_0_14.m3u = ""
-          l_0_14.v4m = ""
-          l_0_14.m4v = ""
-          l_0_14.vkm = ""
-          l_0_14.mkv = ""
-          l_0_14.vom = ""
-          l_0_14.mov = ""
-          l_0_14["3pm"] = ""
-          l_0_14.mp3 = ""
-          l_0_14["4pm"] = ""
-          l_0_14.mp4 = ""
-          l_0_14.epm = ""
-          l_0_14.mpe = ""
-          l_0_14.gepm = ""
-          l_0_14.mpeg = ""
-          l_0_14.gpm = ""
-          l_0_14.mpg = ""
-          l_0_14.ggo = ""
-          l_0_14.ogg = ""
-          l_0_14.amv = ""
-          l_0_14.vma = ""
-          l_0_14.vaw = ""
-          l_0_14.wav = ""
-          l_0_14.vmw = ""
-          l_0_14.wmv = ""
-          l_0_14.txt = ""
-          l_0_14.ppc = ""
-          l_0_14.cpp = ""
-          l_0_14.ssc = ""
-          l_0_14.css = ""
-          l_0_14.vsc = ""
-          l_0_14.csv = ""
-          l_0_14.lme = ""
-          l_0_14.eml = ""
-          l_0_14.codg = ""
-          l_0_14.gdoc = ""
-          l_0_14.ath = ""
-          l_0_14.hta = ""
-          l_0_14.mth = ""
-          l_0_14.htm = ""
-          l_0_14.lmth = ""
-          l_0_14.html = ""
-          l_0_14.thm = ""
-          l_0_14.mht = ""
-          l_0_14.fdp = ""
-          l_0_14.pdf = ""
-          l_0_14.ftt = ""
-          l_0_14.ttf = ""
-          l_0_14.sd3 = ""
-          l_0_14["3ds"] = ""
-          l_0_14.swa = ""
-          l_0_14.aws = ""
-          l_0_14.gwd = ""
-          l_0_14.dwg = ""
-          l_0_14.fxd = ""
-          l_0_14.dxf = ""
-          l_0_14.saf = ""
-          l_0_14.fas = ""
-          l_0_14["1sp"] = ""
-          l_0_14.ps1 = ""
-          l_0_14.lnm = ""
-          l_0_14.mln = ""
-          l_0_14.flp = ""
-          l_0_14.plf = ""
-          l_0_14.xlv = ""
-          l_0_14.vlx = ""
-          if l_0_12[l_0_10] and (string.find)((string.lower)(l_0_0), (string.reverse)(l_0_10), 1, true) ~= 3 then
-            l_0_3 = true
-          end
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          -- DECOMPILER ERROR at PC343: Unhandled construct in 'MakeBoolean' P3
-
-          if (l_0_1 == ".exe" and l_0_10 == "dmc") or l_0_10 ~= "exe" or l_0_1 ~= ".jar" or l_0_4 ~= 1 or l_0_11[l_0_10] ~= nil then
-            l_0_2 = true
-          end
-          do break end
-          -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC345: LeaveBlock: unexpected jumping out IF_STMT
-
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = string
+L2_2 = L2_2.sub
+L3_3 = L0_0
+L4_4 = -4
+L10_10 = L2_2(L3_3, L4_4)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L2_2(L3_3, L4_4))
+L2_2 = false
+L3_3 = false
+L4_4 = 0
+L5_5 = {}
+L5_5[".bat"] = ""
+L5_5[".cmd"] = ""
+L5_5[".com"] = ""
+L5_5[".cpl"] = ""
+L5_5[".exe"] = ""
+L5_5[".htt"] = ""
+L5_5[".jar"] = ""
+L5_5[".pif"] = ""
+L5_5[".ps1"] = ""
+L5_5[".scr"] = ""
+L5_5[".vbs"] = ""
+L6_6 = L5_5[L1_1]
+if L6_6 then
+  L6_6 = string
+  L6_6 = L6_6.reverse
+  L10_10 = 0
+  L10_10 = L8_8(L9_9, L10_10, string.len(L0_0) - 4)
+  L10_10 = L7_7(L8_8, L9_9, L10_10, L8_8(L9_9, L10_10, string.len(L0_0) - 4))
+  L6_6 = L6_6(L7_7, L8_8, L9_9, L10_10, L7_7(L8_8, L9_9, L10_10, L8_8(L9_9, L10_10, string.len(L0_0) - 4)))
+  for L10_10 in L7_7(L8_8, L9_9) do
+    L4_4 = L4_4 + 1
+    if string.len(L10_10) >= 2 then
+      if ({
+        exe = "",
+        txt = "",
+        rcs = "",
+        scr = "",
+        fdp = "",
+        pdf = "",
+        gnp = "",
+        png = "",
+        gpj = "",
+        jpg = "",
+        ftr = "",
+        rtf = "",
+        tpp = "",
+        ppt = "",
+        piz = "",
+        zip = "",
+        slx = "",
+        xls = ""
+      })[L10_10] and string.find(string.lower(L0_0), string.reverse(L10_10), 1, true) ~= 3 then
+        L3_3 = true
+      end
+      if L1_1 == ".exe" and (L10_10 == "dmc" or L10_10 == "sw" or L10_10 == "piz" or L10_10 == "rar" or L10_10 == "txt" or L10_10 == "exe" and string.find(L6_6, "tcestoob", 1, true) ~= nil) or L1_1 == ".jar" and L10_10 == "sj" or L4_4 == 1 and ({
+        bac = "",
+        cab = "",
+        pizg = "",
+        gzip = "",
+        osi = "",
+        iso = "",
+        rat = "",
+        tar = "",
+        dhv = "",
+        vhd = "",
+        piz = "",
+        zip = "",
+        mhc = "",
+        chm = ""
+      })[L10_10] ~= nil or ({
+        ["cod"] = "",
+        ["doc"] = "",
+        ["mcod"] = "",
+        ["docm"] = "",
+        ["xcod"] = "",
+        ["docx"] = "",
+        ["tod"] = "",
+        ["dot"] = "",
+        ["mtod"] = "",
+        ["dotm"] = "",
+        ["xtod"] = "",
+        ["dotx"] = "",
+        ["tdo"] = "",
+        ["odt"] = "",
+        ["ftr"] = "",
+        ["rtf"] = "",
+        ["sdo"] = "",
+        ["ods"] = "",
+        ["alx"] = "",
+        ["xla"] = "",
+        ["slx"] = "",
+        ["xls"] = "",
+        ["malx"] = "",
+        ["xlam"] = "",
+        ["bslx"] = "",
+        ["xlsb"] = "",
+        ["mslx"] = "",
+        ["xlsm"] = "",
+        ["xslx"] = "",
+        ["xlsx"] = "",
+        ["tlx"] = "",
+        ["xlt"] = "",
+        ["mtlx"] = "",
+        ["xltm"] = "",
+        ["xtlx"] = "",
+        ["xltx"] = "",
+        ["pdo"] = "",
+        ["odp"] = "",
+        ["top"] = "",
+        ["pot"] = "",
+        ["mtop"] = "",
+        ["potm"] = "",
+        ["xtop"] = "",
+        ["potx"] = "",
+        ["app"] = "",
+        ["ppa"] = "",
+        ["mapp"] = "",
+        ["ppam"] = "",
+        ["spp"] = "",
+        ["pps"] = "",
+        ["mspp"] = "",
+        ["ppsm"] = "",
+        ["xspp"] = "",
+        ["ppsx"] = "",
+        ["tpp"] = "",
+        ["ppt"] = "",
+        ["mtpp"] = "",
+        ["pptm"] = "",
+        ["xtpp"] = "",
+        ["pptx"] = "",
+        ["ina"] = "",
+        ["ani"] = "",
+        ["pmb"] = "",
+        ["bmp"] = "",
+        ["ruc"] = "",
+        ["cur"] = "",
+        ["fme"] = "",
+        ["emf"] = "",
+        ["fig"] = "",
+        ["gif"] = "",
+        ["oci"] = "",
+        ["ico"] = "",
+        ["gepj"] = "",
+        ["jpeg"] = "",
+        ["gpj"] = "",
+        ["jpg"] = "",
+        ["gnp"] = "",
+        ["png"] = "",
+        ["war"] = "",
+        ["raw"] = "",
+        ["fit"] = "",
+        ["tif"] = "",
+        ["ffit"] = "",
+        ["tiff"] = "",
+        ["fmw"] = "",
+        ["wmf"] = "",
+        ["fifj"] = "",
+        ["jfif"] = "",
+        ["pg3"] = "",
+        ["3gp"] = "",
+        ["caa"] = "",
+        ["aac"] = "",
+        ["fsa"] = "",
+        ["asf"] = "",
+        ["iva"] = "",
+        ["avi"] = "",
+        ["alf"] = "",
+        ["fla"] = "",
+        ["calf"] = "",
+        ["flac"] = "",
+        ["vlf"] = "",
+        ["flv"] = "",
+        ["u3m"] = "",
+        ["m3u"] = "",
+        ["v4m"] = "",
+        ["m4v"] = "",
+        ["vkm"] = "",
+        ["mkv"] = "",
+        ["vom"] = "",
+        ["mov"] = "",
+        ["3pm"] = "",
+        ["mp3"] = "",
+        ["4pm"] = "",
+        ["mp4"] = "",
+        ["epm"] = "",
+        ["mpe"] = "",
+        ["gepm"] = "",
+        ["mpeg"] = "",
+        ["gpm"] = "",
+        ["mpg"] = "",
+        ["ggo"] = "",
+        ["ogg"] = "",
+        ["amv"] = "",
+        ["vma"] = "",
+        ["vaw"] = "",
+        ["wav"] = "",
+        ["vmw"] = "",
+        ["wmv"] = "",
+        ["txt"] = "",
+        ["ppc"] = "",
+        ["cpp"] = "",
+        ["ssc"] = "",
+        ["css"] = "",
+        ["vsc"] = "",
+        ["csv"] = "",
+        ["lme"] = "",
+        ["eml"] = "",
+        ["codg"] = "",
+        ["gdoc"] = "",
+        ["ath"] = "",
+        ["hta"] = "",
+        ["mth"] = "",
+        ["htm"] = "",
+        ["lmth"] = "",
+        ["html"] = "",
+        ["thm"] = "",
+        ["mht"] = "",
+        ["fdp"] = "",
+        ["pdf"] = "",
+        ["ftt"] = "",
+        ["ttf"] = "",
+        ["sd3"] = "",
+        ["3ds"] = "",
+        ["swa"] = "",
+        ["aws"] = "",
+        ["gwd"] = "",
+        ["dwg"] = "",
+        ["fxd"] = "",
+        ["dxf"] = "",
+        ["saf"] = "",
+        ["fas"] = "",
+        ["1sp"] = "",
+        ["ps1"] = "",
+        ["lnm"] = "",
+        ["mln"] = "",
+        ["flp"] = "",
+        ["plf"] = "",
+        ["xlv"] = "",
+        ["vlx"] = ""
+      })[L10_10] ~= nil or ({
+        ["exe"] = "",
+        ["tab"] = "",
+        ["bat"] = "",
+        ["dmc"] = "",
+        ["cmd"] = "",
+        ["moc"] = "",
+        ["com"] = "",
+        ["lpc"] = "",
+        ["cpl"] = "",
+        ["tth"] = "",
+        ["htt"] = "",
+        ["raj"] = "",
+        ["jar"] = "",
+        ["fip"] = "",
+        ["pif"] = "",
+        ["1sp"] = "",
+        ["ps1"] = "",
+        ["rcs"] = "",
+        ["scr"] = "",
+        ["sbv"] = "",
+        ["vbs"] = "",
+        ["lld"] = "",
+        ["dll"] = ""
+      })[L10_10] ~= nil then
+        L2_2 = true
+      end
+      break
+    end
+  end
+  if L2_2 then
+    L7_7["zip.exe"] = ""
+    L7_7["gzip.exe"] = ""
+    L4_4 = L8_8
+    while L4_4 > 0 do
+      L10_10 = L4_4
+      if L8_8 ~= 92 then
+        L4_4 = L4_4 - 1
+      end
+    end
+    if L4_4 > 0 then
+      L4_4 = L4_4 + 1
+    end
+    L10_10 = L4_4
+    L10_10 = L8_8
+    if L9_9 then
+      return L9_9
+    end
+    if L3_3 then
+      L10_10 = "Lua:SuspiciousStackedExtensionsSensor.B"
+      L9_9(L10_10)
+      return L9_9
+    else
+      L10_10 = mp
+      L10_10 = L10_10.CONTEXT_DATA_SCANREASON
+      L10_10 = mp
+      L10_10 = L10_10.SCANREASON_ONOPEN
+      if L9_9 ~= L10_10 then
+        L10_10 = mp
+        L10_10 = L10_10.SCANREASON_ONMODIFIEDHANDLECLOSE
+      elseif L9_9 == L10_10 then
+        L10_10 = mp
+        L10_10 = L10_10.get_contextdata
+        L10_10 = L10_10(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+        if L10_10 == true then
+          L10_10 = mp
+          L10_10 = L10_10.INFECTED
+          return L10_10
         end
       end
     end
   end
-  if l_0_2 then
-    local l_0_15 = {}
-    l_0_15["zip.exe"] = ""
-    l_0_15["gzip.exe"] = ""
-    l_0_4 = (string.len)(l_0_0)
-    while l_0_4 > 0 and (string.byte)(l_0_0, l_0_4) ~= 92 do
-      l_0_4 = l_0_4 - 1
-    end
-    if l_0_4 > 0 then
-      l_0_4 = l_0_4 + 1
-    end
-    local l_0_16 = (string.sub)(l_0_0, l_0_4)
-    if l_0_15[(string.lower)(l_0_16)] then
-      return mp.CLEAN
-    end
-    if l_0_3 then
-      (mp.set_mpattribute)("Lua:SuspiciousStackedExtensionsSensor.B")
-      return mp.INFECTED
-    else
-      local l_0_17 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-      if (l_0_17 == mp.SCANREASON_ONOPEN or l_0_17 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE) and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-        return mp.INFECTED
-      end
-    end
-  end
 end
-do
-  return mp.CLEAN
-end
-
+L6_6 = mp
+L6_6 = L6_6.CLEAN
+return L6_6

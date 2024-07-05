@@ -1,21 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3f95ffa14611 
-
--- params : ...
--- function num : 0
-local l_0_0 = 144
-local l_0_1 = (pe.mmap_va)(pevars.sigaddr, l_0_0)
-local l_0_2 = 66
-while (string.byte)(l_0_1, l_0_2) == 104 do
-  if l_0_0 < l_0_2 then
+local L0_0, L1_1, L2_2
+L0_0 = 144
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = pevars
+L2_2 = L2_2.sigaddr
+L1_1 = L1_1(L2_2, L0_0)
+L2_2 = 66
+while string.byte(L1_1, L2_2) == 104 do
+  L2_2 = L2_2 + 5
+  if L0_0 < L2_2 then
     return mp.CLEAN
   end
   if 0 + 1 >= 20 then
     return mp.CLEAN
   end
 end
-if (mp.readu_u32)(l_0_1, l_0_2) == 1146486612 and (mp.readu_u32)(l_0_1, l_0_2 + 4) == 3296978315 and (mp.readu_u16)(l_0_1, l_0_2 + 8) == 24912 and (string.byte)(l_0_1, l_0_2 + 10) == 233 then
+if mp.readu_u32(L1_1, L2_2) == 1146486612 and mp.readu_u32(L1_1, L2_2 + 4) == 3296978315 and mp.readu_u16(L1_1, L2_2 + 8) == 24912 and string.byte(L1_1, L2_2 + 10) == 233 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

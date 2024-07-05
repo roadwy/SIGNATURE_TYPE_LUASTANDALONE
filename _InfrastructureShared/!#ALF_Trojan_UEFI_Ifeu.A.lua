@@ -1,24 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_UEFI_Ifeu.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_UEFISTREAM then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_UEFISTREAM
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_2 = {}
--- DECOMPILER ERROR at PC25: No list found for R2 , SetList fails
-
--- DECOMPILER ERROR at PC26: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC27: Overwrote pending register: R4 in 'AssignReg'
-
-for l_0_6,l_0_7 in ("cef5b9a3-476d-497f-9fdc-e98143e0422c")("fff12b8d-7696-4c8b-a985-2747075b4f50") do
-  if (string.find)(l_0_1, l_0_7, 1, true) then
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L7_7 = L2_2(L3_3, L4_4)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2(L3_3, L4_4))
+L2_2 = {L3_3, L4_4}
+for L6_6, L7_7 in L3_3(L4_4) do
+  if string.find(L1_1, L7_7, 1, true) then
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L3_3

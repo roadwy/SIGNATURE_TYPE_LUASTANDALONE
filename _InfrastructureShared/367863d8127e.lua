@@ -1,10 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/367863d8127e 
-
--- params : ...
--- function num : 0
-if peattributes.suspicious_image_version and peattributes.lastscn_writable and peattributes.lastscn_executable then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.suspicious_image_version
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.lastscn_writable
+  if L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.lastscn_executable
+    if L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

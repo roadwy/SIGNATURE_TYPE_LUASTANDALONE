@@ -1,1297 +1,1696 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-Infrastructure_GetMappedDriveVolumes = function()
-  -- function num : 0_0
-  local l_1_0 = {}
-  local l_1_1 = (sysio.GetLogicalDrivesMask)()
-  local l_1_2 = {}
-  -- DECOMPILER ERROR at PC31: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC32: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC33: Overwrote pending register: R4 in 'AssignReg'
-
-  for l_1_6,l_1_7 in ("A:")("B:") do
-    -- DECOMPILER ERROR at PC36: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC38: Overwrote pending register: R9 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC40: Overwrote pending register: R10 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC41: Overwrote pending register: R11 in 'AssignReg'
-
-    if (("F:").bitand)((("G:").shl32)("H:", "I:"), l_1_1) ~= 0 then
-      local l_1_8 = (sysio.QuerySymbolicLinkObject)("\\??\\globalroot\\GLOBAL??\\" .. l_1_7)
+local L0_0, L1_1
+function L0_0()
+  local L0_2, L1_3, L2_4, L3_5, L4_6, L5_7, L6_8, L7_9
+  L0_2 = {}
+  L1_3 = sysio
+  L1_3 = L1_3.GetLogicalDrivesMask
+  L1_3 = L1_3()
+  L2_4 = {
+    L3_5,
+    L4_6,
+    L5_7,
+    L6_8,
+    L7_9,
+    "F:",
+    "G:",
+    "H:",
+    "I:",
+    "J:",
+    "K:",
+    "L:",
+    "M:",
+    "N:",
+    "O:",
+    "P:",
+    "Q:",
+    "R:",
+    "S:",
+    "T:",
+    "U:",
+    "V:",
+    "W:",
+    "X:",
+    "Y:",
+    "Z:"
+  }
+  L6_8 = "D:"
+  L7_9 = "E:"
+  for L6_8, L7_9 in L3_5(L4_6) do
+    if mp.bitand(mp.shl32(1, L6_8 - 1), L1_3) ~= 0 and sysio.QuerySymbolicLinkObject("\\??\\globalroot\\GLOBAL??\\" .. L7_9) then
+      L0_2[L7_9] = sysio.QuerySymbolicLinkObject("\\??\\globalroot\\GLOBAL??\\" .. L7_9)
     end
   end
-  if l_1_8 then
-    do
-      do return l_1_0 end
-      -- WARNING: undefined locals caused missing assignments!
+  return L0_2
+end
+Infrastructure_GetMappedDriveVolumes = L0_0
+function L0_0()
+  local L0_10, L1_11, L2_12, L3_13, L4_14, L5_15, L6_16, L7_17
+  L0_10 = sysio
+  L0_10 = L0_10.QuerySymbolicLinkObject
+  L1_11 = "\\??\\globalroot\\device\\BootPartition"
+  L0_10 = L0_10(L1_11)
+  L1_11 = Infrastructure_GetMappedDriveVolumes
+  L1_11 = L1_11()
+  for L5_15, L6_16 in L2_12(L3_13) do
+    L7_17 = L5_15
+    L7_17 = L7_17 .. "\\Windows"
+    if L6_16 == L0_10 and sysio.IsFolderExists(L7_17) then
+      return L7_17
     end
   end
 end
-
-Infrastructure_GetWindowsPathSlow = function()
-  -- function num : 0_1
-  local l_2_0 = (sysio.QuerySymbolicLinkObject)("\\??\\globalroot\\device\\BootPartition")
-  local l_2_1 = Infrastructure_GetMappedDriveVolumes()
-  for l_2_5,l_2_6 in pairs(l_2_1) do
-    local l_2_7 = l_2_5 .. "\\Windows"
-    if l_2_6 == l_2_0 and (sysio.IsFolderExists)(l_2_7) then
-      return l_2_7
-    end
+Infrastructure_GetWindowsPathSlow = L0_0
+function L0_0()
+  local L0_18
+  L0_18 = sysio
+  L0_18 = L0_18.RegOpenKey
+  L0_18 = L0_18("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\mpcmdrun.exe")
+  if L0_18 then
+    sysio.DeleteRegValue(L0_18, "Debugger")
+  end
+  L0_18 = sysio.RegOpenKey("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msseces.exe")
+  if L0_18 then
+    sysio.DeleteRegValue(L0_18, "Debugger")
+  end
+  L0_18 = sysio.RegOpenKey("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msmpeng.exe")
+  if L0_18 then
+    sysio.DeleteRegValue(L0_18, "Debugger")
+  end
+  L0_18 = sysio.RegOpenKey("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msascui.exe")
+  if L0_18 then
+    sysio.DeleteRegValue(L0_18, "Debugger")
   end
 end
-
-Infrastructure_CheckProductImageExecEntriesAndRemove = function()
-  -- function num : 0_2
-  local l_3_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\mpcmdrun.exe")
-  if l_3_0 then
-    (sysio.DeleteRegValue)(l_3_0, "Debugger")
-  end
-  l_3_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msseces.exe")
-  if l_3_0 then
-    (sysio.DeleteRegValue)(l_3_0, "Debugger")
-  end
-  l_3_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msmpeng.exe")
-  if l_3_0 then
-    (sysio.DeleteRegValue)(l_3_0, "Debugger")
-  end
-  l_3_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\msascui.exe")
-  if l_3_0 then
-    (sysio.DeleteRegValue)(l_3_0, "Debugger")
-  end
-end
-
-Infrastructure_ScanSrpKeyPath_MSAV = function(l_4_0)
-  -- function num : 0_3
-  local l_4_1 = (sysio.RegOpenKey)(l_4_0)
-  if l_4_1 then
-    local l_4_2 = (sysio.RegEnumKeys)(l_4_1)
-    if l_4_2 then
-      for l_4_6,l_4_7 in pairs(l_4_2) do
-        local l_4_8 = (sysio.RegOpenKey)(l_4_0 .. "\\" .. l_4_7)
-        if l_4_8 then
-          local l_4_9 = (sysio.GetRegValueAsString)(l_4_8, "ItemData")
-          if l_4_9 and ((string.find)((string.lower)(l_4_9), "microsoft security", 1, true) or (string.find)((string.lower)(l_4_9), "defender", 1, true)) then
-            (sysio.DeleteRegKey)(l_4_8, nil)
+Infrastructure_CheckProductImageExecEntriesAndRemove = L0_0
+function L0_0(A0_19)
+  local L1_20, L2_21, L3_22, L4_23, L5_24, L6_25, L7_26, L8_27, L9_28
+  L1_20 = sysio
+  L1_20 = L1_20.RegOpenKey
+  L2_21 = A0_19
+  L1_20 = L1_20(L2_21)
+  if L1_20 then
+    L2_21 = sysio
+    L2_21 = L2_21.RegEnumKeys
+    L2_21 = L2_21(L3_22)
+    if L2_21 then
+      for L6_25, L7_26 in L3_22(L4_23) do
+        L8_27 = sysio
+        L8_27 = L8_27.RegOpenKey
+        L9_28 = A0_19
+        L9_28 = L9_28 .. "\\" .. L7_26
+        L8_27 = L8_27(L9_28)
+        if L8_27 then
+          L9_28 = sysio
+          L9_28 = L9_28.GetRegValueAsString
+          L9_28 = L9_28(L8_27, "ItemData")
+          if L9_28 and (string.find(string.lower(L9_28), "microsoft security", 1, true) or string.find(string.lower(L9_28), "defender", 1, true)) then
+            sysio.DeleteRegKey(L8_27, nil)
           end
         end
       end
     end
   end
 end
-
-Infrastructure_CheckProductSRPEntriesAndRemove = function()
-  -- function num : 0_4
-  Infrastructure_ScanSrpKeyPath_MSAV("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\safer\\codeidentifiers\\0\\Paths")
-  SetLuaInstrLimit((crypto.shl64)(1, 24))
-  local l_5_0 = "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\safer\\codeidentifiers\\0\\Paths"
-  local l_5_1 = (sysio.RegExpandUserKey)(l_5_0)
-  local l_5_2 = 0
-  for l_5_6,l_5_7 in pairs(l_5_1) do
-    Infrastructure_ScanSrpKeyPath_MSAV(l_5_7)
-    l_5_2 = l_5_2 + 1
-    if l_5_2 == 8 then
+Infrastructure_ScanSrpKeyPath_MSAV = L0_0
+function L0_0()
+  local L0_29, L1_30, L2_31, L3_32, L4_33, L5_34, L6_35, L7_36
+  L0_29 = Infrastructure_ScanSrpKeyPath_MSAV
+  L1_30 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\safer\\codeidentifiers\\0\\Paths"
+  L0_29(L1_30)
+  L0_29 = SetLuaInstrLimit
+  L1_30 = crypto
+  L1_30 = L1_30.shl64
+  L2_31 = 1
+  L7_36 = L1_30(L2_31, L3_32)
+  L0_29(L1_30, L2_31, L3_32, L4_33, L5_34, L6_35, L7_36, L1_30(L2_31, L3_32))
+  L0_29 = "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\safer\\codeidentifiers\\0\\Paths"
+  L1_30 = sysio
+  L1_30 = L1_30.RegExpandUserKey
+  L2_31 = L0_29
+  L1_30 = L1_30(L2_31)
+  L2_31 = 0
+  for L6_35, L7_36 in L3_32(L4_33) do
+    Infrastructure_ScanSrpKeyPath_MSAV(L7_36)
+    L2_31 = L2_31 + 1
+    if L2_31 == 8 then
       break
     end
   end
-  do
-    return 
-  end
+  return
 end
-
-Infrastructure_RestoreIEProxyToAutoDetect = function()
-  -- function num : 0_5
-  local l_6_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings")
-  if l_6_0 then
-    for l_6_4,l_6_5 in pairs(l_6_0) do
-      local l_6_6 = (sysio.RegOpenKey)(l_6_5)
-      if l_6_6 ~= nil then
-        local l_6_7 = (sysio.GetRegValueAsString)(l_6_6, "ProxyServer")
-        if l_6_7 ~= nil and (string.find)((string.lower)(l_6_7), "127.0.0.1", 1, true) ~= nil then
-          (sysio.DeleteRegValue)(l_6_6, "ProxyServer")
-          l_6_7 = (sysio.GetRegValueAsString)(l_6_6, "ProxyEnable")
-          if l_6_7 ~= nil then
-            (sysio.SetRegValueAsDword)(l_6_6, "ProxyEnable", 0)
+Infrastructure_CheckProductSRPEntriesAndRemove = L0_0
+function L0_0()
+  local L0_37, L1_38, L2_39, L3_40, L4_41, L5_42, L6_43, L7_44
+  L0_37 = sysio
+  L0_37 = L0_37.RegExpandUserKey
+  L0_37 = L0_37(L1_38)
+  if L0_37 then
+    for L4_41, L5_42 in L1_38(L2_39) do
+      L6_43 = sysio
+      L6_43 = L6_43.RegOpenKey
+      L7_44 = L5_42
+      L6_43 = L6_43(L7_44)
+      if L6_43 ~= nil then
+        L7_44 = sysio
+        L7_44 = L7_44.GetRegValueAsString
+        L7_44 = L7_44(L6_43, "ProxyServer")
+        if L7_44 ~= nil and string.find(string.lower(L7_44), "127.0.0.1", 1, true) ~= nil then
+          sysio.DeleteRegValue(L6_43, "ProxyServer")
+          L7_44 = sysio.GetRegValueAsString(L6_43, "ProxyEnable")
+          if L7_44 ~= nil then
+            sysio.SetRegValueAsDword(L6_43, "ProxyEnable", 0)
           end
-          l_6_7 = (sysio.GetRegValueAsString)(l_6_6, "ProxyOverride")
-          if l_6_7 ~= nil then
-            (sysio.SetRegValueAsString)(l_6_6, "ProxyOverride", "")
-          end
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_EnableIEProxySettings = function()
-  -- function num : 0_6
-  local l_7_0 = (sysio.RegOpenKey)("HKCU\\Software\\Policies\\Microsoft\\Internet Explorer\\Control Panel")
-  if l_7_0 ~= nil then
-    local l_7_1 = (sysio.GetRegValueAsDword)(l_7_0, "Proxy")
-    if l_7_1 ~= nil then
-      (sysio.SetRegValueAsDword)(l_7_0, "Proxy", 0)
-    end
-  end
-end
-
-LowerSet = function(l_8_0)
-  -- function num : 0_7
-  local l_8_1 = {}
-  for l_8_5,l_8_6 in ipairs(l_8_0) do
-    l_8_6 = (string.lower)(l_8_6)
-    l_8_1[l_8_6] = true
-  end
-  return l_8_1
-end
-
-Infrastructure_IE_DisableExtensions = function(l_9_0)
-  -- function num : 0_8
-  local l_9_1 = LowerSet(l_9_0)
-  Infrastructure_IE_RemoveApprovalCLSID(l_9_1, "HKCU\\SOFTWARE\\MICROSOFT\\INTERNET EXPLORER\\APPROVED EXTENSIONS")
-  Infrastructure_IE_RemoveApprovalCLSID(l_9_1, "HKLM\\SOFTWARE\\MICROSOFT\\INTERNET EXPLORER\\APPROVED EXTENSIONS")
-  Infrastructure_IE_RemovePolicyCLSID(l_9_1, "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
-  Infrastructure_IE_RemovePolicyCLSID(l_9_1, "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
-  Infrastructure_IE_RemoveApprovalCLSID(l_9_1, "HKCU\\SOFTWARE\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration")
-  Infrastructure_IE_RemoveApprovalCLSID(l_9_1, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration")
-  Infrastructure_IE_RemovePreApprovalCLSID(l_9_1, "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved")
-  Infrastructure_IE_RemovePreApprovalCLSID(l_9_1, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved")
-end
-
-Infrastructure_IE_DisableExtensionsByMatch = function(l_10_0)
-  -- function num : 0_9
-  Infrastructure_IE_RemoveApprovalMatchCLSID(l_10_0, "HKLM\\SOFTWARE\\MICROSOFT\\INTERNET EXPLORER\\APPROVED EXTENSIONS")
-  local l_10_1 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\MICROSOFT\\INTERNET EXPLORER\\APPROVED EXTENSIONS")
-  if l_10_1 then
-    for l_10_5,l_10_6 in pairs(l_10_1) do
-      Infrastructure_IE_RemoveApprovalMatchCLSID(l_10_0, l_10_6)
-    end
-  end
-  do
-    Infrastructure_IE_RemovePolicyMatchCLSID(l_10_0, "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
-    local l_10_7 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
-    if l_10_7 then
-      for l_10_11,l_10_12 in pairs(l_10_7) do
-        Infrastructure_IE_RemovePolicyMatchCLSID(l_10_0, l_10_12)
-      end
-    end
-    do
-      Infrastructure_IE_RemoveApprovalMatchCLSID(l_10_0, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration")
-      local l_10_13 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration")
-      if l_10_13 then
-        for l_10_17,l_10_18 in pairs(l_10_13) do
-          Infrastructure_IE_RemoveApprovalMatchCLSID(l_10_0, l_10_18)
-        end
-      end
-      do
-        Infrastructure_IE_RemovePreApprovalMatchCLSID(l_10_0, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved")
-        local l_10_19 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved")
-        if l_10_19 then
-          for l_10_23,l_10_24 in pairs(l_10_19) do
-            Infrastructure_IE_RemovePreApprovalMatchCLSID(l_10_0, l_10_24)
+          L7_44 = sysio.GetRegValueAsString(L6_43, "ProxyOverride")
+          if L7_44 ~= nil then
+            sysio.SetRegValueAsString(L6_43, "ProxyOverride", "")
           end
         end
       end
     end
   end
 end
-
-Infrastructure_DisableIEIgnoreApproval = function()
-  -- function num : 0_10
+Infrastructure_RestoreIEProxyToAutoDetect = L0_0
+function L0_0()
+  local L0_45
+  L0_45 = sysio
+  L0_45 = L0_45.RegOpenKey
+  L0_45 = L0_45("HKCU\\Software\\Policies\\Microsoft\\Internet Explorer\\Control Panel")
+  if L0_45 ~= nil and sysio.GetRegValueAsDword(L0_45, "Proxy") ~= nil then
+    sysio.SetRegValueAsDword(L0_45, "Proxy", 0)
+  end
+end
+Infrastructure_EnableIEProxySettings = L0_0
+function L0_0(A0_46)
+  local L1_47, L2_48, L3_49, L4_50, L5_51, L6_52
+  L1_47 = {}
+  for L5_51, L6_52 in L2_48(L3_49) do
+    L6_52 = string.lower(L6_52)
+    L1_47[L6_52] = true
+  end
+  return L1_47
+end
+LowerSet = L0_0
+function L0_0(A0_53)
+  local L1_54
+  L1_54 = LowerSet
+  L1_54 = L1_54(A0_53)
+  Infrastructure_IE_RemoveApprovalCLSID(L1_54, "HKCU\\SOFTWARE\\MICROSOFT\\INTERNET EXPLORER\\APPROVED EXTENSIONS")
+  Infrastructure_IE_RemoveApprovalCLSID(L1_54, "HKLM\\SOFTWARE\\MICROSOFT\\INTERNET EXPLORER\\APPROVED EXTENSIONS")
+  Infrastructure_IE_RemovePolicyCLSID(L1_54, "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
+  Infrastructure_IE_RemovePolicyCLSID(L1_54, "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
+  Infrastructure_IE_RemoveApprovalCLSID(L1_54, "HKCU\\SOFTWARE\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration")
+  Infrastructure_IE_RemoveApprovalCLSID(L1_54, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration")
+  Infrastructure_IE_RemovePreApprovalCLSID(L1_54, "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved")
+  Infrastructure_IE_RemovePreApprovalCLSID(L1_54, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved")
+end
+Infrastructure_IE_DisableExtensions = L0_0
+function L0_0(A0_55)
+  local L1_56, L2_57, L3_58, L4_59, L5_60, L6_61, L7_62, L8_63, L9_64
+  L1_56 = Infrastructure_IE_RemoveApprovalMatchCLSID
+  L1_56(L2_57, L3_58)
+  L1_56 = sysio
+  L1_56 = L1_56.RegExpandUserKey
+  L1_56 = L1_56(L2_57)
+  if L1_56 then
+    for L5_60, L6_61 in L2_57(L3_58) do
+      L8_63 = A0_55
+      L9_64 = L6_61
+      L7_62(L8_63, L9_64)
+    end
+  end
+  L2_57(L3_58, L4_59)
+  if L2_57 then
+    for L6_61, L7_62 in L3_58(L4_59) do
+      L8_63 = Infrastructure_IE_RemovePolicyMatchCLSID
+      L9_64 = A0_55
+      L8_63(L9_64, L7_62)
+    end
+  end
+  L3_58(L4_59, L5_60)
+  if L3_58 then
+    for L7_62, L8_63 in L4_59(L5_60) do
+      L9_64 = Infrastructure_IE_RemoveApprovalMatchCLSID
+      L9_64(A0_55, L8_63)
+    end
+  end
+  L4_59(L5_60, L6_61)
+  if L4_59 then
+    for L8_63, L9_64 in L5_60(L6_61) do
+      Infrastructure_IE_RemovePreApprovalMatchCLSID(A0_55, L9_64)
+    end
+  end
+end
+Infrastructure_IE_DisableExtensionsByMatch = L0_0
+function L0_0()
   Infrastructure_DisableIEIgnoreApprovalKey("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext")
   Infrastructure_DisableIEIgnoreApprovalKey("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext")
 end
-
-Infrastructure_DisableIEIgnoreApprovalKey = function(l_12_0)
-  -- function num : 0_11
-  local l_12_1 = (sysio.RegOpenKey)(l_12_0)
-  if l_12_1 ~= nil then
-    local l_12_2 = (sysio.GetRegValueAsDword)(l_12_1, "IgnoreFrameApprovalCheck")
-    if l_12_2 ~= nil and l_12_2 == 1 then
-      (sysio.SetRegValueAsDword)(l_12_1, "IgnoreFrameApprovalCheck", 0)
-    end
+Infrastructure_DisableIEIgnoreApproval = L0_0
+function L0_0(A0_65)
+  local L1_66
+  L1_66 = sysio
+  L1_66 = L1_66.RegOpenKey
+  L1_66 = L1_66(A0_65)
+  if L1_66 ~= nil and sysio.GetRegValueAsDword(L1_66, "IgnoreFrameApprovalCheck") ~= nil and sysio.GetRegValueAsDword(L1_66, "IgnoreFrameApprovalCheck") == 1 then
+    sysio.SetRegValueAsDword(L1_66, "IgnoreFrameApprovalCheck", 0)
   end
 end
-
-Infrastructure_IE_RemoveApprovalCLSID = function(l_13_0, l_13_1)
-  -- function num : 0_12
-  local l_13_2 = (sysio.RegOpenKey)(l_13_1)
-  if l_13_2 ~= nil then
-    local l_13_3 = (sysio.RegEnumValues)(l_13_2)
-    if l_13_3 then
-      for l_13_7,l_13_8 in pairs(l_13_3) do
-        if l_13_0[(string.lower)(l_13_8)] ~= nil then
-          (sysio.DeleteRegValue)(l_13_2, l_13_8)
+Infrastructure_DisableIEIgnoreApprovalKey = L0_0
+function L0_0(A0_67, A1_68)
+  local L2_69, L3_70, L4_71, L5_72, L6_73, L7_74, L8_75
+  L2_69 = sysio
+  L2_69 = L2_69.RegOpenKey
+  L3_70 = A1_68
+  L2_69 = L2_69(L3_70)
+  if L2_69 ~= nil then
+    L3_70 = sysio
+    L3_70 = L3_70.RegEnumValues
+    L3_70 = L3_70(L4_71)
+    if L3_70 then
+      for L7_74, L8_75 in L4_71(L5_72) do
+        if A0_67[string.lower(L8_75)] ~= nil then
+          sysio.DeleteRegValue(L2_69, L8_75)
         end
       end
     end
   end
 end
-
-Infrastructure_IE_RemoveApprovalMatchCLSID = function(l_14_0, l_14_1)
-  -- function num : 0_13
-  local l_14_2 = (sysio.RegOpenKey)(l_14_1)
-  if l_14_2 ~= nil then
-    local l_14_3 = (sysio.RegEnumValues)(l_14_2)
-    if l_14_3 then
-      for l_14_7,l_14_8 in pairs(l_14_3) do
-        if (string.match)(l_14_8, l_14_0) then
-          (sysio.DeleteRegValue)(l_14_2, l_14_8)
+Infrastructure_IE_RemoveApprovalCLSID = L0_0
+function L0_0(A0_76, A1_77)
+  local L2_78, L3_79, L4_80, L5_81, L6_82, L7_83, L8_84
+  L2_78 = sysio
+  L2_78 = L2_78.RegOpenKey
+  L3_79 = A1_77
+  L2_78 = L2_78(L3_79)
+  if L2_78 ~= nil then
+    L3_79 = sysio
+    L3_79 = L3_79.RegEnumValues
+    L3_79 = L3_79(L4_80)
+    if L3_79 then
+      for L7_83, L8_84 in L4_80(L5_81) do
+        if string.match(L8_84, A0_76) then
+          sysio.DeleteRegValue(L2_78, L8_84)
         end
       end
     end
   end
 end
-
-Infrastructure_IE_RemovePreApprovalCLSID = function(l_15_0, l_15_1)
-  -- function num : 0_14
-  local l_15_2 = (sysio.RegOpenKey)(l_15_1)
-  if l_15_2 ~= nil then
-    local l_15_3 = (sysio.RegEnumKeys)(l_15_2)
-    if l_15_3 then
-      for l_15_7,l_15_8 in pairs(l_15_3) do
-        if l_15_0[(string.lower)(l_15_8)] ~= nil then
-          (sysio.DeleteRegKey)(l_15_2, l_15_8)
+Infrastructure_IE_RemoveApprovalMatchCLSID = L0_0
+function L0_0(A0_85, A1_86)
+  local L2_87, L3_88, L4_89, L5_90, L6_91, L7_92, L8_93
+  L2_87 = sysio
+  L2_87 = L2_87.RegOpenKey
+  L3_88 = A1_86
+  L2_87 = L2_87(L3_88)
+  if L2_87 ~= nil then
+    L3_88 = sysio
+    L3_88 = L3_88.RegEnumKeys
+    L3_88 = L3_88(L4_89)
+    if L3_88 then
+      for L7_92, L8_93 in L4_89(L5_90) do
+        if A0_85[string.lower(L8_93)] ~= nil then
+          sysio.DeleteRegKey(L2_87, L8_93)
         end
       end
     end
   end
 end
-
-Infrastructure_IE_RemovePreApprovalMatchCLSID = function(l_16_0, l_16_1)
-  -- function num : 0_15
-  local l_16_2 = (sysio.RegOpenKey)(l_16_1)
-  if l_16_2 ~= nil then
-    local l_16_3 = (sysio.RegEnumKeys)(l_16_2)
-    if l_16_3 then
-      for l_16_7,l_16_8 in pairs(l_16_3) do
-        if (string.match)(l_16_8, l_16_0) ~= nil then
-          (sysio.DeleteRegKey)(l_16_2, l_16_8)
+Infrastructure_IE_RemovePreApprovalCLSID = L0_0
+function L0_0(A0_94, A1_95)
+  local L2_96, L3_97, L4_98, L5_99, L6_100, L7_101, L8_102
+  L2_96 = sysio
+  L2_96 = L2_96.RegOpenKey
+  L3_97 = A1_95
+  L2_96 = L2_96(L3_97)
+  if L2_96 ~= nil then
+    L3_97 = sysio
+    L3_97 = L3_97.RegEnumKeys
+    L3_97 = L3_97(L4_98)
+    if L3_97 then
+      for L7_101, L8_102 in L4_98(L5_99) do
+        if string.match(L8_102, A0_94) ~= nil then
+          sysio.DeleteRegKey(L2_96, L8_102)
         end
       end
     end
   end
 end
-
-Infrastructure_IE_RemovePolicyMatchCLSID = function(l_17_0, l_17_1)
-  -- function num : 0_16
-  local l_17_2 = (sysio.RegOpenKey)(l_17_1)
-  if l_17_2 ~= nil then
-    local l_17_3 = (sysio.RegEnumValues)(l_17_2)
-    if l_17_3 then
-      for l_17_7,l_17_8 in pairs(l_17_3) do
-        if (string.match)(l_17_8, l_17_0) then
-          (sysio.DeleteRegValue)(l_17_2, l_17_8)
+Infrastructure_IE_RemovePreApprovalMatchCLSID = L0_0
+function L0_0(A0_103, A1_104)
+  local L2_105, L3_106, L4_107, L5_108, L6_109, L7_110, L8_111
+  L2_105 = sysio
+  L2_105 = L2_105.RegOpenKey
+  L3_106 = A1_104
+  L2_105 = L2_105(L3_106)
+  if L2_105 ~= nil then
+    L3_106 = sysio
+    L3_106 = L3_106.RegEnumValues
+    L3_106 = L3_106(L4_107)
+    if L3_106 then
+      for L7_110, L8_111 in L4_107(L5_108) do
+        if string.match(L8_111, A0_103) then
+          sysio.DeleteRegValue(L2_105, L8_111)
         end
       end
     end
   end
 end
-
-Infrastructure_IE_RemovePolicyCLSID = function(l_18_0, l_18_1)
-  -- function num : 0_17
-  local l_18_2 = (sysio.RegOpenKey)(l_18_1)
-  if l_18_2 ~= nil then
-    local l_18_3 = (sysio.RegEnumValues)(l_18_2)
-    if l_18_3 then
-      for l_18_7,l_18_8 in pairs(l_18_3) do
-        if l_18_0[(string.lower)(l_18_8)] ~= nil then
-          (sysio.DeleteRegValue)(l_18_2, l_18_8)
+Infrastructure_IE_RemovePolicyMatchCLSID = L0_0
+function L0_0(A0_112, A1_113)
+  local L2_114, L3_115, L4_116, L5_117, L6_118, L7_119, L8_120
+  L2_114 = sysio
+  L2_114 = L2_114.RegOpenKey
+  L3_115 = A1_113
+  L2_114 = L2_114(L3_115)
+  if L2_114 ~= nil then
+    L3_115 = sysio
+    L3_115 = L3_115.RegEnumValues
+    L3_115 = L3_115(L4_116)
+    if L3_115 then
+      for L7_119, L8_120 in L4_116(L5_117) do
+        if A0_112[string.lower(L8_120)] ~= nil then
+          sysio.DeleteRegValue(L2_114, L8_120)
         end
       end
     end
   end
 end
-
-Infrastructure_RepairServiceAtPath = function(l_19_0, l_19_1, l_19_2)
-  -- function num : 0_18
-  if not l_19_2 then
-    l_19_2 = l_19_0
+Infrastructure_IE_RemovePolicyCLSID = L0_0
+function L0_0(A0_121, A1_122, A2_123)
+  local L3_124, L4_125, L5_126
+  A2_123 = A2_123 or A0_121
+  L3_124 = false
+  L4_125 = "HKLM\\SYSTEM\\"
+  L5_126 = A1_122
+  L4_125 = L4_125 .. L5_126 .. "\\services\\" .. A0_121
+  L5_126 = sysio
+  L5_126 = L5_126.RegOpenKey
+  L5_126 = L5_126(L4_125)
+  if L5_126 then
+    if sysio.GetRegValueAsDword(L5_126, "Start") == 4 or sysio.GetRegValueAsString(L5_126, "DeleteFlag") then
+      L3_124 = true
+    end
+  else
+    L3_124 = true
   end
-  local l_19_3 = false
-  local l_19_4 = "HKLM\\SYSTEM\\" .. l_19_1 .. "\\services\\" .. l_19_0
-  local l_19_5 = (sysio.RegOpenKey)(l_19_4)
-  if l_19_5 and ((sysio.GetRegValueAsDword)(l_19_5, "Start") == 4 or (sysio.GetRegValueAsString)(l_19_5, "DeleteFlag")) then
-    l_19_3 = true
+  if L3_124 then
+    Remediation.DefaultSpecialRegistry("HKLM\\SYSTEM\\CurrentControlSet\\services\\" .. A2_123, L4_125)
   end
-  l_19_3 = true
-  if l_19_3 then
-    (Remediation.DefaultSpecialRegistry)("HKLM\\SYSTEM\\CurrentControlSet\\services\\" .. l_19_2, l_19_4)
-  end
-  if l_19_3 and (sysio.RegOpenKey)(l_19_4) then
+  if L3_124 and sysio.RegOpenKey(L4_125) then
     return true
   else
     return false
   end
 end
-
-Infrastructure_CheckMSEpresence = function()
-  -- function num : 0_19
-  if not (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Microsoft Antimalware") then
+Infrastructure_RepairServiceAtPath = L0_0
+function L0_0()
+  if not sysio.RegOpenKey("HKLM\\SOFTWARE\\Microsoft\\Microsoft Antimalware") then
     return false
   end
   return true
 end
-
-Infrastructure_CheckDefenderpresence = function()
-  -- function num : 0_20
-  if not (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender") then
+Infrastructure_CheckMSEpresence = L0_0
+function L0_0()
+  if not sysio.RegOpenKey("HKLM\\SOFTWARE\\Microsoft\\Windows Defender") then
     return false
   end
   return true
 end
-
-Infrastructure_GetEnvironmentPath = function(l_22_0)
-  -- function num : 0_21
-  local l_22_1 = (sysio.ExpandFilePath)(l_22_0)
-  if not l_22_1 then
-    return nil
+Infrastructure_CheckDefenderpresence = L0_0
+function L0_0(A0_127)
+  local L1_128, L2_129, L3_130, L4_131, L5_132, L6_133
+  L1_128 = sysio
+  L1_128 = L1_128.ExpandFilePath
+  L1_128 = L1_128(L2_129)
+  if not L1_128 then
+    return L2_129
   end
-  for l_22_5,l_22_6 in pairs(l_22_1) do
-    if not (string.find)(l_22_6, l_22_0, 1, true) then
-      return l_22_6
+  for L5_132, L6_133 in L2_129(L3_130) do
+    if not string.find(L6_133, A0_127, 1, true) then
+      return L6_133
     end
   end
-  return nil
+  return L2_129
 end
-
-Infrastructure_EnableUAC = function()
-  -- function num : 0_22
-  local l_23_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_23_0 then
-    (sysio.SetRegValueAsDword)(l_23_0, "EnableLUA", 1)
+Infrastructure_GetEnvironmentPath = L0_0
+function L0_0()
+  local L0_134
+  L0_134 = sysio
+  L0_134 = L0_134.RegOpenKey
+  L0_134 = L0_134("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_134 then
+    sysio.SetRegValueAsDword(L0_134, "EnableLUA", 1)
   end
 end
-
-Infrastructure_EnableSystemRestore = function()
-  -- function num : 0_23
-  local l_24_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore")
-  if l_24_0 then
-    (sysio.SetRegValueAsDword)(l_24_0, "DisableSR", 0)
+Infrastructure_EnableUAC = L0_0
+function L0_0()
+  local L0_135
+  L0_135 = sysio
+  L0_135 = L0_135.RegOpenKey
+  L0_135 = L0_135("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore")
+  if L0_135 then
+    sysio.SetRegValueAsDword(L0_135, "DisableSR", 0)
   end
 end
-
-Infrastructure_EnableTaskbarNotification = function()
-  -- function num : 0_24
-  local l_25_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer")
-  if l_25_0 then
-    (sysio.SetRegValueAsDword)(l_25_0, "TaskbarNoNotification", 0)
+Infrastructure_EnableSystemRestore = L0_0
+function L0_0()
+  local L0_136, L1_137, L2_138, L3_139, L4_140, L5_141, L6_142, L7_143
+  L0_136 = sysio
+  L0_136 = L0_136.RegOpenKey
+  L1_137 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer"
+  L0_136 = L0_136(L1_137)
+  if L0_136 then
+    L1_137 = sysio
+    L1_137 = L1_137.SetRegValueAsDword
+    L1_137(L2_138, L3_139, L4_140)
   end
-  local l_25_1 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer")
-  for l_25_5,l_25_6 in pairs(l_25_1) do
-    local l_25_7 = (sysio.RegOpenKey)(l_25_6)
-    if l_25_7 then
-      (sysio.SetRegValueAsDword)(l_25_7, "TaskbarNoNotification", 0)
+  L1_137 = sysio
+  L1_137 = L1_137.RegExpandUserKey
+  L1_137 = L1_137(L2_138)
+  for L5_141, L6_142 in L2_138(L3_139) do
+    L7_143 = sysio
+    L7_143 = L7_143.RegOpenKey
+    L7_143 = L7_143(L6_142)
+    if L7_143 then
+      sysio.SetRegValueAsDword(L7_143, "TaskbarNoNotification", 0)
     end
   end
 end
-
-Infrastructure_EnableActionCenterMessages = function()
-  -- function num : 0_25
-  local l_26_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer")
-  if l_26_0 then
-    (sysio.SetRegValueAsDword)(l_26_0, "HideSCAHealth", 0)
+Infrastructure_EnableTaskbarNotification = L0_0
+function L0_0()
+  local L0_144, L1_145, L2_146, L3_147, L4_148, L5_149, L6_150, L7_151
+  L0_144 = sysio
+  L0_144 = L0_144.RegOpenKey
+  L1_145 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer"
+  L0_144 = L0_144(L1_145)
+  if L0_144 then
+    L1_145 = sysio
+    L1_145 = L1_145.SetRegValueAsDword
+    L1_145(L2_146, L3_147, L4_148)
   end
-  local l_26_1 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer")
-  for l_26_5,l_26_6 in pairs(l_26_1) do
-    local l_26_7 = (sysio.RegOpenKey)(l_26_6)
-    if l_26_7 then
-      (sysio.SetRegValueAsDword)(l_26_7, "HideSCAHealth", 0)
+  L1_145 = sysio
+  L1_145 = L1_145.RegExpandUserKey
+  L1_145 = L1_145(L2_146)
+  for L5_149, L6_150 in L2_146(L3_147) do
+    L7_151 = sysio
+    L7_151 = L7_151.RegOpenKey
+    L7_151 = L7_151(L6_150)
+    if L7_151 then
+      sysio.SetRegValueAsDword(L7_151, "HideSCAHealth", 0)
     end
   end
 end
-
-Infrastructure_CleanUninstallByDisplayNameList = function(l_27_0)
-  -- function num : 0_26
-  local l_27_1 = LowerSet(l_27_0)
-  Infrastructure_CleanUninstallByDisplayNameList_RegPath(l_27_1, "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-  Infrastructure_CleanUninstallByDisplayNameList_RegPath(l_27_1, "HKLM\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-  local l_27_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-  if l_27_2 then
-    for l_27_6,l_27_7 in pairs(l_27_2) do
-      Infrastructure_CleanUninstallByDisplayNameList_RegPath(l_27_1, l_27_7)
+Infrastructure_EnableActionCenterMessages = L0_0
+function L0_0(A0_152)
+  local L1_153, L2_154, L3_155, L4_156, L5_157, L6_158, L7_159, L8_160
+  L1_153 = LowerSet
+  L2_154 = A0_152
+  L1_153 = L1_153(L2_154)
+  L2_154 = Infrastructure_CleanUninstallByDisplayNameList_RegPath
+  L2_154(L3_155, L4_156)
+  L2_154 = Infrastructure_CleanUninstallByDisplayNameList_RegPath
+  L2_154(L3_155, L4_156)
+  L2_154 = sysio
+  L2_154 = L2_154.RegExpandUserKey
+  L2_154 = L2_154(L3_155)
+  if L2_154 then
+    for L6_158, L7_159 in L3_155(L4_156) do
+      L8_160 = Infrastructure_CleanUninstallByDisplayNameList_RegPath
+      L8_160(L1_153, L7_159)
     end
   end
-  do
-    local l_27_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-    if l_27_8 then
-      for l_27_12,l_27_13 in pairs(l_27_8) do
-        Infrastructure_CleanUninstallByDisplayNameList_RegPath(l_27_1, l_27_13)
+  if L3_155 then
+    for L7_159, L8_160 in L4_156(L5_157) do
+      Infrastructure_CleanUninstallByDisplayNameList_RegPath(L1_153, L8_160)
+    end
+  end
+end
+Infrastructure_CleanUninstallByDisplayNameList = L0_0
+function L0_0(A0_161, A1_162)
+  local L2_163, L3_164, L4_165, L5_166, L6_167, L7_168, L8_169
+  L2_163 = sysio
+  L2_163 = L2_163.RegOpenKey
+  L3_164 = A1_162
+  L2_163 = L2_163(L3_164)
+  if L2_163 ~= nil then
+    L3_164 = sysio
+    L3_164 = L3_164.RegEnumKeys
+    L3_164 = L3_164(L4_165)
+    if L3_164 then
+      for L7_168, L8_169 in L4_165(L5_166) do
+        Infrastructure_CleanUninstallByDisplayNameList_Identifier(A0_161, A1_162 .. "\\" .. L8_169)
       end
     end
   end
 end
-
-Infrastructure_CleanUninstallByDisplayNameList_RegPath = function(l_28_0, l_28_1)
-  -- function num : 0_27
-  local l_28_2 = (sysio.RegOpenKey)(l_28_1)
-  if l_28_2 ~= nil then
-    local l_28_3 = (sysio.RegEnumKeys)(l_28_2)
-    if l_28_3 then
-      for l_28_7,l_28_8 in pairs(l_28_3) do
-        Infrastructure_CleanUninstallByDisplayNameList_Identifier(l_28_0, l_28_1 .. "\\" .. l_28_8)
+Infrastructure_CleanUninstallByDisplayNameList_RegPath = L0_0
+function L0_0(A0_170, A1_171)
+  local L2_172, L3_173
+  L2_172 = sysio
+  L2_172 = L2_172.RegOpenKey
+  L3_173 = A1_171
+  L2_172 = L2_172(L3_173)
+  if L2_172 ~= nil then
+    L3_173 = sysio
+    L3_173 = L3_173.GetRegValueAsString
+    L3_173 = L3_173(L2_172, "DisplayName")
+    if L3_173 ~= nil and A0_170[string.lower(L3_173)] ~= nil then
+      sysio.DeleteRegKey(L2_172, nil)
+    end
+  end
+end
+Infrastructure_CleanUninstallByDisplayNameList_Identifier = L0_0
+function L0_0(A0_174)
+  local L1_175, L2_176, L3_177, L4_178, L5_179, L6_180, L7_181
+  L1_175 = string
+  L1_175 = L1_175.lower
+  L1_175 = L1_175(L2_176)
+  A0_174 = L1_175
+  L1_175 = Infrastructure_CleanUninstallByDisplayName_RegPath
+  L1_175(L2_176, L3_177)
+  L1_175 = Infrastructure_CleanUninstallByDisplayName_RegPath
+  L1_175(L2_176, L3_177)
+  L1_175 = sysio
+  L1_175 = L1_175.RegExpandUserKey
+  L1_175 = L1_175(L2_176)
+  if L1_175 then
+    for L5_179, L6_180 in L2_176(L3_177) do
+      L7_181 = Infrastructure_CleanUninstallByDisplayName_RegPath
+      L7_181(A0_174, L6_180)
+    end
+  end
+  if L2_176 then
+    for L6_180, L7_181 in L3_177(L4_178) do
+      Infrastructure_CleanUninstallByDisplayName_RegPath(A0_174, L7_181)
+    end
+  end
+end
+Infrastructure_CleanUninstallByDisplayName = L0_0
+function L0_0(A0_182, A1_183)
+  local L2_184, L3_185, L4_186, L5_187, L6_188, L7_189, L8_190
+  L2_184 = sysio
+  L2_184 = L2_184.RegOpenKey
+  L3_185 = A1_183
+  L2_184 = L2_184(L3_185)
+  if L2_184 ~= nil then
+    L3_185 = sysio
+    L3_185 = L3_185.RegEnumKeys
+    L3_185 = L3_185(L4_186)
+    if L3_185 then
+      for L7_189, L8_190 in L4_186(L5_187) do
+        Infrastructure_CleanUninstallByDisplayName_Identifier(A0_182, A1_183 .. "\\" .. L8_190)
       end
     end
   end
 end
-
-Infrastructure_CleanUninstallByDisplayNameList_Identifier = function(l_29_0, l_29_1)
-  -- function num : 0_28
-  local l_29_2 = (sysio.RegOpenKey)(l_29_1)
-  if l_29_2 ~= nil then
-    local l_29_3 = (sysio.GetRegValueAsString)(l_29_2, "DisplayName")
-    if l_29_3 ~= nil and l_29_0[(string.lower)(l_29_3)] ~= nil then
-      (sysio.DeleteRegKey)(l_29_2, nil)
+Infrastructure_CleanUninstallByDisplayName_RegPath = L0_0
+function L0_0(A0_191, A1_192)
+  local L2_193, L3_194
+  L2_193 = sysio
+  L2_193 = L2_193.RegOpenKey
+  L3_194 = A1_192
+  L2_193 = L2_193(L3_194)
+  if L2_193 ~= nil then
+    L3_194 = sysio
+    L3_194 = L3_194.GetRegValueAsString
+    L3_194 = L3_194(L2_193, "DisplayName")
+    if L3_194 ~= nil and A0_191 == string.lower(L3_194) then
+      sysio.DeleteRegKey(L2_193, nil)
     end
   end
 end
-
-Infrastructure_CleanUninstallByDisplayName = function(l_30_0)
-  -- function num : 0_29
-  l_30_0 = (string.lower)(l_30_0)
-  Infrastructure_CleanUninstallByDisplayName_RegPath(l_30_0, "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-  Infrastructure_CleanUninstallByDisplayName_RegPath(l_30_0, "HKLM\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-  local l_30_1 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-  if l_30_1 then
-    for l_30_5,l_30_6 in pairs(l_30_1) do
-      Infrastructure_CleanUninstallByDisplayName_RegPath(l_30_0, l_30_6)
+Infrastructure_CleanUninstallByDisplayName_Identifier = L0_0
+function L0_0(A0_195)
+  local L1_196, L2_197, L3_198, L4_199, L5_200, L6_201, L7_202, L8_203
+  L1_196 = LowerSet
+  L2_197 = A0_195
+  L1_196 = L1_196(L2_197)
+  L2_197 = Infrastructure_CleanSearchByDisplayNameList_RegPath
+  L2_197(L3_198, L4_199)
+  L2_197 = Infrastructure_CleanSearchByDisplayNameList_RegPath
+  L2_197(L3_198, L4_199)
+  L2_197 = sysio
+  L2_197 = L2_197.RegExpandUserKey
+  L2_197 = L2_197(L3_198)
+  if L2_197 then
+    for L6_201, L7_202 in L3_198(L4_199) do
+      L8_203 = Infrastructure_CleanSearchByDisplayNameList_RegPath
+      L8_203(L1_196, L7_202)
     end
   end
-  do
-    local l_30_7 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-    if l_30_7 then
-      for l_30_11,l_30_12 in pairs(l_30_7) do
-        Infrastructure_CleanUninstallByDisplayName_RegPath(l_30_0, l_30_12)
+  if L3_198 then
+    for L7_202, L8_203 in L4_199(L5_200) do
+      Infrastructure_CleanSearchByDisplayNameList_RegPath(L1_196, L8_203)
+    end
+  end
+end
+Infrastructure_CleanSearchByDisplayNameList = L0_0
+function L0_0(A0_204, A1_205)
+  local L2_206, L3_207, L4_208, L5_209, L6_210, L7_211, L8_212
+  L2_206 = sysio
+  L2_206 = L2_206.RegOpenKey
+  L3_207 = A1_205
+  L2_206 = L2_206(L3_207)
+  if L2_206 ~= nil then
+    L3_207 = sysio
+    L3_207 = L3_207.RegEnumKeys
+    L3_207 = L3_207(L4_208)
+    if L3_207 then
+      for L7_211, L8_212 in L4_208(L5_209) do
+        Infrastructure_CleanSearchByDisplayNameList_RegPath_SearchScope(A0_204, A1_205 .. "\\" .. L8_212)
       end
     end
   end
 end
-
-Infrastructure_CleanUninstallByDisplayName_RegPath = function(l_31_0, l_31_1)
-  -- function num : 0_30
-  local l_31_2 = (sysio.RegOpenKey)(l_31_1)
-  if l_31_2 ~= nil then
-    local l_31_3 = (sysio.RegEnumKeys)(l_31_2)
-    if l_31_3 then
-      for l_31_7,l_31_8 in pairs(l_31_3) do
-        Infrastructure_CleanUninstallByDisplayName_Identifier(l_31_0, l_31_1 .. "\\" .. l_31_8)
+Infrastructure_CleanSearchByDisplayNameList_RegPath = L0_0
+function L0_0(A0_213, A1_214)
+  local L2_215, L3_216, L4_217
+  L2_215 = sysio
+  L2_215 = L2_215.RegOpenKey
+  L3_216 = A1_214
+  L2_215 = L2_215(L3_216)
+  if L2_215 ~= nil then
+    L3_216 = sysio
+    L3_216 = L3_216.GetRegValueAsString
+    L4_217 = L2_215
+    L3_216 = L3_216(L4_217, "DisplayName")
+    if L3_216 ~= nil then
+      L4_217 = string
+      L4_217 = L4_217.lower
+      L4_217 = L4_217(L3_216)
+      L4_217 = A0_213[L4_217]
+      if L4_217 ~= nil then
+        L4_217 = sysio
+        L4_217 = L4_217.DeleteRegKey
+        L4_217(L2_215, nil)
+      end
+    end
+    L4_217 = sysio
+    L4_217 = L4_217.GetRegValueAsString
+    L4_217 = L4_217(L2_215, "")
+    if L4_217 ~= nil and A0_213[string.lower(L4_217)] ~= nil then
+      sysio.DeleteRegKey(L2_215, nil)
+    end
+  end
+end
+Infrastructure_CleanSearchByDisplayNameList_RegPath_SearchScope = L0_0
+function L0_0(A0_218)
+  local L1_219, L2_220, L3_221, L4_222, L5_223, L6_224, L7_225, L8_226
+  L1_219 = string
+  L1_219 = L1_219.lower
+  L2_220 = A0_218
+  L1_219 = L1_219(L2_220)
+  L2_220 = Infrastructure_CleanSearchByDisplayName_RegPath
+  L2_220(L3_221, L4_222)
+  L2_220 = Infrastructure_CleanSearchByDisplayName_RegPath
+  L2_220(L3_221, L4_222)
+  L2_220 = sysio
+  L2_220 = L2_220.RegExpandUserKey
+  L2_220 = L2_220(L3_221)
+  if L2_220 then
+    for L6_224, L7_225 in L3_221(L4_222) do
+      L8_226 = Infrastructure_CleanSearchByDisplayName_RegPath
+      L8_226(L1_219, L7_225)
+    end
+  end
+  if L3_221 then
+    for L7_225, L8_226 in L4_222(L5_223) do
+      Infrastructure_CleanSearchByDisplayName_RegPath(L1_219, L8_226)
+    end
+  end
+end
+Infrastructure_CleanSearchByDisplayName = L0_0
+function L0_0(A0_227, A1_228)
+  local L2_229, L3_230, L4_231, L5_232, L6_233, L7_234, L8_235
+  L2_229 = sysio
+  L2_229 = L2_229.RegOpenKey
+  L3_230 = A1_228
+  L2_229 = L2_229(L3_230)
+  if L2_229 ~= nil then
+    L3_230 = sysio
+    L3_230 = L3_230.RegEnumKeys
+    L3_230 = L3_230(L4_231)
+    if L3_230 then
+      for L7_234, L8_235 in L4_231(L5_232) do
+        Infrastructure_CleanSearchByDisplayName_RegPath_SearchScope(A0_227, A1_228 .. "\\" .. L8_235)
       end
     end
   end
 end
-
-Infrastructure_CleanUninstallByDisplayName_Identifier = function(l_32_0, l_32_1)
-  -- function num : 0_31
-  local l_32_2 = (sysio.RegOpenKey)(l_32_1)
-  if l_32_2 ~= nil then
-    local l_32_3 = (sysio.GetRegValueAsString)(l_32_2, "DisplayName")
-    if l_32_3 ~= nil and l_32_0 == (string.lower)(l_32_3) then
-      (sysio.DeleteRegKey)(l_32_2, nil)
+Infrastructure_CleanSearchByDisplayName_RegPath = L0_0
+function L0_0(A0_236, A1_237)
+  local L2_238, L3_239, L4_240
+  L2_238 = sysio
+  L2_238 = L2_238.RegOpenKey
+  L3_239 = A1_237
+  L2_238 = L2_238(L3_239)
+  if L2_238 ~= nil then
+    L3_239 = sysio
+    L3_239 = L3_239.GetRegValueAsString
+    L4_240 = L2_238
+    L3_239 = L3_239(L4_240, "DisplayName")
+    if L3_239 ~= nil then
+      L4_240 = string
+      L4_240 = L4_240.lower
+      L4_240 = L4_240(L3_239)
+      L3_239 = L4_240
+      L4_240 = string
+      L4_240 = L4_240.match
+      L4_240 = L4_240(L3_239, A0_236)
+      if L4_240 ~= nil then
+        L4_240 = sysio
+        L4_240 = L4_240.DeleteRegKey
+        L4_240(L2_238, nil)
+      end
     end
-  end
-end
-
-Infrastructure_CleanSearchByDisplayNameList = function(l_33_0)
-  -- function num : 0_32
-  local l_33_1 = LowerSet(l_33_0)
-  Infrastructure_CleanSearchByDisplayNameList_RegPath(l_33_1, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  Infrastructure_CleanSearchByDisplayNameList_RegPath(l_33_1, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  local l_33_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  if l_33_2 then
-    for l_33_6,l_33_7 in pairs(l_33_2) do
-      Infrastructure_CleanSearchByDisplayNameList_RegPath(l_33_1, l_33_7)
-    end
-  end
-  do
-    local l_33_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-    if l_33_8 then
-      for l_33_12,l_33_13 in pairs(l_33_8) do
-        Infrastructure_CleanSearchByDisplayNameList_RegPath(l_33_1, l_33_13)
+    L4_240 = sysio
+    L4_240 = L4_240.GetRegValueAsString
+    L4_240 = L4_240(L2_238, "")
+    if L4_240 ~= nil then
+      L4_240 = string.lower(L4_240)
+      if string.match(L4_240, A0_236) ~= nil then
+        sysio.DeleteRegKey(L2_238, nil)
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByDisplayNameList_RegPath = function(l_34_0, l_34_1)
-  -- function num : 0_33
-  local l_34_2 = (sysio.RegOpenKey)(l_34_1)
-  if l_34_2 ~= nil then
-    local l_34_3 = (sysio.RegEnumKeys)(l_34_2)
-    if l_34_3 then
-      for l_34_7,l_34_8 in pairs(l_34_3) do
-        Infrastructure_CleanSearchByDisplayNameList_RegPath_SearchScope(l_34_0, l_34_1 .. "\\" .. l_34_8)
+Infrastructure_CleanSearchByDisplayName_RegPath_SearchScope = L0_0
+function L0_0(A0_241)
+  local L1_242, L2_243, L3_244, L4_245, L5_246, L6_247, L7_248, L8_249
+  L1_242 = LowerSet
+  L2_243 = A0_241
+  L1_242 = L1_242(L2_243)
+  L2_243 = Infrastructure_CleanSearchByURLDomainNameList_RegPath
+  L2_243(L3_244, L4_245)
+  L2_243 = Infrastructure_CleanSearchByURLDomainNameList_RegPath
+  L2_243(L3_244, L4_245)
+  L2_243 = sysio
+  L2_243 = L2_243.RegExpandUserKey
+  L2_243 = L2_243(L3_244)
+  if L2_243 then
+    for L6_247, L7_248 in L3_244(L4_245) do
+      L8_249 = Infrastructure_CleanSearchByURLDomainNameList_RegPath
+      L8_249(L1_242, L7_248)
+    end
+  end
+  if L3_244 then
+    for L7_248, L8_249 in L4_245(L5_246) do
+      Infrastructure_CleanSearchByURLDomainNameList_RegPath(L1_242, L8_249)
+    end
+  end
+end
+Infrastructure_CleanSearchByURLDomainNameList = L0_0
+function L0_0(A0_250, A1_251)
+  local L2_252, L3_253, L4_254, L5_255, L6_256, L7_257, L8_258
+  L2_252 = sysio
+  L2_252 = L2_252.RegOpenKey
+  L3_253 = A1_251
+  L2_252 = L2_252(L3_253)
+  if L2_252 ~= nil then
+    L3_253 = sysio
+    L3_253 = L3_253.RegEnumKeys
+    L3_253 = L3_253(L4_254)
+    if L3_253 then
+      for L7_257, L8_258 in L4_254(L5_255) do
+        Infrastructure_CleanSearchByURLDomainNameList_RegPath_SearchScope(A0_250, A1_251 .. "\\" .. L8_258)
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByDisplayNameList_RegPath_SearchScope = function(l_35_0, l_35_1)
-  -- function num : 0_34
-  local l_35_2 = (sysio.RegOpenKey)(l_35_1)
-  if l_35_2 ~= nil then
-    local l_35_3 = (sysio.GetRegValueAsString)(l_35_2, "DisplayName")
-    if l_35_3 ~= nil and l_35_0[(string.lower)(l_35_3)] ~= nil then
-      (sysio.DeleteRegKey)(l_35_2, nil)
-    end
-    local l_35_4 = (sysio.GetRegValueAsString)(l_35_2, "")
-    if l_35_4 ~= nil and l_35_0[(string.lower)(l_35_4)] ~= nil then
-      (sysio.DeleteRegKey)(l_35_2, nil)
-    end
-  end
-end
-
-Infrastructure_CleanSearchByDisplayName = function(l_36_0)
-  -- function num : 0_35
-  local l_36_1 = (string.lower)(l_36_0)
-  Infrastructure_CleanSearchByDisplayName_RegPath(l_36_1, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  Infrastructure_CleanSearchByDisplayName_RegPath(l_36_1, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  local l_36_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  if l_36_2 then
-    for l_36_6,l_36_7 in pairs(l_36_2) do
-      Infrastructure_CleanSearchByDisplayName_RegPath(l_36_1, l_36_7)
-    end
-  end
-  do
-    local l_36_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-    if l_36_8 then
-      for l_36_12,l_36_13 in pairs(l_36_8) do
-        Infrastructure_CleanSearchByDisplayName_RegPath(l_36_1, l_36_13)
+Infrastructure_CleanSearchByURLDomainNameList_RegPath = L0_0
+function L0_0(A0_259, A1_260)
+  local L2_261, L3_262, L4_263, L5_264, L6_265, L7_266, L8_267, L9_268
+  L2_261 = sysio
+  L2_261 = L2_261.RegOpenKey
+  L3_262 = A1_260
+  L2_261 = L2_261(L3_262)
+  if L2_261 ~= nil then
+    L3_262 = sysio
+    L3_262 = L3_262.GetRegValueAsString
+    L4_263 = L2_261
+    L5_264 = "URL"
+    L3_262 = L3_262(L4_263, L5_264)
+    if L3_262 ~= nil then
+      L4_263 = string
+      L4_263 = L4_263.lower
+      L5_264 = Infrastructure_GetDomainFromURL
+      L9_268 = L5_264(L6_265)
+      L4_263 = L4_263(L5_264, L6_265, L7_266, L8_267, L9_268, L5_264(L6_265))
+      L5_264 = string
+      L5_264 = L5_264.len
+      L5_264 = L5_264(L6_265)
+      for L9_268 in L6_265(L7_266) do
+        if L5_264 >= string.len(L9_268) and string.sub(L4_263, L5_264 - string.len(L9_268) + 1) ~= nil and string.sub(L4_263, L5_264 - string.len(L9_268) + 1) == L9_268 then
+          sysio.DeleteRegKey(L2_261, nil)
+        end
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByDisplayName_RegPath = function(l_37_0, l_37_1)
-  -- function num : 0_36
-  local l_37_2 = (sysio.RegOpenKey)(l_37_1)
-  if l_37_2 ~= nil then
-    local l_37_3 = (sysio.RegEnumKeys)(l_37_2)
-    if l_37_3 then
-      for l_37_7,l_37_8 in pairs(l_37_3) do
-        Infrastructure_CleanSearchByDisplayName_RegPath_SearchScope(l_37_0, l_37_1 .. "\\" .. l_37_8)
+Infrastructure_CleanSearchByURLDomainNameList_RegPath_SearchScope = L0_0
+function L0_0(A0_269)
+  local L1_270, L2_271, L3_272, L4_273, L5_274, L6_275, L7_276, L8_277
+  L1_270 = string
+  L1_270 = L1_270.lower
+  L2_271 = A0_269
+  L1_270 = L1_270(L2_271)
+  L2_271 = Infrastructure_CleanSearchByURLDomainName_RegPath
+  L2_271(L3_272, L4_273)
+  L2_271 = Infrastructure_CleanSearchByURLDomainName_RegPath
+  L2_271(L3_272, L4_273)
+  L2_271 = sysio
+  L2_271 = L2_271.RegExpandUserKey
+  L2_271 = L2_271(L3_272)
+  if L2_271 then
+    for L6_275, L7_276 in L3_272(L4_273) do
+      L8_277 = Infrastructure_CleanSearchByURLDomainName_RegPath
+      L8_277(L1_270, L7_276)
+    end
+  end
+  if L3_272 then
+    for L7_276, L8_277 in L4_273(L5_274) do
+      Infrastructure_CleanSearchByURLDomainName_RegPath(L1_270, L8_277)
+    end
+  end
+end
+Infrastructure_CleanSearchByURLDomainName = L0_0
+function L0_0(A0_278, A1_279)
+  local L2_280, L3_281, L4_282, L5_283, L6_284, L7_285, L8_286
+  L2_280 = sysio
+  L2_280 = L2_280.RegOpenKey
+  L3_281 = A1_279
+  L2_280 = L2_280(L3_281)
+  if L2_280 ~= nil then
+    L3_281 = sysio
+    L3_281 = L3_281.RegEnumKeys
+    L3_281 = L3_281(L4_282)
+    if L3_281 then
+      for L7_285, L8_286 in L4_282(L5_283) do
+        Infrastructure_CleanSearchByURLDomainName_RegPath_SearchScope(A0_278, A1_279 .. "\\" .. L8_286)
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByDisplayName_RegPath_SearchScope = function(l_38_0, l_38_1)
-  -- function num : 0_37
-  local l_38_2 = (sysio.RegOpenKey)(l_38_1)
-  if l_38_2 ~= nil then
-    local l_38_3 = (sysio.GetRegValueAsString)(l_38_2, "DisplayName")
-    if l_38_3 ~= nil then
-      l_38_3 = (string.lower)(l_38_3)
-      if (string.match)(l_38_3, l_38_0) ~= nil then
-        (sysio.DeleteRegKey)(l_38_2, nil)
-      end
-    end
-    local l_38_4 = (sysio.GetRegValueAsString)(l_38_2, "")
-    if l_38_4 ~= nil then
-      l_38_4 = (string.lower)(l_38_4)
-      if (string.match)(l_38_4, l_38_0) ~= nil then
-        (sysio.DeleteRegKey)(l_38_2, nil)
-      end
-    end
-  end
-end
-
-Infrastructure_CleanSearchByURLDomainNameList = function(l_39_0)
-  -- function num : 0_38
-  local l_39_1 = LowerSet(l_39_0)
-  Infrastructure_CleanSearchByURLDomainNameList_RegPath(l_39_1, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  Infrastructure_CleanSearchByURLDomainNameList_RegPath(l_39_1, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  local l_39_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  if l_39_2 then
-    for l_39_6,l_39_7 in pairs(l_39_2) do
-      Infrastructure_CleanSearchByURLDomainNameList_RegPath(l_39_1, l_39_7)
-    end
-  end
-  do
-    local l_39_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-    if l_39_8 then
-      for l_39_12,l_39_13 in pairs(l_39_8) do
-        Infrastructure_CleanSearchByURLDomainNameList_RegPath(l_39_1, l_39_13)
+Infrastructure_CleanSearchByURLDomainName_RegPath = L0_0
+function L0_0(A0_287, A1_288)
+  local L2_289, L3_290, L4_291
+  L2_289 = sysio
+  L2_289 = L2_289.RegOpenKey
+  L3_290 = A1_288
+  L2_289 = L2_289(L3_290)
+  if L2_289 ~= nil then
+    L3_290 = sysio
+    L3_290 = L3_290.GetRegValueAsString
+    L4_291 = L2_289
+    L3_290 = L3_290(L4_291, "URL")
+    if L3_290 ~= nil then
+      L4_291 = string
+      L4_291 = L4_291.lower
+      L4_291 = L4_291(Infrastructure_GetDomainFromURL(L3_290))
+      if string.len(L4_291) >= string.len(A0_287) and string.sub(L4_291, string.len(L4_291) - string.len(A0_287) + 1) ~= nil and A0_287 == string.sub(L4_291, string.len(L4_291) - string.len(A0_287) + 1) then
+        sysio.DeleteRegKey(L2_289, nil)
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByURLDomainNameList_RegPath = function(l_40_0, l_40_1)
-  -- function num : 0_39
-  local l_40_2 = (sysio.RegOpenKey)(l_40_1)
-  if l_40_2 ~= nil then
-    local l_40_3 = (sysio.RegEnumKeys)(l_40_2)
-    if l_40_3 then
-      for l_40_7,l_40_8 in pairs(l_40_3) do
-        Infrastructure_CleanSearchByURLDomainNameList_RegPath_SearchScope(l_40_0, l_40_1 .. "\\" .. l_40_8)
+Infrastructure_CleanSearchByURLDomainName_RegPath_SearchScope = L0_0
+function L0_0(A0_292)
+  local L1_293
+  if A0_292 == nil then
+    return
+  end
+  L1_293 = A0_292
+  if string.find(L1_293, "//", 1, true) ~= nil and string.find(L1_293, "//", 1, true) > 2 and string.find(L1_293, "//", 1, true) < string.len(L1_293) then
+    L1_293 = string.sub(L1_293, string.find(L1_293, "//", 1, true) + 1)
+  end
+  if string.find(L1_293, "/", 1, true) ~= nil and 1 < string.find(L1_293, "/", 1, true) then
+    L1_293 = string.sub(L1_293, 1, string.find(L1_293, "/", 1, true) - 1)
+  end
+  return L1_293
+end
+Infrastructure_GetDomainFromURL = L0_0
+function L0_0(A0_294)
+  local L1_295, L2_296, L3_297, L4_298, L5_299, L6_300, L7_301, L8_302
+  L1_295 = LowerSet
+  L2_296 = A0_294
+  L1_295 = L1_295(L2_296)
+  L2_296 = Infrastructure_CleanToolbarByNameList_RegPath
+  L2_296(L3_297, L4_298)
+  L2_296 = Infrastructure_CleanToolbarByNameList_RegPath
+  L2_296(L3_297, L4_298)
+  L2_296 = sysio
+  L2_296 = L2_296.RegExpandUserKey
+  L2_296 = L2_296(L3_297)
+  if L2_296 then
+    for L6_300, L7_301 in L3_297(L4_298) do
+      L8_302 = Infrastructure_CleanToolbarByName_RegPath
+      L8_302(L1_295, L7_301)
+    end
+  end
+  if L3_297 then
+    for L7_301, L8_302 in L4_298(L5_299) do
+      Infrastructure_CleanToolbarByName_RegPath(L1_295, L8_302)
+    end
+  end
+end
+Infrastructure_CleanToolbarByNameList = L0_0
+function L0_0(A0_303, A1_304)
+  local L2_305, L3_306, L4_307, L5_308, L6_309, L7_310, L8_311, L9_312
+  L2_305 = sysio
+  L2_305 = L2_305.RegOpenKey
+  L3_306 = A1_304
+  L2_305 = L2_305(L3_306)
+  if L2_305 ~= nil then
+    L3_306 = sysio
+    L3_306 = L3_306.RegEnumValues
+    L3_306 = L3_306(L4_307)
+    if L3_306 then
+      for L7_310, L8_311 in L4_307(L5_308) do
+        L9_312 = sysio
+        L9_312 = L9_312.GetRegValueAsString
+        L9_312 = L9_312(L2_305, L8_311)
+        if L9_312 ~= nil and A0_303[string.lower(L9_312)] ~= nil then
+          sysio.DeleteRegValue(L2_305, L8_311)
+          Infrastructure_RemoveClsid(L8_311)
+          Infrastructure_IE_DisableExtensionsByMatch(L8_311)
+        end
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByURLDomainNameList_RegPath_SearchScope = function(l_41_0, l_41_1)
-  -- function num : 0_40
-  local l_41_2 = (sysio.RegOpenKey)(l_41_1)
-  if l_41_2 ~= nil then
-    local l_41_3 = (sysio.GetRegValueAsString)(l_41_2, "URL")
-    if l_41_3 ~= nil then
-      local l_41_4 = (string.lower)(Infrastructure_GetDomainFromURL(l_41_3))
-      local l_41_5 = (string.len)(l_41_4)
-      for l_41_9 in pairs(l_41_0) do
-        local l_41_10 = (string.len)(l_41_9)
-        if l_41_10 <= l_41_5 then
-          local l_41_11 = (string.sub)(l_41_4, l_41_5 - l_41_10 + 1)
-          if l_41_11 ~= nil and l_41_11 == l_41_9 then
-            (sysio.DeleteRegKey)(l_41_2, nil)
+Infrastructure_CleanToolbarByNameList_RegPath = L0_0
+function L0_0(A0_313)
+  local L1_314, L2_315, L3_316, L4_317, L5_318, L6_319, L7_320
+  L1_314 = string
+  L1_314 = L1_314.lower
+  L1_314 = L1_314(L2_315)
+  A0_313 = L1_314
+  L1_314 = Infrastructure_CleanToolbarByName_RegPath
+  L1_314(L2_315, L3_316)
+  L1_314 = Infrastructure_CleanToolbarByName_RegPath
+  L1_314(L2_315, L3_316)
+  L1_314 = sysio
+  L1_314 = L1_314.RegExpandUserKey
+  L1_314 = L1_314(L2_315)
+  if L1_314 then
+    for L5_318, L6_319 in L2_315(L3_316) do
+      L7_320 = Infrastructure_CleanToolbarByName_RegPath
+      L7_320(A0_313, L6_319)
+    end
+  end
+  if L2_315 then
+    for L6_319, L7_320 in L3_316(L4_317) do
+      Infrastructure_CleanToolbarByName_RegPath(A0_313, L7_320)
+    end
+  end
+end
+Infrastructure_CleanToolbarByName = L0_0
+function L0_0(A0_321, A1_322)
+  local L2_323, L3_324, L4_325, L5_326, L6_327, L7_328, L8_329, L9_330
+  L2_323 = sysio
+  L2_323 = L2_323.RegOpenKey
+  L3_324 = A1_322
+  L2_323 = L2_323(L3_324)
+  if L2_323 ~= nil then
+    L3_324 = sysio
+    L3_324 = L3_324.RegEnumValues
+    L3_324 = L3_324(L4_325)
+    if L3_324 then
+      for L7_328, L8_329 in L4_325(L5_326) do
+        L9_330 = sysio
+        L9_330 = L9_330.GetRegValueAsString
+        L9_330 = L9_330(L2_323, L8_329)
+        if L9_330 ~= nil then
+          L9_330 = string.lower(L9_330)
+          if string.find(L9_330, A0_321, 1, true) ~= nil then
+            sysio.DeleteRegValue(L2_323, L8_329)
+            Infrastructure_RemoveClsid(L8_329)
+            Infrastructure_IE_DisableExtensionsByMatch(L8_329)
           end
         end
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByURLDomainName = function(l_42_0)
-  -- function num : 0_41
-  local l_42_1 = (string.lower)(l_42_0)
-  Infrastructure_CleanSearchByURLDomainName_RegPath(l_42_1, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  Infrastructure_CleanSearchByURLDomainName_RegPath(l_42_1, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  local l_42_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Internet Explorer\\SearchScopes\\")
-  if l_42_2 then
-    for l_42_6,l_42_7 in pairs(l_42_2) do
-      Infrastructure_CleanSearchByURLDomainName_RegPath(l_42_1, l_42_7)
+Infrastructure_CleanToolbarByName_RegPath = L0_0
+function L0_0(A0_331)
+  local L1_332, L2_333, L3_334, L4_335, L5_336, L6_337, L7_338, L8_339
+  L1_332 = LowerSet
+  L2_333 = A0_331
+  L1_332 = L1_332(L2_333)
+  L2_333 = Infrastructure_CleanBHOByNameList_RegPath
+  L2_333(L3_334, L4_335)
+  L2_333 = Infrastructure_CleanBHOByNameList_RegPath
+  L2_333(L3_334, L4_335)
+  L2_333 = sysio
+  L2_333 = L2_333.RegExpandUserKey
+  L2_333 = L2_333(L3_334)
+  if L2_333 then
+    for L6_337, L7_338 in L3_334(L4_335) do
+      L8_339 = Infrastructure_CleanBHOByNameList_RegPath
+      L8_339(L1_332, L7_338)
     end
   end
-  do
-    local l_42_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Internet Explorer\\SearchScopes\\")
-    if l_42_8 then
-      for l_42_12,l_42_13 in pairs(l_42_8) do
-        Infrastructure_CleanSearchByURLDomainName_RegPath(l_42_1, l_42_13)
+  if L3_334 then
+    for L7_338, L8_339 in L4_335(L5_336) do
+      Infrastructure_CleanBHOByNameList_RegPath(L1_332, L8_339)
+    end
+  end
+end
+Infrastructure_CleanBHOByNameList = L0_0
+function L0_0(A0_340, A1_341)
+  local L2_342, L3_343, L4_344, L5_345, L6_346, L7_347, L8_348
+  L2_342 = sysio
+  L2_342 = L2_342.RegOpenKey
+  L3_343 = A1_341
+  L2_342 = L2_342(L3_343)
+  if L2_342 ~= nil then
+    L3_343 = sysio
+    L3_343 = L3_343.RegEnumKeys
+    L3_343 = L3_343(L4_344)
+    if L3_343 then
+      for L7_347, L8_348 in L4_344(L5_345) do
+        Infrastructure_CleanBHOByNameList_RegPath_Clsid(A0_340, A1_341, L8_348)
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByURLDomainName_RegPath = function(l_43_0, l_43_1)
-  -- function num : 0_42
-  local l_43_2 = (sysio.RegOpenKey)(l_43_1)
-  if l_43_2 ~= nil then
-    local l_43_3 = (sysio.RegEnumKeys)(l_43_2)
-    if l_43_3 then
-      for l_43_7,l_43_8 in pairs(l_43_3) do
-        Infrastructure_CleanSearchByURLDomainName_RegPath_SearchScope(l_43_0, l_43_1 .. "\\" .. l_43_8)
+Infrastructure_CleanBHOByNameList_RegPath = L0_0
+function L0_0(A0_349, A1_350, A2_351)
+  local L3_352, L4_353
+  L3_352 = sysio
+  L3_352 = L3_352.RegOpenKey
+  L4_353 = A1_350
+  L4_353 = L4_353 .. "\\" .. A2_351
+  L3_352 = L3_352(L4_353)
+  if L3_352 ~= nil then
+    L4_353 = sysio
+    L4_353 = L4_353.GetRegValueAsString
+    L4_353 = L4_353(L3_352, nil)
+    if L4_353 ~= nil and A0_349[string.lower(L4_353)] ~= nil then
+      sysio.DeleteRegKey(L3_352, nil)
+      Infrastructure_IE_DisableExtensionsByMatch(A2_351)
+      Infrastructure_RemoveClsid(A2_351)
+    end
+  end
+end
+Infrastructure_CleanBHOByNameList_RegPath_Clsid = L0_0
+function L0_0(A0_354)
+  local L1_355, L2_356, L3_357, L4_358, L5_359, L6_360, L7_361
+  L1_355 = string
+  L1_355 = L1_355.lower
+  L1_355 = L1_355(L2_356)
+  A0_354 = L1_355
+  L1_355 = Infrastructure_CleanBHOByName_RegPath
+  L1_355(L2_356, L3_357)
+  L1_355 = Infrastructure_CleanBHOByName_RegPath
+  L1_355(L2_356, L3_357)
+  L1_355 = sysio
+  L1_355 = L1_355.RegExpandUserKey
+  L1_355 = L1_355(L2_356)
+  if L1_355 then
+    for L5_359, L6_360 in L2_356(L3_357) do
+      L7_361 = Infrastructure_CleanBHOByName_RegPath
+      L7_361(A0_354, L6_360)
+    end
+  end
+  if L2_356 then
+    for L6_360, L7_361 in L3_357(L4_358) do
+      Infrastructure_CleanBHOByName_RegPath(A0_354, L7_361)
+    end
+  end
+end
+Infrastructure_CleanBHOByName = L0_0
+function L0_0(A0_362, A1_363)
+  local L2_364, L3_365, L4_366, L5_367, L6_368, L7_369, L8_370
+  L2_364 = sysio
+  L2_364 = L2_364.RegOpenKey
+  L3_365 = A1_363
+  L2_364 = L2_364(L3_365)
+  if L2_364 ~= nil then
+    L3_365 = sysio
+    L3_365 = L3_365.RegEnumKeys
+    L3_365 = L3_365(L4_366)
+    if L3_365 then
+      for L7_369, L8_370 in L4_366(L5_367) do
+        Infrastructure_CleanBHOByName_RegPath_Clsid(A0_362, A1_363, L8_370)
       end
     end
   end
 end
-
-Infrastructure_CleanSearchByURLDomainName_RegPath_SearchScope = function(l_44_0, l_44_1)
-  -- function num : 0_43
-  local l_44_2 = (sysio.RegOpenKey)(l_44_1)
-  if l_44_2 ~= nil then
-    local l_44_3 = (sysio.GetRegValueAsString)(l_44_2, "URL")
-    if l_44_3 ~= nil then
-      local l_44_4 = (string.lower)(Infrastructure_GetDomainFromURL(l_44_3))
-      local l_44_5 = (string.len)(l_44_4)
-      local l_44_6 = (string.len)(l_44_0)
-      if l_44_6 <= l_44_5 then
-        local l_44_7 = (string.sub)(l_44_4, l_44_5 - l_44_6 + 1)
-        if l_44_7 ~= nil and l_44_0 == l_44_7 then
-          (sysio.DeleteRegKey)(l_44_2, nil)
+Infrastructure_CleanBHOByName_RegPath = L0_0
+function L0_0(A0_371, A1_372, A2_373)
+  local L3_374, L4_375
+  L3_374 = sysio
+  L3_374 = L3_374.RegOpenKey
+  L4_375 = A1_372
+  L4_375 = L4_375 .. "\\" .. A2_373
+  L3_374 = L3_374(L4_375)
+  if L3_374 ~= nil then
+    L4_375 = sysio
+    L4_375 = L4_375.GetRegValueAsString
+    L4_375 = L4_375(L3_374, nil)
+    if L4_375 ~= nil and A0_371 == string.lower(L4_375) then
+      sysio.DeleteRegKey(L3_374, nil)
+      Infrastructure_IE_DisableExtensionsByMatch(A2_373)
+      Infrastructure_RemoveClsid(A2_373)
+    end
+  end
+end
+Infrastructure_CleanBHOByName_RegPath_Clsid = L0_0
+function L0_0(A0_376)
+  local L1_377, L2_378, L3_379, L4_380, L5_381, L6_382, L7_383
+  L1_377 = string
+  L1_377 = L1_377.len
+  L1_377 = L1_377(L2_378)
+  if L1_377 == 38 then
+    L1_377 = Infrastructure_RemoveClsid_RegPath
+    L1_377(L2_378, L3_379)
+    L1_377 = Infrastructure_RemoveClsid_RegPath
+    L1_377(L2_378, L3_379)
+    L1_377 = sysio
+    L1_377 = L1_377.RegExpandUserKey
+    L1_377 = L1_377(L2_378)
+    if L1_377 then
+      for L5_381, L6_382 in L2_378(L3_379) do
+        L7_383 = Infrastructure_RemoveClsid_RegPath
+        L7_383(A0_376, L6_382)
+      end
+    end
+    if L2_378 then
+      for L6_382, L7_383 in L3_379(L4_380) do
+        Infrastructure_RemoveClsid_RegPath(A0_376, L7_383)
+      end
+    end
+  end
+end
+Infrastructure_RemoveClsid = L0_0
+function L0_0(A0_384, A1_385)
+  Infrastructure_DeleteRegKey_Recursive(A1_385 .. "\\" .. A0_384)
+end
+Infrastructure_RemoveClsid_RegPath = L0_0
+function L0_0(A0_386)
+  local L1_387, L2_388, L3_389, L4_390, L5_391, L6_392, L7_393
+  L1_387 = sysio
+  L1_387 = L1_387.RegOpenKey
+  L2_388 = A0_386
+  L1_387 = L1_387(L2_388)
+  if L1_387 then
+    L2_388 = sysio
+    L2_388 = L2_388.RegEnumKeys
+    L2_388 = L2_388(L3_389)
+    if L2_388 then
+      for L6_392, L7_393 in L3_389(L4_390) do
+        Infrastructure_DeleteRegKey_Recursive(A0_386 .. "\\" .. L7_393)
+      end
+    end
+    L3_389(L4_390, L5_391)
+  end
+end
+Infrastructure_DeleteRegKey_Recursive = L0_0
+function L0_0()
+  local L0_394
+  L0_394 = sysio
+  L0_394 = L0_394.RegOpenKey
+  L0_394 = L0_394("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_394 then
+    sysio.SetRegValueAsDword(L0_394, "ConsentPromptBehaviorAdmin", 5)
+  end
+end
+Infrastructure_ConsentPromptBehaviorAdmin = L0_0
+function L0_0()
+  local L0_395
+  L0_395 = sysio
+  L0_395 = L0_395.RegOpenKey
+  L0_395 = L0_395("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_395 then
+    sysio.SetRegValueAsDword(L0_395, "ConsentPromptBehaviorUser", 3)
+  end
+end
+Infrastructure_ConsentPromptBehaviorUser = L0_0
+function L0_0()
+  local L0_396
+  L0_396 = sysio
+  L0_396 = L0_396.RegOpenKey
+  L0_396 = L0_396("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_396 then
+    sysio.SetRegValueAsDword(L0_396, "EnableInstallerDetection", 1)
+  end
+end
+Infrastructure_EnableInstallerDetection = L0_0
+function L0_0()
+  local L0_397
+  L0_397 = sysio
+  L0_397 = L0_397.RegOpenKey
+  L0_397 = L0_397("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_397 then
+    sysio.SetRegValueAsDword(L0_397, "EnableSecureUIAPaths", 1)
+  end
+end
+Infrastructure_EnableSecureUIAPaths = L0_0
+function L0_0()
+  local L0_398
+  L0_398 = sysio
+  L0_398 = L0_398.RegOpenKey
+  L0_398 = L0_398("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_398 then
+    sysio.SetRegValueAsDword(L0_398, "EnableVirtualization", 1)
+  end
+end
+Infrastructure_EnableVirtualization = L0_0
+function L0_0()
+  local L0_399
+  L0_399 = sysio
+  L0_399 = L0_399.RegOpenKey
+  L0_399 = L0_399("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_399 then
+    sysio.SetRegValueAsDword(L0_399, "PromptOnSecureDesktop", 1)
+  end
+end
+Infrastructure_PromptOnSecureDesktop = L0_0
+function L0_0()
+  local L0_400
+  L0_400 = sysio
+  L0_400 = L0_400.RegOpenKey
+  L0_400 = L0_400("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_400 then
+    sysio.SetRegValueAsDword(L0_400, "ValidateAdminCodeSignatures", 0)
+  end
+end
+Infrastructure_ValidateAdminCodeSignatures = L0_0
+function L0_0()
+  local L0_401
+  L0_401 = sysio
+  L0_401 = L0_401.RegOpenKey
+  L0_401 = L0_401("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_401 then
+    sysio.SetRegValueAsDword(L0_401, "FilterAdministratorToken", 0)
+  end
+end
+Infrastructure_FilterAdministratorToken = L0_0
+function L0_0()
+  local L0_402, L1_403, L2_404, L3_405, L4_406, L5_407, L6_408
+  L0_402 = sysio
+  L0_402 = L0_402.RegExpandUserKey
+  L0_402 = L0_402(L1_403)
+  for L4_406, L5_407 in L1_403(L2_404) do
+    L6_408 = sysio
+    L6_408 = L6_408.RegOpenKey
+    L6_408 = L6_408(L5_407)
+    if L6_408 then
+      sysio.DeleteRegValue(L6_408, "NoDriveTypeAutoRun")
+    end
+  end
+  L2_404(L3_405)
+end
+Infrastructure_NoDriveTypeAutoRun = L0_0
+function L0_0()
+  local L0_409, L1_410, L2_411, L3_412, L4_413, L5_414, L6_415
+  L0_409 = sysio
+  L0_409 = L0_409.RegExpandUserKey
+  L0_409 = L0_409(L1_410)
+  for L4_413, L5_414 in L1_410(L2_411) do
+    L6_415 = sysio
+    L6_415 = L6_415.RegOpenKey
+    L6_415 = L6_415(L5_414)
+    if L6_415 then
+      sysio.DeleteRegValue(L6_415, "DisableRegistryTools")
+    end
+  end
+  L2_411(L3_412)
+end
+Infrastructure_EnableRegistryTools = L0_0
+function L0_0()
+  local L0_416
+  L0_416 = sysio
+  L0_416 = L0_416.RegOpenKey
+  L0_416 = L0_416("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
+  if L0_416 then
+    sysio.DeleteRegValue(L0_416, "EnableLinkedConnections")
+  end
+end
+Infrastructure_RemoveLinkedConnectionsRegKey = L0_0
+function L0_0()
+  local L0_417, L1_418, L2_419, L3_420, L4_421, L5_422, L6_423, L7_424
+  L0_417 = sysio
+  L0_417 = L0_417.RegOpenKey
+  L1_418 = "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\taskmgr.exe"
+  L0_417 = L0_417(L1_418)
+  if L0_417 then
+    L1_418 = sysio
+    L1_418 = L1_418.DeleteRegValue
+    L1_418(L2_419, L3_420)
+  end
+  L1_418 = sysio
+  L1_418 = L1_418.RegExpandUserKey
+  L1_418 = L1_418(L2_419)
+  for L5_422, L6_423 in L2_419(L3_420) do
+    L7_424 = sysio
+    L7_424 = L7_424.RegOpenKey
+    L7_424 = L7_424(L6_423)
+    if L7_424 then
+      sysio.DeleteRegValue(L7_424, "DisableTaskMgr")
+    end
+  end
+  L2_419(L3_420)
+end
+Infrastructure_EnableTaskManager = L0_0
+function L0_0(A0_425)
+  local L1_426
+  L1_426 = string
+  L1_426 = L1_426.len
+  L1_426 = L1_426(A0_425)
+  if L1_426 == 38 then
+    L1_426 = sysio
+    L1_426 = L1_426.RegOpenKey
+    L1_426 = L1_426("HKCR\\CLSID\\" .. A0_425 .. "\\InprocServer32")
+    if L1_426 then
+      return (sysio.GetRegValueAsString(L1_426, ""))
+    end
+  end
+end
+Infrastructure_GetFilePathFromGUID = L0_0
+function L0_0(A0_427, A1_428)
+  local L2_429
+  if A0_427 ~= nil and A1_428 ~= nil then
+    L2_429 = sysio
+    L2_429 = L2_429.RegOpenKey
+    L2_429 = L2_429("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. A0_427)
+    if L2_429 then
+      return (sysio.GetRegValueAsString(L2_429, A1_428))
+    end
+  end
+end
+Infrastructure_GetUninstallStrFromKey = L0_0
+function L0_0(A0_430)
+  local L1_431, L2_432, L3_433, L4_434, L5_435, L6_436, L7_437
+  L1_431 = sysio
+  L1_431 = L1_431.RegOpenKey
+  L2_432 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID"
+  L1_431 = L1_431(L2_432)
+  if L1_431 ~= nil then
+    L2_432 = sysio
+    L2_432 = L2_432.RegEnumValues
+    L2_432 = L2_432(L3_433)
+    if L2_432 then
+      for L6_436, L7_437 in L3_433(L4_434) do
+        if string.match(L7_437, A0_430) then
+          return L7_437
         end
       end
     end
   end
 end
-
-Infrastructure_GetDomainFromURL = function(l_45_0)
-  -- function num : 0_44
-  if l_45_0 == nil then
-    return 
+Infrastructure_IE_GetExtPolicyGUIDfromMatch = L0_0
+function L0_0(A0_438)
+  local L1_439, L2_440, L3_441, L4_442, L5_443, L6_444
+  if A0_438 == nil then
+    return
   end
-  local l_45_1 = l_45_0
-  local l_45_2, l_45_3 = (string.find)(l_45_1, "//", 1, true)
-  if l_45_3 ~= nil and l_45_3 > 2 and l_45_3 < (string.len)(l_45_1) then
-    l_45_1 = (string.sub)(l_45_1, l_45_3 + 1)
+  L1_439 = string
+  L1_439 = L1_439.gsub
+  L3_441 = A0_438
+  L2_440 = A0_438.lower
+  L2_440 = L2_440(L3_441)
+  L3_441 = "->.*"
+  L4_442 = ""
+  L1_439 = L1_439(L2_440, L3_441, L4_442)
+  L2_440 = string
+  L2_440 = L2_440.match
+  L3_441 = L1_439
+  L4_442 = "(.*\\)(.*)"
+  L3_441 = L2_440(L3_441, L4_442)
+  L4_442, L5_443, L6_444 = nil, nil, nil
+  if L2_440 then
+    L2_440 = L2_440:gsub("^\\\\%?\\", "")
+    L4_442 = string.match(L2_440, "([^\\]+)\\$")
   end
-  local l_45_4 = (string.find)(l_45_1, "/", 1, true)
-  if l_45_4 ~= nil and l_45_4 > 1 then
-    l_45_1 = (string.sub)(l_45_1, 1, l_45_4 - 1)
-  end
-  return l_45_1
-end
-
-Infrastructure_CleanToolbarByNameList = function(l_46_0)
-  -- function num : 0_45
-  local l_46_1 = LowerSet(l_46_0)
-  Infrastructure_CleanToolbarByNameList_RegPath(l_46_1, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\Toolbar\\")
-  Infrastructure_CleanToolbarByNameList_RegPath(l_46_1, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\Toolbar\\")
-  local l_46_2 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Internet Explorer\\Toolbar\\")
-  if l_46_2 then
-    for l_46_6,l_46_7 in pairs(l_46_2) do
-      Infrastructure_CleanToolbarByName_RegPath(l_46_1, l_46_7)
-    end
-  end
-  do
-    local l_46_8 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\Toolbar\\")
-    if l_46_8 then
-      for l_46_12,l_46_13 in pairs(l_46_8) do
-        Infrastructure_CleanToolbarByName_RegPath(l_46_1, l_46_13)
-      end
-    end
-  end
-end
-
-Infrastructure_CleanToolbarByNameList_RegPath = function(l_47_0, l_47_1)
-  -- function num : 0_46
-  local l_47_2 = (sysio.RegOpenKey)(l_47_1)
-  if l_47_2 ~= nil then
-    local l_47_3 = (sysio.RegEnumValues)(l_47_2)
-    if l_47_3 then
-      for l_47_7,l_47_8 in pairs(l_47_3) do
-        local l_47_9 = (sysio.GetRegValueAsString)(l_47_2, l_47_8)
-        if l_47_9 ~= nil and l_47_0[(string.lower)(l_47_9)] ~= nil then
-          (sysio.DeleteRegValue)(l_47_2, l_47_8)
-          Infrastructure_RemoveClsid(l_47_8)
-          Infrastructure_IE_DisableExtensionsByMatch(l_47_8)
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_CleanToolbarByName = function(l_48_0)
-  -- function num : 0_47
-  l_48_0 = (string.lower)(l_48_0)
-  Infrastructure_CleanToolbarByName_RegPath(l_48_0, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\Toolbar\\")
-  Infrastructure_CleanToolbarByName_RegPath(l_48_0, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\Toolbar\\")
-  local l_48_1 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Internet Explorer\\Toolbar\\")
-  if l_48_1 then
-    for l_48_5,l_48_6 in pairs(l_48_1) do
-      Infrastructure_CleanToolbarByName_RegPath(l_48_0, l_48_6)
-    end
-  end
-  do
-    local l_48_7 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Wow6432Node\\Microsoft\\Internet Explorer\\Toolbar\\")
-    if l_48_7 then
-      for l_48_11,l_48_12 in pairs(l_48_7) do
-        Infrastructure_CleanToolbarByName_RegPath(l_48_0, l_48_12)
-      end
-    end
-  end
-end
-
-Infrastructure_CleanToolbarByName_RegPath = function(l_49_0, l_49_1)
-  -- function num : 0_48
-  local l_49_2 = (sysio.RegOpenKey)(l_49_1)
-  if l_49_2 ~= nil then
-    local l_49_3 = (sysio.RegEnumValues)(l_49_2)
-    if l_49_3 then
-      for l_49_7,l_49_8 in pairs(l_49_3) do
-        local l_49_9 = (sysio.GetRegValueAsString)(l_49_2, l_49_8)
-        if l_49_9 ~= nil then
-          l_49_9 = (string.lower)(l_49_9)
-          if (string.find)(l_49_9, l_49_0, 1, true) ~= nil then
-            (sysio.DeleteRegValue)(l_49_2, l_49_8)
-            Infrastructure_RemoveClsid(l_49_8)
-            Infrastructure_IE_DisableExtensionsByMatch(l_49_8)
-          end
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_CleanBHOByNameList = function(l_50_0)
-  -- function num : 0_49
-  local l_50_1 = LowerSet(l_50_0)
-  Infrastructure_CleanBHOByNameList_RegPath(l_50_1, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-  Infrastructure_CleanBHOByNameList_RegPath(l_50_1, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-  local l_50_2 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-  if l_50_2 then
-    for l_50_6,l_50_7 in pairs(l_50_2) do
-      Infrastructure_CleanBHOByNameList_RegPath(l_50_1, l_50_7)
-    end
-  end
-  do
-    local l_50_8 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-    if l_50_8 then
-      for l_50_12,l_50_13 in pairs(l_50_8) do
-        Infrastructure_CleanBHOByNameList_RegPath(l_50_1, l_50_13)
-      end
-    end
-  end
-end
-
-Infrastructure_CleanBHOByNameList_RegPath = function(l_51_0, l_51_1)
-  -- function num : 0_50
-  local l_51_2 = (sysio.RegOpenKey)(l_51_1)
-  if l_51_2 ~= nil then
-    local l_51_3 = (sysio.RegEnumKeys)(l_51_2)
-    if l_51_3 then
-      for l_51_7,l_51_8 in pairs(l_51_3) do
-        Infrastructure_CleanBHOByNameList_RegPath_Clsid(l_51_0, l_51_1, l_51_8)
-      end
-    end
-  end
-end
-
-Infrastructure_CleanBHOByNameList_RegPath_Clsid = function(l_52_0, l_52_1, l_52_2)
-  -- function num : 0_51
-  local l_52_3 = (sysio.RegOpenKey)(l_52_1 .. "\\" .. l_52_2)
-  if l_52_3 ~= nil then
-    local l_52_4 = (sysio.GetRegValueAsString)(l_52_3, nil)
-    if l_52_4 ~= nil and l_52_0[(string.lower)(l_52_4)] ~= nil then
-      (sysio.DeleteRegKey)(l_52_3, nil)
-      Infrastructure_IE_DisableExtensionsByMatch(l_52_2)
-      Infrastructure_RemoveClsid(l_52_2)
-    end
-  end
-end
-
-Infrastructure_CleanBHOByName = function(l_53_0)
-  -- function num : 0_52
-  l_53_0 = (string.lower)(l_53_0)
-  Infrastructure_CleanBHOByName_RegPath(l_53_0, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-  Infrastructure_CleanBHOByName_RegPath(l_53_0, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-  local l_53_1 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-  if l_53_1 then
-    for l_53_5,l_53_6 in pairs(l_53_1) do
-      Infrastructure_CleanBHOByName_RegPath(l_53_0, l_53_6)
-    end
-  end
-  do
-    local l_53_7 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\")
-    if l_53_7 then
-      for l_53_11,l_53_12 in pairs(l_53_7) do
-        Infrastructure_CleanBHOByName_RegPath(l_53_0, l_53_12)
-      end
-    end
-  end
-end
-
-Infrastructure_CleanBHOByName_RegPath = function(l_54_0, l_54_1)
-  -- function num : 0_53
-  local l_54_2 = (sysio.RegOpenKey)(l_54_1)
-  if l_54_2 ~= nil then
-    local l_54_3 = (sysio.RegEnumKeys)(l_54_2)
-    if l_54_3 then
-      for l_54_7,l_54_8 in pairs(l_54_3) do
-        Infrastructure_CleanBHOByName_RegPath_Clsid(l_54_0, l_54_1, l_54_8)
-      end
-    end
-  end
-end
-
-Infrastructure_CleanBHOByName_RegPath_Clsid = function(l_55_0, l_55_1, l_55_2)
-  -- function num : 0_54
-  local l_55_3 = (sysio.RegOpenKey)(l_55_1 .. "\\" .. l_55_2)
-  if l_55_3 ~= nil then
-    local l_55_4 = (sysio.GetRegValueAsString)(l_55_3, nil)
-    if l_55_4 ~= nil and l_55_0 == (string.lower)(l_55_4) then
-      (sysio.DeleteRegKey)(l_55_3, nil)
-      Infrastructure_IE_DisableExtensionsByMatch(l_55_2)
-      Infrastructure_RemoveClsid(l_55_2)
-    end
-  end
-end
-
-Infrastructure_RemoveClsid = function(l_56_0)
-  -- function num : 0_55
-  if (string.len)(l_56_0) == 38 then
-    Infrastructure_RemoveClsid_RegPath(l_56_0, "HKLM\\SOFTWARE\\Classes\\CLSID\\")
-    Infrastructure_RemoveClsid_RegPath(l_56_0, "HKLM\\SOFTWARE\\Wow6432Node\\Classes\\CLSID\\")
-    local l_56_1 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Classes\\CLSID\\")
-    if l_56_1 then
-      for l_56_5,l_56_6 in pairs(l_56_1) do
-        Infrastructure_RemoveClsid_RegPath(l_56_0, l_56_6)
-      end
-    end
-    do
-      local l_56_7 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Wow6432Node\\Classes\\CLSID\\")
-      if l_56_7 then
-        for l_56_11,l_56_12 in pairs(l_56_7) do
-          Infrastructure_RemoveClsid_RegPath(l_56_0, l_56_12)
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_RemoveClsid_RegPath = function(l_57_0, l_57_1)
-  -- function num : 0_56
-  Infrastructure_DeleteRegKey_Recursive(l_57_1 .. "\\" .. l_57_0)
-end
-
-Infrastructure_DeleteRegKey_Recursive = function(l_58_0)
-  -- function num : 0_57
-  local l_58_1 = (sysio.RegOpenKey)(l_58_0)
-  if l_58_1 then
-    local l_58_2 = (sysio.RegEnumKeys)(l_58_1)
-    if l_58_2 then
-      for l_58_6,l_58_7 in pairs(l_58_2) do
-        Infrastructure_DeleteRegKey_Recursive(l_58_0 .. "\\" .. l_58_7)
-      end
-    end
-    do
-      ;
-      (sysio.DeleteRegKey)(l_58_1, nil)
-    end
-  end
-end
-
-Infrastructure_ConsentPromptBehaviorAdmin = function()
-  -- function num : 0_58
-  local l_59_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_59_0 then
-    (sysio.SetRegValueAsDword)(l_59_0, "ConsentPromptBehaviorAdmin", 5)
-  end
-end
-
-Infrastructure_ConsentPromptBehaviorUser = function()
-  -- function num : 0_59
-  local l_60_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_60_0 then
-    (sysio.SetRegValueAsDword)(l_60_0, "ConsentPromptBehaviorUser", 3)
-  end
-end
-
-Infrastructure_EnableInstallerDetection = function()
-  -- function num : 0_60
-  local l_61_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_61_0 then
-    (sysio.SetRegValueAsDword)(l_61_0, "EnableInstallerDetection", 1)
-  end
-end
-
-Infrastructure_EnableSecureUIAPaths = function()
-  -- function num : 0_61
-  local l_62_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_62_0 then
-    (sysio.SetRegValueAsDword)(l_62_0, "EnableSecureUIAPaths", 1)
-  end
-end
-
-Infrastructure_EnableVirtualization = function()
-  -- function num : 0_62
-  local l_63_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_63_0 then
-    (sysio.SetRegValueAsDword)(l_63_0, "EnableVirtualization", 1)
-  end
-end
-
-Infrastructure_PromptOnSecureDesktop = function()
-  -- function num : 0_63
-  local l_64_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_64_0 then
-    (sysio.SetRegValueAsDword)(l_64_0, "PromptOnSecureDesktop", 1)
-  end
-end
-
-Infrastructure_ValidateAdminCodeSignatures = function()
-  -- function num : 0_64
-  local l_65_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_65_0 then
-    (sysio.SetRegValueAsDword)(l_65_0, "ValidateAdminCodeSignatures", 0)
-  end
-end
-
-Infrastructure_FilterAdministratorToken = function()
-  -- function num : 0_65
-  local l_66_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_66_0 then
-    (sysio.SetRegValueAsDword)(l_66_0, "FilterAdministratorToken", 0)
-  end
-end
-
-Infrastructure_NoDriveTypeAutoRun = function()
-  -- function num : 0_66
-  local l_67_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer")
-  for l_67_4,l_67_5 in pairs(l_67_0) do
-    local l_67_6 = (sysio.RegOpenKey)(l_67_5)
-    if l_67_6 then
-      (sysio.DeleteRegValue)(l_67_6, "NoDriveTypeAutoRun")
-    end
-  end
-  local l_67_7 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\\\NoDriveTypeAutoRun"
-  ;
-  (Remediation.BtrDeleteRegValue)(l_67_7)
-end
-
-Infrastructure_EnableRegistryTools = function()
-  -- function num : 0_67
-  local l_68_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System")
-  for l_68_4,l_68_5 in pairs(l_68_0) do
-    local l_68_6 = (sysio.RegOpenKey)(l_68_5)
-    if l_68_6 then
-      (sysio.DeleteRegValue)(l_68_6, "DisableRegistryTools")
-    end
-  end
-  local l_68_7 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\\\DisableRegistryTools"
-  ;
-  (Remediation.BtrDeleteRegValue)(l_68_7)
-end
-
-Infrastructure_RemoveLinkedConnectionsRegKey = function()
-  -- function num : 0_68
-  local l_69_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\policies\\system")
-  if l_69_0 then
-    (sysio.DeleteRegValue)(l_69_0, "EnableLinkedConnections")
-  end
-end
-
-Infrastructure_EnableTaskManager = function()
-  -- function num : 0_69
-  local l_70_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\taskmgr.exe")
-  if l_70_0 then
-    (sysio.DeleteRegValue)(l_70_0, "Debugger")
-  end
-  local l_70_1 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System")
-  for l_70_5,l_70_6 in pairs(l_70_1) do
-    local l_70_7 = (sysio.RegOpenKey)(l_70_6)
-    if l_70_7 then
-      (sysio.DeleteRegValue)(l_70_7, "DisableTaskMgr")
-    end
-  end
-  ;
-  (Remediation.BtrDeleteRegValue)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\\\DisableTaskMgr")
-end
-
-Infrastructure_GetFilePathFromGUID = function(l_71_0)
-  -- function num : 0_70
-  if (string.len)(l_71_0) == 38 then
-    local l_71_1 = (sysio.RegOpenKey)("HKCR\\CLSID\\" .. l_71_0 .. "\\InprocServer32")
-    if l_71_1 then
-      return (sysio.GetRegValueAsString)(l_71_1, "")
-    end
-  end
-end
-
-Infrastructure_GetUninstallStrFromKey = function(l_72_0, l_72_1)
-  -- function num : 0_71
-  if l_72_0 ~= nil and l_72_1 ~= nil then
-    local l_72_2 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. l_72_0)
-    if l_72_2 then
-      return (sysio.GetRegValueAsString)(l_72_2, l_72_1)
-    end
-  end
-end
-
-Infrastructure_IE_GetExtPolicyGUIDfromMatch = function(l_73_0)
-  -- function num : 0_72
-  local l_73_1 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
-  if l_73_1 ~= nil then
-    local l_73_2 = (sysio.RegEnumValues)(l_73_1)
-    if l_73_2 then
-      for l_73_6,l_73_7 in pairs(l_73_2) do
-        if (string.match)(l_73_7, l_73_0) then
-          return l_73_7
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_SplitThreatPath = function(l_74_0)
-  -- function num : 0_73
-  if l_74_0 == nil then
-    return 
-  end
-  local l_74_1 = (string.gsub)(l_74_0:lower(), "->.*", "")
-  local l_74_2, l_74_3 = (string.match)(l_74_1, "(.*\\)(.*)")
-  local l_74_4, l_74_5, l_74_6 = nil, nil, nil
-  if l_74_2 then
-    l_74_2 = l_74_2:gsub("^\\\\%?\\", "")
-    l_74_4 = (string.match)(l_74_2, "([^\\]+)\\$")
-  end
-  if l_74_3 then
-    l_74_5 = (string.match)(l_74_3, "(.*)%.(.*)$")
-    if l_74_5 == nil then
-      l_74_5 = l_74_3
+  if L3_441 then
+    L5_443, L6_444 = string.match(L3_441, "(.*)%.(.*)$")
+    if L5_443 == nil then
+      L5_443 = L3_441
     else
-      l_74_5 = l_74_5 .. "." .. l_74_6
+      L5_443 = L5_443 .. "." .. L6_444
     end
   end
-  return l_74_2, l_74_4, l_74_5, l_74_6
+  return L2_440, L4_442, L5_443, L6_444
 end
-
-Infrastructure_GetAvailableDrives = function()
-  -- function num : 0_74
-  local l_75_0 = (sysio.GetLogicalDrivesMask)()
-  local l_75_1 = {}
-  local l_75_2 = {}
-  local l_75_3 = {}
-  local l_75_4 = {}
-  local l_75_5 = 65
-  for l_75_9 = 2, 32 do
-    if (crypto.bitand)((crypto.shr32)(l_75_0, l_75_9), 1) == 1 then
-      local l_75_10 = (string.format)("%c:\\", l_75_5 + l_75_9)
-      local l_75_11 = (sysio.GetLogicalDriveType)(l_75_9)
-      if l_75_11 == 2 then
-        (table.insert)(l_75_2, l_75_10)
-      else
-        if l_75_11 == 3 then
-          (table.insert)(l_75_3, l_75_10)
-        else
-          if l_75_11 == 4 then
-            (table.insert)(l_75_4, l_75_10)
-          end
-        end
+Infrastructure_SplitThreatPath = L0_0
+function L0_0()
+  local L0_445, L1_446, L2_447, L3_448, L4_449, L5_450, L6_451, L7_452, L8_453, L9_454, L10_455
+  L0_445 = sysio
+  L0_445 = L0_445.GetLogicalDrivesMask
+  L0_445 = L0_445()
+  L1_446 = {}
+  L2_447 = {}
+  L3_448 = {}
+  L4_449 = {}
+  L5_450 = 65
+  for L9_454 = 2, 32 do
+    L10_455 = crypto
+    L10_455 = L10_455.bitand
+    L10_455 = L10_455(crypto.shr32(L0_445, L9_454), 1)
+    if L10_455 == 1 then
+      L10_455 = string
+      L10_455 = L10_455.format
+      L10_455 = L10_455("%c:\\", L5_450 + L9_454)
+      if sysio.GetLogicalDriveType(L9_454) == 2 then
+        table.insert(L2_447, L10_455)
+      elseif sysio.GetLogicalDriveType(L9_454) == 3 then
+        table.insert(L3_448, L10_455)
+      elseif sysio.GetLogicalDriveType(L9_454) == 4 then
+        table.insert(L4_449, L10_455)
       end
-      ;
-      (table.insert)(l_75_1, l_75_10)
+      table.insert(L1_446, L10_455)
     end
   end
-  return l_75_1, l_75_2, l_75_3, l_75_4
+  L9_454 = L4_449
+  return L6_451, L7_452, L8_453, L9_454
 end
-
-Infrastructure_ClearALLDNS = function()
-  -- function num : 0_75
-  local l_76_0 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters")
-  if l_76_0 then
-    local l_76_1 = (sysio.GetRegValueAsString)(l_76_0, "DhcpNameServer")
-    if l_76_1 then
-      (sysio.SetRegValueAsString)(l_76_0, "DhcpNameServer", "")
+Infrastructure_GetAvailableDrives = L0_0
+function L0_0()
+  local L0_456, L1_457, L2_458, L3_459, L4_460, L5_461, L6_462, L7_463
+  L0_456 = sysio
+  L0_456 = L0_456.RegOpenKey
+  L1_457 = "HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters"
+  L0_456 = L0_456(L1_457)
+  if L0_456 then
+    L1_457 = sysio
+    L1_457 = L1_457.GetRegValueAsString
+    L2_458 = L0_456
+    L1_457 = L1_457(L2_458, L3_459)
+    if L1_457 then
+      L2_458 = sysio
+      L2_458 = L2_458.SetRegValueAsString
+      L2_458(L3_459, L4_460, L5_461)
     end
-    local l_76_2 = (sysio.GetRegValueAsString)(l_76_0, "NameServer")
-    if l_76_2 then
-      (sysio.SetRegValueAsString)(l_76_0, "NameServer", "")
-    end
-  end
-  do
-    local l_76_3 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters\\Interfaces")
-    if l_76_3 then
-      local l_76_4 = (sysio.RegEnumKeys)(l_76_3)
-      if l_76_4 then
-        for l_76_8,l_76_9 in pairs(l_76_4) do
-          Infrastructure_ClearDNSTcpipInterface("HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters\\Interfaces\\" .. l_76_9)
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_ClearDNSTcpipInterface = function(l_77_0)
-  -- function num : 0_76
-  local l_77_1 = (sysio.RegOpenKey)(l_77_0)
-  if l_77_1 then
-    local l_77_2 = (sysio.GetRegValueAsString)(l_77_1, "NameServer")
-    if l_77_2 then
-      (sysio.SetRegValueAsString)(l_77_1, "NameServer", "")
-    end
-    l_77_2 = (sysio.GetRegValueAsString)(l_77_1, "DhcpNameServer")
-    if l_77_2 then
-      (sysio.SetRegValueAsString)(l_77_1, "DhcpNameServer", "")
+    L2_458 = sysio
+    L2_458 = L2_458.GetRegValueAsString
+    L2_458 = L2_458(L3_459, L4_460)
+    if L2_458 then
+      L6_462 = ""
+      L3_459(L4_460, L5_461, L6_462)
     end
   end
-end
-
-Infrastructure_NotSystemFolder = function(l_78_0)
-  -- function num : 0_77
-  if l_78_0 then
-    local l_78_1 = (string.match)(l_78_0, ":\\.*\\")
-    if l_78_1 then
-      local l_78_2 = 210
-      if (MpCommon.NidSearch)(l_78_2, (crypto.CRC32Buffer)(-1, (string.lower)(l_78_1), 0, (string.len)(l_78_1))) == false and l_78_2 ~= "#CleanFolder" then
-        return l_78_0
+  L1_457 = sysio
+  L1_457 = L1_457.RegOpenKey
+  L2_458 = "HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters\\Interfaces"
+  L1_457 = L1_457(L2_458)
+  if L1_457 then
+    L2_458 = sysio
+    L2_458 = L2_458.RegEnumKeys
+    L2_458 = L2_458(L3_459)
+    if L2_458 then
+      for L6_462, L7_463 in L3_459(L4_460) do
+        Infrastructure_ClearDNSTcpipInterface("HKLM\\SYSTEM\\CurrentControlSet\\services\\Tcpip\\Parameters\\Interfaces\\" .. L7_463)
       end
     end
   end
-  do
-    return nil
+end
+Infrastructure_ClearALLDNS = L0_0
+function L0_0(A0_464)
+  local L1_465, L2_466
+  L1_465 = sysio
+  L1_465 = L1_465.RegOpenKey
+  L2_466 = A0_464
+  L1_465 = L1_465(L2_466)
+  if L1_465 then
+    L2_466 = sysio
+    L2_466 = L2_466.GetRegValueAsString
+    L2_466 = L2_466(L1_465, "NameServer")
+    if L2_466 then
+      sysio.SetRegValueAsString(L1_465, "NameServer", "")
+    end
+    L2_466 = sysio.GetRegValueAsString(L1_465, "DhcpNameServer")
+    if L2_466 then
+      sysio.SetRegValueAsString(L1_465, "DhcpNameServer", "")
+    end
   end
 end
-
-Infrastructure_NotUserSystemFolder = function(l_79_0)
-  -- function num : 0_78
-  if l_79_0 then
-    local l_79_1 = (string.gsub)((string.lower)(l_79_0), "^%a:\\users\\[^\\]+", "")
-    if l_79_1 and l_79_1 ~= "\\" then
-      local l_79_2 = 210
-      if (MpCommon.NidSearch)(l_79_2, (crypto.CRC32Buffer)(-1, (string.lower)(l_79_1), 0, (string.len)(l_79_1))) == false and l_79_2 ~= "#CleanFolder" then
-        return l_79_0
+Infrastructure_ClearDNSTcpipInterface = L0_0
+function L0_0(A0_467)
+  local L1_468, L2_469
+  if A0_467 then
+    L1_468 = string
+    L1_468 = L1_468.match
+    L2_469 = A0_467
+    L1_468 = L1_468(L2_469, ":\\.*\\")
+    if L1_468 then
+      L2_469 = 210
+      if MpCommon.NidSearch(L2_469, crypto.CRC32Buffer(-1, string.lower(L1_468), 0, string.len(L1_468))) == false and MpCommon.NidSearch(L2_469, crypto.CRC32Buffer(-1, string.lower(L1_468), 0, string.len(L1_468))) ~= "#CleanFolder" then
+        return A0_467
       end
     end
   end
-  do
-    return nil
-  end
+  L1_468 = nil
+  return L1_468
 end
-
-Infrastructure_ValidUwSFolderForRemediation = function(l_80_0)
-  -- function num : 0_79
-  if l_80_0 then
-    l_80_0 = (string.lower)(l_80_0)
-    if (string.find)(l_80_0, ":\\program files", 1, true) or (string.find)(l_80_0, ":\\programdata", 1, true) or (string.find)(l_80_0, ":\\users\\[^\\]+\\appdata\\", 1, false) then
+Infrastructure_NotSystemFolder = L0_0
+function L0_0(A0_470)
+  local L1_471, L2_472
+  if A0_470 then
+    L1_471 = string
+    L1_471 = L1_471.gsub
+    L2_472 = string
+    L2_472 = L2_472.lower
+    L2_472 = L2_472(A0_470)
+    L1_471 = L1_471(L2_472, "^%a:\\users\\[^\\]+", "")
+    if L1_471 and L1_471 ~= "\\" then
+      L2_472 = 210
+      if MpCommon.NidSearch(L2_472, crypto.CRC32Buffer(-1, string.lower(L1_471), 0, string.len(L1_471))) == false and MpCommon.NidSearch(L2_472, crypto.CRC32Buffer(-1, string.lower(L1_471), 0, string.len(L1_471))) ~= "#CleanFolder" then
+        return A0_470
+      end
+    end
+  end
+  L1_471 = nil
+  return L1_471
+end
+Infrastructure_NotUserSystemFolder = L0_0
+function L0_0(A0_473)
+  if A0_473 then
+    A0_473 = string.lower(A0_473)
+    if string.find(A0_473, ":\\program files", 1, true) or string.find(A0_473, ":\\programdata", 1, true) or string.find(A0_473, ":\\users\\[^\\]+\\appdata\\", 1, false) then
       return true
     end
   end
   return false
 end
-
-Infrastructure_DetectionReportFolder = function(l_81_0, l_81_1, l_81_2)
-  -- function num : 0_80
-  if l_81_0 == nil or l_81_1 == nil or l_81_2 ~= true and l_81_2 ~= false then
-    return false
+Infrastructure_ValidUwSFolderForRemediation = L0_0
+function L0_0()
+  local L0_474, L1_475, L2_476, L3_477, L4_478, L5_479
+  L0_474 = MpDetection
+  L0_474 = L0_474.GetCurrentThreat
+  L0_474 = L0_474()
+  if L0_474 == nil or L0_474 == "" then
+    return
   end
-  local l_81_3, l_81_4, l_81_5 = Infrastructure_SplitThreatPath(l_81_1)
-  if l_81_3 then
-    local l_81_6 = l_81_3:gsub("^\\\\%?\\", "")
-    if l_81_6 then
-      local l_81_7 = Infrastructure_NotSystemFolder(l_81_6)
-      local l_81_8 = Infrastructure_NotUserSystemFolder(l_81_6)
-      if l_81_7 and l_81_8 then
-        if l_81_2 == true and Infrastructure_ValidUwSFolderForRemediation(l_81_6) == false then
-          return false
+  L1_475 = nil
+  for L5_479, _FORV_6_ in L2_476(L3_477) do
+    if _FORV_6_.Schema == "file" or _FORV_6_.Schema == "process" then
+      L1_475, L5_479, L5_479, L5_479 = Infrastructure_SplitThreatPath(_FORV_6_.Path)
+      if L1_475 and sysio.IsFolderExists(L1_475) then
+        MpDetection.ScanResource("folder://" .. L1_475)
+      end
+    end
+  end
+end
+Infrastructure_CurrentThreatResourceScanFolder = L0_0
+function L0_0(A0_480, A1_481, A2_482)
+  local L3_483, L4_484, L5_485, L6_486, L7_487, L8_488, L9_489, L10_490, L11_491, L12_492, L13_493, L14_494, L15_495
+  if A0_480 == nil or A1_481 == nil or A2_482 ~= true and A2_482 ~= false then
+    L3_483 = false
+    return L3_483
+  end
+  L3_483 = Infrastructure_SplitThreatPath
+  L4_484 = A1_481
+  L5_485 = L3_483(L4_484)
+  if L3_483 then
+    L7_487 = L3_483
+    L6_486 = L3_483.gsub
+    L8_488 = "^\\\\%?\\"
+    L9_489 = ""
+    L6_486 = L6_486(L7_487, L8_488, L9_489)
+    if L6_486 then
+      L7_487 = Infrastructure_NotSystemFolder
+      L8_488 = L6_486
+      L7_487 = L7_487(L8_488)
+      L8_488 = Infrastructure_NotUserSystemFolder
+      L9_489 = L6_486
+      L8_488 = L8_488(L9_489)
+      if L7_487 and L8_488 then
+        if A2_482 == true then
+          L9_489 = Infrastructure_ValidUwSFolderForRemediation
+          L9_489 = L9_489(L10_490)
+          if L9_489 == false then
+            L9_489 = false
+            return L9_489
+          end
         end
-        local l_81_9 = (sysio.FindFiles)(l_81_6, "*", -1)
-        for l_81_13,l_81_14 in pairs(l_81_9) do
-          (MpDetection.ReportResource)("file", l_81_14, l_81_0, false)
+        L9_489 = sysio
+        L9_489 = L9_489.FindFiles
+        L9_489 = L9_489(L10_490, L11_491, L12_492)
+        for L13_493, L14_494 in L10_490(L11_491) do
+          L15_495 = MpDetection
+          L15_495 = L15_495.ReportResource
+          L15_495("file", L14_494, A0_480, false)
         end
-        ;
-        (MpDetection.ReportResource)("folder", l_81_6, l_81_0, false)
-        local l_81_15 = (sysio.FindFolders)(l_81_6, "*", -1)
-        for l_81_19,l_81_20 in pairs(l_81_15) do
-          (MpDetection.ReportResource)("folder", l_81_20, l_81_0, false)
+        L14_494 = false
+        L10_490(L11_491, L12_492, L13_493, L14_494)
+        for L14_494, L15_495 in L11_491(L12_492) do
+          MpDetection.ReportResource("folder", L15_495, A0_480, false)
         end
       end
     end
   end
 end
-
-Infrastructure_CleanRegistryUninstallLocation = function(l_82_0)
-  -- function num : 0_81
-  if l_82_0 then
-    local l_82_1 = {}
-    -- DECOMPILER ERROR at PC5: No list found for R1 , SetList fails
-
-    -- DECOMPILER ERROR at PC6: Overwrote pending register: R2 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC8: Overwrote pending register: R3 in 'AssignReg'
-
-    local l_82_2 = (("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\").RegExpandUserKey)("HKLM\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-    local l_82_3 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-    for l_82_7,l_82_8 in pairs(l_82_2) do
-      (table.insert)(l_82_1, l_82_8)
+Infrastructure_DetectionReportFolder = L0_0
+function L0_0(A0_496)
+  local L1_497, L2_498, L3_499, L4_500, L5_501, L6_502, L7_503, L8_504, L9_505, L10_506, L11_507, L12_508, L13_509, L14_510, L15_511, L16_512, L17_513
+  if A0_496 then
+    L1_497 = {L2_498, L3_499}
+    L2_498 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"
+    L3_499 = "HKLM\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"
+    L2_498 = sysio
+    L2_498 = L2_498.RegExpandUserKey
+    L3_499 = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"
+    L2_498 = L2_498(L3_499)
+    L3_499 = sysio
+    L3_499 = L3_499.RegExpandUserKey
+    L3_499 = L3_499(L4_500)
+    for L7_503, L8_504 in L4_500(L5_501) do
+      L9_505 = table
+      L9_505 = L9_505.insert
+      L10_506 = L1_497
+      L9_505(L10_506, L11_507)
     end
-    for l_82_12,l_82_13 in pairs(l_82_3) do
-      (table.insert)(l_82_1, l_82_13)
+    for L7_503, L8_504 in L4_500(L5_501) do
+      L9_505 = table
+      L9_505 = L9_505.insert
+      L10_506 = L1_497
+      L9_505(L10_506, L11_507)
     end
-    for l_82_17,l_82_18 in pairs(l_82_1) do
-      local l_82_19 = (sysio.RegOpenKey)(l_82_18)
-      if l_82_19 then
-        local l_82_20 = (sysio.RegEnumKeys)(l_82_19)
-        if l_82_20 then
-          for l_82_24,l_82_25 in pairs(l_82_20) do
-            local l_82_26 = (sysio.RegOpenKey)(l_82_18 .. l_82_25)
-            if l_82_26 then
-              local l_82_27 = (sysio.GetRegValueAsString)(l_82_26, "InstallLocation")
-              if l_82_27 and (string.lower)(l_82_27) == (string.lower)(l_82_0) then
-                (sysio.DeleteRegKey)(l_82_26, nil)
+    for L7_503, L8_504 in L4_500(L5_501) do
+      L9_505 = sysio
+      L9_505 = L9_505.RegOpenKey
+      L10_506 = L8_504
+      L9_505 = L9_505(L10_506)
+      if L9_505 then
+        L10_506 = sysio
+        L10_506 = L10_506.RegEnumKeys
+        L10_506 = L10_506(L11_507)
+        if L10_506 then
+          for L14_510, L15_511 in L11_507(L12_508) do
+            L16_512 = sysio
+            L16_512 = L16_512.RegOpenKey
+            L17_513 = L8_504
+            L17_513 = L17_513 .. L15_511
+            L16_512 = L16_512(L17_513)
+            if L16_512 then
+              L17_513 = sysio
+              L17_513 = L17_513.GetRegValueAsString
+              L17_513 = L17_513(L16_512, "InstallLocation")
+              if L17_513 and string.lower(L17_513) == string.lower(A0_496) then
+                sysio.DeleteRegKey(L16_512, nil)
                 return true
               end
             end
@@ -1299,49 +1698,72 @@ Infrastructure_CleanRegistryUninstallLocation = function(l_82_0)
         end
       end
     end
-    -- DECOMPILER ERROR at PC92: Confused about usage of register R5 for local variables in 'ReleaseLocals'
-
   end
 end
-
-Infrastructure_DetectionReportUninstallEntriesFromFolder = function(l_83_0, l_83_1)
-  -- function num : 0_82
-  if l_83_0 == nil or l_83_1 == nil then
-    return false
+Infrastructure_CleanRegistryUninstallLocation = L0_0
+function L0_0(A0_514, A1_515)
+  local L2_516, L3_517, L4_518, L5_519, L6_520, L7_521, L8_522, L9_523, L10_524, L11_525, L12_526, L13_527, L14_528, L15_529, L16_530, L17_531, L18_532, L19_533, L20_534, L21_535, L22_536
+  if A0_514 == nil or A1_515 == nil then
+    L2_516 = false
+    return L2_516
   end
-  local l_83_2, l_83_3, l_83_4 = Infrastructure_SplitThreatPath(l_83_1)
-  if l_83_4 == nil then
-    return false
+  L2_516 = Infrastructure_SplitThreatPath
+  L3_517 = A1_515
+  L4_518 = L2_516(L3_517)
+  if L4_518 == nil then
+    L5_519 = false
+    return L5_519
   end
-  if l_83_2 then
-    local l_83_5 = {}
-    -- DECOMPILER ERROR at PC18: No list found for R5 , SetList fails
-
-    -- DECOMPILER ERROR at PC19: Overwrote pending register: R6 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC21: Overwrote pending register: R7 in 'AssignReg'
-
-    local l_83_6 = (("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\").RegExpandUserKey)("HKLM\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-    local l_83_7 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\")
-    for l_83_11,l_83_12 in pairs(l_83_6) do
-      (table.insert)(l_83_5, l_83_12)
+  if L2_516 then
+    L5_519 = {L6_520, L7_521}
+    L6_520 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"
+    L7_521 = "HKLM\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"
+    L6_520 = sysio
+    L6_520 = L6_520.RegExpandUserKey
+    L7_521 = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"
+    L6_520 = L6_520(L7_521)
+    L7_521 = sysio
+    L7_521 = L7_521.RegExpandUserKey
+    L7_521 = L7_521(L8_522)
+    for L11_525, L12_526 in L8_522(L9_523) do
+      L13_527 = table
+      L13_527 = L13_527.insert
+      L14_528 = L5_519
+      L13_527(L14_528, L15_529)
     end
-    for l_83_16,l_83_17 in pairs(l_83_7) do
-      (table.insert)(l_83_5, l_83_17)
+    for L11_525, L12_526 in L8_522(L9_523) do
+      L13_527 = table
+      L13_527 = L13_527.insert
+      L14_528 = L5_519
+      L13_527(L14_528, L15_529)
     end
-    for l_83_21,l_83_22 in pairs(l_83_5) do
-      local l_83_23 = (sysio.RegOpenKey)(l_83_22)
-      if l_83_23 then
-        local l_83_24 = (sysio.RegEnumKeys)(l_83_23)
-        if l_83_24 then
-          for l_83_28,l_83_29 in pairs(l_83_24) do
-            local l_83_30 = (sysio.RegOpenKey)(l_83_22 .. l_83_29)
-            if l_83_30 then
-              local l_83_31 = (sysio.GetRegValueAsString)(l_83_30, "UninstallString")
-              if l_83_31 then
-                local l_83_32, l_83_33, l_83_34 = Infrastructure_SplitThreatPath(l_83_31:gsub("\"", ""))
-                if l_83_32 and (string.lower)(l_83_32) == (string.lower)(l_83_2) then
-                  (MpDetection.ReportResource)("regkey", l_83_22 .. l_83_29, l_83_0, false)
+    for L11_525, L12_526 in L8_522(L9_523) do
+      L13_527 = sysio
+      L13_527 = L13_527.RegOpenKey
+      L14_528 = L12_526
+      L13_527 = L13_527(L14_528)
+      if L13_527 then
+        L14_528 = sysio
+        L14_528 = L14_528.RegEnumKeys
+        L14_528 = L14_528(L15_529)
+        if L14_528 then
+          for L18_532, L19_533 in L15_529(L16_530) do
+            L20_534 = sysio
+            L20_534 = L20_534.RegOpenKey
+            L21_535 = L12_526
+            L22_536 = L19_533
+            L21_535 = L21_535 .. L22_536
+            L20_534 = L20_534(L21_535)
+            if L20_534 then
+              L21_535 = sysio
+              L21_535 = L21_535.GetRegValueAsString
+              L22_536 = L20_534
+              L21_535 = L21_535(L22_536, "UninstallString")
+              if L21_535 then
+                L22_536 = Infrastructure_SplitThreatPath
+                L22_536 = L22_536(L21_535:gsub("\"", ""))
+                if L22_536 and string.lower(L22_536) == string.lower(L2_516) then
+                  MpDetection.ReportResource("regkey", L12_526 .. L19_533, A0_514, false)
                   return true
                 end
               end
@@ -1350,104 +1772,129 @@ Infrastructure_DetectionReportUninstallEntriesFromFolder = function(l_83_0, l_83
         end
       end
     end
-    -- DECOMPILER ERROR at PC117: Confused about usage of register R9 for local variables in 'ReleaseLocals'
-
   end
 end
-
-Infrastructure_GetRegValueAsString = function(l_84_0, l_84_1)
-  -- function num : 0_83
-  local l_84_2 = (sysio.RegOpenKey)(l_84_0)
-  if l_84_2 then
-    local l_84_3 = sysio.GetRegValueAsString
-    local l_84_4 = l_84_2
-    do
-      local l_84_5 = l_84_1
-      do return l_84_3(l_84_4, l_84_5) end
-      -- DECOMPILER ERROR at PC12: Confused about usage of register R4 for local variables in 'ReleaseLocals'
-
-      do return nil end
-      -- DECOMPILER ERROR at PC14: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
-    end
+Infrastructure_DetectionReportUninstallEntriesFromFolder = L0_0
+function L0_0(A0_537, A1_538)
+  local L2_539
+  L2_539 = sysio
+  L2_539 = L2_539.RegOpenKey
+  L2_539 = L2_539(A0_537)
+  if L2_539 then
+    return sysio.GetRegValueAsString(L2_539, A1_538)
+  end
+  return nil
+end
+Infrastructure_GetRegValueAsString = L0_0
+function L0_0(A0_540, A1_541)
+  if A0_540 == nil or A1_541 == nil then
+    return
+  end
+  if sysio.RegOpenKey(A1_541) then
+    MpDetection.ReportResource("regkey", A1_541, A0_540, false)
   end
 end
-
-Infrastructure_ReportRegistryKey = function(l_85_0, l_85_1)
-  -- function num : 0_84
-  if l_85_0 == nil or l_85_1 == nil then
-    return 
+Infrastructure_ReportRegistryKey = L0_0
+function L0_0(A0_542, A1_543, A2_544)
+  local L3_545, L4_546, L5_547, L6_548, L7_549, L8_550, L9_551
+  if A0_542 == nil or A1_543 == nil or A2_544 == nil then
+    return
   end
-  local l_85_2 = (sysio.RegOpenKey)(l_85_1)
-  if l_85_2 then
-    (MpDetection.ReportResource)("regkey", l_85_1, l_85_0, false)
-  end
-end
-
-Infrastructure_ReportRegistryValue = function(l_86_0, l_86_1, l_86_2)
-  -- function num : 0_85
-  if l_86_0 == nil or l_86_1 == nil or l_86_2 == nil then
-    return 
-  end
-  local l_86_3 = (sysio.RegOpenKey)(l_86_1)
-  if l_86_3 then
-    local l_86_4 = (sysio.RegEnumValues)(l_86_3)
-    for l_86_8,l_86_9 in pairs(l_86_4) do
-      if (string.lower)(l_86_9) == (string.lower)(l_86_2) then
-        (MpDetection.ReportResource)("regkeyvalue", l_86_1 .. "\\\\" .. l_86_2, l_86_0, false)
+  L3_545 = sysio
+  L3_545 = L3_545.RegOpenKey
+  L4_546 = A1_543
+  L3_545 = L3_545(L4_546)
+  if L3_545 then
+    L4_546 = sysio
+    L4_546 = L4_546.RegEnumValues
+    L4_546 = L4_546(L5_547)
+    for L8_550, L9_551 in L5_547(L6_548) do
+      if string.lower(L9_551) == string.lower(A2_544) then
+        MpDetection.ReportResource("regkeyvalue", A1_543 .. "\\\\" .. A2_544, A0_542, false)
       end
     end
   end
 end
-
-Infrastructure_ReportFirstRegistryValue = function(l_87_0, l_87_1, l_87_2)
-  -- function num : 0_86
-  if l_87_0 == nil or l_87_1 == nil or l_87_2 == nil then
-    return false
+Infrastructure_ReportRegistryValue = L0_0
+function L0_0(A0_552, A1_553, A2_554)
+  local L3_555, L4_556, L5_557, L6_558, L7_559, L8_560, L9_561, L10_562, L11_563, L12_564, L13_565, L14_566, L15_567
+  if A0_552 == nil or A1_553 == nil or A2_554 == nil then
+    L3_555 = false
+    return L3_555
   end
-  if type(l_87_2) ~= "table" then
-    return false
+  L3_555 = type
+  L4_556 = A2_554
+  L3_555 = L3_555(L4_556)
+  if L3_555 ~= "table" then
+    L3_555 = false
+    return L3_555
   end
-  local l_87_3 = (sysio.RegOpenKey)(l_87_1)
-  if l_87_3 then
-    local l_87_4 = (sysio.RegEnumValues)(l_87_3)
-    if l_87_4 then
-      for l_87_8,l_87_9 in pairs(l_87_4) do
-        local l_87_10 = (string.lower)(l_87_9)
-        for l_87_14,l_87_15 in pairs(l_87_2) do
-          if l_87_10 == (string.lower)(l_87_15) then
-            (MpDetection.ReportResource)("regkeyvalue", l_87_1 .. "\\\\" .. l_87_9, l_87_0, false)
+  L3_555 = sysio
+  L3_555 = L3_555.RegOpenKey
+  L4_556 = A1_553
+  L3_555 = L3_555(L4_556)
+  if L3_555 then
+    L4_556 = sysio
+    L4_556 = L4_556.RegEnumValues
+    L4_556 = L4_556(L5_557)
+    if L4_556 then
+      for L8_560, L9_561 in L5_557(L6_558) do
+        L10_562 = string
+        L10_562 = L10_562.lower
+        L10_562 = L10_562(L11_563)
+        for L14_566, L15_567 in L11_563(L12_564) do
+          if L10_562 == string.lower(L15_567) then
+            MpDetection.ReportResource("regkeyvalue", A1_553 .. "\\\\" .. L9_561, A0_552, false)
             return true
           end
         end
       end
-      -- DECOMPILER ERROR at PC61: Confused about usage of register R5 for local variables in 'ReleaseLocals'
-
     end
   end
 end
-
-Infrastructure_ReportFirstRegistryValueIfValueArrMatch = function(l_88_0, l_88_1, l_88_2, l_88_3)
-  -- function num : 0_87
-  if l_88_0 == nil or l_88_1 == nil or l_88_2 == nil or l_88_3 == nil then
-    return false
+Infrastructure_ReportFirstRegistryValue = L0_0
+function L0_0(A0_568, A1_569, A2_570, A3_571)
+  local L4_572, L5_573, L6_574, L7_575, L8_576, L9_577, L10_578, L11_579, L12_580, L13_581, L14_582, L15_583, L16_584, L17_585
+  if A0_568 == nil or A1_569 == nil or A2_570 == nil or A3_571 == nil then
+    L4_572 = false
+    return L4_572
   end
-  if type(l_88_2) ~= "table" or type(l_88_3) ~= "table" then
-    return false
+  L4_572 = type
+  L5_573 = A2_570
+  L4_572 = L4_572(L5_573)
+  if L4_572 == "table" then
+    L4_572 = type
+    L5_573 = A3_571
+    L4_572 = L4_572(L5_573)
+  elseif L4_572 ~= "table" then
+    L4_572 = false
+    return L4_572
   end
-  local l_88_4 = (sysio.RegOpenKey)(l_88_1)
-  if l_88_4 then
-    local l_88_5 = (sysio.RegEnumValues)(l_88_4)
-    if l_88_5 then
-      for l_88_9,l_88_10 in pairs(l_88_5) do
-        local l_88_11 = (string.lower)(l_88_10)
-        for l_88_15,l_88_16 in pairs(l_88_2) do
-          if l_88_11 == (string.lower)(l_88_16) then
-            local l_88_17 = (sysio.GetRegValueAsDword)(l_88_4, l_88_16)
-            if type(l_88_17) == "number" then
-              for l_88_21,l_88_22 in pairs(l_88_3) do
-                if l_88_17 == l_88_22 then
-                  (MpDetection.ReportResource)("regkeyvalue", l_88_1 .. "\\\\" .. l_88_10, l_88_0, false)
+  L4_572 = sysio
+  L4_572 = L4_572.RegOpenKey
+  L5_573 = A1_569
+  L4_572 = L4_572(L5_573)
+  if L4_572 then
+    L5_573 = sysio
+    L5_573 = L5_573.RegEnumValues
+    L5_573 = L5_573(L6_574)
+    if L5_573 then
+      for L9_577, L10_578 in L6_574(L7_575) do
+        L11_579 = string
+        L11_579 = L11_579.lower
+        L11_579 = L11_579(L12_580)
+        for L15_583, L16_584 in L12_580(L13_581) do
+          L17_585 = string
+          L17_585 = L17_585.lower
+          L17_585 = L17_585(L16_584)
+          if L11_579 == L17_585 then
+            L17_585 = sysio
+            L17_585 = L17_585.GetRegValueAsDword
+            L17_585 = L17_585(L4_572, L16_584)
+            if type(L17_585) == "number" then
+              for _FORV_21_, _FORV_22_ in pairs(A3_571) do
+                if L17_585 == _FORV_22_ then
+                  MpDetection.ReportResource("regkeyvalue", A1_569 .. "\\\\" .. L10_578, A0_568, false)
                   return true
                 end
               end
@@ -1455,415 +1902,54 @@ Infrastructure_ReportFirstRegistryValueIfValueArrMatch = function(l_88_0, l_88_1
           end
         end
       end
-      -- DECOMPILER ERROR at PC86: Confused about usage of register R7 for local variables in 'ReleaseLocals'
-
     end
   end
 end
-
-Infrastructure_ReportFirstRegistryValueCheckDefaultDW = function(l_89_0, l_89_1, l_89_2)
-  -- function num : 0_88
-  if l_89_0 == nil or l_89_1 == nil or l_89_2 == nil then
-    return false
+Infrastructure_ReportFirstRegistryValueIfValueArrMatch = L0_0
+function L0_0(A0_586, A1_587, A2_588)
+  local L3_589, L4_590, L5_591, L6_592, L7_593, L8_594, L9_595, L10_596, L11_597, L12_598, L13_599, L14_600, L15_601, L16_602
+  if A0_586 == nil or A1_587 == nil or A2_588 == nil then
+    L3_589 = false
+    return L3_589
   end
-  if type(l_89_2) ~= "table" then
-    return false
+  L3_589 = type
+  L4_590 = A2_588
+  L3_589 = L3_589(L4_590)
+  if L3_589 ~= "table" then
+    L3_589 = false
+    return L3_589
   end
-  local l_89_3 = (sysio.RegOpenKey)(l_89_1)
-  if l_89_3 then
-    local l_89_4 = (sysio.RegEnumValues)(l_89_3)
-    if l_89_4 then
-      for l_89_8,l_89_9 in pairs(l_89_4) do
-        local l_89_10 = (string.lower)(l_89_9)
-        for l_89_14,l_89_15 in pairs(l_89_2) do
-          if type(l_89_14) == "string" and type(l_89_15) == "number" and l_89_10 == (string.lower)(l_89_14) then
-            local l_89_16 = (sysio.GetRegValueAsDword)(l_89_3, l_89_14)
-            if type(l_89_16) == type(l_89_15) and l_89_16 ~= l_89_15 then
-              (MpDetection.ReportResource)("regkeyvalue", l_89_1 .. "\\\\" .. l_89_9, l_89_0, false)
-              return true
-            end
-          end
-        end
-      end
-      -- DECOMPILER ERROR at PC86: Confused about usage of register R5 for local variables in 'ReleaseLocals'
-
-    end
-  end
-end
-
-Infrastructure_ReportAnyRegistryValue = function(l_90_0, l_90_1)
-  -- function num : 0_89
-  if l_90_0 == nil or l_90_1 == nil then
-    return false
-  end
-  local l_90_2 = (sysio.RegOpenKey)(l_90_1)
-  if l_90_2 then
-    local l_90_3 = (sysio.RegEnumValues)(l_90_2)
-    if l_90_3 then
-      for l_90_7,l_90_8 in pairs(l_90_3) do
-        (MpDetection.ReportResource)("regkeyvalue", l_90_1 .. "\\\\" .. l_90_8, l_90_0, false)
-        do return true end
-      end
-    end
-  end
-end
-
-Infrastructure_ReportRegistryKeyByValueData = function(l_91_0, l_91_1, l_91_2, l_91_3)
-  -- function num : 0_90
-  local l_91_4 = (sysio.RegOpenKey)(l_91_1)
-  do
-    if l_91_4 then
-      local l_91_5 = (sysio.GetRegValueAsString)(l_91_4, l_91_2)
-      if l_91_5 ~= nil and (string.lower)(l_91_5) == (string.lower)(l_91_3) then
-        Infrastructure_ReportRegistryKey(l_91_0, l_91_1)
-        return true
-      end
-    end
-    return false
-  end
-end
-
-Infrastructure_ReportSoftwareRegistryByKey = function(l_92_0, l_92_1)
-  -- function num : 0_91
-  if l_92_0 == nil or l_92_1 == nil then
-    return 
-  end
-  Infrastructure_ReportRegistryKey(l_92_0, "HKLM\\SOFTWARE\\" .. l_92_1)
-  Infrastructure_ReportRegistryKey(l_92_0, "HKLM\\SOFTWARE\\Wow6432Node\\" .. l_92_1)
-  local l_92_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\" .. l_92_1)
-  if l_92_2 then
-    for l_92_6,l_92_7 in pairs(l_92_2) do
-      Infrastructure_ReportRegistryKey(l_92_0, l_92_7)
-    end
-  end
-end
-
-Infrastructure_ReportUninstallRegistryByKey = function(l_93_0, l_93_1)
-  -- function num : 0_92
-  Infrastructure_ReportRegistryKey(l_93_0, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. l_93_1)
-  Infrastructure_ReportRegistryKey(l_93_0, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. l_93_1)
-end
-
-Infrastructure_Report_Clsid_And_TypeLib = function(l_94_0, l_94_1, l_94_2)
-  -- function num : 0_93
-  local l_94_3 = Infrastructure_GetRegValueAsString(l_94_1 .. "\\CLSID\\" .. l_94_2 .. "\\TypeLib", "")
-  if l_94_3 ~= nil then
-    if (string.len)(l_94_3) == 38 and (string.match)(l_94_3, "{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}") then
-      Infrastructure_ReportRegistryKey(l_94_0, l_94_1 .. "\\TypeLib\\" .. l_94_3)
-    end
-    Infrastructure_ReportRegistryKey(l_94_0, l_94_1 .. "\\CLSID\\" .. l_94_2)
-  end
-end
-
-Infrastructure_ReportCLSID = function(l_95_0, l_95_1)
-  -- function num : 0_94
-  if l_95_1 ~= nil and (string.len)(l_95_1) == 38 and (string.match)(l_95_1, "{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}") then
-    Infrastructure_Report_Clsid_And_TypeLib(l_95_0, "HKLM\\SOFTWARE\\Classes", l_95_1)
-    Infrastructure_Report_Clsid_And_TypeLib(l_95_0, "HKLM\\SOFTWARE\\Wow6432Node\\Classes", l_95_1)
-    Infrastructure_ReportRegistryKey(l_95_0, "HKCR\\CLSID\\" .. l_95_1)
-  end
-end
-
-Infrastructure_ReportIEExtensionsByClsid = function(l_96_0, l_96_1)
-  -- function num : 0_95
-  if l_96_1 == nil then
-    return 
-  end
-  Infrastructure_ReportRegistryValue(l_96_0, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\Approved Extensions", l_96_1)
-  local l_96_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Internet Explorer\\Approved Extensions")
-  if l_96_2 then
-    for l_96_6,l_96_7 in pairs(l_96_2) do
-      Infrastructure_ReportRegistryValue(l_96_0, l_96_7, l_96_1)
-    end
-  end
-  do
-    Infrastructure_ReportRegistryValue(l_96_0, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID", l_96_1)
-    local l_96_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID")
-    if l_96_8 then
-      for l_96_12,l_96_13 in pairs(l_96_8) do
-        Infrastructure_ReportRegistryValue(l_96_0, l_96_13, l_96_1)
-      end
-    end
-    do
-      Infrastructure_ReportRegistryKey(l_96_0, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved\\" .. l_96_1)
-      local l_96_14 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Ext\\PreApproved\\" .. l_96_1)
-      if l_96_14 then
-        for l_96_18,l_96_19 in pairs(l_96_14) do
-          Infrastructure_ReportRegistryKey(l_96_0, l_96_19)
-        end
-      end
-      do
-        Infrastructure_ReportRegistryKey(l_96_0, "HKLM\\SOFTWARE\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration\\" .. l_96_1)
-        local l_96_20 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Internet Explorer\\ApprovedExtensionsMigration\\" .. l_96_1)
-        if l_96_20 then
-          for l_96_24,l_96_25 in pairs(l_96_20) do
-            Infrastructure_ReportRegistryKey(l_96_0, l_96_25)
-          end
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_ReportBHOByName_RegPath = function(l_97_0, l_97_1, l_97_2)
-  -- function num : 0_96
-  local l_97_3 = (sysio.RegOpenKey)(l_97_2)
-  if l_97_3 then
-    local l_97_4 = (sysio.RegEnumKeys)(l_97_3)
-    if l_97_4 then
-      for l_97_8,l_97_9 in pairs(l_97_4) do
-        if Infrastructure_ReportRegistryKeyByValueData(l_97_0, l_97_2 .. "\\" .. l_97_9, "", l_97_1) then
-          Infrastructure_ReportCLSID(l_97_0, l_97_9)
-          Infrastructure_ReportIEExtensionsByClsid(l_97_0, l_97_9)
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_ReportBHOByName = function(l_98_0, l_98_1)
-  -- function num : 0_97
-  Infrastructure_ReportBHOByName_RegPath(l_98_0, l_98_1, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects")
-  Infrastructure_ReportBHOByName_RegPath(l_98_0, l_98_1, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects")
-  local l_98_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects")
-  if l_98_2 then
-    for l_98_6,l_98_7 in pairs(l_98_2) do
-      Infrastructure_ReportBHOByName_RegPath(l_98_0, l_98_1, l_98_7)
-    end
-  end
-  do
-    local l_98_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects")
-    if l_98_8 then
-      for l_98_12,l_98_13 in pairs(l_98_8) do
-        Infrastructure_ReportBHOByName_RegPath(l_98_0, l_98_1, l_98_13)
-      end
-    end
-  end
-end
-
-Infrastructure_DetectionReportBHOByCLSID = function(l_99_0, l_99_1)
-  -- function num : 0_98
-  if l_99_1 ~= nil and l_99_0 ~= nil and (string.len)(l_99_1) == 38 and (string.match)(l_99_1, "{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}") then
-    Infrastructure_ReportRegistryKey(l_99_0, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects" .. l_99_1)
-    Infrastructure_ReportRegistryKey(l_99_0, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects" .. l_99_1)
-    local l_99_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\" .. l_99_1)
-    if l_99_2 then
-      for l_99_6,l_99_7 in pairs(l_99_2) do
-        Infrastructure_ReportRegistryKey(l_99_0, l_99_7)
-      end
-    end
-    do
-      local l_99_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects\\" .. l_99_1)
-      if l_99_8 then
-        for l_99_12,l_99_13 in pairs(l_99_8) do
-          Infrastructure_ReportRegistryKey(l_99_0, l_99_13)
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_DetectionReportUninstallRegKey = function(l_100_0, l_100_1)
-  -- function num : 0_99
-  if l_100_1 ~= nil and l_100_0 ~= nil then
-    Infrastructure_ReportRegistryKey(l_100_0, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. l_100_1)
-    Infrastructure_ReportRegistryKey(l_100_0, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. l_100_1)
-    local l_100_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. l_100_1)
-    if l_100_2 then
-      for l_100_6,l_100_7 in pairs(l_100_2) do
-        Infrastructure_ReportRegistryKey(l_100_0, l_100_7)
-      end
-    end
-    do
-      local l_100_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. l_100_1)
-      if l_100_8 then
-        for l_100_12,l_100_13 in pairs(l_100_8) do
-          Infrastructure_ReportRegistryKey(l_100_0, l_100_13)
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_ScanTaskschedulerResources = function()
-  -- function num : 0_100
-  local l_101_0 = "%SystemRoot%\\Tasks"
-  local l_101_1 = "%SystemRoot%\\System32\\Tasks"
-  ;
-  (MpDetection.ScanResource)("specialfolder://norecursive:taskscheduler:" .. l_101_0)
-  ;
-  (MpDetection.ScanResource)("specialfolder://recursive:taskscheduler:" .. l_101_1)
-  local l_101_2 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\SchedulingAgent")
-  if not l_101_2 then
-    return false
-  end
-  local l_101_3 = (sysio.GetRegValueAsString)(l_101_2, "TasksFolder")
-  if l_101_3 and l_101_3 ~= l_101_0 and l_101_3 ~= l_101_1 then
-    if Info.OSMajorVersion < 6 then
-      (MpDetection.ScanResource)("specialfolder://norecursive:taskscheduler:" .. l_101_3)
-    else
-      ;
-      (MpDetection.ScanResource)("specialfolder://recursive:taskscheduler:" .. l_101_3)
-    end
-  end
-end
-
-Infrastructure_HKCUExpandSpecialPath = function(l_102_0)
-  -- function num : 0_101
-  local l_102_1 = {}
-  if l_102_0 then
-    local l_102_2 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders")
-    local l_102_3 = {}
-    if l_102_2 then
-      for l_102_7,l_102_8 in pairs(l_102_2) do
-        local l_102_9 = (sysio.RegOpenKey)(l_102_8)
-        if l_102_9 then
-          local l_102_10 = (sysio.GetRegValueAsString)(l_102_9, l_102_0)
-          if l_102_10 and not l_102_3[l_102_10] then
-            (table.insert)(l_102_1, l_102_10)
-            l_102_3[l_102_10] = true
-          end
-        end
-      end
-    end
-  end
-  do
-    return l_102_1
-  end
-end
-
-Infrastructure_FixHostsFile = function()
-  -- function num : 0_102
-  if Info.OSMajorVersion == nil or Info.OSMinorVersion == nil then
-    return false
-  end
-  local l_103_0 = (MpCommon.ExpandEnvironmentVariables)("%windir%")
-  local l_103_1 = l_103_0 .. "\\System32\\drivers\\etc\\hosts"
-  local l_103_2 = "# Copyright (c) 1993-2006 Microsoft Corp." .. "\r\n" .. "#" .. "\r\n" .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a \'#\' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "# localhost name resolution is handle within DNS itself." .. "\r\n" .. "#       127.0.0.1       localhost" .. "\r\n" .. "#       ::1             localhost" .. "\r\n"
-  local l_103_3 = "# Copyright (c) 1993-2006 Microsoft Corp." .. "\r\n" .. "#" .. "\r\n" .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a \'#\' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "" .. "\r\n" .. "# localhost name resolution is handle within DNS itself." .. "\r\n" .. "#       127.0.0.1       localhost" .. "\r\n" .. "#       ::1             localhost" .. "\r\n"
-  local l_103_4 = "# Copyright (c) 1993-2006 Microsoft Corp." .. "\r\n" .. "#" .. "\r\n" .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a \'#\' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "" .. "\r\n" .. "127.0.0.1       localhost" .. "\r\n" .. "::1             localhost" .. "\r\n"
-  local l_103_5 = "# Copyright (c) 1993-1999 Microsoft Corp." .. "\r\n" .. "#" .. "\r\n" .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a \'#\' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "" .. "\r\n" .. "127.0.0.1       localhost" .. "\r\n"
-  if (sysio.IsFileExists)(l_103_1) == false then
-    return false
-  end
-  local l_103_6 = (sysio.GetFileSize)(l_103_1)
-  if l_103_6 == nil then
-    return false
-  end
-  while 1 do
-    if Info.OSMajorVersion < 6 then
-      if (string.len)(l_103_5) < l_103_6 then
-        l_103_5 = l_103_5 .. "\r\n"
-        -- DECOMPILER ERROR at PC211: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC211: LeaveBlock: unexpected jumping out IF_STMT
-
-        -- DECOMPILER ERROR at PC211: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC211: LeaveBlock: unexpected jumping out IF_STMT
-
-      end
-    end
-  end
-  if (sysio.WriteFile)(l_103_1, 0, l_103_5) ~= (string.len)(l_103_5) then
-    return false
-  else
-    return true
-  end
-  -- DECOMPILER ERROR at PC229: Overwrote pending register: R7 in 'AssignReg'
-
-  while 1 do
-    if ((string.len)(l_103_5) + 2).OSMajorVersion == 6 and Info.OSMinorVersion == 0 then
-      if (string.len)(l_103_4) < l_103_6 then
-        l_103_4 = l_103_4 .. "\r\n"
-        -- DECOMPILER ERROR at PC247: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC247: LeaveBlock: unexpected jumping out IF_STMT
-
-        -- DECOMPILER ERROR at PC247: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC247: LeaveBlock: unexpected jumping out IF_STMT
-
-      end
-    end
-  end
-  if (sysio.WriteFile)(l_103_1, 0, l_103_4) ~= (string.len)(l_103_4) then
-    return false
-  else
-    return true
-  end
-  -- DECOMPILER ERROR at PC265: Overwrote pending register: R7 in 'AssignReg'
-
-  while 1 do
-    if ((string.len)(l_103_4) + 2).OSMajorVersion == 6 and Info.OSMinorVersion == 1 then
-      if (string.len)(l_103_3) < l_103_6 then
-        l_103_3 = l_103_3 .. "\r\n"
-        -- DECOMPILER ERROR at PC283: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC283: LeaveBlock: unexpected jumping out IF_STMT
-
-        -- DECOMPILER ERROR at PC283: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC283: LeaveBlock: unexpected jumping out IF_STMT
-
-      end
-    end
-  end
-  if (sysio.WriteFile)(l_103_1, 0, l_103_3) ~= (string.len)(l_103_3) then
-    return false
-  else
-    return true
-  end
-  -- DECOMPILER ERROR at PC301: Overwrote pending register: R7 in 'AssignReg'
-
-  while 1 do
-    if (((string.len)(l_103_3) + 2).OSMajorVersion == 6 and Info.OSMinorVersion == 2) or Info.OSMajorVersion > 6 then
-      if (string.len)(l_103_2) < l_103_6 then
-        l_103_2 = l_103_2 .. "\r\n"
-        -- DECOMPILER ERROR at PC323: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC323: LeaveBlock: unexpected jumping out IF_STMT
-
-        -- DECOMPILER ERROR at PC323: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC323: LeaveBlock: unexpected jumping out IF_STMT
-
-      end
-    end
-  end
-  if (sysio.WriteFile)(l_103_1, 0, l_103_2) ~= (string.len)(l_103_2) then
-    return false
-  else
-    return true
-  end
-  return false
-end
-
-Infrastructure_ReportRegistryAppId = function(l_104_0, l_104_1)
-  -- function num : 0_103
-  if l_104_0 == nil or l_104_1 == nil then
-    return false
-  end
-  local l_104_2 = {}
-  -- DECOMPILER ERROR at PC9: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC10: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC11: Overwrote pending register: R4 in 'AssignReg'
-
-  for l_104_6,l_104_7 in ("HKLM\\SOFTWARE\\Classes\\AppID\\")("HKLM\\SOFTWARE\\Classes\\WOW6432Node\\AppID\\") do
-    local l_104_8 = (sysio.RegOpenKey)(l_104_7)
-    if l_104_8 then
-      local l_104_9 = (sysio.RegEnumKeys)(l_104_8)
-      if l_104_9 then
-        for l_104_13,l_104_14 in pairs(l_104_9) do
-          if l_104_14 == l_104_1 then
-            (MpDetection.ReportResource)("regkey", l_104_7 .. l_104_14, l_104_0, false)
-            local l_104_15 = (sysio.RegOpenKey)(l_104_7 .. l_104_14)
-            if l_104_15 then
-              local l_104_16 = (sysio.GetRegValueAsString)(l_104_15, "AppId")
-              if l_104_16 then
-                (MpDetection.ReportResource)("regkey", l_104_7 .. l_104_16, l_104_0, false)
+  L3_589 = sysio
+  L3_589 = L3_589.RegOpenKey
+  L4_590 = A1_587
+  L3_589 = L3_589(L4_590)
+  if L3_589 then
+    L4_590 = sysio
+    L4_590 = L4_590.RegEnumValues
+    L4_590 = L4_590(L5_591)
+    if L4_590 then
+      for L8_594, L9_595 in L5_591(L6_592) do
+        L10_596 = string
+        L10_596 = L10_596.lower
+        L10_596 = L10_596(L11_597)
+        for L14_600, L15_601 in L11_597(L12_598) do
+          L16_602 = type
+          L16_602 = L16_602(L14_600)
+          if L16_602 == "string" then
+            L16_602 = type
+            L16_602 = L16_602(L15_601)
+            if L16_602 == "number" then
+              L16_602 = string
+              L16_602 = L16_602.lower
+              L16_602 = L16_602(L14_600)
+              if L10_596 == L16_602 then
+                L16_602 = sysio
+                L16_602 = L16_602.GetRegValueAsDword
+                L16_602 = L16_602(L3_589, L14_600)
+                if type(L16_602) == type(L15_601) and L16_602 ~= L15_601 then
+                  MpDetection.ReportResource("regkeyvalue", A1_587 .. "\\\\" .. L9_595, A0_586, false)
+                  return true
+                end
               end
             end
           end
@@ -1871,284 +1957,787 @@ Infrastructure_ReportRegistryAppId = function(l_104_0, l_104_1)
       end
     end
   end
-  -- DECOMPILER ERROR at PC69: Confused about usage of register R4 for local variables in 'ReleaseLocals'
-
 end
-
-Infrastructure_RestoreRegValueDataFromAnotherRegValueAsString = function(l_105_0, l_105_1, l_105_2, l_105_3)
-  -- function num : 0_104
-  if l_105_0 == nil or l_105_2 == l_105_1 or l_105_3 ~= true and l_105_3 ~= false then
-    return 
+Infrastructure_ReportFirstRegistryValueCheckDefaultDW = L0_0
+function L0_0(A0_603, A1_604)
+  local L2_605, L3_606, L4_607, L5_608, L6_609, L7_610, L8_611
+  if A0_603 == nil or A1_604 == nil then
+    L2_605 = false
+    return L2_605
   end
-  local l_105_4 = (sysio.RegOpenKey)(l_105_0)
-  if l_105_4 then
-    local l_105_5 = (sysio.GetRegValueAsString)(l_105_4, l_105_2)
-    if l_105_5 ~= nil then
-      (sysio.SetRegValueAsString)(l_105_4, l_105_1, l_105_5)
-      if l_105_3 == true then
-        (sysio.DeleteRegValue)(l_105_4, l_105_2)
+  L2_605 = sysio
+  L2_605 = L2_605.RegOpenKey
+  L3_606 = A1_604
+  L2_605 = L2_605(L3_606)
+  if L2_605 then
+    L3_606 = sysio
+    L3_606 = L3_606.RegEnumValues
+    L3_606 = L3_606(L4_607)
+    if L3_606 then
+      for L7_610, L8_611 in L4_607(L5_608) do
+        MpDetection.ReportResource("regkeyvalue", A1_604 .. "\\\\" .. L8_611, A0_603, false)
+        return true
       end
     end
   end
 end
-
-Infrastructure_ReportImageFileDebugger = function(l_106_0, l_106_1)
-  -- function num : 0_105
-  if l_106_0 == nil or l_106_1 == nil then
-    return 
+Infrastructure_ReportAnyRegistryValue = L0_0
+function L0_0(A0_612, A1_613, A2_614, A3_615)
+  local L4_616, L5_617
+  L4_616 = sysio
+  L4_616 = L4_616.RegOpenKey
+  L5_617 = A1_613
+  L4_616 = L4_616(L5_617)
+  if L4_616 then
+    L5_617 = sysio
+    L5_617 = L5_617.GetRegValueAsString
+    L5_617 = L5_617(L4_616, A2_614)
+    if L5_617 ~= nil and string.lower(L5_617) == string.lower(A3_615) then
+      Infrastructure_ReportRegistryKey(A0_612, A1_613)
+      return true
+    end
   end
-  Infrastructure_ReportRegistryValue(l_106_0, "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_106_1, "Debugger")
-  Infrastructure_ReportRegistryValue(l_106_0, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_106_1, "Debugger")
+  L5_617 = false
+  return L5_617
 end
-
-Infrastructure_CleanBrowserShellOpenCommandParameter = function()
-  -- function num : 0_106
-  Infrastructure_CleanBrowserShellOpenCommandParameter_SearchString("HKLM\\SOFTWARE\\Clients\\StartMenuInternet\\IEXPLORE.EXE\\shell\\open\\command", "\\Internet Explorer\\iexplore.exe")
-  Infrastructure_CleanBrowserShellOpenCommandParameter_SearchString("HKLM\\SOFTWARE\\Wow6432Node\\Clients\\StartMenuInternet\\IEXPLORE.EXE\\shell\\open\\command", "\\Internet Explorer\\iexplore.exe")
-end
-
-Infrastructure_CleanBrowserShellOpenCommandParameter_SearchString = function(l_108_0, l_108_1)
-  -- function num : 0_107
-  if l_108_0 == nil or l_108_1 == nil then
-    return 
+Infrastructure_ReportRegistryKeyByValueData = L0_0
+function L0_0(A0_618, A1_619)
+  local L2_620, L3_621, L4_622, L5_623, L6_624, L7_625
+  if A0_618 == nil or A1_619 == nil then
+    return
   end
-  local l_108_2 = (sysio.RegOpenKey)(l_108_0)
-  if l_108_2 ~= nil then
-    local l_108_3 = (sysio.GetRegValueAsString)(l_108_2, "")
-    if l_108_3 ~= nil then
-      local l_108_4, l_108_5 = (string.find)((string.lower)(l_108_3), (string.lower)(l_108_1), 1, true)
-      if l_108_4 ~= nil and l_108_5 ~= nil and l_108_5 < (string.len)(l_108_3) then
-        (sysio.SetRegValueAsString)(l_108_2, "", (string.sub)(l_108_3, 1, l_108_5))
-      end
+  L2_620 = Infrastructure_ReportRegistryKey
+  L2_620(L3_621, L4_622)
+  L2_620 = Infrastructure_ReportRegistryKey
+  L2_620(L3_621, L4_622)
+  L2_620 = sysio
+  L2_620 = L2_620.RegExpandUserKey
+  L2_620 = L2_620(L3_621)
+  if L2_620 then
+    for L6_624, L7_625 in L3_621(L4_622) do
+      Infrastructure_ReportRegistryKey(A0_618, L7_625)
     end
   end
 end
-
-Infrastructure_CleanImageFileDebugger = function(l_109_0)
-  -- function num : 0_108
-  if l_109_0 == nil then
-    return 
-  end
-  Infrastructure_CleanImageFileDebugger_Regkey("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_109_0)
-  Infrastructure_CleanImageFileDebugger_Regkey("HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. l_109_0)
+Infrastructure_ReportSoftwareRegistryByKey = L0_0
+function L0_0(A0_626, A1_627)
+  Infrastructure_ReportRegistryKey(A0_626, "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. A1_627)
+  Infrastructure_ReportRegistryKey(A0_626, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" .. A1_627)
 end
-
-Infrastructure_CleanImageFileDebugger_Regkey = function(l_110_0)
-  -- function num : 0_109
-  if l_110_0 == nil then
-    return 
-  end
-  local l_110_1 = (sysio.RegOpenKey)(l_110_0)
-  if l_110_1 then
-    (sysio.DeleteRegValue)(l_110_1, "Debugger")
+Infrastructure_ReportUninstallRegistryByKey = L0_0
+function L0_0(A0_628, A1_629, A2_630)
+  local L3_631
+  L3_631 = Infrastructure_GetRegValueAsString
+  L3_631 = L3_631(A1_629 .. "\\CLSID\\" .. A2_630 .. "\\TypeLib", "")
+  if L3_631 ~= nil then
+    if string.len(L3_631) == 38 and string.match(L3_631, "{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}") then
+      Infrastructure_ReportRegistryKey(A0_628, A1_629 .. "\\TypeLib\\" .. L3_631)
+    end
+    Infrastructure_ReportRegistryKey(A0_628, A1_629 .. "\\CLSID\\" .. A2_630)
   end
 end
-
-Infrastructure_ReportAll_RegistryValueFromRegistryKey = function(l_111_0, l_111_1)
-  -- function num : 0_110
-  if l_111_1 == nil then
-    return 
+Infrastructure_Report_Clsid_And_TypeLib = L0_0
+function L0_0(A0_632, A1_633)
+  if A1_633 ~= nil and string.len(A1_633) == 38 and string.match(A1_633, "{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}") then
+    Infrastructure_Report_Clsid_And_TypeLib(A0_632, "HKLM\\SOFTWARE\\Classes", A1_633)
+    Infrastructure_Report_Clsid_And_TypeLib(A0_632, "HKLM\\SOFTWARE\\Wow6432Node\\Classes", A1_633)
+    Infrastructure_ReportRegistryKey(A0_632, "HKCR\\CLSID\\" .. A1_633)
   end
-  local l_111_2 = (sysio.RegOpenKey)(l_111_1)
-  if l_111_2 then
-    local l_111_3 = (sysio.RegEnumValues)(l_111_2)
-    for l_111_7,l_111_8 in pairs(l_111_3) do
-      (MpDetection.ReportResource)("regkeyvalue", l_111_1 .. "\\\\" .. l_111_8, l_111_0, false)
+end
+Infrastructure_ReportCLSID = L0_0
+function L0_0(A0_634, A1_635)
+  local L2_636, L3_637, L4_638, L5_639, L6_640, L7_641, L8_642, L9_643, L10_644
+  if A1_635 == nil then
+    return
+  end
+  L2_636 = Infrastructure_ReportRegistryValue
+  L2_636(L3_637, L4_638, L5_639)
+  L2_636 = sysio
+  L2_636 = L2_636.RegExpandUserKey
+  L2_636 = L2_636(L3_637)
+  if L2_636 then
+    for L6_640, L7_641 in L3_637(L4_638) do
+      L9_643 = A0_634
+      L10_644 = L7_641
+      L8_642(L9_643, L10_644, A1_635)
+    end
+  end
+  L3_637(L4_638, L5_639, L6_640)
+  if L3_637 then
+    for L7_641, L8_642 in L4_638(L5_639) do
+      L9_643 = Infrastructure_ReportRegistryValue
+      L10_644 = A0_634
+      L9_643(L10_644, L8_642, A1_635)
+    end
+  end
+  L4_638(L5_639, L6_640)
+  if L4_638 then
+    for L8_642, L9_643 in L5_639(L6_640) do
+      L10_644 = Infrastructure_ReportRegistryKey
+      L10_644(A0_634, L9_643)
+    end
+  end
+  L5_639(L6_640, L7_641)
+  if L5_639 then
+    for L9_643, L10_644 in L6_640(L7_641) do
+      Infrastructure_ReportRegistryKey(A0_634, L10_644)
     end
   end
 end
-
-Infrastructure_ReportProductExcludedPathsInGroupPolicy = function(l_112_0)
-  -- function num : 0_111
-  Infrastructure_ReportAll_RegistryValueFromRegistryKey(l_112_0, "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Paths")
-  Infrastructure_ReportAll_RegistryValueFromRegistryKey(l_112_0, "HKLM\\SOFTWARE\\Policies\\Microsoft\\Microsoft Antimalware\\Exclusions\\Paths")
-end
-
-Infrastructure_DeleteAll_RegistryValueFromRegistryKey = function(l_113_0)
-  -- function num : 0_112
-  if l_113_0 == nil then
-    return 
-  end
-  local l_113_1 = (sysio.RegOpenKey)(l_113_0)
-  if l_113_1 then
-    local l_113_2 = (sysio.RegEnumValues)(l_113_1)
-    for l_113_6,l_113_7 in pairs(l_113_2) do
-      (sysio.DeleteRegValue)(l_113_1, l_113_7)
-    end
-  end
-end
-
-Infrastructure_DeleteProductExcludedPathsInGroupPolicy = function()
-  -- function num : 0_113
-  Infrastructure_DeleteAll_RegistryValueFromRegistryKey("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Paths")
-  Infrastructure_DeleteAll_RegistryValueFromRegistryKey("HKLM\\SOFTWARE\\Policies\\Microsoft\\Microsoft Antimalware\\Exclusions\\Paths")
-end
-
-Infrastructure_RestrictNTLMTraffic = function()
-  -- function num : 0_114
-  local l_115_0 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\MSV1_0")
-  if l_115_0 then
-    (sysio.SetRegValueAsDword)(l_115_0, "restrictsendingntlmtraffic", 1)
-  end
-end
-
-Infrastructure_ReportScheduleTaskByTaskId = function(l_116_0, l_116_1)
-  -- function num : 0_115
-  if (string.len)(l_116_0) == 38 and (string.match)(l_116_0, "{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}") then
-    local l_116_2 = "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\Taskcache\\Tasks\\" .. l_116_0
-    local l_116_3 = (sysio.RegOpenKey)(l_116_2)
-    if l_116_3 then
-      local l_116_4 = (sysio.GetRegValueAsString)(l_116_3, "Path")
-      if l_116_4 ~= nil and (string.sub)(l_116_4, 1, 1) == "\\" then
-        l_116_4 = (string.sub)(l_116_4, 2)
-        local l_116_5 = (MpCommon.ExpandEnvironmentVariables)("%windir%")
-        if (sysio.IsFileExists)(l_116_5 .. "\\Tasks\\" .. l_116_4 .. ".job") then
-          (MpDetection.ReportResource)("taskscheduler", l_116_5 .. "\\Tasks\\" .. l_116_4 .. ".job", l_116_1, false)
-        end
-        if (sysio.IsFileExists)(l_116_5 .. "\\System32\\Tasks\\" .. l_116_4) then
-          (MpDetection.ReportResource)("taskscheduler", l_116_5 .. "\\System32\\Tasks\\" .. l_116_4, l_116_1, false)
-        end
-      end
-    end
-  end
-end
-
-Infrastructure_DeleteRegistryEntriesOnValueMatch = function(l_117_0, l_117_1)
-  -- function num : 0_116
-  if l_117_0 == nil then
-    return 
-  end
-  local l_117_2 = (sysio.RegEnumValues)(l_117_0)
-  if l_117_2 == nil then
-    return 
-  end
-  for l_117_6,l_117_7 in pairs(l_117_2) do
-    if l_117_7 ~= nil then
-      l_117_7 = (string.lower)(l_117_7)
-      for l_117_11,l_117_12 in pairs(l_117_1) do
-        l_117_12 = (string.lower)(l_117_12)
-        if l_117_7 == l_117_12 then
-          (sysio.DeleteRegValue)(l_117_0, l_117_7)
+Infrastructure_ReportIEExtensionsByClsid = L0_0
+function L0_0(A0_645, A1_646, A2_647)
+  local L3_648, L4_649, L5_650, L6_651, L7_652, L8_653, L9_654
+  L3_648 = sysio
+  L3_648 = L3_648.RegOpenKey
+  L4_649 = A2_647
+  L3_648 = L3_648(L4_649)
+  if L3_648 then
+    L4_649 = sysio
+    L4_649 = L4_649.RegEnumKeys
+    L4_649 = L4_649(L5_650)
+    if L4_649 then
+      for L8_653, L9_654 in L5_650(L6_651) do
+        if Infrastructure_ReportRegistryKeyByValueData(A0_645, A2_647 .. "\\" .. L9_654, "", A1_646) then
+          Infrastructure_ReportCLSID(A0_645, L9_654)
+          Infrastructure_ReportIEExtensionsByClsid(A0_645, L9_654)
         end
       end
     end
   end
 end
-
-Infrastructure_DelRegKeyValuesIfExist = function(l_118_0, l_118_1)
-  -- function num : 0_117
-  if l_118_0 == nil or l_118_1 == nil then
-    return 
+Infrastructure_ReportBHOByName_RegPath = L0_0
+function L0_0(A0_655, A1_656)
+  local L2_657, L3_658, L4_659, L5_660, L6_661, L7_662, L8_663
+  L2_657 = Infrastructure_ReportBHOByName_RegPath
+  L2_657(L3_658, L4_659, L5_660)
+  L2_657 = Infrastructure_ReportBHOByName_RegPath
+  L2_657(L3_658, L4_659, L5_660)
+  L2_657 = sysio
+  L2_657 = L2_657.RegExpandUserKey
+  L2_657 = L2_657(L3_658)
+  if L2_657 then
+    for L6_661, L7_662 in L3_658(L4_659) do
+      L8_663 = Infrastructure_ReportBHOByName_RegPath
+      L8_663(A0_655, A1_656, L7_662)
+    end
   end
-  local l_118_2 = (sysio.RegOpenKey)(l_118_0)
-  if l_118_2 then
-    do
-      if type(l_118_1) == "string" then
-        local l_118_3 = {}
-        -- DECOMPILER ERROR at PC18: No list found for R3 , SetList fails
-
+  if L3_658 then
+    for L7_662, L8_663 in L4_659(L5_660) do
+      Infrastructure_ReportBHOByName_RegPath(A0_655, A1_656, L8_663)
+    end
+  end
+end
+Infrastructure_ReportBHOByName = L0_0
+function L0_0(A0_664, A1_665)
+  local L2_666, L3_667, L4_668, L5_669, L6_670, L7_671, L8_672
+  if A1_665 ~= nil and A0_664 ~= nil then
+    L2_666 = string
+    L2_666 = L2_666.len
+    L2_666 = L2_666(L3_667)
+    if L2_666 == 38 then
+      L2_666 = string
+      L2_666 = L2_666.match
+      L2_666 = L2_666(L3_667, L4_668)
+      if L2_666 then
+        L2_666 = Infrastructure_ReportRegistryKey
+        L2_666(L3_667, L4_668)
+        L2_666 = Infrastructure_ReportRegistryKey
+        L2_666(L3_667, L4_668)
+        L2_666 = sysio
+        L2_666 = L2_666.RegExpandUserKey
+        L2_666 = L2_666(L3_667)
+        if L2_666 then
+          for L6_670, L7_671 in L3_667(L4_668) do
+            L8_672 = Infrastructure_ReportRegistryKey
+            L8_672(A0_664, L7_671)
+          end
+        end
+        if L3_667 then
+          for L7_671, L8_672 in L4_668(L5_669) do
+            Infrastructure_ReportRegistryKey(A0_664, L8_672)
+          end
+        end
       end
-      -- DECOMPILER ERROR at PC21: Overwrote pending register: R4 in 'AssignReg'
-
-      if type(l_118_1) ~= "table" then
-        return 
+    end
+  end
+end
+Infrastructure_DetectionReportBHOByCLSID = L0_0
+function L0_0(A0_673, A1_674)
+  local L2_675, L3_676, L4_677, L5_678, L6_679, L7_680, L8_681
+  if A1_674 ~= nil and A0_673 ~= nil then
+    L2_675 = Infrastructure_ReportRegistryKey
+    L2_675(L3_676, L4_677)
+    L2_675 = Infrastructure_ReportRegistryKey
+    L2_675(L3_676, L4_677)
+    L2_675 = sysio
+    L2_675 = L2_675.RegExpandUserKey
+    L2_675 = L2_675(L3_676)
+    if L2_675 then
+      for L6_679, L7_680 in L3_676(L4_677) do
+        L8_681 = Infrastructure_ReportRegistryKey
+        L8_681(A0_673, L7_680)
       end
-      Infrastructure_DeleteRegistryEntriesOnValueMatch(l_118_2, l_118_1)
+    end
+    if L3_676 then
+      for L7_680, L8_681 in L4_677(L5_678) do
+        Infrastructure_ReportRegistryKey(A0_673, L8_681)
+      end
     end
   end
 end
-
-Infrastructure_RemoveDefenderDAVASPolicyKey = function()
-  -- function num : 0_118
-  local l_119_0 = {}
-  -- DECOMPILER ERROR at PC3: No list found for R0 , SetList fails
-
-  -- DECOMPILER ERROR at PC4: Overwrote pending register: R1 in 'AssignReg'
-
-  local l_119_1 = "disableantivirus"
-  -- DECOMPILER ERROR at PC5: Overwrote pending register: R2 in 'AssignReg'
-
-  local l_119_2 = (("disableantispyware").RegOpenKey)(l_119_1)
-  Infrastructure_DeleteRegistryEntriesOnValueMatch(l_119_2, l_119_0)
-end
-
-Infrastructure_RemoveDefenderDAVASPrefKey = function()
-  -- function num : 0_119
-  local l_120_0 = {}
-  -- DECOMPILER ERROR at PC3: No list found for R0 , SetList fails
-
-  -- DECOMPILER ERROR at PC4: Overwrote pending register: R1 in 'AssignReg'
-
-  local l_120_1 = "disableantivirus"
-  -- DECOMPILER ERROR at PC5: Overwrote pending register: R2 in 'AssignReg'
-
-  local l_120_2 = (("disableantispyware").RegOpenKey)(l_120_1)
-  Infrastructure_DeleteRegistryEntriesOnValueMatch(l_120_2, l_120_0)
-end
-
-Infrastructure_IsE5 = function()
-  -- function num : 0_120
-  local l_121_0 = 0
-  do
-    local l_121_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features")
-    if l_121_1 then
-      l_121_0 = (sysio.GetRegValueAsDword)(l_121_1, "SenseEnabled")
+Infrastructure_DetectionReportUninstallRegKey = L0_0
+function L0_0()
+  local L0_682, L1_683, L2_684, L3_685
+  L0_682 = "%SystemRoot%\\Tasks"
+  L1_683 = "%SystemRoot%\\System32\\Tasks"
+  L2_684 = MpDetection
+  L2_684 = L2_684.ScanResource
+  L3_685 = "specialfolder://norecursive:taskscheduler:"
+  L3_685 = L3_685 .. L0_682
+  L2_684(L3_685)
+  L2_684 = MpDetection
+  L2_684 = L2_684.ScanResource
+  L3_685 = "specialfolder://recursive:taskscheduler:"
+  L3_685 = L3_685 .. L1_683
+  L2_684(L3_685)
+  L2_684 = sysio
+  L2_684 = L2_684.RegOpenKey
+  L3_685 = "HKLM\\SOFTWARE\\Microsoft\\SchedulingAgent"
+  L2_684 = L2_684(L3_685)
+  if not L2_684 then
+    L3_685 = false
+    return L3_685
+  end
+  L3_685 = sysio
+  L3_685 = L3_685.GetRegValueAsString
+  L3_685 = L3_685(L2_684, "TasksFolder")
+  if L3_685 and L3_685 ~= L0_682 and L3_685 ~= L1_683 then
+    if Info.OSMajorVersion < 6 then
+      MpDetection.ScanResource("specialfolder://norecursive:taskscheduler:" .. L3_685)
+    else
+      MpDetection.ScanResource("specialfolder://recursive:taskscheduler:" .. L3_685)
     end
-    do return l_121_0 == 1 end
-    -- DECOMPILER ERROR: 1 unprocessed JMP targets
   end
 end
-
-Infrastructure_IsE3 = function()
-  -- function num : 0_121
-  local l_122_0 = 0
-  do
-    local l_122_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender")
-    if l_122_1 then
-      l_122_0 = (sysio.GetRegValueAsDword)(l_122_1, "ManagedDefenderProductType")
+Infrastructure_ScanTaskschedulerResources = L0_0
+function L0_0(A0_686)
+  local L1_687, L2_688, L3_689, L4_690, L5_691, L6_692, L7_693, L8_694, L9_695, L10_696
+  L1_687 = {}
+  if A0_686 then
+    L2_688 = sysio
+    L2_688 = L2_688.RegExpandUserKey
+    L3_689 = "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders"
+    L2_688 = L2_688(L3_689)
+    L3_689 = {}
+    if L2_688 then
+      for L7_693, L8_694 in L4_690(L5_691) do
+        L9_695 = sysio
+        L9_695 = L9_695.RegOpenKey
+        L10_696 = L8_694
+        L9_695 = L9_695(L10_696)
+        if L9_695 then
+          L10_696 = sysio
+          L10_696 = L10_696.GetRegValueAsString
+          L10_696 = L10_696(L9_695, A0_686)
+          if L10_696 and not L3_689[L10_696] then
+            table.insert(L1_687, L10_696)
+            L3_689[L10_696] = true
+          end
+        end
+      end
     end
-    do return l_122_0 ~= nil and l_122_0 ~= 0 end
-    -- DECOMPILER ERROR: 1 unprocessed JMP targets
   end
+  return L1_687
 end
-
-Infrastructure_HasPartnerGuid = function(l_123_0)
-  -- function num : 0_122
-  if l_123_0 == nil then
+Infrastructure_HKCUExpandSpecialPath = L0_0
+function L0_0()
+  local L0_697, L1_698, L2_699, L3_700, L4_701, L5_702
+  L0_697 = Info
+  L0_697 = L0_697.OSMajorVersion
+  if L0_697 ~= nil then
+    L0_697 = Info
+    L0_697 = L0_697.OSMinorVersion
+  elseif L0_697 == nil then
+    L0_697 = false
+    return L0_697
+  end
+  L0_697 = MpCommon
+  L0_697 = L0_697.ExpandEnvironmentVariables
+  L1_698 = "%windir%"
+  L0_697 = L0_697(L1_698)
+  L1_698 = L0_697
+  L2_699 = "\\System32\\drivers\\etc\\hosts"
+  L1_698 = L1_698 .. L2_699
+  L2_699 = "# Copyright (c) 1993-2006 Microsoft Corp."
+  L3_700 = "\r\n"
+  L4_701 = "#"
+  L5_702 = "\r\n"
+  L2_699 = L2_699 .. L3_700 .. L4_701 .. L5_702 .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a '#' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "# localhost name resolution is handle within DNS itself." .. "\r\n" .. "#       127.0.0.1       localhost" .. "\r\n" .. "#       ::1             localhost" .. "\r\n"
+  L3_700 = "# Copyright (c) 1993-2006 Microsoft Corp."
+  L4_701 = "\r\n"
+  L5_702 = "#"
+  L3_700 = L3_700 .. L4_701 .. L5_702 .. "\r\n" .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a '#' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "" .. "\r\n" .. "# localhost name resolution is handle within DNS itself." .. "\r\n" .. "#       127.0.0.1       localhost" .. "\r\n" .. "#       ::1             localhost" .. "\r\n"
+  L4_701 = "# Copyright (c) 1993-2006 Microsoft Corp."
+  L5_702 = "\r\n"
+  L4_701 = L4_701 .. L5_702 .. "#" .. "\r\n" .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a '#' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "" .. "\r\n" .. "127.0.0.1       localhost" .. "\r\n" .. "::1             localhost" .. "\r\n"
+  L5_702 = "# Copyright (c) 1993-1999 Microsoft Corp."
+  L5_702 = L5_702 .. "\r\n" .. "#" .. "\r\n" .. "# This is a sample HOSTS file used by Microsoft TCP/IP for Windows." .. "\r\n" .. "#" .. "\r\n" .. "# This file contains the mappings of IP addresses to host names. Each" .. "\r\n" .. "# entry should be kept on an individual line. The IP address should" .. "\r\n" .. "# be placed in the first column followed by the corresponding host name." .. "\r\n" .. "# The IP address and the host name should be separated by at least one" .. "\r\n" .. "# space." .. "\r\n" .. "#" .. "\r\n" .. "# Additionally, comments (such as these) may be inserted on individual" .. "\r\n" .. "# lines or following the machine name denoted by a '#' symbol." .. "\r\n" .. "#" .. "\r\n" .. "# For example:" .. "\r\n" .. "#" .. "\r\n" .. "#      102.54.94.97     rhino.acme.com          # source server" .. "\r\n" .. "#       38.25.63.10     x.acme.com              # x client host" .. "\r\n" .. "" .. "\r\n" .. "127.0.0.1       localhost" .. "\r\n"
+  if sysio.IsFileExists(L1_698) == false then
     return false
   end
-  local l_123_1 = nil
-  do
-    local l_123_2 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender")
-    if l_123_2 then
-      l_123_1 = (sysio.GetRegValueAsString)(l_123_2, "PartnerGuid")
-      if l_123_1 then
-        if #l_123_1 > 36 then
-          l_123_1 = (string.gsub)(l_123_1, "^%s*(.-)%s*$", "%1")
-        end
-        l_123_1 = (string.lower)(l_123_1)
-      end
-    end
-    if #l_123_0 > 36 then
-      l_123_0 = (string.gsub)(l_123_0, "^%s*(.-)%s*$", "%1")
-    end
-    l_123_0 = (string.lower)(l_123_0)
-    do return l_123_1 ~= nil and l_123_1 == l_123_0 end
-    -- DECOMPILER ERROR: 1 unprocessed JMP targets
-  end
-end
-
-Infrastructure_HasAnyPartnerGuid = function(l_124_0)
-  -- function num : 0_123
-  if l_124_0 == nil or type(l_124_0) ~= "table" then
+  if sysio.GetFileSize(L1_698) == nil then
     return false
   end
-  for l_124_4,l_124_5 in ipairs(l_124_0) do
-    if Infrastructure_HasPartnerGuid(l_124_5) then
+  if Info.OSMajorVersion < 6 then
+    while sysio.GetFileSize(L1_698) > string.len(L5_702) do
+      L5_702 = L5_702 .. "\r\n"
+    end
+    if sysio.WriteFile(L1_698, 0, L5_702) ~= string.len(L5_702) then
+      return false
+    else
+      return true
+    end
+  end
+  if Info.OSMajorVersion == 6 and Info.OSMinorVersion == 0 then
+    while sysio.GetFileSize(L1_698) > string.len(L4_701) do
+      L4_701 = L4_701 .. "\r\n"
+    end
+    if sysio.WriteFile(L1_698, 0, L4_701) ~= string.len(L4_701) then
+      return false
+    else
+      return true
+    end
+  end
+  if Info.OSMajorVersion == 6 and Info.OSMinorVersion == 1 then
+    while sysio.GetFileSize(L1_698) > string.len(L3_700) do
+      L3_700 = L3_700 .. "\r\n"
+    end
+    if sysio.WriteFile(L1_698, 0, L3_700) ~= string.len(L3_700) then
+      return false
+    else
+      return true
+    end
+  end
+  if Info.OSMajorVersion == 6 and Info.OSMinorVersion == 2 or Info.OSMajorVersion > 6 then
+    while sysio.GetFileSize(L1_698) > string.len(L2_699) do
+      L2_699 = L2_699 .. "\r\n"
+    end
+    if sysio.WriteFile(L1_698, 0, L2_699) ~= string.len(L2_699) then
+      return false
+    else
       return true
     end
   end
   return false
 end
-
-
+Infrastructure_FixHostsFile = L0_0
+function L0_0(A0_703, A1_704)
+  local L2_705, L3_706, L4_707, L5_708, L6_709, L7_710, L8_711, L9_712, L10_713, L11_714, L12_715, L13_716, L14_717, L15_718, L16_719
+  if A0_703 == nil or A1_704 == nil then
+    L2_705 = false
+    return L2_705
+  end
+  L2_705 = {L3_706, L4_707}
+  for L6_709, L7_710 in L3_706(L4_707) do
+    L8_711 = sysio
+    L8_711 = L8_711.RegOpenKey
+    L9_712 = L7_710
+    L8_711 = L8_711(L9_712)
+    if L8_711 then
+      L9_712 = sysio
+      L9_712 = L9_712.RegEnumKeys
+      L9_712 = L9_712(L10_713)
+      if L9_712 then
+        for L13_716, L14_717 in L10_713(L11_714) do
+          if L14_717 == A1_704 then
+            L15_718 = MpDetection
+            L15_718 = L15_718.ReportResource
+            L16_719 = "regkey"
+            L15_718(L16_719, L7_710 .. L14_717, A0_703, false)
+            L15_718 = sysio
+            L15_718 = L15_718.RegOpenKey
+            L16_719 = L7_710
+            L16_719 = L16_719 .. L14_717
+            L15_718 = L15_718(L16_719)
+            if L15_718 then
+              L16_719 = sysio
+              L16_719 = L16_719.GetRegValueAsString
+              L16_719 = L16_719(L15_718, "AppId")
+              if L16_719 then
+                MpDetection.ReportResource("regkey", L7_710 .. L16_719, A0_703, false)
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+Infrastructure_ReportRegistryAppId = L0_0
+function L0_0(A0_720, A1_721, A2_722, A3_723)
+  local L4_724, L5_725
+  if A0_720 == nil or A2_722 == A1_721 or A3_723 ~= true and A3_723 ~= false then
+    return
+  end
+  L4_724 = sysio
+  L4_724 = L4_724.RegOpenKey
+  L5_725 = A0_720
+  L4_724 = L4_724(L5_725)
+  if L4_724 then
+    L5_725 = sysio
+    L5_725 = L5_725.GetRegValueAsString
+    L5_725 = L5_725(L4_724, A2_722)
+    if L5_725 ~= nil then
+      sysio.SetRegValueAsString(L4_724, A1_721, L5_725)
+      if A3_723 == true then
+        sysio.DeleteRegValue(L4_724, A2_722)
+      end
+    end
+  end
+end
+Infrastructure_RestoreRegValueDataFromAnotherRegValueAsString = L0_0
+function L0_0(A0_726, A1_727)
+  if A0_726 == nil or A1_727 == nil then
+    return
+  end
+  Infrastructure_ReportRegistryValue(A0_726, "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. A1_727, "Debugger")
+  Infrastructure_ReportRegistryValue(A0_726, "HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. A1_727, "Debugger")
+end
+Infrastructure_ReportImageFileDebugger = L0_0
+function L0_0()
+  Infrastructure_CleanBrowserShellOpenCommandParameter_SearchString("HKLM\\SOFTWARE\\Clients\\StartMenuInternet\\IEXPLORE.EXE\\shell\\open\\command", "\\Internet Explorer\\iexplore.exe")
+  Infrastructure_CleanBrowserShellOpenCommandParameter_SearchString("HKLM\\SOFTWARE\\Wow6432Node\\Clients\\StartMenuInternet\\IEXPLORE.EXE\\shell\\open\\command", "\\Internet Explorer\\iexplore.exe")
+end
+Infrastructure_CleanBrowserShellOpenCommandParameter = L0_0
+function L0_0(A0_728, A1_729)
+  local L2_730, L3_731, L4_732, L5_733
+  if A0_728 == nil or A1_729 == nil then
+    return
+  end
+  L2_730 = sysio
+  L2_730 = L2_730.RegOpenKey
+  L3_731 = A0_728
+  L2_730 = L2_730(L3_731)
+  if L2_730 ~= nil then
+    L3_731 = sysio
+    L3_731 = L3_731.GetRegValueAsString
+    L4_732 = L2_730
+    L5_733 = ""
+    L3_731 = L3_731(L4_732, L5_733)
+    if L3_731 ~= nil then
+      L4_732 = string
+      L4_732 = L4_732.find
+      L5_733 = string
+      L5_733 = L5_733.lower
+      L5_733 = L5_733(L3_731)
+      L5_733 = L4_732(L5_733, string.lower(A1_729), 1, true)
+      if L4_732 ~= nil and L5_733 ~= nil and L5_733 < string.len(L3_731) then
+        sysio.SetRegValueAsString(L2_730, "", string.sub(L3_731, 1, L5_733))
+      end
+    end
+  end
+end
+Infrastructure_CleanBrowserShellOpenCommandParameter_SearchString = L0_0
+function L0_0(A0_734)
+  if A0_734 == nil then
+    return
+  end
+  Infrastructure_CleanImageFileDebugger_Regkey("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. A0_734)
+  Infrastructure_CleanImageFileDebugger_Regkey("HKLM\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\" .. A0_734)
+end
+Infrastructure_CleanImageFileDebugger = L0_0
+function L0_0(A0_735)
+  local L1_736
+  if A0_735 == nil then
+    return
+  end
+  L1_736 = sysio
+  L1_736 = L1_736.RegOpenKey
+  L1_736 = L1_736(A0_735)
+  if L1_736 then
+    sysio.DeleteRegValue(L1_736, "Debugger")
+  end
+end
+Infrastructure_CleanImageFileDebugger_Regkey = L0_0
+function L0_0(A0_737, A1_738)
+  local L2_739, L3_740, L4_741, L5_742, L6_743, L7_744, L8_745
+  if A1_738 == nil then
+    return
+  end
+  L2_739 = sysio
+  L2_739 = L2_739.RegOpenKey
+  L3_740 = A1_738
+  L2_739 = L2_739(L3_740)
+  if L2_739 then
+    L3_740 = sysio
+    L3_740 = L3_740.RegEnumValues
+    L3_740 = L3_740(L4_741)
+    for L7_744, L8_745 in L4_741(L5_742) do
+      MpDetection.ReportResource("regkeyvalue", A1_738 .. "\\\\" .. L8_745, A0_737, false)
+    end
+  end
+end
+Infrastructure_ReportAll_RegistryValueFromRegistryKey = L0_0
+function L0_0(A0_746)
+  Infrastructure_ReportAll_RegistryValueFromRegistryKey(A0_746, "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Paths")
+  Infrastructure_ReportAll_RegistryValueFromRegistryKey(A0_746, "HKLM\\SOFTWARE\\Policies\\Microsoft\\Microsoft Antimalware\\Exclusions\\Paths")
+end
+Infrastructure_ReportProductExcludedPathsInGroupPolicy = L0_0
+function L0_0(A0_747)
+  local L1_748, L2_749, L3_750, L4_751, L5_752, L6_753, L7_754, L8_755, L9_756, L10_757
+  if A0_747 == nil or A0_747 == "" then
+    return
+  end
+  function L1_748(A0_758)
+    local L1_759, L2_760, L3_761, L4_762, L5_763, L6_764, L7_765, L8_766, L9_767, L10_768, L11_769, L12_770
+    L1_759 = {}
+    for L5_763, L6_764 in L2_760(L3_761) do
+      L7_765 = sysio
+      L7_765 = L7_765.ExpandFilePath
+      L7_765 = L7_765(L8_766, L9_767)
+      if L7_765 ~= nil then
+        for L11_769, L12_770 in L8_766(L9_767) do
+          L12_770 = string.gsub(L12_770, "^\\\\%?\\", "")
+          table.insert(L1_759, L12_770:lower())
+        end
+      end
+    end
+    return L1_759
+  end
+  L2_749 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\"
+  L3_750 = L2_749
+  L4_751 = "Extensions"
+  L3_750 = L3_750 .. L4_751
+  if L3_750 then
+    L4_751 = {L5_752, L6_753}
+    for L8_755, L9_756 in L5_752(L6_753) do
+      L10_757 = Infrastructure_ReportRegistryValue
+      L10_757(A0_747, L3_750, L9_756)
+    end
+  end
+  L4_751 = L2_749
+  L4_751 = L4_751 .. L5_752
+  if L4_751 then
+    L9_756 = "%systemroot%"
+    L10_757 = "%homedrive%"
+    for L9_756, L10_757 in L6_753(L7_754) do
+      Infrastructure_ReportRegistryValue(A0_747, L4_751, L10_757)
+    end
+  end
+end
+Infrastructure_ReportProductBulkExclusion = L0_0
+function L0_0(A0_771)
+  local L1_772, L2_773, L3_774, L4_775, L5_776, L6_777, L7_778
+  if A0_771 == nil then
+    return
+  end
+  L1_772 = sysio
+  L1_772 = L1_772.RegOpenKey
+  L2_773 = A0_771
+  L1_772 = L1_772(L2_773)
+  if L1_772 then
+    L2_773 = sysio
+    L2_773 = L2_773.RegEnumValues
+    L2_773 = L2_773(L3_774)
+    for L6_777, L7_778 in L3_774(L4_775) do
+      sysio.DeleteRegValue(L1_772, L7_778)
+    end
+  end
+end
+Infrastructure_DeleteAll_RegistryValueFromRegistryKey = L0_0
+function L0_0()
+  Infrastructure_DeleteAll_RegistryValueFromRegistryKey("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Exclusions\\Paths")
+  Infrastructure_DeleteAll_RegistryValueFromRegistryKey("HKLM\\SOFTWARE\\Policies\\Microsoft\\Microsoft Antimalware\\Exclusions\\Paths")
+end
+Infrastructure_DeleteProductExcludedPathsInGroupPolicy = L0_0
+function L0_0()
+  local L0_779
+  L0_779 = sysio
+  L0_779 = L0_779.RegOpenKey
+  L0_779 = L0_779("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\MSV1_0")
+  if L0_779 then
+    sysio.SetRegValueAsDword(L0_779, "restrictsendingntlmtraffic", 1)
+  end
+end
+Infrastructure_RestrictNTLMTraffic = L0_0
+function L0_0(A0_780, A1_781)
+  local L2_782, L3_783, L4_784, L5_785
+  L2_782 = string
+  L2_782 = L2_782.len
+  L3_783 = A0_780
+  L2_782 = L2_782(L3_783)
+  if L2_782 == 38 then
+    L2_782 = string
+    L2_782 = L2_782.match
+    L3_783 = A0_780
+    L4_784 = "{%x%x%x%x%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%-%x%x%x%x%x%x%x%x%x%x%x%x}"
+    L2_782 = L2_782(L3_783, L4_784)
+    if L2_782 then
+      L2_782 = "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\Taskcache\\Tasks\\"
+      L3_783 = A0_780
+      L2_782 = L2_782 .. L3_783
+      L3_783 = sysio
+      L3_783 = L3_783.RegOpenKey
+      L4_784 = L2_782
+      L3_783 = L3_783(L4_784)
+      if L3_783 then
+        L4_784 = sysio
+        L4_784 = L4_784.GetRegValueAsString
+        L5_785 = L3_783
+        L4_784 = L4_784(L5_785, "Path")
+        if L4_784 ~= nil then
+          L5_785 = string
+          L5_785 = L5_785.sub
+          L5_785 = L5_785(L4_784, 1, 1)
+          if L5_785 == "\\" then
+            L5_785 = string
+            L5_785 = L5_785.sub
+            L5_785 = L5_785(L4_784, 2)
+            L4_784 = L5_785
+            L5_785 = MpCommon
+            L5_785 = L5_785.ExpandEnvironmentVariables
+            L5_785 = L5_785("%windir%")
+            if sysio.IsFileExists(L5_785 .. "\\Tasks\\" .. L4_784 .. ".job") then
+              MpDetection.ReportResource("taskscheduler", L5_785 .. "\\Tasks\\" .. L4_784 .. ".job", A1_781, false)
+            end
+            if sysio.IsFileExists(L5_785 .. "\\System32\\Tasks\\" .. L4_784) then
+              MpDetection.ReportResource("taskscheduler", L5_785 .. "\\System32\\Tasks\\" .. L4_784, A1_781, false)
+            end
+          end
+        end
+      end
+    end
+  end
+end
+Infrastructure_ReportScheduleTaskByTaskId = L0_0
+function L0_0(A0_786, A1_787)
+  local L2_788, L3_789, L4_790, L5_791, L6_792, L7_793, L8_794, L9_795, L10_796, L11_797, L12_798
+  if A0_786 == nil then
+    return
+  end
+  L2_788 = sysio
+  L2_788 = L2_788.RegEnumValues
+  L2_788 = L2_788(L3_789)
+  if L2_788 == nil then
+    return
+  end
+  for L6_792, L7_793 in L3_789(L4_790) do
+    if L7_793 ~= nil then
+      L7_793 = L8_794
+      for L11_797, L12_798 in L8_794(L9_795) do
+        L12_798 = string.lower(L12_798)
+        if L7_793 == L12_798 then
+          sysio.DeleteRegValue(A0_786, L7_793)
+        end
+      end
+    end
+  end
+end
+Infrastructure_DeleteRegistryEntriesOnValueMatch = L0_0
+function L0_0(A0_799, A1_800)
+  local L2_801
+  if A0_799 == nil or A1_800 == nil then
+    return
+  end
+  L2_801 = sysio
+  L2_801 = L2_801.RegOpenKey
+  L2_801 = L2_801(A0_799)
+  if L2_801 then
+    if type(A1_800) == "string" then
+      A1_800 = {A1_800}
+    end
+    if type(A1_800) ~= "table" then
+      return
+    end
+    Infrastructure_DeleteRegistryEntriesOnValueMatch(L2_801, A1_800)
+  end
+end
+Infrastructure_DelRegKeyValuesIfExist = L0_0
+function L0_0()
+  local L0_802, L1_803, L2_804
+  L0_802 = {L1_803, L2_804}
+  L1_803 = "disableantivirus"
+  L2_804 = "disableantispyware"
+  L1_803 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender"
+  L2_804 = sysio
+  L2_804 = L2_804.RegOpenKey
+  L2_804 = L2_804(L1_803)
+  Infrastructure_DeleteRegistryEntriesOnValueMatch(L2_804, L0_802)
+end
+Infrastructure_RemoveDefenderDAVASPolicyKey = L0_0
+function L0_0()
+  local L0_805, L1_806, L2_807
+  L0_805 = {L1_806, L2_807}
+  L1_806 = "disableantivirus"
+  L2_807 = "disableantispyware"
+  L1_806 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender"
+  L2_807 = sysio
+  L2_807 = L2_807.RegOpenKey
+  L2_807 = L2_807(L1_806)
+  Infrastructure_DeleteRegistryEntriesOnValueMatch(L2_807, L0_805)
+end
+Infrastructure_RemoveDefenderDAVASPrefKey = L0_0
+function L0_0()
+  local L0_808, L1_809
+  L0_808 = 0
+  L1_809 = sysio
+  L1_809 = L1_809.RegOpenKey
+  L1_809 = L1_809("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features")
+  if L1_809 then
+    L0_808 = sysio.GetRegValueAsDword(L1_809, "SenseEnabled")
+  end
+  return L0_808 == 1
+end
+Infrastructure_IsE5 = L0_0
+function L0_0()
+  local L0_810, L1_811
+  L0_810 = 0
+  L1_811 = sysio
+  L1_811 = L1_811.RegOpenKey
+  L1_811 = L1_811("HKLM\\SOFTWARE\\Microsoft\\Windows Defender")
+  if L1_811 then
+    L0_810 = sysio.GetRegValueAsDword(L1_811, "ManagedDefenderProductType")
+  end
+  return L0_810 ~= nil and L0_810 ~= 0
+end
+Infrastructure_IsE3 = L0_0
+function L0_0(A0_812)
+  local L1_813, L2_814
+  if A0_812 == nil then
+    L1_813 = false
+    return L1_813
+  end
+  L1_813 = nil
+  L2_814 = sysio
+  L2_814 = L2_814.RegOpenKey
+  L2_814 = L2_814("HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender")
+  if L2_814 then
+    L1_813 = sysio.GetRegValueAsString(L2_814, "PartnerGuid")
+    if L1_813 then
+      if #L1_813 > 36 then
+        L1_813 = string.gsub(L1_813, "^%s*(.-)%s*$", "%1")
+      end
+      L1_813 = string.lower(L1_813)
+    end
+  end
+  if #A0_812 > 36 then
+    A0_812 = string.gsub(A0_812, "^%s*(.-)%s*$", "%1")
+  end
+  A0_812 = string.lower(A0_812)
+  return L1_813 ~= nil and L1_813 == A0_812
+end
+Infrastructure_HasPartnerGuid = L0_0
+function L0_0(A0_815)
+  local L1_816, L2_817, L3_818, L4_819, L5_820
+  if A0_815 ~= nil then
+  elseif L1_816 ~= "table" then
+    return L1_816
+  end
+  for L4_819, L5_820 in L1_816(L2_817) do
+    if Infrastructure_HasPartnerGuid(L5_820) then
+      return true
+    end
+  end
+  return L1_816
+end
+Infrastructure_HasAnyPartnerGuid = L0_0

@@ -1,16 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2678afc090be 
-
--- params : ...
--- function num : 0
 if not peattributes.isexe then
   return mp.CLEAN
 end
-if (mp.getfilesize)() > 196418 then
+if 196418 < mp.getfilesize() then
   return mp.CLEAN
 end
 if not peattributes.dt_error_heur_exit_criteria then
   return mp.CLEAN
 end
 return mp.INFECTED
-

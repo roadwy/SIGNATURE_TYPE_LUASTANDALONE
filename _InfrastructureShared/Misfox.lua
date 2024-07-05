@@ -1,50 +1,79 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Misfox 
-
--- params : ...
--- function num : 0
-RemovePayloadFromRegistry = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  local l_1_2 = (sysio.RegOpenKey)(l_1_0)
-  if l_1_2 then
-    local l_1_3 = (string.lower)((sysio.GetRegValueAsString)(l_1_2, l_1_1))
-    if l_1_3 then
-      (sysio.DeleteRegKey)(l_1_2, nil)
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+function L0_0(A0_6, A1_7)
+  local L2_8
+  L2_8 = sysio
+  L2_8 = L2_8.RegOpenKey
+  L2_8 = L2_8(A0_6)
+  if L2_8 and string.lower(sysio.GetRegValueAsString(L2_8, A1_7)) then
+    sysio.DeleteRegKey(L2_8, nil)
   end
 end
-
-RemoveMisfoxASEPs = function(l_2_0)
-  -- function num : 0_1
-  local l_2_1 = (sysio.RegOpenKey)(l_2_0)
-  if l_2_1 then
-    local l_2_2 = (sysio.RegEnumValues)(l_2_1)
-    for l_2_6,l_2_7 in pairs(l_2_2) do
-      local l_2_8 = (string.lower)((sysio.GetRegValueAsString)(l_2_1, l_2_7))
-      if not l_2_8 then
-        return false
+RemovePayloadFromRegistry = L0_0
+function L0_0(A0_9)
+  local L1_10, L2_11, L3_12, L4_13, L5_14, L6_15, L7_16, L8_17, L9_18, L10_19, L11_20, L12_21, L13_22, L14_23, L15_24, L16_25
+  L1_10 = sysio
+  L1_10 = L1_10.RegOpenKey
+  L2_11 = A0_9
+  L1_10 = L1_10(L2_11)
+  if L1_10 then
+    L2_11 = sysio
+    L2_11 = L2_11.RegEnumValues
+    L2_11 = L2_11(L3_12)
+    for L6_15, L7_16 in L3_12(L4_13) do
+      L8_17 = string
+      L8_17 = L8_17.lower
+      L9_18 = sysio
+      L9_18 = L9_18.GetRegValueAsString
+      L10_19 = L1_10
+      L11_20 = L7_16
+      L16_25 = L9_18(L10_19, L11_20)
+      L8_17 = L8_17(L9_18, L10_19, L11_20, L12_21, L13_22, L14_23, L15_24, L16_25, L9_18(L10_19, L11_20))
+      if not L8_17 then
+        L9_18 = false
+        return L9_18
       end
-      local l_2_9, l_2_10 = (string.match)(l_2_8, "%(%[text%.encoding%]::ascii%.getstring%(%[convert%]::frombase64string%(%(gp.*(hk%w%w:\\\\?software\\\\?classes\\\\?%w%w%w%w+).*%.(%w%w%w%w+)%)")
-      if l_2_9 then
-        (sysio.DeleteRegValue)(l_2_1, l_2_7)
-        l_2_9 = (string.gsub)(l_2_9, "\\\\", "\\")
-        l_2_9 = (string.gsub)(l_2_9, ":\\", "\\")
-        local l_2_11 = (sysio.RegExpandUserKey)(l_2_9)
-        for l_2_15,l_2_16 in pairs(l_2_11) do
-          RemovePayloadFromRegistry(l_2_16, l_2_10)
+      L9_18 = string
+      L9_18 = L9_18.match
+      L10_19 = L8_17
+      L11_20 = "%(%[text%.encoding%]::ascii%.getstring%(%[convert%]::frombase64string%(%(gp.*(hk%w%w:\\\\?software\\\\?classes\\\\?%w%w%w%w+).*%.(%w%w%w%w+)%)"
+      L10_19 = L9_18(L10_19, L11_20)
+      if L9_18 then
+        L11_20 = sysio
+        L11_20 = L11_20.DeleteRegValue
+        L11_20(L12_21, L13_22)
+        L11_20 = string
+        L11_20 = L11_20.gsub
+        L11_20 = L11_20(L12_21, L13_22, L14_23)
+        L9_18 = L11_20
+        L11_20 = string
+        L11_20 = L11_20.gsub
+        L11_20 = L11_20(L12_21, L13_22, L14_23)
+        L9_18 = L11_20
+        L11_20 = sysio
+        L11_20 = L11_20.RegExpandUserKey
+        L11_20 = L11_20(L12_21)
+        for L15_24, L16_25 in L12_21(L13_22) do
+          RemovePayloadFromRegistry(L16_25, L10_19)
         end
       end
     end
-    -- DECOMPILER ERROR at PC68: Confused about usage of register R6 for local variables in 'ReleaseLocals'
-
   end
 end
-
-if (string.match)((Remediation.Threat).Name, "Win32/Misfox") or (string.match)((Remediation.Threat).Name, "PowerShell/Misfox") then
-  RemoveMisfoxASEPs("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run")
-  local l_0_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")
-  for l_0_4,l_0_5 in pairs(l_0_0) do
-    RemoveMisfoxASEPs(l_0_5)
+RemoveMisfoxASEPs = L0_0
+L0_0 = string
+L0_0 = L0_0.match
+L0_0 = L0_0(L1_1, L2_2)
+if not L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.match
+  L0_0 = L0_0(L1_1, L2_2)
+elseif L0_0 then
+  L0_0 = RemoveMisfoxASEPs
+  L0_0(L1_1)
+  L0_0 = sysio
+  L0_0 = L0_0.RegExpandUserKey
+  L0_0 = L0_0(L1_1)
+  for L4_4, L5_5 in L1_1(L2_2) do
+    RemoveMisfoxASEPs(L5_5)
   end
 end
-

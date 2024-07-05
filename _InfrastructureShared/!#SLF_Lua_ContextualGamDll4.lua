@@ -1,39 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_Lua_ContextualGamDll4 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  if not peattributes.isdll then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = peattributes
+  L1_1 = L1_1.isdll
+  if not L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = peattributes
+  L1_1 = L1_1.hasexports
+  if not L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = pehdr
+  L1_1 = L1_1.DataDirectory
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.Size
+  if L1_1 == 0 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L1_1 = L1_1(mp.CONTEXT_DATA_FILENAME)
+  if ({
+    [".exe"] = true,
+    [".dll"] = true,
+    [".cpl"] = true,
+    [".ocx"] = true,
+    [".pyd"] = true,
+    [".pyc"] = true
+  })[string.lower(L1_1):sub(-4)] then
     return mp.CLEAN
   end
-  if not peattributes.hasexports then
+  if not mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH):find("\160", 1, true) then
     return mp.CLEAN
   end
-  if ((pehdr.DataDirectory)[1]).Size == 0 then
-    return mp.CLEAN
-  end
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  local l_0_2 = {}
-  l_0_2[".exe"] = true
-  l_0_2[".dll"] = true
-  l_0_2[".cpl"] = true
-  l_0_2[".ocx"] = true
-  l_0_2[".pyd"] = true
-  l_0_2[".pyc"] = true
-  if l_0_2[((string.lower)(l_0_1)):sub(-4)] then
-    return mp.CLEAN
-  end
-  local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-  if not l_0_3:find("\160", 1, true) then
-    return mp.CLEAN
-  end
-  if (l_0_1:find("^{?[%w%p]+}?%.{%w%w%w%w%w%w%w%w%-%w%w%w%w%-%w%w%w%w%-%w%w%w%w%-%w%w%w%w%w%w%w%w%w%w%w%w}$") or l_0_1:find("^%p%p%p+%.%d$")) and ((string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)) == "msiexec.exe" or (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)) == "rundll32.exe") then
+  if (L1_1:find("^{?[%w%p]+}?%.{%w%w%w%w%w%w%w%w%-%w%w%w%w%-%w%w%w%w%-%w%w%w%w%-%w%w%w%w%w%w%w%w%w%w%w%w}$") or L1_1:find("^%p%p%p+%.%d$")) and (string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) == "msiexec.exe" or string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) == "rundll32.exe") then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

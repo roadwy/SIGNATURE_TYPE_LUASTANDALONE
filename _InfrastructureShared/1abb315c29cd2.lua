@@ -1,120 +1,128 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1abb315c29cd2 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0["cmd.exe"] = true
-l_0_0["powershell.exe"] = true
-local l_0_1 = {}
-l_0_1["cscript.exe"] = true
-l_0_1["wscript.exe"] = true
-local l_0_2 = {}
-l_0_2["python.exe"] = true
-l_0_2["perl.exe"] = true
-l_0_2["java.exe"] = true
-local l_0_3 = nil
-if (this_sigattrlog[1]).matched then
-  l_0_3 = (this_sigattrlog[1]).ppid
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = {}
+L0_0["cmd.exe"] = true
+L0_0["powershell.exe"] = true
+L1_1 = {}
+L1_1["cscript.exe"] = true
+L1_1["wscript.exe"] = true
+L2_2 = {}
+L2_2["python.exe"] = true
+L2_2["perl.exe"] = true
+L2_2["java.exe"] = true
+L3_3 = nil
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L3_3 = L4_4.ppid
 else
-  if (this_sigattrlog[2]).matched then
-    l_0_3 = (this_sigattrlog[2]).ppid
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[2]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[2]
+    L3_3 = L4_4.ppid
   else
-    if (this_sigattrlog[3]).matched then
-      l_0_3 = (this_sigattrlog[3]).ppid
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[3]
+    L4_4 = L4_4.matched
+    if L4_4 then
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[3]
+      L3_3 = L4_4.ppid
     else
-      if (this_sigattrlog[4]).matched then
-        l_0_3 = (this_sigattrlog[4]).ppid
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[4]
+      L4_4 = L4_4.matched
+      if L4_4 then
+        L4_4 = this_sigattrlog
+        L4_4 = L4_4[4]
+        L3_3 = L4_4.ppid
       else
-        if (this_sigattrlog[5]).matched then
-          l_0_3 = (this_sigattrlog[5]).ppid
+        L4_4 = this_sigattrlog
+        L4_4 = L4_4[5]
+        L4_4 = L4_4.matched
+        if L4_4 then
+          L4_4 = this_sigattrlog
+          L4_4 = L4_4[5]
+          L3_3 = L4_4.ppid
         else
-          return mp.CLEAN
+          L4_4 = mp
+          L4_4 = L4_4.CLEAN
+          return L4_4
         end
       end
     end
   end
 end
-local l_0_4 = nil
-local l_0_5 = false
-if (this_sigattrlog[6]).matched then
-  local l_0_6 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[6]).utf8p2))
-  if (string.find)(l_0_6, "/query", 1, true) == nil and (string.find)(l_0_6, "/delete", 1, true) == nil then
-    l_0_5 = true
-  end
-  l_0_4 = (this_sigattrlog[6]).ppid
-else
-  do
-    if (this_sigattrlog[7]).matched then
-      l_0_5 = true
-      l_0_4 = (this_sigattrlog[7]).ppid
-    else
-      if (this_sigattrlog[8]).matched then
-        l_0_4 = (this_sigattrlog[8]).ppid
-      else
-        if (this_sigattrlog[9]).matched then
-          l_0_4 = (this_sigattrlog[9]).ppid
-        else
-          if (this_sigattrlog[10]).matched then
-            l_0_4 = (this_sigattrlog[10]).ppid
-          else
-            if (this_sigattrlog[11]).matched then
-              l_0_4 = (this_sigattrlog[11]).ppid
-            else
-              if (this_sigattrlog[12]).matched then
-                l_0_4 = (this_sigattrlog[12]).ppid
-              else
-                if (this_sigattrlog[13]).matched then
-                  l_0_4 = (this_sigattrlog[13]).ppid
-                else
-                  if (this_sigattrlog[14]).matched then
-                    l_0_4 = (this_sigattrlog[14]).ppid
-                  else
-                    if (this_sigattrlog[15]).matched then
-                      l_0_4 = (this_sigattrlog[15]).ppid
-                    else
-                      if (this_sigattrlog[16]).matched then
-                        l_0_4 = (this_sigattrlog[16]).ppid
-                      else
-                        return mp.CLEAN
-                      end
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
+L4_4 = nil
+L5_5 = false
+if L6_6 then
+  L11_11 = L7_7(L8_8)
+  L9_9 = "/query"
+  L10_10 = 1
+  L11_11 = true
+  if L7_7 == nil then
+    L9_9 = "/delete"
+    L10_10 = 1
+    L11_11 = true
+    if L7_7 == nil then
+      L5_5 = true
     end
-    for l_0_10 = 1, 6 do
-      if l_0_10 > 7 then
+  end
+  L4_4 = L7_7.ppid
+elseif L6_6 then
+  L5_5 = true
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+elseif L6_6 then
+  L4_4 = L6_6.ppid
+else
+  return L6_6
+end
+for L9_9 = 1, 6 do
+  if L9_9 > 7 then
+    L10_10 = mp
+    L10_10 = L10_10.CLEAN
+    return L10_10
+  end
+  L10_10 = bm
+  L10_10 = L10_10.get_process_relationships
+  L11_11 = L3_3
+  L11_11 = L10_10(L11_11)
+  for _FORV_15_, _FORV_16_ in ipairs(L11_11) do
+    if _FORV_16_.image_path ~= nil and _FORV_16_.reason == 1 then
+      if _FORV_16_.ppid == L4_4 then
         return mp.CLEAN
       end
-      local l_0_11, l_0_12 = (bm.get_process_relationships)(l_0_3)
-      for l_0_16,l_0_17 in ipairs(l_0_12) do
-        if l_0_17.image_path ~= nil and l_0_17.reason == 1 then
-          if l_0_17.ppid == l_0_4 then
-            return mp.CLEAN
-          end
-          local l_0_18 = (string.lower)((string.match)(l_0_17.image_path, "\\([^\\]+)$"))
-          if l_0_0[l_0_18] == true or l_0_1[l_0_18] == true or l_0_2[l_0_18] == true then
-            if l_0_5 == true then
-              return mp.INFECTED
-            else
-              ;
-              (mp.ReportLowfi)(l_0_17.image_path, 1694283818)
-            end
-          end
-          ;
-          (bm.add_related_file)(l_0_17.image_path)
-          l_0_3 = l_0_17.ppid
+      if L0_0[string.lower(string.match(_FORV_16_.image_path, "\\([^\\]+)$"))] == true or L1_1[string.lower(string.match(_FORV_16_.image_path, "\\([^\\]+)$"))] == true or L2_2[string.lower(string.match(_FORV_16_.image_path, "\\([^\\]+)$"))] == true then
+        if L5_5 == true then
+          return mp.INFECTED
+        else
+          mp.ReportLowfi(_FORV_16_.image_path, 1694283818)
         end
       end
+      bm.add_related_file(_FORV_16_.image_path)
+      L3_3 = _FORV_16_.ppid
     end
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC260: Confused about usage of register R7 for local variables in 'ReleaseLocals'
-
   end
 end
-
+return L6_6

@@ -1,16 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/83b3ccfe7563 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-do
-  if l_0_0 then
-    local l_0_1 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\"))
-    if l_0_0:find(l_0_1, 1, true) then
-      return mp.INFECTED
-    end
+local L0_0, L1_1
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+L0_0 = L0_0(L1_1, L1_1())
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(MpCommon.ExpandEnvironmentVariables("%WINDIR%\\"))
+  if L0_0:find(L1_1, 1, true) then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

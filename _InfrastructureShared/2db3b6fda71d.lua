@@ -1,27 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3b6fda71d 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).wp2 ~= nil then
-  local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  local l_0_1 = (string.match)(l_0_0, "wscript%.exe\".+\"(.+%.doc[x]?%.js\"-)")
-  if l_0_1 ~= nil then
-    (mp.ReportLowfi)(l_0_1 .. "\000", 2164430518)
-    return mp.INFECTED
-  end
-end
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).wp2 ~= nil then
-    local l_0_2 = (string.lower)((this_sigattrlog[2]).utf8p2)
-    local l_0_3 = (string.match)(l_0_2, "cscript%.exe\".+\"(.+%.doc[x]?%.js\"-)")
-    if l_0_3 ~= nil then
-      (mp.ReportLowfi)(l_0_3 .. "\000", 403425036)
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.wp2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    L0_0 = L0_0(L1_1)
+    L1_1 = string
+    L1_1 = L1_1.match
+    L1_1 = L1_1(L0_0, "wscript%.exe\".+\"(.+%.doc[x]?%.js\"-)")
+    if L1_1 ~= nil then
+      mp.ReportLowfi(L1_1 .. "\000", 2164430518)
       return mp.INFECTED
     end
   end
-  do
-    return mp.CLEAN
+end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.wp2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    L0_0 = L0_0(L1_1)
+    L1_1 = string
+    L1_1 = L1_1.match
+    L1_1 = L1_1(L0_0, "cscript%.exe\".+\"(.+%.doc[x]?%.js\"-)")
+    if L1_1 ~= nil then
+      mp.ReportLowfi(L1_1 .. "\000", 403425036)
+      return mp.INFECTED
+    end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

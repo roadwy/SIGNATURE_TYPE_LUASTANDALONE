@@ -1,16 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f541a751a4b7 
-
--- params : ...
--- function num : 0
-if (nri.GetHttpCommand)() ~= nri.HTTP_POST then
-  return mp.CLEAN
+local L0_0
+L0_0 = nri
+L0_0 = L0_0.GetHttpCommand
+L0_0 = L0_0()
+if L0_0 ~= nri.HTTP_POST then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = {}
-l_0_0.useragent = (nri.GetHttpRequestHeader)("User-Agent")
-l_0_0["accept-encoding"] = (nri.GetHttpRequestHeader)("Accept-Encoding")
-l_0_0.host = (nri.GetHttpRequestHeader)("Host")
-;
-(nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), l_0_0)
+L0_0 = {}
+L0_0.useragent = nri.GetHttpRequestHeader("User-Agent")
+L0_0["accept-encoding"] = nri.GetHttpRequestHeader("Accept-Encoding")
+L0_0.host = nri.GetHttpRequestHeader("Host")
+nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L0_0)
 return mp.INFECTED
-

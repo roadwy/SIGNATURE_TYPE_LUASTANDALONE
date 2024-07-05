@@ -1,19 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b3a331276f_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (bm.GetSignatureMatchDuration)() > 100000000 then
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 100000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(bm.get_imagepath())
+if L0_0 and (string.find(L0_0, "\\fsprocsvc.exe", 1, true) or string.find(L0_0, "\\lmud1o4z.exe", 1, true) or string.find(L0_0, "\\curl.exe", 1, true)) then
   return mp.CLEAN
 end
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 and ((string.find)(l_0_0, "\\fsprocsvc.exe", 1, true) or (string.find)(l_0_0, "\\lmud1o4z.exe", 1, true) or (string.find)(l_0_0, "\\curl.exe", 1, true)) then
-  return mp.CLEAN
-end
-local l_0_1 = (bm.get_current_process_startup_info)()
-if l_0_1 ~= nil and (IsTechniqueObservedForPid(l_0_1.ppid, "T1036") or IsTechniqueObservedForParents(l_0_1.ppid, "T1036", 2)) then
-  TrackPidAndTechniqueBM(l_0_1.ppid, "T1036", "masq_proc_netconnect")
+if bm.get_current_process_startup_info() ~= nil and (IsTechniqueObservedForPid(bm.get_current_process_startup_info().ppid, "T1036") or IsTechniqueObservedForParents(bm.get_current_process_startup_info().ppid, "T1036", 2)) then
+  TrackPidAndTechniqueBM(bm.get_current_process_startup_info().ppid, "T1036", "masq_proc_netconnect")
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,76 +1,132 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/129b35d4a7b33 
-
--- params : ...
--- function num : 0
-if (bm.GetSignatureMatchDuration)() > 100000000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 100000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = nil
-if (this_sigattrlog[5]).matched then
-  l_0_0 = (string.lower)((this_sigattrlog[5]).utf8p2)
+L0_0 = nil
+L1_1 = this_sigattrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
 else
-  if (this_sigattrlog[6]).matched then
-    l_0_0 = (string.lower)((this_sigattrlog[6]).utf8p2)
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[6]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   else
-    if (this_sigattrlog[7]).matched then
-      l_0_0 = (string.lower)((this_sigattrlog[7]).utf8p2)
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[7]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L1_1 = L1_1(L2_2)
+      L0_0 = L1_1
     else
-      if (this_sigattrlog[8]).matched then
-        l_0_0 = (string.lower)((this_sigattrlog[8]).utf8p2)
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[8]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.lower
+        L1_1 = L1_1(L2_2)
+        L0_0 = L1_1
       else
-        if (this_sigattrlog[9]).matched then
-          l_0_0 = (string.lower)((this_sigattrlog[9]).utf8p2)
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[9]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.lower
+          L1_1 = L1_1(L2_2)
+          L0_0 = L1_1
         else
-          if (this_sigattrlog[10]).matched then
-            l_0_0 = (string.lower)((this_sigattrlog[10]).utf8p2)
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[10]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.lower
+            L1_1 = L1_1(L2_2)
+            L0_0 = L1_1
           end
         end
       end
     end
   end
 end
-if l_0_0 ~= nil and (string.len)(l_0_0) > 3 then
-  if (string.find)(l_0_0, "sqlite.dll", 1, true) or (string.find)(l_0_0, "axhub.dll", 1, true) or (string.find)(l_0_0, ".ocx", 1, true) then
-    return mp.CLEAN
-  end
-  local l_0_1 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-  if l_0_1 ~= nil then
-    for l_0_5,l_0_6 in ipairs(l_0_1) do
-      l_0_6 = (mp.ContextualExpandEnvironmentVariables)(l_0_6)
-      ;
-      (bm.add_related_file)(l_0_6)
-      local l_0_7 = (string.lower)((MpCommon.PathToWin32Path)(l_0_6))
-      if l_0_7 == nil then
-        return mp.CLEAN
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L1_1 = L1_1(L2_2)
+  if L1_1 > 3 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L5_5 = true
+      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L5_5 = true
+        L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
       end
-      local l_0_8 = (MpCommon.QueryPersistContext)(l_0_7, "NewPECreatedNoCert")
-      if not l_0_8 then
-        return mp.CLEAN
-      end
-      if (mp.IsKnownFriendlyFile)(l_0_7, true, false) == true then
-        return mp.CLEAN
-      end
-      local l_0_9 = (sysio.GetFileLastWriteTime)(l_0_7)
-      if ((sysio.GetLastResult)()).Success and l_0_9 ~= 0 then
-        l_0_9 = l_0_9 / 10000000 - 11644473600
-        local l_0_10 = (MpCommon.GetCurrentTimeT)()
-        if l_0_10 < l_0_9 or l_0_10 - (l_0_9) > 600 then
+    elseif L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
+    L1_1 = mp
+    L1_1 = L1_1.GetExecutablesFromCommandLine
+    L1_1 = L1_1(L2_2)
+    if L1_1 ~= nil then
+      for L5_5, L6_6 in L2_2(L3_3) do
+        L7_7 = mp
+        L7_7 = L7_7.ContextualExpandEnvironmentVariables
+        L7_7 = L7_7(L6_6)
+        L6_6 = L7_7
+        L7_7 = bm
+        L7_7 = L7_7.add_related_file
+        L7_7(L6_6)
+        L7_7 = string
+        L7_7 = L7_7.lower
+        L7_7 = L7_7(MpCommon.PathToWin32Path(L6_6))
+        if L7_7 == nil then
           return mp.CLEAN
         end
-        return mp.INFECTED
-      end
-      do
-        do
-          do return mp.CLEAN end
-          -- DECOMPILER ERROR at PC207: LeaveBlock: unexpected jumping out DO_STMT
-
+        if not MpCommon.QueryPersistContext(L7_7, "NewPECreatedNoCert") then
+          return mp.CLEAN
         end
+        if mp.IsKnownFriendlyFile(L7_7, true, false) == true then
+          return mp.CLEAN
+        end
+        if sysio.GetLastResult().Success and sysio.GetFileLastWriteTime(L7_7) ~= 0 then
+          if sysio.GetFileLastWriteTime(L7_7) / 10000000 - 11644473600 > MpCommon.GetCurrentTimeT() or MpCommon.GetCurrentTimeT() - (sysio.GetFileLastWriteTime(L7_7) / 10000000 - 11644473600) > 600 then
+            return mp.CLEAN
+          end
+          return mp.INFECTED
+        end
+        return mp.CLEAN
       end
     end
   end
 end
-l_0_1 = mp
-l_0_1 = l_0_1.CLEAN
-return l_0_1
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

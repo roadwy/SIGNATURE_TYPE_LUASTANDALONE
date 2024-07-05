@@ -1,14 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b354a3971a 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 == nil or (string.len)(l_0_0) < 1 then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(bm.get_imagepath())
+if L0_0 == nil or string.len(L0_0) < 1 then
   return mp.CLEAN
 end
-if (string.find)(l_0_0, "\\microsoft\\edge", 1, true) or (string.find)(l_0_0, "\\temp\\edgemitmp", 1, true) or (string.find)(l_0_0, "\\google\\chrome\\", 1, true) then
+if string.find(L0_0, "\\microsoft\\edge", 1, true) or string.find(L0_0, "\\temp\\edgemitmp", 1, true) or string.find(L0_0, "\\google\\chrome\\", 1, true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

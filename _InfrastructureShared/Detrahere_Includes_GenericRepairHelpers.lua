@@ -1,16 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Detrahere_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = (MpDetection.GetCurrentThreat)()
-if (string.find)(l_0_0.Name, "Detrahere", 1, true) then
-  local l_0_1 = (MpCommon.ExpandEnvironmentVariables)("%windir%")
-  if l_0_1 then
-    local l_0_2 = l_0_1 .. "\\system32"
-    if (sysio.IsFolderExists)(l_0_2) then
-      (MpDetection.ScanResource)("folder://" .. l_0_2)
+local L0_0, L1_1, L2_2
+L0_0 = MpDetection
+L0_0 = L0_0.GetCurrentThreat
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0.Name
+L1_1 = L1_1(L2_2, "Detrahere", 1, true)
+if L1_1 then
+  L1_1 = MpCommon
+  L1_1 = L1_1.ExpandEnvironmentVariables
+  L2_2 = "%windir%"
+  L1_1 = L1_1(L2_2)
+  if L1_1 then
+    L2_2 = L1_1
+    L2_2 = L2_2 .. "\\system32"
+    if sysio.IsFolderExists(L2_2) then
+      MpDetection.ScanResource("folder://" .. L2_2)
     end
   end
 end
-

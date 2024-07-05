@@ -1,13 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SingleFileUrlInZip 
-
--- params : ...
--- function num : 0
-if (string.lower)((string.sub)((mp.getfilename)(), -3)) ~= "url" then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(string.sub(mp.getfilename(), -3))
+if L0_0 ~= "url" then
   return mp.CLEAN
 end
-if (mp.UfsGetMetadataBool)("Lua:SingleFileInZip", true) ~= 0 or not "Lua:SingleFileInZip" then
+if mp.UfsGetMetadataBool("Lua:SingleFileInZip", true) ~= 0 or not mp.UfsGetMetadataBool("Lua:SingleFileInZip", true) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

@@ -1,13 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_DelfException_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if not peattributes.isexe then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections == 10 and (pesecs[2]).Name == ".itext" and pevars.epsec == 2 then
-  return mp.INFECTED
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 10 then
+  L0_0 = pesecs
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.Name
+  if L0_0 == ".itext" then
+    L0_0 = pevars
+    L0_0 = L0_0.epsec
+    if L0_0 == 2 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

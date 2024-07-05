@@ -1,54 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FakeMscoree 
-
--- params : ...
--- function num : 0
-if not peattributes.isdll then
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.no_security
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.ismsil
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.packersigmatched
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.resource_only_dll
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if L0_0 ~= "mscoree.dll" then
   return mp.CLEAN
 end
-if not peattributes.no_security then
+if mp.get_mpattribute("HSTR:CleanMscoreeString") then
   return mp.CLEAN
 end
-if peattributes.ismsil then
+if mp.get_mpattribute("Lua:PE:UpxSection") then
   return mp.CLEAN
 end
-if peattributes.packersigmatched then
+if #mp.enum_mpattributesubstring("Ramnit") > 0 then
   return mp.CLEAN
 end
-if peattributes.resource_only_dll then
+if mp.getfilesize() > 350000 or mp.getfilesize() < 20000 then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 ~= "mscoree.dll" then
-  return mp.CLEAN
-end
-if (mp.get_mpattribute)("HSTR:CleanMscoreeString") then
-  return mp.CLEAN
-end
-if (mp.get_mpattribute)("Lua:PE:UpxSection") then
-  return mp.CLEAN
-end
-local l_0_1 = (mp.enum_mpattributesubstring)("Ramnit")
-if #l_0_1 > 0 then
-  return mp.CLEAN
-end
-local l_0_2 = (mp.getfilesize)()
-if l_0_2 > 350000 or l_0_2 < 20000 then
-  return mp.CLEAN
-end
-local l_0_3, l_0_4 = (pe.get_exports)()
-if l_0_3 < 3 then
-  (mp.set_mpattribute)("Lua:FakeMscoree.SmallNumExports")
+if pe.get_exports() < 3 then
+  mp.set_mpattribute("Lua:FakeMscoree.SmallNumExports")
   return mp.INFECTED
 end
-if (l_0_3 == 5 or l_0_3 == 10) and (pe.query_import)(pe.IMPORT_STATIC, 2420465236) then
-  (mp.set_mpattribute)("Lua:FakeMscoree.ShellcodeLoader")
+if (pe.get_exports() == 5 or pe.get_exports() == 10) and pe.query_import(pe.IMPORT_STATIC, 2420465236) then
+  mp.set_mpattribute("Lua:FakeMscoree.ShellcodeLoader")
   return mp.INFECTED
 end
-local l_0_5, l_0_6 = (pe.get_imports)()
-if l_0_5 > 1 and l_0_5 < 75 then
-  (mp.set_mpattribute)("Lua:FakeMscoree.SmallNumImports")
+if pe.get_imports() > 1 and pe.get_imports() < 75 then
+  mp.set_mpattribute("Lua:FakeMscoree.SmallNumImports")
   return mp.INFECTED
 end
 return mp.CLEAN
-

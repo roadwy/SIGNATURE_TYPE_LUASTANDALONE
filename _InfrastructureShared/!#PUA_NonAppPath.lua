@@ -1,15 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PUA_NonAppPath 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattributesubstring)("PUA:Block:") then
-    local l_0_0 = (string.lower)((mp.getfilename)())
-    if (string.sub)(l_0_0, 2, 16) ~= ":\\program files" and (string.sub)(l_0_0, 2, 14) ~= ":\\programdata" then
-      return mp.INFECTED
-    end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattributesubstring
+L0_0 = L0_0("PUA:Block:")
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L0_0 = L0_0(mp.getfilename())
+  if string.sub(L0_0, 2, 16) ~= ":\\program files" and string.sub(L0_0, 2, 14) ~= ":\\programdata" then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

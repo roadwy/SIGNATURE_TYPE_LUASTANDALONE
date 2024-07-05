@@ -1,32 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4141b9cfe8ed_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-if (versioning.GetTestMode)() ~= 65000 and (MpCommon.IsSampled)(1000, true, true, true) == false then
-  return mp.CLEAN
-end
-local l_0_0 = (this_sigattrlog[1]).utf8p1
-local l_0_1 = (this_sigattrlog[3]).utf8p1
-local l_0_2 = "NRI-DNS-ALT-SRV"
-local l_0_3 = (string.format)("%s_%s", l_0_2, l_0_0)
-local l_0_4 = (MpCommon.GetPersistContextCountNoPath)(l_0_3)
-if l_0_4 and l_0_4 > 0 then
-  return mp.CLEAN
-end
-if isAlternateDNSServer(l_0_0) then
-  local l_0_5 = "altDNS_" .. l_0_0
-  local l_0_6 = (MpCommon.QueryPersistContextNoPath)(l_0_5, l_0_1)
-  if not l_0_6 then
-    (MpCommon.AppendPersistContextNoPath)(l_0_5, l_0_1, 3600)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = versioning
+L0_0 = L0_0.GetTestMode
+L0_0 = L0_0()
+if L0_0 ~= 65000 then
+  L0_0 = MpCommon
+  L0_0 = L0_0.IsSampled
+  L1_1 = 1000
+  L2_2 = true
+  L3_3 = true
+  L4_4 = true
+  L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4)
+  if L0_0 == false then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
   end
-  local l_0_7 = (MpCommon.GetPersistContextCountNoPath)(l_0_5)
-  if l_0_7 > 5 then
-    (MpCommon.AppendPersistContextNoPath)(l_0_2, l_0_5, 60)
+end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.utf8p1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.utf8p1
+L2_2 = "NRI-DNS-ALT-SRV"
+L3_3 = string
+L3_3 = L3_3.format
+L4_4 = "%s_%s"
+L5_5 = L2_2
+L3_3 = L3_3(L4_4, L5_5, L0_0)
+L4_4 = MpCommon
+L4_4 = L4_4.GetPersistContextCountNoPath
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+if L4_4 and L4_4 > 0 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = isAlternateDNSServer
+L5_5 = L5_5(L0_0)
+if L5_5 then
+  L5_5 = "altDNS_"
+  L5_5 = L5_5 .. L0_0
+  if not MpCommon.QueryPersistContextNoPath(L5_5, L1_1) then
+    MpCommon.AppendPersistContextNoPath(L5_5, L1_1, 3600)
+  end
+  if MpCommon.GetPersistContextCountNoPath(L5_5) > 5 then
+    MpCommon.AppendPersistContextNoPath(L2_2, L5_5, 60)
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L5_5 = mp
+L5_5 = L5_5.CLEAN
+return L5_5

@@ -1,55 +1,100 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/155781238bdd7 
-
--- params : ...
--- function num : 0
-if (hstrlog[1]).matched then
-  local l_0_0 = (pe.mmap_va_nofastfail)((hstrlog[1]).VA + 9, 4)
-  local l_0_1 = (pe.mmap_va_nofastfail)((hstrlog[1]).VA + 15, 1)
-  ;
-  (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", (mp.readu_u32)(l_0_0, 1), (string.byte)(l_0_1, 1)))
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = pe
+  L0_0 = L0_0.mmap_va_nofastfail
+  L1_1 = hstrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.VA
+  L1_1 = L1_1 + 9
+  L0_0 = L0_0(L1_1, 4)
+  L1_1 = pe
+  L1_1 = L1_1.mmap_va_nofastfail
+  L1_1 = L1_1(hstrlog[1].VA + 15, 1)
+  mp.set_mpattribute(string.format("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", mp.readu_u32(L0_0, 1), string.byte(L1_1, 1)))
 else
-  do
-    if (hstrlog[2]).matched then
-      local l_0_2 = (pe.mmap_va_nofastfail)((hstrlog[2]).VA + 5, 4)
-      ;
-      (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", (mp.readu_u32)(l_0_2, 1), 2))
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = pe
+    L0_0 = L0_0.mmap_va_nofastfail
+    L1_1 = hstrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.VA
+    L1_1 = L1_1 + 5
+    L0_0 = L0_0(L1_1, 4)
+    L1_1 = mp
+    L1_1 = L1_1.set_mpattribute
+    L1_1(string.format("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", mp.readu_u32(L0_0, 1), 2))
+  else
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = pe
+      L0_0 = L0_0.mmap_va_nofastfail
+      L1_1 = hstrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.VA
+      L1_1 = L1_1 + 11
+      L0_0 = L0_0(L1_1, 4)
+      L1_1 = mp
+      L1_1 = L1_1.set_mpattribute
+      L1_1(string.format("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", mp.readu_u32(L0_0, 1), 2))
     else
-      do
-        if (hstrlog[3]).matched then
-          local l_0_3 = (pe.mmap_va_nofastfail)((hstrlog[3]).VA + 11, 4)
-          ;
-          (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", (mp.readu_u32)(l_0_3, 1), 2))
+      L0_0 = hstrlog
+      L0_0 = L0_0[4]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = pe
+        L0_0 = L0_0.mmap_va_nofastfail
+        L1_1 = hstrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.VA
+        L1_1 = L1_1 + 5
+        L0_0 = L0_0(L1_1, 4)
+        L1_1 = mp
+        L1_1 = L1_1.set_mpattribute
+        L1_1(string.format("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", mp.readu_u32(L0_0, 1), 2))
+      else
+        L0_0 = hstrlog
+        L0_0 = L0_0[5]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = pe
+          L0_0 = L0_0.mmap_va_nofastfail
+          L1_1 = hstrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.VA
+          L1_1 = L1_1 + 5
+          L0_0 = L0_0(L1_1, 4)
+          L1_1 = mp
+          L1_1 = L1_1.set_mpattribute
+          L1_1(string.format("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", mp.readu_u32(L0_0, 1), 2))
         else
-          do
-            if (hstrlog[4]).matched then
-              local l_0_4 = (pe.mmap_va_nofastfail)((hstrlog[4]).VA + 5, 4)
-              ;
-              (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", (mp.readu_u32)(l_0_4, 1), 2))
-            else
-              do
-                if (hstrlog[5]).matched then
-                  local l_0_5 = (pe.mmap_va_nofastfail)((hstrlog[5]).VA + 5, 4)
-                  ;
-                  (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", (mp.readu_u32)(l_0_5, 1), 2))
-                else
-                  do
-                    do
-                      if (hstrlog[6]).matched then
-                        local l_0_6 = (pe.mmap_va_nofastfail)((hstrlog[6]).VA + 15, 4)
-                        ;
-                        (mp.set_mpattribute)((string.format)("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", (mp.readu_u32)(l_0_6, 1), 2))
-                      end
-                      return mp.CLEAN
-                    end
-                  end
-                end
-              end
-            end
+          L0_0 = hstrlog
+          L0_0 = L0_0[6]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = pe
+            L0_0 = L0_0.mmap_va_nofastfail
+            L1_1 = hstrlog
+            L1_1 = L1_1[6]
+            L1_1 = L1_1.VA
+            L1_1 = L1_1 + 15
+            L0_0 = L0_0(L1_1, 4)
+            L1_1 = mp
+            L1_1 = L1_1.set_mpattribute
+            L1_1(string.format("HSTR:Obfuscator.PN!crc_key.5_%08X_%08X", mp.readu_u32(L0_0, 1), 2))
           end
         end
       end
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

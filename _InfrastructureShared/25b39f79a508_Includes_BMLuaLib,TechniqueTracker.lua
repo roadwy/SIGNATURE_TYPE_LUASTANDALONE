@@ -1,12 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b39f79a508_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 ~= nil and l_0_0.ppid ~= nil and not isParentPackageManager(l_0_0.ppid, true) then
-  TrackPidAndTechniqueBM(l_0_0.ppid, "T1547.006", "Persistence")
+if bm.get_current_process_startup_info() ~= nil and bm.get_current_process_startup_info().ppid ~= nil and not isParentPackageManager(bm.get_current_process_startup_info().ppid, true) then
+  TrackPidAndTechniqueBM(bm.get_current_process_startup_info().ppid, "T1547.006", "Persistence")
   return mp.INFECTED
 end
 return mp.CLEAN
-

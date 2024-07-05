@@ -1,41 +1,84 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_HackTool_Win32_DriverAbuseCR.A_Includes_ResearchData_ 
-
--- params : ...
--- function num : 0
-if not (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L7_7 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L1_1(L2_2, L3_3))
+L1_1 = MpCommon
+L1_1 = L1_1.StringRegExpSearch
+L2_2 = "(openhardwaremonitorlib|mpksldrv)"
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = L0_0
+L7_7 = L3_3(L4_4)
+L2_2 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L3_3(L4_4))
+if L1_1 == true then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.enum_mpattributesubstring
+L4_4 = "ALF:HackTool:Win32/DriverAbuse"
+L3_3 = L3_3(L4_4)
+L4_4 = #L3_3
+if L4_4 > 0 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.get_contextdata
+L5_5 = mp
+L5_5 = L5_5.CONTEXT_DATA_PROCESSNAME
+L4_4 = L4_4(L5_5)
+L5_5 = mp
+L5_5 = L5_5.get_contextdata
+L6_6 = mp
+L6_6 = L6_6.CONTEXT_DATA_PROCESSDEVICEPATH
+L5_5 = L5_5(L6_6)
+L6_6 = MpCommon
+L6_6 = L6_6.PathToWin32Path
+L7_7 = L5_5
+L6_6 = L6_6(L7_7)
+if L6_6 == nil or L4_4 == nil then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+if L6_6 == "" or L4_4 == "" then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7 = string
+L7_7 = L7_7.lower
+L7_7 = L7_7(L4_4)
+L4_4 = L7_7
+L7_7 = L6_6
+L7_7 = L7_7 .. "\\" .. L4_4
+L1_1, L2_2 = MpCommon.StringRegExpSearch("(agentpackagemonitoring)", L4_4)
+if L1_1 == true then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_1, l_0_2 = (MpCommon.StringRegExpSearch)("(openhardwaremonitorlib|mpksldrv)", (string.lower)(l_0_0))
-if l_0_1 == true then
+if mp.IsKnownFriendlyFile(mp.getfilename(), true, false) then
   return mp.CLEAN
 end
-local l_0_3 = (mp.enum_mpattributesubstring)("ALF:HackTool:Win32/DriverAbuse")
-if #l_0_3 > 0 then
-  return mp.CLEAN
-end
-local l_0_4 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-local l_0_5 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-local l_0_6 = (MpCommon.PathToWin32Path)(l_0_5)
-if l_0_6 == nil or l_0_4 == nil then
-  return mp.CLEAN
-end
-if l_0_6 == "" or l_0_4 == "" then
-  return mp.CLEAN
-end
-l_0_4 = (string.lower)(l_0_4)
-local l_0_7 = l_0_6 .. "\\" .. l_0_4
-l_0_1 = (MpCommon.StringRegExpSearch)("(agentpackagemonitoring)", l_0_4)
-if l_0_1 == true then
-  return mp.CLEAN
-end
-if (mp.IsKnownFriendlyFile)((mp.getfilename)(), true, false) then
-  return mp.CLEAN
-end
-;
-(mp.set_mpattribute)("MpInternal_researchdata=parentProcessPath=" .. l_0_7)
-;
-(mp.set_mpattribute)("MpInternal_researchdata=parentProcessName=" .. l_0_4)
+mp.set_mpattribute("MpInternal_researchdata=parentProcessPath=" .. L7_7)
+mp.set_mpattribute("MpInternal_researchdata=parentProcessName=" .. L4_4)
 return mp.INFECTED
-

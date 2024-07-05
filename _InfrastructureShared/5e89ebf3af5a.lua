@@ -1,23 +1,80 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5e89ebf3af5a 
-
--- params : ...
--- function num : 0
-(mp.set_mpattribute)("lua_codepatch_tibs_23")
-local l_0_0 = (pe.mmap_va)((pe.get_regval)(pe.REG_EBP) - 4, 4)
-local l_0_1 = (mp.readu_u32)(l_0_0, 1)
-l_0_0 = (pe.mmap_va)(pevars.sigaddr, 52)
-local l_0_2 = (mp.readu_u32)(l_0_0, 6)
-local l_0_3 = (string.byte)(l_0_0, 15)
-local l_0_4 = (string.byte)(l_0_0, 18)
-local l_0_5 = (string.byte)(l_0_0, 21)
-local l_0_6 = (mp.readu_u32)(l_0_0, 23)
-local l_0_7 = (string.byte)(l_0_0, 29)
-local l_0_8 = (mp.readu_u32)(l_0_0, 33)
-local l_0_9 = (mp.readu_u32)(l_0_0, 44)
-local l_0_10 = (pe.get_regval)(pe.REG_EDX)
-local l_0_11 = (mp.ror32)((mp.ror32)((mp.ror32)(l_0_10 + 1, l_0_3) - l_0_4, l_0_5) + l_0_6, l_0_7) - (mp.bitxor)(l_0_9, l_0_8) + l_0_1 - l_0_2
-;
-(pe.set_regval)(pe.REG_EBX, l_0_11)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.set_mpattribute
+L1_1 = "lua_codepatch_tibs_23"
+L0_0(L1_1)
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pe
+L1_1 = L1_1.get_regval
+L2_2 = pe
+L2_2 = L2_2.REG_EBP
+L1_1 = L1_1(L2_2)
+L1_1 = L1_1 - 4
+L2_2 = 4
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = L0_0
+L3_3 = 1
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L3_3 = pevars
+L3_3 = L3_3.sigaddr
+L4_4 = 52
+L2_2 = L2_2(L3_3, L4_4)
+L0_0 = L2_2
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = L0_0
+L4_4 = 6
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = string
+L3_3 = L3_3.byte
+L4_4 = L0_0
+L5_5 = 15
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = string
+L4_4 = L4_4.byte
+L5_5 = L0_0
+L6_6 = 18
+L4_4 = L4_4(L5_5, L6_6)
+L5_5 = string
+L5_5 = L5_5.byte
+L6_6 = L0_0
+L7_7 = 21
+L5_5 = L5_5(L6_6, L7_7)
+L6_6 = mp
+L6_6 = L6_6.readu_u32
+L7_7 = L0_0
+L8_8 = 23
+L6_6 = L6_6(L7_7, L8_8)
+L7_7 = string
+L7_7 = L7_7.byte
+L8_8 = L0_0
+L9_9 = 29
+L7_7 = L7_7(L8_8, L9_9)
+L8_8 = mp
+L8_8 = L8_8.readu_u32
+L9_9 = L0_0
+L10_10 = 33
+L8_8 = L8_8(L9_9, L10_10)
+L9_9 = mp
+L9_9 = L9_9.readu_u32
+L10_10 = L0_0
+L11_11 = 44
+L9_9 = L9_9(L10_10, L11_11)
+L10_10 = pe
+L10_10 = L10_10.get_regval
+L11_11 = pe
+L11_11 = L11_11.REG_EDX
+L10_10 = L10_10(L11_11)
+L11_11 = mp
+L11_11 = L11_11.ror32
+L11_11 = L11_11(mp.ror32(mp.ror32(L10_10 + 1, L3_3) - L4_4, L5_5) + L6_6, L7_7)
+L11_11 = L11_11 - mp.bitxor(L9_9, L8_8)
+L11_11 = L11_11 + L1_1
+L11_11 = L11_11 - L2_2
+pe.set_regval(pe.REG_EBX, L11_11)
 return mp.INFECTED
-

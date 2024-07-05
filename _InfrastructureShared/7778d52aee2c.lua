@@ -1,41 +1,95 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7778d52aee2c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 4000000 or l_0_0 < 4000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 4000000 or L0_0 < 4000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.get_mpattribute)("PEPCODE:HasDigitalSignature") then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_mpattribute
+L2_2 = "PEPCODE:HasDigitalSignature"
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.get_mpattribute)("pea_ismsil") then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_mpattribute
+L2_2 = "pea_ismsil"
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if not (mp.get_mpattribute)("RPF:TopLevelFile") then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_mpattribute
+L2_2 = "RPF:TopLevelFile"
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_1:find("program files", 1, true) then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_FULL
+L3_3 = L2_2(L3_3, mp.FILEPATH_QUERY_LOWERCASE)
+L1_1 = L1_1(L2_2, L3_3, L2_2(L3_3, mp.FILEPATH_QUERY_LOWERCASE))
+L3_3 = L1_1
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, "program files", 1, true)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1:find("system32", 1, true) then
-  return mp.CLEAN
+L3_3 = L1_1
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, "system32", 1, true)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1:find("syswow64", 1, true) then
-  return mp.CLEAN
+L3_3 = L1_1
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, "syswow64", 1, true)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (hstrlog[1]).matched and (hstrlog[1]).match_offsets_count == 4 then
-  local l_0_2 = (pe.query_import)(pe.IMPORT_STATIC, 2307734577)
-  if l_0_2 ~= 0 then
-    local l_0_3 = (hstrlog[1]).VA + ((hstrlog[1]).match_offsets)[4]
-    if l_0_3 + 4 + (mp.readu_u32)((pe.mmap_va)(l_0_3, 4), 1) == l_0_2 then
-      return mp.INFECTED
+L2_2 = hstrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = hstrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.match_offsets_count
+  if L2_2 == 4 then
+    L2_2 = pe
+    L2_2 = L2_2.query_import
+    L3_3 = pe
+    L3_3 = L3_3.IMPORT_STATIC
+    L2_2 = L2_2(L3_3, 2307734577)
+    if L2_2 ~= 0 then
+      L3_3 = hstrlog
+      L3_3 = L3_3[1]
+      L3_3 = L3_3.VA
+      L3_3 = L3_3 + hstrlog[1].match_offsets[4]
+      if L3_3 + 4 + mp.readu_u32(pe.mmap_va(L3_3, 4), 1) == L2_2 then
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

@@ -1,60 +1,124 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_ElenqueyInArchive 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 12288 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 12288 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_1 == nil or (string.len)(l_0_1) < 10 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.bitor
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_FNAME
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+L13_13 = L2_2(L3_3, L4_4)
+L2_2 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L2_2(L3_3, L4_4))
+if L1_1 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.len
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4)
+elseif L3_3 < 10 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if l_0_2 == nil or (string.len)(l_0_2) < 5 then
-  return mp.CLEAN
+if L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.len
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4)
+elseif L3_3 < 5 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if (string.find)(l_0_2, "->", 1, true) == nil then
-  return mp.CLEAN
+L3_3 = string
+L3_3 = L3_3.find
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+if L3_3 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = l_0_2:sub(-4)
-if l_0_3 == ".lnk" then
-  local l_0_4 = {}
-  l_0_4[".zip->"] = "%.zip%->.+"
-  l_0_4[".rar->"] = "%.rar%->.+"
-  l_0_4[".7z->"] = "%.7z%->.+"
-  l_0_4[".iso->"] = "%.iso%->.+"
-  l_0_4[".arj->"] = "%.arj%->.+"
-  l_0_4[".gz->"] = "%.gz%->.+"
-  l_0_4[".ace->"] = "%.ace%->.+"
-  l_0_4[".z->"] = "%.z%->.+"
-  l_0_4[".xz->"] = "%.xz%->.+"
-  for l_0_8,l_0_9 in pairs(l_0_4) do
-    if (string.find)(l_0_2, l_0_8, 1, true) then
-      (mp.set_mpattribute)("LUA:ElenqueyInArchive")
-      local l_0_10 = (string.match)(l_0_2, l_0_9)
-      if l_0_10 == nil or l_0_10:len() < 12 then
-        return mp.CLEAN
+L4_4 = L2_2
+L3_3 = L2_2.sub
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 == ".lnk" then
+  L4_4 = {}
+  L4_4[".zip->"] = "%.zip%->.+"
+  L4_4[".rar->"] = "%.rar%->.+"
+  L4_4[".7z->"] = "%.7z%->.+"
+  L4_4[".iso->"] = "%.iso%->.+"
+  L4_4[".arj->"] = "%.arj%->.+"
+  L4_4[".gz->"] = "%.gz%->.+"
+  L4_4[".ace->"] = "%.ace%->.+"
+  L4_4[".z->"] = "%.z%->.+"
+  L4_4[".xz->"] = "%.xz%->.+"
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = string
+    L10_10 = L10_10.find
+    L11_11 = L2_2
+    L12_12 = L8_8
+    L13_13 = 1
+    L10_10 = L10_10(L11_11, L12_12, L13_13, true)
+    if L10_10 then
+      L10_10 = mp
+      L10_10 = L10_10.set_mpattribute
+      L11_11 = "LUA:ElenqueyInArchive"
+      L10_10(L11_11)
+      L10_10 = string
+      L10_10 = L10_10.match
+      L11_11 = L2_2
+      L12_12 = L9_9
+      L10_10 = L10_10(L11_11, L12_12)
+      if L10_10 ~= nil then
+        L12_12 = L10_10
+        L11_11 = L10_10.len
+        L11_11 = L11_11(L12_12)
+      elseif L11_11 < 12 then
+        L11_11 = mp
+        L11_11 = L11_11.CLEAN
+        return L11_11
       end
-      local l_0_11 = l_0_8:len() + 1
-      if l_0_10:len() <= l_0_11 + 5 then
-        return mp.CLEAN
+      L12_12 = L8_8
+      L11_11 = L8_8.len
+      L11_11 = L11_11(L12_12)
+      L11_11 = L11_11 + 1
+      L12_12 = L11_11 + 5
+      L13_13 = L10_10.len
+      L13_13 = L13_13(L10_10)
+      if L12_12 >= L13_13 then
+        L12_12 = mp
+        L12_12 = L12_12.CLEAN
+        return L12_12
       end
-      local l_0_12 = (string.sub)(l_0_10, l_0_11, -5)
-      if l_0_12 == nil then
-        return mp.CLEAN
+      L12_12 = string
+      L12_12 = L12_12.sub
+      L13_13 = L10_10
+      L12_12 = L12_12(L13_13, L11_11, -5)
+      if L12_12 == nil then
+        L13_13 = mp
+        L13_13 = L13_13.CLEAN
+        return L13_13
       end
-      local l_0_13 = l_0_12 .. l_0_8
-      if (string.find)(l_0_2, l_0_13, 1, true) == nil then
+      L13_13 = L12_12
+      L13_13 = L13_13 .. L8_8
+      if string.find(L2_2, L13_13, 1, true) == nil then
         return mp.CLEAN
       end
       return mp.INFECTED
     end
   end
 end
-do
-  l_0_4 = mp
-  l_0_4 = l_0_4.CLEAN
-  return l_0_4
-end
-
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

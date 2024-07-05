@@ -1,46 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/bcb321ff4b34_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-local l_0_1 = (bm.get_current_process_startup_info)()
-local l_0_2 = l_0_1.command_line
-local l_0_3, l_0_4, l_0_5, l_0_6 = nil, nil, nil, nil
-l_0_4 = (this_sigattrlog[5]).utf8p1
-l_0_5 = l_0_1.ppid
-local l_0_7 = {}
--- DECOMPILER ERROR at PC15: No list found for R7 , SetList fails
-
--- DECOMPILER ERROR at PC16: Overwrote pending register: R8 in 'AssignReg'
-
--- DECOMPILER ERROR at PC17: Overwrote pending register: R9 in 'AssignReg'
-
-for l_0_11,l_0_12 in ("/curl")("/wget") do
-  if l_0_0:sub(-#l_0_12) == l_0_12 then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+L2_2 = L1_1.command_line
+L3_3, L4_4, L5_5, L6_6 = nil, nil, nil, nil
+L7_7 = this_sigattrlog
+L7_7 = L7_7[5]
+L4_4 = L7_7.utf8p1
+L5_5 = L1_1.ppid
+L7_7 = {L8_8, L9_9}
+for _FORV_11_, _FORV_12_ in L8_8(L9_9) do
+  if L0_0:sub(-#_FORV_12_) == _FORV_12_ then
     return mp.CLEAN
   end
 end
-local l_0_13 = "user-agent"
-local l_0_14, l_0_15 = pcall(MpCommon.RollingQueueQueryKey, l_0_13, l_0_5)
-if l_0_14 and next(l_0_15) then
-  l_0_6 = l_0_15.value
+if L9_9 and next(L10_10) then
+  L6_6 = L10_10.value
 end
-if l_0_6 ~= nil and (string.find)(l_0_2, l_0_6, 1, true) then
-  taint(l_0_4, "remote_file_created_taint", 3600)
-  AppendToRollingQueue("queue_pid_taintfactory_a", l_0_5, 1, 600)
-  l_0_3 = (bm.get_process_relationships)()
-  for l_0_19,l_0_20 in ipairs(l_0_3) do
-    if (mp.bitand)(l_0_20.reason_ex, 1) == 1 then
-      (bm.add_related_file)(l_0_20.image_path)
-      ;
-      (bm.add_related_process)(l_0_20.ppid)
-      TrackPidAndTechnique(l_0_20.ppid, "T1036.003", "DefenseEvasion")
+if L6_6 ~= nil and string.find(L2_2, L6_6, 1, true) then
+  taint(L4_4, "remote_file_created_taint", 3600)
+  AppendToRollingQueue("queue_pid_taintfactory_a", L5_5, 1, 600)
+  L3_3, _ = bm.get_process_relationships()
+  for _FORV_14_, _FORV_15_ in ipairs(L3_3) do
+    if mp.bitand(_FORV_15_.reason_ex, 1) == 1 then
+      bm.add_related_file(_FORV_15_.image_path)
+      bm.add_related_process(_FORV_15_.ppid)
+      TrackPidAndTechniqueBM(_FORV_15_.ppid, "T1036.003", "DefenseEvasion")
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

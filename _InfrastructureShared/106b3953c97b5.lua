@@ -1,43 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/106b3953c97b5 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p1 ~= nil then
-    local l_0_0 = nil
-  end
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC34: Overwrote pending register: R1 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC39: Confused about usage of register: R1 in 'UnsetPending'
-
-  if (not (this_sigattrlog[7]).matched or (this_sigattrlog[7]).utf8p2 == nil or l_0_1 ~= nil) and nil ~= nil then
-    if not (nil):find(l_0_1) then
-      return mp.CLEAN
-    end
-    l_0_1 = (mp.ContextualExpandEnvironmentVariables)(l_0_1)
-    if (sysio.IsFileExists)(l_0_1) then
-      (bm.add_related_file)(l_0_1)
-    end
-    -- DECOMPILER ERROR at PC64: Confused about usage of register: R1 in 'UnsetPending'
-
-    local l_0_2 = nil
-    for l_0_6,l_0_7 in ipairs((mp.GetExecutablesFromCommandLine)(nil)) do
-      local l_0_3 = nil
-      -- DECOMPILER ERROR at PC72: Confused about usage of register: R7 in 'UnsetPending'
-
-      R7_PC72 = (mp.ContextualExpandEnvironmentVariables)(R7_PC72)
-      if (sysio.IsFileExists)(R7_PC72) then
-        (bm.add_related_file)(R7_PC72)
-      end
-    end
-    return mp.INFECTED
-  end
-  do
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.utf8p1
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[4]
+    L2_2 = L2_2.utf8p1
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
 end
-
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[7]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[7]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L1_1 = L2_2
+  end
+end
+if L0_0 ~= nil and L1_1 ~= nil then
+  L2_2 = L1_1.find
+  L2_2 = L2_2(L3_3, L4_4)
+  if not L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
+  L2_2 = mp
+  L2_2 = L2_2.ContextualExpandEnvironmentVariables
+  L2_2 = L2_2(L3_3)
+  L0_0 = L2_2
+  L2_2 = sysio
+  L2_2 = L2_2.IsFileExists
+  L2_2 = L2_2(L3_3)
+  if L2_2 then
+    L2_2 = bm
+    L2_2 = L2_2.add_related_file
+    L2_2(L3_3)
+  end
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
+    end
+  end
+  return L3_3
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

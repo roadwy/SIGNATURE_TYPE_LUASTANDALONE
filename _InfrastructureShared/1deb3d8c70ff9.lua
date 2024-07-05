@@ -1,18 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1deb3d8c70ff9 
-
--- params : ...
--- function num : 0
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-    local l_0_0, l_0_1 = (bm.get_process_relationships)()
-    for l_0_5,l_0_6 in ipairs(l_0_0) do
-      if l_0_6.image_path ~= nil and (string.find)(l_0_6.image_path, "xpcproxy", 1, true) then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p1
+  if L0_0 ~= nil then
+    L0_0 = bm
+    L0_0 = L0_0.get_process_relationships
+    L1_1 = L0_0()
+    for _FORV_5_, _FORV_6_ in L2_2(L3_3) do
+      if _FORV_6_.image_path ~= nil and string.find(_FORV_6_.image_path, "xpcproxy", 1, true) then
         return mp.CLEAN
       end
     end
-    return mp.INFECTED
+    return L2_2
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

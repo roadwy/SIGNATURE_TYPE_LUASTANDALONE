@@ -1,20 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45405571baf2 
-
--- params : ...
--- function num : 0
-do
-  if not peattributes.suspicious_heap_size and not peattributes.suspicious_linker_version and not peattributes.suspicious_image_version and not peattributes.suspicious_os_version and not peattributes.suspicious_timestamp then
-    local l_0_0, l_0_1 = peattributes.suspicious_section_vsize
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.suspicious_heap_size
+if not L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.suspicious_linker_version
+  if not L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.suspicious_image_version
+    if not L0_0 then
+      L0_0 = peattributes
+      L0_0 = L0_0.suspicious_os_version
+      if not L0_0 then
+        L0_0 = peattributes
+        L0_0 = L0_0.suspicious_timestamp
+        if not L0_0 then
+          L0_0 = peattributes
+          L0_0 = L0_0.suspicious_section_vsize
+        end
+      end
+    end
   end
-  -- DECOMPILER ERROR at PC22: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 then
-    (pe.set_peattribute)("hstr_exhaustive", true)
-    ;
-    (mp.set_mpattribute)("attrmatch_rescan_psif")
-    return mp.INFECTED
-  end
-  return mp.CLEAN
 end
-
+if L0_0 then
+  pe.set_peattribute("hstr_exhaustive", true)
+  mp.set_mpattribute("attrmatch_rescan_psif")
+  return mp.INFECTED
+end
+return mp.CLEAN

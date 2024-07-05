@@ -1,1262 +1,1368 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/HstrLuaLib 
-
--- params : ...
--- function num : 0
-getTamperProtectionState = function()
-  -- function num : 0_0
-  local l_1_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features")
-  do
-    if l_1_0 then
-      local l_1_1 = (sysio.GetRegValueAsDword)(l_1_0, "TamperProtection")
-      if l_1_1 then
-        return l_1_1
-      end
-    end
-    return nil
+local L0_0, L1_1
+function L0_0()
+  local L0_2
+  L0_2 = sysio
+  L0_2 = L0_2.RegOpenKey
+  L0_2 = L0_2("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Features")
+  if L0_2 and sysio.GetRegValueAsDword(L0_2, "TamperProtection") then
+    return (sysio.GetRegValueAsDword(L0_2, "TamperProtection"))
   end
+  return nil
 end
-
-isTamperProtectionOn = function()
-  -- function num : 0_1
-  local l_2_0 = getTamperProtectionState()
-  if l_2_0 then
-    if (mp.bitand)(l_2_0, 1) == 1 then
-      return true, l_2_0
+getTamperProtectionState = L0_0
+function L0_0()
+  local L0_3
+  L0_3 = getTamperProtectionState
+  L0_3 = L0_3()
+  if L0_3 then
+    if mp.bitand(L0_3, 1) == 1 then
+      return true, L0_3
     else
-      return false, l_2_0
+      return false, L0_3
     end
   end
   return nil
 end
-
-checkIfCertificateHit = function()
-  -- function num : 0_2
-  local l_3_0 = (mp.get_mpattributevalue)("RPF:MpCertVA")
-  if l_3_0 == nil then
-    return false
+isTamperProtectionOn = L0_0
+function L0_0()
+  local L0_4, L1_5, L2_6
+  L0_4 = mp
+  L0_4 = L0_4.get_mpattributevalue
+  L1_5 = "RPF:MpCertVA"
+  L0_4 = L0_4(L1_5)
+  if L0_4 == nil then
+    L1_5 = false
+    return L1_5
   end
-  local l_3_1 = (mp.get_mpattributevalue)("RPF:MpCertSz")
-  local l_3_2 = (mp.hstr_full_log)()
-  for l_3_6,l_3_7 in pairs(l_3_2) do
-    if l_3_7.matched and l_3_7.VA and l_3_0 < l_3_7.VA and l_3_7.VA < l_3_0 + l_3_1 then
+  L1_5 = mp
+  L1_5 = L1_5.get_mpattributevalue
+  L2_6 = "RPF:MpCertSz"
+  L1_5 = L1_5(L2_6)
+  L2_6 = mp
+  L2_6 = L2_6.hstr_full_log
+  L2_6 = L2_6()
+  for _FORV_6_, _FORV_7_ in pairs(L2_6) do
+    if _FORV_7_.matched and _FORV_7_.VA and L0_4 < _FORV_7_.VA and _FORV_7_.VA < L0_4 + L1_5 then
       return true
     end
   end
   return false
 end
-
-isSafeToRead = function(l_4_0, l_4_1, l_4_2)
-  -- function num : 0_3
-  if not l_4_1 or not l_4_2 then
+checkIfCertificateHit = L0_0
+function L0_0(A0_7, A1_8, A2_9)
+  if not A1_8 or not A2_9 then
     return false
   end
-  if l_4_1 <= 0 or l_4_2 <= 0 then
+  if A1_8 <= 0 or A2_9 <= 0 then
     return false
   end
-  local l_4_3, l_4_4 = (mp.SMSVirtualQuery)(l_4_1)
-  if not l_4_3 then
+  if not mp.SMSVirtualQuery(A1_8) then
     return false
   end
-  local l_4_5 = l_4_0[l_4_4.found_ix]
-  if not l_4_5 then
+  if not A0_7[mp.SMSVirtualQuery(A1_8).found_ix] then
     return false
   end
-  do
-    local l_4_6 = (mp.bitand)(l_4_5.prot, 255)
-    if l_4_6 ~= 32 and l_4_6 ~= 64 and l_4_6 ~= 128 and l_4_6 ~= 8 and l_4_6 ~= 4 then
+  if mp.bitand(A0_7[mp.SMSVirtualQuery(A1_8).found_ix].prot, 255) ~= 32 and mp.bitand(A0_7[mp.SMSVirtualQuery(A1_8).found_ix].prot, 255) ~= 64 and mp.bitand(A0_7[mp.SMSVirtualQuery(A1_8).found_ix].prot, 255) ~= 128 and mp.bitand(A0_7[mp.SMSVirtualQuery(A1_8).found_ix].prot, 255) ~= 8 and mp.bitand(A0_7[mp.SMSVirtualQuery(A1_8).found_ix].prot, 255) ~= 4 and mp.bitand(A0_7[mp.SMSVirtualQuery(A1_8).found_ix].prot, 255) ~= 2 then
+    return false
+  end
+  return A1_8 + A2_9 > A0_7[mp.SMSVirtualQuery(A1_8).found_ix].addr and A1_8 + A2_9 <= A0_7[mp.SMSVirtualQuery(A1_8).found_ix].addr + A0_7[mp.SMSVirtualQuery(A1_8).found_ix].size
+end
+isSafeToRead = L0_0
+function L0_0()
+  local L0_10, L1_11, L2_12, L3_13, L4_14, L5_15, L6_16, L7_17, L8_18, L9_19, L10_20, L11_21, L12_22, L13_23, L14_24, L15_25, L16_26, L17_27, L18_28, L19_29, L20_30
+  L0_10 = mp
+  L0_10 = L0_10.GetHSTRCallerId
+  L0_10 = L0_10()
+  L1_11 = mp
+  L1_11 = L1_11.HSTR_CALLER_SMS
+  if L0_10 ~= L1_11 then
+    L0_10 = mp
+    L0_10 = L0_10.INFECTED
+    return L0_10
+  end
+  function L0_10(A0_31)
+    local L1_32, L2_33, L3_34, L4_35
+    L1_32 = mp
+    L1_32 = L1_32.bitand
+    L2_33 = A0_31
+    L3_34 = 4294967295
+    L1_32 = L1_32(L2_33, L3_34)
+    A0_31 = L1_32
+    L1_32 = mp
+    L1_32 = L1_32.bsplit
+    L2_33 = A0_31
+    L3_34 = 8
+    L4_35 = L1_32(L2_33, L3_34)
+    return string.char(L1_32) .. string.char(L2_33) .. string.char(L3_34) .. string.char(L4_35)
+  end
+  function L1_11(A0_36, A1_37)
+    local L2_38, L3_39, L4_40, L5_41, L6_42
+    L2_38 = ""
+    for L6_42 = A1_37, #A0_36 do
+      if string.byte(A0_36, L6_42) < 32 or string.byte(A0_36, L6_42) > 126 then
+        break
+      end
+      L2_38 = L2_38 .. string.char(string.byte(A0_36, L6_42))
+    end
+    return L2_38
+  end
+  L2_12 = mp
+  L2_12 = L2_12.hstr_full_log
+  L2_12 = L2_12()
+  L3_13 = ""
+  for L7_17, L8_18 in L4_14(L5_15) do
+    L9_19 = L8_18.matched
+    if L9_19 then
+      L9_19 = mp
+      L9_19 = L9_19.ReadProcMem
+      L10_20 = L8_18.VA
+      L11_21 = 80
+      L9_19 = L9_19(L10_20, L11_21)
+      if not L9_19 then
+        L10_20 = mp
+        L10_20 = L10_20.INFECTED
+        return L10_20
+      end
+      L10_20 = mp
+      L10_20 = L10_20.readu_u16
+      L11_21 = L9_19
+      L12_22 = 1
+      L10_20 = L10_20(L11_21, L12_22)
+      if L10_20 == 50307 then
+        L10_20 = "\\x83\\xC4\\x04\\x84\\xC0\\x74.\\xE8....\\xE8....\\xE8....\\xE8....[\\x00-\\x67\\x69-\\xFF]+\\x68(....)\\x68(....)"
+        L11_21 = MpCommon
+        L11_21 = L11_21.BinaryRegExpSearch
+        L12_22 = L10_20
+        L13_23 = L9_19
+        L13_23 = L11_21(L12_22, L13_23)
+        if L11_21 then
+          L14_24 = mp
+          L14_24 = L14_24.readu_u32
+          L15_25 = L12_22
+          L16_26 = 1
+          L14_24 = L14_24(L15_25, L16_26)
+          L12_22 = L14_24
+          L14_24 = mp
+          L14_24 = L14_24.readu_u32
+          L15_25 = L13_23
+          L16_26 = 1
+          L14_24 = L14_24(L15_25, L16_26)
+          L13_23 = L14_24
+          L14_24 = mp
+          L14_24 = L14_24.bsplit
+          L15_25 = L12_22
+          L16_26 = 16
+          L15_25 = L14_24(L15_25, L16_26)
+          L16_26 = mp
+          L16_26 = L16_26.bsplit
+          L17_27 = L13_23
+          L18_28 = 16
+          L17_27 = L16_26(L17_27, L18_28)
+          if L15_25 ~= L17_27 then
+            L18_28 = mp
+            L18_28 = L18_28.INFECTED
+            return L18_28
+          end
+          L18_28 = mp
+          L18_28 = L18_28.ReadProcMem
+          L19_29 = L12_22
+          L20_30 = 48
+          L18_28 = L18_28(L19_29, L20_30)
+          if not L18_28 then
+            L19_29 = mp
+            L19_29 = L19_29.INFECTED
+            return L19_29
+          end
+          L19_29 = L1_11
+          L20_30 = L18_28
+          L19_29 = L19_29(L20_30, 1)
+          L20_30 = #L19_29
+          if L20_30 ~= 0 then
+            L20_30 = #L19_29
+          elseif L20_30 == 48 then
+            L20_30 = mp
+            L20_30 = L20_30.INFECTED
+            return L20_30
+          end
+          L20_30 = mp
+          L20_30 = L20_30.ReadProcMem
+          L20_30 = L20_30(L13_23, 880)
+          if not L20_30 then
+            return mp.INFECTED
+          end
+          L3_13 = "ZLOA" .. L0_10(#L19_29) .. L19_29 .. L0_10(#L20_30) .. L20_30
+          L3_13 = MpCommon.Base64Encode(L3_13)
+        end
+        break
+      end
+    end
+  end
+  if L3_13 ~= "" then
+    L7_17 = L3_13
+    L8_18 = 0
+    L9_19 = 60
+    L10_20 = 32
+    L11_21 = 1
+    L5_15(L6_16, L7_17, L8_18, L9_19, L10_20, L11_21)
+  end
+  return L4_14
+end
+maceExtract_ZLoader = L0_0
+function L0_0(A0_43)
+  local L1_44, L2_45, L3_46, L4_47, L5_48, L6_49, L7_50, L8_51, L9_52, L10_53, L11_54, L12_55, L13_56, L14_57, L15_58, L16_59, L17_60, L18_61, L19_62, L20_63, L21_64, L22_65, L23_66, L24_67, L25_68, L26_69, L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76
+  L1_44 = mp
+  L1_44 = L1_44.GetHSTRCallerId
+  L1_44 = L1_44()
+  L2_45 = mp
+  L2_45 = L2_45.HSTR_CALLER_SMS
+  if L1_44 ~= L2_45 then
+    return
+  end
+  L1_44 = mp
+  L1_44 = L1_44.GetSMSProcArchitecture
+  L1_44 = L1_44()
+  L2_45 = mp
+  L2_45 = L2_45.SMS_PROC_ARCH_X64
+  L1_44 = L1_44 == L2_45
+  L2_45 = mp
+  L2_45 = L2_45.GetScannedPPID
+  L2_45 = L2_45()
+  L3_46 = mp
+  L3_46 = L3_46.GetSMSMemRanges
+  L3_46 = L3_46()
+  function L4_47(A0_77, A1_78)
+    if not A0_77 or not A1_78 then
       return false
     end
-    do return l_4_5.addr < l_4_1 + l_4_2 and l_4_1 + l_4_2 <= l_4_5.addr + l_4_5.size end
-    -- DECOMPILER ERROR: 1 unprocessed JMP targets
+    if A0_77 <= 0 or A1_78 <= 0 then
+      return false
+    end
+    if not mp.SMSVirtualQuery(A0_77) then
+      return false
+    end
+    if not _UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix] then
+      return false
+    end
+    if mp.bitand(_UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].prot, 255) ~= 32 and mp.bitand(_UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].prot, 255) ~= 64 and mp.bitand(_UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].prot, 255) ~= 128 and mp.bitand(_UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].prot, 255) ~= 8 and mp.bitand(_UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].prot, 255) ~= 4 then
+      return false
+    end
+    return A0_77 + A1_78 > _UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].addr and A0_77 + A1_78 <= _UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].addr + _UPVALUE0_[mp.SMSVirtualQuery(A0_77).found_ix].size
   end
-end
-
-maceExtract_Qakbot = function()
-  -- function num : 0_4
-  if (mp.GetHSTRCallerId)() ~= mp.HSTR_CALLER_SMS then
-    return mp.INFECTED
-  end
-  local l_5_0 = ""
-  local l_5_1 = ""
-  local l_5_2 = ""
-  local l_5_3 = ""
-  local l_5_4 = (mp.GetSMSMemRanges)()
-  local l_5_5 = function(l_6_0)
-    -- function num : 0_4_0
-    l_6_0 = (mp.bitand)(l_6_0, 4294967295)
-    local l_6_1, l_6_2, l_6_3, l_6_4 = (mp.bsplit)(l_6_0, 8)
-    return (string.char)(l_6_1) .. (string.char)(l_6_2) .. (string.char)(l_6_3) .. (string.char)(l_6_4)
-  end
-
-  local l_5_6 = function(l_7_0, l_7_1)
-    -- function num : 0_4_1
-    if #l_7_0 < l_7_1 + 16 then
+  function L5_48(A0_79, A1_80)
+    if not _UPVALUE0_(A0_79, A1_80) then
       return nil
     end
-    local l_7_2 = {}
-    l_7_2.Characteristics = (mp.readu_u32)(l_7_0, l_7_1)
-    l_7_2.Timestamp = (mp.readu_u32)(l_7_0, l_7_1 + 4)
-    l_7_2.MajorVersion = (mp.readu_u16)(l_7_0, l_7_1 + 8)
-    l_7_2.MinorVersion = (mp.readu_u16)(l_7_0, l_7_1 + 10)
-    l_7_2.NumberOfNamedEntries = (mp.readu_u16)(l_7_0, l_7_1 + 12)
-    l_7_2.NumberOfIdEntries = (mp.readu_u16)(l_7_0, l_7_1 + 14)
-    return l_7_2
+    return mp.ReadProcMem(A0_79, A1_80)
   end
-
-  local l_5_7 = function(l_8_0, l_8_1)
-    -- function num : 0_4_2
-    if #l_8_0 < l_8_1 + 8 then
-      return nil
+  function L6_49(A0_81)
+    local L1_82, L2_83, L3_84, L4_85, L5_86, L6_87, L7_88
+    L1_82 = ""
+    L2_83 = 6
+    L3_84 = 0
+    if A0_81 then
+      L4_85 = #A0_81
+    elseif L4_85 == 0 then
+      L4_85 = -1
+      return L4_85
     end
-    local l_8_2 = (mp.readu_u32)(l_8_0, l_8_1)
-    local l_8_3 = (mp.readu_u32)(l_8_0, l_8_1 + 4)
-    local l_8_4 = {}
-    l_8_4.Name = l_8_2
-    l_8_4.OffsetToData = l_8_3
-    l_8_4.NameOffset = (mp.bitand)(l_8_2, 2147483647)
-    l_8_4.Pad = (mp.bitand)(l_8_2, 4294901760)
-    l_8_4.Id = (mp.bitand)(l_8_2, 65535)
-    l_8_4.DataIsDirectory = (mp.shr32)((mp.bitand)(l_8_3, 2147483648), 31)
-    l_8_4.OffsetToDirectory = (mp.bitand)(l_8_3, 2147483647)
-    return l_8_4
-  end
-
-  local l_5_8 = function(l_9_0, l_9_1)
-    -- function num : 0_4_3
-    if #l_9_0 < l_9_1 + 16 then
-      return nil
-    end
-    local l_9_2 = {}
-    l_9_2.OffsetToData = (mp.readu_u32)(l_9_0, l_9_1)
-    l_9_2.Size = (mp.readu_u32)(l_9_0, l_9_1 + 4)
-    l_9_2.CodePage = (mp.readu_u32)(l_9_0, l_9_1 + 8)
-    l_9_2.Reserved = (mp.readu_u32)(l_9_0, l_9_1 + 12)
-    return l_9_2
-  end
-
-  local l_5_10 = function(l_10_0, l_10_1, l_10_2, l_10_3, l_10_4)
-    -- function num : 0_4_4 , upvalues : l_5_6, l_5_7, l_5_9, l_5_8
-    local l_10_5 = 16
-    local l_10_6 = 8
-    local l_10_7 = l_5_6(l_10_0, l_10_1)
-    if not l_10_7 then
-      return 
-    end
-    local l_10_8 = l_10_7.NumberOfNamedEntries + l_10_7.NumberOfIdEntries
-    if l_10_3 < l_10_4 then
-      for l_10_12 = 0, l_10_8 - 1 do
-        local l_10_13 = l_10_1 + l_10_5 + l_10_12 * l_10_6
-        local l_10_14 = l_5_7(l_10_0, l_10_13)
-        if not l_10_14 then
-          return 
-        end
-        if l_10_14.DataIsDirectory == 1 then
-          l_5_9(l_10_0, l_10_14.OffsetToDirectory + 1, l_10_2, l_10_3 + 1, l_10_4)
+    L4_85 = string
+    L4_85 = L4_85.byte
+    L5_86 = A0_81
+    L6_87 = 1
+    L4_85 = L4_85(L5_86, L6_87)
+    if L4_85 == 0 then
+      L1_82 = "([\\x00-\\xFF]+)\\x00\\x25\\x00\\x02\\x00\\x04"
+    else
+      L4_85 = string
+      L4_85 = L4_85.byte
+      L5_86 = A0_81
+      L6_87 = 1
+      L4_85 = L4_85(L5_86, L6_87)
+      if L4_85 == 46 then
+        L1_82 = "([\\x00-\\xFF]+)\\x2e\\x0b\\x2e\\x2c\\x2e\\x2a"
+        L3_84 = 46
+      else
+        L4_85 = string
+        L4_85 = L4_85.byte
+        L5_86 = A0_81
+        L6_87 = 1
+        L4_85 = L4_85(L5_86, L6_87)
+        if L4_85 == 105 then
+          L1_82 = "([\\x00-\\xFF]+)\\x69\\x4c\\x69\\x6b\\x69\\x6d"
+          L3_84 = 105
         else
-          local l_10_15 = l_5_8(l_10_0, l_10_14.OffsetToData + 1)
-          if not l_10_15 then
-            return 
+          L4_85 = string
+          L4_85 = L4_85.byte
+          L5_86 = A0_81
+          L6_87 = 1
+          L4_85 = L4_85(L5_86, L6_87)
+          if L4_85 == 78 then
+            L1_82 = "([\\x00-\\xFF]+)\\x4e\\x6b\\x4e\\x4c\\x4e\\x4a"
+            L3_84 = 78
+          else
+            L4_85 = -1
+            return L4_85
           end
-          ;
-          (table.insert)(l_10_2, l_10_15)
+        end
+      end
+    end
+    if L1_82 == "" then
+      L4_85 = -1
+      return L4_85
+    end
+    L4_85 = MpCommon
+    L4_85 = L4_85.BinaryRegExpSearch
+    L5_86 = L1_82
+    L6_87 = A0_81
+    L5_86 = L4_85(L5_86, L6_87)
+    if not L4_85 then
+      L6_87 = -1
+      return L6_87
+    end
+    L6_87 = #L5_86
+    L6_87 = L6_87 + L2_83
+    L6_87 = L6_87 + 1
+    L7_88 = L6_87 + 4
+    if L7_88 > #A0_81 then
+      L7_88 = -1
+      return L7_88
+    end
+    L7_88 = string
+    L7_88 = L7_88.char
+    L7_88 = L7_88(mp.bitxor(string.byte(A0_81, L6_87 + 3), L3_84))
+    L7_88 = L7_88 .. string.char(mp.bitxor(string.byte(A0_81, L6_87 + 2), L3_84)) .. string.char(mp.bitxor(string.byte(A0_81, L6_87 + 1), L3_84)) .. string.char(mp.bitxor(string.byte(A0_81, L6_87 + 0), L3_84))
+    return mp.readu_u32(L7_88, 1)
+  end
+  function L7_50(A0_89)
+    local L1_90, L2_91, L3_92, L4_93, L5_94, L6_95, L7_96, L8_97, L9_98, L10_99, L11_100, L12_101
+    L1_90 = ""
+    L2_91 = 6
+    L3_92 = 0
+    if A0_89 then
+      L4_93 = #A0_89
+    elseif L4_93 == 0 then
+      L4_93 = nil
+      return L4_93
+    end
+    L4_93 = string
+    L4_93 = L4_93.byte
+    L5_94 = A0_89
+    L6_95 = 1
+    L4_93 = L4_93(L5_94, L6_95)
+    if L4_93 == 0 then
+      L1_90 = "([\\x00-\\xFF]+)\\x00\\x08\\x00\\x03\\x01\\x00"
+    else
+      L4_93 = string
+      L4_93 = L4_93.byte
+      L5_94 = A0_89
+      L6_95 = 1
+      L4_93 = L4_93(L5_94, L6_95)
+      if L4_93 == 46 then
+        L1_90 = "([\\x00-\\xFF]+)\\x2e\\x26\\x2e\\x2d\\x2f\\x2e"
+        L3_92 = 46
+      else
+        L4_93 = string
+        L4_93 = L4_93.byte
+        L5_94 = A0_89
+        L6_95 = 1
+        L4_93 = L4_93(L5_94, L6_95)
+        if L4_93 == 105 then
+          L1_90 = "([\\x00-\\xFF]+)\\x69\\x61\\x69\\x6a\\x68\\x69"
+          L3_92 = 105
+        else
+          L4_93 = string
+          L4_93 = L4_93.byte
+          L5_94 = A0_89
+          L6_95 = 1
+          L4_93 = L4_93(L5_94, L6_95)
+          if L4_93 == 78 then
+            L1_90 = "([\\x00-\\xFF]+)\\x4e\\x46\\x4e\\x4d\\x4f\\x4e"
+            L3_92 = 78
+          else
+            L4_93 = nil
+            return L4_93
+          end
+        end
+      end
+    end
+    if L1_90 == "" then
+      L4_93 = nil
+      return L4_93
+    end
+    L4_93 = MpCommon
+    L4_93 = L4_93.BinaryRegExpSearch
+    L5_94 = L1_90
+    L6_95 = A0_89
+    L5_94 = L4_93(L5_94, L6_95)
+    if not L4_93 then
+      L6_95 = nil
+      return L6_95
+    end
+    L6_95 = #L5_94
+    L6_95 = L6_95 + L2_91
+    L6_95 = L6_95 + 1
+    L7_96 = L6_95 + 4
+    if L7_96 > L8_97 then
+      L7_96 = nil
+      return L7_96
+    end
+    L7_96 = ""
+    for L11_100 = L6_95, #A0_89 do
+      L12_101 = mp
+      L12_101 = L12_101.bitxor
+      L12_101 = L12_101(string.byte(A0_89, L11_100), L3_92)
+      if L12_101 == 0 then
+        break
+      end
+      L7_96 = L7_96 .. string.char(L12_101)
+    end
+    return L7_96
+  end
+  function L8_51(A0_102, A1_103)
+    local L2_104, L3_105, L4_106, L5_107, L6_108, L7_109, L8_110, L9_111
+    L2_104 = string.byte(A0_102, A1_103)
+    L3_105 = string.byte(A0_102, A1_103 + 1)
+    L4_106 = string.byte(A0_102, A1_103 + 2)
+    L5_107 = string.byte(A0_102, A1_103 + 3)
+    L6_108 = string.byte(A0_102, A1_103 + 4)
+    L7_109 = string.byte(A0_102, A1_103 + 5)
+    L8_110 = string.byte(A0_102, A1_103 + 6)
+    L9_111 = string.byte(A0_102, A1_103 + 7)
+    return L2_104 + L3_105 * 256 + L4_106 * 65536 + L5_107 * 16777216 + L6_108 * 4294967296 + L7_109 * 1099511627776 + L8_110 * 281474976710656 + L9_111 * 72057594037927936
+  end
+  function L9_52(A0_112, A1_113, A2_114)
+    local L3_115, L4_116, L5_117, L6_118, L7_119, L8_120, L9_121, L10_122, L11_123, L12_124, L13_125, L14_126, L15_127, L16_128, L17_129, L18_130, L19_131, L20_132
+    L3_115 = ""
+    L4_116 = _UPVALUE0_
+    L5_117 = A0_112
+    L6_118 = A1_113 * 128
+    L4_116 = L4_116(L5_117, L6_118)
+    if not L4_116 then
+      L5_117 = ""
+      return L5_117
+    end
+    L5_117 = 1
+    L6_118 = 2
+    L7_119 = 3
+    L8_120 = {
+      L9_121,
+      L10_122,
+      L11_123,
+      L12_124,
+      L13_125,
+      L14_126,
+      L15_127,
+      L16_128,
+      L17_129,
+      L18_130,
+      L19_131,
+      L20_132,
+      {
+        pos = 13,
+        fieldType = L7_119,
+        size = 256
+      },
+      {
+        pos = 14,
+        fieldType = L7_119,
+        size = 16
+      },
+      {
+        pos = 15,
+        fieldType = L7_119,
+        size = 128
+      },
+      {
+        pos = 19,
+        fieldType = L6_118,
+        size = 4
+      },
+      {
+        pos = 20,
+        fieldType = L6_118,
+        size = 4
+      },
+      {
+        pos = 21,
+        fieldType = L7_119,
+        size = 256
+      },
+      {
+        pos = 22,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 23,
+        fieldType = L7_119,
+        size = 128
+      },
+      {
+        pos = 24,
+        fieldType = L7_119,
+        size = 128
+      },
+      {
+        pos = 25,
+        fieldType = L7_119,
+        size = 6144
+      },
+      {
+        pos = 26,
+        fieldType = L7_119,
+        size = 16
+      },
+      {
+        pos = 27,
+        fieldType = L7_119,
+        size = 16
+      },
+      {
+        pos = 28,
+        fieldType = L6_118,
+        size = 4
+      },
+      {
+        pos = 29,
+        fieldType = L7_119,
+        size = 64
+      },
+      {
+        pos = 30,
+        fieldType = L7_119,
+        size = 64
+      },
+      {
+        pos = 31,
+        fieldType = L6_118,
+        size = 4
+      },
+      {
+        pos = 32,
+        fieldType = L7_119,
+        size = 128
+      },
+      {
+        pos = 33,
+        fieldType = L7_119,
+        size = 64
+      },
+      {
+        pos = 34,
+        fieldType = L7_119,
+        size = 64
+      },
+      {
+        pos = 35,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 37,
+        fieldType = L6_118,
+        size = 4
+      },
+      {
+        pos = 38,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 39,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 40,
+        fieldType = L6_118,
+        size = 4
+      },
+      {
+        pos = 43,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 44,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 45,
+        fieldType = L6_118,
+        size = 4
+      },
+      {
+        pos = 46,
+        fieldType = L7_119,
+        size = 256
+      },
+      {
+        pos = 47,
+        fieldType = L7_119,
+        size = 256
+      },
+      {
+        pos = 51,
+        fieldType = L7_119,
+        size = 128
+      },
+      {
+        pos = 52,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 50,
+        fieldType = L5_117,
+        size = 2
+      },
+      {
+        pos = 54,
+        fieldType = L7_119,
+        size = 128
+      }
+    }
+    L9_121.pos = 1
+    L9_121.fieldType = L5_117
+    L9_121.size = 2
+    L10_122.pos = 2
+    L10_122.fieldType = L5_117
+    L10_122.size = 2
+    L11_123.pos = 3
+    L11_123.fieldType = L6_118
+    L11_123.size = 4
+    L12_124 = {}
+    L12_124.pos = 4
+    L12_124.fieldType = L6_118
+    L12_124.size = 4
+    L13_125 = {}
+    L13_125.pos = 5
+    L13_125.fieldType = L5_117
+    L13_125.size = 2
+    L14_126 = {}
+    L14_126.pos = 6
+    L14_126.fieldType = L5_117
+    L14_126.size = 2
+    L15_127 = {}
+    L15_127.pos = 7
+    L15_127.fieldType = L7_119
+    L15_127.size = 256
+    L16_128 = {}
+    L16_128.pos = 8
+    L16_128.fieldType = L7_119
+    L16_128.size = 256
+    L17_129 = {}
+    L17_129.pos = 9
+    L17_129.fieldType = L7_119
+    L17_129.size = 128
+    L18_130 = {}
+    L18_130.pos = 10
+    L18_130.fieldType = L7_119
+    L18_130.size = 64
+    L19_131 = {}
+    L19_131.pos = 11
+    L19_131.fieldType = L7_119
+    L19_131.size = 256
+    L20_132 = {}
+    L20_132.pos = 12
+    L20_132.fieldType = L7_119
+    L20_132.size = 256
+    for L12_124, L13_125 in L9_121(L10_122) do
+      L14_126 = mp
+      L14_126 = L14_126.bsplit
+      L15_127 = L13_125.size
+      L16_128 = 8
+      L15_127 = L14_126(L15_127, L16_128)
+      L16_128 = L13_125.pos
+      L16_128 = L16_128 * A2_114
+      L16_128 = L16_128 + 1
+      L17_129 = L16_128 + A1_113
+      L18_130 = "\000"
+      L19_131 = string
+      L19_131 = L19_131.char
+      L20_132 = L13_125.pos
+      L19_131 = L19_131(L20_132)
+      L20_132 = "\000"
+      L18_130 = L18_130 .. L19_131 .. L20_132 .. string.char(L13_125.fieldType) .. string.char(L15_127) .. string.char(L14_126)
+      L19_131 = string
+      L19_131 = L19_131.byte
+      L20_132 = L4_116
+      L19_131 = L19_131(L20_132, L16_128)
+      L20_132 = L13_125.fieldType
+      if L19_131 == L20_132 then
+        L19_131 = L13_125.fieldType
+        if L19_131 ~= L7_119 then
+          L19_131 = string
+          L19_131 = L19_131.sub
+          L20_132 = L4_116
+          L19_131 = L19_131(L20_132, L17_129, L17_129 + (L13_125.size - 1))
+          L20_132 = L3_115
+          L3_115 = L20_132 .. L18_130
+          L20_132 = L3_115
+          L3_115 = L20_132 .. string.reverse(L19_131)
+        else
+          L19_131 = 0
+          if A1_113 == 4 then
+            L20_132 = mp
+            L20_132 = L20_132.readu_u32
+            L20_132 = L20_132(L4_116, L17_129)
+            L19_131 = L20_132
+          else
+            L20_132 = _UPVALUE1_
+            L20_132 = L20_132(L4_116, L17_129)
+            L19_131 = L20_132
+          end
+          if L19_131 ~= 0 then
+            L20_132 = _UPVALUE0_
+            L20_132 = L20_132(L19_131, L13_125.size)
+            if not L20_132 then
+              return ""
+            end
+            L3_115 = L3_115 .. L18_130
+            L3_115 = L3_115 .. L20_132
+          end
+        end
+      end
+    end
+    return L3_115
+  end
+  function L10_53(A0_133)
+    local L1_134, L2_135, L3_136, L4_137, L5_138, L6_139, L7_140, L8_141, L9_142, L10_143, L11_144, L12_145, L13_146, L14_147, L15_148, L16_149
+    L1_134 = rdtrace
+    L2_135 = "patch started"
+    L1_134(L2_135)
+    L1_134 = {L2_135}
+    L2_135 = 189
+    L2_135 = {L3_136}
+    L3_136 = 27
+    L3_136 = _UPVALUE0_
+    L3_136 = L3_136 and L1_134 or L2_135
+    for L7_140, L8_141 in L4_137(L5_138) do
+      for L12_145, L13_146 in L9_142(L10_143) do
+        L14_147 = L8_141 + L13_146
+        L15_148 = _UPVALUE1_
+        L16_149 = L14_147
+        L15_148 = L15_148(L16_149, 4)
+        if not L15_148 then
+          return
+        end
+        L16_149 = string
+        L16_149 = L16_149.byte
+        L16_149 = L16_149(L15_148, 1)
+        if L16_149 == 117 then
+          L16_149 = mp
+          L16_149 = L16_149.WriteProcByte
+          L16_149(L14_147, 116)
+          L16_149 = rdtrace
+          L16_149("patch completed")
+          L16_149 = AppendToRollingQueue
+          L16_149("82e27b72_" .. _UPVALUE2_, "true")
+        else
+          L16_149 = rdtrace
+          L16_149("patch failed.")
+          L16_149 = nil
+          if L13_146 == 189 then
+            L16_149 = _UPVALUE1_(L14_147 - 32, 48)
+          elseif L13_146 == 27 then
+            L16_149 = _UPVALUE1_(L14_147 - 9, 15)
+          end
+          AppendToRollingQueue("82e27b72_" .. _UPVALUE2_, MpCommon.Base64Encode(L16_149))
         end
       end
     end
   end
-
-  local l_5_12 = function(l_11_0)
-    -- function num : 0_4_5
-    local l_11_1 = {}
-    local l_11_2 = (string.byte)(l_11_0, 61) + 1
-    if #l_11_0 < l_11_2 + 2 then
-      return nil
+  L11_54 = mp
+  L11_54 = L11_54.hstr_full_log
+  L11_54 = L11_54()
+  L12_55 = {}
+  L13_56 = ""
+  if not A0_43 then
+    L14_57 = {}
+    for L18_61, L19_62 in L15_58(L16_59) do
+      L20_63 = L19_62.matched
+      if L20_63 then
+        L20_63 = L5_48
+        L20_63 = L20_63(L21_64, L22_65)
+        if L20_63 == nil then
+          return
+        end
+        L14_57[L21_64] = L20_63
+        if L21_64 ~= 55925 then
+        elseif L21_64 == 25420 then
+          for L24_67, L25_68 in L21_64(L22_65) do
+            L26_69 = table
+            L26_69 = L26_69.insert
+            L27_70 = L12_55
+            L26_69(L27_70, L28_71)
+          end
+        end
+      end
     end
-    if (string.byte)(l_11_0, l_11_2) ~= 80 or (string.byte)(l_11_0, l_11_2 + 1) ~= 69 then
-      return nil
+    for L18_61, L19_62 in L15_58(L16_59) do
+      L20_63 = mp
+      L20_63 = L20_63.readu_u16
+      L20_63 = L20_63(L21_64, L22_65)
+      if L20_63 ~= 256 then
+        L20_63 = mp
+        L20_63 = L20_63.readu_u16
+        L20_63 = L20_63(L21_64, L22_65)
+        if L20_63 ~= 26729 then
+          L20_63 = mp
+          L20_63 = L20_63.readu_u16
+          L20_63 = L20_63(L21_64, L22_65)
+          if L20_63 ~= 12078 then
+            L20_63 = mp
+            L20_63 = L20_63.readu_u16
+            L20_63 = L20_63(L21_64, L22_65)
+          end
+        end
+      else
+        if L20_63 == 20302 then
+          L20_63 = 0
+          if L21_64 == 256 then
+            L20_63 = L18_61 - 1
+          else
+            L20_63 = L18_61
+          end
+          L13_56 = L21_64
+          L13_56 = L13_56 or ""
+      end
+      else
+        L20_63 = mp
+        L20_63 = L20_63.readu_u16
+        L20_63 = L20_63(L21_64, L22_65)
+        if L20_63 == 55925 then
+          L20_63 = mp
+          L20_63 = L20_63.readu_u32
+          L20_63 = L20_63(L21_64, L22_65)
+          if L20_63 > 2147483647 then
+          elseif not L21_64 then
+          else
+            L24_67 = L21_64
+            L25_68 = 5
+            if L23_66 ~= 0 then
+              L24_67 = string
+              L24_67 = L24_67.char
+              L25_68 = mp
+              L25_68 = L25_68.bitxor
+              L26_69 = string
+              L26_69 = L26_69.byte
+              L27_70 = L21_64
+              L26_69 = L26_69(L27_70, L28_71)
+              L27_70 = string
+              L27_70 = L27_70.byte
+              L33_76 = L27_70(L28_71, L29_72)
+              L33_76 = L25_68(L26_69, L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L27_70(L28_71, L29_72))
+              L24_67 = L24_67(L25_68, L26_69, L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L25_68(L26_69, L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L27_70(L28_71, L29_72)))
+              L25_68 = string
+              L25_68 = L25_68.char
+              L26_69 = mp
+              L26_69 = L26_69.bitxor
+              L27_70 = string
+              L27_70 = L27_70.byte
+              L27_70 = L27_70(L28_71, L29_72)
+              L33_76 = L28_71(L29_72, L30_73)
+              L33_76 = L26_69(L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L28_71(L29_72, L30_73))
+              L25_68 = L25_68(L26_69, L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L26_69(L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L28_71(L29_72, L30_73)))
+              L26_69 = string
+              L26_69 = L26_69.char
+              L27_70 = mp
+              L27_70 = L27_70.bitxor
+              L31_74 = 7
+              L33_76 = L29_72(L30_73, L31_74)
+              L33_76 = L27_70(L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L29_72(L30_73, L31_74))
+              L26_69 = L26_69(L27_70, L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L27_70(L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L29_72(L30_73, L31_74)))
+              L27_70 = string
+              L27_70 = L27_70.char
+              L31_74 = 4
+              L31_74 = L21_64
+              L32_75 = 8
+              L33_76 = L30_73(L31_74, L32_75)
+              L33_76 = L28_71(L29_72, L30_73, L31_74, L32_75, L33_76, L30_73(L31_74, L32_75))
+              L27_70 = L27_70(L28_71, L29_72, L30_73, L31_74, L32_75, L33_76, L28_71(L29_72, L30_73, L31_74, L32_75, L33_76, L30_73(L31_74, L32_75)))
+            end
+            L24_67 = mp
+            L24_67 = L24_67.readu_u32
+            L25_68 = L21_64
+            L26_69 = 1
+            L24_67 = L24_67(L25_68, L26_69)
+            if not L22_65 or L22_65 == 0 then
+            else
+              L24_67 = L9_52
+              L25_68 = L22_65
+              L26_69 = 4
+              L27_70 = 8
+              L24_67 = L24_67(L25_68, L26_69, L27_70)
+              L13_56 = L24_67
+              else
+                L20_63 = mp
+                L20_63 = L20_63.readu_u16
+                L20_63 = L20_63(L21_64, L22_65)
+                if L20_63 == 25420 then
+                  L20_63 = L5_48
+                  L20_63 = L20_63(L21_64, L22_65)
+                  if not L20_63 then
+                    break
+                  end
+                  if L21_64 > 140737488355327 then
+                    break
+                  end
+                  L24_67 = 16
+                  if not L22_65 then
+                    break
+                  end
+                  L24_67 = L22_65
+                  L25_68 = 1
+                  L24_67 = mp
+                  L24_67 = L24_67.bsplit
+                  L25_68 = L18_61
+                  L26_69 = 32
+                  L25_68 = L24_67(L25_68, L26_69)
+                  L26_69 = mp
+                  L26_69 = L26_69.bsplit
+                  L27_70 = L23_66
+                  L27_70 = L26_69(L27_70, L28_71)
+                  if L25_68 ~= L27_70 then
+                    for L31_74 = 16, 512, 16 do
+                      L32_75 = ""
+                      L33_76 = L5_48
+                      L33_76 = L33_76(L21_64 + L31_74, 7)
+                      if not L33_76 then
+                        break
+                      end
+                      for _FORV_37_ = 0, #L22_65 - 1 do
+                        L32_75 = L32_75 .. string.char(mp.bitxor(string.byte(L22_65, _FORV_37_ + 1), string.byte(L33_76, _FORV_37_ % #L33_76 + 1)))
+                      end
+                      L26_69, L27_70 = mp.bsplit(L23_66, 32)
+                      if L25_68 == L27_70 then
+                        break
+                      end
+                    end
+                    if L25_68 ~= L27_70 then
+                      break
+                    end
+                  end
+                  L31_74 = 16
+                  L13_56 = L28_71
+                end
+              end
+              if L13_56 ~= "" then
+                break
+              end
+              else
+                L14_57 = mp
+                L14_57 = L14_57.GetSMSProcArchitecture
+                L14_57 = L14_57()
+                if L14_57 == L15_58 then
+                  L14_57 = L9_52
+                  L14_57 = L14_57(L15_58, L16_59, L17_60)
+                  L13_56 = L14_57
+                else
+                  L14_57 = L9_52
+                  L14_57 = L14_57(L15_58, L16_59, L17_60)
+                  L13_56 = L14_57
+                end
+              end
+            end
+          end
+      end
     end
-    if #l_11_0 < l_11_2 + 6 then
-      return nil
+  L14_57 = versioning
+  L14_57 = L14_57.IsSeville
+  L14_57 = L14_57()
+  if L14_57 then
+    L14_57 = #L12_55
+    if L14_57 > 0 then
+      L14_57 = pcallEx
+      L14_57 = L14_57(L15_58, L16_59, L17_60)
+      if L14_57 then
+        L16_59(L17_60)
+      else
+        L16_59(L17_60)
+      end
     end
-    local l_11_3 = (mp.readu_u16)(l_11_0, l_11_2 + 6)
-    if l_11_3 > 10 then
-      return nil
+  end
+  if L13_56 ~= "" then
+    L14_57 = pcallEx
+    L14_57 = L14_57(L15_58, L16_59, L17_60)
+    if L14_57 then
+      for L19_62 in L16_59(L17_60, L18_61) do
+        L20_63 = string
+        L20_63 = L20_63.byte
+        L20_63 = L20_63(L21_64, L22_65)
+        if L20_63 ~= 47 then
+          L20_63 = AppendToRollingQueue
+          L20_63(L21_64, L22_65)
+        end
+      end
+    else
+      L16_59(L17_60)
     end
-    if #l_11_0 < l_11_2 + 22 then
-      return nil
+    L13_56 = L16_59
+    L19_62 = L13_56
+    L20_63 = 0
+    L17_60(L18_61, L19_62, L20_63, L21_64, L22_65, L23_66)
+  end
+  return L13_56
+end
+maceExtract_CobaltStrike = L0_0
+function L0_0()
+  local L0_150, L1_151, L2_152, L3_153, L4_154, L5_155, L6_156, L7_157
+  L0_150 = mp
+  L0_150 = L0_150.GetHSTRCallerId
+  L0_150 = L0_150()
+  L1_151 = mp
+  L1_151 = L1_151.HSTR_CALLER_SMS
+  if L0_150 ~= L1_151 then
+    L0_150 = mp
+    L0_150 = L0_150.INFECTED
+    return L0_150
+  end
+  L0_150 = reportDetectedRegions
+  L0_150()
+  L0_150 = mp
+  L0_150 = L0_150.hstr_full_log
+  L0_150 = L0_150()
+  L1_151 = nil
+  for L5_155, L6_156 in L2_152(L3_153) do
+    L7_157 = L6_156.matched
+    if L7_157 then
+      L7_157 = mp
+      L7_157 = L7_157.ReadProcMem
+      L7_157 = L7_157(L6_156.VA, 255)
+      L1_151 = L7_157
+      if L1_151 == nil then
+        L7_157 = mp
+        L7_157 = L7_157.INFECTED
+        return L7_157
+      end
+      L7_157 = string
+      L7_157 = L7_157.find
+      L7_157 = L7_157(L1_151, "BEGINDATA", 1, true)
+      if L7_157 then
+        L7_157 = MpCommon
+        L7_157 = L7_157.Base64Encode
+        L7_157 = L7_157("SYBC_" .. L1_151)
+        AppendToRollingQueue("mace_systembc", L7_157, 0, 60, 32, 1)
+        break
+      end
     end
-    local l_11_4 = (mp.readu_u16)(l_11_0, l_11_2 + 20)
-    local l_11_5 = l_11_2 + 24
-    local l_11_6 = l_11_5 + l_11_4
-    for l_11_10 = 0, l_11_3 - 1 do
-      local l_11_11 = l_11_6 + l_11_10 * 40
-      if #l_11_0 < l_11_11 + 40 then
+  end
+  return L2_152
+end
+maceExtract_SystemBC = L0_0
+function L0_0(A0_158)
+  local L1_159
+  L1_159 = mp
+  L1_159 = L1_159.GetHSTRCallerId
+  L1_159 = L1_159()
+  if L1_159 ~= mp.HSTR_CALLER_SMS then
+    L1_159 = false
+    return L1_159
+  end
+  function L1_159(A0_160)
+    local L1_161, L2_162, L3_163, L4_164, L5_165, L6_166, L7_167, L8_168, L9_169, L10_170, L11_171, L12_172, L13_173, L14_174, L15_175, L16_176, L17_177, L18_178, L19_179, L20_180, L21_181, L22_182, L23_183, L24_184
+    L1_161 = mp
+    L1_161 = L1_161.GetScannedPPID
+    L1_161 = L1_161()
+    L2_162 = mp
+    L2_162 = L2_162.GetSMSMemRanges
+    L2_162 = L2_162()
+    L3_163 = 2097152
+    function L4_164(A0_185)
+      if not A0_185 or A0_185 < 0 then
         return nil
       end
-      local l_11_12 = {}
-      l_11_12.Name = l_11_0:sub(l_11_11, l_11_11 + 7)
-      l_11_12.Misc = (mp.readu_u32)(l_11_0, l_11_11 + 8)
-      l_11_12.VirtualAddress = (mp.readu_u32)(l_11_0, l_11_11 + 12)
-      l_11_12.SizeOfRawData = (mp.readu_u32)(l_11_0, l_11_11 + 16)
-      l_11_12.PointerToRawData = (mp.readu_u32)(l_11_0, l_11_11 + 20)
-      l_11_12.PointerToRelocations = (mp.readu_u32)(l_11_0, l_11_11 + 24)
-      l_11_12.PointerToLineNumbers = (mp.readu_u32)(l_11_0, l_11_11 + 28)
-      l_11_12.NumberOfRelocations = (mp.readu_u16)(l_11_0, l_11_11 + 32)
-      l_11_12.NumberOfLineNumbers = (mp.readu_u16)(l_11_0, l_11_11 + 34)
-      l_11_12.Characteristics = (mp.readu_u32)(l_11_0, l_11_11 + 36)
-      ;
-      (table.insert)(l_11_1, l_11_12)
+      if not mp.SMSVirtualQuery(A0_185) then
+        return nil
+      end
+      if not _UPVALUE0_[mp.SMSVirtualQuery(A0_185).found_ix] then
+        return nil
+      end
+      return _UPVALUE0_[mp.SMSVirtualQuery(A0_185).found_ix]
     end
-    return l_11_1
-  end
-
-  for l_5_16,l_5_17 in ipairs((mp.hstr_full_log)()) do
-    local l_5_13, l_5_14 = function(l_12_0, l_12_1)
-    -- function num : 0_4_6 , upvalues : l_5_4
-    if not l_12_0 or not l_12_1 then
-      return false
-    end
-    if l_12_0 <= 0 or l_12_1 <= 0 then
-      return false
-    end
-    local l_12_2, l_12_3 = (mp.SMSVirtualQuery)(l_12_0)
-    if not l_12_2 then
-      return false
-    end
-    do
-      local l_12_4 = l_5_4[l_12_3.found_ix]
-      if not l_12_4 then
+    function L5_165(A0_186, A1_187)
+      if not A0_186 or not A1_187 then
         return false
       end
-      do return l_12_4.addr < l_12_0 + l_12_1 and l_12_0 + l_12_1 < l_12_4.addr + l_12_4.size end
-      -- DECOMPILER ERROR: 1 unprocessed JMP targets
-    end
-  end
-
-    -- DECOMPILER ERROR at PC36: Confused about usage of register: R17 in 'UnsetPending'
-
-    if R17_PC36.matched then
-      if not l_5_13(R17_PC36.VA, 4) then
-        return mp.INFECTED
+      if A0_186 <= 0 or A1_187 <= 0 then
+        return false
       end
-      if (mp.readu_u16)((mp.ReadProcMem)(R17_PC36.VA, 4), 1) ~= 3 then
-        local l_5_20, l_5_21 = nil
-        if not (mp.SMSVirtualQuery)(l_5_19.VA) then
-          return mp.INFECTED
+      if not _UPVALUE0_(A0_186) then
+        return false
+      end
+      if mp.bitand(_UPVALUE0_(A0_186).prot, 255) ~= 32 and mp.bitand(_UPVALUE0_(A0_186).prot, 255) ~= 64 and mp.bitand(_UPVALUE0_(A0_186).prot, 255) ~= 128 and mp.bitand(_UPVALUE0_(A0_186).prot, 255) ~= 8 and mp.bitand(_UPVALUE0_(A0_186).prot, 255) ~= 4 and mp.bitand(_UPVALUE0_(A0_186).prot, 255) ~= 2 then
+        return false
+      end
+      return A0_186 + A1_187 > _UPVALUE0_(A0_186).addr and A0_186 + A1_187 <= _UPVALUE0_(A0_186).addr + _UPVALUE0_(A0_186).size
+    end
+    function L6_166(A0_188, A1_189)
+      local L2_190, L3_191, L4_192, L5_193, L6_194, L7_195, L8_196, L9_197, L10_198, L11_199
+      L2_190 = _UPVALUE0_
+      L3_191 = A0_188
+      L4_192 = A1_189
+      L2_190 = L2_190(L3_191, L4_192)
+      if not L2_190 then
+        L2_190 = nil
+        return L2_190
+      end
+      L2_190 = 65536
+      L3_191 = _UPVALUE1_
+      L4_192 = A1_189 > L3_191 and L3_191 or A1_189
+      L5_193 = ""
+      for L9_197 = 0, L4_192, L2_190 do
+        L10_198 = L9_197 + L2_190
+        if L4_192 < L10_198 then
+          L11_199 = L10_198 - L4_192
+          L11_199 = L2_190 - L11_199
+        else
+          L11_199 = L11_199 or L2_190
         end
-        local l_5_22 = nil
-        -- DECOMPILER ERROR at PC74: Confused about usage of register: R22 in 'UnsetPending'
-
-        if l_5_4[(l_5_19.VA).found_ix] then
-          if not l_5_13((l_5_4[(l_5_19.VA).found_ix]).addr, 16) then
-            return mp.INFECTED
-          end
-          -- DECOMPILER ERROR at PC84: Confused about usage of register: R22 in 'UnsetPending'
-
-          local l_5_23 = nil
-          -- DECOMPILER ERROR at PC102: Confused about usage of register: R22 in 'UnsetPending'
-
-          if (string.byte)((mp.ReadProcMem)((l_5_4[(l_5_19.VA).found_ix]).addr, 16), 1) == 77 and (string.byte)((mp.ReadProcMem)((l_5_4[(l_5_19.VA).found_ix]).addr, 16), 2) == 90 then
-            if not l_5_13((l_5_4[(l_5_19.VA).found_ix]).addr, 1280) then
-              return mp.INFECTED
-            end
-            -- DECOMPILER ERROR at PC112: Confused about usage of register: R22 in 'UnsetPending'
-
-            do
-              do
-                local l_5_24 = nil
-                if not l_5_12((mp.ReadProcMem)((l_5_4[(l_5_19.VA).found_ix]).addr, 1280)) then
-                  return mp.INFECTED
-                end
-                for l_5_28,l_5_29 in ipairs(l_5_12((mp.ReadProcMem)((l_5_4[(l_5_19.VA).found_ix]).addr, 1280))) do
-                  local l_5_25, l_5_26 = nil
-                  -- DECOMPILER ERROR at PC128: Confused about usage of register: R29 in 'UnsetPending'
-
-                  if R29_PC128.Name == ".data\000\000\000" then
-                    if not l_5_13(l_5_24.addr + R29_PC128.VirtualAddress, 8) then
-                      return mp.INFECTED
-                    end
-                    if (mp.readu_u32)((mp.ReadProcMem)(l_5_24.addr + R29_PC128.VirtualAddress, 8), 1) > 65536 or (mp.readu_u32)((mp.ReadProcMem)(l_5_24.addr + R29_PC128.VirtualAddress, 8), 5) >= 65536 then
-                      return mp.INFECTED
-                    end
-                    if l_5_0 == "" and l_5_1 == "" then
-                      l_5_0 = ((mp.ReadProcMem)(l_5_24.addr + R29_PC128.VirtualAddress, 8)):sub(1, 4)
-                      l_5_1 = ((mp.ReadProcMem)(l_5_24.addr + R29_PC128.VirtualAddress, 8)):sub(5, 8)
-                    end
-                  else
-                    do
-                      if R29_PC128.Name == ".rsrc\000\000\000" then
-                        if R29_PC128.SizeOfRawData > 4096 then
-                          return mp.INFECTED
-                        end
-                        if not l_5_13(l_5_24.addr + R29_PC128.VirtualAddress, R29_PC128.SizeOfRawData) then
-                          return mp.INFECTED
-                        end
-                        local l_5_31 = nil
-                        l_5_10((mp.ReadProcMem)(l_5_24.addr + R29_PC128.VirtualAddress, R29_PC128.SizeOfRawData), 1, {}, 0, 10)
-                        -- DECOMPILER ERROR at PC216: Confused about usage of register: R31 in 'UnsetPending'
-
-                        if #{} ~= 2 then
-                          return mp.INFECTED
-                        end
-                        -- DECOMPILER ERROR at PC223: Confused about usage of register: R31 in 'UnsetPending'
-
-                        for l_5_36,l_5_37 in ipairs({}) do
-                          local l_5_33, l_5_34 = nil
-                          -- DECOMPILER ERROR at PC227: Confused about usage of register: R36 in 'UnsetPending'
-
-                          -- DECOMPILER ERROR at PC231: Confused about usage of register: R36 in 'UnsetPending'
-
-                          if not l_5_13(l_5_24.addr + (0).OffsetToData, (0).Size) then
-                            return mp.INFECTED
-                          end
-                          -- DECOMPILER ERROR at PC240: Confused about usage of register: R37 in 'UnsetPending'
-
-                          -- DECOMPILER ERROR at PC241: Confused about usage of register: R36 in 'UnsetPending'
-
-                          if l_5_2 == "" then
-                            l_5_2 = (mp.ReadProcMem)(l_5_24.addr + (0).OffsetToData, (0).Size)
-                          else
-                            if l_5_3 == "" then
-                              l_5_3 = (mp.ReadProcMem)(l_5_24.addr + (0).OffsetToData, (0).Size)
-                            end
-                          end
-                        end
-                      end
-                      do
-                        -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out DO_STMT
-
-                        -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                        -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_STMT
-
-                      end
-                    end
-                  end
-                end
-                do break end
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out DO_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC255: LeaveBlock: unexpected jumping out IF_STMT
-
+        if L11_199 <= 0 then
+          break
+        end
+        L5_193 = L5_193 .. mp.ReadProcMem(A0_188 + L9_197, L11_199)
+      end
+      return L5_193
+    end
+    function L7_167(A0_200)
+      local L1_201, L2_202, L3_203, L4_204, L5_205
+      L1_201 = mp
+      L1_201 = L1_201.bitand
+      L2_202 = A0_200
+      L3_203 = 4294967295
+      L1_201 = L1_201(L2_202, L3_203)
+      L2_202 = mp
+      L2_202 = L2_202.bsplit
+      L3_203 = L1_201
+      L4_204 = 8
+      L5_205 = L2_202(L3_203, L4_204)
+      return string.char(L2_202) .. string.char(L3_203) .. string.char(L4_204) .. string.char(L5_205)
+    end
+    function L8_168(A0_206)
+      local L1_207, L2_208, L3_209, L4_210, L5_211, L6_212, L7_213, L8_214, L9_215, L10_216
+      L1_207 = mp
+      L1_207 = L1_207.bitand
+      L2_208 = mp
+      L2_208 = L2_208.shr64
+      L3_209 = A0_206
+      L4_210 = 32
+      L2_208 = L2_208(L3_209, L4_210)
+      L3_209 = 4294967295
+      L1_207 = L1_207(L2_208, L3_209)
+      L2_208 = mp
+      L2_208 = L2_208.bitand
+      L3_209 = A0_206
+      L4_210 = 4294967295
+      L2_208 = L2_208(L3_209, L4_210)
+      L3_209 = mp
+      L3_209 = L3_209.bsplit
+      L4_210 = L2_208
+      L5_211 = 8
+      L6_212 = L3_209(L4_210, L5_211)
+      L7_213 = mp
+      L7_213 = L7_213.bsplit
+      L8_214 = L1_207
+      L9_215 = 8
+      L10_216 = L7_213(L8_214, L9_215)
+      return string.char(L3_209) .. string.char(L4_210) .. string.char(L5_211) .. string.char(L6_212) .. string.char(L7_213) .. string.char(L8_214) .. string.char(L9_215) .. string.char(L10_216)
+    end
+    function L9_169(A0_217, A1_218)
+      local L2_219
+      if not A0_217 or not A1_218 or A1_218 == "" then
+        L2_219 = nil
+        return L2_219
+      end
+      L2_219 = A0_217.addr
+      if L2_219 then
+        L2_219 = A0_217.size
+        if L2_219 then
+          L2_219 = A0_217.prot
+          L2_219 = L2_219 and A0_217.alloc_prot
+        end
+      elseif not L2_219 then
+        L2_219 = nil
+        return L2_219
+      end
+      L2_219 = "\027\127\238-"
+      L2_219 = L2_219 .. string.char(mp.GetSMSProcArchitecture()) .. _UPVALUE0_(A0_217.addr) .. _UPVALUE1_(A0_217.size) .. _UPVALUE1_(A0_217.alloc_prot) .. _UPVALUE1_(A0_217.prot) .. _UPVALUE1_(#A1_218) .. A1_218
+      if versioning.GetEngineBuild() >= 24030 then
+        L2_219 = MpCommon.GzipCompress(L2_219)
+      end
+      return MpCommon.Base64Encode(L2_219), #L2_219
+    end
+    function L10_170(A0_220)
+      local L1_221, L2_222, L3_223, L4_224, L5_225
+      L1_221 = 0
+      L2_222 = string
+      L2_222 = L2_222.format
+      L3_223 = "DetectedRegions:%s"
+      L4_224 = _UPVALUE0_
+      L2_222 = L2_222(L3_223, L4_224)
+      L3_223 = string
+      L3_223 = L3_223.format
+      L4_224 = "%x:%x"
+      L5_225 = A0_220.addr
+      L3_223 = L3_223(L4_224, L5_225, A0_220.size)
+      L4_224 = IsKeyInRollingQueue
+      L5_225 = L2_222
+      L4_224 = L4_224(L5_225, L3_223, true)
+      if not L4_224 then
+        L4_224 = _UPVALUE1_
+        L5_225 = A0_220.addr
+        L4_224 = L4_224(L5_225, A0_220.size)
+        L5_225 = _UPVALUE2_
+        L5_225 = L5_225(A0_220, L4_224)
+        if L5_225 ~= nil then
+          L1_221 = L5_225(A0_220, L4_224)
+          AppendToRollingQueue(L2_222, L3_223, L5_225)
+        end
+      end
+      return L1_221
+    end
+    function L11_171(A0_226)
+      local L1_227, L2_228, L3_229, L4_230
+      if not A0_226 then
+        L1_227 = nil
+        return L1_227
+      end
+      L1_227 = 0
+      L2_228 = {L3_229}
+      L3_229 = A0_226
+      L3_229 = _UPVALUE0_
+      L4_230 = A0_226.addr
+      L4_230 = L4_230 - 1
+      L3_229 = L3_229(L4_230)
+      while L3_229 do
+        L4_230 = #L2_228
+        L4_230 = L4_230 + 1
+        L2_228[L4_230] = L3_229
+        L4_230 = _UPVALUE0_
+        L4_230 = L4_230(L3_229.addr - 1)
+        L3_229 = L4_230
+        L1_227 = L1_227 + 1
+        if L1_227 == 8 then
+          break
+        end
+      end
+      L1_227 = 0
+      L4_230 = _UPVALUE0_
+      L4_230 = L4_230(A0_226.addr + A0_226.size + 1)
+      while L4_230 do
+        L2_228[#L2_228 + 1] = L4_230
+        L4_230 = _UPVALUE0_(L4_230.addr + L4_230.size + 1)
+        L1_227 = L1_227 + 1
+        if L1_227 == 8 then
+          break
+        end
+      end
+      return L2_228
+    end
+    L12_172 = 0
+    if not A0_160 then
+      L24_184 = L14_174()
+      for L16_176, L17_177 in L13_173(L14_174, L15_175, L16_176, L17_177, L18_178, L19_179, L20_180, L21_181, L22_182, L23_183, L24_184, L14_174()) do
+        L18_178 = L17_177.matched
+        if L18_178 then
+          L18_178 = L4_164
+          L19_179 = L17_177.VA
+          L18_178 = L18_178(L19_179)
+          if L18_178 then
+            L19_179 = L11_171
+            L19_179 = L19_179(L20_180)
+            for L23_183, L24_184 in L20_180(L21_181) do
+              if L3_163 <= L12_172 + L10_170(L24_184) then
+                break
               end
+              L12_172 = L12_172 + L10_170(L24_184)
             end
-          end
-        end
-      end
-    end
-  end
-  if l_5_0 ~= "" and l_5_1 ~= "" and l_5_2 ~= "" and l_5_3 ~= "" then
-    local l_5_40 = "QAKB" .. l_5_0 .. l_5_1 .. l_5_5(#l_5_2) .. l_5_2 .. l_5_5(#l_5_3) .. l_5_3
-    l_5_40 = (MpCommon.Base64Encode)(l_5_40)
-    local l_5_41 = "mace_qakbot"
-    AppendToRollingQueue(l_5_41, l_5_40, 0, 60, 32, 1)
-  end
-  do
-    return mp.INFECTED
-  end
-end
-
-maceExtract_ZLoader = function()
-  -- function num : 0_5
-  if (mp.GetHSTRCallerId)() ~= mp.HSTR_CALLER_SMS then
-    return mp.INFECTED
-  end
-  local l_6_0 = function(l_7_0)
-    -- function num : 0_5_0
-    l_7_0 = (mp.bitand)(l_7_0, 4294967295)
-    local l_7_1, l_7_2, l_7_3, l_7_4 = (mp.bsplit)(l_7_0, 8)
-    return (string.char)(l_7_1) .. (string.char)(l_7_2) .. (string.char)(l_7_3) .. (string.char)(l_7_4)
-  end
-
-  local l_6_1 = function(l_8_0, l_8_1)
-    -- function num : 0_5_1
-    local l_8_2 = ""
-    for l_8_6 = l_8_1, #l_8_0 do
-      if (string.byte)(l_8_0, l_8_6) >= 32 then
-        do
-          if (string.byte)(l_8_0, l_8_6) > 126 then
             break
           end
-          l_8_2 = l_8_2 .. (string.char)((string.byte)(l_8_0, l_8_6))
-          -- DECOMPILER ERROR at PC30: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC30: LeaveBlock: unexpected jumping out IF_STMT
-
         end
       end
-    end
-    return l_8_2
-  end
-
-  local l_6_2 = (mp.hstr_full_log)()
-  local l_6_3 = ""
-  for l_6_7,l_6_8 in ipairs(l_6_2) do
-    if l_6_8.matched then
-      local l_6_9 = (mp.ReadProcMem)(l_6_8.VA, 80)
-      if not l_6_9 then
-        return mp.INFECTED
-      end
-      if (mp.readu_u16)(l_6_9, 1) == 50307 then
-        local l_6_10 = "\\x83\\xC4\\x04\\x84\\xC0\\x74.\\xE8....\\xE8....\\xE8....\\xE8....[\\x00-\\x67\\x69-\\xFF]+\\x68(....)\\x68(....)"
-        local l_6_11, l_6_12, l_6_13 = (MpCommon.BinaryRegExpSearch)(l_6_10, l_6_9)
-        if l_6_11 then
-          l_6_12 = (mp.readu_u32)(l_6_12, 1)
-          l_6_13 = (mp.readu_u32)(l_6_13, 1)
-          local l_6_14, l_6_15 = (mp.bsplit)(l_6_12, 16)
-          local l_6_16, l_6_17 = (mp.bsplit)(l_6_13, 16)
-          if l_6_15 ~= l_6_17 then
-            return mp.INFECTED
-          end
-          local l_6_18 = (mp.ReadProcMem)(l_6_12, 48)
-          if not l_6_18 then
-            return mp.INFECTED
-          end
-          local l_6_19 = l_6_1(l_6_18, 1)
-          if #l_6_19 == 0 or #l_6_19 == 48 then
-            return mp.INFECTED
-          end
-          local l_6_20 = (mp.ReadProcMem)(l_6_13, 880)
-          if not l_6_20 then
-            return mp.INFECTED
-          end
-          l_6_3 = "ZLOA" .. l_6_0(#l_6_19) .. l_6_19 .. l_6_0(#l_6_20) .. l_6_20
-          l_6_3 = (MpCommon.Base64Encode)(l_6_3)
-        end
-        break
-      end
-    end
-  end
-  do
-    do
-      if l_6_3 ~= "" then
-        local l_6_21 = "mace_zloader"
-        AppendToRollingQueue(l_6_21, l_6_3, 0, 60, 32, 1)
-      end
-      return mp.INFECTED
-    end
-  end
-end
-
-maceExtract_CobaltStrike = function(l_7_0)
-  -- function num : 0_6
-  if (mp.GetHSTRCallerId)() ~= mp.HSTR_CALLER_SMS then
-    return 
-  end
-  local l_7_4 = (mp.GetSMSProcArchitecture)() == mp.SMS_PROC_ARCH_X64
-  local l_7_5 = (mp.GetScannedPPID)()
-  local l_7_8 = (mp.GetSMSMemRanges)()
-  local l_7_9 = function(l_8_0, l_8_1)
-    -- function num : 0_6_0 , upvalues : l_7_6
-    if not l_8_0 or not l_8_1 then
-      return false
-    end
-    if l_8_0 <= 0 or l_8_1 <= 0 then
-      return false
-    end
-    local l_8_2, l_8_3 = (mp.SMSVirtualQuery)(l_8_0)
-    if not l_8_2 then
-      return false
-    end
-    local l_8_4 = l_7_6[l_8_3.found_ix]
-    if not l_8_4 then
-      return false
-    end
-    do
-      local l_8_5 = (mp.bitand)(l_8_4.prot, 255)
-      if l_8_5 ~= 32 and l_8_5 ~= 64 and l_8_5 ~= 128 and l_8_5 ~= 8 and l_8_5 ~= 4 then
-        return false
-      end
-      do return l_8_4.addr < l_8_0 + l_8_1 and l_8_0 + l_8_1 <= l_8_4.addr + l_8_4.size end
-      -- DECOMPILER ERROR: 1 unprocessed JMP targets
-    end
-  end
-
-  local l_7_10 = function(l_9_0, l_9_1)
-    -- function num : 0_6_1 , upvalues : l_7_7
-    if not l_7_7(l_9_0, l_9_1) then
-      return nil
-    end
-    local l_9_2 = mp.ReadProcMem
-    local l_9_3 = l_9_0
-    do
-      local l_9_4 = l_9_1
-      do return l_9_2(l_9_3, l_9_4) end
-      -- DECOMPILER ERROR at PC14: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
-    end
-  end
-
-  local l_7_13 = function(l_10_0)
-    -- function num : 0_6_2
-    local l_10_1 = ""
-    local l_10_2 = 6
-    local l_10_3 = 0
-    if not l_10_0 or #l_10_0 == 0 then
-      return -1
-    end
-    if (string.byte)(l_10_0, 1) == 0 then
-      l_10_1 = "([\\x00-\\xFF]+)\\x00\\x25\\x00\\x02\\x00\\x04"
     else
-      if (string.byte)(l_10_0, 1) == 46 then
-        l_10_1 = "([\\x00-\\xFF]+)\\x2e\\x0b\\x2e\\x2c\\x2e\\x2a"
-        l_10_3 = 46
-      else
-        if (string.byte)(l_10_0, 1) == 105 then
-          l_10_1 = "([\\x00-\\xFF]+)\\x69\\x4c\\x69\\x6b\\x69\\x6d"
-          l_10_3 = 105
-        else
-          if (string.byte)(l_10_0, 1) == 78 then
-            l_10_1 = "([\\x00-\\xFF]+)\\x4e\\x6b\\x4e\\x4c\\x4e\\x4a"
-            l_10_3 = 78
-          else
-            return -1
+      for L16_176, L17_177 in L13_173(L14_174) do
+        L18_178 = L4_164
+        L19_179 = L17_177
+        L18_178 = L18_178(L19_179)
+        if L18_178 then
+          L19_179 = L10_170
+          L19_179 = L19_179(L20_180)
+          if L3_163 <= L20_180 then
+            break
           end
+          L12_172 = L12_172 + L19_179
         end
       end
     end
-    if l_10_1 == "" then
-      return -1
-    end
-    local l_10_4, l_10_5 = (MpCommon.BinaryRegExpSearch)(l_10_1, l_10_0)
-    if not l_10_4 then
-      return -1
-    end
-    local l_10_6 = #l_10_5 + l_10_2 + 1
-    if #l_10_0 < l_10_6 + 4 then
-      return -1
-    end
-    do
-      local l_10_11, l_10_12, l_10_13, l_10_14 = (string.char)((mp.bitxor)((string.byte)(l_10_0, l_10_6 + 3), l_10_3)), (string.char)((mp.bitxor)((string.byte)(l_10_0, l_10_6 + 2), l_10_3)), (string.char)((mp.bitxor)((string.byte)(l_10_0, l_10_6 + 1), l_10_3)), string.char
-      l_10_14 = l_10_14((mp.bitxor)((string.byte)(l_10_0, l_10_6 + 0), l_10_3))
-      l_10_11 = l_10_11 .. l_10_12 .. l_10_13 .. l_10_14
-      local l_10_7 = nil
-      l_10_12 = mp
-      l_10_12 = l_10_12.readu_u32
-      local l_10_8 = nil
-      l_10_13 = l_10_11
-      local l_10_9 = nil
-      l_10_14 = 1
-      local l_10_10 = nil
-      do return l_10_12(l_10_13, l_10_14) end
-      -- DECOMPILER ERROR at PC128: Confused about usage of register R9 for local variables in 'ReleaseLocals'
-
-    end
+    L16_176 = string
+    L16_176 = L16_176.format
+    L17_177 = "%d"
+    L18_178 = L12_172
+    L24_184 = L16_176(L17_177, L18_178)
+    L13_173(L14_174, L15_175, L16_176, L17_177, L18_178, L19_179, L20_180, L21_181, L22_182, L23_183, L24_184, L16_176(L17_177, L18_178))
   end
-
-  local __get_c2server = function(l_11_0)
-    -- function num : 0_6_3
-    local l_11_1 = ""
-    local l_11_2 = 6
-    local l_11_3 = 0
-    if not l_11_0 or #l_11_0 == 0 then
-      return nil
-    end
-    if (string.byte)(l_11_0, 1) == 0 then
-      l_11_1 = "([\\x00-\\xFF]+)\\x00\\x08\\x00\\x03\\x01\\x00"
-    else
-      if (string.byte)(l_11_0, 1) == 46 then
-        l_11_1 = "([\\x00-\\xFF]+)\\x2e\\x26\\x2e\\x2d\\x2f\\x2e"
-        l_11_3 = 46
-      else
-        if (string.byte)(l_11_0, 1) == 105 then
-          l_11_1 = "([\\x00-\\xFF]+)\\x69\\x61\\x69\\x6a\\x68\\x69"
-          l_11_3 = 105
-        else
-          if (string.byte)(l_11_0, 1) == 78 then
-            l_11_1 = "([\\x00-\\xFF]+)\\x4e\\x46\\x4e\\x4d\\x4f\\x4e"
-            l_11_3 = 78
-          else
-            return nil
-          end
-        end
-      end
-    end
-    if l_11_1 == "" then
-      return nil
-    end
-    local l_11_4, l_11_5 = (MpCommon.BinaryRegExpSearch)(l_11_1, l_11_0)
-    if not l_11_4 then
-      return nil
-    end
-    local l_11_6 = #l_11_5 + l_11_2 + 1
-    if #l_11_0 < l_11_6 + 4 then
-      return nil
-    end
-    local l_11_7 = ""
-    for l_11_11 = l_11_6, #l_11_0 do
-      local l_11_12 = (mp.bitxor)((string.byte)(l_11_0, l_11_11), l_11_3)
-      if l_11_12 == 0 then
-        break
-      end
-      l_11_7 = l_11_7 .. (string.char)(l_11_12)
-    end
-    do
-      return l_11_7
-    end
-  end
-
-  local l_7_15 = function(l_12_0, l_12_1)
-    -- function num : 0_6_4
-    -- DECOMPILER ERROR at PC5: Overwrote pending register: R2 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC11: Overwrote pending register: R3 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC17: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC23: Overwrote pending register: R5 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC29: Overwrote pending register: R6 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC35: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC41: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC47: Overwrote pending register: R9 in 'AssignReg'
-
-    return nil + nil * 256 + nil * 65536 + nil * 16777216 + nil * 4294967296 + nil * 1099511627776 + nil * 2.8147497671066e+14 + nil * 7.2057594037928e+16
-  end
-
-  do
-    if not l_7_0 then
-      local l_7_16 = function(l_13_0, l_13_1, l_13_2)
-    -- function num : 0_6_5 , upvalues : l_7_8, l_7_11
-    local l_13_3 = ""
-    local l_13_4 = l_7_8(l_13_0, l_13_1 * 128)
-    if not l_13_4 then
-      return ""
-    end
-    local l_13_5 = 1
-    local l_13_6 = 2
-    local l_13_7 = 3
-    local l_13_8 = {}
-    local l_13_9 = {}
-    l_13_9.pos = 1
-    l_13_9.fieldType = l_13_5
-    l_13_9.size = 2
-    local l_13_10 = {}
-    l_13_10.pos = 2
-    l_13_10.fieldType = l_13_5
-    l_13_10.size = 2
-    local l_13_11 = {}
-    l_13_11.pos = 3
-    l_13_11.fieldType = l_13_6
-    l_13_11.size = 4
-    local l_13_12 = {}
-    l_13_12.pos = 4
-    l_13_12.fieldType = l_13_6
-    l_13_12.size = 4
-    local l_13_13 = {}
-    l_13_13.pos = 5
-    l_13_13.fieldType = l_13_5
-    l_13_13.size = 2
-    local l_13_14 = {}
-    l_13_14.pos = 6
-    l_13_14.fieldType = l_13_5
-    l_13_14.size = 2
-    local l_13_15 = {}
-    l_13_15.pos = 7
-    l_13_15.fieldType = l_13_7
-    l_13_15.size = 256
-    local l_13_16 = {}
-    l_13_16.pos = 8
-    l_13_16.fieldType = l_13_7
-    l_13_16.size = 256
-    local l_13_17 = {}
-    l_13_17.pos = 9
-    l_13_17.fieldType = l_13_7
-    l_13_17.size = 128
-    local l_13_18 = {}
-    l_13_18.pos = 10
-    l_13_18.fieldType = l_13_7
-    l_13_18.size = 64
-    local l_13_19 = {}
-    l_13_19.pos = 11
-    l_13_19.fieldType = l_13_7
-    l_13_19.size = 256
-    local l_13_20 = {}
-    l_13_20.pos = 12
-    l_13_20.fieldType = l_13_7
-    l_13_20.size = 256
-    local l_13_21 = {}
-    l_13_21.pos = 13
-    l_13_21.fieldType = l_13_7
-    l_13_21.size = 256
-    local l_13_22 = {}
-    l_13_22.pos = 14
-    l_13_22.fieldType = l_13_7
-    l_13_22.size = 16
-    local l_13_23 = {}
-    l_13_23.pos = 15
-    l_13_23.fieldType = l_13_7
-    l_13_23.size = 128
-    local l_13_24 = {}
-    l_13_24.pos = 19
-    l_13_24.fieldType = l_13_6
-    l_13_24.size = 4
-    local l_13_25 = {}
-    l_13_25.pos = 20
-    l_13_25.fieldType = l_13_6
-    l_13_25.size = 4
-    local l_13_26 = {}
-    l_13_26.pos = 21
-    l_13_26.fieldType = l_13_7
-    l_13_26.size = 256
-    local l_13_27 = {}
-    l_13_27.pos = 22
-    l_13_27.fieldType = l_13_5
-    l_13_27.size = 2
-    local l_13_28 = {}
-    l_13_28.pos = 23
-    l_13_28.fieldType = l_13_7
-    l_13_28.size = 128
-    local l_13_29 = {}
-    l_13_29.pos = 24
-    l_13_29.fieldType = l_13_7
-    l_13_29.size = 128
-    local l_13_30 = {}
-    l_13_30.pos = 25
-    l_13_30.fieldType = l_13_7
-    l_13_30.size = 6144
-    local l_13_31 = {}
-    l_13_31.pos = 26
-    l_13_31.fieldType = l_13_7
-    l_13_31.size = 16
-    local l_13_32 = {}
-    l_13_32.pos = 27
-    l_13_32.fieldType = l_13_7
-    l_13_32.size = 16
-    local l_13_33 = {}
-    l_13_33.pos = 28
-    l_13_33.fieldType = l_13_6
-    l_13_33.size = 4
-    local l_13_34 = {}
-    l_13_34.pos = 29
-    l_13_34.fieldType = l_13_7
-    l_13_34.size = 64
-    local l_13_35 = {}
-    l_13_35.pos = 30
-    l_13_35.fieldType = l_13_7
-    l_13_35.size = 64
-    local l_13_36 = {}
-    l_13_36.pos = 31
-    l_13_36.fieldType = l_13_6
-    l_13_36.size = 4
-    local l_13_37 = {}
-    l_13_37.pos = 32
-    l_13_37.fieldType = l_13_7
-    l_13_37.size = 128
-    local l_13_38 = {}
-    l_13_38.pos = 33
-    l_13_38.fieldType = l_13_7
-    l_13_38.size = 64
-    local l_13_39 = {}
-    l_13_39.pos = 34
-    l_13_39.fieldType = l_13_7
-    l_13_39.size = 64
-    local l_13_40 = {}
-    l_13_40.pos = 35
-    l_13_40.fieldType = l_13_5
-    l_13_40.size = 2
-    local l_13_41 = {}
-    l_13_41.pos = 37
-    l_13_41.fieldType = l_13_6
-    l_13_41.size = 4
-    local l_13_42 = {}
-    l_13_42.pos = 38
-    l_13_42.fieldType = l_13_5
-    l_13_42.size = 2
-    local l_13_43 = {}
-    l_13_43.pos = 39
-    l_13_43.fieldType = l_13_5
-    l_13_43.size = 2
-    local l_13_44 = {}
-    l_13_44.pos = 40
-    l_13_44.fieldType = l_13_6
-    l_13_44.size = 4
-    local l_13_45 = {}
-    l_13_45.pos = 43
-    l_13_45.fieldType = l_13_5
-    l_13_45.size = 2
-    local l_13_46 = {}
-    l_13_46.pos = 44
-    l_13_46.fieldType = l_13_5
-    l_13_46.size = 2
-    local l_13_47 = {}
-    l_13_47.pos = 45
-    l_13_47.fieldType = l_13_6
-    l_13_47.size = 4
-    local l_13_48 = {}
-    l_13_48.pos = 46
-    l_13_48.fieldType = l_13_7
-    l_13_48.size = 256
-    local l_13_49 = {}
-    l_13_49.pos = 47
-    l_13_49.fieldType = l_13_7
-    l_13_49.size = 256
-    local l_13_50 = {}
-    l_13_50.pos = 51
-    l_13_50.fieldType = l_13_7
-    l_13_50.size = 128
-    local l_13_51 = {}
-    l_13_51.pos = 52
-    l_13_51.fieldType = l_13_5
-    l_13_51.size = 2
-    local l_13_52 = {}
-    l_13_52.pos = 50
-    l_13_52.fieldType = l_13_5
-    l_13_52.size = 2
-    do
-      local l_13_53 = {}
-      l_13_53.pos = 54
-      l_13_53.fieldType = l_13_7
-      l_13_53.size = 128
-      -- DECOMPILER ERROR at PC193: No list found for R8 , SetList fails
-
-      l_13_9 = ipairs
-      l_13_10 = l_13_8
-      l_13_9 = l_13_9(l_13_10)
-      for l_13_12,l_13_13 in l_13_9 do
-        l_13_14 = mp
-        l_13_14 = l_13_14.bsplit
-        l_13_15 = l_13_13.size
-        l_13_16 = 8
-        l_13_14 = l_13_14(l_13_15, l_13_16)
-        l_13_16 = l_13_13.pos
-        l_13_16 = l_13_16 * l_13_2
-        l_13_16 = l_13_16 + 1
-        l_13_17 = l_13_16 + l_13_1
-        l_13_18 = "\000"
-        l_13_19 = string
-        l_13_19 = l_13_19.char
-        l_13_20 = l_13_13.pos
-        l_13_19 = l_13_19(l_13_20)
-        l_13_20 = "\000"
-        l_13_21 = string
-        l_13_21 = l_13_21.char
-        l_13_22 = l_13_13.fieldType
-        l_13_21 = l_13_21(l_13_22)
-        l_13_22 = string
-        l_13_22 = l_13_22.char
-        l_13_23 = 
-        l_13_22 = l_13_22(l_13_23)
-        l_13_23 = string
-        l_13_23 = l_13_23.char
-        l_13_24 = l_13_14
-        l_13_23 = l_13_23(l_13_24)
-        l_13_18 = l_13_18 .. l_13_19 .. l_13_20 .. l_13_21 .. l_13_22 .. l_13_23
-        l_13_19 = string
-        l_13_19 = l_13_19.byte
-        l_13_20 = l_13_4
-        l_13_21 = l_13_16
-        l_13_19 = l_13_19(l_13_20, l_13_21)
-        l_13_20 = l_13_13.fieldType
-        if l_13_19 == l_13_20 then
-          l_13_19 = l_13_13.fieldType
-          if l_13_19 ~= l_13_7 then
-            l_13_19 = string
-            l_13_19 = l_13_19.sub
-            l_13_20 = l_13_4
-            l_13_21 = l_13_17
-            l_13_22 = l_13_13.size
-            l_13_22 = l_13_22 - 1
-            l_13_22 = l_13_17 + (l_13_22)
-            l_13_19 = l_13_19(l_13_20, l_13_21, l_13_22)
-            l_13_20 = l_13_3
-            l_13_21 = l_13_18
-            l_13_3 = l_13_20 .. l_13_21
-            l_13_20 = l_13_3
-            l_13_21 = string
-            l_13_21 = l_13_21.reverse
-            l_13_22 = l_13_19
-            l_13_21 = l_13_21(l_13_22)
-            l_13_3 = l_13_20 .. l_13_21
-          else
-            l_13_19 = 0
-            if l_13_1 == 4 then
-              l_13_20 = mp
-              l_13_20 = l_13_20.readu_u32
-              l_13_21 = l_13_4
-              l_13_22 = l_13_17
-              l_13_20 = l_13_20(l_13_21, l_13_22)
-              l_13_19 = l_13_20
-            else
-              l_13_20 = l_7_11
-              l_13_21 = l_13_4
-              l_13_22 = l_13_17
-              l_13_20 = l_13_20(l_13_21, l_13_22)
-              l_13_19 = l_13_20
-            end
-            if l_13_19 ~= 0 then
-              l_13_20 = l_7_8
-              l_13_21 = l_13_19
-              l_13_22 = l_13_13.size
-              l_13_20 = l_13_20(l_13_21, l_13_22)
-              if not l_13_20 then
-                l_13_21 = ""
-                return l_13_21
-              end
-              l_13_21 = l_13_3
-              l_13_22 = l_13_18
-              l_13_3 = l_13_21 .. l_13_22
-              l_13_21 = l_13_3
-              l_13_22 = l_13_20
-              l_13_3 = l_13_21 .. l_13_22
-            end
-          end
-        end
-      end
-      do return l_13_3 end
-      -- DECOMPILER ERROR at PC289: Confused about usage of register R13 for local variables in 'ReleaseLocals'
-
-    end
-  end
-
-      for l_7_20,l_7_21 in ipairs((mp.hstr_full_log)()) do
-        local l_7_17, l_7_18, l_7_19, l_7_20, l_7_21 = function(l_14_0)
-    -- function num : 0_6_6 , upvalues : l_7_4, l_7_8, l_7_5
-    rdtrace("patch started")
-    local l_14_1 = {}
-    -- DECOMPILER ERROR at PC5: No list found for R1 , SetList fails
-
-    local l_14_2 = {}
-    -- DECOMPILER ERROR at PC8: No list found for R2 , SetList fails
-
-    -- DECOMPILER ERROR at PC9: Overwrote pending register: R3 in 'AssignReg'
-
-    for l_14_8,l_14_9 in ipairs(l_14_0) do
-      local l_14_5 = 27 and l_14_1 or l_14_2
-      for l_14_13,l_14_14 in ipairs(l_14_5) do
-        -- DECOMPILER ERROR at PC23: Confused about usage of register: R13 in 'UnsetPending'
-
-        local l_14_16 = nil
-        if not l_7_8(l_14_10 + R13_PC23, 4) then
-          return 
-        end
-        if (string.byte)(l_7_8(l_14_10 + R13_PC23, 4), 1) == 117 then
-          (mp.WriteProcByte)(l_14_16, 116)
-          rdtrace("patch completed")
-          AppendToRollingQueue("82e27b72_" .. l_7_5, "true")
-        else
-          rdtrace("patch failed.")
-          local l_14_17 = nil
-          -- DECOMPILER ERROR at PC63: Overwrote pending register: R16 in 'AssignReg'
-
-          -- DECOMPILER ERROR at PC71: Overwrote pending register: R16 in 'AssignReg'
-
-          if l_14_15 ~= 189 or l_14_15 == 27 then
-            do
-              AppendToRollingQueue("82e27b72_" .. l_7_5, (MpCommon.Base64Encode)(nil))
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_STMT
-
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-              -- DECOMPILER ERROR at PC81: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
-        end
-      end
-    end
-  end
-, {}, "", {}
-        -- DECOMPILER ERROR at PC49: Confused about usage of register: R19 in 'UnsetPending'
-
-        if R19_PC49.matched then
-          if l_7_10(R19_PC49.VA, 16) == nil then
-            return 
-          end
-          l_7_21[R19_PC49.VA] = l_7_10(R19_PC49.VA, 16)
-          if (mp.readu_u16)(l_7_10(R19_PC49.VA, 16), 1) == 55925 or (mp.readu_u16)(l_7_10(R19_PC49.VA, 16), 1) == 25420 then
-            for l_7_26,l_7_27 in ipairs(R19_PC49.VA_all) do
-              local l_7_27 = nil
-              -- DECOMPILER ERROR at PC82: Confused about usage of register: R25 in 'UnsetPending'
-
-              ;
-              (table.insert)(l_7_19, R25_PC82)
-            end
-          end
-        end
-      end
-      -- DECOMPILER ERROR at PC89: Confused about usage of register: R14 in 'UnsetPending'
-
-      for l_7_31,l_7_32 in pairs(l_7_21) do
-        local l_7_28, l_7_29, l_7_30, l_7_31 = nil
-        -- DECOMPILER ERROR at PC94: Confused about usage of register: R19 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC101: Confused about usage of register: R19 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC108: Confused about usage of register: R19 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC115: Confused about usage of register: R19 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC123: Confused about usage of register: R19 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC128: Confused about usage of register: R18 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC128: Overwrote pending register: R20 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC130: Confused about usage of register: R18 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC130: Overwrote pending register: R20 in 'AssignReg'
-
-        if (mp.readu_u16)(l_7_26, 1) == 256 or (mp.readu_u16)(l_7_26, 1) == 26729 or (mp.readu_u16)(l_7_26, 1) == 12078 or (mp.readu_u16)(l_7_26, 1) == 20302 then
-          if (mp.readu_u16)(l_7_26, 1) == 256 then
-            do
-              l_7_30 = l_7_10(0, 4096)
-              if not l_7_30 then
-                l_7_30 = ""
-              end
-              -- DECOMPILER ERROR at PC142: Confused about usage of register: R19 in 'UnsetPending'
-
-              -- DECOMPILER ERROR at PC149: Confused about usage of register: R19 in 'UnsetPending'
-
-              if (mp.readu_u16)(l_7_26, 1) == 55925 then
-                local l_7_34 = nil
-                if (mp.readu_u32)(l_7_26, 7) > 2147483647 then
-                  break
-                end
-                if not l_7_10((mp.readu_u32)(l_7_26, 7), 16) then
-                  break
-                end
-                -- DECOMPILER ERROR at PC240: Overwrote pending register: R22 in 'AssignReg'
-
-                -- DECOMPILER ERROR at PC243: Confused about usage of register: R22 in 'UnsetPending'
-
-                if (mp.readu_u32)(l_7_10((mp.readu_u32)(l_7_26, 7), 16), 5) == 0 or 0 then
-                  do
-                    do
-                      if 0 == 0 then
-                        break
-                      end
-                      -- DECOMPILER ERROR at PC247: Confused about usage of register: R22 in 'UnsetPending'
-
-                      l_7_30 = l_7_16(0, 4, 8)
-                      -- DECOMPILER ERROR at PC255: Confused about usage of register: R19 in 'UnsetPending'
-
-                      -- DECOMPILER ERROR at PC261: Confused about usage of register: R18 in 'UnsetPending'
-
-                      if (mp.readu_u16)(l_7_26, 1) == 25420 then
-                        local l_7_37 = nil
-                        if not l_7_10(l_7_36 - 4, 16) then
-                          break
-                        end
-                        -- DECOMPILER ERROR at PC272: Confused about usage of register: R18 in 'UnsetPending'
-
-                        local l_7_38 = nil
-                        if (mp.readu_u32)(l_7_10(l_7_36 - 4, 16), 1) + l_7_36 > 1.4073748835533e+14 then
-                          break
-                        end
-                        -- DECOMPILER ERROR at PC277: Confused about usage of register: R21 in 'UnsetPending'
-
-                        local l_7_39 = nil
-                        if not l_7_10((mp.readu_u32)(l_7_10(l_7_36 - 4, 16), 1) + l_7_36, 16) then
-                          break
-                        end
-                        local l_7_41, l_7_42 = nil
-                        local l_7_43, l_7_44 = nil
-                        if l_7_39 ~= l_7_15(l_7_10((mp.readu_u32)(l_7_10(l_7_36 - 4, 16), 1) + l_7_36, 16), 1) then
-                          for l_7_48 = 16, 512, 16 do
-                            local l_7_45, l_7_46, l_7_47, l_7_48 = (mp.bsplit)(l_7_39, 32), (mp.bsplit)(l_7_15(l_7_10((mp.readu_u32)(l_7_10(l_7_36 - 4, 16), 1) + l_7_36, 16), 1), 32)
-                            do
-                              do
-                                if not l_7_10(l_7_42 + .end, 7) then
-                                  break
-                                end
-                                for l_7_54 = 0, #l_7_43 - 1 do
-                                  local l_7_53, l_7_54 = ""
-                                  -- DECOMPILER ERROR at PC324: Confused about usage of register: R37 in 'UnsetPending'
-
-                                  l_7_53 = l_7_53 .. (string.char)((mp.bitxor)((string.byte)(l_7_43, R37_PC324 + 1), (string.byte)(l_7_54, R37_PC324 % #l_7_54 + 1)))
-                                end
-                                -- DECOMPILER ERROR at PC338: Confused about usage of register: R32 in 'UnsetPending'
-
-                                l_7_44 = l_7_15(l_7_53, 1)
-                                l_7_47 = (mp.bsplit)(l_7_44, 32)
-                                if l_7_46 == l_7_48 then
-                                  break
-                                end
-                                -- DECOMPILER ERROR at PC352: LeaveBlock: unexpected jumping out DO_STMT
-
-                              end
-                            end
-                          end
-                          -- DECOMPILER ERROR at PC353: Confused about usage of register: R25 in 'UnsetPending'
-
-                          if l_7_46 ~= l_7_48 then
-                            break
-                          end
-                        end
-                        l_7_30 = l_7_16(l_7_44, 8, 16)
-                      end
-                      if l_7_30 ~= "" then
-                        break
-                      end
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out DO_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out DO_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC365: LeaveBlock: unexpected jumping out IF_STMT
-
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-    -- DECOMPILER ERROR at PC387: Overwrote pending register: R13 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC393: Confused about usage of register: R12 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC398: Confused about usage of register: R10 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC399: Confused about usage of register: R12 in 'UnsetPending'
-
-    do
-      do
-        if ((mp.GetSMSProcArchitecture)() ~= mp.SMS_PROC_ARCH_X64 or (versioning.IsSeville)()) and #l_7_29 > 0 then
-          local l_7_55, l_7_56 = nil
-          if pcallEx("__patch_byte", l_7_17, l_7_29) then
-            rdtrace("call to patch had no errors")
-          else
-            rdtrace("call to patch had errors")
-          end
-        end
-        -- DECOMPILER ERROR at PC415: Confused about usage of register: R13 in 'UnsetPending'
-
-        if l_7_16(l_7_0, 8, 16) ~= "" then
-          local l_7_57, l_7_58 = nil
-          if pcallEx("__get_c2server", l_7_14, l_7_16(l_7_0, 8, 16)) then
-            for l_7_62 in (string.gmatch)(R17_PC423, "[^,]+") do
-              local l_7_59, l_7_60, l_7_61, l_7_62 = nil
-              -- DECOMPILER ERROR at PC427: Confused about usage of register: R19 in 'UnsetPending'
-
-              -- DECOMPILER ERROR at PC436: Confused about usage of register: R19 in 'UnsetPending'
-
-              if (string.byte)(l_7_40, 1) ~= 47 then
-                AppendToRollingQueue("015b9d6d_" .. l_7_5, l_7_40)
-              end
-            end
-          else
-            rdtrace("unable to get c2server")
-          end
-          -- DECOMPILER ERROR at PC446: Confused about usage of register: R13 in 'UnsetPending'
-
-          local l_7_63 = nil
-          AppendToRollingQueue("mace_atosev", (MpCommon.Base64Encode)(l_7_60), 0, 60, 32, 1)
-        end
-        -- DECOMPILER ERROR at PC458: Confused about usage of register: R13 in 'UnsetPending'
-
-        do return (MpCommon.Base64Encode)(l_7_60) end
-        -- DECOMPILER ERROR at PC459: freeLocal<0 in 'ReleaseLocals'
-
-        -- DECOMPILER ERROR: 32 unprocessed JMP targets
-      end
-    end
-  end
+  return pcall(L1_159, A0_158)
 end
-
-maceExtract_SystemBC = function()
-  -- function num : 0_7
-  if (mp.GetHSTRCallerId)() ~= mp.HSTR_CALLER_SMS then
-    return mp.INFECTED
-  end
-  local l_8_0 = ((mp.hstr_full_log)())
-  local l_8_1 = nil
-  for l_8_5,l_8_6 in ipairs(l_8_0) do
-    if l_8_6.matched then
-      l_8_1 = (mp.ReadProcMem)(l_8_6.VA, 255)
-      if l_8_1 == nil then
-        return mp.INFECTED
-      end
-      if (string.find)(l_8_1, "BEGINDATA", 1, true) then
-        do
-          do
-            local l_8_7 = (MpCommon.Base64Encode)("SYBC_" .. l_8_1)
-            AppendToRollingQueue("mace_systembc", l_8_7, 0, 60, 32, 1)
-            do break end
-            -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_STMT
-
-            -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC56: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
+reportDetectedRegions = L0_0
+function L0_0()
+  local L0_231, L1_232, L2_233, L3_234, L4_235, L5_236, L6_237, L7_238, L8_239, L9_240, L10_241, L11_242
+  L0_231 = mp
+  L0_231 = L0_231.GetSMSMemRanges
+  L0_231 = L0_231()
+  L1_232 = {}
+  L11_242 = L3_234()
+  for L5_236, L6_237 in L2_233(L3_234, L4_235, L5_236, L6_237, L7_238, L8_239, L9_240, L10_241, L11_242, L3_234()) do
+    if L7_238 then
+      for L10_241, L11_242 in L7_238(L8_239) do
+        if mp.SMSVirtualQuery(L11_242) and L0_231[mp.SMSVirtualQuery(L11_242).found_ix] and L1_232[L0_231[mp.SMSVirtualQuery(L11_242).found_ix].addr] == nil then
+          L1_232[L0_231[mp.SMSVirtualQuery(L11_242).found_ix].addr] = L0_231[mp.SMSVirtualQuery(L11_242).found_ix]
         end
       end
     end
   end
-  return mp.INFECTED
+  return L1_232
 end
-
-CmdReportParent = function(l_9_0)
-  -- function num : 0_8
-  local l_9_1 = (mp.getfilename)()
-  if l_9_1 ~= nil then
-    l_9_1 = (string.lower)(l_9_1)
-    local l_9_2 = l_9_1:match("([^\\]+)$")
-    if l_9_2 ~= nil and l_9_2 ~= "powershell.exe" and l_9_2 ~= "cmd.exe" and l_9_2 ~= "7zg.exe" and l_9_2 ~= "autoconv.exe" and l_9_2 ~= "robocopy.exe" and l_9_2 ~= "wscript.exe" and l_9_2 ~= "cscript.exe" and l_9_2 ~= "skypeapp.exe" and l_9_2 ~= "ctregsvr.exe" and l_9_2 ~= "reg.exe" and l_9_2 ~= "regedt32.exe" and l_9_2 ~= "regsvr32.exe" and l_9_2 ~= "mpcmdrun.exe" then
-      return true
+getDetectedRegions = L0_0
+function L0_0(A0_243)
+  local L1_244, L2_245, L3_246
+  L1_244 = mp
+  L1_244 = L1_244.getfilename
+  L1_244 = L1_244()
+  if L1_244 ~= nil then
+    L2_245 = string
+    L2_245 = L2_245.lower
+    L3_246 = L1_244
+    L2_245 = L2_245(L3_246)
+    L1_244 = L2_245
+    L3_246 = L1_244
+    L2_245 = L1_244.match
+    L2_245 = L2_245(L3_246, "([^\\]+)$")
+    if L2_245 ~= nil and L2_245 ~= "powershell.exe" and L2_245 ~= "cmd.exe" and L2_245 ~= "7zg.exe" and L2_245 ~= "autoconv.exe" and L2_245 ~= "robocopy.exe" and L2_245 ~= "wscript.exe" and L2_245 ~= "cscript.exe" and L2_245 ~= "skypeapp.exe" and L2_245 ~= "ctregsvr.exe" and L2_245 ~= "reg.exe" and L2_245 ~= "regedt32.exe" and L2_245 ~= "regsvr32.exe" and L2_245 ~= "mpcmdrun.exe" then
+      L3_246 = true
+      return L3_246
     end
   end
-  do
-    local l_9_3 = (mp.GetParentProcInfo)()
-    if l_9_3 == nil then
-      return false
-    end
-    local l_9_4 = l_9_3.image_path
-    if l_9_4 == nil then
-      return false
-    end
-    l_9_4 = (string.lower)(l_9_4)
-    local l_9_5 = l_9_4:match("([^\\]+)$")
-    if l_9_5 == nil then
-      return false
-    end
-    if l_9_5 == "powershell.exe" or l_9_5 == "cmd.exe" or l_9_5 == "7zg.exe" or l_9_5 == "autoconv.exe" or l_9_5 == "robocopy.exe" or l_9_5 == "wscript.exe" or l_9_5 == "cscript.exe" or l_9_5 == "skypeapp.exe" or l_9_5 == "ctregsvr.exe" or l_9_5 == "reg.exe" or l_9_5 == "regedt32.exe" or l_9_5 == "regsvr32.exe" or l_9_5 == "mpcmdrun.exe" then
-      return false
-    end
-    ;
-    (mp.ReportLowfi)(l_9_4, l_9_0)
-    return true
+  L2_245 = mp
+  L2_245 = L2_245.GetParentProcInfo
+  L2_245 = L2_245()
+  if L2_245 == nil then
+    L3_246 = false
+    return L3_246
   end
+  L3_246 = L2_245.image_path
+  if L3_246 == nil then
+    return false
+  end
+  L3_246 = string.lower(L3_246)
+  if L3_246:match("([^\\]+)$") == nil then
+    return false
+  end
+  if L3_246:match("([^\\]+)$") == "powershell.exe" or L3_246:match("([^\\]+)$") == "cmd.exe" or L3_246:match("([^\\]+)$") == "7zg.exe" or L3_246:match("([^\\]+)$") == "autoconv.exe" or L3_246:match("([^\\]+)$") == "robocopy.exe" or L3_246:match("([^\\]+)$") == "wscript.exe" or L3_246:match("([^\\]+)$") == "cscript.exe" or L3_246:match("([^\\]+)$") == "skypeapp.exe" or L3_246:match("([^\\]+)$") == "ctregsvr.exe" or L3_246:match("([^\\]+)$") == "reg.exe" or L3_246:match("([^\\]+)$") == "regedt32.exe" or L3_246:match("([^\\]+)$") == "regsvr32.exe" or L3_246:match("([^\\]+)$") == "mpcmdrun.exe" then
+    return false
+  end
+  mp.ReportLowfi(L3_246, A0_243)
+  return true
 end
-
-
+CmdReportParent = L0_0

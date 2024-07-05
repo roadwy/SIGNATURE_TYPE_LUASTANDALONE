@@ -1,28 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TELPER_LUA_Shellcode_Egghunt.B!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 500000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 500000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0 > 700000 then
-  return mp.CLEAN
+if L0_0 > 700000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.getfilename)())
-if (string.find)(l_0_1, "->word/activex/activex") ~= nil then
-  (mp.readprotection)(false)
-  local l_0_2 = (mp.readfile)(1024, 256)
-  if (string.match)(l_0_2, "\176\014åêbJ\206\017¾Ö\000\170\000a\016\128") ~= nil then
-    local l_0_3 = (mp.readfile)(2000, 1000)
-    local l_0_4 = (string.match)(l_0_3, "U‹ìì%X%X%z%zÇE\252%X%X%z%zÆE")
-    if l_0_4 ~= nil and l_0_4:len() == 18 then
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.getfilename
+L3_3 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L2_2())
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, "->word/activex/activex")
+if nil ~= L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.readprotection
+  L3_3 = false
+  L2_2(L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.readfile
+  L3_3 = 1024
+  L2_2 = L2_2(L3_3, 256)
+  L3_3 = string
+  L3_3 = L3_3.match
+  L3_3 = L3_3(L2_2, "\176\014\229\234bJ\206\017\190\214\000\170\000a\016\128")
+  if L3_3 ~= nil then
+    L3_3 = mp
+    L3_3 = L3_3.readfile
+    L3_3 = L3_3(2000, 1000)
+    if string.match(L3_3, "U\139\236\129\236%X%X%z%z\199E\252%X%X%z%z\198E") ~= nil and string.match(L3_3, "U\139\236\129\236%X%X%z%z\199E\252%X%X%z%z\198E"):len() == 18 then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

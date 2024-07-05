@@ -1,16 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7bd774662aa5 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.lower)((string.sub)(l_0_0.image_path, -12))
-    if l_0_1 == "wmiprvse.exe" or l_0_1 == "explorer.exe" or (string.sub)(l_0_1, -7) == "mmc.exe" then
-      return mp.INFECTED
-    end
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(string.sub(L0_0.image_path, -12))
+  if L1_1 == "wmiprvse.exe" or L1_1 == "explorer.exe" or string.sub(L1_1, -7) == "mmc.exe" then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

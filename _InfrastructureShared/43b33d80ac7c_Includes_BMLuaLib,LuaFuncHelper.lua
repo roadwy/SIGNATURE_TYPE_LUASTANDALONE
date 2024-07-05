@@ -1,38 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/43b33d80ac7c_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-pcallEx("maceSendConfig", maceSendConfig, "mace_zloader")
-pcallEx("reportRelatedBmHits", reportRelatedBmHits)
-local l_0_0 = function()
-  -- function num : 0_0
-  local l_1_0 = (bm.get_current_process_startup_info)()
-  local l_1_1 = "DllMsiexecInject.A_CmdLineDll"
-  if (MpCommon.GetPersistContextCountNoPath)(l_1_1) > 0 then
-    local l_1_2 = (MpCommon.GetPersistContextNoPath)(l_1_1)
-    for l_1_6,l_1_7 in ipairs(l_1_2) do
-      local l_1_8, l_1_9 = (string.match)(l_1_7, "([%w%p]+);([%w%p]+)")
-      l_1_9 = (string.lower)(l_1_9)
-      if l_1_8 == l_1_0.ppid and (string.find)(l_1_9, "\\appdata\\", 1, true) then
-        do
-          do
-            (bm.add_threat_file)(l_1_9)
-            do break end
-            -- DECOMPILER ERROR at PC45: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC45: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC45: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
+local L0_0
+L0_0 = pcallEx
+L0_0("maceSendConfig", maceSendConfig, "mace_zloader")
+L0_0 = pcallEx
+L0_0("reportRelatedBmHits", reportRelatedBmHits)
+function L0_0()
+  local L0_1, L1_2, L2_3, L3_4, L4_5, L5_6, L6_7, L7_8, L8_9, L9_10
+  L0_1 = bm
+  L0_1 = L0_1.get_current_process_startup_info
+  L0_1 = L0_1()
+  L1_2 = "DllMsiexecInject.A_CmdLineDll"
+  L2_3 = MpCommon
+  L2_3 = L2_3.GetPersistContextCountNoPath
+  L2_3 = L2_3(L3_4)
+  if L2_3 > 0 then
+    L2_3 = MpCommon
+    L2_3 = L2_3.GetPersistContextNoPath
+    L2_3 = L2_3(L3_4)
+    for L6_7, L7_8 in L3_4(L4_5) do
+      L8_9 = string
+      L8_9 = L8_9.match
+      L9_10 = L7_8
+      L9_10 = L8_9(L9_10, "([%w%p]+);([%w%p]+)")
+      L9_10 = string.lower(L9_10)
+      if L8_9 == L0_1.ppid and string.find(L9_10, "\\appdata\\", 1, true) then
+        bm.add_threat_file(L9_10)
+        break
       end
     end
   end
 end
-
-pcallEx("remediateDll", l_0_0)
+pcallEx("remediateDll", L0_0)
 reportPcallEx()
 return mp.INFECTED
-

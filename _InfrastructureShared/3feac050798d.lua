@@ -1,16 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3feac050798d 
-
--- params : ...
--- function num : 0
-do
-  if mp.HSTR_WEIGHT >= 5 then
-    local l_0_0 = (mp.getfilesize)()
-    if l_0_0 < 61440 and l_0_0 > 57344 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+if mp.HSTR_WEIGHT >= 5 then
+  if mp.getfilesize() < 61440 and mp.getfilesize() > 57344 then
+    return mp.INFECTED
   end
-  return mp.LOWFI
+  return mp.CLEAN
 end
-
+return mp.LOWFI

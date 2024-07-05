@@ -1,71 +1,153 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/105b36f5750d4 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-      local l_0_1 = (this_sigattrlog[2]).utf8p2
-    else
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
     end
-    -- DECOMPILER ERROR at PC68: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if (not (this_sigattrlog[4]).matched or (this_sigattrlog[4]).utf8p2 == nil or (this_sigattrlog[5]).matched) and (this_sigattrlog[5]).utf8p2 ~= nil then
-        local l_0_2, l_0_3 = (this_sigattrlog[4]).utf8p2
-      else
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
       end
-      if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-        local l_0_4 = (this_sigattrlog[6]).utf8p2
-        -- DECOMPILER ERROR at PC100: Overwrote pending register: R1 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC103: Confused about usage of register: R1 in 'UnsetPending'
-
-        if ((this_sigattrlog[7]).matched and (this_sigattrlog[7]).utf8p1 ~= nil and nil == nil) or #nil < 48 then
-          return mp.CLEAN
+    else
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[4]
+          L0_0 = L1_1.utf8p2
         end
-        -- DECOMPILER ERROR at PC111: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC120: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC129: Confused about usage of register: R1 in 'UnsetPending'
-
-        if (string.find)(nil, "\\\\admin$\\\\", 1, true) or (string.find)(nil, "\\[a-z]%$\\") then
-          local l_0_5 = nil
-          if (string.lower)((MpCommon.PathToWin32Path)(nil)) ~= nil and (string.sub)((string.lower)((MpCommon.PathToWin32Path)(nil)), 0, 2) == "\\\\" and l_0_4 ~= nil then
-            local l_0_6 = nil
-            for l_0_10,l_0_11 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_4)) do
-              local l_0_7 = nil
-              -- DECOMPILER ERROR at PC154: Confused about usage of register: R8 in 'UnsetPending'
-
-              R8_PC154 = (mp.ContextualExpandEnvironmentVariables)(R8_PC154)
-              if (sysio.IsFileExists)(R8_PC154) == true then
-                if (string.find)((string.lower)(R8_PC154), "getupdatedates", 1, true) then
-                  return mp.CLEAN
-                end
-                local l_0_13 = {[".exe"] = true}
-                if (string.sub)(l_0_12, -4) ~= nil and l_0_13[(string.sub)(l_0_12, -4)] ~= true then
-                  (bm.add_related_file)(l_0_12)
-                end
-              end
-            end
-            return mp.INFECTED
+      else
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.utf8p2
+          if L1_1 ~= nil then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[5]
+            L0_0 = L1_1.utf8p2
           end
-        end
-        do
-          return mp.CLEAN
+        else
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[6]
+            L1_1 = L1_1.utf8p2
+            if L1_1 ~= nil then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[6]
+              L0_0 = L1_1.utf8p2
+            end
+          end
         end
       end
     end
   end
 end
-
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[7]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[7]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[7]
+    L3_3 = L3_3.utf8p1
+    L2_2 = L2_2(L3_3)
+    L1_1 = L2_2
+  end
+end
+if L1_1 ~= nil then
+  L2_2 = #L1_1
+elseif L2_2 < 48 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if not L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4)
+elseif L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = MpCommon
+  L3_3 = L3_3.PathToWin32Path
+  L8_8 = L3_3(L4_4)
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L3_3(L4_4))
+  if L2_2 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.sub
+    L3_3 = L3_3(L4_4, L5_5, L6_6)
+    if L3_3 == "\\\\" and L0_0 ~= nil then
+      L3_3 = mp
+      L3_3 = L3_3.GetExecutablesFromCommandLine
+      L3_3 = L3_3(L4_4)
+      for L7_7, L8_8 in L4_4(L5_5) do
+        L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+        if sysio.IsFileExists(L8_8) == true then
+          if string.find(string.lower(L8_8), "getupdatedates", 1, true) then
+            return mp.CLEAN
+          end
+          if string.sub(L8_8, -4) ~= nil and ({
+            [".exe"] = true
+          })[string.sub(L8_8, -4)] ~= true then
+            bm.add_related_file(L8_8)
+          end
+        end
+      end
+      return L4_4
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

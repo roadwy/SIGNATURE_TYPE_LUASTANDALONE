@@ -1,12 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f478e85edca7 
-
--- params : ...
--- function num : 0
-if (hstrlog[1]).matched then
-  (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_4634")
-  ;
-  (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k7_k8.2CCB")
+if hstrlog[1].matched then
+  mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_4634")
+  mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.PN!k7_k8.2CCB")
 end
 return mp.INFECTED
-

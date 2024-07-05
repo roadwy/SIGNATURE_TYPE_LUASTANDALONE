@@ -1,64 +1,115 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a7f4ade3266 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr, 32)
-local l_0_2 = (mp.readu_u32)(l_0_0, 4)
-do
-  if l_0_2 ~= 2332783616 then
-    local l_0_1 = 0
-    if l_0_2 ~= 2333176832 then
-      return mp.CLEAN
-    else
-      l_0_1 = 3
-    end
-  end
-  local l_0_3, l_0_4 = , nil
-  -- DECOMPILER ERROR at PC41: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC48: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC54: Overwrote pending register: R4 in 'AssignReg'
-
-  if l_0_3 ~= 0 or nil ~= 1 then
-    return mp.CLEAN
-  end
-  if l_0_4 ~= 131 then
-    return mp.CLEAN
-  end
-  local l_0_5, l_0_6 = , nil
-  -- DECOMPILER ERROR at PC79: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC86: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC92: Overwrote pending register: R6 in 'AssignReg'
-
-  if l_0_3 ~= 0 or l_0_6 ~= nil then
-    return mp.CLEAN
-  end
-  local l_0_7, l_0_8 = , nil
-  -- DECOMPILER ERROR at PC112: Overwrote pending register: R8 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC119: Overwrote pending register: R7 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC125: Overwrote pending register: R8 in 'AssignReg'
-
-  if l_0_3 ~= 0 or l_0_8 ~= nil then
-    return mp.CLEAN
-  end
-  if l_0_3 == 0 then
-    (pe.mmap_patch_va)(pevars.sigaddr, "ÇE")
-    ;
-    (pe.mmap_patch_va)(pevars.sigaddr + 7 + l_0_3, "\235\b")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L2_2 = 32
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = L0_0
+L3_3 = 4
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = 0
+if L1_1 ~= 2332783616 then
+  L3_3 = mp
+  L3_3 = L3_3.readu_u32
+  L4_4 = L0_0
+  L5_5 = 7
+  L3_3 = L3_3(L4_4, L5_5)
+  L1_1 = L3_3
+  if L1_1 ~= 2333176832 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   else
-    ;
-    (pe.mmap_patch_va)(pevars.sigaddr, "Ç…")
-    ;
-    (pe.mmap_patch_va)(pevars.sigaddr + 7 + l_0_3, "\235\014")
+    L2_2 = 3
   end
-  ;
-  (pe.mmap_patch_va)(pevars.sigaddr + 4 + l_0_3, "\000\000\000")
+end
+L3_3, L4_4 = nil, nil
+if L2_2 == 0 then
+  L5_5 = string
+  L5_5 = L5_5.byte
+  L6_6 = L0_0
+  L7_7 = 10
+  L5_5 = L5_5(L6_6, L7_7)
+  L3_3 = L5_5
+  L5_5 = string
+  L5_5 = L5_5.byte
+  L6_6 = L0_0
+  L7_7 = 12
+  L5_5 = L5_5(L6_6, L7_7)
+  L4_4 = L5_5
+else
+  L5_5 = string
+  L5_5 = L5_5.byte
+  L6_6 = L0_0
+  L7_7 = 16
+  L5_5 = L5_5(L6_6, L7_7)
+  L3_3 = L5_5
+  L5_5 = string
+  L5_5 = L5_5.byte
+  L6_6 = L0_0
+  L7_7 = 18
+  L5_5 = L5_5(L6_6, L7_7)
+  L4_4 = L5_5
+end
+if L4_4 ~= 1 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+if L3_3 ~= 131 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5, L6_6 = nil, nil
+if L2_2 == 0 then
+  L7_7 = string
+  L7_7 = L7_7.byte
+  L8_8 = L0_0
+  L7_7 = L7_7(L8_8, 3)
+  L5_5 = L7_7
+  L7_7 = string
+  L7_7 = L7_7.byte
+  L8_8 = L0_0
+  L7_7 = L7_7(L8_8, 9)
+  L6_6 = L7_7
+else
+  L7_7 = mp
+  L7_7 = L7_7.readu_u32
+  L8_8 = L0_0
+  L7_7 = L7_7(L8_8, 3)
+  L5_5 = L7_7
+  L7_7 = mp
+  L7_7 = L7_7.readu_u32
+  L8_8 = L0_0
+  L7_7 = L7_7(L8_8, 9 + L2_2)
+  L6_6 = L7_7
+end
+if L5_5 ~= L6_6 then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7, L8_8 = nil, nil
+if L2_2 == 0 then
+  L7_7 = string.byte(L0_0, 8)
+  L8_8 = string.byte(L0_0, 14)
+else
+  L7_7 = mp.readu_u32(L0_0, 8 + L2_2)
+  L8_8 = mp.readu_u32(L0_0, 20)
+end
+if L7_7 ~= L8_8 then
   return mp.CLEAN
 end
-
+if L2_2 == 0 then
+  pe.mmap_patch_va(pevars.sigaddr, "\199E")
+  pe.mmap_patch_va(pevars.sigaddr + 7 + L2_2, "\235\b")
+else
+  pe.mmap_patch_va(pevars.sigaddr, "\199\133")
+  pe.mmap_patch_va(pevars.sigaddr + 7 + L2_2, "\235\014")
+end
+pe.mmap_patch_va(pevars.sigaddr + 4 + L2_2, "\000\000\000")
+return mp.CLEAN

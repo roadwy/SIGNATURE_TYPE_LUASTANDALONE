@@ -1,23 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/113b34f3ae017 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  l_0_0 = (string.lower)(l_0_0)
-  if (l_0_0.find)(l_0_0, "\\clicktorun\\officeclicktorun.exe", 1, true) ~= nil then
-    return mp.CLEAN
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0)
+  L0_0 = L1_1
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L0_0, "\\clicktorun\\officeclicktorun.exe", 1, true)
+  if L1_1 ~= nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_1 = (this_sigattrlog[1]).utf8p2
-    if (sysio.IsFileExists)(l_0_1) and (mp.IsKnownFriendlyFile)(l_0_1, true, false) == false then
-      (bm.add_related_file)(l_0_1)
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    if sysio.IsFileExists(L1_1) and mp.IsKnownFriendlyFile(L1_1, true, false) == false then
+      bm.add_related_file(L1_1)
       return mp.INFECTED
     end
   end
-  return mp.CLEAN
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

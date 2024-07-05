@@ -1,17 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/914127094c35 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[5]).matched and (this_sigattrlog[6]).matched then
-  local l_0_0 = (string.lower)((this_sigattrlog[5]).p1)
-  local l_0_1 = (string.lower)((this_sigattrlog[6]).p1)
-  if l_0_0 and (string.find)(l_0_0, "^(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)$") and l_0_1 and (string.len)(l_0_1) < 16 and (string.find)(l_0_1, "^/[%w/_%-=]+$") then
-    return mp.INFECTED
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[5]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[6]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[5]
+    L1_1 = L1_1.p1
+    L0_0 = L0_0(L1_1)
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(this_sigattrlog[6].p1)
+    if L0_0 and string.find(L0_0, "^(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)%.(%d%d?%d?)$") and L1_1 and string.len(L1_1) < 16 and string.find(L1_1, "^/[%w/_%-=]+$") then
+      return mp.INFECTED
+    end
+    return mp.CLEAN
   end
-  return mp.CLEAN
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

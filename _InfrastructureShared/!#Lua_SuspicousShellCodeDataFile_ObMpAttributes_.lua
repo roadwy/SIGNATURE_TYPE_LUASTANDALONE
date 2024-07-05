@@ -1,46 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspicousShellCodeDataFile_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 256 or l_0_0 > 4096 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 256 or L0_0 > 4096 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, 5)
-local l_0_2 = tostring(l_0_1)
-if (string.find)(l_0_2, "U‹ìì", 1, true) == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = 5
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = tostring
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L3_3 = string
+L3_3 = L3_3.find
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, "U\139\236\129\236", 1, true)
+if L3_3 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-;
-(mp.set_mpattribute)("Lua:ShellCodeBinaryFileFound.S001")
-local l_0_3 = (mp.readfile)(0, 256)
-local l_0_4 = tostring(l_0_3)
-if (string.find)(l_0_4, "d\1610\000\000\000‹@\f‹@\f\139\000\139\000‹@\024‹ø", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:GetKernel32DllBase.S001")
+L3_3 = mp
+L3_3 = L3_3.set_mpattribute
+L4_4 = "Lua:ShellCodeBinaryFileFound.S001"
+L3_3(L4_4)
+L3_3 = mp
+L3_3 = L3_3.readfile
+L4_4 = 0
+L3_3 = L3_3(L4_4, 256)
+L4_4 = tostring
+L4_4 = L4_4(L3_3)
+if string.find(L4_4, "d\1610\000\000\000\139@\f\139@\f\139\000\139\000\139@\024\139\248", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:GetKernel32DllBase.S001")
 end
-if (string.find)(l_0_4, "\186\2555S\019‹Ï\232", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:GetReadFileFromHash.S001")
+if string.find(L4_4, "\186\2555S\019\139\207\232", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:GetReadFileFromHash.S001")
 end
-if (string.find)(l_0_4, "\186\003\022Ÿœ‹Ï\232", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:GetReadFileFromHash.S001")
+if string.find(L4_4, "\186\003\022\159\156\139\207\232", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:GetReadFileFromHash.S001")
 end
-if (string.find)(l_0_4, "ºf}vW‹Ï‰E", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:GetVirtuallFromHash.S001")
+if string.find(L4_4, "\186f}vW\139\207\137E", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:GetVirtuallFromHash.S001")
 end
-if (string.find)(l_0_4, "ºê]>\n‹Ï‰E", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:GetVirtuallFromHash.S001")
+if string.find(L4_4, "\186\234]>\n\139\207\137E", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:GetVirtuallFromHash.S001")
 end
-if (string.find)(l_0_4, "\253\255\255P\255Öj\000h\128\000\000\000j\003j\000j\ah\000\000\000\128…", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:SuspicousShellCodeDataFile.S001")
+if string.find(L4_4, "\253\255\255P\255\214j\000h\128\000\000\000j\003j\000j\ah\000\000\000\128\141\133", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:SuspicousShellCodeDataFile.S001")
 end
-if (string.find)(l_0_4, "P\255\2143\255Wh\128\000\000\000j\003Wj\ah\000\000\000\128…", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:SuspicousShellCodeDataFile.S001")
+if string.find(L4_4, "P\255\2143\255Wh\128\000\000\000j\003Wj\ah\000\000\000\128\141\133", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:SuspicousShellCodeDataFile.S001")
 end
-if (string.find)(l_0_4, "\186\003\022Ÿœ‹ÏèÊ\000\000\000ºL\2009n‹Ï‰EÔè\187\000\000\000ºôµ{\f‹Ï‹ðè­\000\000\000ºê]>\n", 1, true) ~= nil then
-  (mp.set_mpattribute)("Lua:APIinMalicious.S001")
+if string.find(L4_4, "\186\003\022\159\156\139\207\232\202\000\000\000\186L\2009n\139\207\137E\212\232\187\000\000\000\186\244\181{\f\139\207\139\240\232\173\000\000\000\186\234]>\n", 1, true) ~= nil then
+  mp.set_mpattribute("Lua:APIinMalicious.S001")
 end
 return mp.CLEAN
-

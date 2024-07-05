@@ -1,10 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5f784ccfadf9 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections == 11 and (pesecs[7]).Name == ".app0" and (pesecs[9]).Name == ".app1" and (pesecs[10]).Name == ".app2" then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 11 then
+  L0_0 = pesecs
+  L0_0 = L0_0[7]
+  L0_0 = L0_0.Name
+  if L0_0 == ".app0" then
+    L0_0 = pesecs
+    L0_0 = L0_0[9]
+    L0_0 = L0_0.Name
+    if L0_0 == ".app1" then
+      L0_0 = pesecs
+      L0_0 = L0_0[10]
+      L0_0 = L0_0.Name
+      if L0_0 == ".app2" then
+        L0_0 = mp
+        L0_0 = L0_0.INFECTED
+        return L0_0
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

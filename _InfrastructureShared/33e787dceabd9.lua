@@ -1,10 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/33e787dceabd9 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT == 6 and (hstrlog[1]).VA + 98 == (hstrlog[2]).VA and (hstrlog[2]).VA + 162 == (hstrlog[3]).VA and (hstrlog[3]).VA + 160 == (hstrlog[4]).VA and (hstrlog[4]).VA + 160 == (hstrlog[5]).VA and (hstrlog[6]).hitcount > 23 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 == 6 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.VA
+  L0_0 = L0_0 + 98
+  L1_1 = hstrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.VA
+  if L0_0 == L1_1 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.VA
+    L0_0 = L0_0 + 162
+    L1_1 = hstrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.VA
+    if L0_0 == L1_1 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[3]
+      L0_0 = L0_0.VA
+      L0_0 = L0_0 + 160
+      L1_1 = hstrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.VA
+      if L0_0 == L1_1 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[4]
+        L0_0 = L0_0.VA
+        L0_0 = L0_0 + 160
+        L1_1 = hstrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.VA
+        if L0_0 == L1_1 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[6]
+          L0_0 = L0_0.hitcount
+          if L0_0 > 23 then
+            L0_0 = mp
+            L0_0 = L0_0.INFECTED
+            return L0_0
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

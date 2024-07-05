@@ -1,114 +1,100 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7fb35f7af531 
-
--- params : ...
--- function num : 0
-IsArrayMember = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  if l_1_1 == nil then
-    return false
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+function L0_0(A0_12, A1_13)
+  local L3_14, L4_15
+  if A1_13 == nil then
+    return L3_14
   end
-  if #l_1_0 <= 0 then
-    return false
+  if L3_14 <= 0 then
+    return L3_14
   end
-  for l_1_5 = 1, #l_1_0 do
-    if l_1_0[l_1_5] == l_1_1 then
+  for _FORV_5_ = 1, #A0_12 do
+    if A0_12[_FORV_5_] == A1_13 then
       return true
     end
   end
-  return false
+  return L3_14
 end
-
-local l_0_0 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_0 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[1]).utf8p2))
+IsArrayMember = L0_0
+L0_0 = nil
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = mp
+    L2_2 = L2_2.ContextualExpandEnvironmentVariables
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L3_3 = L3_3.utf8p2
+    L3_3 = L2_2(L3_3)
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L2_2(L3_3))
+    L0_0 = L1_1
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_0 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p2))
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L2_2 = mp
+      L2_2 = L2_2.ContextualExpandEnvironmentVariables
+      L3_3 = this_sigattrlog
+      L3_3 = L3_3[2]
+      L3_3 = L3_3.utf8p2
+      L3_3 = L2_2(L3_3)
+      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L2_2(L3_3))
+      L0_0 = L1_1
+    end
   else
-    return mp.CLEAN
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-local l_0_1 = {}
-local l_0_2 = 0
-local l_0_3 = 0
-for l_0_7 in (string.gmatch)(l_0_0, "[^&]+") do
-  l_0_2 = l_0_2 + 1
-  ;
-  (table.insert)(l_0_1, {})
-  l_0_3 = 0
-  for l_0_11 in (string.gmatch)(l_0_7, "%S+") do
-    l_0_3 = l_0_3 + 1
-    -- DECOMPILER ERROR at PC76: Confused about usage of register: R12 in 'UnsetPending'
-
-    ;
-    (l_0_1[l_0_2])[l_0_3] = (string.lower)(l_0_11)
+L1_1 = {}
+L2_2 = 0
+L3_3 = 0
+for L7_7 in L4_4(L5_5, L6_6) do
+  L2_2 = L2_2 + 1
+  L8_8(L9_9, L10_10)
+  L3_3 = 0
+  for L11_11 in L8_8(L9_9, L10_10) do
+    L3_3 = L3_3 + 1
+    L1_1[L2_2][L3_3] = string.lower(L11_11)
   end
 end
-local l_0_12 = {}
-local l_0_13 = 0
-for l_0_17 = 1, #l_0_1 do
-  local l_0_18 = 0
-  for l_0_22 = 1, #l_0_1[l_0_17] do
-    if l_0_13 == 0 then
-      if l_0_18 == 0 and ((string.sub)((l_0_1[l_0_17])[l_0_22], -9) == "bitsadmin" or (string.sub)((l_0_1[l_0_17])[l_0_22], -13) == "bitsadmin.exe") then
-        l_0_18 = 1000
-      else
-        if (l_0_18 == 1000 and (l_0_1[l_0_17])[l_0_22] == "/transfer") or l_0_18 == 1000 and (l_0_1[l_0_17])[l_0_22] == "/addfile" then
-          l_0_18 = 2000
-        else
-          if l_0_18 == 2000 and (l_0_1[l_0_17])[l_0_22] == "/upload" then
-            l_0_18 = -1
-            l_0_13 = -1
-          else
-            if l_0_18 == 2000 and (string.sub)((l_0_1[l_0_17])[l_0_22], 1, 4) == "http" then
-              l_0_18 = 3000
-            else
-              if l_0_18 == 3000 and (string.match)((l_0_1[l_0_17])[l_0_22], "^%a:\\.+%.[^%.].+$") ~= nil then
-                l_0_18 = 4000
-                l_0_13 = 1
-                local l_0_23 = #l_0_12 + 1
-                l_0_12[l_0_23] = (l_0_1[l_0_17])[l_0_22]
-              end
-            end
-          end
-        end
+for L9_9 = 1, #L1_1 do
+  for _FORV_14_ = 1, #L1_1[L9_9] do
+    if L5_5 == 0 then
+      if L10_10 == 0 and (string.sub(L1_1[L9_9][_FORV_14_], -9) == "bitsadmin" or string.sub(L1_1[L9_9][_FORV_14_], -13) == "bitsadmin.exe") then
+      elseif L10_10 == 1000 and L1_1[L9_9][_FORV_14_] == "/transfer" or L10_10 == 1000 and L1_1[L9_9][_FORV_14_] == "/addfile" then
+      elseif L10_10 == 2000 and L1_1[L9_9][_FORV_14_] == "/upload" then
+      elseif L10_10 == 2000 and string.sub(L1_1[L9_9][_FORV_14_], 1, 4) == "http" then
+      elseif L10_10 == 3000 and string.match(L1_1[L9_9][_FORV_14_], "^%a:\\.+%.[^%.].+$") ~= nil then
+        L4_4[#L4_4 + 1] = L1_1[L9_9][_FORV_14_]
       end
     end
-    do
-      if l_0_13 == 1 then
-        if l_0_18 == 0 and l_0_22 == 1 and (l_0_1[l_0_17])[l_0_22] == "start" then
-          l_0_18 = 1000
-        else
-          if (l_0_18 == 1000 and (string.match)((l_0_1[l_0_17])[l_0_22], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(l_0_12, (l_0_1[l_0_17])[l_0_22]) == true and (string.sub)((l_0_1[l_0_17])[l_0_22], -4) == ".exe") or l_0_18 == 0 and l_0_22 == 1 and (string.match)((l_0_1[l_0_17])[l_0_22], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(l_0_12, (l_0_1[l_0_17])[l_0_22]) == true and (string.sub)((l_0_1[l_0_17])[l_0_22], -4) == ".exe" then
-            l_0_18 = 9999
-            l_0_13 = 9999
-          else
-            if l_0_18 == 0 and l_0_22 > 1 and (string.match)((l_0_1[l_0_17])[l_0_22], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(l_0_12, (l_0_1[l_0_17])[l_0_22]) == true then
-              l_0_18 = 2000
-            else
-              if l_0_18 == 2000 and l_0_22 > 1 and (string.match)((l_0_1[l_0_17])[l_0_22], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(l_0_12, (l_0_1[l_0_17])[l_0_22]) == false then
-                l_0_18 = 3000
-                local l_0_24 = #l_0_12 + 1
-                l_0_12[l_0_24] = (l_0_1[l_0_17])[l_0_22]
-              end
-            end
-          end
-        end
+    if L5_5 == 1 then
+      if L10_10 == 0 and _FORV_14_ == 1 and L1_1[L9_9][_FORV_14_] == "start" then
+      elseif L10_10 == 1000 and string.match(L1_1[L9_9][_FORV_14_], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(L4_4, L1_1[L9_9][_FORV_14_]) == true and string.sub(L1_1[L9_9][_FORV_14_], -4) == ".exe" or L10_10 == 0 and _FORV_14_ == 1 and string.match(L1_1[L9_9][_FORV_14_], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(L4_4, L1_1[L9_9][_FORV_14_]) == true and string.sub(L1_1[L9_9][_FORV_14_], -4) == ".exe" then
+      elseif L10_10 == 0 and _FORV_14_ > 1 and string.match(L1_1[L9_9][_FORV_14_], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(L4_4, L1_1[L9_9][_FORV_14_]) == true then
+      elseif L10_10 == 2000 and _FORV_14_ > 1 and string.match(L1_1[L9_9][_FORV_14_], "^%a:\\.+%.[^%.].+$") ~= nil and IsArrayMember(L4_4, L1_1[L9_9][_FORV_14_]) == false then
+        L4_4[#L4_4 + 1] = L1_1[L9_9][_FORV_14_]
       end
-      do
-        do
-          if l_0_13 == 9999 then
-            return mp.INFECTED
-          end
-          -- DECOMPILER ERROR at PC286: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC286: LeaveBlock: unexpected jumping out DO_STMT
-
-        end
-      end
+    end
+    if L5_5 == 9999 then
+      return mp.INFECTED
     end
   end
 end
-return mp.CLEAN
-
+return L6_6

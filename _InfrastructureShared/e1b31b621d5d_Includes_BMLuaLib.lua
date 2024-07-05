@@ -1,40 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e1b31b621d5d_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[4]).matched then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC12: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil and (string.find)(l_0_0, "\\\\amd.com\\", 1, true) then
-    return mp.CLEAN
-  end
-  local l_0_2 = nil
-  local l_0_3 = nil
-  -- DECOMPILER ERROR at PC34: Confused about usage of register: R2 in 'UnsetPending'
-
-  if ((bm.get_current_process_startup_info)()).command_line ~= nil then
-    local l_0_4 = nil
-    for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)(((bm.get_current_process_startup_info)()).command_line)) do
-      local l_0_5 = nil
-      -- DECOMPILER ERROR at PC42: Confused about usage of register: R8 in 'UnsetPending'
-
-      R8_PC42 = (mp.ContextualExpandEnvironmentVariables)(R8_PC42)
-      if (sysio.IsFileExists)(R8_PC42) then
-        (bm.add_related_file)(R8_PC42)
-      end
-    end
-  end
-  do
-    add_parents()
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[4]
+  L2_2 = L2_2.utf8p2
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+end
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L3_3 = "\\\\amd.com\\"
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+L2_2 = L1_1.command_line
+if L2_2 ~= nil then
+  L3_3 = mp
+  L3_3 = L3_3.GetExecutablesFromCommandLine
+  L3_3 = L3_3(L4_4)
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+    if sysio.IsFileExists(L8_8) then
+      bm.add_related_file(L8_8)
+    end
+  end
+end
+L3_3 = add_parents
+L3_3()
+L3_3 = mp
+L3_3 = L3_3.INFECTED
+return L3_3

@@ -1,44 +1,100 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_OfficeVBAProjectFilePaths_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_0 ~= nil and l_0_0:len() > 12 and l_0_1 ~= nil and l_0_1:find("/vbaproject.bin") then
-    local l_0_2 = ""
-    if not l_0_0:find("\\downloads", 1, true) then
-      return mp.CLEAN
-    end
-    if l_0_0:find("\\users\\[^\\]+\\downloads") == nil then
-      return mp.CLEAN
-    end
-    if l_0_0:sub(-10) == "\\downloads" then
-      l_0_2 = "Lua:VbaProjectWrittenToDownloadFolder"
-    else
-      if l_0_0:find("\\downloads\\[^\\]+$") ~= nil then
-        l_0_2 = "Lua:VbaProjectWrittenToDownloadFolder1Sub"
-      else
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.getfilename
+  L1_1 = mp
+  L1_1 = L1_1.bitor
+  L2_2 = mp
+  L2_2 = L2_2.bitor
+  L3_3 = mp
+  L3_3 = L3_3.FILEPATH_QUERY_FNAME
+  L4_4 = mp
+  L4_4 = L4_4.FILEPATH_QUERY_PATH
+  L2_2 = L2_2(L3_3, L4_4)
+  L3_3 = mp
+  L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+  L4_4 = L1_1(L2_2, L3_3)
+  L1_1 = L0_0(L1_1, L2_2, L3_3, L4_4, L1_1(L2_2, L3_3))
+  if L0_0 ~= nil then
+    L3_3 = L0_0
+    L2_2 = L0_0.len
+    L2_2 = L2_2(L3_3)
+    if L2_2 > 12 and L1_1 ~= nil then
+      L3_3 = L1_1
+      L2_2 = L1_1.find
+      L4_4 = "/vbaproject.bin"
+      L2_2 = L2_2(L3_3, L4_4)
+      if L2_2 then
+        L2_2 = ""
+        L4_4 = L0_0
+        L3_3 = L0_0.find
+        L3_3 = L3_3(L4_4, "\\downloads", 1, true)
+        if not L3_3 then
+          L3_3 = mp
+          L3_3 = L3_3.CLEAN
+          return L3_3
+        end
+        L4_4 = L0_0
+        L3_3 = L0_0.find
+        L3_3 = L3_3(L4_4, "\\users\\[^\\]+\\downloads")
+        if L3_3 == nil then
+          L3_3 = mp
+          L3_3 = L3_3.CLEAN
+          return L3_3
+        end
+        L4_4 = L0_0
+        L3_3 = L0_0.sub
+        L3_3 = L3_3(L4_4, -10)
+        if L3_3 == "\\downloads" then
+          L2_2 = "Lua:VbaProjectWrittenToDownloadFolder"
+        else
+          L4_4 = L0_0
+          L3_3 = L0_0.find
+          L3_3 = L3_3(L4_4, "\\downloads\\[^\\]+$")
+          if L3_3 ~= nil then
+            L2_2 = "Lua:VbaProjectWrittenToDownloadFolder1Sub"
+          else
+            L3_3 = mp
+            L3_3 = L3_3.CLEAN
+            return L3_3
+          end
+        end
+        L3_3 = mp
+        L3_3 = L3_3.get_contextdata
+        L4_4 = mp
+        L4_4 = L4_4.CONTEXT_DATA_NEWLYCREATEDHINT
+        L3_3 = L3_3(L4_4)
+        if L3_3 == true then
+          L3_3 = mp
+          L3_3 = L3_3.set_mpattribute
+          L4_4 = L2_2
+          L3_3(L4_4)
+          L3_3 = mp
+          L3_3 = L3_3.INFECTED
+          return L3_3
+        end
+        L3_3 = {}
+        L3_3["excel.exe"] = true
+        L3_3["winword.exe"] = true
+        L4_4 = mp
+        L4_4 = L4_4.get_contextdata
+        L4_4 = L4_4(mp.CONTEXT_DATA_PROCESSNAME)
+        L4_4 = (L4_4 == nil and "" or L4_4):lower()
+        if L3_3[L4_4] ~= true then
+          L2_2 = L2_2 .. "NotbyOffice"
+          mp.set_mpattribute(L2_2)
+        end
       end
-    end
-    if (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-      (mp.set_mpattribute)(l_0_2)
-      return mp.INFECTED
-    end
-    local l_0_3 = {}
-    l_0_3["excel.exe"] = true
-    l_0_3["winword.exe"] = true
-    local l_0_4 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-    l_0_4 = (l_0_4 == nil and "" or l_0_4):lower()
-    if l_0_3[l_0_4] ~= true then
-      l_0_2 = l_0_2 .. "NotbyOffice"
-      ;
-      (mp.set_mpattribute)(l_0_2)
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

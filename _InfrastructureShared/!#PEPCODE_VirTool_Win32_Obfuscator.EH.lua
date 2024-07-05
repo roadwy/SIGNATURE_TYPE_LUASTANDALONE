@@ -1,28 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_VirTool_Win32_Obfuscator.EH 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epscn_writable ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epscn_writable
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 3 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).NameDW ~= 1886613038 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 1886613038 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections]).NameDW ~= 1886613038 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 1886613038 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).PointerToRawData ~= 1024 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.PointerToRawData
+if L0_0 ~= 1024 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).Characteristics ~= 4026532032 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 4026532032 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

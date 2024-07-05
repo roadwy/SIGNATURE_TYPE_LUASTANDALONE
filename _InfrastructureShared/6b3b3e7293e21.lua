@@ -1,61 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6b3b3e7293e21 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[30]).matched then
-    local l_0_0, l_0_2 = nil
-    l_0_2 = l_0_2(l_0_0, "(%w+%.exe)$")
-    l_0_0 = l_0_2
-    if l_0_0 == nil then
-      l_0_2 = mp
-      l_0_2 = l_0_2.CLEAN
-      return l_0_2
-    end
-    l_0_2 = "|werfault.exe|werfaultsecure.exe|wermgr.exe|"
-    local l_0_1 = nil
-    l_0_1 = l_0_1(l_0_2, l_0_0, 1, true)
-    if l_0_1 ~= nil then
-      l_0_1 = mp
-      l_0_1 = l_0_1.CLEAN
-      return l_0_1
-    end
+local L0_0, L1_1, L2_2, L3_3
+L1_1 = this_sigattrlog
+L1_1 = L1_1[30]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[30]
+  L2_2 = L2_2.utf8p1
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+  L2_2 = L0_0
+  L1_1 = L0_0.match
+  L3_3 = "(%w+%.exe)$"
+  L1_1 = L1_1(L2_2, L3_3)
+  L0_0 = L1_1
+  if L0_0 == nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_3 = nil
-  do
-    if (MpCommon.AnomalyEventLookup)("Svchost_ChildProcs", "InitializationTime", 1) == nil then
-      local l_0_4, l_0_5 = , (MpCommon.GetCurrentTimeT)()
-    end
-    -- DECOMPILER ERROR at PC44: Confused about usage of register: R2 in 'UnsetPending'
-
-    if l_0_5 == nil then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC49: Confused about usage of register: R2 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC50: Confused about usage of register: R1 in 'UnsetPending'
-
-    local l_0_6 = nil
-    do
-      local l_0_10 = nil
-      if (MpCommon.AnomalyEventLookup)("Svchost_ChildProcs", l_0_3, 1) == nil then
-        if (l_0_4 - l_0_5.Count) / 60 <= 10080 then
-          return mp.CLEAN
-        end
-        ;
-        (bm.add_related_string)("Initialization_Time", l_0_10, bm.RelatedStringBMReport)
-        -- DECOMPILER ERROR at PC79: Confused about usage of register: R3 in 'UnsetPending'
-
-        ;
-        (bm.add_related_string)("Minutes_Elapsed", (l_0_4 - l_0_5.Count) / 60, bm.RelatedStringBMReport)
-        return mp.INFECTED
-      end
-      do return mp.CLEAN end
-      -- DECOMPILER ERROR: 3 unprocessed JMP targets
-    end
+  L1_1 = "|werfault.exe|werfaultsecure.exe|wermgr.exe|"
+  L3_3 = L1_1
+  L2_2 = L1_1.find
+  L2_2 = L2_2(L3_3, L0_0, 1, true)
+  if L2_2 ~= nil then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
 end
-
+L1_1 = MpCommon
+L1_1 = L1_1.GetCurrentTimeT
+L1_1 = L1_1()
+L2_2 = MpCommon
+L2_2 = L2_2.AnomalyEventLookup
+L3_3 = "Svchost_ChildProcs"
+L2_2 = L2_2(L3_3, "InitializationTime", 1)
+if L2_2 == nil then
+  L2_2 = L1_1
+end
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = L2_2.Count
+L3_3 = L1_1 - L3_3
+L3_3 = L3_3 / 60
+if MpCommon.AnomalyEventLookup("Svchost_ChildProcs", L0_0, 1) == nil then
+  if L3_3 <= 10080 then
+    return mp.CLEAN
+  end
+  bm.add_related_string("Initialization_Time", L2_2, bm.RelatedStringBMReport)
+  bm.add_related_string("Minutes_Elapsed", L3_3, bm.RelatedStringBMReport)
+  return mp.INFECTED
+end
+return mp.CLEAN

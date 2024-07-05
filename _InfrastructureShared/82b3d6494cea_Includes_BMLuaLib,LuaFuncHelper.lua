@@ -1,44 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/82b3d6494cea_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_1) do
-  if l_0_6.image_path ~= nil and l_0_6.ppid ~= nil then
-    local l_0_7 = 1
-    local l_0_8 = (mp.bitand)(l_0_6.reason_ex, l_0_7)
-    if l_0_8 == l_0_7 then
-      local l_0_9 = l_0_6.image_path
-      local l_0_10 = l_0_6.ppid
-      do
-        local l_0_11, l_0_12 = l_0_6.cmd_line or ""
-        -- DECOMPILER ERROR at PC31: Confused about usage of register: R11 in 'UnsetPending'
-
-        local l_0_13 = nil
-        local l_0_14 = l_0_10 .. "|" .. l_0_9 .. "|" .. l_0_11
-        do
-          local l_0_15 = "RemoteInvocation:WMI|" .. l_0_9
-          AppendToRollingQueue(l_0_15, l_0_10, json_encode(reportSessionInformationInclusive()), 3600, 100, 1)
-          ;
-          (bm.trigger_sig)("RemoteInvocation:WMI", l_0_14, l_0_10)
-          -- DECOMPILER ERROR at PC54: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC54: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC54: LeaveBlock: unexpected jumping out IF_STMT
-
-          -- DECOMPILER ERROR at PC54: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC54: LeaveBlock: unexpected jumping out IF_STMT
-
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = L6_6.image_path
+  if L7_7 ~= nil then
+    L7_7 = L6_6.ppid
+    if L7_7 ~= nil then
+      L7_7 = MpCommon
+      L7_7 = L7_7.IsFriendlyProcess
+      L8_8 = L6_6.ppid
+      L7_7 = L7_7(L8_8)
+      if not L7_7 then
+        L7_7 = 1
+        L8_8 = mp
+        L8_8 = L8_8.bitand
+        L9_9 = L6_6.reason_ex
+        L10_10 = L7_7
+        L8_8 = L8_8(L9_9, L10_10)
+        if L8_8 == L7_7 then
+          L9_9 = L6_6.image_path
+          L10_10 = L6_6.ppid
+          L11_11 = L6_6.cmd_line
+          L11_11 = L11_11 or ""
+          L12_12 = MpCommon
+          L12_12 = L12_12.Base64Encode
+          L13_13 = L9_9
+          L14_14 = "|"
+          L13_13 = L13_13 .. L14_14 .. L11_11
+          L12_12 = L12_12(L13_13)
+          L13_13 = ";"
+          L14_14 = L10_10
+          L12_12 = L12_12 .. L13_13 .. L14_14
+          L13_13 = "RemoteInvocation:WMI|"
+          L14_14 = MpCommon
+          L14_14 = L14_14.Base64Encode
+          L14_14 = L14_14(L9_9)
+          L13_13 = L13_13 .. L14_14
+          L14_14 = reportSessionInformationInclusive
+          L14_14 = L14_14()
+          AppendToRollingQueue(L13_13, L10_10, safeJsonSerialize(L14_14), 3600, 100, 1)
+          recursiveTriggerSig("RemoteInvocation:WMI", L12_12, L10_10, 0)
         end
       end
     end
   end
 end
-reportRelevantUntrustedEntities()
-reportTimingData()
-pcall(bm.ignore_process_start_limits)
-return mp.CLEAN
-
+L2_2()
+L2_2()
+L2_2(L3_3)
+return L2_2

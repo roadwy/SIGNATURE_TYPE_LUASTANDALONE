@@ -1,59 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/BlofeldCat 
-
--- params : ...
--- function num : 0
-Infrastructure_ScanBlofeldCatKeyPath = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = (sysio.RegOpenKey)(l_1_0)
-  local l_1_2 = 0
-  if l_1_1 then
-    local l_1_3 = (sysio.RegEnumKeys)(l_1_1)
-    for l_1_7,l_1_8 in pairs(l_1_3) do
-      if l_1_8 then
-        local l_1_9 = (sysio.RegOpenKey)(l_1_0 .. "\\\\" .. l_1_8)
-        if l_1_9 then
-          local l_1_10 = (sysio.GetRegValueAsString)(l_1_9, "UpgradeData")
-          if l_1_10 and (string.len)(l_1_10) > 49 then
-            (MpCommon.SetGlobalMpAttribute)("BlofeldCatRegKey")
-            ;
-            (MpDetection.ScanResource)("regkeyvalue://" .. l_1_0 .. "\\" .. l_1_8 .. "\\\\UpgradeData")
-            ;
-            (MpCommon.DeleteGlobalMpAttribute)("BlofeldCatRegKey")
+local L0_0, L1_1
+function L0_0(A0_2)
+  local L1_3, L2_4, L3_5, L4_6, L5_7, L6_8, L7_9, L8_10, L9_11, L10_12
+  L1_3 = sysio
+  L1_3 = L1_3.RegOpenKey
+  L2_4 = A0_2
+  L1_3 = L1_3(L2_4)
+  L2_4 = 0
+  if L1_3 then
+    L3_5 = sysio
+    L3_5 = L3_5.RegEnumKeys
+    L3_5 = L3_5(L4_6)
+    for L7_9, L8_10 in L4_6(L5_7) do
+      if L8_10 then
+        L9_11 = sysio
+        L9_11 = L9_11.RegOpenKey
+        L10_12 = A0_2
+        L10_12 = L10_12 .. "\\\\" .. L8_10
+        L9_11 = L9_11(L10_12)
+        if L9_11 then
+          L10_12 = sysio
+          L10_12 = L10_12.GetRegValueAsString
+          L10_12 = L10_12(L9_11, "UpgradeData")
+          if L10_12 and string.len(L10_12) > 49 then
+            MpCommon.SetGlobalMpAttribute("BlofeldCatRegKey")
+            MpDetection.ScanResource("regkeyvalue://" .. A0_2 .. "\\" .. L8_10 .. "\\\\UpgradeData")
+            MpCommon.DeleteGlobalMpAttribute("BlofeldCatRegKey")
           end
         end
       end
-      do
-        do
-          l_1_2 = l_1_2 + 1
-          if l_1_2 == 50 then
-            SetLuaInstrLimit((crypto.shl64)(1, 24))
-            l_1_2 = 0
-          end
-          -- DECOMPILER ERROR at PC67: LeaveBlock: unexpected jumping out DO_STMT
-
-        end
+      L2_4 = L2_4 + 1
+      if L2_4 == 50 then
+        L9_11 = SetLuaInstrLimit
+        L10_12 = crypto
+        L10_12 = L10_12.shl64
+        L10_12 = L10_12(1, 24)
+        L9_11(L10_12, L10_12(1, 24))
+        L2_4 = 0
       end
     end
   end
 end
-
-Infrastructure_ScanBlofeldCat = function()
-  -- function num : 0_1
-  Infrastructure_ScanBlofeldCatKeyPath("HKLM\\Software\\Microsoft\\DRM")
-  SetLuaInstrLimit((crypto.shl64)(1, 24))
-  local l_2_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\DRM")
-  local l_2_1 = 0
-  for l_2_5,l_2_6 in pairs(l_2_0) do
-    Infrastructure_ScanBlofeldCatKeyPath(l_2_6)
-    l_2_1 = l_2_1 + 1
-    if l_2_1 == 8 then
+Infrastructure_ScanBlofeldCatKeyPath = L0_0
+function L0_0()
+  local L0_13, L1_14, L2_15, L3_16, L4_17, L5_18, L6_19
+  L0_13 = Infrastructure_ScanBlofeldCatKeyPath
+  L1_14 = "HKLM\\Software\\Microsoft\\DRM"
+  L0_13(L1_14)
+  L0_13 = SetLuaInstrLimit
+  L1_14 = crypto
+  L1_14 = L1_14.shl64
+  L6_19 = L1_14(L2_15, L3_16)
+  L0_13(L1_14, L2_15, L3_16, L4_17, L5_18, L6_19, L1_14(L2_15, L3_16))
+  L0_13 = sysio
+  L0_13 = L0_13.RegExpandUserKey
+  L1_14 = "HKCU\\Software\\Microsoft\\DRM"
+  L0_13 = L0_13(L1_14)
+  L1_14 = 0
+  for L5_18, L6_19 in L2_15(L3_16) do
+    Infrastructure_ScanBlofeldCatKeyPath(L6_19)
+    L1_14 = L1_14 + 1
+    if L1_14 == 8 then
       break
     end
   end
-  do
-    SetLuaInstrLimit((crypto.shl64)(1, 24))
-  end
+  L5_18 = 24
+  L6_19 = L3_16(L4_17, L5_18)
+  L2_15(L3_16, L4_17, L5_18, L6_19, L3_16(L4_17, L5_18))
 end
-
-
+Infrastructure_ScanBlofeldCat = L0_0

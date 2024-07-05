@@ -1,21 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3b29580df998 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)(tostring(headerpage))
-local l_0_1 = l_0_0:match("==(%w+)msscriptcontrol.scriptcontrol")
-local l_0_2 = (mp.GetBruteMatchData)()
-local l_0_3 = l_0_2.match_offset + 1
-local l_0_4 = 95
-local l_0_5 = ""
-if l_0_2.is_header then
-  l_0_5 = l_0_0:sub(l_0_3, l_0_3 + l_0_4)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = tostring
+L2_2 = headerpage
+L5_5 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L1_1(L2_2))
+L2_2 = L0_0
+L1_1 = L0_0.match
+L3_3 = "==(%w+)msscriptcontrol.scriptcontrol"
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = mp
+L2_2 = L2_2.GetBruteMatchData
+L2_2 = L2_2()
+L3_3 = L2_2.match_offset
+L3_3 = L3_3 + 1
+L4_4 = 95
+L5_5 = ""
+if L2_2.is_header then
+  L5_5 = L0_0:sub(L3_3, L3_3 + L4_4)
 else
-  l_0_5 = (string.lower)((tostring(footerpage)):sub(l_0_3, l_0_3 + l_0_4))
+  L5_5 = string.lower(tostring(footerpage):sub(L3_3, L3_3 + L4_4))
 end
-if l_0_1 ~= nil and l_0_5:match(l_0_1) then
+if L1_1 ~= nil and L5_5:match(L1_1) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

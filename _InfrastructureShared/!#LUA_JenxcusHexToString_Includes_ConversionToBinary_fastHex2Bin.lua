@@ -1,80 +1,115 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_JenxcusHexToString_Includes_ConversionToBinary_fastHex2Bin 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC6: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (mp.get_mpattribute)("TARG:VBS/JenxcusHexToString") then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = mp
+L1_1 = L1_1.get_mpattribute
+L2_2 = "TARG:VBS/JenxcusHexToString"
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L0_0 = 1
+else
+  L1_1 = mp
+  L1_1 = L1_1.get_mpattribute
+  L2_2 = "TARG:VBS/JenxcusHexToString2"
+  L1_1 = L1_1(L2_2)
+  if L1_1 then
+    L0_0 = 2
   else
-  end
-  -- DECOMPILER ERROR at PC22: Overwrote pending register: R0 in 'AssignReg'
-
-  if not (mp.get_mpattribute)("TARG:VBS/JenxcusHexToString2") or (mp.get_mpattribute)("SCPT:VBS/JenxcusHexToString") then
-    local l_0_1 = 2
-  else
-    do
-      do return mp.CLEAN end
-      local l_0_2 = nil
-      ;
-      (mp.readprotection)(false)
-      local l_0_3 = nil
-      if (mp.readfile)(0, (mp.getfilesize)()) == nil then
-        return mp.CLEAN
-      end
-      local l_0_4 = nil
-      local l_0_5, l_0_6, l_0_7 = (tostring((mp.readfile)(0, (mp.getfilesize)()))), nil, nil
-      -- DECOMPILER ERROR at PC66: Overwrote pending register: R6 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC67: Overwrote pending register: R5 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC68: Overwrote pending register: R4 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC78: Overwrote pending register: R6 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC79: Overwrote pending register: R5 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC80: Overwrote pending register: R4 in 'AssignReg'
-
-      if (l_0_2 == 1 and l_0_2 ~= 2) or l_0_2 == 3 then
-        do return mp.CLEAN end
-        -- DECOMPILER ERROR at PC89: Overwrote pending register: R4 in 'AssignReg'
-
-        while 1 do
-          -- DECOMPILER ERROR at PC102: Overwrote pending register: R5 in 'AssignReg'
-
-          -- DECOMPILER ERROR at PC103: Overwrote pending register: R4 in 'AssignReg'
-
-          if #l_0_7 < 5000 and (string.len)(l_0_7) < 5000 and (l_0_7 == nil) then
-            do break end
-            -- DECOMPILER ERROR at PC108: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC108: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
-        if #l_0_7 < 5000 then
-          return mp.CLEAN
-        end
-        local l_0_8, l_0_9 = nil, nil
-        -- DECOMPILER ERROR at PC122: Overwrote pending register: R8 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC136: Overwrote pending register: R5 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC148: Overwrote pending register: R5 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC155: Overwrote pending register: R8 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC156: Overwrote pending register: R7 in 'AssignReg'
-
-        if l_0_2 == 1 then
-          (mp.vfo_add_buffer)(l_0_9:sub(1, nil), "[JenxcusHexToStr]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-          return mp.CLEAN
-        end
-      end
+    L1_1 = mp
+    L1_1 = L1_1.get_mpattribute
+    L2_2 = "SCPT:VBS/JenxcusHexToString"
+    L1_1 = L1_1(L2_2)
+    if L1_1 then
+      L0_0 = 3
+    else
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = 0
+L4_4 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = tostring
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+L4_4, L5_5, L6_6 = nil, nil, nil
+if L0_0 == 1 then
+  L7_7 = string
+  L7_7 = L7_7.find
+  L8_8 = L3_3
+  L5_5, L7_7 = "= ?\"(.-)\"", L7_7(L8_8, "= ?\"(.-)\"")
+  L5_5, L8_8 = "= ?\"(.-)\"", L7_7(L8_8, "= ?\"(.-)\"")
+  L4_4 = L8_8
+  _ = L7_7
+elseif L0_0 == 2 then
+  L7_7 = string
+  L7_7 = L7_7.find
+  L8_8 = L3_3
+  L5_5, L6_6, L7_7 = "= ?\"(.-)\".-\"\".-\"\".-\"(.-)\"", nil, L7_7(L8_8, "= ?\"(.-)\".-\"\".-\"\".-\"(.-)\"")
+  L5_5, L6_6, L8_8 = "= ?\"(.-)\".-\"\".-\"\".-\"(.-)\"", nil, L7_7(L8_8, "= ?\"(.-)\".-\"\".-\"\".-\"(.-)\"")
+  L4_4 = L8_8
+  _ = L7_7
+elseif L0_0 == 3 then
+  L7_7 = string
+  L7_7 = L7_7.find
+  L8_8 = L3_3
+  L5_5, L6_6, L7_7 = "= ?\"((.)[0-9A-Za-z][0-9A-Za-z]?.[0-9A-Za-z][0-9A-Za-z]?.[0-9A-Za-z][0-9A-Za-z]?.+)\"", L7_7(L8_8, "= ?\"(.-)\".-\"\".-\"\".-\"(.-)\"")
+  L5_5, L6_6, L8_8 = "= ?\"((.)[0-9A-Za-z][0-9A-Za-z]?.[0-9A-Za-z][0-9A-Za-z]?.[0-9A-Za-z][0-9A-Za-z]?.+)\"", L7_7(L8_8, "= ?\"(.-)\".-\"\".-\"\".-\"(.-)\"")
+  L4_4 = L8_8
+  _ = L7_7
+else
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7 = #L5_5
+if L7_7 < 5000 then
+  L4_4 = 1
+  while true do
+    L7_7 = string
+    L7_7 = L7_7.len
+    L8_8 = L5_5
+    L7_7 = L7_7(L8_8)
+    if L7_7 < 5000 then
+      L7_7 = string
+      L7_7 = L7_7.find
+      L8_8 = L3_3
+      L5_5, L7_7 = "\"(.-)\"", L7_7(L8_8, "\"(.-)\"", L4_4 + 2)
+      L5_5, L8_8 = "\"(.-)\"", L7_7(L8_8, "\"(.-)\"", L4_4 + 2)
+      L4_4 = L8_8
+      _ = L7_7
+    elseif L5_5 == nil then
+      break
+    end
+  end
+end
+L7_7 = #L5_5
+if L7_7 < 5000 then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7, L8_8 = nil, nil
+if L0_0 == 1 then
+  L7_7, L8_8 = fastHex2Bin(L5_5, "(..)")
+else
+  L5_5, _ = L5_5:gsub(L6_6 .. "(.)" .. L6_6, L6_6 .. "0%1" .. L6_6)
+  L5_5, _ = L5_5:gsub(L6_6 .. "(.)" .. L6_6, L6_6 .. "0%1" .. L6_6)
+  L7_7, L8_8 = fastHex2Bin(L5_5, L6_6 .. "(..)")
+end
+mp.vfo_add_buffer(L7_7:sub(1, L8_8), "[JenxcusHexToStr]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+return mp.CLEAN

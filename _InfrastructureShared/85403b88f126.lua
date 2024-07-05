@@ -1,10 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/85403b88f126 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("PEPCODE:HasDigitalSignature") then
-  return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 65536 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+  if _FORV_5_.Signers ~= nil then
+    return mp.CLEAN
+  end
 end
 return mp.INFECTED
-

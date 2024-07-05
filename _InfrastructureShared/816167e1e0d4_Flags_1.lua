@@ -1,31 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/816167e1e0d4_Flags_1 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT == 4 and (mp.get_mpattribute)("ATTRIBUTE:SIGA:MISL:PossibleKillProcess:S1") then
-  local l_0_0 = (mp.GetCertificateInfo)(false)
-  for l_0_4,l_0_5 in pairs(l_0_0) do
-    if l_0_5.Signers ~= nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 == 4 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L0_0 = L0_0("ATTRIBUTE:SIGA:MISL:PossibleKillProcess:S1")
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.GetCertificateInfo
+    L0_0 = L0_0(false)
+    for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+      if _FORV_5_.Signers ~= nil then
+        return mp.CLEAN
+      end
+    end
+    if pe.get_versioninfo() == nil then
       return mp.CLEAN
     end
-  end
-  local l_0_6 = (pe.get_versioninfo)()
-  if l_0_6 == nil then
-    return mp.CLEAN
-  end
-  local l_0_7 = {}
-  -- DECOMPILER ERROR at PC36: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC37: Overwrote pending register: R3 in 'AssignReg'
-
-  for l_0_11 = "KMSELDI.exe", #l_0_7 do
-    if l_0_6.OriginalFilename == l_0_7[l_0_11] then
-      return mp.INFECTED
+    for _FORV_6_ = 1, #{
+      "KMSELDI.exe"
+    } do
+      if pe.get_versioninfo().OriginalFilename == ({
+        "KMSELDI.exe"
+      })[_FORV_6_] then
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.LOWFI
-end
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

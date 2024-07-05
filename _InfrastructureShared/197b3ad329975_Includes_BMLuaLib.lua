@@ -1,11 +1,6 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/197b3ad329975_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = isTamperProtectionOn(false)
-;
-(bm.add_related_string)("TpState", tostring(l_0_0), bm.RelatedStringBMReport)
+local L0_0
+L0_0 = isTamperProtectionOn
+L0_0 = L0_0(false)
+bm.add_related_string("TpState", tostring(L0_0), bm.RelatedStringBMReport)
 add_parents()
 return mp.INFECTED
-

@@ -1,51 +1,89 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/164b369eb8e28 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p1
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p1
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   else
-  end
-  -- DECOMPILER ERROR at PC37: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[2]).matched or (this_sigattrlog[3]).matched then
-      local l_0_1, l_0_2 = (string.lower)((this_sigattrlog[2]).utf8p1)
-    end
-    -- DECOMPILER ERROR at PC38: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC42: Confused about usage of register: R0 in 'UnsetPending'
-
-    if l_0_1 ~= nil then
-      local l_0_3 = nil
-      local l_0_4 = (string.sub)(l_0_1, -4)
-      if (string.find)("|.asp|aspx|ashx|asmx|", l_0_4, 1, true) then
-        local l_0_5 = nil
-        if (string.match)((string.lower)((bm.get_imagepath)()), "\\microsoft\\exchange server\\v%d%d\\") ~= nil or (string.match)((string.lower)((bm.get_imagepath)()), "\\microsoft shared\\web server extensions\\%d%d\\") ~= nil then
-          return mp.CLEAN
-        end
-        local l_0_6, l_0_7 = , (bm.get_process_relationships)()
-        for l_0_11,l_0_12 in ipairs(l_0_7) do
-          local l_0_8 = nil
-          -- DECOMPILER ERROR at PC85: Confused about usage of register: R10 in 'UnsetPending'
-
-          if R10_PC85.image_path ~= nil and ((string.match)((string.lower)(R10_PC85.image_path), "\\microsoft\\exchange server\\v%d%d\\") ~= nil or (string.match)((string.lower)(R10_PC85.image_path), "\\microsoft shared\\web server extensions\\%d%d\\") ~= nil) then
-            return mp.CLEAN
-          end
-        end
-        if (sysio.IsFileExists)(l_0_3) then
-          (bm.add_related_file)(l_0_3)
-        end
-        return mp.INFECTED
-      end
-    end
-    do
-      return mp.CLEAN
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p1
+      L1_1 = L1_1(L2_2)
+      L0_0 = L1_1
     end
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.sub
+  L2_2 = L0_0
+  L3_3 = -4
+  L1_1 = L1_1(L2_2, L3_3)
+  L2_2 = "|.asp|aspx|ashx|asmx|"
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L2_2
+  L5_5 = L1_1
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+  if L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L4_4 = bm
+    L4_4 = L4_4.get_imagepath
+    L5_5 = L4_4()
+    L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L4_4())
+    L4_4 = string
+    L4_4 = L4_4.match
+    L5_5 = L3_3
+    L4_4 = L4_4(L5_5, L6_6)
+    if L4_4 == nil then
+      L4_4 = string
+      L4_4 = L4_4.match
+      L5_5 = L3_3
+      L4_4 = L4_4(L5_5, L6_6)
+    elseif L4_4 ~= nil then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
+    end
+    L4_4 = bm
+    L4_4 = L4_4.get_process_relationships
+    L5_5 = L4_4()
+    for _FORV_9_, _FORV_10_ in L6_6(L7_7) do
+      if _FORV_10_.image_path ~= nil and (string.match(string.lower(_FORV_10_.image_path), "\\microsoft\\exchange server\\v%d%d\\") ~= nil or string.match(string.lower(_FORV_10_.image_path), "\\microsoft shared\\web server extensions\\%d%d\\") ~= nil) then
+        return mp.CLEAN
+      end
+    end
+    if L6_6 then
+      L6_6(L7_7)
+    end
+    return L6_6
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

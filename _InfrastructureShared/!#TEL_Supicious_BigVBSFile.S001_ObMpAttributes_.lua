@@ -1,19 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Supicious_BigVBSFile.S001_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.readu_u32)(headerpage, 1) > 536870912 and (mp.readu_u32)(headerpage, 1) < 553648128 then
-  (mp.readprotection)(false)
-  local l_0_0 = (mp.readfile)(0, 4)
-  local l_0_1 = (string.lower)(tostring(l_0_0))
-  if (string.find)(l_0_1, "rem ", 1, true) ~= nil then
-    return mp.INFECTED
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L0_0 = L0_0(L1_1, 1)
+if L0_0 > 536870912 then
+  L0_0 = mp
+  L0_0 = L0_0.readu_u32
+  L1_1 = headerpage
+  L0_0 = L0_0(L1_1, 1)
+  if L0_0 < 553648128 then
+    L0_0 = mp
+    L0_0 = L0_0.readprotection
+    L1_1 = false
+    L0_0(L1_1)
+    L0_0 = mp
+    L0_0 = L0_0.readfile
+    L1_1 = 0
+    L0_0 = L0_0(L1_1, 4)
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(tostring(L0_0))
+    if string.find(L1_1, "rem ", 1, true) ~= nil then
+      return mp.INFECTED
+    end
   end
 end
-do
-  ;
-  (mp.set_mpattribute)("Lua:UnknownBigFile_GT20M")
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.set_mpattribute
+L1_1 = "Lua:UnknownBigFile_GT20M"
+L0_0(L1_1)
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

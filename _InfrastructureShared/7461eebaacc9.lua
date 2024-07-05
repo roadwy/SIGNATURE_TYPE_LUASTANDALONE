@@ -1,19 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7461eebaacc9 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("MpNewlyCreatedHint") and ((mp.get_mpattribute)("BM_MZ_FILE") or (mp.get_mpattribute)("BM_MZ_DLL")) and (mp.get_mpattribute)("RPF:TopLevelFile") then
-  local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.lower)(l_0_0)
-    if (string.find)(l_0_1, "\\program files", 1, true) ~= nil or (string.find)(l_0_1, "\\windows\\", 1, true) ~= nil then
-      return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "MpNewlyCreatedHint"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "BM_MZ_FILE"
+  L0_0 = L0_0(L1_1)
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "BM_MZ_DLL"
+    L0_0 = L0_0(L1_1)
+  elseif L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "RPF:TopLevelFile"
+    L0_0 = L0_0(L1_1)
+    if L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.get_contextdata
+      L1_1 = mp
+      L1_1 = L1_1.CONTEXT_DATA_FILEPATH
+      L0_0 = L0_0(L1_1)
+      if L0_0 ~= nil then
+        L1_1 = string
+        L1_1 = L1_1.lower
+        L1_1 = L1_1(L0_0)
+        if string.find(L1_1, "\\program files", 1, true) ~= nil or string.find(L1_1, "\\windows\\", 1, true) ~= nil then
+          return mp.CLEAN
+        end
+        return mp.INFECTED
+      end
     end
-    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

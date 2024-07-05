@@ -1,28 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8eb3cccb3a9a 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2 = nil
-  else
-  end
-  if not (this_sigattrlog[2]).matched or (this_sigattrlog[3]).matched then
+local L0_0
+if this_sigattrlog[1].matched then
+  L0_0 = string.lower(this_sigattrlog[1].utf8p2)
+elseif this_sigattrlog[2].matched then
+  L0_0 = string.lower(this_sigattrlog[2].utf8p2)
+elseif this_sigattrlog[3].matched then
+  return mp.INFECTED
+end
+if L0_0 ~= nil then
+  L0_0 = string.gsub(L0_0, "\"", "")
+  if string.find(L0_0, "/c cd /d", 1, true) then
     return mp.INFECTED
   end
-  -- DECOMPILER ERROR at PC38: Confused about usage of register: R0 in 'UnsetPending'
-
-  do
-    if (string.lower)((this_sigattrlog[2]).utf8p2) ~= nil then
-      local l_0_3 = (string.gsub)((string.lower)((this_sigattrlog[2]).utf8p2), "\"", "")
-      if (string.find)(l_0_3, "/c cd /d", 1, true) then
-        return mp.INFECTED
-      end
-    end
-    return mp.CLEAN
-  end
 end
-
+return mp.CLEAN

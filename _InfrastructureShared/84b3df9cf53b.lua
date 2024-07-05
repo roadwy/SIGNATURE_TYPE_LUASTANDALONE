@@ -1,22 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b3df9cf53b 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  end
-  if (this_sigattrlog[2]).matched then
-    local l_0_4 = nil
-    if l_0_4 == nil or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)((string.lower)((this_sigattrlog[2]).utf8p2))), "\\windows\\system32\\", 1, true) == nil or (string.find)((string.lower)((mp.ContextualExpandEnvironmentVariables)((string.lower)((this_sigattrlog[2]).utf8p2))), "\\windows\\system32\\dism\\dismcore.dll", 1, true) or (mp.IsKnownFriendlyFile)((string.lower)((mp.ContextualExpandEnvironmentVariables)((string.lower)((this_sigattrlog[2]).utf8p2))), true, false) then
-      return mp.CLEAN
-    end
-    ;
-    (bm.add_threat_file)(l_0_4)
-    return mp.INFECTED
-  end
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+  L0_0 = L1_1
 end
-
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(this_sigattrlog[2].utf8p2)
+  L0_0 = L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(mp.ContextualExpandEnvironmentVariables(L0_0))
+if L0_0 == nil or string.find(L1_1, "\\windows\\system32\\", 1, true) == nil or string.find(L1_1, "\\windows\\system32\\dism\\dismcore.dll", 1, true) or mp.IsKnownFriendlyFile(L1_1, true, false) then
+  return mp.CLEAN
+end
+bm.add_threat_file(L0_0)
+return mp.INFECTED

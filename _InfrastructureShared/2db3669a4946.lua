@@ -1,19 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3669a4946 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC9: Overwrote pending register: R0 in 'AssignReg'
-
-local l_0_0 = nil
--- DECOMPILER ERROR at PC19: Overwrote pending register: R1 in 'AssignReg'
-
-local l_0_1 = nil
-if l_0_0 ~= nil and l_0_1 ~= nil and l_0_0 == l_0_1 then
-  if (string.find)(l_0_0, "c:\\windows\\system32\\", 1, true) then
+local L0_0, L1_1
+L0_0 = string.lower(mp.utf16to8(this_sigattrlog[1].wp1))
+L1_1 = string.lower(mp.utf16to8(this_sigattrlog[2].wp1))
+if L0_0 ~= nil and L1_1 ~= nil and L0_0 == L1_1 then
+  if string.find(L0_0, "c:\\windows\\system32\\", 1, true) then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
 return mp.CLEAN
-

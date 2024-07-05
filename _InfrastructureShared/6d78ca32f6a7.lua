@@ -1,105 +1,282 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6d78ca32f6a7 
-
--- params : ...
--- function num : 0
-if peattributes.ismsil == false then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = peattributes
+L0_0 = L0_0.ismsil
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (pe.get_netmetadata)()
-if l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = pe
+L0_0 = L0_0.get_netmetadata
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-if (hstrlog[1]).matched == false then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 == false then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (hstrlog[2]).matched == false then
-  return mp.CLEAN
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 == false then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (pe.mmap_va)((hstrlog[1]).VA - 3, 4)
-local l_0_2 = (pe.mmap_va)((hstrlog[2]).VA + 6, 4)
-local l_0_3 = (mp.readu_u32)(l_0_1, 1)
-local l_0_4 = (mp.readu_u32)(l_0_2, 1)
-local l_0_5 = l_0_0.strheap_RVA + (pe.metadata_decode)(l_0_3, 2)
-local l_0_6 = l_0_0.strheap_RVA + (pe.metadata_decode)(l_0_4, 2)
-local l_0_7 = (pe.foffset_rva)(l_0_5)
-local l_0_8 = (pe.foffset_rva)(l_0_6)
-local l_0_9 = (mp.readfile)(l_0_7, 7)
-local l_0_10 = (mp.readfile)(l_0_8, 6)
-if (string.find)(l_0_9, "Replace", 1, true) == nil then
-  return mp.CLEAN
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = hstrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.VA
+L2_2 = L2_2 - 3
+L3_3 = 4
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L3_3 = hstrlog
+L3_3 = L3_3[2]
+L3_3 = L3_3.VA
+L3_3 = L3_3 + 6
+L4_4 = 4
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = L1_1
+L5_5 = 1
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = mp
+L4_4 = L4_4.readu_u32
+L5_5 = L2_2
+L6_6 = 1
+L4_4 = L4_4(L5_5, L6_6)
+L5_5 = L0_0.strheap_RVA
+L6_6 = pe
+L6_6 = L6_6.metadata_decode
+L7_7 = L3_3
+L8_8 = 2
+L6_6 = L6_6(L7_7, L8_8)
+L5_5 = L5_5 + L6_6
+L6_6 = L0_0.strheap_RVA
+L7_7 = pe
+L7_7 = L7_7.metadata_decode
+L8_8 = L4_4
+L9_9 = 2
+L7_7 = L7_7(L8_8, L9_9)
+L6_6 = L6_6 + L7_7
+L7_7 = pe
+L7_7 = L7_7.foffset_rva
+L8_8 = L5_5
+L7_7 = L7_7(L8_8)
+L8_8 = pe
+L8_8 = L8_8.foffset_rva
+L9_9 = L6_6
+L8_8 = L8_8(L9_9)
+L9_9 = mp
+L9_9 = L9_9.readfile
+L10_10 = L7_7
+L11_11 = 7
+L9_9 = L9_9(L10_10, L11_11)
+L10_10 = mp
+L10_10 = L10_10.readfile
+L11_11 = L8_8
+L12_12 = 6
+L10_10 = L10_10(L11_11, L12_12)
+L11_11 = string
+L11_11 = L11_11.find
+L12_12 = L9_9
+L13_13 = "Replace"
+L14_14 = 1
+L11_11 = L11_11(L12_12, L13_13, L14_14, true)
+if L11_11 == nil then
+  L11_11 = mp
+  L11_11 = L11_11.CLEAN
+  return L11_11
 end
-if (string.find)(l_0_10, "Invoke", 1, true) == nil then
-  return mp.CLEAN
+L11_11 = string
+L11_11 = L11_11.find
+L12_12 = L10_10
+L13_13 = "Invoke"
+L14_14 = 1
+L11_11 = L11_11(L12_12, L13_13, L14_14, true)
+if L11_11 == nil then
+  L11_11 = mp
+  L11_11 = L11_11.CLEAN
+  return L11_11
 end
-DecodeBlob = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = (mp.bitand)(l_1_0, 255)
-  local l_1_2 = (mp.bitand)(l_1_0, 65280)
-  local l_1_3 = (mp.bitand)(l_1_0, 16711680)
-  local l_1_4 = (mp.bitand)(l_1_0, 4278190080)
-  if l_1_1 == 0 then
-    return 0, 0
+function L11_11(A0_15)
+  local L1_16, L2_17, L3_18, L4_19, L5_20, L6_21, L7_22
+  L1_16 = mp
+  L1_16 = L1_16.bitand
+  L2_17 = A0_15
+  L3_18 = 255
+  L1_16 = L1_16(L2_17, L3_18)
+  L2_17 = mp
+  L2_17 = L2_17.bitand
+  L3_18 = A0_15
+  L4_19 = 65280
+  L2_17 = L2_17(L3_18, L4_19)
+  L3_18 = mp
+  L3_18 = L3_18.bitand
+  L4_19 = A0_15
+  L5_20 = 16711680
+  L3_18 = L3_18(L4_19, L5_20)
+  L4_19 = mp
+  L4_19 = L4_19.bitand
+  L5_20 = A0_15
+  L6_21 = 4278190080
+  L4_19 = L4_19(L5_20, L6_21)
+  if L1_16 == 0 then
+    L5_20 = 0
+    L6_21 = 0
+    return L5_20, L6_21
   else
-    if (mp.bitand)(l_1_1, 128) == 0 then
-      return l_1_1, 1
+    L5_20 = mp
+    L5_20 = L5_20.bitand
+    L6_21 = L1_16
+    L7_22 = 128
+    L5_20 = L5_20(L6_21, L7_22)
+    if L5_20 == 0 then
+      L5_20 = L1_16
+      L6_21 = 1
+      return L5_20, L6_21
     else
-      if (mp.bitand)(l_1_1, 192) == 128 then
-        return (mp.bitor)((mp.shl8)((mp.bitand)(l_1_1, 63), 8), l_1_2), 2
+      L5_20 = mp
+      L5_20 = L5_20.bitand
+      L6_21 = L1_16
+      L7_22 = 192
+      L5_20 = L5_20(L6_21, L7_22)
+      if L5_20 == 128 then
+        L5_20 = mp
+        L5_20 = L5_20.bitor
+        L6_21 = mp
+        L6_21 = L6_21.shl8
+        L7_22 = mp
+        L7_22 = L7_22.bitand
+        L7_22 = L7_22(L1_16, 63)
+        L6_21 = L6_21(L7_22, 8)
+        L7_22 = L2_17
+        L5_20 = L5_20(L6_21, L7_22)
+        L6_21 = 2
+        return L5_20, L6_21
       else
-        if (mp.bitand)(l_1_1, 224) == 12 then
-          local l_1_5 = (mp.shl8)((mp.bitand)(l_1_1, 31), 24)
-          local l_1_6 = (mp.shl8)(l_1_2, 16)
-          local l_1_7 = (mp.shl8)(l_1_3, 8)
-          return (mp.bitor)((mp.bitor)((mp.bitor)(l_1_5, l_1_6), l_1_7), l_1_4), 4
+        L5_20 = mp
+        L5_20 = L5_20.bitand
+        L6_21 = L1_16
+        L7_22 = 224
+        L5_20 = L5_20(L6_21, L7_22)
+        if L5_20 == 12 then
+          L5_20 = mp
+          L5_20 = L5_20.shl8
+          L6_21 = mp
+          L6_21 = L6_21.bitand
+          L7_22 = L1_16
+          L6_21 = L6_21(L7_22, 31)
+          L7_22 = 24
+          L5_20 = L5_20(L6_21, L7_22)
+          L6_21 = mp
+          L6_21 = L6_21.shl8
+          L7_22 = L2_17
+          L6_21 = L6_21(L7_22, 16)
+          L7_22 = mp
+          L7_22 = L7_22.shl8
+          L7_22 = L7_22(L3_18, 8)
+          return mp.bitor(mp.bitor(mp.bitor(L5_20, L6_21), L7_22), L4_19), 4
         else
-          do
-            do return 0, 0 end
-          end
+          L5_20 = 0
+          L6_21 = 0
+          return L5_20, L6_21
         end
       end
     end
   end
 end
-
-Uni2Ascii = function(l_2_0)
-  -- function num : 0_1
-  if l_2_0 == nil or l_2_0 == "" or l_2_0 == "\000" then
+DecodeBlob = L11_11
+function L11_11(A0_23)
+  if A0_23 == nil or A0_23 == "" or A0_23 == "\000" then
     return ""
   else
-    local l_2_1 = mp.utf16to8
-    local l_2_2 = l_2_0
-    do return l_2_1(l_2_2) end
-    -- DECOMPILER ERROR at PC14: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
+    return mp.utf16to8(A0_23)
   end
 end
-
-GetUserString = function(l_3_0)
-  -- function num : 0_2 , upvalues : l_0_0
-  local l_3_1 = (mp.readu_u32)(l_3_0, 1)
-  local l_3_2 = l_0_0.usheap_RVA + (mp.bitand)(l_3_1, 16777215)
-  local l_3_3 = (mp.readfile)((pe.foffset_rva)(l_3_2), 4)
-  local l_3_4, l_3_5 = DecodeBlob((mp.readu_u32)(l_3_3, 1))
-  if (l_3_5 ~= 1 and l_3_5 ~= 2 and l_3_5 ~= 4) or l_3_4 > 256 then
-    return ""
+Uni2Ascii = L11_11
+function L11_11(A0_24)
+  local L1_25, L2_26, L3_27, L4_28, L5_29, L6_30
+  L1_25 = mp
+  L1_25 = L1_25.readu_u32
+  L2_26 = A0_24
+  L3_27 = 1
+  L1_25 = L1_25(L2_26, L3_27)
+  L2_26 = _UPVALUE0_
+  L2_26 = L2_26.usheap_RVA
+  L3_27 = mp
+  L3_27 = L3_27.bitand
+  L4_28 = L1_25
+  L5_29 = 16777215
+  L3_27 = L3_27(L4_28, L5_29)
+  L2_26 = L2_26 + L3_27
+  L3_27 = mp
+  L3_27 = L3_27.readfile
+  L4_28 = pe
+  L4_28 = L4_28.foffset_rva
+  L5_29 = L2_26
+  L4_28 = L4_28(L5_29)
+  L5_29 = 4
+  L3_27 = L3_27(L4_28, L5_29)
+  L4_28 = DecodeBlob
+  L5_29 = mp
+  L5_29 = L5_29.readu_u32
+  L6_30 = L3_27
+  L6_30 = L5_29(L6_30, 1)
+  L5_29 = L4_28(L5_29, L6_30, L5_29(L6_30, 1))
+  if L5_29 ~= 1 and L5_29 ~= 2 and L5_29 ~= 4 or L4_28 > 256 then
+    L6_30 = ""
+    return L6_30
   end
-  local l_3_6 = (mp.readfile)((pe.foffset_rva)(l_3_2 + l_3_5), l_3_4)
-  local l_3_7 = Uni2Ascii
-  local l_3_8 = l_3_6
-  do return l_3_7(l_3_8) end
-  -- DECOMPILER ERROR at PC50: Confused about usage of register R8 for local variables in 'ReleaseLocals'
-
+  L6_30 = mp
+  L6_30 = L6_30.readfile
+  L6_30 = L6_30(pe.foffset_rva(L2_26 + L5_29), L4_28)
+  return Uni2Ascii(L6_30)
 end
-
-local l_0_11 = GetUserString((pe.mmap_va)((hstrlog[1]).VA - 18, 4))
-local l_0_12 = GetUserString((pe.mmap_va)((hstrlog[1]).VA - 13, 4))
-local l_0_13 = GetUserString((pe.mmap_va)((hstrlog[1]).VA - 8, 4))
-local l_0_14 = (string.gsub)(l_0_11, l_0_12, l_0_13)
-if (string.find)(l_0_14, "Initialize", 1, true) == nil then
+GetUserString = L11_11
+L11_11 = GetUserString
+L12_12 = pe
+L12_12 = L12_12.mmap_va
+L13_13 = hstrlog
+L13_13 = L13_13[1]
+L13_13 = L13_13.VA
+L13_13 = L13_13 - 18
+L14_14 = 4
+L14_14 = L12_12(L13_13, L14_14)
+L11_11 = L11_11(L12_12, L13_13, L14_14, L12_12(L13_13, L14_14))
+L12_12 = GetUserString
+L13_13 = pe
+L13_13 = L13_13.mmap_va
+L14_14 = hstrlog
+L14_14 = L14_14[1]
+L14_14 = L14_14.VA
+L14_14 = L14_14 - 13
+L14_14 = L13_13(L14_14, 4)
+L12_12 = L12_12(L13_13, L14_14, L13_13(L14_14, 4))
+L13_13 = GetUserString
+L14_14 = pe
+L14_14 = L14_14.mmap_va
+L14_14 = L14_14(hstrlog[1].VA - 8, 4)
+L13_13 = L13_13(L14_14, L14_14(hstrlog[1].VA - 8, 4))
+L14_14 = string
+L14_14 = L14_14.gsub
+L14_14 = L14_14(L11_11, L12_12, L13_13)
+if string.find(L14_14, "Initialize", 1, true) == nil then
   return mp.CLEAN
 end
 return mp.INFECTED
-

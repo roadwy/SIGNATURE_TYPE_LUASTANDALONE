@@ -1,39 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_DllOnFileBackedMountedDrive_Includes_Path_ObMpAttr 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if l_0_0 == nil or (string.len)(l_0_0) < 4 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.FILEPATH_QUERY_LOWERCASE
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+elseif L1_1 < 4 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (MpCommon.PathToWin32Path)(l_0_0)
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (MpCommon.GetMountedFileBackingFilePath)(l_0_1)
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = MpCommon
+L2_2 = L2_2.GetMountedFileBackingFilePath
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-;
-(mp.ReportLowfi)(l_0_2, 2536803289)
-local l_0_3 = (sysio.GetFileAttributes)((mp.getfilename)())
-local l_0_4 = (mp.bitand)(l_0_3, 2)
-local l_0_5 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH))
-if l_0_4 == 0 then
-  (mp.set_mpattribute)("Lua:Context/DllOnFileBackedMountedDrive")
-  if l_0_5:find("^\\device\\cdrom") ~= nil then
-    (mp.set_mpattribute)("Lua:Context/MaybeDllSideLoadingOnFileBackedMountedDrive")
+L3_3 = mp
+L3_3 = L3_3.ReportLowfi
+L3_3(L2_2, 2536803289)
+L3_3 = mp
+L3_3 = L3_3.get_contextdata
+L3_3 = L3_3(mp.CONTEXT_DATA_FILE_ATTRIBUTES)
+if mp.bitand(L3_3, 2) == 0 then
+  mp.set_mpattribute("Lua:Context/DllOnFileBackedMountedDrive")
+  if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSDEVICEPATH)):find("^\\device\\cdrom") ~= nil then
+    mp.set_mpattribute("Lua:Context/MaybeDllSideLoadingOnFileBackedMountedDrive")
   end
 else
-  ;
-  (mp.set_mpattribute)("Lua:Context/HiddenDllOnFileBackedMountedDrive")
-  if l_0_5:find("^\\device\\cdrom") ~= nil then
-    (mp.set_mpattribute)("Lua:Context/MaybeHiddenDllSideLoadingOnFileBackedMountedDrive")
+  mp.set_mpattribute("Lua:Context/HiddenDllOnFileBackedMountedDrive")
+  if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSDEVICEPATH)):find("^\\device\\cdrom") ~= nil then
+    mp.set_mpattribute("Lua:Context/MaybeHiddenDllSideLoadingOnFileBackedMountedDrive")
   end
 end
-if (MpCommon.QueryPersistContext)(l_0_2, "UdfExtractedBy7zip") or (MpCommon.QueryPersistContext)(l_0_2, "UdfExtractedByWinrar") then
-  (mp.set_mpattribute)("Lua:Context/DllonFileBackedMountedDriveFromArchive")
+if MpCommon.QueryPersistContext(L2_2, "UdfExtractedBy7zip") or MpCommon.QueryPersistContext(L2_2, "UdfExtractedByWinrar") then
+  mp.set_mpattribute("Lua:Context/DllonFileBackedMountedDriveFromArchive")
 end
 return mp.CLEAN
-

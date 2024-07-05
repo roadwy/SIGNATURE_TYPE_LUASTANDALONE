@@ -1,33 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_Lua_ContextualPetyaFile.A!rsm 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
   return mp.CLEAN
 end
-if (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) ~= true then
+if mp.get_contextdata(mp.CONTEXT_DATA_NEWLYCREATEDHINT) ~= true then
   return mp.CLEAN
 end
 if not peattributes.isdll and peattributes.no_exports then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 ~= "perfc.dat" then
+if mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)) ~= "perfc.dat" then
   return mp.CLEAN
 end
-local l_0_1, l_0_2 = (pe.get_exports)()
-if l_0_1 > 1 then
+if pe.get_exports() > 1 then
   return mp.CLEAN
 end
-if l_0_1 == 0 then
-  (mp.set_mpattribute)("MpRequestHookwowH")
+if pe.get_exports() == 0 then
   return mp.INFECTED
 end
-if (l_0_2[1]).ordinal ~= 1 then
+if pe.get_exports()[1].ordinal ~= 1 then
   return mp.CLEAN
 end
-;
-(mp.set_mpattribute)("MpRequestHookwowH")
 return mp.INFECTED
-

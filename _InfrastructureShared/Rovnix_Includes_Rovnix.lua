@@ -1,66 +1,49 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Rovnix_Includes_Rovnix 
-
--- params : ...
--- function num : 0
-local l_0_0 = function()
-  -- function num : 0_0
-  local l_1_0 = ((Kernel.GetDiskDevicePathAsString)())
-  local l_1_1 = nil
-  local l_1_2 = false
-  if l_1_0 then
-    for l_1_6,l_1_7 in pairs((Kernel.GetDeviceList)()) do
-      if (string.lower)(l_1_7.ObjectPath) == (string.lower)(l_1_0) then
-        do
-          do
-            local l_1_8 = (l_1_7.ParseDeviceChain)()
-            for l_1_12 in pairs(l_1_8) do
-              local l_1_13 = (l_1_12.GetDriverObject)()
-              local l_1_14 = (l_1_13.GetIrpAddress)("IRP_MJ_INTERNAL_DEVICE_CONTROL")
-              l_1_1 = (Kernel.RkPattScan)(l_1_14)
-              if l_1_1 and (string.find)(l_1_1.DetectionName, "/Rovnix", 1, true) then
-                do
-                  do
-                    l_1_2 = true
-                    do break end
-                    -- DECOMPILER ERROR at PC52: LeaveBlock: unexpected jumping out DO_STMT
-
-                    -- DECOMPILER ERROR at PC52: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC52: LeaveBlock: unexpected jumping out IF_STMT
-
-                  end
-                end
-              end
-            end
-            if l_1_2 then
-              break
-            end
-            -- DECOMPILER ERROR at PC57: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC57: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC57: LeaveBlock: unexpected jumping out IF_STMT
-
+local L0_0, L1_1
+function L0_0()
+  local L0_2, L1_3, L2_4, L3_5, L4_6, L5_7, L6_8, L7_9, L8_10, L9_11, L10_12, L11_13, L12_14, L13_15, L14_16
+  L0_2 = Kernel
+  L0_2 = L0_2.GetDiskDevicePathAsString
+  L0_2 = L0_2()
+  L1_3 = nil
+  L2_4 = false
+  if L0_2 then
+    L14_16 = L4_6()
+    for L6_8, L7_9 in L3_5(L4_6, L5_7, L6_8, L7_9, L8_10, L9_11, L10_12, L11_13, L12_14, L13_15, L14_16, L4_6()) do
+      L8_10 = string
+      L8_10 = L8_10.lower
+      L8_10 = L8_10(L9_11)
+      if L8_10 == L9_11 then
+        L8_10 = L7_9.ParseDeviceChain
+        L8_10 = L8_10()
+        for L12_14 in L9_11(L10_12) do
+          L13_15 = L12_14.GetDriverObject
+          L13_15 = L13_15()
+          L14_16 = L13_15.GetIrpAddress
+          L14_16 = L14_16("IRP_MJ_INTERNAL_DEVICE_CONTROL")
+          L1_3 = Kernel.RkPattScan(L14_16)
+          if L1_3 and string.find(L1_3.DetectionName, "/Rovnix", 1, true) then
+            L2_4 = true
+            break
           end
+        end
+        if L2_4 then
+          break
         end
       end
     end
   end
-  if l_1_2 then
-    return l_1_1
+  if L2_4 then
+    return L1_3
   else
-    return nil
+    return L3_5
   end
 end
-
-local l_0_1 = nil
-l_0_1 = l_0_0()
-if l_0_1 then
-  return l_0_1
+L1_1 = nil
+L1_1 = L0_0()
+if L1_1 then
+  return L1_1
 end
-l_0_1 = Infrastructure_ScanModules64()
-if l_0_1 then
-  return l_0_1
+L1_1 = Infrastructure_ScanModules64()
+if L1_1 then
+  return L1_1
 end
-

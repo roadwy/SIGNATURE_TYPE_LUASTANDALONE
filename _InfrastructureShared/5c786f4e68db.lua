@@ -1,18 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5c786f4e68db 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattribute)("pea_isdll") and (mp.get_mpattribute)("pea_hasexports") and (mp.get_mpattribute)("pea_no_tls") then
-    local l_0_0 = (mp.GetCertificateInfo)()
-    for l_0_4,l_0_5 in pairs(l_0_0) do
-      if l_0_5.Signers ~= nil then
-        return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("pea_isdll")
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L0_0 = L0_0("pea_hasexports")
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L0_0 = L0_0("pea_no_tls")
+    if L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.GetCertificateInfo
+      L0_0 = L0_0()
+      for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+        if _FORV_5_.Signers ~= nil then
+          return mp.CLEAN
+        end
       end
+      return mp.INFECTED
     end
-    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,21 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/277889056be2 
-
--- params : ...
--- function num : 0
-local l_0_0 = (hstrlog[1]).VA
-if (pe.isdynamic_va)(l_0_0) == false and (pe.isencrypted_va)(l_0_0 + 7) == false and (pe.isencrypted_va)(l_0_0 + 8) == false then
-  local l_0_1 = (pe.foffset_va)(l_0_0)
-  if l_0_1 ~= 4294967295 then
-    (mp.readprotection)(false)
-    local l_0_2 = (mp.readfile)(0, (mp.getfilesize)())
-    ;
-    (mp.writeu_u16)(l_0_2, l_0_1 + 8, 2027)
-    ;
-    (mp.vfo_add_buffer)(l_0_2, "[Obfuscator]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+local L0_0, L1_1, L2_2
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.VA
+L1_1 = pe
+L1_1 = L1_1.isdynamic_va
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == false then
+  L1_1 = pe
+  L1_1 = L1_1.isencrypted_va
+  L2_2 = L0_0 + 7
+  L1_1 = L1_1(L2_2)
+  if L1_1 == false then
+    L1_1 = pe
+    L1_1 = L1_1.isencrypted_va
+    L2_2 = L0_0 + 8
+    L1_1 = L1_1(L2_2)
+    if L1_1 == false then
+      L1_1 = pe
+      L1_1 = L1_1.foffset_va
+      L2_2 = L0_0
+      L1_1 = L1_1(L2_2)
+      if L1_1 ~= 4294967295 then
+        L2_2 = mp
+        L2_2 = L2_2.readprotection
+        L2_2(false)
+        L2_2 = mp
+        L2_2 = L2_2.readfile
+        L2_2 = L2_2(0, mp.getfilesize())
+        mp.writeu_u16(L2_2, L1_1 + 8, 2027)
+        mp.vfo_add_buffer(L2_2, "[Obfuscator]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+      end
+    end
   end
 end
-do
-  return mp.LOWFI
-end
-
+L1_1 = mp
+L1_1 = L1_1.LOWFI
+return L1_1

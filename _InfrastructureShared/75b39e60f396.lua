@@ -1,26 +1,70 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75b39e60f396 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[1]).utf8p1
-if not l_0_0 or l_0_0 == "" then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.utf8p1
+if not L0_0 or L0_0 == "" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (bm.get_current_process_startup_info)()
-if l_0_1 and l_0_1.integrity_level < MpCommon.SECURITY_MANDATORY_HIGH_RID then
-  local l_0_2 = (bm.get_imagepath)()
-  if l_0_2 then
-    l_0_2 = (string.lower)((MpCommon.PathToWin32Path)(l_0_2))
-    if l_0_2 and (not (mp.IsKnownFriendlyFile)(l_0_2, false, false) or (string.sub)(l_0_2, -15) == "\\powershell.exe" or (string.sub)(l_0_2, -8) == "\\cmd.exe") then
-      local l_0_3 = (sysio.QuerySymbolicLinkObject)("\\??\\globalroot\\device\\SystemPartition")
-      if l_0_3 then
-        local l_0_4 = (string.sub)(l_0_0, 1, -5)
-        local l_0_5 = (sysio.GetObjectDir)(l_0_4)
-        if l_0_5 then
-          for l_0_9,l_0_10 in pairs(l_0_5) do
-            if (string.find)(l_0_9, "Partition", 1, true) and (sysio.QuerySymbolicLinkObject)(l_0_4 .. "\\" .. l_0_9) == l_0_3 then
-              return mp.INFECTED
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+if L1_1 then
+  L2_2 = L1_1.integrity_level
+  L3_3 = MpCommon
+  L3_3 = L3_3.SECURITY_MANDATORY_HIGH_RID
+  if L2_2 < L3_3 then
+    L2_2 = bm
+    L2_2 = L2_2.get_imagepath
+    L2_2 = L2_2()
+    if L2_2 then
+      L3_3 = string
+      L3_3 = L3_3.lower
+      L4_4 = MpCommon
+      L4_4 = L4_4.PathToWin32Path
+      L5_5 = L2_2
+      L9_9 = L4_4(L5_5)
+      L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L4_4(L5_5))
+      L2_2 = L3_3
+      if L2_2 then
+        L3_3 = mp
+        L3_3 = L3_3.IsKnownFriendlyFile
+        L4_4 = L2_2
+        L5_5 = false
+        L3_3 = L3_3(L4_4, L5_5, L6_6)
+        if L3_3 then
+          L3_3 = string
+          L3_3 = L3_3.sub
+          L4_4 = L2_2
+          L5_5 = -15
+          L3_3 = L3_3(L4_4, L5_5)
+          if L3_3 ~= "\\powershell.exe" then
+            L3_3 = string
+            L3_3 = L3_3.sub
+            L4_4 = L2_2
+            L5_5 = -8
+            L3_3 = L3_3(L4_4, L5_5)
+          end
+        elseif L3_3 == "\\cmd.exe" then
+          L3_3 = sysio
+          L3_3 = L3_3.QuerySymbolicLinkObject
+          L4_4 = "\\??\\globalroot\\device\\SystemPartition"
+          L3_3 = L3_3(L4_4)
+          if L3_3 then
+            L4_4 = string
+            L4_4 = L4_4.sub
+            L5_5 = L0_0
+            L4_4 = L4_4(L5_5, L6_6, L7_7)
+            L5_5 = sysio
+            L5_5 = L5_5.GetObjectDir
+            L5_5 = L5_5(L6_6)
+            if L5_5 then
+              for L9_9, _FORV_10_ in L6_6(L7_7) do
+                if string.find(L9_9, "Partition", 1, true) and sysio.QuerySymbolicLinkObject(L4_4 .. "\\" .. L9_9) == L3_3 then
+                  return mp.INFECTED
+                end
+              end
             end
           end
         end
@@ -28,9 +72,6 @@ if l_0_1 and l_0_1.integrity_level < MpCommon.SECURITY_MANDATORY_HIGH_RID then
     end
   end
 end
-do
-  l_0_2 = mp
-  l_0_2 = l_0_2.CLEAN
-  return l_0_2
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

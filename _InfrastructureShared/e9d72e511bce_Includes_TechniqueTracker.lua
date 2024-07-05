@@ -1,12 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e9d72e511bce_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = GetRealPidForScenario("CMDHSTR")
-TrackPidAndTechnique(l_0_0, "T1562.001", "mptamper_mse7")
-if IsDetectionThresholdMet(l_0_0) then
+local L0_0
+L0_0 = GetRealPidForScenario
+L0_0 = L0_0("CMDHSTR")
+TrackPidAndTechnique(L0_0, "T1562.001", "mptamper_mse7")
+if IsDetectionThresholdMet(L0_0) then
   return mp.INFECTED
 end
 return mp.LOWFI
-

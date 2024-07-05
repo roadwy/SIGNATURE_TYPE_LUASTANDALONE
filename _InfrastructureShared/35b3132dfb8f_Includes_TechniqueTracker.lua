@@ -1,18 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3132dfb8f_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_1) do
-  local l_0_7 = (mp.bitand)(l_0_6.reason_ex, bm.RELATIONSHIP_INJECTION)
-  if l_0_7 == bm.RELATIONSHIP_INJECTION then
-    TrackPidAndTechniqueBM(l_0_6.ppid, "T1055.002", "processinjection_target_o")
-    ;
-    (bm.request_SMS)(l_0_6.ppid, "M")
-    ;
-    (bm.add_action)("SmsAsyncScanEvent", 1000)
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for _FORV_5_, _FORV_6_ in ipairs(L1_1) do
+  if mp.bitand(_FORV_6_.reason_ex, bm.RELATIONSHIP_INJECTION) == bm.RELATIONSHIP_INJECTION then
+    TrackPidAndTechniqueBM(_FORV_6_.ppid, "T1055.002", "processinjection_target_o")
+    bm.request_SMS(_FORV_6_.ppid, "M")
+    bm.add_action("SmsAsyncScanEvent", 1000)
   end
 end
 return mp.INFECTED
-

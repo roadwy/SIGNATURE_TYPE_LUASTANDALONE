@@ -1,25 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e14188db55b7 
-
--- params : ...
--- function num : 0
-if not peattributes.isdll then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.GetCertificateInfo)()
-for l_0_4,l_0_5 in pairs(l_0_0) do
-  if l_0_5.Signers ~= nil then
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+for _FORV_4_, _FORV_5_ in L1_1(L2_2) do
+  if _FORV_5_.Signers ~= nil then
     return mp.CLEAN
   end
 end
-if (this_sigattrlog[1]).matched and (this_sigattrlog[2]).matched then
-  local l_0_6 = (this_sigattrlog[1]).p1
-  local l_0_7 = (this_sigattrlog[2]).p1
-  if l_0_6 .. l_0_7 == "unsafe" then
-    return mp.INFECTED
+if L1_1 then
+  if L1_1 then
+    if L1_1 .. L2_2 == "unsafe" then
+      return mp.INFECTED
+    end
   end
 end
-do
-  return mp.LOWFI
-end
-
+return L1_1

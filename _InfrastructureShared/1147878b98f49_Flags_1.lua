@@ -1,12 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1147878b98f49_Flags_1 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT >= 5 and not (hstrlog[7]).matched then
+if mp.HSTR_WEIGHT >= 5 and not hstrlog[7].matched then
   return mp.INFECTED
 end
-;
-(mp.set_mpattribute)("HSTR:TrojanProxy:Win32/Banker.BD")
+mp.set_mpattribute("HSTR:TrojanProxy:Win32/Banker.BD")
 return mp.LOWFI
-

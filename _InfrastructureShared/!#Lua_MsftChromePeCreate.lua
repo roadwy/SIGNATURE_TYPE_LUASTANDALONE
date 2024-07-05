@@ -1,18 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MsftChromePeCreate 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = {}
-l_0_0["chrome.exe"] = true
-if not l_0_0[(string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))] then
+L0_0 = {}
+L0_0["chrome.exe"] = true
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L1_1(mp.CONTEXT_DATA_PROCESSNAME)
+if L1_1 and not L0_0[string.lower(L1_1)] then
   return mp.CLEAN
 end
 return mp.LOWFI
-

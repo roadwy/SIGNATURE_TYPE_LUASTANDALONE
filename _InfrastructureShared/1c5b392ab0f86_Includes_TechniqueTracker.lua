@@ -1,33 +1,72 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c5b392ab0f86_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil and (this_sigattrlog[3]).matched then
-  local l_0_0 = (string.lower)((this_sigattrlog[2]).utf8p2)
-  local l_0_1 = l_0_0:match("([^\\]+)$")
-  local l_0_2, l_0_3 = (bm.get_process_relationships)()
-  for l_0_7,l_0_8 in ipairs(l_0_3) do
-    local l_0_9 = (string.lower)((MpCommon.PathToWin32Path)(l_0_8.image_path))
-    if l_0_8.reason == bm.RELATIONSHIP_CREATED and (string.find)(l_0_9, l_0_1, 1, true) then
-      local l_0_10 = (MpCommon.QueryPersistContext)(l_0_9, "PsExecServiceNonStandardName")
-      if l_0_10 then
-        local l_0_11, l_0_12 = (bm.get_process_relationships)(l_0_8.ppid)
-        for l_0_16,l_0_17 in ipairs(l_0_12) do
-          if l_0_17.reason == bm.RELATIONSHIP_CREATED then
-            (bm.add_related_process)(l_0_17.ppid)
-            TrackPidAndTechniqueBM(l_0_17.ppid, "T1021.002", "psexec_remoteservice_created_c")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = this_sigattrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = string
+      L0_0 = L0_0.lower
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L1_1 = L1_1.utf8p2
+      L0_0 = L0_0(L1_1)
+      L2_2 = L0_0
+      L1_1 = L0_0.match
+      L3_3 = "([^\\]+)$"
+      L1_1 = L1_1(L2_2, L3_3)
+      L2_2 = bm
+      L2_2 = L2_2.get_process_relationships
+      L3_3 = L2_2()
+      for L7_7, L8_8 in L4_4(L5_5) do
+        L9_9 = string
+        L9_9 = L9_9.lower
+        L10_10 = MpCommon
+        L10_10 = L10_10.PathToWin32Path
+        L11_11 = L8_8.image_path
+        L12_12 = L10_10(L11_11)
+        L9_9 = L9_9(L10_10, L11_11, L12_12, L10_10(L11_11))
+        L10_10 = L8_8.reason
+        L11_11 = bm
+        L11_11 = L11_11.RELATIONSHIP_CREATED
+        if L10_10 == L11_11 then
+          L10_10 = string
+          L10_10 = L10_10.find
+          L11_11 = L9_9
+          L12_12 = L1_1
+          L10_10 = L10_10(L11_11, L12_12, 1, true)
+          if L10_10 then
+            L10_10 = MpCommon
+            L10_10 = L10_10.QueryPersistContext
+            L11_11 = L9_9
+            L12_12 = "PsExecServiceNonStandardName"
+            L10_10 = L10_10(L11_11, L12_12)
+            if L10_10 then
+              L11_11 = bm
+              L11_11 = L11_11.get_process_relationships
+              L12_12 = L8_8.ppid
+              L12_12 = L11_11(L12_12)
+              for _FORV_16_, _FORV_17_ in ipairs(L12_12) do
+                if _FORV_17_.reason == bm.RELATIONSHIP_CREATED then
+                  bm.add_related_process(_FORV_17_.ppid)
+                  TrackPidAndTechniqueBM(_FORV_17_.ppid, "T1021.002", "psexec_remoteservice_created_c")
+                end
+              end
+              TrackPidAndTechniqueBM(L8_8.ppid, "T1021.002", "remoteservice_svc_c")
+              return mp.INFECTED
+            end
           end
         end
-        TrackPidAndTechniqueBM(l_0_8.ppid, "T1021.002", "remoteservice_svc_c")
-        return mp.INFECTED
       end
     end
   end
 end
-do
-  l_0_0 = mp
-  l_0_0 = l_0_0.CLEAN
-  return l_0_0
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,29 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4ab33b86a646_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-    local l_0_0, l_0_1, l_0_2 = nil
-  end
-  -- DECOMPILER ERROR at PC18: Confused about usage of register: R0 in 'UnsetPending'
-
-  if StringEndsWith(l_0_0, ".exe") then
-    local l_0_3 = nil
-    local l_0_4 = contains
-    local l_0_5 = l_0_3
-    l_0_4 = l_0_4(l_0_5, {"installer", "program files"})
-    if not l_0_4 then
-      l_0_4 = mp
-      l_0_4 = l_0_4.INFECTED
-      return l_0_4
-    end
-  end
-  do
-    return mp.CLEAN
-  end
+local L0_0
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p1 ~= nil then
+  L0_0 = string.lower(this_sigattrlog[2].utf8p1)
 end
-
+if StringEndsWith(L0_0, ".exe") and not contains(L0_0, {
+  "installer",
+  "program files"
+}) then
+  return mp.INFECTED
+end
+return mp.CLEAN

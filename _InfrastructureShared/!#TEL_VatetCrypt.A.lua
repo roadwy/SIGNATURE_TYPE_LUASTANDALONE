@@ -1,48 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_VatetCrypt.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 1280 or l_0_0 < 48 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 1280 or L0_0 < 48 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = {}
--- DECOMPILER ERROR at PC17: No list found for R1 , SetList fails
-
--- DECOMPILER ERROR at PC18: Overwrote pending register: R2 in 'AssignReg'
-
-local l_0_2 = 252
--- DECOMPILER ERROR at PC19: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC21: Overwrote pending register: R4 in 'AssignReg'
-
--- DECOMPILER ERROR at PC23: Overwrote pending register: R5 in 'AssignReg'
-
-local l_0_3 = ((232).bitxor)((nil)[1], 0)
--- DECOMPILER ERROR at PC27: Overwrote pending register: R6 in 'AssignReg'
-
-for l_0_7 = 2, l_0_2, 0 do
-  local l_0_8 = headerpage[l_0_7]
-  local l_0_9 = l_0_3
-  if l_0_1[l_0_7] == nil or l_0_9 ~= l_0_3 then
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7
+}
+L2_2 = 252
+L3_3 = 232
+L2_2 = #L1_1
+L3_3 = mp
+L3_3 = L3_3.bitxor
+L3_3 = L3_3(L4_4, L5_5)
+for L7_7 = 2, L2_2 do
+  L9_9 = L3_3
+  if L1_1[L7_7] ~= nil then
+    L9_9 = mp.bitxor(L8_8, L1_1[L7_7])
+  end
+  if L9_9 ~= L3_3 then
     return mp.CLEAN
   else
+    L3_3 = L9_9
   end
 end
-local l_0_10 = l_0_3
-local l_0_11 = {}
--- DECOMPILER ERROR at PC52: No list found for R5 , SetList fails
-
--- DECOMPILER ERROR at PC53: Overwrote pending register: R6 in 'AssignReg'
-
-for l_0_15 = "\"", l_0_0 do
-  (table.insert)(l_0_11, "%" .. (string.format)("%02X", (mp.bitxor)(headerpage[l_0_15], l_0_10)))
+for L9_9 = 1, L0_0 do
+  table.insert(L5_5, "%" .. string.format("%02X", (mp.bitxor(headerpage[L9_9], L4_4))))
 end
-;
-(table.insert)(l_0_11, "\"")
-local l_0_16 = (table.concat)(l_0_11)
-;
-(mp.vfo_add_buffer)(l_0_16, "[Vatet_Crypt_v1]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-return mp.INFECTED
-
+L6_6(L7_7, L8_8)
+L9_9 = "[Vatet_Crypt_v1]"
+L7_7(L8_8, L9_9, mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+return L7_7

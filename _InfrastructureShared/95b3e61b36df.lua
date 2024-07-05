@@ -1,23 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/95b3e61b36df 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-for l_0_4 = 1, mp.SIGATTR_LOG_SZ do
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC6: Confused about usage of register: R4 in 'UnsetPending'
-
-  if (sigattr_tail[R4_PC6]).matched and (sigattr_tail[R4_PC6]).attribute == 16401 then
-    l_0_1 = (sigattr_tail[R4_PC6]).utf8p1
-    if l_0_1 ~= nil then
-      l_0_1 = (mp.ContextualExpandEnvironmentVariables)(l_0_1)
-      l_0_1 = (string.lower)(l_0_1)
-      if l_0_1 ~= nil and (string.find)(l_0_1, "\\microsoft office", 1, true) == nil and (string.find)(l_0_1, "\\windowsapps\\microsoft.office.desktop", 1, true) == nil then
+local L0_0, L3_1, L4_2
+for _FORV_4_ = 1, L4_2.SIGATTR_LOG_SZ do
+  if sigattr_tail[_FORV_4_].matched and sigattr_tail[_FORV_4_].attribute == 16401 then
+    L0_0 = sigattr_tail[_FORV_4_].utf8p1
+    if L0_0 ~= nil then
+      L0_0 = mp.ContextualExpandEnvironmentVariables(L0_0)
+      L0_0 = string.lower(L0_0)
+      if L0_0 ~= nil and string.find(L0_0, "\\microsoft office", 1, true) == nil and string.find(L0_0, "\\windowsapps\\microsoft.office.desktop", 1, true) == nil then
         return mp.INFECTED
       end
     end
   end
 end
-return mp.CLEAN
-
+return L3_1

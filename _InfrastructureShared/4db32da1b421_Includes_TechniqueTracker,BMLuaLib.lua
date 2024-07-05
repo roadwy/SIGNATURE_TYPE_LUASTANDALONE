@@ -1,0 +1,2 @@
+addChildrenAsThreat()
+return mp.INFECTED

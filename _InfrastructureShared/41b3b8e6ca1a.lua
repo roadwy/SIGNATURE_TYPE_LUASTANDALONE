@@ -1,42 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3b8e6ca1a 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched then
-  local l_0_0, l_0_2 = nil, nil
+local L0_0, L1_1, L2_2, L3_3
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L0_0 = L2_2.timestamp
 else
-  do
-    do return mp.CLEAN end
-    if (this_sigattrlog[3]).matched then
-      local l_0_1, l_0_3 = , (this_sigattrlog[3]).timestamp
-    else
-      do
-        do return mp.CLEAN end
-        -- DECOMPILER ERROR at PC24: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC24: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC26: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC26: Confused about usage of register: R0 in 'UnsetPending'
-
-        if l_0_3 < l_0_1 or l_0_3 - l_0_1 > 50000000 then
-          return mp.CLEAN
-        end
-        local l_0_4 = nil
-        if MpCommon.SECURITY_MANDATORY_HIGH_RID < ((bm.get_current_process_startup_info)()).integrity_level then
-          return mp.CLEAN
-        end
-        local l_0_5 = nil
-        if ((MpCommon.GetProcessElevationAndIntegrityLevel)((this_sigattrlog[3]).ppid)).IntegrityLevel == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
-          return mp.INFECTED
-        end
-        return mp.CLEAN
-      end
-    end
-  end
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L1_1 = L2_2.timestamp
+else
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+if not (L0_0 > L1_1) then
+  L2_2 = L1_1 - L0_0
+elseif L2_2 > 50000000 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = bm
+L2_2 = L2_2.get_current_process_startup_info
+L2_2 = L2_2()
+L3_3 = L2_2.integrity_level
+if L3_3 > MpCommon.SECURITY_MANDATORY_HIGH_RID then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = this_sigattrlog
+L3_3 = L3_3[3]
+L3_3 = L3_3.ppid
+if MpCommon.GetProcessElevationAndIntegrityLevel(L3_3).IntegrityLevel == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
+  return mp.INFECTED
+end
+return mp.CLEAN

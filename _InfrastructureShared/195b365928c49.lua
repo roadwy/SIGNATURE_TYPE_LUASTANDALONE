@@ -1,18 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/195b365928c49 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[11]).matched then
-  local l_0_0, l_0_1 = (string.match)((this_sigattrlog[11]).ppid, "pid:(%w+),ProcessStart:(%w+)")
-  local l_0_2 = tonumber(l_0_0)
-  local l_0_3 = tonumber(l_0_1)
-  local l_0_4, l_0_5 = (mp.bsplit)(l_0_3, 32)
-  local l_0_6 = (string.format)("ppids:{{%d,%d,%d}}\000", l_0_2, l_0_4, l_0_5)
-  ;
-  (mp.TriggerScanResource)("ems", l_0_6)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = this_sigattrlog
+L0_0 = L0_0[11]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.match
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[11]
+  L1_1 = L1_1.ppid
+  L2_2 = "pid:(%w+),ProcessStart:(%w+)"
+  L1_1 = L0_0(L1_1, L2_2)
+  L2_2 = tonumber
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3)
+  L3_3 = tonumber
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4)
+  L4_4 = mp
+  L4_4 = L4_4.bsplit
+  L5_5 = L3_3
+  L6_6 = 32
+  L5_5 = L4_4(L5_5, L6_6)
+  L6_6 = string
+  L6_6 = L6_6.format
+  L6_6 = L6_6("ppids:{{%d,%d,%d}}\000", L2_2, L4_4, L5_5)
+  mp.TriggerScanResource("ems", L6_6)
 end
-do
-  return mp.INFECTED
-end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

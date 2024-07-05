@@ -1,115 +1,84 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/DefenderTamperingRestore_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-Infrastructure_RestoreNonUxWDRootConfig = function()
-  -- function num : 0_0
+function Infrastructure_RestoreNonUxWDRootConfig()
   Infrastructure_RemoveDefenderDAVASPolicyKey()
   Infrastructure_RemoveDefenderDAVASPrefKey()
 end
-
-Infrastructure_RestoreNonUxRealTimeProtections = function()
-  -- function num : 0_1
-  local l_2_0 = "hklm\\software\\microsoft\\windows defender\\real-time protection"
-  local l_2_1 = "hklm\\software\\policies\\microsoft\\windows defender\\real-time protection"
-  do
-    local l_2_2 = {}
-    -- DECOMPILER ERROR at PC8: No list found for R2 , SetList fails
-
-    -- DECOMPILER ERROR at PC9: Overwrote pending register: R3 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC10: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC11: Overwrote pending register: R5 in 'AssignReg'
-
-    ;
-    ("DisableBehaviorMonitoring")("DisableIOAVProtection", "DisableOnAccessProtection")
-    Infrastructure_DelRegKeyValuesIfExist(l_2_1, l_2_2)
-    -- WARNING: undefined locals caused missing assignments!
-  end
+function Infrastructure_RestoreNonUxRealTimeProtections()
+  local L0_0, L1_1, L2_2
+  L0_0 = "hklm\\software\\microsoft\\windows defender\\real-time protection"
+  L1_1 = "hklm\\software\\policies\\microsoft\\windows defender\\real-time protection"
+  L2_2 = {
+    "DisableBehaviorMonitoring",
+    "DisableIOAVProtection",
+    "DisableOnAccessProtection",
+    "DisableScanOnRealtimeEnable",
+    "DisableScriptScanning"
+  }
+  Infrastructure_DelRegKeyValuesIfExist(L0_0, L2_2)
+  Infrastructure_DelRegKeyValuesIfExist(L1_1, L2_2)
 end
-
-Infrastructure_RestoreNonUxThreatActions = function()
-  -- function num : 0_2
-  local l_3_0 = "hklm\\software\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
-  local l_3_1 = "hklm\\software\\policies\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
-  local l_3_2 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager\\ThreatSeverityDefaultAction"
-  local l_3_3 = {}
-  -- DECOMPILER ERROR at PC8: No list found for R3 , SetList fails
-
-  -- DECOMPILER ERROR at PC9: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC10: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC11: Overwrote pending register: R6 in 'AssignReg'
-
-  ;
-  ("1")("2", "4")
-  Infrastructure_DelRegKeyValuesIfExist(l_3_1, l_3_3)
-  Infrastructure_DelRegKeyValuesIfExist(l_3_2, l_3_3)
-  local l_3_4 = "hklm\\software\\microsoft\\windows defender\\threats\\ThreatTypeDefaultAction"
-  local l_3_5 = "hklm\\software\\policies\\microsoft\\windows defender\\threats\\ThreatTypeDefaultAction"
-  do
-    local l_3_6 = {}
-    -- DECOMPILER ERROR at PC24: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC28: No list found for R6 , SetList fails
-
-    -- DECOMPILER ERROR at PC29: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC30: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC31: Overwrote pending register: R9 in 'AssignReg'
-
-    ;
-    ("5")("1", "2")
-    Infrastructure_DelRegKeyValuesIfExist(l_3_5, l_3_6)
-    -- WARNING: undefined locals caused missing assignments!
-  end
+function Infrastructure_RestoreNonUxThreatActions()
+  local L0_3, L1_4, L2_5, L3_6, L4_7, L5_8, L6_9
+  L0_3 = "hklm\\software\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
+  L1_4 = "hklm\\software\\policies\\microsoft\\windows defender\\threats\\ThreatSeverityDefaultAction"
+  L2_5 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager\\ThreatSeverityDefaultAction"
+  L3_6 = {
+    L4_7,
+    L5_8,
+    L6_9,
+    "5"
+  }
+  L4_7 = "1"
+  L5_8 = "2"
+  L6_9 = "4"
+  L4_7 = Infrastructure_DelRegKeyValuesIfExist
+  L5_8 = L0_3
+  L6_9 = L3_6
+  L4_7(L5_8, L6_9)
+  L4_7 = Infrastructure_DelRegKeyValuesIfExist
+  L5_8 = L1_4
+  L6_9 = L3_6
+  L4_7(L5_8, L6_9)
+  L4_7 = Infrastructure_DelRegKeyValuesIfExist
+  L5_8 = L2_5
+  L6_9 = L3_6
+  L4_7(L5_8, L6_9)
+  L4_7 = "hklm\\software\\microsoft\\windows defender\\threats\\ThreatTypeDefaultAction"
+  L5_8 = "hklm\\software\\policies\\microsoft\\windows defender\\threats\\ThreatTypeDefaultAction"
+  L6_9 = {
+    "0",
+    "1",
+    "2",
+    "3"
+  }
+  Infrastructure_DelRegKeyValuesIfExist(L4_7, L6_9)
+  Infrastructure_DelRegKeyValuesIfExist(L5_8, L6_9)
 end
-
-Infrastructure_RestoreNonUxSpynet = function()
-  -- function num : 0_3
-  local l_4_0 = "hklm\\software\\microsoft\\windows defender\\spynet"
-  local l_4_1 = "hklm\\software\\policies\\microsoft\\windows defender\\spynet"
-  local l_4_2 = {}
-  -- DECOMPILER ERROR at PC4: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC5: Overwrote pending register: R3 in 'AssignReg'
-
-  ;
-  ("DisableBlockAtFirstSeen")(l_4_0, l_4_2)
-  Infrastructure_DelRegKeyValuesIfExist(l_4_1, l_4_2)
+function Infrastructure_RestoreNonUxSpynet()
+  local L0_10, L1_11, L2_12
+  L0_10 = "hklm\\software\\microsoft\\windows defender\\spynet"
+  L1_11 = "hklm\\software\\policies\\microsoft\\windows defender\\spynet"
+  L2_12 = {
+    "DisableBlockAtFirstSeen"
+  }
+  Infrastructure_DelRegKeyValuesIfExist(L0_10, L2_12)
+  Infrastructure_DelRegKeyValuesIfExist(L1_11, L2_12)
 end
-
-Infrastructure_RestoreNonUxPolicyManager = function()
-  -- function num : 0_4
-  local l_5_0 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager"
-  do
-    local l_5_1 = {}
-    -- DECOMPILER ERROR at PC6: No list found for R1 , SetList fails
-
-    -- DECOMPILER ERROR at PC7: Overwrote pending register: R2 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC8: Overwrote pending register: R3 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC9: Overwrote pending register: R4 in 'AssignReg'
-
-    ;
-    ("AllowBehaviorMonitoring")("AllowIOAVProtection", "AllowOnAccessProtection")
-    -- WARNING: undefined locals caused missing assignments!
-  end
+function Infrastructure_RestoreNonUxPolicyManager()
+  local L0_13, L1_14
+  L0_13 = "hklm\\software\\policies\\microsoft\\windows defender\\policy manager"
+  L1_14 = {
+    "AllowBehaviorMonitoring",
+    "AllowIOAVProtection",
+    "AllowOnAccessProtection",
+    "AllowScriptScanning"
+  }
+  Infrastructure_DelRegKeyValuesIfExist(L0_13, L1_14)
 end
-
-Infrastructure_RestoreNonUxControlledWDDefaults = function()
-  -- function num : 0_5
+function Infrastructure_RestoreNonUxControlledWDDefaults()
   Infrastructure_RestoreNonUxWDRootConfig()
   Infrastructure_RestoreNonUxRealTimeProtections()
   Infrastructure_RestoreNonUxThreatActions()
   Infrastructure_RestoreNonUxSpynet()
   Infrastructure_RestoreNonUxPolicyManager()
 end
-
 Infrastructure_RestoreNonUxControlledWDDefaults()
-

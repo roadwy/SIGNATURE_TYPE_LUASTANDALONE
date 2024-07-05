@@ -1,45 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_Linux_WebServerFileDrop.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_FULL)
-local l_0_1 = false
-local l_0_2 = (MpCommon.GetPersistContextNoPath)("webserver_conf_root")
-if l_0_2 ~= nil and #l_0_2 > 0 then
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    if (string.match)(l_0_0, l_0_7) then
-      l_0_1 = true
-      break
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.FILEPATH_QUERY_FULL
+L0_0 = L0_0(L1_1)
+L1_1 = false
+L2_2 = MpCommon
+L2_2 = L2_2.GetPersistContextNoPath
+L2_2 = L2_2(L3_3)
+if L2_2 ~= nil then
+  if L3_3 > 0 then
+    for L6_6, L7_7 in L3_3(L4_4) do
+      L8_8 = string
+      L8_8 = L8_8.match
+      L8_8 = L8_8(L0_0, L7_7)
+      if L8_8 then
+        L1_1 = true
+        break
+      end
     end
   end
-else
-  do
-    if (string.match)(l_0_0, "/var/www/") then
-      l_0_1 = true
-    end
-    if l_0_1 then
-      local l_0_8 = {}
-      -- DECOMPILER ERROR at PC46: No list found for R3 , SetList fails
-
-      -- DECOMPILER ERROR at PC47: Overwrote pending register: R4 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC48: Overwrote pending register: R5 in 'AssignReg'
-
-      for l_0_12,l_0_13 in ("/run/nginx.pid")("/run/lighttpd.pid") do
-        if (sysio.IsFileExists)(l_0_13) then
-          return mp.INFECTED
-        end
-      end
-    end
-    do
-      do
-        -- DECOMPILER ERROR at PC63: Overwrote pending register: R3 in 'AssignReg'
-
-        do return l_0_8 end
-        -- WARNING: undefined locals caused missing assignments!
-      end
+elseif L3_3 then
+  L1_1 = true
+end
+if L1_1 then
+  L7_7 = "/run/httpd/httpd.pid"
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if sysio.IsFileExists(L8_8) then
+      return mp.INFECTED
     end
   end
 end
-
+return L3_3

@@ -1,15 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/97d7d2f96a41 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-;
-(table.insert)(l_0_0, "sam")
-;
-(MpCommon.SetPersistContextNoPath)("DumpHive.A!sam", l_0_0, 300)
-if (MpCommon.GetPersistContextCountNoPath)("DumpHive.A!security") > 0 or (MpCommon.GetPersistContextCountNoPath)("DumpHive.A!system") > 0 then
+local L0_0
+L0_0 = {}
+table.insert(L0_0, "sam")
+MpCommon.SetPersistContextNoPath("DumpHive.A!sam", L0_0, 300)
+if MpCommon.GetPersistContextCountNoPath("DumpHive.A!security") > 0 or 0 < MpCommon.GetPersistContextCountNoPath("DumpHive.A!system") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

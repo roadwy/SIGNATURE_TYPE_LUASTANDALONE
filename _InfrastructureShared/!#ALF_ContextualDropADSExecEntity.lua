@@ -1,28 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_ContextualDropADSExecEntity 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if (l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE) and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-  if (string.find)(l_0_1, "%w+[:]%w+%.%w+$") ~= nil then
-    local l_0_2 = {}
-    l_0_2[".cpl"] = ""
-    l_0_2[".exe"] = ""
-    l_0_2[".dll"] = ""
-    l_0_2[".scr"] = ""
-    l_0_2[".pif"] = ""
-    l_0_2[".jse"] = ""
-    l_0_2[".vbs"] = ""
-    l_0_2[".vbe"] = ""
-    l_0_2[".ps1"] = ""
-    if l_0_2[(string.lower)((string.sub)(l_0_1, -4))] then
-      return mp.INFECTED
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L1_1 = L1_1(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+  if L1_1 == true then
+    L1_1 = mp
+    L1_1 = L1_1.get_contextdata
+    L1_1 = L1_1(mp.CONTEXT_DATA_FILENAME)
+    if string.find(L1_1, "%w+[:]%w+%.%w+$") ~= nil then
+      if ({
+        [".cpl"] = "",
+        [".exe"] = "",
+        [".dll"] = "",
+        [".scr"] = "",
+        [".pif"] = "",
+        [".jse"] = "",
+        [".vbs"] = "",
+        [".vbe"] = "",
+        [".ps1"] = ""
+      })[string.lower(string.sub(L1_1, -4))] then
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

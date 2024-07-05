@@ -1,18 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a9b327b1cdb5_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 ~= nil and l_0_0.ppid ~= nil then
-  TrackPidAndTechniqueBM(l_0_0.ppid, "T1112", "revil_malware", 28800)
-  local l_0_1, l_0_2 = (bm.get_process_relationships)()
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    TrackPidAndTechniqueBM(l_0_7.ppid, "T1112", "revil_child_malware", 28800)
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.ppid
+  if L1_1 ~= nil then
+    L1_1 = TrackPidAndTechniqueBM
+    L2_2 = L0_0.ppid
+    L1_1(L2_2, "T1112", "revil_malware", 28800)
+    L1_1 = bm
+    L1_1 = L1_1.get_process_relationships
+    L2_2 = L1_1()
+    for _FORV_6_, _FORV_7_ in ipairs(L2_2) do
+      TrackPidAndTechniqueBM(_FORV_7_.ppid, "T1112", "revil_child_malware", 28800)
+    end
+    return mp.INFECTED
   end
-  return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

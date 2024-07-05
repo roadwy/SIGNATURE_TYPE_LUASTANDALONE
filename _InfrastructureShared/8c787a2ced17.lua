@@ -1,76 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8c787a2ced17 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC8: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (hstrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  else
-  end
-  -- DECOMPILER ERROR at PC34: Confused about usage of register: R0 in 'UnsetPending'
-
-  do
-    if not (pe.isdynamic_va)((hstrlog[2]).VA - 32) and (peattributes.isexe or peattributes.ismsil) and pehdr.NumberOfSections < 5 then
-      local l_0_4 = nil
-      for l_0_8 = 1, pehdr.NumberOfSections do
-        local l_0_5 = (pe.foffset_va)((hstrlog[2]).VA - 32)
-        -- DECOMPILER ERROR at PC43: Confused about usage of register: R5 in 'UnsetPending'
-
-        if (pe.contains_va)(R5_PC43, l_0_4) then
-          (mp.readprotection)(false)
-          local l_0_10 = (pesecs[R5_PC43]).SizeOfRawData - (l_0_5 - (pesecs[R5_PC43]).PointerToRawData)
-          -- DECOMPILER ERROR at PC72: Overwrote pending register: R7 in 'AssignReg'
-
-          -- DECOMPILER ERROR at PC79: Overwrote pending register: R7 in 'AssignReg'
-
-          if (pe.isencrypted_va)(l_0_4) then
-            local l_0_11 = nil
-            local l_0_12 = 0
-            -- DECOMPILER ERROR at PC83: Confused about usage of register: R9 in 'UnsetPending'
-
-            for l_0_16 = 2048, 2048 + 8 do
-              local l_0_13 = nil
-              -- DECOMPILER ERROR at PC89: Confused about usage of register: R13 in 'UnsetPending'
-
-              if (string.byte)(l_0_11, R13_PC89 + 1) < 42 or (string.byte)(l_0_11, R13_PC89 + 1) > 122 then
-                l_0_12 = l_0_12 + 1
-              else
-                break
-              end
-            end
-            do
-              do
-                -- DECOMPILER ERROR at PC112: Confused about usage of register: R9 in 'UnsetPending'
-
-                -- DECOMPILER ERROR at PC117: Confused about usage of register: R9 in 'UnsetPending'
-
-                if l_0_12 > 0 then
-                  (mp.vfo_add_buffer)((string.sub)(l_0_11, 0, l_0_13) .. (string.sub)(l_0_11, l_0_13 + (l_0_12) + 1), "[b64mz]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-                else
-                  ;
-                  (mp.vfo_add_buffer)(l_0_11, "[b64mz]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-                end
-                do return mp.CLEAN end
-                -- DECOMPILER ERROR at PC136: LeaveBlock: unexpected jumping out DO_STMT
-
-                -- DECOMPILER ERROR at PC136: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC136: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC136: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC136: LeaveBlock: unexpected jumping out IF_STMT
-
-              end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.VA
+  L0_0 = L1_1 - 16
+else
+  L1_1 = hstrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.VA
+  L0_0 = L1_1 - 32
+end
+L1_1 = pe
+L1_1 = L1_1.isdynamic_va
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L1_1 = peattributes
+  L1_1 = L1_1.isexe
+  if not L1_1 then
+    L1_1 = peattributes
+    L1_1 = L1_1.ismsil
+  elseif L1_1 then
+    L1_1 = pehdr
+    L1_1 = L1_1.NumberOfSections
+    if L1_1 < 5 then
+      L1_1 = pe
+      L1_1 = L1_1.foffset_va
+      L1_1 = L1_1(L2_2)
+      for L5_5 = 1, L3_3.NumberOfSections do
+        L6_6 = pe
+        L6_6 = L6_6.contains_va
+        L7_7 = L5_5
+        L8_8 = L0_0
+        L6_6 = L6_6(L7_7, L8_8)
+        if L6_6 then
+          L6_6 = pesecs
+          L6_6 = L6_6[L5_5]
+          L6_6 = L6_6.SizeOfRawData
+          L7_7 = pesecs
+          L7_7 = L7_7[L5_5]
+          L7_7 = L7_7.PointerToRawData
+          L7_7 = L1_1 - L7_7
+          L6_6 = L6_6 - L7_7
+          L7_7 = mp
+          L7_7 = L7_7.readprotection
+          L8_8 = false
+          L7_7(L8_8)
+          L7_7 = nil
+          L8_8 = pe
+          L8_8 = L8_8.isencrypted_va
+          L9_9 = L0_0
+          L8_8 = L8_8(L9_9)
+          if L8_8 then
+            L8_8 = pe
+            L8_8 = L8_8.mmap_va
+            L9_9 = L0_0
+            L8_8 = L8_8(L9_9, L6_6)
+            L7_7 = L8_8
+          else
+            L8_8 = mp
+            L8_8 = L8_8.readfile
+            L9_9 = L1_1
+            L8_8 = L8_8(L9_9, L6_6)
+            L7_7 = L8_8
+          end
+          L8_8 = 0
+          L9_9 = 2048
+          for _FORV_13_ = L9_9, L9_9 + 8 do
+            if string.byte(L7_7, _FORV_13_ + 1) < 42 or string.byte(L7_7, _FORV_13_ + 1) > 122 then
+              L8_8 = L8_8 + 1
+            else
+              break
             end
           end
+          if L8_8 > 0 then
+            mp.vfo_add_buffer(string.sub(L7_7, 0, L9_9) .. string.sub(L7_7, L9_9 + L8_8 + 1), "[b64mz]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+          else
+            mp.vfo_add_buffer(L7_7, "[b64mz]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+          end
+          return mp.CLEAN
         end
       end
     end
-    return mp.CLEAN
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

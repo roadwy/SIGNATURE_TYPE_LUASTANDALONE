@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/23a9ca6794ae 
-
--- params : ...
--- function num : 0
-if (nri.IsResponse)() == false then
+if nri.IsResponse() == false then
   return mp.INFECTED
 end
 return mp.CLEAN
-

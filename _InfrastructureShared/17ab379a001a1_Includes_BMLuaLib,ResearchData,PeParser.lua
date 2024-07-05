@@ -1,75 +1,138 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/17ab379a001a1_Includes_BMLuaLib,ResearchData,PeParser 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC23: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[2]).matched or (this_sigattrlog[3]).matched then
-      local l_0_1 = (this_sigattrlog[2]).utf8p2
-    end
-    -- DECOMPILER ERROR at PC39: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if not (this_sigattrlog[4]).matched or (this_sigattrlog[5]).matched then
-        local l_0_2 = (this_sigattrlog[4]).utf8p2
-      end
-      -- DECOMPILER ERROR at PC55: Overwrote pending register: R0 in 'AssignReg'
-
-      do
-        if not (this_sigattrlog[6]).matched or (this_sigattrlog[7]).matched then
-          local l_0_3 = (this_sigattrlog[6]).utf8p2
-        end
-        -- DECOMPILER ERROR at PC71: Overwrote pending register: R0 in 'AssignReg'
-
-        do
-          if not (this_sigattrlog[8]).matched or (this_sigattrlog[9]).matched then
-            local l_0_4 = (this_sigattrlog[8]).utf8p2
-          end
-          -- DECOMPILER ERROR at PC72: Confused about usage of register: R0 in 'UnsetPending'
-
-          if l_0_4 == nil then
-            return mp.CLEAN
-          end
-          -- DECOMPILER ERROR at PC79: Confused about usage of register: R0 in 'UnsetPending'
-
-          local l_0_5 = (string.lower)(l_0_4)
-          local l_0_6 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\SYSTEM32\\"))
-          if not l_0_5:find(l_0_6, 1, true) then
-            return mp.CLEAN
-          end
-          if (mp.IsKnownFriendlyFile)(l_0_5, false, true) == false then
-            (bm.add_related_string)("FriendlyFile", "false", bm.RelatedStringBMReport)
-            return mp.INFECTED
-          end
-          local l_0_7 = Get_file_ofn(l_0_5)
-          if l_0_7 == nil or l_0_7 == "" then
-            (bm.add_related_string)("OriginalFileName_PeParser", "null", bm.RelatedStringBMReport)
-            return mp.INFECTED
-          end
-          l_0_7 = (string.lower)(l_0_7)
-          ;
-          (MpCommon.SetOriginalFileName)(l_0_5, l_0_7)
-          local l_0_8 = l_0_5:match("(%w+%.exe)$")
-          if l_0_7 == l_0_8 then
-            return mp.CLEAN
-          end
-          if l_0_7 == "register-cimprovider2.exe" and l_0_8 == "register-cimprovider.exe" then
-            return mp.CLEAN
-          end
-          ;
-          (bm.add_related_string)("OriginalFileName_PeParser", l_0_7, bm.RelatedStringBMReport)
-          return mp.INFECTED
-        end
-      end
-    end
-  end
+local L0_0, L1_1, L2_2, L3_3
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
 end
-
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[5]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[6]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[7]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[8]
+  L0_0 = L1_1.utf8p2
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[9]
+  L0_0 = L1_1.utf8p2
+end
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L0_0 = L1_1
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = MpCommon
+L2_2 = L2_2.ExpandEnvironmentVariables
+L3_3 = "%WINDIR%\\SYSTEM32\\"
+L3_3 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L2_2(L3_3))
+L3_3 = L0_0
+L2_2 = L0_0.find
+L2_2 = L2_2(L3_3, L1_1, 1, true)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.IsKnownFriendlyFile
+L3_3 = L0_0
+L2_2 = L2_2(L3_3, false, true)
+if L2_2 == false then
+  L2_2 = bm
+  L2_2 = L2_2.add_related_string
+  L3_3 = "FriendlyFile"
+  L2_2(L3_3, "false", bm.RelatedStringBMReport)
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = sysio
+L2_2 = L2_2.GetPEVersionInfo
+L3_3 = L0_0
+L2_2 = L2_2(L3_3)
+if L2_2 then
+  L3_3 = L2_2.OriginalFilename
+  L3_3 = L3_3 and L2_2.OriginalFilename
+elseif L3_3 == "" then
+  L3_3 = bm
+  L3_3 = L3_3.add_related_string
+  L3_3("OriginalFileName_PeParser", "null", bm.RelatedStringBMReport)
+  L3_3 = mp
+  L3_3 = L3_3.INFECTED
+  return L3_3
+end
+L3_3 = string
+L3_3 = L3_3.lower
+L3_3 = L3_3(L2_2.OriginalFilename)
+MpCommon.SetOriginalFileName(L0_0, L3_3)
+if L3_3 == L0_0:match("(%w+%.exe)$") then
+  return mp.CLEAN
+end
+if L3_3 == "register-cimprovider2.exe" and L0_0:match("(%w+%.exe)$") == "register-cimprovider.exe" then
+  return mp.CLEAN
+end
+bm.add_related_string("OriginalFileName_PeParser", L3_3, bm.RelatedStringBMReport)
+return mp.INFECTED

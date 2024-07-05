@@ -1,41 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5cb375269795_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = l_0_0.command_line
-if l_0_1 ~= nil then
-  local l_0_2 = (string.match)(l_0_1, "((%d+)%.(%d+)%.(%d+)%.(%d+).+)")
-  if l_0_2 then
-    local l_0_3 = {}
-    -- DECOMPILER ERROR at PC49: No list found for R3 , SetList fails
-
-    -- DECOMPILER ERROR at PC50: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC51: Overwrote pending register: R5 in 'AssignReg'
-
-    for l_0_7,l_0_8 in ("ftp")("ftps") do
-      -- DECOMPILER ERROR at PC54: Overwrote pending register: R9 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC56: Overwrote pending register: R10 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC57: Overwrote pending register: R11 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC58: Overwrote pending register: R12 in 'AssignReg'
-
-      if (("http-post-form").find)("https-get-form", "https-post-form", "https-get", true) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.command_line
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.match
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 then
+    L3_3 = {
+      L4_4,
+      L5_5,
+      L6_6,
+      L7_7,
+      L8_8,
+      "http-post-form",
+      "https-get-form",
+      "https-post-form",
+      "https-get",
+      "https-head",
+      "imap",
+      "ldap2",
+      "ldap3",
+      "mssql",
+      "mysql",
+      "postgres",
+      "pcanywhere",
+      "pop3",
+      "redis",
+      "rexec",
+      "rlogin",
+      "rsh",
+      "smb",
+      "smb2",
+      "socks5",
+      "ssh",
+      "sshkey",
+      "telnet",
+      "vnc",
+      "snmp",
+      "smtp",
+      "smtp-enum",
+      "irc",
+      "rdp",
+      "radmin"
+    }
+    L7_7 = "http-post"
+    L8_8 = "http-get-form"
+    for L7_7, L8_8 in L4_4(L5_5) do
+      if string.find(L2_2, L8_8, 1, true) then
         return mp.INFECTED
       end
     end
   end
 end
-do
-  do
-    -- DECOMPILER ERROR at PC69: Overwrote pending register: R2 in 'AssignReg'
-
-    do return l_0_2 end
-    -- WARNING: undefined locals caused missing assignments!
-  end
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

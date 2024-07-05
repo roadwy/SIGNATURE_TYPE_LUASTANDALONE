@@ -1,16 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3d2923830ea4_Includes_ScriptLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 ~= nil and l_0_0 >= 20480 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 ~= nil and L0_0 >= 20480 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = LoadMatchedDataInBuffer()
-local l_0_2 = "%curl http://[%d]+%.[%d]+%.[%d]+%.[%d]+/[/%w%.%-_]+;%s*chmod%s%+x%s[/%w%.%-_]+;%s+[/%w%.%-_]+"
-if GetPatternOccurenceCount(l_0_1, l_0_2) > 8 then
+L1_1 = LoadMatchedDataInBuffer
+L1_1 = L1_1()
+L2_2 = "%curl http://[%d]+%.[%d]+%.[%d]+%.[%d]+/[/%w%.%-_]+;%s*chmod%s%+x%s[/%w%.%-_]+;%s+[/%w%.%-_]+"
+if GetPatternOccurenceCount(L1_1, L2_2) > 8 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

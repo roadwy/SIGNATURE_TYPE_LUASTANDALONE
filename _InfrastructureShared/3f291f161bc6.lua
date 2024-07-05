@@ -1,24 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3f291f161bc6 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("LUA:FileSizeLE5000.A") then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "LUA:FileSizeLE5000.A"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0, l_0_1 = nil, nil
-local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-if l_0_2 == nil then
-  l_0_0 = (mp.getfilename)()
-  if l_0_0 == nil then
+L0_0, L1_1 = nil, nil
+if mp.get_contextdata(mp.CONTEXT_DATA_FILENAME) == nil then
+  L0_0 = mp.getfilename()
+  if L0_0 == nil then
     return mp.CLEAN
   end
-  l_0_1 = l_0_0:sub(-5)
+  L1_1 = L0_0:sub(-5)
 else
-  l_0_1 = l_0_2:sub(-5)
+  L1_1 = mp.get_contextdata(mp.CONTEXT_DATA_FILENAME):sub(-5)
 end
-if (string.find)(l_0_1:lower(), ".asp") then
+if string.find(L1_1:lower(), ".asp") then
   return mp.INFECTED
 end
 return mp.LOWFI
-

@@ -1,25 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_System32ZeroedPETimestamp_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if pehdr.TimeDateStamp == 0 then
-  local l_0_0 = (mp.getfilesize)()
-  if l_0_0 < 3000000 then
-    local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_FULL)
-    l_0_1 = (string.lower)((MpCommon.PathToWin32Path)(l_0_1))
-    if l_0_1 ~= nil and l_0_1:find("c:\\windows\\system32\\", 1, true) then
-      if l_0_1:find("\\driverstore\\filerepository\\", 1, true) then
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.TimeDateStamp
+if L0_0 == 0 then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+  if L0_0 < 3000000 then
+    L1_1 = mp
+    L1_1 = L1_1.getfilename
+    L1_1 = L1_1(mp.FILEPATH_QUERY_FULL)
+    L1_1 = string.lower(MpCommon.PathToWin32Path(L1_1))
+    if L1_1 ~= nil and L1_1:find("c:\\windows\\system32\\", 1, true) then
+      if L1_1:find("\\driverstore\\filerepository\\", 1, true) then
         return mp.CLEAN
       end
-      if l_0_1:find("\\spool\\drivers\\x64\\3\\", 1, true) then
+      if L1_1:find("\\spool\\drivers\\x64\\3\\", 1, true) then
         return mp.CLEAN
       end
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

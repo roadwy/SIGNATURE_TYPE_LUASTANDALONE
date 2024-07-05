@@ -1,26 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c3b3a302d8bb 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-for l_0_5 = 1, mp.SIGATTR_LOG_SZ do
-  local l_0_2, l_0_3 = nil
-  -- DECOMPILER ERROR at PC6: Confused about usage of register: R5 in 'UnsetPending'
-
-  if (sigattr_tail[R5_PC6]).matched and (sigattr_tail[R5_PC6]).attribute == 16384 then
-    l_0_2 = (sigattr_tail[R5_PC6]).utf8p1
-    if l_0_2 then
-      l_0_2 = (string.lower)(l_0_2)
-      if l_0_2 then
-        l_0_3 = (string.len)(l_0_2)
-        if l_0_3 >= 16 and (string.find)(l_0_2, "\\windows", 1, true) == nil and (string.sub)(l_0_2, -4) == ".exe" and (string.match)(l_0_2, "^%l:\\(%w+)\\(%w+)%.exe") ~= nil and l_0_2 ~= nil and (string.match)(l_0_2, "^%l:\\(%w+)\\(%w+)%.exe") == l_0_2 then
-          (bm.add_related_file)((sigattr_tail[l_0_7]).utf8p1)
+local L0_0, L1_1, L4_2, L5_3
+for _FORV_5_ = 1, L5_3.SIGATTR_LOG_SZ do
+  if sigattr_tail[_FORV_5_].matched and sigattr_tail[_FORV_5_].attribute == 16384 then
+    L0_0 = sigattr_tail[_FORV_5_].utf8p1
+    if L0_0 then
+      L0_0 = string.lower(L0_0)
+      if L0_0 then
+        L1_1 = string.len(L0_0)
+        if L1_1 >= 16 and string.find(L0_0, "\\windows", 1, true) == nil and string.sub(L0_0, -4) == ".exe" and string.match(L0_0, "^%l:\\(%w+)\\(%w+)%.exe") ~= nil and string.match(L0_0, "^%l:\\(%w+)\\(%w+)%.exe") ~= nil and string.match(L0_0, "^%l:\\(%w+)\\(%w+)%.exe") == string.match(L0_0, "^%l:\\(%w+)\\(%w+)%.exe") then
+          bm.add_related_file(sigattr_tail[_FORV_5_].utf8p1)
           return mp.INFECTED
         end
       end
     end
   end
 end
-return mp.INFECTED
-
+return L4_2

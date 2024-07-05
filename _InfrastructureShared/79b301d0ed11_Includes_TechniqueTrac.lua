@@ -1,45 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/79b301d0ed11_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC8: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC12: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 then
-    local l_0_2 = nil
-    if (bm.get_process_notifications)(l_0_0) ~= nil then
-      for l_0_6,l_0_7 in ipairs((bm.get_process_notifications)(l_0_0)) do
-        local l_0_3 = nil
-        -- DECOMPILER ERROR at PC20: Confused about usage of register: R6 in 'UnsetPending'
-
-        if R6_PC20.tag == bm.ActionTagFileCreate then
-          taint(R6_PC20.rawutf8p1, "remote_file_created_taint", 3600)
-          AppendToRollingQueue("queue_pid_taintfactory_a", l_0_2, 1, 600)
-          local l_0_9 = nil
-          local l_0_10, l_0_11 = , (bm.get_process_relationships)(((bm.get_current_process_startup_info)()).ppid)
-          for l_0_15,l_0_16 in ipairs(l_0_11) do
-            local l_0_12 = nil
-            -- DECOMPILER ERROR at PC50: Confused about usage of register: R15 in 'UnsetPending'
-
-            ;
-            (bm.add_related_process)(R15_PC50.ppid)
-            TrackPidAndTechniqueBM(R15_PC50.ppid, "T1105", "CommandAndControl")
-          end
-          return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.ppid
+end
+if L0_0 then
+  L1_1 = bm
+  L1_1 = L1_1.get_process_notifications
+  L1_1 = L1_1(L2_2)
+  if L1_1 ~= nil then
+    for L5_5, L6_6 in L2_2(L3_3) do
+      L7_7 = L6_6.tag
+      L8_8 = bm
+      L8_8 = L8_8.ActionTagFileCreate
+      if L7_7 == L8_8 then
+        L7_7 = L6_6.rawutf8p1
+        L8_8 = taint
+        L9_9 = L7_7
+        L10_10 = "remote_file_created_taint"
+        L8_8(L9_9, L10_10, L11_11)
+        L8_8 = AppendToRollingQueue
+        L9_9 = "queue_pid_taintfactory_a"
+        L10_10 = L0_0
+        L8_8(L9_9, L10_10, L11_11, L12_12)
+        L8_8 = bm
+        L8_8 = L8_8.get_current_process_startup_info
+        L8_8 = L8_8()
+        L9_9 = bm
+        L9_9 = L9_9.get_process_relationships
+        L10_10 = L8_8.ppid
+        L10_10 = L9_9(L10_10)
+        for _FORV_14_, _FORV_15_ in L11_11(L12_12) do
+          bm.add_related_process(_FORV_15_.ppid)
+          TrackPidAndTechniqueBM(_FORV_15_.ppid, "T1105", "CommandAndControl")
         end
+        return L11_11
       end
     end
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,52 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ZipSlip_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((mp.getfilename)()):lower()
-local l_0_1, l_0_2 = l_0_0:match("%.(%w+)%->(.*)$")
-if l_0_1 == nil or l_0_2 == nil then
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$") == nil or mp.getfilename():lower():match("%.(%w+)%->(.*)$") == nil then
   return mp.CLEAN
 end
-local l_0_3 = {}
-l_0_3["7z"] = "Lua:FileIn7z"
-l_0_3.apk = "Lua:FileInApk"
-l_0_3.cpio = "Lua:FileInCpio"
-l_0_3.jar = "Lua:FileInJar"
-l_0_3.rar = "Lua:FileInRar"
-l_0_3.tar = "Lua:FileInTar"
-l_0_3.war = "Lua:FileInWar"
-l_0_3.zip = "Lua:FileInZip"
-l_0_3.iso = "Lua:FileInIso"
-l_0_3.tgz = "Lua:FileInTarGzip"
-if l_0_3[l_0_1] ~= nil then
-  (mp.set_mpattribute)(l_0_3[l_0_1])
+if ({
+  ["7z"] = "Lua:FileIn7z",
+  ["apk"] = "Lua:FileInApk",
+  ["cpio"] = "Lua:FileInCpio",
+  ["jar"] = "Lua:FileInJar",
+  ["rar"] = "Lua:FileInRar",
+  ["tar"] = "Lua:FileInTar",
+  ["war"] = "Lua:FileInWar",
+  ["zip"] = "Lua:FileInZip",
+  ["iso"] = "Lua:FileInIso",
+  ["tgz"] = "Lua:FileInTarGzip"
+})[mp.getfilename():lower():match("%.(%w+)%->(.*)$")] ~= nil then
+  mp.set_mpattribute(({
+    ["7z"] = "Lua:FileIn7z",
+    ["apk"] = "Lua:FileInApk",
+    ["cpio"] = "Lua:FileInCpio",
+    ["jar"] = "Lua:FileInJar",
+    ["rar"] = "Lua:FileInRar",
+    ["tar"] = "Lua:FileInTar",
+    ["war"] = "Lua:FileInWar",
+    ["zip"] = "Lua:FileInZip",
+    ["iso"] = "Lua:FileInIso",
+    ["tgz"] = "Lua:FileInTarGzip"
+  })[mp.getfilename():lower():match("%.(%w+)%->(.*)$")])
 else
   return mp.CLEAN
 end
-if l_0_2:find("../", 1, true) or l_0_2:find("..\\", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathTraversal")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("../", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("..\\", 1, true) then
+  mp.set_mpattribute("Lua:DirPathTraversal")
 end
-if l_0_2:find("../../", 1, true) or l_0_2:find("..\\..\\", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathTraversal2plus")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("../../", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("..\\..\\", 1, true) then
+  mp.set_mpattribute("Lua:DirPathTraversal2plus")
 end
-if l_0_2:find("\\windows\\", 1, true) or l_0_2:find("/windows/", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathWindows")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("\\windows\\", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("/windows/", 1, true) then
+  mp.set_mpattribute("Lua:DirPathWindows")
 end
-if l_0_2:find("\\system32\\", 1, true) or l_0_2:find("/system32/", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathSystem32")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("\\system32\\", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("/system32/", 1, true) then
+  mp.set_mpattribute("Lua:DirPathSystem32")
 end
-if l_0_2:find("\\microsoft\\windows\\start menu\\startup\\", 1, true) or l_0_2:find("/microsoft/windows/start menu/startup/", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathStartup")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("\\microsoft\\windows\\start menu\\startup\\", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("/microsoft/windows/start menu/startup/", 1, true) then
+  mp.set_mpattribute("Lua:DirPathStartup")
 end
-if l_0_2:find("\\programdata\\", 1, true) or l_0_2:find("/programdata/", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathProgramData")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("\\programdata\\", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("/programdata/", 1, true) then
+  mp.set_mpattribute("Lua:DirPathProgramData")
 end
-if l_0_2:find("\\program files\\", 1, true) or l_0_2:find("/program files/", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathProgramFiles")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("\\program files\\", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("/program files/", 1, true) then
+  mp.set_mpattribute("Lua:DirPathProgramFiles")
 end
-if l_0_2:find("\\program files (x86)\\", 1, true) or l_0_2:find("/program files (x86)/", 1, true) then
-  (mp.set_mpattribute)("Lua:DirPathProgramFiles86")
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("\\program files (x86)\\", 1, true) or mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("/program files (x86)/", 1, true) then
+  mp.set_mpattribute("Lua:DirPathProgramFiles86")
+end
+if mp.getfilename():lower():match("%.(%w+)%->(.*)$") == "iso" and not mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("\\", 2, true) and not mp.getfilename():lower():match("%.(%w+)%->(.*)$"):find("/", 2, true) then
+  mp.set_mpattribute("Lua:FileOnIsoRoot")
 end
 return mp.CLEAN
-

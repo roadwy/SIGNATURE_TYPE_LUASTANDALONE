@@ -1,10 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/247f419b6f05 
-
--- params : ...
--- function num : 0
-if epcode[1] == 232 and epcode[6] == 232 and epcode[11] == 51 and epcode[13] == 195 and pevars.lscnwr == 1 and (pesecs[pehdr.NumberOfSections]).PointerToRawData == 45056 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 == 232 then
+  L0_0 = epcode
+  L0_0 = L0_0[6]
+  if L0_0 == 232 then
+    L0_0 = epcode
+    L0_0 = L0_0[11]
+    if L0_0 == 51 then
+      L0_0 = epcode
+      L0_0 = L0_0[13]
+      if L0_0 == 195 then
+        L0_0 = pevars
+        L0_0 = L0_0.lscnwr
+        if L0_0 == 1 then
+          L0_0 = pesecs
+          L1_1 = pehdr
+          L1_1 = L1_1.NumberOfSections
+          L0_0 = L0_0[L1_1]
+          L0_0 = L0_0.PointerToRawData
+          if L0_0 == 45056 then
+            L0_0 = mp
+            L0_0 = L0_0.INFECTED
+            return L0_0
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

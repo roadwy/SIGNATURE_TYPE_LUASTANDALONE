@@ -1,19 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_LanchAfterDropBySystemDL 
-
--- params : ...
--- function num : 0
-if peattributes.isdamaged then
-  return mp.CLEAN
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.isdamaged
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-do
-  if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) == true then
-    local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-    if not (MpCommon.QueryPersistContext)(l_0_0, "SystemDrop") then
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 == mp.SCANREASON_ONOPEN then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L0_0 = L0_0(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT)
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.get_contextdata
+    L0_0 = L0_0(mp.CONTEXT_DATA_FILEPATH)
+    if not MpCommon.QueryPersistContext(L0_0, "SystemDrop") then
       return mp.CLEAN
     end
     return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,19 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25295bbc8d8b 
-
--- params : ...
--- function num : 0
-do
-  if (mp.getfilesize)() <= 4096 then
-    local l_0_0 = nil
-    l_0_0 = (mp.getfilename)()
-    if l_0_0 == nil then
-      return mp.CLEAN
-    end
-    if l_0_0:sub(-19) == "->word/document.xml" then
-      return mp.INFECTED
-    end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 <= 4096 then
+  L0_0 = nil
+  L0_0 = mp.getfilename()
+  if L0_0 == nil then
+    return mp.CLEAN
   end
-  return mp.CLEAN
+  if L0_0:sub(-19) == "->word/document.xml" then
+    return mp.INFECTED
+  end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

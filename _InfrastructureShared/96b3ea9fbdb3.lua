@@ -1,37 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/96b3ea9fbdb3 
-
--- params : ...
--- function num : 0
-if (MpCommon.NidSearch)(mp.NID_DISABLE_NW_REPORTING, 1) then
-  return mp.CLEAN
+local L0_0, L1_1
+L1_1 = MpCommon
+L1_1 = L1_1.NidSearch
+L1_1 = L1_1(mp.NID_DISABLE_NW_REPORTING, 1)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
--- DECOMPILER ERROR at PC26: Overwrote pending register: R0 in 'AssignReg'
-
-if (MpCommon.NidSearch)(mp.NID_ENABLE_NW_REPORTING, 1) then
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
-    if l_0_0 ~= nil then
-      local l_0_1 = nil
-      if (string.match)(l_0_0, "^\"%z[^\"]*\"%z") ~= nil then
-        l_0_1 = (string.gsub)((string.match)(l_0_0, "\"%z[^\"]*\"%z"), "\"%z", "")
-      else
-        if (string.match)(l_0_0, "%.%ze%zx%ze%z") ~= nil then
-          l_0_1 = (string.match)(l_0_0, "%.%ze%zx%ze%z")
-        else
-          if (string.match)((string.lower)(l_0_0), "%.%zd%zl%zl%z") ~= nil then
-            l_0_1 = (string.match)(l_0_0, "%.%zd%zl%zl%z")
-          end
-        end
+L1_1 = MpCommon
+L1_1 = L1_1.NidSearch
+L1_1 = L1_1(mp.NID_ENABLE_NW_REPORTING, 1)
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
+    if L0_0 ~= nil then
+      L1_1 = nil
+      if string.match(L0_0, "^\"%z[^\"]*\"%z") ~= nil then
+        L1_1 = string.gsub(string.match(L0_0, "\"%z[^\"]*\"%z"), "\"%z", "")
+      elseif string.match(L0_0, "%.%ze%zx%ze%z") ~= nil then
+        L1_1 = string.match(L0_0, "%.%ze%zx%ze%z")
+      elseif string.match(string.lower(L0_0), "%.%zd%zl%zl%z") ~= nil then
+        L1_1 = string.match(L0_0, "%.%zd%zl%zl%z")
       end
-      if l_0_1 ~= nil then
-        (mp.ReportLowfi)(l_0_1, 734424339)
+      if L1_1 ~= nil then
+        mp.ReportLowfi(L1_1, 734424339)
       end
     end
   end
-  do
-    do return mp.INFECTED end
-    return mp.CLEAN
-  end
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,65 +1,68 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_TripWary.C!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(mp.getfilename, mp.FILEPATH_QUERY_FULL)
-if l_0_0 then
-  local l_0_2 = "AppData\\Local"
-  local l_0_3 = l_0_1:find(l_0_2, 1, true)
-  if l_0_3 == nil then
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = pcall
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FULL
+L1_1 = L0_0(L1_1, L2_2)
+if L0_0 then
+  L2_2 = "AppData\\Local"
+  L4_4 = L1_1
+  L3_3 = L1_1.find
+  L3_3 = L3_3(L4_4, L2_2, 1, true)
+  if L3_3 == nil then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
+  end
+  L4_4 = string
+  L4_4 = L4_4.sub
+  L4_4 = L4_4(L1_1, L3_3 + #L2_2)
+  if L4_4:gsub("\\", "") < 4 and L4_4:gsub("\\", "") > 6 then
     return mp.CLEAN
   end
-  local l_0_4 = (string.sub)(l_0_1, l_0_3 + #l_0_2)
-  local l_0_5, l_0_6 = l_0_4:gsub("\\", "")
-  if l_0_6 < 4 and l_0_6 > 6 then
+  if MpCommon.StringRegExpSearch("([a-zA-Z0-9]{10,20}\\\\[a-zA-Z0-9]{10,20}\\\\[a-zA-Z0-9]{10,20}.[a-z]{3}$)", L4_4) == false then
     return mp.CLEAN
   end
-  local l_0_7, l_0_8 = (MpCommon.StringRegExpSearch)("([a-zA-Z0-9]{10,20}\\\\[a-zA-Z0-9]{10,20}\\\\[a-zA-Z0-9]{10,20}.[a-z]{3}$)", l_0_4)
-  if l_0_7 == false then
-    return mp.CLEAN
-  end
-  local l_0_9 = (string.sub)(l_0_4, 0, #l_0_4 - #l_0_8)
-  local l_0_10 = {}
-  l_0_10["\\Microsoft\\Windows\\PowerShell\\"] = true
-  l_0_10["\\Microsoft\\Office\\PowerPoint\\"] = true
-  l_0_10["\\Microsoft\\Internet Explorer\\"] = true
-  l_0_10["\\Microsoft\\Office\\Publisher\\"] = true
-  l_0_10["\\Microsoft\\Windows\\Explorer\\"] = true
-  l_0_10["\\Microsoft\\Office\\Outlook\\"] = true
-  l_0_10["\\Microsoft\\Windows\\Shell\\"] = true
-  l_0_10["\\Microsoft\\Office\\Access\\"] = true
-  l_0_10["\\Microsoft\\Office\\Visio\\"] = true
-  l_0_10["\\Microsoft\\Office\\Excel\\"] = true
-  l_0_10["\\Microsoft\\Media Player\\"] = true
-  l_0_10["\\Microsoft\\Office\\Word\\"] = true
-  l_0_10["\\Microsoft\\VisualStudio\\"] = true
-  l_0_10["\\Microsoft\\CLR_v2.0_32\\"] = true
-  l_0_10["\\Microsoft\\CLR_v4.0_32\\"] = true
-  l_0_10["\\Microsoft\\Powerpoint\\"] = true
-  l_0_10["\\Microsoft\\Installer\\"] = true
-  l_0_10["\\Microsoft\\CLR_v2.0\\"] = true
-  l_0_10["\\Microsoft\\CLR_v4.0\\"] = true
-  l_0_10["\\Microsoft\\OneDrive\\"] = true
-  l_0_10["\\Microsoft\\Network\\"] = true
-  l_0_10["\\Microsoft\\Outlook\\"] = true
-  l_0_10["\\Microsoft\\MSBuild\\"] = true
-  l_0_10["\\Microsoft\\Office\\"] = true
-  l_0_10["\\Microsoft\\DotNet\\"] = true
-  l_0_10["\\Microsoft\\Access\\"] = true
-  l_0_10["\\Microsoft\\AddIns\\"] = true
-  l_0_10["\\Microsoft\\Crypto\\"] = true
-  l_0_10["\\Microsoft\\Vault\\"] = true
-  l_0_10["\\Microsoft\\Excel\\"] = true
-  l_0_10["\\Mozilla\\Firefox\\"] = true
-  l_0_10["\\Microsoft\\Word\\"] = true
-  l_0_10["\\Microsoft\\"] = true
-  l_0_10["\\Adobe\\"] = true
-  if l_0_10[l_0_9] then
+  if ({
+    ["\\Microsoft\\Windows\\PowerShell\\"] = true,
+    ["\\Microsoft\\Office\\PowerPoint\\"] = true,
+    ["\\Microsoft\\Internet Explorer\\"] = true,
+    ["\\Microsoft\\Office\\Publisher\\"] = true,
+    ["\\Microsoft\\Windows\\Explorer\\"] = true,
+    ["\\Microsoft\\Office\\Outlook\\"] = true,
+    ["\\Microsoft\\Windows\\Shell\\"] = true,
+    ["\\Microsoft\\Office\\Access\\"] = true,
+    ["\\Microsoft\\Office\\Visio\\"] = true,
+    ["\\Microsoft\\Office\\Excel\\"] = true,
+    ["\\Microsoft\\Media Player\\"] = true,
+    ["\\Microsoft\\Office\\Word\\"] = true,
+    ["\\Microsoft\\VisualStudio\\"] = true,
+    ["\\Microsoft\\CLR_v2.0_32\\"] = true,
+    ["\\Microsoft\\CLR_v4.0_32\\"] = true,
+    ["\\Microsoft\\Powerpoint\\"] = true,
+    ["\\Microsoft\\Installer\\"] = true,
+    ["\\Microsoft\\CLR_v2.0\\"] = true,
+    ["\\Microsoft\\CLR_v4.0\\"] = true,
+    ["\\Microsoft\\OneDrive\\"] = true,
+    ["\\Microsoft\\Network\\"] = true,
+    ["\\Microsoft\\Outlook\\"] = true,
+    ["\\Microsoft\\MSBuild\\"] = true,
+    ["\\Microsoft\\Office\\"] = true,
+    ["\\Microsoft\\DotNet\\"] = true,
+    ["\\Microsoft\\Access\\"] = true,
+    ["\\Microsoft\\AddIns\\"] = true,
+    ["\\Microsoft\\Crypto\\"] = true,
+    ["\\Microsoft\\Vault\\"] = true,
+    ["\\Microsoft\\Excel\\"] = true,
+    ["\\Mozilla\\Firefox\\"] = true,
+    ["\\Microsoft\\Word\\"] = true,
+    ["\\Microsoft\\"] = true,
+    ["\\Adobe\\"] = true
+  })[string.sub(L4_4, 0, #L4_4 - #MpCommon.StringRegExpSearch("([a-zA-Z0-9]{10,20}\\\\[a-zA-Z0-9]{10,20}\\\\[a-zA-Z0-9]{10,20}.[a-z]{3}$)", L4_4))] then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

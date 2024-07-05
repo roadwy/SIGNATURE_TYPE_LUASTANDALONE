@@ -1,29 +1,91 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/91b327ad5f0a_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-  local l_0_0 = (string.lower)((bm.get_imagepath)())
-  if (string.find)(l_0_0, "\\program files", 1, true) or (string.find)(l_0_0, "regsvr32.exe", 1, true) or (string.find)(l_0_0, "rundll32.exe", 1, true) or (string.find)(l_0_0, "svchost.exe", 1, true) or (string.find)(l_0_0, "onedrive", 1, true) or (string.find)(l_0_0, "\\google", 1, true) or (string.find)(l_0_0, "msiexec.exe", 1, true) or (string.find)(l_0_0, "service.exe", 1, true) then
-    return mp.CLEAN
-  end
-  local l_0_1 = (this_sigattrlog[2]).utf8p2
-  if (sysio.IsFileExists)(l_0_1) then
-    local l_0_2 = (string.lower)(l_0_1)
-    if (string.find)(l_0_2, "program files", 1, true) or (string.find)(l_0_2, ".ocx", 1, true) then
-      return mp.CLEAN
-    end
-    if (mp.IsKnownFriendlyFile)(l_0_1, true, false) == false then
-      (bm.add_related_file)(l_0_1)
-      if (versioning.IsSeville)() and (versioning.GetCloudBlockLevel)() >= 4 then
-        TrackPidAndTechniqueBM("BM", "T1559.001", "interprocess_com_b")
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = bm
+    L1_1 = L1_1.get_imagepath
+    L2_2 = L1_1()
+    L0_0 = L0_0(L1_1, L2_2, L1_1())
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2, "\\program files", 1, true)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L2_2 = L0_0
+      L1_1 = L1_1(L2_2, "regsvr32.exe", 1, true)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L2_2 = L0_0
+        L1_1 = L1_1(L2_2, "rundll32.exe", 1, true)
+        if not L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L2_2 = L0_0
+          L1_1 = L1_1(L2_2, "svchost.exe", 1, true)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L2_2 = L0_0
+            L1_1 = L1_1(L2_2, "onedrive", 1, true)
+            if not L1_1 then
+              L1_1 = string
+              L1_1 = L1_1.find
+              L2_2 = L0_0
+              L1_1 = L1_1(L2_2, "\\google", 1, true)
+              if not L1_1 then
+                L1_1 = string
+                L1_1 = L1_1.find
+                L2_2 = L0_0
+                L1_1 = L1_1(L2_2, "msiexec.exe", 1, true)
+                if not L1_1 then
+                  L1_1 = string
+                  L1_1 = L1_1.find
+                  L2_2 = L0_0
+                  L1_1 = L1_1(L2_2, "service.exe", 1, true)
+                end
+              end
+            end
+          end
+        end
       end
-      return mp.INFECTED
+    elseif L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    L2_2 = sysio
+    L2_2 = L2_2.IsFileExists
+    L2_2 = L2_2(L1_1)
+    if L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.lower
+      L2_2 = L2_2(L1_1)
+      if string.find(L2_2, "program files", 1, true) or string.find(L2_2, ".ocx", 1, true) then
+        return mp.CLEAN
+      end
+      if mp.IsKnownFriendlyFile(L1_1, true, false) == false then
+        bm.add_related_file(L1_1)
+        if versioning.IsSeville() and versioning.GetCloudBlockLevel() >= 4 then
+          TrackPidAndTechniqueBM("BM", "T1559.001", "interprocess_com_b")
+        end
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

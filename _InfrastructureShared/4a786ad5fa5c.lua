@@ -1,15 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4a786ad5fa5c 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattribute)("pea_isexe") then
-    local l_0_0 = (pe.get_versioninfo)()
-    if l_0_0.InternalName == "VideoProjectsLauncher" or l_0_0.CompanyName == "Microsoft Corporation" or l_0_0.OriginalFilename == "VideoProjectsLauncher.exe" then
-      return mp.INFECTED
-    end
-  end
-  return mp.CLEAN
+if mp.get_mpattribute("pea_isexe") and (pe.get_versioninfo().InternalName == "VideoProjectsLauncher" or pe.get_versioninfo().CompanyName == "Microsoft Corporation" or pe.get_versioninfo().OriginalFilename == "VideoProjectsLauncher.exe") then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

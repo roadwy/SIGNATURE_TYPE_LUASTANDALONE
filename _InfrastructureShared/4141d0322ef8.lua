@@ -1,58 +1,63 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4141d0322ef8 
-
--- params : ...
--- function num : 0
-local l_0_0 = "unk"
-if (this_sigattrlog[2]).matched then
-  l_0_0 = "warn"
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = "unk"
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = "warn"
 else
-  if (this_sigattrlog[3]).matched then
-    l_0_0 = "block"
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L0_0 = "block"
   end
 end
-local l_0_1 = (this_sigattrlog[1]).utf8p1 .. ":" .. (this_sigattrlog[1]).np2
-local l_0_2 = {}
-l_0_2.SIG_CONTEXT = "NP:COCO:100"
-l_0_2.CONTENT_SOURCE = "NP"
-l_0_2.NP_LEVEL = l_0_0
-l_0_2.C2 = "true"
-local l_0_3 = mp.GetUrlReputation
-local l_0_4 = {}
--- DECOMPILER ERROR at PC31: No list found for R4 , SetList fails
-
--- DECOMPILER ERROR at PC32: Overwrote pending register: R5 in 'AssignReg'
-
-l_0_3 = l_0_3(l_0_4, l_0_1)
-if l_0_3 ~= nil then
-  l_0_4 = l_0_3.urls
-  for l_0_8,l_0_9 in ipairs(l_0_4) do
-    if l_0_9.determination == 2 and l_0_9.confidence > 90 then
-      if (l_0_9.urlresponsecontext).family then
-        local l_0_10 = {}
-        l_0_10[1] = 805306694
-        l_0_10[2] = 805306695
-        l_0_10[3] = 805306694
-        local l_0_11 = l_0_10[(l_0_9.urlresponsecontext).family]
-        if l_0_11 then
-          (mp.changedetectionname)(l_0_11)
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.utf8p1
+L2_2 = ":"
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.np2
+L1_1 = L1_1 .. L2_2 .. L3_3
+L2_2 = {}
+L2_2.SIG_CONTEXT = "NP:COCO:100"
+L2_2.CONTENT_SOURCE = "NP"
+L2_2.NP_LEVEL = L0_0
+L2_2.C2 = "true"
+L3_3 = mp
+L3_3 = L3_3.GetUrlReputation
+L4_4 = {L5_5}
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 ~= nil then
+  L4_4 = L3_3.urls
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = L9_9.determination
+    if L10_10 == 2 then
+      L10_10 = L9_9.confidence
+      if L10_10 > 90 then
+        L10_10 = L9_9.urlresponsecontext
+        L10_10 = L10_10.family
+        if L10_10 then
+          L10_10 = {}
+          L10_10[1] = 805306694
+          L10_10[2] = 805306695
+          L10_10[3] = 805306694
+          L11_11 = L9_9.urlresponsecontext
+          L11_11 = L11_11.family
+          L11_11 = L10_10[L11_11]
+          if L11_11 then
+            mp.changedetectionname(L11_11)
+          end
         end
-      end
-      do
-        do
-          do return mp.INFECTED end
-          -- DECOMPILER ERROR at PC67: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC67: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC67: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
+        L10_10 = mp
+        L10_10 = L10_10.INFECTED
+        return L10_10
       end
     end
   end
 end
-l_0_4 = mp
-l_0_4 = l_0_4.CLEAN
-return l_0_4
-
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

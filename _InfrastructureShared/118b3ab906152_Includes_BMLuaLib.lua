@@ -1,28 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/118b3ab906152_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-if not isTamperProtectionOn() then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = isTamperProtectionOn
+L0_0 = L0_0()
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = nil
-if (this_sigattrlog[1]).matched then
-  l_0_0 = (this_sigattrlog[1]).utf8p2
+L0_0 = nil
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L0_0 = L1_1.utf8p2
 else
-  if (this_sigattrlog[2]).matched then
-    l_0_0 = (this_sigattrlog[2]).utf8p2
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.utf8p2
   end
 end
-if not l_0_0 then
-  return mp.CLEAN
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-l_0_0 = (string.lower)(l_0_0)
-local l_0_1 = "(windows-defender(-features|-gui)?[^-\\w])"
-local l_0_2 = false
-l_0_2 = (MpCommon.StringRegExpSearch)(l_0_1, l_0_0)
-if l_0_2 == true then
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L0_0 = L1_1
+L1_1 = "(windows-defender(-features|-gui)?[^-\\w])"
+L2_2 = false
+L2_2, _ = MpCommon.StringRegExpSearch(L1_1, L0_0)
+if L2_2 == true then
   return mp.INFECTED
 end
 return mp.CLEAN
-

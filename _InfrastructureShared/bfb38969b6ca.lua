@@ -1,34 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/bfb38969b6ca 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[1]).utf8p2
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.utf8p2
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (string.match)(l_0_0, " pid:(%d+) (.+)")
-if l_0_1 == nil or l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.match
+L2_2 = L0_0
+L3_3 = " pid:(%d+) (.+)"
+L2_2 = L1_1(L2_2, L3_3)
+if L1_1 == nil or L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (mp.GetPPidFromPid)(l_0_1)
-if l_0_3 == nil then
-  return mp.CLEAN
+L3_3 = mp
+L3_3 = L3_3.GetPPidFromPid
+L4_4 = L1_1
+L3_3 = L3_3(L4_4)
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-if (string.find)(l_0_2, "^ems$") then
-  (bm.trigger_sig)("AsyncTriggerEMS", "EMS", l_0_3)
+L4_4 = string
+L4_4 = L4_4.find
+L4_4 = L4_4(L2_2, "^ems$")
+if L4_4 then
+  L4_4 = bm
+  L4_4 = L4_4.trigger_sig
+  L4_4("AsyncTriggerEMS", "EMS", L3_3)
 else
-  if (string.find)(l_0_2, "^sms:") then
-    local l_0_4 = (string.match)(l_0_2, "sms:(.+)")
-    ;
-    (bm.trigger_sig)("AsyncTriggerSMS", l_0_4, l_0_3)
+  L4_4 = string
+  L4_4 = L4_4.find
+  L4_4 = L4_4(L2_2, "^sms:")
+  if L4_4 then
+    L4_4 = string
+    L4_4 = L4_4.match
+    L4_4 = L4_4(L2_2, "sms:(.+)")
+    bm.trigger_sig("AsyncTriggerSMS", L4_4, L3_3)
   else
-    do
-      if (string.find)(l_0_2, "^exhaustive$") then
-        (bm.trigger_sig)("AsyncTriggerProc", "Exhaustive", l_0_3)
-      end
-      return mp.INFECTED
+    L4_4 = string
+    L4_4 = L4_4.find
+    L4_4 = L4_4(L2_2, "^exhaustive$")
+    if L4_4 then
+      L4_4 = bm
+      L4_4 = L4_4.trigger_sig
+      L4_4("AsyncTriggerProc", "Exhaustive", L3_3)
     end
   end
 end
-
+L4_4 = mp
+L4_4 = L4_4.INFECTED
+return L4_4

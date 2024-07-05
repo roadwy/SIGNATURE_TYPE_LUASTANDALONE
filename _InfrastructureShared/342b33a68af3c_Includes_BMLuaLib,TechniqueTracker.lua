@@ -1,52 +1,93 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/342b33a68af3c_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = (bm.get_SMS_level)(l_0_0.ppid)
-local l_0_2 = mp.SMS_SCAN_LOW_ADV - mp.SMS_SCAN_LOW
-if l_0_2 == (mp.bitand)(l_0_1, l_0_2) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = bm
+L1_1 = L1_1.get_SMS_level
+L2_2 = L0_0.ppid
+L1_1 = L1_1(L2_2)
+L2_2 = mp
+L2_2 = L2_2.SMS_SCAN_LOW_ADV
+L3_3 = mp
+L3_3 = L3_3.SMS_SCAN_LOW
+L2_2 = L2_2 - L3_3
+L3_3 = mp
+L3_3 = L3_3.bitand
+L4_4 = L1_1
+L5_5 = L2_2
+L3_3 = L3_3(L4_4, L5_5)
+if L2_2 == L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (bm.get_imagepath)()
-if not l_0_3 then
-  return mp.CLEAN
+L3_3 = bm
+L3_3 = L3_3.get_imagepath
+L3_3 = L3_3()
+if not L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-l_0_3 = (string.lower)((MpCommon.PathToWin32Path)(l_0_3))
-if not (sysio.IsFileExists)(l_0_3) then
-  return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.lower
+L5_5 = MpCommon
+L5_5 = L5_5.PathToWin32Path
+L6_6 = L3_3
+L9_9 = L5_5(L6_6)
+L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L5_5(L6_6))
+L3_3 = L4_4
+L4_4 = sysio
+L4_4 = L4_4.IsFileExists
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+if not L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (sysio.GetFileLastWriteTime)(l_0_3)
-if not ((sysio.GetLastResult)()).Success or l_0_4 == 0 then
-  return mp.CLEAN
+L4_4 = sysio
+L4_4 = L4_4.GetFileLastWriteTime
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+L5_5 = sysio
+L5_5 = L5_5.GetLastResult
+L5_5 = L5_5()
+L5_5 = L5_5.Success
+if not L5_5 or L4_4 == 0 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-l_0_4 = l_0_4 / 10000000 - 11644473600
-local l_0_5 = (MpCommon.GetCurrentTimeT)()
-if l_0_5 <= l_0_4 then
-  return mp.CLEAN
+L5_5 = L4_4 / 10000000
+L4_4 = L5_5 - 11644473600
+L5_5 = MpCommon
+L5_5 = L5_5.GetCurrentTimeT
+L5_5 = L5_5()
+if L4_4 >= L5_5 then
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
 end
-local l_0_6 = (l_0_5 - (l_0_4)) / 60
-if not l_0_6 <= 20160 then
-  return mp.CLEAN
+L6_6 = L5_5 - L4_4
+L6_6 = L6_6 / 60
+L7_7 = L6_6 <= 20160
+if not L7_7 then
+  L8_8 = mp
+  L8_8 = L8_8.CLEAN
+  return L8_8
 end
-do
-  local l_0_10, l_0_11 = , (bm.get_process_relationships)()
-  if R9_PC86 ~= nil then
-    for l_0_15,l_0_16 in ipairs(R11_PC90) do
-      local l_0_12 = nil
-      -- DECOMPILER ERROR at PC92: Confused about usage of register: R14 in 'UnsetPending'
-
-      if R14_PC92.image_path ~= nil and R14_PC92.reason == bm.RELATIONSHIP_INJECTION then
-        (bm.request_SMS)(R14_PC92.ppid, "l+")
-        ;
-        (bm.add_action)("SmsAsyncScanEvent", 1000)
-        TrackPidAndTechniqueBM("BM", "T1055.002", "portable_executable_injection")
-        return mp.INFECTED
-      end
+L8_8 = bm
+L8_8 = L8_8.get_process_relationships
+L9_9 = L8_8()
+if L9_9 ~= nil then
+  for _FORV_13_, _FORV_14_ in ipairs(L9_9) do
+    if _FORV_14_.image_path ~= nil and _FORV_14_.reason == bm.RELATIONSHIP_INJECTION then
+      bm.request_SMS(_FORV_14_.ppid, "l+")
+      bm.add_action("SmsAsyncScanEvent", 1000)
+      TrackPidAndTechniqueBM("BM", "T1055.002", "portable_executable_injection")
+      return mp.INFECTED
     end
   end
-  do return mp.CLEAN end
-  -- DECOMPILER ERROR: 4 unprocessed JMP targets
 end
-
+return mp.CLEAN

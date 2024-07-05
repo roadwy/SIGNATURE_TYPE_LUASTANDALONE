@@ -1,25 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b3832d70ed 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC12: Confused about usage of register: R0 in 'UnsetPending'
-
-  if not l_0_0 then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_2 = nil
-  if (string.match)(l_0_0, "minidump (%d+) ") and tonumber((string.match)(l_0_0, "minidump (%d+) ")) < 1500 then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+  L0_0 = L1_1
 end
-
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.match
+L1_1 = L1_1(L0_0, "minidump (%d+) ")
+if L1_1 and tonumber(L1_1) < 1500 then
+  return mp.INFECTED
+end
+return mp.CLEAN

@@ -1,51 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Worm_JS_Bondat!CryptKeywords_Includes_BaseConversio 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 92000 or l_0_0 < 88000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 92000 or L0_0 < 88000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = tostring(headerpage) .. tostring(footerpage)
-local l_0_2 = l_0_1:gmatch("%[([^%[%]]*[%+\\][^%[%]]*)%]%(")
-if l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = tostring
+L2_2 = headerpage
+L1_1 = L1_1(L2_2)
+L2_2 = tostring
+L3_3 = footerpage
+L2_2 = L2_2(L3_3)
+L1_1 = L1_1 .. L2_2
+L3_3 = L1_1
+L2_2 = L1_1.gmatch
+L4_4 = "%[([^%[%]]*[%+\\][^%[%]]*)%]%("
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = string.char
-local l_0_6 = function(l_1_0)
-  -- function num : 0_0 , upvalues : l_0_3
-  local l_1_1 = l_0_3
-  do
-    local l_1_2, l_1_3, l_1_4 = tonumber(l_1_0, 16), .end
-    do return l_1_1(l_1_2, l_1_3, l_1_4) end
-    -- DECOMPILER ERROR at PC7: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
+L3_3 = string
+L3_3 = L3_3.char
+function L4_4(A0_7)
+  local L1_8
+  L1_8 = _UPVALUE0_
+  return L1_8(tonumber(A0_7, 16))
+end
+function L5_5(A0_9)
+  local L1_10
+  L1_10 = _UPVALUE0_
+  return L1_10(tonumber(A0_9, 8))
+end
+L6_6 = StrToBaseN
+for _FORV_11_ in L2_2, nil, nil do
+  if ({
+    prototype = "",
+    constructor = "",
+    fromCharCode = "",
+    parseInt = "",
+    split = "",
+    length = "",
+    Function = ""
+  })[_FORV_11_:gsub("\\x(..)", L4_4):gsub("%((%d+)%)%.toString%((%d+)%)", L6_6):gsub("([\"%+%s]+)", ""):gsub("\\(%d+)", L5_5):gsub("\\", "")] then
+    return mp.INFECTED
   end
 end
-
-do
-  local l_0_7 = function(l_2_0)
-  -- function num : 0_1 , upvalues : l_0_3
-  local l_2_1 = l_0_3
-  do
-    local l_2_2, l_2_3, l_2_4 = tonumber(l_2_0, 8), .end
-    do return l_2_1(l_2_2, l_2_3, l_2_4) end
-    -- DECOMPILER ERROR at PC7: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
-end
-
-  for l_0_11 in l_0_2 do
-    local l_0_8, l_0_9 = StrToBaseN, {prototype = "", constructor = "", fromCharCode = "", parseInt = "", split = "", length = "", Function = ""}
-    -- DECOMPILER ERROR at PC43: Confused about usage of register: R11 in 'UnsetPending'
-
-    if l_0_9[((((R11_PC43:gsub("\\x(..)", l_0_6)):gsub("%((%d+)%)%.toString%((%d+)%)", l_0_8)):gsub("([\"%+%s]+)", "")):gsub("\\(%d+)", l_0_7)):gsub("\\", "")] then
-      return mp.INFECTED
-    end
-  end
-  do return mp.CLEAN end
-  -- DECOMPILER ERROR at PC74: freeLocal<0 in 'ReleaseLocals'
-
-end
-
+return mp.CLEAN

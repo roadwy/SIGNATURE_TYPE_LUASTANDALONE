@@ -1,17 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b302b3c165 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0["omadmclient.exe"] = true
-l_0_0["provtool.exe"] = true
-local l_0_1 = (string.lower)((string.match)((bm.get_imagepath)(), "\\([^\\]+)$"))
-if l_0_1 == nil or l_0_1 == "" then
+local L0_0, L1_1
+L0_0 = {}
+L0_0["omadmclient.exe"] = true
+L0_0["provtool.exe"] = true
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(string.match(bm.get_imagepath(), "\\([^\\]+)$"))
+if L1_1 == nil or L1_1 == "" then
   return mp.CLEAN
 end
-if l_0_0[l_0_1] == true then
+if L0_0[L1_1] == true then
   return mp.CLEAN
 end
 return mp.INFECTED
-

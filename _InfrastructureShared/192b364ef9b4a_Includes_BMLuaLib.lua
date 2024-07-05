@@ -1,35 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/192b364ef9b4a_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).utf8p1 ~= nil then
-    local l_0_0, l_0_2, l_0_3 = nil, nil
+local L0_0, L1_1, L2_2, L3_3
+L2_2 = this_sigattrlog
+L2_2 = L2_2[7]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[7]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[7]
+    L3_3 = L3_3.utf8p1
+    L2_2 = L2_2(L3_3)
+    L0_0 = L2_2
   end
-  do
-    if (this_sigattrlog[9]).matched and (this_sigattrlog[9]).utf8p2 ~= nil then
-      local l_0_1, l_0_4 = , (string.lower)((this_sigattrlog[9]).utf8p2)
-    else
-    end
-    -- DECOMPILER ERROR at PC53: Confused about usage of register: R0 in 'UnsetPending'
-
-    if (this_sigattrlog[10]).matched and (this_sigattrlog[10]).utf8p2 ~= nil then
-      local l_0_5 = nil
-      if not GetFileName(l_0_1) then
-        return mp.CLEAN
-      end
-      local l_0_6 = (string.lower)((this_sigattrlog[10]).utf8p2)
-      if contains(GetFileName(l_0_1), {"bedvitcom"}) then
-        return mp.CLEAN
-      end
-      if contains(l_0_6, GetFileName(l_0_1)) then
-        return mp.INFECTED
-      end
-      return mp.CLEAN
+end
+L2_2 = this_sigattrlog
+L2_2 = L2_2[9]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[9]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[9]
+    L3_3 = L3_3.utf8p2
+    L2_2 = L2_2(L3_3)
+    L1_1 = L2_2
+  end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[10]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[10]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = string
+      L2_2 = L2_2.lower
+      L3_3 = this_sigattrlog
+      L3_3 = L3_3[10]
+      L3_3 = L3_3.utf8p2
+      L2_2 = L2_2(L3_3)
+      L1_1 = L2_2
     end
   end
 end
-
+L2_2 = GetFileName
+L3_3 = L0_0
+L2_2 = L2_2(L3_3)
+if not L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = {"bedvitcom"}
+if contains(L2_2, L3_3) then
+  return mp.CLEAN
+end
+if contains(L1_1, L2_2) then
+  return mp.INFECTED
+end
+return mp.CLEAN

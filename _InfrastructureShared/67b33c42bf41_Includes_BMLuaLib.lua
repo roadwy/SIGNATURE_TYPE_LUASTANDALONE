@@ -1,50 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/67b33c42bf41_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC15: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2 = nil
-  end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  if not contains(l_0_0, "process.*call.*create", false) then
-    return mp.CLEAN
-  end
-  -- DECOMPILER ERROR at PC28: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_3, l_0_4, l_0_5, l_0_6 = , (string.find)(l_0_0, "/node%s*:([^%s]+).-call create [\'\"]([^\r\n]+)[\'\"]")
-  if not false then
-    return mp.CLEAN
-  end
-  if contains(R6_PC40, "cmd.*/c", false) then
-    local l_0_7 = nil
-    local l_0_8 = contains
-    local l_0_9 = R6_PC40
-    l_0_8 = l_0_8(l_0_9, {" powershell"})
-    if l_0_8 then
-      l_0_8 = bm
-      l_0_8 = l_0_8.add_related_string
-      -- DECOMPILER ERROR at PC53: Overwrote pending register: R6 in 'AssignReg'
-
-      l_0_8(l_0_9, tostring(l_0_6), bm.RelatedStringBMReport)
-      l_0_8 = bm
-      l_0_8 = l_0_8.add_related_string
-      -- DECOMPILER ERROR at PC62: Overwrote pending register: R6 in 'AssignReg'
-
-      l_0_8(l_0_9, l_0_7, bm.RelatedStringBMReport)
-      l_0_8 = add_parents
-      l_0_8()
-      l_0_8 = mp
-      l_0_8 = l_0_8.INFECTED
-      return l_0_8
-    end
-  end
-  do
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    L2_2 = L1_1
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
 end
-
+L1_1 = contains
+L2_2 = L0_0
+L3_3 = "process.*call.*create"
+L4_4 = false
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "/node%s*:([^%s]+).-call create ['\"]([^\r\n]+)['\"]"
+L4_4 = L1_1(L2_2, L3_3)
+if not L4_4 then
+  return mp.CLEAN
+end
+if contains(L4_4, "cmd.*/c", false) and contains(L4_4, {
+  " powershell"
+}) then
+  bm.add_related_string("WMICRemoteNode", tostring(L3_3), bm.RelatedStringBMReport)
+  bm.add_related_string("WmiprvseRemoteProc", L4_4, bm.RelatedStringBMReport)
+  add_parents()
+  return mp.INFECTED
+end
+return mp.CLEAN

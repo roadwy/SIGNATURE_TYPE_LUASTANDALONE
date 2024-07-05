@@ -1,34 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MsilChain.A_Includes_PHelpers_ObMp 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0 = mp.CLEAN
-  if (MpCommon.QueryPersistContextNoPath)("CLF_AM", "OfcUsrTruDocRec") then
-    l_0_0 = mp.INFECTED
-  end
-  local l_0_1 = false
-  if (MpCommon.QueryPersistContextNoPath)("CLF_AM", "CLF_AM_EC") then
-    l_0_1 = true
-  end
-  if (MpCommon.QueryPersistContextNoPath)("CLF_AM", "CLF_AM_WM") then
-    l_0_1 = true
-  end
-  do
-    do
-      if l_0_1 then
-        local l_0_2 = (MpCommon.GetPersistContextNoPath)("CLF_IC")
-        for l_0_6,l_0_7 in ipairs(l_0_2) do
-          (mp.ReportLowfi)(l_0_7, 1933116662)
-        end
-        l_0_0 = mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    L1_1 = MpCommon
+    L1_1 = L1_1.QueryPersistContextNoPath
+    L2_2 = "CLF_AM"
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 then
+      L1_1 = mp
+      L0_0 = L1_1.INFECTED
+    end
+    L1_1 = false
+    L2_2 = MpCommon
+    L2_2 = L2_2.QueryPersistContextNoPath
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 then
+      L1_1 = true
+    end
+    L2_2 = MpCommon
+    L2_2 = L2_2.QueryPersistContextNoPath
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 then
+      L1_1 = true
+    end
+    if L1_1 then
+      L2_2 = MpCommon
+      L2_2 = L2_2.GetPersistContextNoPath
+      L2_2 = L2_2(L3_3)
+      for L6_6, L7_7 in L3_3(L4_4) do
+        mp.ReportLowfi(L7_7, 1933116662)
       end
-      if l_0_0 == mp.INFECTED then
-        return mp.INFECTED
-      end
-      return mp.CLEAN
+      L0_0 = L3_3.INFECTED
+    end
+    L2_2 = mp
+    L2_2 = L2_2.INFECTED
+    if L0_0 == L2_2 then
+      L2_2 = mp
+      L2_2 = L2_2.INFECTED
+      return L2_2
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

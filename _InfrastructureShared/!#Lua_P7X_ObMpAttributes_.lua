@@ -1,253 +1,245 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_P7X_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetCertificateInfo)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L27_27, L28_28, L29_29
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if #l_0_0 < 1 then
-  return mp.CLEAN
+L1_1 = #L0_0
+if L1_1 < 1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = 0
-local l_0_2 = 0
-local l_0_3 = 0
-local l_0_4 = 3
-local l_0_5 = 3
-local l_0_6 = 3
-local l_0_7 = function(l_1_0)
-  -- function num : 0_0
-  if not l_1_0 then
-    return 
+L1_1 = 0
+L2_2 = 0
+L3_3 = 0
+L4_4 = 3
+L5_5 = 3
+L6_6 = 3
+function L7_7(A0_30)
+  if not A0_30 then
+    return
   end
-  l_1_0 = l_1_0:gsub(" ", "")
-  if #l_1_0 > 50 then
-    return 
+  A0_30 = A0_30:gsub(" ", "")
+  if #A0_30 > 50 then
+    return
   end
-  if (mp.get_mpattribute)(l_1_0) then
-    return 
+  if mp.get_mpattribute(A0_30) then
+    return
   end
-  ;
-  (mp.set_mpattribute)(l_1_0)
-  return 
+  mp.set_mpattribute(A0_30)
+  return
 end
-
-local l_0_8 = function(l_2_0, l_2_1)
-  -- function num : 0_1
-  local l_2_2 = 6
-  if l_2_1 and type(l_2_1) == "number" then
-    l_2_2 = l_2_1
+function L8_8(A0_31, A1_32)
+  local L2_33
+  L2_33 = 6
+  if A1_32 and type(A1_32) == "number" then
+    L2_33 = A1_32
   end
-  if not l_2_0 then
+  if not A0_31 then
     return nil
   end
-  if #l_2_0 < l_2_2 then
-    l_2_2 = #l_2_0
+  if L2_33 > #A0_31 then
+    L2_33 = #A0_31
   end
-  local l_2_3, l_2_4 = (l_2_0:gsub(" ", "")):sub, l_2_0:gsub(" ", "")
-  local l_2_5 = 1
-  do
-    local l_2_6 = l_2_2
-    do return l_2_3(l_2_4, l_2_5, l_2_6) end
-    -- DECOMPILER ERROR at PC26: Confused about usage of register R4 for local variables in 'ReleaseLocals'
-
-  end
+  return A0_31:gsub(" ", ""):sub(1, L2_33)
 end
-
-local l_0_9 = function(l_3_0)
-  -- function num : 0_2
-  local l_3_1 = string.format
-  local l_3_2 = "%x"
-  do
-    local l_3_3, l_3_4, l_3_5, l_3_6, l_3_7 = (crypto.CRC32Buffer)(-1, l_3_0, 0, #l_3_0), .end
-    do return l_3_1(l_3_2, l_3_3, l_3_4, l_3_5, l_3_6, l_3_7) end
-    -- DECOMPILER ERROR at PC12: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+function L9_9(A0_34)
+  local L2_35
+  L2_35 = string
+  L2_35 = L2_35.format
+  return L2_35("%x", crypto.CRC32Buffer(-1, A0_34, 0, #A0_34))
 end
-
-for l_0_15,l_0_16 in ipairs(l_0_0) do
-  local l_0_12, l_0_13 = function(l_4_0)
-  -- function num : 0_3 , upvalues : l_0_9
-  if not l_4_0 then
-    return nil
+function L10_10(A0_36)
+  local L1_37
+  if not A0_36 then
+    L1_37 = nil
+    return L1_37
   end
-  if not l_4_0.Hash then
-    return nil
+  L1_37 = A0_36.Hash
+  if not L1_37 then
+    L1_37 = nil
+    return L1_37
   end
-  local l_4_1 = l_4_0.Hash
-  local l_4_2 = l_0_9
-  local l_4_3 = l_4_1
-  do return l_4_2(l_4_3) end
-  -- DECOMPILER ERROR at PC14: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
+  L1_37 = A0_36.Hash
+  return _UPVALUE0_(L1_37)
 end
-, function(l_5_0)
-  -- function num : 0_4 , upvalues : l_0_9
-  if not l_5_0 then
-    return nil
+function L11_11(A0_38)
+  local L1_39, L2_40, L3_41, L4_42, L5_43, L6_44, L7_45, L8_46, L9_47, L10_48
+  if not A0_38 then
+    L1_39 = nil
+    return L1_39
   end
-  local l_5_1, l_5_2, l_5_3, l_5_4, l_5_5, l_5_6, l_5_7, l_5_8, l_5_9, l_5_10 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
-  if l_5_0.Country then
-    l_5_1 = (mp.utf16to8)(l_5_0.Country)
-    l_5_2 = l_0_9(l_5_1)
+  L1_39, L2_40, L3_41, L4_42, L5_43, L6_44, L7_45, L8_46, L9_47, L10_48 = nil, nil, nil, nil, nil, nil, nil, nil, nil, nil
+  if A0_38.Country then
+    L1_39 = mp.utf16to8(A0_38.Country)
+    L2_40 = _UPVALUE0_(L1_39)
   end
-  if l_5_0.State then
-    l_5_3 = (mp.utf16to8)(l_5_0.State)
-    l_5_4 = l_0_9(l_5_3)
+  if A0_38.State then
+    L3_41 = mp.utf16to8(A0_38.State)
+    L4_42 = _UPVALUE0_(L3_41)
   end
-  if l_5_0.Locality then
-    l_5_5 = (mp.utf16to8)(l_5_0.Locality)
-    l_5_6 = l_0_9(l_5_5)
+  if A0_38.Locality then
+    L5_43 = mp.utf16to8(A0_38.Locality)
+    L6_44 = _UPVALUE0_(L5_43)
   end
-  if l_5_0.Organization then
-    l_5_7 = (mp.utf16to8)(l_5_0.Organization)
-    l_5_8 = l_0_9(l_5_7)
+  if A0_38.Organization then
+    L7_45 = mp.utf16to8(A0_38.Organization)
+    L8_46 = _UPVALUE0_(L7_45)
   end
-  if l_5_0.CommonName then
-    l_5_9 = (mp.utf16to8)(l_5_0.CommonName)
-    l_5_10 = l_0_9(l_5_9)
+  if A0_38.CommonName then
+    L9_47 = mp.utf16to8(A0_38.CommonName)
+    L10_48 = _UPVALUE0_(L9_47)
   end
-  local l_5_11 = {}
-  l_5_11.Country = l_5_1
-  l_5_11.CountryCRC32 = l_5_2
-  l_5_11.State = l_5_3
-  l_5_11.StateCRC32 = l_5_4
-  l_5_11.Locality = l_5_5
-  l_5_11.LocalityCRC32 = l_5_6
-  l_5_11.Organization = l_5_7
-  l_5_11.OrganizationCRC32 = l_5_8
-  l_5_11.CommonName = l_5_9
-  l_5_11.CommonNameCRC32 = l_5_10
-  return l_5_11
+  return {
+    Country = L1_39,
+    CountryCRC32 = L2_40,
+    State = L3_41,
+    StateCRC32 = L4_42,
+    Locality = L5_43,
+    LocalityCRC32 = L6_44,
+    Organization = L7_45,
+    OrganizationCRC32 = L8_46,
+    CommonName = L9_47,
+    CommonNameCRC32 = L10_48
+  }
 end
-
-  -- DECOMPILER ERROR at PC31: Confused about usage of register: R16 in 'UnsetPending'
-
-  if R16_PC31.AuthenticodeContentType == "APPX" then
-    if l_0_1 == l_0_4 then
+for L15_15, L16_16 in L12_12(L13_13) do
+  if L17_17 == "APPX" then
+    if L1_1 == L4_4 then
       break
     end
-    for l_0_20,l_0_21 in ipairs(R16_PC31.Certificates) do
-      -- DECOMPILER ERROR at PC44: Confused about usage of register: R21 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC47: Overwrote pending register: R22 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC52: Overwrote pending register: R22 in 'AssignReg'
-
-      if l_0_2 < l_0_5 then
-        if not R21_PC44.FingerprintSha1 or R21_PC44.FingerprintSha256 then
-          do return mp.CLEAN end
-          if not l_0_12(nil) then
-            return mp.CLEAN
-          end
-          local l_0_24 = nil
-          -- DECOMPILER ERROR at PC69: Overwrote pending register: R24 in 'AssignReg'
-
-          -- DECOMPILER ERROR at PC74: Overwrote pending register: R24 in 'AssignReg'
-
-          if not l_0_23.Issuer or l_0_23.Subject then
-            do return mp.CLEAN end
-            local l_0_25 = nil
-            if not l_0_13(nil) then
-              return mp.CLEAN
-            end
-            local l_0_26 = nil
-            local l_0_27 = nil
-            l_0_7("Lua:P7X:Cert:" .. "FGPT:" .. l_0_8(l_0_25, 8))
-            -- DECOMPILER ERROR at PC101: Confused about usage of register: R26 in 'UnsetPending'
-
-            if l_0_27.Country then
-              local l_0_28 = nil
-              local l_0_29 = nil
-              l_0_7("Lua:P7X:Cert:" .. "CTRY:" .. l_0_8(l_0_27.Country, 2))
-              l_0_7(l_0_28 .. "CTRY:" .. l_0_8(l_0_27.CountryCRC32, 8))
-            end
-            do
-              -- DECOMPILER ERROR at PC124: Confused about usage of register: R26 in 'UnsetPending'
-
-              if l_0_27.Organization then
-                local l_0_30 = nil
-                local l_0_31 = nil
-                l_0_7(l_0_28 .. "ORG:" .. l_0_8(l_0_27.Organization, 8))
-                l_0_7(l_0_30 .. "ORG:" .. l_0_8(l_0_27.OrganizationCRC32, 8))
-              end
-              do
-                -- DECOMPILER ERROR at PC147: Confused about usage of register: R26 in 'UnsetPending'
-
-                if l_0_27.CommonName then
-                  local l_0_32 = nil
-                  local l_0_33 = nil
-                  l_0_7(l_0_30 .. "CN:" .. l_0_8(l_0_27.CommonName, 8))
-                  l_0_7(l_0_32 .. "CN:" .. l_0_8(l_0_27.CommonNameCRC32, 8))
-                end
-                do
-                  do
-                    l_0_2 = l_0_2 + 1
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out DO_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out DO_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out DO_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out IF_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out IF_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC168: LeaveBlock: unexpected jumping out IF_STMT
-
-                  end
-                end
-              end
-            end
+    for L20_20, L21_21 in L17_17(L18_18) do
+      if L2_2 < L5_5 then
+        L22_22 = nil
+        L23_23 = L21_21.FingerprintSha1
+        if L23_23 then
+          L22_22 = L21_21.FingerprintSha1
+        else
+          L23_23 = L21_21.FingerprintSha256
+          if L23_23 then
+            L22_22 = L21_21.FingerprintSha256
+          else
+            L23_23 = mp
+            L23_23 = L23_23.CLEAN
+            return L23_23
           end
         end
+        L23_23 = L10_10
+        L24_24 = L22_22
+        L23_23 = L23_23(L24_24)
+        if not L23_23 then
+          L24_24 = mp
+          L24_24 = L24_24.CLEAN
+          return L24_24
+        end
+        L24_24 = nil
+        L25_25 = L21_21.Issuer
+        if L25_25 then
+          L24_24 = L21_21.Issuer
+        else
+          L25_25 = L21_21.Subject
+          if L25_25 then
+            L24_24 = L21_21.Subject
+          else
+            L25_25 = mp
+            L25_25 = L25_25.CLEAN
+            return L25_25
+          end
+        end
+        L25_25 = L11_11
+        L26_26 = L24_24
+        L25_25 = L25_25(L26_26)
+        if not L25_25 then
+          L26_26 = mp
+          L26_26 = L26_26.CLEAN
+          return L26_26
+        end
+        L26_26 = "Lua:P7X:Cert:"
+        L27_27 = L26_26
+        L28_28 = "FGPT:"
+        L29_29 = L8_8
+        L29_29 = L29_29(L23_23, 8)
+        L27_27 = L27_27 .. L28_28 .. L29_29
+        L28_28 = L7_7
+        L29_29 = L27_27
+        L28_28(L29_29)
+        L28_28 = L25_25.Country
+        if L28_28 then
+          L28_28 = L26_26
+          L29_29 = "CTRY:"
+          L28_28 = L28_28 .. L29_29 .. L8_8(L25_25.Country, 2)
+          L29_29 = L26_26
+          L29_29 = L29_29 .. "CTRY:" .. L8_8(L25_25.CountryCRC32, 8)
+          L7_7(L28_28)
+          L7_7(L29_29)
+        end
+        L28_28 = L25_25.Organization
+        if L28_28 then
+          L28_28 = L26_26
+          L29_29 = "ORG:"
+          L28_28 = L28_28 .. L29_29 .. L8_8(L25_25.Organization, 8)
+          L29_29 = L26_26
+          L29_29 = L29_29 .. "ORG:" .. L8_8(L25_25.OrganizationCRC32, 8)
+          L7_7(L28_28)
+          L7_7(L29_29)
+        end
+        L28_28 = L25_25.CommonName
+        if L28_28 then
+          L28_28 = L26_26
+          L29_29 = "CN:"
+          L28_28 = L28_28 .. L29_29 .. L8_8(L25_25.CommonName, 8)
+          L29_29 = L26_26
+          L29_29 = L29_29 .. "CN:" .. L8_8(L25_25.CommonNameCRC32, 8)
+          L7_7(L28_28)
+          L7_7(L29_29)
+        end
       end
+      L2_2 = L2_2 + 1
     end
-    -- DECOMPILER ERROR at PC171: Confused about usage of register: R16 in 'UnsetPending'
-
-    for l_0_37,l_0_38 in ipairs(l_0_18.Signers) do
-      local l_0_34, l_0_35 = nil
-      -- DECOMPILER ERROR at PC176: Confused about usage of register: R21 in 'UnsetPending'
-
-      if l_0_3 < l_0_6 then
-        if not l_0_23.Fingerprint then
-          return mp.CLEAN
+    for L20_20, L21_21 in L17_17(L18_18) do
+      if L3_3 < L6_6 then
+        L22_22 = L21_21.Fingerprint
+        if not L22_22 then
+          L22_22 = mp
+          L22_22 = L22_22.CLEAN
+          return L22_22
         end
-        -- DECOMPILER ERROR at PC183: Confused about usage of register: R21 in 'UnsetPending'
-
-        if not l_0_12(l_0_23.Fingerprint) then
-          return mp.CLEAN
+        L22_22 = L10_10
+        L23_23 = L21_21.Fingerprint
+        L22_22 = L22_22(L23_23)
+        if not L22_22 then
+          L23_23 = mp
+          L23_23 = L23_23.CLEAN
+          return L23_23
         end
-        local l_0_41 = nil
-        l_0_7("Lua:P7X:Sign:" .. "FGPT:" .. l_0_8(l_0_12(l_0_23.Fingerprint), 8))
+        L23_23 = "Lua:P7X:Sign:"
+        L24_24 = L23_23
+        L25_25 = "FGPT:"
+        L26_26 = L8_8
+        L27_27 = L22_22
+        L28_28 = 8
+        L26_26 = L26_26(L27_27, L28_28)
+        L24_24 = L24_24 .. L25_25 .. L26_26
+        L25_25 = L7_7
+        L26_26 = L24_24
+        L25_25(L26_26)
       end
-      do
-        do
-          l_0_3 = l_0_3 + 1
-          -- DECOMPILER ERROR at PC202: LeaveBlock: unexpected jumping out DO_STMT
-
-        end
-      end
+      L3_3 = L3_3 + 1
     end
-    l_0_1 = l_0_1 + 1
+    L1_1 = L1_1 + 1
   end
 end
-do
-  do
-    l_0_7((string.format)("Lua:P7X:SignedDataCount:%d", #l_0_0))
-    l_0_7((string.format)("Lua:P7X:CertCount:%d", l_0_2))
-    l_0_7((string.format)("Lua:P7X:SignerCount:%d", l_0_3))
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC231: freeLocal<0 in 'ReleaseLocals'
-
-  end
-end
-
+L15_15 = #L0_0
+L29_29 = L13_13(L14_14, L15_15)
+L12_12(L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L27_27, L28_28, L29_29, L13_13(L14_14, L15_15))
+L15_15 = L2_2
+L29_29 = L13_13(L14_14, L15_15)
+L12_12(L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L27_27, L28_28, L29_29, L13_13(L14_14, L15_15))
+L15_15 = L3_3
+L29_29 = L13_13(L14_14, L15_15)
+L12_12(L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L24_24, L25_25, L26_26, L27_27, L28_28, L29_29, L13_13(L14_14, L15_15))
+return L12_12

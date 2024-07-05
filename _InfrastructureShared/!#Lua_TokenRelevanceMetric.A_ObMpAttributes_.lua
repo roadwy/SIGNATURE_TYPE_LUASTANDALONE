@@ -1,31 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_TokenRelevanceMetric.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILE_AGE)
-if l_0_1 == nil or l_0_1 > 18000 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILE_AGE
+L1_1 = L1_1(L2_2)
+if L1_1 == nil or L1_1 > 18000 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.getfilesize)()
-if l_0_2 < 256 or l_0_2 > 5242880 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.getfilesize
+L2_2 = L2_2()
+if L2_2 < 256 or L2_2 > 5242880 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (string.lower)((mp.getfilename)())
-if l_0_3:find("cache", 1, true) or l_0_3:find("crypto", 1, true) or l_0_3:find("\\scans\\", 1, true) then
-  return mp.CLEAN
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = mp
+L4_4 = L4_4.getfilename
+L4_4 = L4_4()
+L3_3 = L3_3(L4_4, L4_4())
+L4_4 = L3_3.find
+L4_4 = L4_4(L3_3, "cache", 1, true)
+if not L4_4 then
+  L4_4 = L3_3.find
+  L4_4 = L4_4(L3_3, "crypto", 1, true)
+  if not L4_4 then
+    L4_4 = L3_3.find
+    L4_4 = L4_4(L3_3, "\\scans\\", 1, true)
+  end
+elseif L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (mp.GetCertificateInfo)(false)
-for l_0_8,l_0_9 in pairs(l_0_4) do
-  if l_0_9.Signers ~= nil then
+L4_4 = mp
+L4_4 = L4_4.GetCertificateInfo
+L4_4 = L4_4(false)
+for _FORV_8_, _FORV_9_ in pairs(L4_4) do
+  if _FORV_9_.Signers ~= nil then
     return mp.CLEAN
   end
 end
-;
-(mp.set_mpattribute)("Lua:FileNameTokenRelevanceMetric.A")
+mp.set_mpattribute("Lua:FileNameTokenRelevanceMetric.A")
 return mp.CLEAN
-

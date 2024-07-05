@@ -1,21 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bb376500719 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-if l_0_0 ~= nil then
-  for l_0_5,l_0_6 in ipairs(l_0_0) do
-    if l_0_6.image_path ~= nil then
-      local l_0_7 = (string.lower)((MpCommon.PathToWin32Path)(l_0_6.image_path))
-      if (sysio.IsFileExists)(l_0_7) and not (mp.IsKnownFriendlyFile)(l_0_7, true, false) then
-        (bm.add_related_file)(l_0_7)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+if L0_0 ~= nil then
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L7_7 = L6_6.image_path
+    if L7_7 ~= nil then
+      L7_7 = string
+      L7_7 = L7_7.lower
+      L7_7 = L7_7(MpCommon.PathToWin32Path(L6_6.image_path))
+      if sysio.IsFileExists(L7_7) and not mp.IsKnownFriendlyFile(L7_7, true, false) then
+        bm.add_related_file(L7_7)
         return mp.INFECTED
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return L2_2

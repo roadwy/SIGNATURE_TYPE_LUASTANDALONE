@@ -1,22 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_AlureonEP 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections ~= 8 then
-  return mp.CLEAN
+local L0_0
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 8 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.SizeOfImage ~= 151552 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.SizeOfImage
+if L0_0 ~= 151552 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u32)(headerpage, 561) ~= 1651336557 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L0_0 = L0_0(headerpage, 561)
+if L0_0 ~= 1651336557 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)((pe.foffset_rva)(pehdr.AddressOfEntryPoint), 23)
-if (mp.crc32)(-1, l_0_0, 1, 23) ~= 1267305419 then
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L0_0 = L0_0(pe.foffset_rva(pehdr.AddressOfEntryPoint), 23)
+if mp.crc32(-1, L0_0, 1, 23) ~= 1267305419 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

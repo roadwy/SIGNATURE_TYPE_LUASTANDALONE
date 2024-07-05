@@ -1,30 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/93d703036753 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 ~= nil then
-  local l_0_1 = (string.lower)(l_0_0.image_path)
-  if (string.find)(l_0_1, "schtasks.exe", 1, true) and l_0_0.ppid ~= nil then
-    local l_0_2 = (mp.GetParentProcInfo)(l_0_0.ppid)
-    if l_0_2 ~= nil then
-      (MpCommon.RequestSmsOnProcess)(l_0_2.ppid, MpCommon.SMS_SCAN_MED)
-      ;
-      (mp.SMSAsyncScan)(l_0_2.ppid)
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0.image_path)
+  if string.find(L1_1, "schtasks.exe", 1, true) and L0_0.ppid ~= nil then
+    if mp.GetParentProcInfo(L0_0.ppid) ~= nil then
+      MpCommon.RequestSmsOnProcess(mp.GetParentProcInfo(L0_0.ppid).ppid, MpCommon.SMS_SCAN_MED)
+      mp.SMSAsyncScan(mp.GetParentProcInfo(L0_0.ppid).ppid)
       return mp.LOWFI
     end
   else
-    do
-      do
-        ;
-        (MpCommon.RequestSmsOnProcess)(l_0_0.ppid, MpCommon.SMS_SCAN_MED)
-        ;
-        (mp.SMSAsyncScan)(l_0_0.ppid)
-        do return mp.LOWFI end
-        return mp.LOWFI
-      end
-    end
+    MpCommon.RequestSmsOnProcess(L0_0.ppid, MpCommon.SMS_SCAN_MED)
+    mp.SMSAsyncScan(L0_0.ppid)
+    return mp.LOWFI
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.LOWFI
+return L1_1

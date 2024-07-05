@@ -1,38 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bb362a182d6_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-if not contains(l_0_0, (mp.ContextualExpandEnvironmentVariables)("%systemdrive%")) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = MpCommon
+L0_0 = L0_0.PathToWin32Path
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L3_3 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1())
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = {}
--- DECOMPILER ERROR at PC23: No list found for R1 , SetList fails
-
--- DECOMPILER ERROR at PC24: Overwrote pending register: R2 in 'AssignReg'
-
-if ("\\music\\")(l_0_0, l_0_1) then
-  local l_0_2 = (bm.get_current_process_startup_info)()
-  if l_0_2 ~= nil and l_0_2.command_line ~= nil then
-    local l_0_3 = {}
-    -- DECOMPILER ERROR at PC43: No list found for R3 , SetList fails
-
-    -- DECOMPILER ERROR at PC44: Overwrote pending register: R4 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC45: Overwrote pending register: R5 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC46: Overwrote pending register: R6 in 'AssignReg'
-
-    if ("mega")("webdav", "copy") then
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L0_0 = L1_1
+L1_1 = contains
+L2_2 = L0_0
+L3_3 = MpCommon
+L3_3 = L3_3.ExpandEnvironmentVariables
+L3_3 = L3_3("%systemdrive%")
+L1_1 = L1_1(L2_2, L3_3, L3_3("%systemdrive%"))
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = {
+  L2_2,
+  L3_3,
+  ":\\recovery\\",
+  "c:\\temp\\",
+  "\\downloads\\"
+}
+L2_2 = ":\\windows\\"
+L3_3 = ":\\users\\public\\"
+L2_2 = contains
+L3_3 = L0_0
+L2_2 = L2_2(L3_3, L1_1)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = bm
+L2_2 = L2_2.get_current_process_startup_info
+L2_2 = L2_2()
+if L2_2 ~= nil then
+  L3_3 = L2_2.command_line
+  if L3_3 ~= nil then
+    L3_3 = {
+      "mega",
+      "webdav",
+      "copy",
+      "ftp"
+    }
+    if contains(L2_2.command_line, L3_3) then
+      bm.add_related_file(L0_0)
       return mp.INFECTED
     end
   end
 end
-do
-  do
-    do return mp.CLEAN end
-    -- WARNING: undefined locals caused missing assignments!
-  end
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

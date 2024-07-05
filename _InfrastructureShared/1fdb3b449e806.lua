@@ -1,20 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1fdb3b449e806 
-
--- params : ...
--- function num : 0
-add_related_file_if_exists = function(l_1_0)
-  -- function num : 0_0
-  if l_1_0.matched and l_1_0.utf8p2 ~= nil then
-    local l_1_1 = (mp.ContextualExpandEnvironmentVariables)(l_1_0.utf8p2)
-    ;
-    (bm.add_related_file)(l_1_1)
+function add_related_file_if_exists(A0_0)
+  local L1_1
+  L1_1 = A0_0.matched
+  if L1_1 then
+    L1_1 = A0_0.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = mp
+      L1_1 = L1_1.ContextualExpandEnvironmentVariables
+      L1_1 = L1_1(A0_0.utf8p2)
+      bm.add_related_file(L1_1)
+    end
   end
 end
-
 add_related_file_if_exists(this_sigattrlog[1])
 add_related_file_if_exists(this_sigattrlog[2])
 add_related_file_if_exists(this_sigattrlog[3])
 add_related_file_if_exists(this_sigattrlog[4])
 return mp.INFECTED
-

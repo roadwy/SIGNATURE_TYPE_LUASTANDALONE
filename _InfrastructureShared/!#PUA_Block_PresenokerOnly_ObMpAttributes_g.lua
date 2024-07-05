@@ -1,19 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PUA_Block_PresenokerOnly_ObMpAttributes_g 
-
--- params : ...
--- function num : 0
-if #(mp.enum_mpattributesubstring)("PUA:ML:Block") > 0 then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.enum_mpattributesubstring
+L0_0 = L0_0("PUA:ML:Block")
+if #L0_0 > 0 then
   return mp.CLEAN
 end
-local l_0_0 = (mp.enum_mpattributesubstring)("PUA:Block:")
-if #l_0_0 == 0 or l_0_0 == nil then
+L0_0 = mp.enum_mpattributesubstring("PUA:Block:")
+if #L0_0 == 0 or L0_0 == nil then
   return mp.INFECTED
 end
-for l_0_4,l_0_5 in ipairs(l_0_0) do
-  if l_0_5 ~= "PUA:Block:Presenoker" then
+for _FORV_4_, _FORV_5_ in ipairs(L0_0) do
+  if _FORV_5_ ~= "PUA:Block:Presenoker" then
     return mp.CLEAN
   end
 end
 return mp.INFECTED
-

@@ -1,30 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b33a00222f_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-shadowdel = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  for l_1_5 = 1, l_1_1 do
-    (bm.trigger_sig)("VSSAMSI", l_1_0, l_1_0)
-    local l_1_6 = (mp.GetParentProcInfo)(l_1_0)
-    if l_1_6 ~= nil then
-      local l_1_7 = l_1_6.image_path
-    end
-    if l_1_7 then
-      if not l_1_7:match("\\([^\\]+)$") then
-        break
-      end
-      l_1_0 = l_1_6.ppid
-    else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+function L0_0(A0_6, A1_7)
+  local L2_8, L3_9, L4_10, L5_11
+  for L5_11 = 1, A1_7 do
+    bm.trigger_sig("VSSAMSI", A0_6, A0_6)
+    if mp.GetParentProcInfo(A0_6) == nil or not mp.GetParentProcInfo(A0_6).image_path or not mp.GetParentProcInfo(A0_6).image_path:match("\\([^\\]+)$") then
       break
     end
+    A0_6 = mp.GetParentProcInfo(A0_6).ppid
+    do break end
+    break
   end
 end
-
-local l_0_0 = (MpCommon.GetPersistContextNoPath)("vssamsipid")
-for l_0_4,l_0_5 in ipairs(l_0_0) do
-  shadowdel(l_0_5, 4)
+shadowdel = L0_0
+L0_0 = MpCommon
+L0_0 = L0_0.GetPersistContextNoPath
+L0_0 = L0_0(L1_1)
+for L4_4, L5_5 in L1_1(L2_2) do
+  shadowdel(L5_5, 4)
 end
-return mp.CLEAN
-
+return L1_1

@@ -1,34 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c5b31c1df278 
-
--- params : ...
--- function num : 0
-if (mp.IsHipsRuleEnabled)("3b576869-a4ec-4529-8536-b80a7769e899") ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.IsHipsRuleEnabled
+L1_1 = "3b576869-a4ec-4529-8536-b80a7769e899"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = "enghipscpy:blockaccess:3b576869-a4ec-4529-8536-b80a7769e899"
-local l_0_1 = ""
-local l_0_2 = ""
-if (this_sigattrlog[5]).matched then
-  l_0_1 = (this_sigattrlog[5]).utf8p1
-  l_0_2 = (this_sigattrlog[5]).utf8p2
-  if l_0_1 == nil or l_0_1 == "" or l_0_2 == nil or l_0_2 == "" then
+L0_0 = "enghipscpy:blockaccess:3b576869-a4ec-4529-8536-b80a7769e899"
+L1_1 = ""
+L2_2 = ""
+if this_sigattrlog[5].matched then
+  L1_1 = this_sigattrlog[5].utf8p1
+  L2_2 = this_sigattrlog[5].utf8p2
+  if L1_1 == nil or L1_1 == "" or L2_2 == nil or L2_2 == "" then
     return mp.CLEAN
   end
 else
   return mp.CLEAN
 end
-if (string.find)(l_0_1, "%", 1, true) ~= nil or (string.find)(l_0_2, "%", 1, true) ~= nil then
+if string.find(L1_1, "%", 1, true) ~= nil or string.find(L2_2, "%", 1, true) ~= nil then
   return mp.CLEAN
 end
-local l_0_3 = {}
-l_0_3.exe = true
-l_0_3.dll = true
-l_0_3.sys = true
-local l_0_4 = (string.lower)((string.match)(l_0_1, "%.([^%.]+)$"))
-if l_0_3[l_0_4] == true and not (MpCommon.QueryPersistContext)(l_0_2, l_0_0) then
-  (MpCommon.AppendPersistContext)(l_0_2, l_0_0, 0)
+if ({
+  exe = true,
+  dll = true,
+  sys = true
+})[string.lower(string.match(L1_1, "%.([^%.]+)$"))] == true and not MpCommon.QueryPersistContext(L2_2, L0_0) then
+  MpCommon.AppendPersistContext(L2_2, L0_0, 0)
   return mp.INFECTED
 end
 return mp.CLEAN
-

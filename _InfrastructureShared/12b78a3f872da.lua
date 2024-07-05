@@ -1,15 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/12b78a3f872da 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 4000000 or l_0_0 < 10000 then
+if mp.getfilesize() > 4000000 or mp.getfilesize() < 10000 then
   return mp.CLEAN
 end
-local l_0_1 = ((mp.ContextualExpandEnvironmentVariables)("%windir%")):lower()
-if (((MpCommon.PathToWin32Path)((mp.getfilename)(mp.FILEPATH_QUERY_FULL))):lower()):sub(1, #l_0_1) == l_0_1 then
+if MpCommon.PathToWin32Path(mp.getfilename(mp.FILEPATH_QUERY_FULL)):lower():sub(1, #MpCommon.ExpandEnvironmentVariables("%windir%"):lower()) == MpCommon.ExpandEnvironmentVariables("%windir%"):lower() then
   return mp.CLEAN
 end
 return mp.INFECTED
-

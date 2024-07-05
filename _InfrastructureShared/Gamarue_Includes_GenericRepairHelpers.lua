@@ -1,72 +1,106 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Gamarue_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-isgamformat = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = (string.find)(l_1_0:reverse(), "\\", 1, true)
-  if l_1_1 == nil then
-    return false, nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+function L0_0(A0_9)
+  local L1_10, L2_11, L3_12
+  L1_10 = string
+  L1_10 = L1_10.find
+  L3_12 = A0_9
+  L2_11 = A0_9.reverse
+  L2_11 = L2_11(L3_12)
+  L3_12 = "\\"
+  L1_10 = L1_10(L2_11, L3_12, 1, true)
+  if L1_10 == nil then
+    L2_11 = false
+    L3_12 = nil
+    return L2_11, L3_12
   end
-  local l_1_2 = #l_1_0 - l_1_1
-  local l_1_3 = l_1_0:sub(l_1_2 + 2)
-  local l_1_4 = {}
-  l_1_4[".exe"] = ""
-  l_1_4[".cmd"] = ""
-  l_1_4[".bat"] = ""
-  l_1_4[".com"] = ""
-  l_1_4[".pif"] = ""
-  l_1_4[".scr"] = ""
-  local l_1_5 = {}
-  l_1_5.ms = ""
-  l_1_5.dx = ""
-  l_1_5.cc = ""
-  if l_1_5[l_1_3:sub(1, 2)] and l_1_4[l_1_3:sub(-4)] then
-    return true, l_1_3
+  L2_11 = #A0_9
+  L2_11 = L2_11 - L1_10
+  L3_12 = A0_9.sub
+  L3_12 = L3_12(A0_9, L2_11 + 2)
+  if ({
+    ms = "",
+    dx = "",
+    cc = ""
+  })[L3_12:sub(1, 2)] and ({
+    [".exe"] = "",
+    [".cmd"] = "",
+    [".bat"] = "",
+    [".com"] = "",
+    [".pif"] = "",
+    [".scr"] = ""
+  })[L3_12:sub(-4)] then
+    return true, L3_12
   end
   return false, nil
 end
-
-remgam = function(l_2_0, l_2_1)
-  -- function num : 0_1
-  if l_2_0 then
-    local l_2_2 = (sysio.RegEnumValues)(l_2_0)
-    for l_2_6,l_2_7 in pairs(l_2_2) do
-      if (l_2_1 == true and l_2_7:find("^%d%d%d%d+$", 1, false)) or l_2_1 == false and l_2_7:find("Load", 1, true) then
-        local l_2_8 = (sysio.GetRegValueAsString)(l_2_0, l_2_7)
-        if l_2_8 ~= nil and l_2_8 ~= "" then
-          local l_2_9, l_2_10 = isgamformat(l_2_8)
-          if l_2_9 == true and l_2_10 ~= nil then
-            if l_2_1 == true then
-              (sysio.DeleteRegValue)(l_2_0, l_2_7)
-            else
-              ;
-              (sysio.SetRegValueAsString)(l_2_0, "Load", "")
+isgamformat = L0_0
+function L0_0(A0_13, A1_14)
+  local L2_15, L3_16, L4_17, L5_18, L6_19, L7_20, L8_21, L9_22, L10_23, L11_24
+  if A0_13 then
+    L2_15 = sysio
+    L2_15 = L2_15.RegEnumValues
+    L2_15 = L2_15(L3_16)
+    for L6_19, L7_20 in L3_16(L4_17) do
+      if L7_20 ~= nil then
+        if A1_14 == true then
+          L9_22 = L7_20
+          L8_21 = L7_20.find
+          L10_23 = "^%d%d%d%d+$"
+          L11_24 = 1
+          L8_21 = L8_21(L9_22, L10_23, L11_24, false)
+        else
+          if not L8_21 then
+            if A1_14 == false then
+              L9_22 = L7_20
+              L8_21 = L7_20.find
+              L10_23 = "Load"
+              L11_24 = 1
+              L8_21 = L8_21(L9_22, L10_23, L11_24, true)
             end
-            local l_2_11 = (MpCommon.ExpandEnvironmentVariables)("%allusersprofile%") .. "\\" .. l_2_10
-            if (sysio.IsFileExists)(l_2_11) then
-              (MpCommon.ReportLowfi)(l_2_11, 2852551133)
-              ;
-              (Remediation.BtrDeleteFile)(l_2_11)
-            end
-            l_2_11 = (MpCommon.ExpandEnvironmentVariables)("%allusersprofile%") .. "\\Local Settings\\Temp\\" .. l_2_10
-            if (sysio.IsFileExists)(l_2_11) then
-              (MpCommon.ReportLowfi)(l_2_11, 2852551133)
-              ;
-              (Remediation.BtrDeleteFile)(l_2_11)
-            end
-            l_2_11 = Infrastructure_GetEnvironmentPath("%appdata%") .. "\\" .. l_2_10
-            if (sysio.IsFileExists)(l_2_11) then
-              (MpCommon.ReportLowfi)(l_2_11, 2852551133)
-              ;
-              (Remediation.BtrDeleteFile)(l_2_11)
-            end
-            l_2_11 = Infrastructure_GetEnvironmentPath("%userprofile%") .. "\\AppData\\Local\\Temp\\" .. l_2_10
-            if (sysio.IsFileExists)(l_2_11) then
-              (MpCommon.ReportLowfi)(l_2_11, 2852551133)
-              ;
-              (Remediation.BtrDeleteFile)(l_2_11)
+        end
+        elseif L8_21 then
+          L8_21 = sysio
+          L8_21 = L8_21.GetRegValueAsString
+          L9_22 = A0_13
+          L10_23 = L7_20
+          L8_21 = L8_21(L9_22, L10_23)
+          if L8_21 ~= nil and L8_21 ~= "" then
+            L9_22 = isgamformat
+            L10_23 = L8_21
+            L10_23 = L9_22(L10_23)
+            if L9_22 == true and L10_23 ~= nil then
+              if A1_14 == true then
+                L11_24 = sysio
+                L11_24 = L11_24.DeleteRegValue
+                L11_24(A0_13, L7_20)
+              else
+                L11_24 = sysio
+                L11_24 = L11_24.SetRegValueAsString
+                L11_24(A0_13, "Load", "")
+              end
+              L11_24 = MpCommon
+              L11_24 = L11_24.ExpandEnvironmentVariables
+              L11_24 = L11_24("%allusersprofile%")
+              L11_24 = L11_24 .. "\\" .. L10_23
+              if sysio.IsFileExists(L11_24) then
+                MpCommon.ReportLowfi(L11_24, 2852551133)
+                Remediation.BtrDeleteFile(L11_24)
+              end
+              L11_24 = MpCommon.ExpandEnvironmentVariables("%allusersprofile%") .. "\\Local Settings\\Temp\\" .. L10_23
+              if sysio.IsFileExists(L11_24) then
+                MpCommon.ReportLowfi(L11_24, 2852551133)
+                Remediation.BtrDeleteFile(L11_24)
+              end
+              L11_24 = Infrastructure_GetEnvironmentPath("%appdata%") .. "\\" .. L10_23
+              if sysio.IsFileExists(L11_24) then
+                MpCommon.ReportLowfi(L11_24, 2852551133)
+                Remediation.BtrDeleteFile(L11_24)
+              end
+              L11_24 = Infrastructure_GetEnvironmentPath("%userprofile%") .. "\\AppData\\Local\\Temp\\" .. L10_23
+              if sysio.IsFileExists(L11_24) then
+                MpCommon.ReportLowfi(L11_24, 2852551133)
+                Remediation.BtrDeleteFile(L11_24)
+              end
             end
           end
         end
@@ -74,180 +108,246 @@ remgam = function(l_2_0, l_2_1)
     end
   end
 end
-
-remplugin_added_registry = function()
-  -- function num : 0_2
-  local l_3_0 = (sysio.RegExpandUserKey)("HKCU\\Keyboard Layout")
-  if l_3_0 then
-    for l_3_4,l_3_5 in pairs(l_3_0) do
-      local l_3_6 = (sysio.RegOpenKey)(l_3_5)
-      if l_3_6 then
-        (sysio.DeleteRegValue)(l_3_6, "1")
-        ;
-        (sysio.DeleteRegValue)(l_3_6, "2")
+remgam = L0_0
+function L0_0()
+  local L0_25, L1_26, L2_27, L3_28, L4_29, L5_30, L6_31
+  L0_25 = sysio
+  L0_25 = L0_25.RegExpandUserKey
+  L0_25 = L0_25(L1_26)
+  if L0_25 then
+    for L4_29, L5_30 in L1_26(L2_27) do
+      L6_31 = sysio
+      L6_31 = L6_31.RegOpenKey
+      L6_31 = L6_31(L5_30)
+      if L6_31 then
+        sysio.DeleteRegValue(L6_31, "1")
+        sysio.DeleteRegValue(L6_31, "2")
       end
     end
   end
 end
-
-remplug = function(l_4_0)
-  -- function num : 0_3
-  if l_4_0 then
-    local l_4_1 = (sysio.RegEnumValues)(l_4_0)
-    for l_4_5,l_4_6 in pairs(l_4_1) do
-      if l_4_6 ~= nil and l_4_6:find("^%d%d%d%d+$", 1, false) then
-        local l_4_7 = (sysio.GetRegValueAsString)(l_4_0, l_4_6)
-        if l_4_7 ~= nil and l_4_7 ~= "" then
-          (sysio.DeleteRegValue)(l_4_0, l_4_6)
+remplugin_added_registry = L0_0
+function L0_0(A0_32)
+  local L1_33, L2_34, L3_35, L4_36, L5_37, L6_38
+  if A0_32 then
+    L1_33 = sysio
+    L1_33 = L1_33.RegEnumValues
+    L1_33 = L1_33(L2_34)
+    for L5_37, L6_38 in L2_34(L3_35) do
+      if L6_38 ~= nil and L6_38:find("^%d%d%d%d+$", 1, false) and sysio.GetRegValueAsString(A0_32, L6_38) ~= nil and sysio.GetRegValueAsString(A0_32, L6_38) ~= "" then
+        sysio.DeleteRegValue(A0_32, L6_38)
+      end
+    end
+  end
+end
+remplug = L0_0
+function L0_0()
+  local L0_39, L1_40, L2_41, L3_42, L4_43, L5_44, L6_45, L7_46
+  L0_39 = sysio
+  L0_39 = L0_39.RegOpenKey
+  L1_40 = "HKLM\\Software\\Microsoft\\Windows"
+  L0_39 = L0_39(L1_40)
+  L1_40 = remplug
+  L1_40(L2_41)
+  L1_40 = sysio
+  L1_40 = L1_40.RegExpandUserKey
+  L1_40 = L1_40(L2_41)
+  if L1_40 then
+    for L5_44, L6_45 in L2_41(L3_42) do
+      L7_46 = sysio
+      L7_46 = L7_46.RegOpenKey
+      L7_46 = L7_46(L6_45)
+      remplug(L7_46)
+    end
+  end
+end
+remplugin_registry = L0_0
+function L0_0(A0_47)
+  local L1_48, L2_49, L3_50, L4_51, L5_52, L6_53
+  L2_49 = A0_47
+  L1_48 = A0_47.find
+  L3_50 = "\\%w%.lnk$"
+  L1_48 = L1_48(L2_49, L3_50)
+  if L1_48 == nil then
+    return
+  end
+  L1_48 = sysio
+  L1_48 = L1_48.GetFileSize
+  L2_49 = A0_47
+  L1_48 = L1_48(L2_49)
+  if L1_48 > 1024 or L1_48 < 500 then
+    return
+  end
+  L2_49 = sysio
+  L2_49 = L2_49.ReadFileRaw
+  L3_50 = A0_47
+  L4_51 = 0
+  L5_52 = L1_48
+  L2_49 = L2_49(L3_50, L4_51, L5_52)
+  if L2_49 == nil then
+    return
+  end
+  L3_50 = string
+  L3_50 = L3_50.gsub
+  L4_51 = L2_49
+  L5_52 = "%z"
+  L6_53 = ""
+  L3_50 = L3_50(L4_51, L5_52, L6_53)
+  if L3_50 == nil then
+    return
+  end
+  L5_52 = L3_50
+  L4_51 = L3_50.match
+  L6_53 = "\\AppData\\Roaming\\(ii%w+%.exe)"
+  L4_51 = L4_51(L5_52, L6_53)
+  if L4_51 == nil then
+    L6_53 = L3_50
+    L5_52 = L3_50.match
+    L5_52 = L5_52(L6_53, "\\AppData\\Roaming\\(ob%w+%.exe)")
+    L4_51 = L5_52
+  end
+  if L4_51 ~= nil then
+    L6_53 = A0_47
+    L5_52 = A0_47.match
+    L5_52 = L5_52(L6_53, "^(%w:\\Users\\[^\\]+)\\")
+    if L5_52 ~= nil then
+      L6_53 = L5_52
+      L6_53 = L6_53 .. "\\AppData\\Roaming\\" .. L4_51
+      if sysio.IsFileExists(L6_53) then
+        MpCommon.ReportLowfi(L6_53, 2852551133)
+        Remediation.BtrDeleteFile(L6_53)
+      end
+      if sysio.IsFileExists(A0_47) then
+        MpCommon.ReportLowfi(A0_47, 2852551133)
+        Remediation.BtrDeleteFile(A0_47)
+      end
+    end
+  end
+end
+RemoveGamarueLnk = L0_0
+function L0_0()
+  local L0_54, L1_55, L2_56, L3_57, L4_58, L5_59, L6_60, L7_61, L8_62, L9_63, L10_64, L11_65, L12_66, L13_67
+  L1_55 = sysio
+  L1_55 = L1_55.RegExpandUserKey
+  L1_55 = L1_55(L2_56)
+  for L5_59, L6_60 in L2_56(L3_57) do
+    L7_61 = sysio
+    L7_61 = L7_61.RegOpenKey
+    L8_62 = L6_60
+    L7_61 = L7_61(L8_62)
+    if L7_61 then
+      L8_62 = sysio
+      L8_62 = L8_62.GetRegValueAsString
+      L8_62 = L8_62(L9_63, L10_64)
+      L0_54 = L8_62
+      if L0_54 ~= nil then
+        L8_62 = sysio
+        L8_62 = L8_62.IsFolderExists
+        L8_62 = L8_62(L9_63)
+        if L8_62 then
+          L8_62 = sysio
+          L8_62 = L8_62.FindFiles
+          L8_62 = L8_62(L9_63, L10_64, L11_65)
+          for L12_66, L13_67 in L9_63(L10_64) do
+            RemoveGamarueLnk(L13_67)
+          end
         end
       end
     end
   end
 end
-
-remplugin_registry = function()
-  -- function num : 0_4
-  local l_5_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows")
-  remplug(l_5_0)
-  local l_5_1 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows")
-  if l_5_1 then
-    for l_5_5,l_5_6 in pairs(l_5_1) do
-      local l_5_7 = (sysio.RegOpenKey)(l_5_6)
-      remplug(l_5_7)
-    end
-  end
-end
-
-RemoveGamarueLnk = function(l_6_0)
-  -- function num : 0_5
-  if l_6_0:find("\\%w%.lnk$") == nil then
-    return 
-  end
-  local l_6_1 = (sysio.GetFileSize)(l_6_0)
-  if l_6_1 > 1024 or l_6_1 < 500 then
-    return 
-  end
-  local l_6_2 = (sysio.ReadFileRaw)(l_6_0, 0, l_6_1)
-  if l_6_2 == nil then
-    return 
-  end
-  local l_6_3 = (string.gsub)(l_6_2, "%z", "")
-  if l_6_3 == nil then
-    return 
-  end
-  do
-    if l_6_3:match("\\AppData\\Roaming\\(ii%w+%.exe)") == nil then
-      local l_6_4 = l_6_3:match("\\AppData\\Roaming\\(ob%w+%.exe)")
-    end
-    -- DECOMPILER ERROR at PC42: Confused about usage of register: R4 in 'UnsetPending'
-
-    if l_6_4 ~= nil then
-      local l_6_5 = nil
-      if l_6_0:match("^(%w:\\Users\\[^\\]+)\\") ~= nil then
-        local l_6_6 = nil
-        -- DECOMPILER ERROR at PC61: Confused about usage of register: R6 in 'UnsetPending'
-
-        if (sysio.IsFileExists)(l_6_0:match("^(%w:\\Users\\[^\\]+)\\") .. "\\AppData\\Roaming\\" .. l_6_5) then
-          (MpCommon.ReportLowfi)(l_6_0:match("^(%w:\\Users\\[^\\]+)\\") .. "\\AppData\\Roaming\\" .. l_6_5, 2852551133)
-          -- DECOMPILER ERROR at PC66: Confused about usage of register: R6 in 'UnsetPending'
-
-          ;
-          (Remediation.BtrDeleteFile)(l_6_0:match("^(%w:\\Users\\[^\\]+)\\") .. "\\AppData\\Roaming\\" .. l_6_5)
-        end
-        if (sysio.IsFileExists)(l_6_0) then
-          (MpCommon.ReportLowfi)(l_6_0, 2852551133)
-          ;
-          (Remediation.BtrDeleteFile)(l_6_0)
-        end
+RemoveStartupLnk = L0_0
+function L0_0(A0_68)
+  local L1_69, L2_70, L3_71, L4_72, L5_73, L6_74, L7_75, L8_76, L9_77
+  L1_69 = sysio
+  L1_69 = L1_69.FindFiles
+  L2_70 = A0_68
+  L1_69 = L1_69(L2_70, L3_71, L4_72)
+  L2_70 = false
+  for L6_74, L7_75 in L3_71(L4_72) do
+    L8_76 = string
+    L8_76 = L8_76.lower
+    L9_77 = L7_75
+    L8_76 = L8_76(L9_77)
+    L9_77 = L8_76
+    L8_76 = L8_76.find
+    L8_76 = L8_76(L9_77, "%(%d+gb%)%.lnk")
+    if L8_76 ~= nil then
+      L8_76 = sysio
+      L8_76 = L8_76.IsFileExists
+      L9_77 = L7_75
+      L8_76 = L8_76(L9_77)
+      if L8_76 then
+        L2_70 = true
+        L8_76 = MpCommon
+        L8_76 = L8_76.ReportLowfi
+        L9_77 = L7_75
+        L8_76(L9_77, 2852551133)
+        L8_76 = Remediation
+        L8_76 = L8_76.BtrDeleteFile
+        L9_77 = L7_75
+        L8_76(L9_77)
       end
     end
   end
-end
-
-RemoveStartupLnk = function()
-  -- function num : 0_6
-  local l_7_0 = nil
-  local l_7_1 = nil
-  for l_7_5,l_7_6 in pairs((sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders")) do
-    local l_7_2 = nil
-    -- DECOMPILER ERROR at PC10: Confused about usage of register: R6 in 'UnsetPending'
-
-    if (sysio.RegOpenKey)(R6_PC10) then
-      l_7_1 = (sysio.GetRegValueAsString)((sysio.RegOpenKey)(R6_PC10), "Startup")
-      if l_7_1 ~= nil and (sysio.IsFolderExists)(l_7_1) then
-        local l_7_8 = nil
-        for l_7_12,l_7_13 in pairs((sysio.FindFiles)(l_7_1, "*.lnk", 0)) do
-          local l_7_9 = nil
-          -- DECOMPILER ERROR at PC39: Confused about usage of register: R13 in 'UnsetPending'
-
-          RemoveGamarueLnk(R13_PC39)
+  if L2_70 then
+    if L4_72 then
+      for L8_76, L9_77 in L5_73(L6_74) do
+        if sysio.IsFileExists(L9_77) then
+          MpCommon.ReportLowfi(L9_77, 2852551133)
+          Remediation.BtrDeleteFile(L9_77)
         end
       end
-    end
-  end
-  -- DECOMPILER ERROR at PC45: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-end
-
-RemoveFilesInRemDrives = function(l_8_0)
-  -- function num : 0_7
-  local l_8_1 = (sysio.FindFiles)(l_8_0, "*.lnk", 0)
-  local l_8_2 = false
-  for l_8_6,l_8_7 in pairs(l_8_1) do
-    if ((string.lower)(l_8_7)):find("%(%d+gb%)%.lnk") ~= nil and (sysio.IsFileExists)(l_8_7) then
-      l_8_2 = true
-      ;
-      (MpCommon.ReportLowfi)(l_8_7, 2852551133)
-      ;
-      (Remediation.BtrDeleteFile)(l_8_7)
-    end
-  end
-  local l_8_8 = l_8_0 .. " "
-  if l_8_2 and (sysio.IsFolderExists)(l_8_8) then
-    local l_8_9 = (sysio.FindFiles)(l_8_8, "*", 0)
-    for l_8_13,l_8_14 in pairs(l_8_9) do
-      if (sysio.IsFileExists)(l_8_14) then
-        (MpCommon.ReportLowfi)(l_8_14, 2852551133)
-        ;
-        (Remediation.BtrDeleteFile)(l_8_14)
-      end
-    end
-    ;
-    (Remediation.BtrDeleteFile)(l_8_8)
-  end
-end
-
-CleanRemovableDrives = function()
-  -- function num : 0_8
-  local l_9_0, l_9_1, l_9_2, l_9_3 = Infrastructure_GetAvailableDrives()
-  local l_9_4 = #l_9_1
-  if l_9_4 > 0 then
-    for l_9_8,l_9_9 in pairs(l_9_1) do
-      RemoveFilesInRemDrives(l_9_9)
+      L5_73(L6_74)
     end
   end
 end
-
-if (Remediation.Threat).Active then
-  local l_0_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run")
-  remgam(l_0_0, true)
-  local l_0_1 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows")
-  for l_0_5,l_0_6 in pairs(l_0_1) do
-    local l_0_7 = (sysio.RegOpenKey)(l_0_6)
-    remgam(l_0_7, false)
+RemoveFilesInRemDrives = L0_0
+function L0_0()
+  local L0_78, L1_79, L2_80, L3_81, L4_82, L5_83, L6_84, L7_85, L8_86, L9_87
+  L0_78 = Infrastructure_GetAvailableDrives
+  L3_81 = L0_78()
+  L4_82 = #L1_79
+  if L4_82 > 0 then
+    for L8_86, L9_87 in L5_83(L6_84) do
+      RemoveFilesInRemDrives(L9_87)
+    end
   end
-  local l_0_8 = (sysio.RegExpandUserKey)("HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run")
-  for l_0_12,l_0_13 in pairs(l_0_8) do
-    local l_0_14 = (sysio.RegOpenKey)(l_0_13)
-    remgam(l_0_14, true)
-  end
-  Infrastructure_EnableUAC()
-  Infrastructure_EnableTaskbarNotification()
-  Infrastructure_EnableActionCenterMessages()
-  Infrastructure_EnableTaskManager()
-  remplugin_registry()
-  remplugin_added_registry()
-  RemoveStartupLnk()
-  CleanRemovableDrives()
 end
-
+CleanRemovableDrives = L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Active
+if L0_0 then
+  L0_0 = sysio
+  L0_0 = L0_0.RegOpenKey
+  L1_1 = "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run"
+  L0_0 = L0_0(L1_1)
+  L1_1 = remgam
+  L1_1(L2_2, L3_3)
+  L1_1 = sysio
+  L1_1 = L1_1.RegExpandUserKey
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L7_7 = sysio
+    L7_7 = L7_7.RegOpenKey
+    L8_8 = L6_6
+    L7_7 = L7_7(L8_8)
+    L8_8 = remgam
+    L8_8(L7_7, false)
+  end
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = sysio
+    L8_8 = L8_8.RegOpenKey
+    L8_8 = L8_8(L7_7)
+    remgam(L8_8, true)
+  end
+  L3_3()
+  L3_3()
+  L3_3()
+  L3_3()
+  L3_3()
+  L3_3()
+  L3_3()
+  L3_3()
+end

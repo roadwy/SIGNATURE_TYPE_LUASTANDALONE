@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/502998f6a9cc 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-if (string.match)(l_0_0, "\\microsoft\\exchange server\\v%d%d\\frontend\\") ~= nil or (string.match)(l_0_0, "\\microsoft\\exchange server\\v%d%d\\clientaccess\\") ~= nil or (string.match)(l_0_0, "\\microsoft shared\\web server extensions\\v%d%d\\template\\layouts\\") ~= nil or (string.find)(l_0_0, "\\frontend\\httpproxy\\owa\\", 1, true) ~= nil or (string.find)(l_0_0, "\\inetpub\\wwwroot\\", 1, true) ~= nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+if string.match(L0_0, "\\microsoft\\exchange server\\v%d%d\\frontend\\") ~= nil or string.match(L0_0, "\\microsoft\\exchange server\\v%d%d\\clientaccess\\") ~= nil or string.match(L0_0, "\\microsoft shared\\web server extensions\\v%d%d\\template\\layouts\\") ~= nil or string.find(L0_0, "\\frontend\\httpproxy\\owa\\", 1, true) ~= nil or string.find(L0_0, "\\inetpub\\wwwroot\\", 1, true) ~= nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,17 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Trojan_Win32_CredentialEnumerate.A_Includes_AgePrevalence 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)()
-if not (MpCommon.QueryPersistContext)(l_0_0, "SuspCredEnumerateAttempt") then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if not MpCommon.QueryPersistContext(L0_0, "SuspCredEnumerateAttempt") then
   return mp.CLEAN
 end
-if (mp.IsTrustedFile)(false) == true then
+if mp.IsTrustedFile(false) == true then
   return mp.CLEAN
 end
-if getAgePrev(false) <= 1 and false <= 100 then
+if getAgePrev(false) <= 1 and getAgePrev(false) <= 100 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

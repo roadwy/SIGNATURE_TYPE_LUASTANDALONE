@@ -1,33 +1,72 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_AccessibilityEscalationContext.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-local l_0_1 = (string.lower)((MpCommon.PathToWin32Path)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)))
-if l_0_1 == nil or (string.len)(l_0_1) < 3 or l_0_0 == nil or (string.len)(l_0_0) < 5 then
-  return mp.CLEAN
-end
-l_0_1 = l_0_1:gsub("\\\\%?\\", "")
-local l_0_2 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%windir%") .. "\\system32")
-if l_0_1 ~= l_0_2 then
-  return mp.CLEAN
-end
-local l_0_3 = {}
-l_0_3["sethc.exe"] = "sethc"
-l_0_3["utilman.exe"] = "utilman"
-l_0_3["osk.exe"] = "osk"
-l_0_3["magnify.exe"] = "magnify"
-l_0_3["narrator.exe"] = "narrator"
-l_0_3["displayswitch.exe"] = "displayswitch"
-l_0_3["atbroker.exe"] = "atbroker"
-do
-  if l_0_3[l_0_0] ~= nil then
-    local l_0_4 = l_0_3[l_0_0]
-    ;
-    (mp.set_mpattribute)("Lua:AccessibilityEscalationContext.A!" .. l_0_4)
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILENAME
+L4_4 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L1_1(L2_2))
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = MpCommon
+L2_2 = L2_2.PathToWin32Path
+L3_3 = mp
+L3_3 = L3_3.get_contextdata
+L4_4 = mp
+L4_4 = L4_4.CONTEXT_DATA_FILEPATH
+L4_4 = L3_3(L4_4)
+L4_4 = L2_2(L3_3, L4_4, L3_3(L4_4))
+L1_1 = L1_1(L2_2, L3_3, L4_4, L2_2(L3_3, L4_4, L3_3(L4_4)))
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  if not (L2_2 < 3) and L0_0 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.len
+    L3_3 = L0_0
+    L2_2 = L2_2(L3_3)
   end
-  return mp.CLEAN
+elseif L2_2 < 5 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-
+L3_3 = L1_1
+L2_2 = L1_1.gsub
+L4_4 = "\\\\%?\\"
+L2_2 = L2_2(L3_3, L4_4, "")
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = MpCommon
+L3_3 = L3_3.ExpandEnvironmentVariables
+L4_4 = "%windir%"
+L3_3 = L3_3(L4_4)
+L4_4 = "\\system32"
+L3_3 = L3_3 .. L4_4
+L2_2 = L2_2(L3_3)
+if L1_1 ~= L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = {}
+L3_3["sethc.exe"] = "sethc"
+L3_3["utilman.exe"] = "utilman"
+L3_3["osk.exe"] = "osk"
+L3_3["magnify.exe"] = "magnify"
+L3_3["narrator.exe"] = "narrator"
+L3_3["displayswitch.exe"] = "displayswitch"
+L3_3["atbroker.exe"] = "atbroker"
+L4_4 = L3_3[L0_0]
+if L4_4 ~= nil then
+  L4_4 = L3_3[L0_0]
+  mp.set_mpattribute("Lua:AccessibilityEscalationContext.A!" .. L4_4)
+  return mp.INFECTED
+end
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

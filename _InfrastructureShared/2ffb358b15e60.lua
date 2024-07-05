@@ -1,19 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2ffb358b15e60 
-
--- params : ...
--- function num : 0
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = (string.lower)((bm.get_imagepath)())
-    if l_0_0 == nil or (string.len)(l_0_0) < 1 then
-      return mp.CLEAN
-    end
-    if (string.find)(l_0_0, "\\cmd.exe", 1, true) or (string.find)(l_0_0, "\\powershell.exe", 1, true) or (string.find)(l_0_0, "\\pwsh.exe", 1, true) or (string.find)(l_0_0, "\\powershell_ise.exe", 1, true) or (string.find)(l_0_0, "\\pangphip.exe", 1, true) or (string.find)(l_0_0, "\\log-agent.exe", 1, true) or (string.find)(l_0_0, "\\ossec-agent.exe", 1, true) or (string.find)(l_0_0, ":\\windows\\assembly\\", 1, true) then
-      return mp.CLEAN
-    end
-    return mp.INFECTED
+local L0_0
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L0_0 = L0_0(bm.get_imagepath())
+  if L0_0 == nil or 1 > string.len(L0_0) then
+    return mp.CLEAN
   end
-  return mp.CLEAN
+  if string.find(L0_0, "\\cmd.exe", 1, true) or string.find(L0_0, "\\powershell.exe", 1, true) or string.find(L0_0, "\\pwsh.exe", 1, true) or string.find(L0_0, "\\powershell_ise.exe", 1, true) or string.find(L0_0, "\\pangphip.exe", 1, true) or string.find(L0_0, "\\log-agent.exe", 1, true) or string.find(L0_0, "\\ossec-agent.exe", 1, true) or string.find(L0_0, ":\\windows\\assembly\\", 1, true) then
+    return mp.CLEAN
+  end
+  return mp.INFECTED
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

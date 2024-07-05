@@ -1,18 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ContIOAVRetelesh.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.IOAVGetDownloadUrl)()
-if l_0_0 == nil then
+if mp.IOAVGetDownloadUrl() == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_1:find("^sample%d%d%d%.") then
-  (pe.set_peattribute)("enable_vmm_grow", true)
-  ;
-  (pe.set_peattribute)("deep_analysis", true)
+if mp.getfilename(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)):find("^sample%d%d%d%.") then
+  pe.set_peattribute("enable_vmm_grow", true)
+  pe.set_peattribute("deep_analysis", true)
   return mp.INFECTED
 end
 return mp.CLEAN
-

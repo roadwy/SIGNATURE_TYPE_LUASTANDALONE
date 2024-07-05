@@ -1,26 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Win10EmailAppOpenExecFiles 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-  local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  if (string.find)(l_0_2, "appdata\\local\\packages\\microsoft.windowscommunicationsapps_8wekyb3d8bbwe\\localstate\\files\\s0\\", 1, true) ~= nil then
-    local l_0_3 = {}
-    l_0_3["runtimebroker.exe"] = true
-    l_0_3["hxtsr.exe"] = true
-    if l_0_3[l_0_1] == true and (string.len)((mp.getfilename)()) > 4 then
-      local l_0_4 = (string.lower)((string.sub)((mp.getfilename)(), -4))
-      if l_0_4 == ".exe" or l_0_4 == ".jar" or l_0_4 == ".zip" then
-        (mp.set_mpattribute)("Lua:Win10MailAppOpenExecFiles")
-        return mp.INFECTED
-      end
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L2_2 = L2_2(mp.CONTEXT_DATA_PROCESSNAME)
+  L1_1 = L1_1(L2_2, L2_2(mp.CONTEXT_DATA_PROCESSNAME))
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+  if string.find(L2_2, "appdata\\local\\packages\\microsoft.windowscommunicationsapps_8wekyb3d8bbwe\\localstate\\files\\s0\\", 1, true) ~= nil then
+    if ({
+      ["runtimebroker.exe"] = true,
+      ["hxtsr.exe"] = true
+    })[L1_1] == true and string.len(mp.getfilename()) > 4 and (string.lower(string.sub(mp.getfilename(), -4)) == ".exe" or string.lower(string.sub(mp.getfilename(), -4)) == ".jar" or string.lower(string.sub(mp.getfilename(), -4)) == ".zip") then
+      mp.set_mpattribute("Lua:Win10MailAppOpenExecFiles")
+      return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

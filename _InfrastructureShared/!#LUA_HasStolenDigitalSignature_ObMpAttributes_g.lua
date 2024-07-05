@@ -1,25 +1,44 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_HasStolenDigitalSignature_ObMpAttributes_g 
-
--- params : ...
--- function num : 0
-if peattributes.isexe == true or peattributes.isdll == true then
-  local l_0_0 = (mp.getfilesize)()
-  local l_0_1 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_SECURITY]).RVA
-  local l_0_2 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_SECURITY]).Size
-  if l_0_1 == 0 or l_0_2 < 3654 or l_0_0 <= l_0_1 or l_0_0 - l_0_1 < l_0_2 then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = peattributes
+  L0_0 = L0_0.isdll
+elseif L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+  L1_1 = pehdr
+  L1_1 = L1_1.DataDirectory
+  L2_2 = pe
+  L2_2 = L2_2.IMAGE_DIRECTORY_ENTRY_SECURITY
+  L1_1 = L1_1[L2_2]
+  L1_1 = L1_1.RVA
+  L2_2 = pehdr
+  L2_2 = L2_2.DataDirectory
+  L3_3 = pe
+  L3_3 = L3_3.IMAGE_DIRECTORY_ENTRY_SECURITY
+  L2_2 = L2_2[L3_3]
+  L2_2 = L2_2.Size
+  if L1_1 ~= 0 and not (L2_2 < 3654) and not (L0_0 <= L1_1) then
+    L3_3 = L0_0 - L1_1
+  elseif L2_2 > L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   end
-  ;
-  (mp.readprotection)(false)
-  local l_0_3 = 128
-  local l_0_4 = (mp.readfile)(l_0_1 + 3526, l_0_3)
-  local l_0_5 = (mp.crc32)(-1, l_0_4, 1, l_0_3)
-  if l_0_5 == 381009505 or l_0_5 == 1730649905 then
+  L3_3 = mp
+  L3_3 = L3_3.readprotection
+  L4_4 = false
+  L3_3(L4_4)
+  L3_3 = 128
+  L4_4 = mp
+  L4_4 = L4_4.readfile
+  L4_4 = L4_4(L1_1 + 3526, L3_3)
+  if mp.crc32(-1, L4_4, 1, L3_3) == 381009505 or mp.crc32(-1, L4_4, 1, L3_3) == 1730649905 then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

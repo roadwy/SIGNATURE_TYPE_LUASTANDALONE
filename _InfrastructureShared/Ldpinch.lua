@@ -1,50 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Ldpinch 
-
--- params : ...
--- function num : 0
-RemoveLdpinchAppDataValue = function()
-  -- function num : 0_0
-  local l_1_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run")
-  if l_1_0 ~= nil then
-    local l_1_1 = (sysio.RegEnumValues)(l_1_0)
-    for l_1_5,l_1_6 in pairs(l_1_1) do
-      if (sysio.GetRegValueType)(l_1_0, l_1_6) == 2 then
-        local l_1_7 = (sysio.GetRegValueAsString)(l_1_0, l_1_6)
-        if l_1_7 ~= nil then
-          local l_1_8 = (sysio.ExpandFilePath)(l_1_7, true)
-          for l_1_12,l_1_13 in pairs(l_1_8) do
-            l_1_13 = (string.lower)(l_1_13)
-            for l_1_17,l_1_18 in ipairs((Remediation.Threat).Resources) do
-              if l_1_18.Schema == "file" then
-                local l_1_19 = (string.lower)(l_1_18.Path)
-                if l_1_19 == l_1_13 then
-                  (sysio.DeleteRegValue)(l_1_0, l_1_6)
-                end
+function RemoveLdpinchAppDataValue()
+  local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13
+  L0_0 = sysio
+  L0_0 = L0_0.RegOpenKey
+  L1_1 = "HKLM\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run"
+  L0_0 = L0_0(L1_1)
+  if L0_0 ~= nil then
+    L1_1 = sysio
+    L1_1 = L1_1.RegEnumValues
+    L1_1 = L1_1(L2_2)
+    for L5_5, L6_6 in L2_2(L3_3) do
+      L7_7 = sysio
+      L7_7 = L7_7.GetRegValueType
+      L8_8 = L0_0
+      L7_7 = L7_7(L8_8, L9_9)
+      if L7_7 == 2 then
+        L7_7 = sysio
+        L7_7 = L7_7.GetRegValueAsString
+        L8_8 = L0_0
+        L7_7 = L7_7(L8_8, L9_9)
+        if L7_7 ~= nil then
+          L8_8 = sysio
+          L8_8 = L8_8.ExpandFilePath
+          L8_8 = L8_8(L9_9, L10_10)
+          for L12_12, L13_13 in L9_9(L10_10) do
+            L13_13 = string.lower(L13_13)
+            for _FORV_17_, _FORV_18_ in ipairs(Remediation.Threat.Resources) do
+              if _FORV_18_.Schema == "file" and string.lower(_FORV_18_.Path) == L13_13 then
+                sysio.DeleteRegValue(L0_0, L6_6)
               end
             end
           end
         end
       end
     end
-    -- DECOMPILER ERROR at PC68: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
   end
 end
-
-Is64BitOperatingSystem = function()
-  -- function num : 0_1
-  do return Info.EngineHost == "HOST_X64" end
-  -- DECOMPILER ERROR: 1 unprocessed JMP targets
+function Is64BitOperatingSystem()
+  local L0_14, L1_15
+  L0_14 = Info
+  L0_14 = L0_14.EngineHost
+  L0_14 = L0_14 == "HOST_X64"
+  return L0_14
 end
-
-IsWindows8OrGreater = function()
-  -- function num : 0_2
-  do return (Info.OSMajorVersion == 6 and Info.OSMinorVersion > 1) or Info.OSMajorVersion > 6 end
-  -- DECOMPILER ERROR: 1 unprocessed JMP targets
+function IsWindows8OrGreater()
+  local L0_16, L1_17
+  L0_16 = Info
+  L0_16 = L0_16.OSMajorVersion
+  if L0_16 == 6 then
+    L0_16 = Info
+    L0_16 = L0_16.OSMinorVersion
+  L0_16 = L0_16 > 1 or L0_16.OSMinorVersion
+  return L0_16
 end
-
 if IsWindows8OrGreater() and Is64BitOperatingSystem() then
   RemoveLdpinchAppDataValue()
 end
-

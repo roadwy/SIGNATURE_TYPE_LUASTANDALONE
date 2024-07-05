@@ -1,31 +1,72 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41951651ec3e 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)((pe.get_regval)(pe.REG_ESP) + 4, 4)
-l_0_0 = (mp.readu_u32)(l_0_0, 1)
-local l_0_1 = (pe.moffset_va)(l_0_0)
-;
-(mp.readprotection)(false)
-local l_0_2 = (pe.mmap_va)(l_0_1, 4)
-l_0_2 = (mp.readu_u32)(l_0_2, 1)
-if l_0_2 ~= 909132101 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pe
+L1_1 = L1_1.get_regval
+L2_2 = pe
+L2_2 = L2_2.REG_ESP
+L1_1 = L1_1(L2_2)
+L1_1 = L1_1 + 4
+L2_2 = 4
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = L0_0
+L3_3 = 1
+L1_1 = L1_1(L2_2, L3_3)
+L0_0 = L1_1
+L1_1 = pe
+L1_1 = L1_1.moffset_va
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L3_3 = L1_1
+L4_4 = 4
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, 1)
+L2_2 = L3_3
+if L2_2 ~= 909132101 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-l_0_2 = (pe.mmap_va)(l_0_1 - 4, 4)
-l_0_2 = (mp.readu_u32)(l_0_2, 1)
-if l_0_2 == 557012289 then
-  return mp.CLEAN
+L3_3 = pe
+L3_3 = L3_3.mmap_va
+L4_4 = L1_1 - 4
+L3_3 = L3_3(L4_4, 4)
+L2_2 = L3_3
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, 1)
+L2_2 = L3_3
+if L2_2 == 557012289 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-;
-(mp.set_mpattribute)("Lua:Autoit!Modified")
-local l_0_3 = (mp.getfilesize)()
-if l_0_3 < 65536 or l_0_3 > 5242880 then
-  return mp.CLEAN
+L3_3 = mp
+L3_3 = L3_3.set_mpattribute
+L4_4 = "Lua:Autoit!Modified"
+L3_3(L4_4)
+L3_3 = mp
+L3_3 = L3_3.getfilesize
+L3_3 = L3_3()
+if L3_3 < 65536 or L3_3 > 5242880 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (mp.readfile)(l_0_0 - 20, l_0_3 - (l_0_0 - 20))
-;
-(mp.vfo_add_buffer)(l_0_4, "[AutoIT_Script]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L4_4 = mp
+L4_4 = L4_4.readfile
+L4_4 = L4_4(L0_0 - 20, L3_3 - (L0_0 - 20))
+mp.vfo_add_buffer(L4_4, "[AutoIT_Script]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

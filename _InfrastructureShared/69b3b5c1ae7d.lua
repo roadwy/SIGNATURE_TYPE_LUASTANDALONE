@@ -1,44 +1,84 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b3b5c1ae7d 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-      local l_0_1, l_0_2 = (this_sigattrlog[2]).utf8p2
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
     end
-    local l_0_3 = nil
-    if l_0_3 ~= nil then
-      local l_0_4 = {}
-      local l_0_5 = (mp.GetExecutablesFromCommandLine)(l_0_3)
-      for l_0_9,l_0_10 in ipairs(l_0_5) do
-        local l_0_6 = {[".xls"] = true, [".doc"] = true, [".ppt"] = true, [".pps"] = true, docx = true, pptx = true, ppsx = true, xlsx = true, [".rtf"] = true, [".xml"] = true, dotx = true, dotm = true, [".odt"] = true, xlsb = true, xltx = true, xltm = true, xlam = true, [".xla"] = true, docm = true, xlsm = true, pptm = true}
-        -- DECOMPILER ERROR at PC76: Confused about usage of register: R8 in 'UnsetPending'
-
-        if (string.len)(R8_PC76) > 4 and (sysio.IsFileExists)(R8_PC76) and l_0_6[(string.sub)(R8_PC76, -4)] then
-          (bm.add_related_file)(l_0_11)
-          ;
-          (table.insert)(l_0_4, l_0_11)
-        end
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
       end
-    end
-    do
-      l_0_5 = MpCommon
-      l_0_5 = l_0_5.SetPersistContextNoPath
-      l_0_5("OfficeWmiProc", l_0_4, 1)
-      l_0_5 = mp
-      l_0_5 = l_0_5.INFECTED
-      return l_0_5
     end
   end
 end
-
+L1_1 = {}
+if L0_0 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3)
+  L3_3 = {}
+  L3_3[".xls"] = true
+  L3_3[".doc"] = true
+  L3_3[".ppt"] = true
+  L3_3[".pps"] = true
+  L3_3.docx = true
+  L3_3.pptx = true
+  L3_3.ppsx = true
+  L3_3.xlsx = true
+  L3_3[".rtf"] = true
+  L3_3[".xml"] = true
+  L3_3.dotx = true
+  L3_3.dotm = true
+  L3_3[".odt"] = true
+  L3_3.xlsb = true
+  L3_3.xltx = true
+  L3_3.xltm = true
+  L3_3.xlam = true
+  L3_3[".xla"] = true
+  L3_3.docm = true
+  L3_3.xlsm = true
+  L3_3.pptm = true
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if string.len(L8_8) > 4 and sysio.IsFileExists(L8_8) and L3_3[string.sub(L8_8, -4)] then
+      bm.add_related_file(L8_8)
+      table.insert(L1_1, L8_8)
+    end
+  end
+end
+L2_2 = MpCommon
+L2_2 = L2_2.SetPersistContextNoPath
+L3_3 = "OfficeWmiProc"
+L2_2(L3_3, L4_4, L5_5)
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

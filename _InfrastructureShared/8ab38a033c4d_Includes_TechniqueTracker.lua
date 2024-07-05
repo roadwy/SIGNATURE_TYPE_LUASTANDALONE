@@ -1,65 +1,71 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8ab38a033c4d_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0, l_0_1, l_0_4 = nil, nil
-  l_0_4 = this_sigattrlog
-  l_0_4 = l_0_4[1]
-  l_0_1 = l_0_4.ppid
-  local l_0_2, l_0_5 = nil
-end
-do
-  -- DECOMPILER ERROR at PC16: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC20: Confused about usage of register: R0 in 'UnsetPending'
-
-  do
-    if l_0_0 ~= nil then
-      local l_0_3 = nil
-      if ((string.lower)(l_0_0)):find("reg%.?e?x?e?%p?%s+delete%s") or ((string.lower)(l_0_0)):find("reg%.?e?x?e?%p?%s+add%s") then
-        return mp.CLEAN
-      end
-      if ((string.lower)(l_0_0)):find("powershell%.exe.*%sset-") or ((string.lower)(l_0_0)):find("passwordexpirywarning", 1, true) then
-        return mp.CLEAN
-      end
-    end
-    local l_0_6, l_0_7 = nil
-    for l_0_11,l_0_12 in ipairs((bm.get_process_relationships)()) do
-      local l_0_8, l_0_9 = nil
-      -- DECOMPILER ERROR at PC57: Confused about usage of register: R8 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC62: Confused about usage of register: R9 in 'UnsetPending'
-
-      if R8_PC57.image_path ~= nil then
-        if ((string.lower)(R8_PC57.image_path)):find("windows\\ccm\\", 1, true) then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC75: Confused about usage of register: R9 in 'UnsetPending'
-
-        if ((string.lower)(R8_PC57.image_path)):find("tripwire.*\\twexec%.exe") then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC83: Confused about usage of register: R9 in 'UnsetPending'
-
-        if ((string.lower)(R8_PC57.image_path)):find("ruby%.exe", 1, true) then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC93: Confused about usage of register: R9 in 'UnsetPending'
-
-        if ((string.lower)(R8_PC57.image_path)):find("verodin_backend%.exe", 1, true) then
-          return mp.CLEAN
-        end
-      end
-    end
-    if IsDetectionThresholdMet(l_0_7) then
-      TrackPidAndTechniqueBM(l_0_7, "T1003.005", "credentialdumping")
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p2
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.ppid
   end
 end
-
+if L0_0 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3)
+  L3_3 = L2_2.find
+  L3_3 = L3_3(L4_4, L5_5)
+  if not L3_3 then
+    L3_3 = L2_2.find
+    L3_3 = L3_3(L4_4, L5_5)
+  elseif L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+  L3_3 = L2_2.find
+  L3_3 = L3_3(L4_4, L5_5)
+  if not L3_3 then
+    L3_3 = L2_2.find
+    L7_7 = true
+    L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+  elseif L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
+end
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+for L7_7, L8_8 in L4_4(L5_5) do
+  L9_9 = L8_8.image_path
+  if L9_9 ~= nil then
+    L9_9 = string.lower(L9_9)
+    if L9_9:find("windows\\ccm\\", 1, true) then
+      return mp.CLEAN
+    end
+    if L9_9:find("tripwire.*\\twexec%.exe") then
+      return mp.CLEAN
+    end
+    if L9_9:find("ruby%.exe", 1, true) then
+      return mp.CLEAN
+    end
+    if L9_9:find("verodin_backend%.exe", 1, true) then
+      return mp.CLEAN
+    end
+  end
+end
+if L4_4 then
+  L7_7 = "credentialdumping"
+  L4_4(L5_5, L6_6, L7_7)
+  return L4_4
+end
+return L4_4

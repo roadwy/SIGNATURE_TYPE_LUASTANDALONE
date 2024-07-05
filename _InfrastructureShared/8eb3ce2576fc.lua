@@ -1,67 +1,88 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8eb3ce2576fc 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4, l_0_5, l_0_6, l_0_7, l_0_8, l_0_9, l_0_10, l_0_11 = nil
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+    L0_0 = L1_1
   end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC19: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    if l_0_0:find("analysis\\atpvbaen.xlam", 1, true) then
-      return mp.CLEAN
+end
+if L0_0 ~= nil then
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L0_0, "analysis\\atpvbaen.xlam", 1, true)
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  else
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L0_0, "solver\\solver.xlam", 1, true)
+    if L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     else
-      -- DECOMPILER ERROR at PC30: Confused about usage of register: R0 in 'UnsetPending'
-
-      if l_0_0:find("solver\\solver.xlam", 1, true) then
-        return mp.CLEAN
+      L1_1 = L0_0.find
+      L1_1 = L1_1(L0_0, "microsoft.-ni.dll")
+      if L1_1 then
+        L1_1 = mp
+        L1_1 = L1_1.CLEAN
+        return L1_1
       else
-        -- DECOMPILER ERROR at PC41: Confused about usage of register: R0 in 'UnsetPending'
-
-        if l_0_0:find("microsoft.-ni.dll") then
-          return mp.CLEAN
+        L1_1 = L0_0.find
+        L1_1 = L1_1(L0_0, "msip.-ni.dll")
+        if L1_1 then
+          L1_1 = mp
+          L1_1 = L1_1.CLEAN
+          return L1_1
         else
-          -- DECOMPILER ERROR at PC50: Confused about usage of register: R0 in 'UnsetPending'
-
-          if l_0_0:find("msip.-ni.dll") then
-            return mp.CLEAN
+          L1_1 = L0_0.find
+          L1_1 = L1_1(L0_0, "pfx%..-ni.dll")
+          if L1_1 then
+            L1_1 = mp
+            L1_1 = L1_1.CLEAN
+            return L1_1
           else
-            -- DECOMPILER ERROR at PC59: Confused about usage of register: R0 in 'UnsetPending'
-
-            if l_0_0:find("pfx%..-ni.dll") then
-              return mp.CLEAN
+            L1_1 = L0_0.find
+            L1_1 = L1_1(L0_0, "newtonsoft.json.ni.dll")
+            if L1_1 then
+              L1_1 = mp
+              L1_1 = L1_1.CLEAN
+              return L1_1
             else
-              -- DECOMPILER ERROR at PC68: Confused about usage of register: R0 in 'UnsetPending'
-
-              if l_0_0:find("newtonsoft.json.ni.dll") then
-                return mp.CLEAN
+              L1_1 = L0_0.find
+              L1_1 = L1_1(L0_0, "addinexpress.-.dll")
+              if L1_1 then
+                L1_1 = mp
+                L1_1 = L1_1.CLEAN
+                return L1_1
               else
-                -- DECOMPILER ERROR at PC77: Confused about usage of register: R0 in 'UnsetPending'
-
-                if l_0_0:find("addinexpress.-.dll") then
-                  return mp.CLEAN
+                L1_1 = L0_0.find
+                L1_1 = L1_1(L0_0, "telerik.-.dll")
+                if L1_1 then
+                  L1_1 = mp
+                  L1_1 = L1_1.CLEAN
+                  return L1_1
                 else
-                  -- DECOMPILER ERROR at PC86: Confused about usage of register: R0 in 'UnsetPending'
-
-                  if l_0_0:find("telerik.-.dll") then
-                    return mp.CLEAN
+                  L1_1 = L0_0.find
+                  L1_1 = L1_1(L0_0, "tcaddin.dll")
+                  if L1_1 then
+                    L1_1 = mp
+                    L1_1 = L1_1.CLEAN
+                    return L1_1
                   else
-                    -- DECOMPILER ERROR at PC95: Confused about usage of register: R0 in 'UnsetPending'
-
-                    if l_0_0:find("tcaddin.dll") then
-                      return mp.CLEAN
-                    else
-                      -- DECOMPILER ERROR at PC104: Confused about usage of register: R0 in 'UnsetPending'
-
-                      if l_0_0:find("chemdraw for excel\\chemdrawexcel", 1, true) then
-                        return mp.CLEAN
-                      end
+                    L1_1 = L0_0.find
+                    L1_1 = L1_1(L0_0, "chemdraw for excel\\chemdrawexcel", 1, true)
+                    if L1_1 then
+                      L1_1 = mp
+                      L1_1 = L1_1.CLEAN
+                      return L1_1
                     end
                   end
                 end
@@ -71,23 +92,21 @@ do
         end
       end
     end
-    -- DECOMPILER ERROR at PC114: Confused about usage of register: R0 in 'UnsetPending'
-
-    local l_0_12 = nil
-    if l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)") ~= nil then
-      if (sysio.IsFileExists)(l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)")) == true then
-        (bm.add_related_file)(l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)"))
-      else
-        -- DECOMPILER ERROR at PC144: Confused about usage of register: R1 in 'UnsetPending'
-
-        if (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)("%appdata%\\microsoft\\addins\\\\" + l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)"))) == true then
-          (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)("%appdata%\\microsoft\\addins\\\\" + l_0_0:match("[^ ]+[\"]?(.*%.xll[\"]?)")))
-        end
+  end
+  L1_1 = L0_0.match
+  L1_1 = L1_1(L0_0, "[^ ]+[\"]?(.*%.xll[\"]?)")
+  if L1_1 ~= nil then
+    if sysio.IsFileExists(L1_1) == true then
+      bm.add_related_file(L1_1)
+    else
+      L1_1 = "%appdata%\\microsoft\\addins\\\\" + L1_1
+      L1_1 = mp.ContextualExpandEnvironmentVariables(L1_1)
+      if sysio.IsFileExists(L1_1) == true then
+        bm.add_related_file(L1_1)
       end
     end
   end
-  do
-    return mp.INFECTED
-  end
 end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

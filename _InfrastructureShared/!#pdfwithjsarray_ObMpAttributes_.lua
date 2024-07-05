@@ -1,22 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#pdfwithjsarray_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-(mp.readprotection)(false)
-local l_0_0 = (mp.get_parent_filehandle)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = mp
+L0_0 = L0_0.get_parent_filehandle
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.get_filesize_by_handle)(l_0_0)
-if l_0_1 > 500000 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_filesize_by_handle
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 > 500000 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1 < 8192 then
-  return mp.CLEAN
+if L1_1 < 8192 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.readfile_by_handle)(l_0_0, 4096, 4096)
-;
-(mp.vfo_add_buffer)(l_0_2, "[pdfwithjsarray]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L2_2 = mp
+L2_2 = L2_2.readfile_by_handle
+L2_2 = L2_2(L0_0, 4096, 4096)
+mp.vfo_add_buffer(L2_2, "[pdfwithjsarray]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.CLEAN
-

@@ -1,26 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_JSOB.FileSize 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 550000 and l_0_0 < 600000 then
+if mp.getfilesize() > 550000 and mp.getfilesize() < 600000 then
   return mp.INFECTED
 end
-if l_0_0 > 120000 and l_0_0 < 300000 then
+if mp.getfilesize() > 120000 and mp.getfilesize() < 300000 then
   return mp.INFECTED
 end
-if l_0_0 > 40000 and l_0_0 < 70000 then
+if mp.getfilesize() > 40000 and mp.getfilesize() < 70000 then
   return mp.INFECTED
 end
-if l_0_0 > 10000 and l_0_0 < 15000 then
+if mp.getfilesize() > 10000 and mp.getfilesize() < 15000 then
   return mp.INFECTED
 end
-if l_0_0 > 7600 and l_0_0 < 7700 then
+if mp.getfilesize() > 7600 and mp.getfilesize() < 7700 then
   return mp.INFECTED
 end
-if l_0_0 > 4100 and l_0_0 < 4300 then
+if mp.getfilesize() > 4100 and mp.getfilesize() < 4300 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,39 +1,50 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Program_Win32_SuspiciousFileName 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.getfilename)())
-  if (string.sub)(l_0_1, -4) == ".exe" then
-    local l_0_2, l_0_3 = l_0_1:match("(.+\\)([^\\]+)$")
-    local l_0_4 = l_0_3:len()
-    -- DECOMPILER ERROR at PC61: Unhandled construct in 'MakeBoolean' P1
-
-    if (string.find)(l_0_1, "\\temp\\", 1, true) and l_0_4 > 9 and l_0_4 < 20 then
-      if (string.match)(l_0_3, "^%d_offer_%d+%.exe") or (string.match)(l_0_3, "^%d_offer_%d+_%d%l%l%.exe") then
-        (mp.set_mpattribute)("Lua:Program:Win32/OutBrowse!drop")
-      else
-        if (string.match)(l_0_3, "^1ab%d+rn%d+%.exe") or (string.match)(l_0_3, "^1ab%d+rn%d+n2d%.exe") or (string.match)(l_0_3, "^1agrj%d+%.exe") then
-          (mp.set_mpattribute)("Lua:Adware:Win32/ZoomyLib.B")
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.getfilename
+  L3_3 = L2_2()
+  L1_1 = L1_1(L2_2, L3_3, L2_2())
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, -4)
+  if L2_2 == ".exe" then
+    L3_3 = L1_1
+    L2_2 = L1_1.match
+    L3_3 = L2_2(L3_3, "(.+\\)([^\\]+)$")
+    if string.find(L1_1, "\\temp\\", 1, true) then
+      if L3_3:len() > 9 and L3_3:len() < 20 then
+        if string.match(L3_3, "^%d_offer_%d+%.exe") or string.match(L3_3, "^%d_offer_%d+_%d%l%l%.exe") then
+          mp.set_mpattribute("Lua:Program:Win32/OutBrowse!drop")
+        elseif string.match(L3_3, "^1ab%d+rn%d+%.exe") or string.match(L3_3, "^1ab%d+rn%d+n2d%.exe") or string.match(L3_3, "^1agrj%d+%.exe") then
+          mp.set_mpattribute("Lua:Adware:Win32/ZoomyLib.B")
         end
       end
+    elseif string.match(L1_1, "\\appdata\\local\\tmp%d+\\") or string.match(L1_1, "\\local settings\application data\\tmp%d+\\") then
+      if L3_3:len() > 9 and L3_3:len() < 15 and string.match(L3_3, "^dag%d+%.exe") then
+        mp.set_mpattribute("Lua:Adware:Win32/ZoomyLib.A")
+      end
+    elseif L3_3:len() > 12 and L3_3:len() < 17 then
+      if string.match(L3_3, "^bb%lcabe%l%l+%.exe") then
+        mp.set_mpattribute("Lua:Program:Win32/OutBrowse.A")
+      end
+    elseif L3_3:len() > 12 and L3_3:len() < 50 and (string.find(L3_3, "^lyricsgizm.*%.exe") or string.find(L3_3, "^webzoom.*%.exe") or string.find(L3_3, "^zoomify.*%.exe") or string.find(L3_3, "^zoompic.*%.exe") or string.find(L3_3, "^zooompic.*%.exe")) then
+      mp.set_mpattribute("Lua:Adware:Win32/ZoomyLib.C")
     end
   end
 end
-do
-  -- DECOMPILER ERROR at PC117: Unhandled construct in 'MakeBoolean' P1
-
-  if ((string.match)(l_0_1, "\\appdata\\local\\tmp%d+\\") or (string.match)(l_0_1, "\\local settings\application data\\tmp%d+\\")) and l_0_4 > 9 and l_0_4 < 15 and (string.match)(l_0_3, "^dag%d+%.exe") then
-    (mp.set_mpattribute)("Lua:Adware:Win32/ZoomyLib.A")
-  end
-  if l_0_4 > 12 and l_0_4 < 17 and (string.match)(l_0_3, "^bb%lcabe%l%l+%.exe") then
-    (mp.set_mpattribute)("Lua:Program:Win32/OutBrowse.A")
-  end
-  if l_0_4 > 12 and l_0_4 < 50 and ((string.find)(l_0_3, "^lyricsgizm.*%.exe") or (string.find)(l_0_3, "^webzoom.*%.exe") or (string.find)(l_0_3, "^zoomify.*%.exe") or (string.find)(l_0_3, "^zoompic.*%.exe") or (string.find)(l_0_3, "^zooompic.*%.exe")) then
-    (mp.set_mpattribute)("Lua:Adware:Win32/ZoomyLib.C")
-  end
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

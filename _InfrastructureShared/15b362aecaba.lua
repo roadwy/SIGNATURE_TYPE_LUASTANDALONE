@@ -1,29 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b362aecaba 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1 = nil
-if (bm.get_current_process_startup_info)() ~= nil and ((bm.get_current_process_startup_info)()).ppid ~= nil then
-  l_0_1 = (string.lower)((mp.GetProcessCommandLine)(((bm.get_current_process_startup_info)()).ppid))
-  if (string.find)(l_0_1, "/create", 1, true) and (string.find)(l_0_1, "cmd.exe", 1, true) and (string.find)(l_0_1, "wordpad.exe", 1, true) and (string.find)(l_0_1, "/sc", 1, true) and (string.find)(l_0_1, "/tr", 1, true) and (string.find)(l_0_1, "/st", 1, true) and (string.find)(l_0_1, "/sd", 1, true) then
-    (bm.request_SMS)(((bm.get_current_process_startup_info)()).ppid, "M")
-    ;
-    (bm.add_action)("SmsAsyncScanEvent", 1)
-    local l_0_2 = nil
-    for l_0_6,l_0_7 in ipairs((bm.get_process_relationships)()) do
-      local l_0_3 = nil
-      -- DECOMPILER ERROR at PC96: Confused about usage of register: R7 in 'UnsetPending'
-
-      if R7_PC96.ppid ~= nil then
-        (bm.request_SMS)(R7_PC96.ppid, "M")
+local L0_0, L1_1, L2_2
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+if L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.GetProcessCommandLine(L1_1.ppid))
+    L0_0 = L2_2
+    L2_2 = string
+    L2_2 = L2_2.find
+    L2_2 = L2_2(L0_0, "/create", 1, true)
+    if L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L2_2 = L2_2(L0_0, "cmd.exe", 1, true)
+      if L2_2 then
+        L2_2 = string
+        L2_2 = L2_2.find
+        L2_2 = L2_2(L0_0, "wordpad.exe", 1, true)
+        if L2_2 then
+          L2_2 = string
+          L2_2 = L2_2.find
+          L2_2 = L2_2(L0_0, "/sc", 1, true)
+          if L2_2 then
+            L2_2 = string
+            L2_2 = L2_2.find
+            L2_2 = L2_2(L0_0, "/tr", 1, true)
+            if L2_2 then
+              L2_2 = string
+              L2_2 = L2_2.find
+              L2_2 = L2_2(L0_0, "/st", 1, true)
+              if L2_2 then
+                L2_2 = string
+                L2_2 = L2_2.find
+                L2_2 = L2_2(L0_0, "/sd", 1, true)
+                if L2_2 then
+                  L2_2 = bm
+                  L2_2 = L2_2.request_SMS
+                  L2_2(L1_1.ppid, "M")
+                  L2_2 = bm
+                  L2_2 = L2_2.add_action
+                  L2_2("SmsAsyncScanEvent", 1)
+                  L2_2 = bm
+                  L2_2 = L2_2.get_process_relationships
+                  L2_2 = L2_2()
+                  for _FORV_6_, _FORV_7_ in ipairs(L2_2) do
+                    if _FORV_7_.ppid ~= nil then
+                      bm.request_SMS(_FORV_7_.ppid, "M")
+                    end
+                  end
+                  return mp.INFECTED
+                end
+              end
+            end
+          end
+        end
       end
     end
-    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

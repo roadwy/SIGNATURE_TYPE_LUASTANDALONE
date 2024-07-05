@@ -1,38 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/14cb3e12752f4_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_3 = nil, nil
-  end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
-
-  do
-    if l_0_0 ~= nil then
-      local l_0_2, l_0_4 = , (string.match)(l_0_0, "wscript.*%s+%\"?%\'?(%w:\\.*%.js)")
-    end
-    -- DECOMPILER ERROR at PC25: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC29: Confused about usage of register: R1 in 'UnsetPending'
-
-    do
-      if l_0_4 ~= nil then
-        local l_0_5 = nil
-        if (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)(l_0_4)) then
-          (bm.add_related_file)((mp.ContextualExpandEnvironmentVariables)(l_0_4))
-        end
-      end
-      if IsProcNameInParentProcessTree("BM", "explorer.exe") then
-        return mp.INFECTED
-      end
-      return mp.CLEAN
-    end
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(this_sigattrlog[1].utf8p2)
+    L0_0 = L2_2
   end
 end
-
+if L0_0 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.match
+  L2_2 = L2_2(L0_0, "wscript.*%s+%\"?%'?(%w:\\.*%.js)")
+  L1_1 = L2_2
+end
+if L1_1 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.ContextualExpandEnvironmentVariables
+  L2_2 = L2_2(L1_1)
+  if sysio.IsFileExists(L2_2) then
+    bm.add_threat_file(L2_2)
+  end
+end
+L2_2 = IsProcNameInParentProcessTree
+L2_2 = L2_2("BM", "explorer.exe")
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

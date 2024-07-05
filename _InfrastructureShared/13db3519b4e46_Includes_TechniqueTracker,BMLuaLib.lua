@@ -1,26 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/13db3519b4e46_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
-if (mp.IsHipsRuleEnabled)("c1db55ab-c21a-4637-bb3f-a12568109d35") then
-  local l_0_0 = (bm.get_current_process_startup_info)()
-  if l_0_0 ~= nil and l_0_0.command_line ~= nil then
-    local l_0_1 = (string.lower)(l_0_0.command_line)
-    if l_0_1:match("\\ltsvc.exe") then
-      return mp.CLEAN
-    end
-    if l_0_1:match("\\veeamguesthelper.exe") then
-      return mp.CLEAN
-    end
-    if l_0_1:match("\\avast.+\\regsvr.exe") or l_0_1:match("\\avg.+\\regsvr.exe") then
-      return mp.CLEAN
-    end
-    bm_AddRelatedFileFromCommandLine(l_0_0.command_line, nil, nil, 1)
-    TrackPidAndTechniqueBM("BM", "T1561.002", "folderguard_blk_rsm")
+if mp.IsHipsRuleEnabled("c1db55ab-c21a-4637-bb3f-a12568109d35") and bm.get_current_process_startup_info() ~= nil and bm.get_current_process_startup_info().command_line ~= nil then
+  if string.lower(bm.get_current_process_startup_info().command_line):match("\\ltsvc.exe") then
+    return mp.CLEAN
   end
+  if string.lower(bm.get_current_process_startup_info().command_line):match("\\veeamguesthelper.exe") then
+    return mp.CLEAN
+  end
+  if string.lower(bm.get_current_process_startup_info().command_line):match("\\avast.+\\regsvr.exe") or string.lower(bm.get_current_process_startup_info().command_line):match("\\avg.+\\regsvr.exe") then
+    return mp.CLEAN
+  end
+  bm_AddRelatedFileFromCommandLine(bm.get_current_process_startup_info().command_line, nil, nil, 1)
+  TrackPidAndTechniqueBM("BM", "T1561.002", "folderguard_blk_rsm")
 end
-do
-  return mp.INFECTED
-end
-
+return mp.INFECTED

@@ -1,34 +1,202 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/797802d09464_Flags_1 
-
--- params : ...
--- function num : 0
-if (hstrlog[1]).matched and ((hstrlog[1]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[1]).VA) then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[1]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[2]).matched and ((hstrlog[2]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[2]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[3]).matched and ((hstrlog[3]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[3]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[3]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[4]).matched and ((hstrlog[4]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[4]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[4]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[4]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[4]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[5]).matched and ((hstrlog[5]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[5]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[5]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[5]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[5]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[6]).matched and ((hstrlog[6]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[6]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[6]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[6]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[6]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[7]).matched and ((hstrlog[7]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[7]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[7]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[7]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[7]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[8]).matched and ((hstrlog[8]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[8]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[8]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[8]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[8]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[9]).matched and ((hstrlog[9]).VA < pehdr.AddressOfEntryPoint or pehdr.AddressOfEntryPoint + 80 < (hstrlog[9]).VA) then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[9]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[9]
+  L0_0 = L0_0.VA
+  L1_1 = pehdr
+  L1_1 = L1_1.AddressOfEntryPoint
+  if not (L0_0 < L1_1) then
+    L0_0 = hstrlog
+    L0_0 = L0_0[9]
+    L0_0 = L0_0.VA
+    L1_1 = pehdr
+    L1_1 = L1_1.AddressOfEntryPoint
+    L1_1 = L1_1 + 80
+  elseif L0_0 > L1_1 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-return mp.LOWFI
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

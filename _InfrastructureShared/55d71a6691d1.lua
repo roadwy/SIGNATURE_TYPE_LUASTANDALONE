@@ -1,16 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55d71a6691d1 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.lower)(l_0_0.image_path)
-    if l_0_1:match("([^\\]+)$") == "mshta.exe" or l_0_1:match("([^\\]+)$") == "svchost.exe" then
-      return mp.INFECTED
-    end
-  end
-  return mp.CLEAN
+if mp.GetParentProcInfo() ~= nil and (string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "mshta.exe" or string.lower(mp.GetParentProcInfo().image_path):match("([^\\]+)$") == "svchost.exe") then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

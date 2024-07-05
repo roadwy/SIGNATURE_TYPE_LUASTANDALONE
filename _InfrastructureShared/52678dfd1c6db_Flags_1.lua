@@ -1,10 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/52678dfd1c6db_Flags_1 
-
--- params : ...
--- function num : 0
-if (((((((((((((((((((((not (hstrlog[1]).matched or (hstrlog[2]).matched) and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and not (hstrlog[5]).matched) or (hstrlog[6]).matched) and not (hstrlog[7]).matched) or (hstrlog[8]).matched) and not (hstrlog[9]).matched) or (hstrlog[10]).matched) and not (hstrlog[11]).matched) or (hstrlog[12]).matched) and not (hstrlog[13]).matched) or (hstrlog[14]).matched) and not (hstrlog[15]).matched) or (hstrlog[16]).matched) and not (hstrlog[17]).matched) or (hstrlog[18]).matched) and not (hstrlog[19]).matched) or (hstrlog[20]).matched) and not (hstrlog[21]).matched) or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 == 21) and (mp.getfilesize)() < 40000 and (mp.getfilesize)() > 30000 then
+local L0_0
+L0_0 = 0
+if hstrlog[1].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[2].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[3].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[4].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[5].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[6].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[7].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[8].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[9].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[10].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[11].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[12].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[13].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[14].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[15].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[16].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[17].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[18].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[19].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[20].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[21].matched then
+  L0_0 = L0_0 + 1
+end
+if L0_0 == 21 and mp.getfilesize() < 40000 and mp.getfilesize() > 30000 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

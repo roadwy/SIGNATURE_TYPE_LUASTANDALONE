@@ -1,39 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b3349bcf79 
-
--- params : ...
--- function num : 0
-if (bm.GetSignatureMatchDuration)() > 100000000 then
+local L0_0
+L0_0 = bm
+L0_0 = L0_0.GetSignatureMatchDuration
+L0_0 = L0_0()
+if L0_0 > 100000000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = MpCommon
+L0_0 = L0_0.PathToWin32Path
+L0_0 = L0_0(bm.get_imagepath())
+if L0_0 == nil then
   return mp.CLEAN
 end
-local l_0_0 = (MpCommon.PathToWin32Path)((bm.get_imagepath)())
-if l_0_0 == nil then
+L0_0 = string.lower(L0_0)
+if not string.find(L0_0, "c:\\", 1, true) then
   return mp.CLEAN
 end
-l_0_0 = (string.lower)(l_0_0)
-if not (string.find)(l_0_0, "c:\\", 1, true) then
+if string.find(L0_0, "\\program files", 1, true) or string.find(L0_0, "\\windows", 1, true) or string.find(L0_0, "\\teams.exe", 1, true) or string.find(L0_0, "game", 1, true) or string.find(L0_0, "steam", 1, true) or string.find(L0_0, "\\jackettconsole", 1, true) or string.find(L0_0, "c:\\agent.exe", 1, true) or string.find(L0_0, "torrent", 1, true) then
   return mp.CLEAN
 end
-if (string.find)(l_0_0, "\\program files", 1, true) or (string.find)(l_0_0, "\\windows", 1, true) or (string.find)(l_0_0, "\\teams.exe", 1, true) or (string.find)(l_0_0, "game", 1, true) or (string.find)(l_0_0, "steam", 1, true) or (string.find)(l_0_0, "\\jackettconsole", 1, true) or (string.find)(l_0_0, "c:\\agent.exe", 1, true) or (string.find)(l_0_0, "torrent", 1, true) then
+if not MpCommon.QueryPersistContext(L0_0, "NewPECreatedNoCert") then
   return mp.CLEAN
 end
-local l_0_1 = (MpCommon.QueryPersistContext)(l_0_0, "NewPECreatedNoCert")
-if not l_0_1 then
+if mp.IsKnownFriendlyFile(L0_0, true, false) == true then
   return mp.CLEAN
 end
-if (mp.IsKnownFriendlyFile)(l_0_0, true, false) == true then
-  return mp.CLEAN
-end
-local l_0_2 = (sysio.GetFileLastWriteTime)(l_0_0)
-if ((sysio.GetLastResult)()).Success and l_0_2 ~= 0 then
-  l_0_2 = l_0_2 / 10000000 - 11644473600
-  local l_0_3 = (MpCommon.GetCurrentTimeT)()
-  if l_0_3 < l_0_2 or l_0_3 - (l_0_2) > 600 then
+if sysio.GetLastResult().Success and sysio.GetFileLastWriteTime(L0_0) ~= 0 then
+  if sysio.GetFileLastWriteTime(L0_0) / 10000000 - 11644473600 > MpCommon.GetCurrentTimeT() or MpCommon.GetCurrentTimeT() - (sysio.GetFileLastWriteTime(L0_0) / 10000000 - 11644473600) > 600 then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

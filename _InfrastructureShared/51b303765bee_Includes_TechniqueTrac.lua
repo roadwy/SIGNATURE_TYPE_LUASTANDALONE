@@ -1,35 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51b303765bee_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[3]).matched then
-    local l_0_0, l_0_1, l_0_2 = nil
-  end
-  -- DECOMPILER ERROR at PC8: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC11: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    taint(l_0_0, "remote_file_created_taint", 3600)
-    local l_0_3 = nil
-    AppendToRollingQueue("queue_pid_taintfactory_b", ((bm.get_current_process_startup_info)()).ppid, 1, 600)
-    local l_0_4, l_0_5 = , (bm.get_process_relationships)(((bm.get_current_process_startup_info)()).ppid)
-    for l_0_9,l_0_10 in ipairs(l_0_5) do
-      local l_0_6 = nil
-      -- DECOMPILER ERROR at PC34: Confused about usage of register: R8 in 'UnsetPending'
-
-      ;
-      (bm.add_related_process)(R8_PC34.ppid)
-      TrackPidAndTechniqueBM(R8_PC34.ppid, "T1105", "CommandAndControl")
-    end
-    return mp.INFECTED
-  end
-  do
-    return mp.CLEAN
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L0_0 = L1_1.utf8p1
 end
-
+if L0_0 ~= nil then
+  L1_1 = taint
+  L2_2 = L0_0
+  L3_3 = "remote_file_created_taint"
+  L1_1(L2_2, L3_3, L4_4)
+  L1_1 = bm
+  L1_1 = L1_1.get_current_process_startup_info
+  L1_1 = L1_1()
+  L2_2 = AppendToRollingQueue
+  L3_3 = "queue_pid_taintfactory_b"
+  L2_2(L3_3, L4_4, L5_5, 600)
+  L2_2 = bm
+  L2_2 = L2_2.get_process_relationships
+  L3_3 = L1_1.ppid
+  L3_3 = L2_2(L3_3)
+  for _FORV_7_, _FORV_8_ in L4_4(L5_5) do
+    bm.add_related_process(_FORV_8_.ppid)
+    TrackPidAndTechniqueBM(_FORV_8_.ppid, "T1105", "CommandAndControl")
+  end
+  return L4_4
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

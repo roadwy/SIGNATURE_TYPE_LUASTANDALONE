@@ -1,56 +1,109 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/27b3a1240800 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if MpCommon.SECURITY_MANDATORY_HIGH_RID <= l_0_0.integrity_level then
-  return mp.CLEAN
+L1_1 = L0_0.integrity_level
+L2_2 = MpCommon
+L2_2 = L2_2.SECURITY_MANDATORY_HIGH_RID
+if L1_1 >= L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (bm.get_imagepath)()
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_1 = (string.lower)(l_0_1)
-if (string.find)(l_0_1, "\\windowsapps\\", 1, true) ~= nil then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = "\\windowsapps\\"
+L2_2 = L2_2(L3_3, L4_4, 1, true)
+if L2_2 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (string.find)(l_0_1, "\\appdata\\local\\packages\\", 1, true) ~= nil then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = "\\appdata\\local\\packages\\"
+L2_2 = L2_2(L3_3, L4_4, 1, true)
+if L2_2 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = nil
-if (this_sigattrlog[1]).matched then
-  l_0_2 = (mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[1]).utf8p2)
+L2_2 = nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.ContextualExpandEnvironmentVariables
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L4_4 = L4_4.utf8p2
+  L3_3 = L3_3(L4_4)
+  L2_2 = L3_3
 end
-if l_0_2 == nil then
-  return mp.CLEAN
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = nil
-if (string.find)(l_0_2, "/j[%s]+\"") ~= nil then
-  l_0_3 = (string.match)(l_0_2, "/j[%s]+(\"[^\"]+\") ")
+L3_3 = nil
+L4_4 = string
+L4_4 = L4_4.find
+L4_4 = L4_4(L2_2, "/j[%s]+\"")
+if L4_4 ~= nil then
+  L4_4 = string
+  L4_4 = L4_4.match
+  L4_4 = L4_4(L2_2, "/j[%s]+(\"[^\"]+\") ")
+  L3_3 = L4_4
 else
-  l_0_3 = (string.match)(l_0_2, "/j[%s]+([%S]+) ")
+  L4_4 = string
+  L4_4 = L4_4.match
+  L4_4 = L4_4(L2_2, "/j[%s]+([%S]+) ")
+  L3_3 = L4_4
 end
-if l_0_3 == nil then
-  return mp.CLEAN
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-if (string.find)(l_0_3, "\\appdata\\local\\packages\\", 1, true) == nil then
-  return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.find
+L4_4 = L4_4(L3_3, "\\appdata\\local\\packages\\", 1, true)
+if L4_4 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = nil
-if (string.sub)(l_0_2, -1) == "\"" then
-  l_0_4 = (string.match)(l_0_2, " (\"[^\"]+\")$")
+L4_4 = nil
+if string.sub(L2_2, -1) == "\"" then
+  L4_4 = string.match(L2_2, " (\"[^\"]+\")$")
 else
-  l_0_4 = (string.match)(l_0_2, " (%S+)$")
+  L4_4 = string.match(L2_2, " (%S+)$")
 end
-if l_0_4 == nil then
+if L4_4 == nil then
   return mp.CLEAN
 end
-if (string.find)(l_0_4, "\\appdata\\local\\packages\\", 1, true) == nil then
+if string.find(L4_4, "\\appdata\\local\\packages\\", 1, true) == nil then
   return mp.INFECTED
 end
 return mp.CLEAN
-

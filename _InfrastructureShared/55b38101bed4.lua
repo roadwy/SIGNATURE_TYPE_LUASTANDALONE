@@ -1,27 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b38101bed4 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 ~= nil then
-  local l_0_0 = nil
-  if (string.find)((string.lower)(l_0_0), "\\spool\\drivers\\", 1, true) == nil then
-    local l_0_1 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-    if l_0_1 ~= nil then
-      for l_0_5,l_0_6 in ipairs(l_0_1) do
-        if (sysio.IsFileExists)(l_0_6) then
-          (bm.add_related_file)(l_0_6)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L0_0 = L1_1.utf8p2
+    L1_1 = string
+    L1_1 = L1_1.find
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if L1_1 == nil then
+      L1_1 = mp
+      L1_1 = L1_1.GetExecutablesFromCommandLine
+      L1_1 = L1_1(L2_2)
+      if L1_1 ~= nil then
+        for L5_5, L6_6 in L2_2(L3_3) do
+          if sysio.IsFileExists(L6_6) then
+            bm.add_related_file(L6_6)
+          end
         end
       end
-    end
-    do
-      do
-        do return mp.INFECTED end
-        return mp.CLEAN
-      end
+      return L2_2
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

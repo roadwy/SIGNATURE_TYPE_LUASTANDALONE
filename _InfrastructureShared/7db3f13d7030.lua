@@ -1,10 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7db3f13d7030 
-
--- params : ...
--- function num : 0
-if ((((((this_sigattrlog[3]).matched and not (this_sigattrlog[1]).matched) or (this_sigattrlog[4]).matched) and not (this_sigattrlog[2]).matched) or (this_sigattrlog[5]).matched) and not (this_sigattrlog[6]).matched) or 0 + 1 + 1 + 1 + 1 + 1 + 1 >= 4 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = 0
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L0_0 = L0_0 + 1
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L0_0 = L0_0 + 1
+    else
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L0_0 = L0_0 + 1
+      else
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L0_0 = L0_0 + 1
+        else
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L0_0 = L0_0 + 1
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+if L0_0 >= 4 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

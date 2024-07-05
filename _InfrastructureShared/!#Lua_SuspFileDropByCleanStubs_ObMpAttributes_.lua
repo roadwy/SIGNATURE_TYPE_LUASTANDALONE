@@ -1,78 +1,99 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SuspFileDropByCleanStubs_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONOPEN and l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
-end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_1 == nil then
-  return mp.CLEAN
-end
-local l_0_2 = "cscript.exe|wscript.exe|mshta.exe|cmd.exe|powershell.exe|pwsh.exe|console.exe|bash.exe|dllhost.exe|rundll32.exe|regsvr32.exe|wmiprvse.exe"
-if l_0_2:find(l_0_1) then
-  local l_0_3, l_0_4 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  local l_0_5 = l_0_4:sub(-3)
-  local l_0_6 = false
-  ;
-  (mp.set_mpattribute)("Lua:StubApp!" .. l_0_1)
-  ;
-  (mp.set_mpattribute)("Lua:StubAppDropped!" .. l_0_4)
-  ;
-  (mp.set_mpattribute)("Lua:StubAppDroppedExt!" .. l_0_5)
-  do
-    do
-      if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-        local l_0_7 = "obj|etl|log|pdb|edb|mdb|sdb|pdf|tmf|emf|wmf|spl|off|bak|m4a|mp4|mp3|wav|bmp|ico|kgx|idx|.md|tml|tar|ent|iff|ttf|tif|pak|aml|yml|mof|man|che|ore|new"
-        if l_0_7:find(l_0_5) then
-          l_0_6 = true
-        end
-        if (mp.get_mpattribute)("BM_MZ_FILE") then
-          (mp.set_mpattribute)("BM_PeFileDropByStubApp")
-        else
-          if (mp.get_mpattribute)("BM_LNK_FILE") then
-            (mp.set_mpattribute)("BM_LnkFileDropByStubApp")
-          else
-            if (mp.get_mpattribute)("BM_ScriptFile") then
-              (mp.set_mpattribute)("BM_ScriptFileDropByStubApp")
-            end
-          end
-        end
-        if l_0_3:find("\\bin\\debug", 1, true) or l_0_3:find("\\office\\recent", 1, true) or l_0_4:find("ladybug.-%.ghuser") or l_0_3:find("\\windows\\recent", 1, true) or l_0_3:find("\\bin\\release", 1, true) or l_0_3:find("\\windows\\ccm\\systemtemp", 1, true) or l_0_3:find("\\smssig", 1, true) or l_0_3:find("\\sccmcontentlib\\", 1, true) or l_0_3:find("\\gac\\gac_msil\\", 1, true) or l_0_3:find("\\device\\vhdharddisk", 1, true) or l_0_3:find("\\bin\\azure.+") or l_0_3:find("\\start menu\\programs\\.+radc.\\") or l_0_3:find("microsoft%.microsoftedge.-default\\cachestorage\\files") or l_0_4 == "moduleanalysiscache" or l_0_4:find("powershell_analysiscacheentry", 1, true) or l_0_4 == "windowsdefenderatponboardingscript.cmd" or l_0_4 == "retainip-log.txt" or l_0_4:find("min%[.%]%.js") or l_0_4:find("%.xml$") or l_0_4:find("%.json$") or l_0_4:find("%.yaml$") or l_0_4:find("%.md$") then
-          l_0_6 = true
-        end
-        if l_0_6 then
-          (mp.set_mpattribute)("Lua:CleanStubsExcludePath")
-        end
-        if not l_0_6 then
-          if l_0_3:match("windows\\temp") then
-            (mp.set_mpattribute)("Lua:StubAppDroppedIn!wintemp")
-          end
-          if l_0_3:match("users\\.-\\appdata\\local") then
-            (mp.set_mpattribute)("Lua:StubAppDroppedIn!localappdata")
-          end
-          if l_0_3:match("users\\.-\\appdata\\remote") then
-            (mp.set_mpattribute)("Lua:StubAppDroppedIn!remoteappdata")
-          end
-          if l_0_3:match("users\\.-\\appdata\\local\\temp") then
-            (mp.set_mpattribute)("Lua:StubAppDroppedIn!usrtemp")
-          end
-          if l_0_3:match("users\\.-\\desktop$") then
-            (mp.set_mpattribute)("Lua:StubAppDroppedIn!usrdesktop")
-          end
-          if l_0_3:match("users\\.-\\documents$") then
-            (mp.set_mpattribute)("Lua:StubAppDroppedIn!usrdocs")
-          end
-          if l_0_3:match("windows\\inetcache") then
-            (mp.set_mpattribute)("Lua:StubAppDroppedIn!inetcache")
-          end
-        end
-      end
-      do return mp.INFECTED end
-      return mp.CLEAN
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+  if L0_0 ~= L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSNAME
+L1_1 = L1_1(L2_2)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = "cscript.exe|wscript.exe|mshta.exe|cmd.exe|powershell.exe|pwsh.exe|console.exe|bash.exe|dllhost.exe|rundll32.exe|regsvr32.exe|wmiprvse.exe"
+L4_4 = L2_2
+L3_3 = L2_2.find
+L5_5 = L1_1
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.getfilename
+  L4_4 = mp
+  L4_4 = L4_4.bitor
+  L5_5 = mp
+  L5_5 = L5_5.bitor
+  L5_5 = L5_5(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH)
+  L5_5 = L4_4(L5_5, mp.FILEPATH_QUERY_LOWERCASE)
+  L4_4 = L3_3(L4_4, L5_5, L4_4(L5_5, mp.FILEPATH_QUERY_LOWERCASE))
+  L5_5 = L4_4.sub
+  L5_5 = L5_5(L4_4, -3)
+  mp.set_mpattribute("Lua:StubApp!" .. L1_1)
+  mp.set_mpattribute("Lua:StubAppDropped!" .. L4_4)
+  mp.set_mpattribute("Lua:StubAppDroppedExt!" .. L5_5)
+  if L0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and mp.get_contextdata(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
+    if ("obj|etl|log|pdb|edb|mdb|sdb|tmf|emf|wmf|spl|off|bak|m4a|mp4|mp3|wav|bmp|ico|kgx|idx|.md|tml|tar|ent|iff|ttf|tif|pak|aml|yml|mof|man|che|ore|new|mui"):find(L5_5) then
+    end
+    if mp.get_mpattribute("BM_MZ_FILE") then
+      mp.set_mpattribute("BM_PeFileDropByStubApp")
+    elseif mp.get_mpattribute("BM_LNK_FILE") then
+      mp.set_mpattribute("BM_LnkFileDropByStubApp")
+    elseif mp.get_mpattribute("BM_ScriptFile") then
+      mp.set_mpattribute("BM_ScriptFileDropByStubApp")
+    end
+    if L3_3:find("\\lotus\\notes\\data\\", 1, true) and true then
+      mp.set_mpattribute("Lua:CleanStubsExcludePath")
+    end
+    if not (L3_3:find("\\lotus\\notes\\data\\", 1, true) and true) then
+      if L3_3:match("windows\\temp") then
+        mp.set_mpattribute("Lua:StubAppDroppedIn!wintemp")
+      end
+      if L3_3:match("users\\.-\\appdata\\local") then
+        mp.set_mpattribute("Lua:StubAppDroppedIn!localappdata")
+      end
+      if L3_3:match("users\\.-\\appdata\\remote") then
+        mp.set_mpattribute("Lua:StubAppDroppedIn!remoteappdata")
+      end
+      if L3_3:match("users\\.-\\appdata\\local\\temp") then
+        mp.set_mpattribute("Lua:StubAppDroppedIn!usrtemp")
+      end
+      if L3_3:match("users\\.-\\desktop$") then
+        mp.set_mpattribute("Lua:StubAppDroppedIn!usrdesktop")
+      end
+      if L3_3:match("users\\.-\\documents$") then
+        mp.set_mpattribute("Lua:StubAppDroppedIn!usrdocs")
+      end
+      if L3_3:match("windows\\inetcache") then
+        mp.set_mpattribute("Lua:StubAppDroppedIn!inetcache")
+      end
+    end
+  end
+  return mp.INFECTED
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

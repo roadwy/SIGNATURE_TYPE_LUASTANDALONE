@@ -1,83 +1,110 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#_Lua_Worm_JS_Bondat.A!lnk 
-
--- params : ...
--- function num : 0
-string_starts = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  do return (string.sub)(l_1_0, 1, (string.len)(l_1_1)) == l_1_1 end
-  -- DECOMPILER ERROR: 1 unprocessed JMP targets
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20
+function L0_0(A0_21, A1_22)
+  local L2_23, L3_24, L4_25
+  L2_23 = string
+  L2_23 = L2_23.sub
+  L3_24 = A0_21
+  L4_25 = 1
+  L2_23 = L2_23(L3_24, L4_25, string.len(A1_22))
+  L2_23 = L2_23 == A1_22
+  return L2_23
 end
-
-if (mp.get_mpattribute)("SCRIPT:Worm:JS/Bondat.A!lnk") then
-  if (mp.readu_u32)(headerpage, 1) ~= 76 then
-    return mp.CLEAN
+string_starts = L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "SCRIPT:Worm:JS/Bondat.A!lnk"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.readu_u32
+  L1_1 = headerpage
+  L2_2 = 1
+  L0_0 = L0_0(L1_1, L2_2)
+  if L0_0 ~= 76 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
   end
-  local l_0_0 = (string.lower)(tostring(headerpage))
-  local l_0_1 = (string.match)(l_0_0, "\\appdata\\roaming\\%w+\\(%w+%.exe)%z")
-  if l_0_1 == nil then
-    return mp.CLEAN
+  L0_0 = string
+  L0_0 = L0_0.lower
+  L1_1 = tostring
+  L2_2 = headerpage
+  L20_20 = L1_1(L2_2)
+  L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L1_1(L2_2))
+  L1_1 = string
+  L1_1 = L1_1.match
+  L2_2 = L0_0
+  L3_3 = "\\appdata\\roaming\\%w+\\(%w+%.exe)%z"
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 == nil then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC46: No list found for R2 , SetList fails
-
-  local l_0_3 = {}
-  -- DECOMPILER ERROR at PC48: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC49: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC50: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R7 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC52: Overwrote pending register: R8 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC53: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC54: Overwrote pending register: R10 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC55: Overwrote pending register: R11 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC56: Overwrote pending register: R12 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC57: No list found for R3 , SetList fails
-
-  local l_0_4 = {}
-  -- DECOMPILER ERROR at PC59: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC60: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC61: Overwrote pending register: R7 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC62: No list found for R4 , SetList fails
-
-  -- DECOMPILER ERROR at PC63: Overwrote pending register: R5 in 'AssignReg'
-
-  local l_0_5 = "disk"
-  -- DECOMPILER ERROR at PC64: Overwrote pending register: R6 in 'AssignReg'
-
-  local l_0_6 = "dsk"
-  -- DECOMPILER ERROR at PC65: Overwrote pending register: R7 in 'AssignReg'
-
-  local l_0_7 = "ms"
-  -- DECOMPILER ERROR at PC66: Overwrote pending register: R8 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC67: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC68: Overwrote pending register: R10 in 'AssignReg'
-
-  for l_0_11 = "hp", "intel", "amd" do
-    -- DECOMPILER ERROR at PC70: Overwrote pending register: R12 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC71: Overwrote pending register: R13 in 'AssignReg'
-
-    if ("tcp")("udp", l_0_2[l_0_11]) then
-      for l_0_15 = 1, l_0_6 do
-        if string_starts((string.sub)(l_0_1, (string.len)(l_0_2[l_0_11]) + 1), l_0_3[l_0_15]) then
-          for l_0_19 = 1, l_0_7 do
-            if (string.sub)(l_0_1, (string.len)(l_0_2[l_0_11]) + (string.len)(l_0_3[l_0_15]) + 1) == l_0_4[l_0_19] then
-              local l_0_20 = (string.lower)((mp.getfilename)())
-              if (string.find)(l_0_20, "windows explorer%.lnk") then
+  L2_2 = {
+    L3_3,
+    L4_4,
+    L5_5,
+    L6_6,
+    L7_7,
+    L8_8,
+    L9_9,
+    L10_10,
+    L11_11,
+    L12_12,
+    L13_13
+  }
+  L3_3 = "win"
+  L4_4 = "cmd"
+  L5_5 = "disk"
+  L6_6 = "dsk"
+  L7_7 = "ms"
+  L11_11 = "dll"
+  L3_3 = {
+    L4_4,
+    L5_5,
+    L6_6,
+    L7_7,
+    L8_8,
+    L9_9,
+    L10_10,
+    L11_11,
+    L12_12
+  }
+  L4_4 = "process"
+  L5_5 = "proc"
+  L6_6 = "monitor"
+  L7_7 = "mon"
+  L11_11 = "update"
+  L4_4 = {
+    L5_5,
+    L6_6,
+    L7_7
+  }
+  L5_5 = "64.exe"
+  L6_6 = "32.exe"
+  L7_7 = ".exe"
+  L5_5 = #L2_2
+  L6_6 = #L3_3
+  L7_7 = #L4_4
+  for L11_11 = 1, L5_5 do
+    if L12_12 then
+      for L15_15 = 1, L6_6 do
+        L19_19 = string
+        L19_19 = L19_19.len
+        L20_20 = L2_2[L11_11]
+        L19_19 = L19_19(L20_20)
+        L19_19 = L19_19 + 1
+        if L16_16 then
+          for L19_19 = 1, L7_7 do
+            L20_20 = string
+            L20_20 = L20_20.sub
+            L20_20 = L20_20(L1_1, string.len(L2_2[L11_11]) + string.len(L3_3[L15_15]) + 1)
+            if L20_20 == L4_4[L19_19] then
+              L20_20 = string
+              L20_20 = L20_20.lower
+              L20_20 = L20_20(mp.getfilename())
+              if string.find(L20_20, "windows explorer%.lnk") then
                 return mp.INFECTED
               end
               return mp.LOWFI
@@ -87,10 +114,8 @@ if (mp.get_mpattribute)("SCRIPT:Worm:JS/Bondat.A!lnk") then
       end
     end
   end
-  return mp.LOWFI
+  return L8_8
 end
-do
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

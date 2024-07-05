@@ -1,17 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b35e056280 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if MpCommon.SECURITY_MANDATORY_MEDIUM_RID < l_0_0.integrity_level then
+if bm.get_current_process_startup_info().integrity_level > MpCommon.SECURITY_MANDATORY_MEDIUM_RID then
   return mp.CLEAN
 end
-if MpCommon.SECURITY_MANDATORY_MEDIUM_RID < ((MpCommon.GetProcessElevationAndIntegrityLevel)(l_0_0.ppid)).IntegrityLevel then
+if MpCommon.GetProcessElevationAndIntegrityLevel(bm.get_current_process_startup_info().ppid).IntegrityLevel > MpCommon.SECURITY_MANDATORY_MEDIUM_RID then
   return mp.CLEAN
 end
-if (string.lower)((string.sub)((bm.get_imagepath)(), -13)) == "\\explorer.exe" then
+if string.lower(string.sub(bm.get_imagepath(), -13)) == "\\explorer.exe" then
   return mp.CLEAN
 end
 return mp.INFECTED
-

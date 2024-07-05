@@ -1,18 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/9bb3f2767f77 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1, l_0_2 = nil, nil, nil
-local l_0_3 = nil
-if ((string.lower)((bm.get_imagepath)())):find("explorer.exe") then
-  l_0_3 = (string.match)((this_sigattrlog[1]).utf8p2, ".exe")
-  if l_0_3 ~= nil then
-    l_0_3 = (this_sigattrlog[1]).utf8p2
-    if l_0_3 == (this_sigattrlog[2]).utf8p2 and l_0_3 == (this_sigattrlog[3]).utf8p1 then
+local L0_0, L3_1
+if string.lower(bm.get_imagepath()):find("explorer.exe") then
+  L0_0 = string.match(this_sigattrlog[1].utf8p2, ".exe")
+  if L0_0 ~= nil then
+    L0_0 = this_sigattrlog[1].utf8p2
+    L3_1 = this_sigattrlog[2].utf8p2
+    if L0_0 == L3_1 and L0_0 == this_sigattrlog[3].utf8p1 then
       return mp.INFECTED
     end
   end
 end
 return mp.CLEAN
-

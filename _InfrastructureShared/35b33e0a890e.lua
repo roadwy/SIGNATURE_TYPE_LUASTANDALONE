@@ -1,12 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b33e0a890e 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = l_0_0.command_line
-if (string.len)(l_0_1) < 1024 then
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.command_line
+if string.len(L1_1) < 1024 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

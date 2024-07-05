@@ -1,21 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/24785ba242e6 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("pea_isdll") then
+if not mp.get_mpattribute("pea_isdll") then
   return mp.CLEAN
 end
-local l_0_0 = pehdr.AddressOfEntryPoint + pehdr.ImageBase
-do
-  if l_0_0 == (hstrlog[1]).VA then
-    local l_0_1, l_0_2 = (pe.get_exports)()
-    if l_0_1 > 2 then
-      (mp.set_mpattribute)("do_exhaustivehstr_rescan")
-    end
-    ;
-    (mp.set_mpattribute)("BorlandDelphiDllEntryPoint")
+if pehdr.AddressOfEntryPoint + pehdr.ImageBase == hstrlog[1].VA then
+  if pe.get_exports() > 2 then
+    mp.set_mpattribute("do_exhaustivehstr_rescan")
   end
-  return mp.INFECTED
+  mp.set_mpattribute("BorlandDelphiDllEntryPoint")
 end
-
+return mp.INFECTED

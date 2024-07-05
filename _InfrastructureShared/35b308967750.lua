@@ -1,37 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b308967750 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-local l_0_2 = 0
-if l_0_0 ~= nil then
-  for l_0_6,l_0_7 in ipairs(l_0_0) do
-    if l_0_7.image_path ~= nil then
-      local l_0_8 = (mp.ContextualExpandEnvironmentVariables)(l_0_7.image_path)
-      if (sysio.IsFileExists)(l_0_8) then
-        do
-          do
-            (bm.add_related_file)(l_0_8)
-            l_0_2 = l_0_2 + 1
-            if l_0_2 > 2 then
-              break
-            end
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_STMT
-
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+L2_2 = 0
+if L0_0 ~= nil then
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = L7_7.image_path
+    if L8_8 ~= nil then
+      L8_8 = mp
+      L8_8 = L8_8.ContextualExpandEnvironmentVariables
+      L8_8 = L8_8(L7_7.image_path)
+      if sysio.IsFileExists(L8_8) then
+        bm.add_related_file(L8_8)
+        L2_2 = L2_2 + 1
+        if L2_2 > 2 then
+          break
         end
       end
     end
   end
 end
-return mp.INFECTED
-
+return L3_3

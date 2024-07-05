@@ -1,47 +1,75 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/353789d67f9cf_Flags_1 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT >= 4 then
-  (mp.changedetectionname)(805306394)
-  return mp.INFECTED
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 >= 4 then
+  L0_0 = mp
+  L0_0 = L0_0.changedetectionname
+  L0_0(805306394)
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-if (hstrlog[14]).matched then
-  (mp.changedetectionname)(805306403)
+L0_0 = hstrlog
+L0_0 = L0_0[14]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.changedetectionname
+  L0_0(805306403)
 end
-if (hstrlog[6]).matched or (hstrlog[7]).matched or (hstrlog[9]).matched then
-  if (hstrlog[1]).matched then
-    local l_0_0 = (string.format)("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0100", (hstrlog[1]).VA + 6)
-    ;
-    (mp.set_mpattribute)(l_0_0)
+L0_0 = hstrlog
+L0_0 = L0_0[6]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[7]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[9]
+    L0_0 = L0_0.matched
+  end
+elseif L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = string
+    L0_0 = L0_0.format
+    L0_0 = L0_0("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0100", hstrlog[1].VA + 6)
+    mp.set_mpattribute(L0_0)
   else
-    do
-      if (hstrlog[2]).matched then
-        local l_0_1 = (string.format)("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0200", (hstrlog[2]).VA + 40)
-        ;
-        (mp.set_mpattribute)(l_0_1)
+    L0_0 = hstrlog
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = string
+      L0_0 = L0_0.format
+      L0_0 = L0_0("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0200", hstrlog[2].VA + 40)
+      mp.set_mpattribute(L0_0)
+    else
+      L0_0 = hstrlog
+      L0_0 = L0_0[3]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = string
+        L0_0 = L0_0.format
+        L0_0 = L0_0("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0200", hstrlog[3].VA + 35)
+        mp.set_mpattribute(L0_0)
       else
-        do
-          if (hstrlog[3]).matched then
-            local l_0_2 = (string.format)("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0200", (hstrlog[3]).VA + 35)
-            ;
-            (mp.set_mpattribute)(l_0_2)
-          else
-            do
-              do
-                if (hstrlog[5]).matched then
-                  local l_0_3 = (string.format)("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0200", (hstrlog[5]).VA + 15)
-                  ;
-                  (mp.set_mpattribute)(l_0_3)
-                end
-                return mp.SUSPICIOUS
-              end
-            end
-          end
+        L0_0 = hstrlog
+        L0_0 = L0_0[5]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = string
+          L0_0 = L0_0.format
+          L0_0 = L0_0("HSTR:VirTool:Win32/Obfuscator.ZG_%08X_02_0200", hstrlog[5].VA + 15)
+          mp.set_mpattribute(L0_0)
         end
       end
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.SUSPICIOUS
+return L0_0

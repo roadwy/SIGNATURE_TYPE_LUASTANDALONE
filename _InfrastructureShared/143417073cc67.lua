@@ -1,46 +1,111 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/143417073cc67 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-  local l_0_0, l_0_1 = nil, nil
-  l_0_1 = (this_sigattrlog[2]).utf8p2
-  local l_0_2 = nil
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L0_0 = L2_2.utf8p1
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L1_1 = L2_2.utf8p2
+  end
 else
-end
-do
-  -- DECOMPILER ERROR at PC46: Overwrote pending register: R0 in 'AssignReg'
-
-  if (not (this_sigattrlog[3]).matched or (this_sigattrlog[3]).utf8p2 == nil or (this_sigattrlog[4]).matched) and (this_sigattrlog[4]).utf8p2 ~= nil then
-    local l_0_3, l_0_4 = (this_sigattrlog[3]).utf8p1, (this_sigattrlog[3]).utf8p2
-    l_0_4 = (this_sigattrlog[4]).utf8p2
-    local l_0_5 = nil
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L0_0 = L2_2.utf8p1
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L1_1 = L2_2.utf8p2
+    end
   else
-  end
-  do
-    -- DECOMPILER ERROR at PC80: Overwrote pending register: R0 in 'AssignReg'
-
-    if (not (this_sigattrlog[5]).matched or (this_sigattrlog[5]).utf8p2 == nil or (this_sigattrlog[6]).matched) and (this_sigattrlog[6]).utf8p2 ~= nil then
-      local l_0_6, l_0_7, l_0_9, l_0_10, l_0_12, l_0_13, l_0_15 = (this_sigattrlog[5]).utf8p1, (this_sigattrlog[5]).utf8p2
-      l_0_9 = this_sigattrlog
-      l_0_9 = l_0_9[6]
-      l_0_7 = l_0_9.utf8p2
-      local l_0_8, l_0_11, l_0_14, l_0_16 = nil
-    else
-    end
-    do
-      if ((this_sigattrlog[7]).matched and (this_sigattrlog[7]).utf8p2 ~= nil and (this_sigattrlog[7]).utf8p1 == nil) or (this_sigattrlog[7]).utf8p2 == nil then
-        return mp.CLEAN
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[4]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[4]
+        L0_0 = L2_2.utf8p1
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[4]
+        L1_1 = L2_2.utf8p2
       end
-      local l_0_17 = nil
-      local l_0_18 = nil
-      ;
-      (nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), {["[" .. l_0_17 .. "]"] = "[" .. l_0_18 .. "]"})
-      return mp.INFECTED
+    else
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[5]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[5]
+        L2_2 = L2_2.utf8p2
+        if L2_2 ~= nil then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[5]
+          L0_0 = L2_2.utf8p1
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[5]
+          L1_1 = L2_2.utf8p2
+        end
+      else
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[6]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[6]
+          L2_2 = L2_2.utf8p2
+          if L2_2 ~= nil then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[6]
+            L0_0 = L2_2.utf8p1
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[6]
+            L1_1 = L2_2.utf8p2
+          end
+        else
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[7]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[7]
+            L2_2 = L2_2.utf8p2
+            if L2_2 ~= nil then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[7]
+              L0_0 = L2_2.utf8p1
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[7]
+              L1_1 = L2_2.utf8p2
+            end
+          end
+        end
+      end
     end
   end
 end
-
+if L0_0 == nil or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = {}
+L2_2["[" .. L0_0 .. "]"] = "[" .. L1_1 .. "]"
+nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L2_2)
+return mp.INFECTED

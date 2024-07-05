@@ -1,37 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7d410e61fe5c 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-local l_0_1 = false
-if (this_sigattrlog[1]).matched == true then
-  l_0_0.SslSerialNumber = (this_sigattrlog[1]).utf8p1
-  l_0_1 = true
+local L0_0
+L0_0 = {}
+if this_sigattrlog[1].matched == true then
+  L0_0.SslSerialNumber = this_sigattrlog[1].utf8p1
 end
-if (this_sigattrlog[2]).matched == true then
-  l_0_0.SslIssuer = (this_sigattrlog[2]).utf8p1
-  l_0_1 = true
+if this_sigattrlog[2].matched == true then
+  L0_0.SslIssuer = this_sigattrlog[2].utf8p1
 end
-if (this_sigattrlog[3]).matched == true then
-  l_0_0.SslSubject = (this_sigattrlog[3]).utf8p1
-  l_0_1 = true
+if this_sigattrlog[3].matched == true then
+  L0_0.SslSubject = this_sigattrlog[3].utf8p1
 end
-if (this_sigattrlog[4]).matched == true then
-  l_0_0.SslPublicKey = (this_sigattrlog[4]).p1
-  l_0_1 = true
+if this_sigattrlog[4].matched == true then
+  L0_0.SslPublicKey = this_sigattrlog[4].p1
 end
-if (this_sigattrlog[5]).matched == true then
-  l_0_0.SslPublicKeyEccCurve = (this_sigattrlog[5]).p1
-  l_0_1 = true
+if this_sigattrlog[5].matched == true then
+  L0_0.SslPublicKeyEccCurve = this_sigattrlog[5].p1
 end
-if (this_sigattrlog[6]).matched == true then
-  l_0_0.SslCertificateBlob = (this_sigattrlog[6]).p1
-  l_0_1 = true
+if this_sigattrlog[6].matched == true then
+  L0_0.SslCertificateBlob = this_sigattrlog[6].p1
 end
-if l_0_1 == true then
-  (nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), l_0_0)
+if true == true then
+  nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L0_0)
   return mp.INFECTED
 end
 return mp.CLEAN
-

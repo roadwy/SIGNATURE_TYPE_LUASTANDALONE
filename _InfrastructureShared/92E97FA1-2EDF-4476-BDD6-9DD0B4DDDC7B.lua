@@ -1,21 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B 
-
--- params : ...
--- function num : 0
-GetRuleInfo = function()
-  -- function num : 0_0
-  local l_1_0 = {}
-  l_1_0.Name = "Block Win32 API calls from Office macro"
-  l_1_0.Description = "Windows Defender Exploit Guard detected use of Win32 APIs from Macro code in Office files"
-  l_1_0.NotificationDedupingInterval = 120
-  l_1_0.NotificationDedupingScope = HIPS.DEDUPE_SCOPE_UI
-  return l_1_0
+local L0_0, L1_1
+function L0_0()
+  local L0_2, L1_3
+  L0_2 = {}
+  L0_2.Name = "Block Win32 API calls from Office macro"
+  L0_2.NotificationDedupingInterval = 120
+  L1_3 = HIPS
+  L1_3 = L1_3.DEDUPE_SCOPE_UI
+  L0_2.NotificationDedupingScope = L1_3
+  L0_2.Description = "Windows Defender Exploit Guard detected use of Win32 APIs from Macro code in Office files"
+  L1_3 = HIPS
+  L1_3 = L1_3.NO_INVOLVEDDOC_EXCL
+  L0_2.Flags = L1_3
+  return L0_2
 end
-
-GetCommandLineRegExp = function()
-  -- function num : 0_1
-  return "((windowsapps\\\\[^\\\\]+\\\\)|(microsoft office\\\\(root\\\\)?))office..\\\\[^\\.]+\\.exe\\\"?[^\\\"]+\\\"([^\\\"]+)\\\""
+GetRuleInfo = L0_0
+function L0_0()
+  local L0_4, L1_5
+  L0_4 = "((windowsapps\\\\[^\\\\]+\\\\)|(microsoft office\\\\(root\\\\)?))office..\\\\[^\\.]+\\.exe\\\"?[^\\\"]+\\\"([^\\\"]+)\\\"?"
+  return L0_4
 end
-
-
+GetCommandLineRegExp = L0_0

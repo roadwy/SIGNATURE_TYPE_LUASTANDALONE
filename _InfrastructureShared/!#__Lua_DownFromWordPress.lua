@@ -1,37 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#__Lua_DownFromWordPress 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.IOAVGetDownloadUrl)()
-if l_0_0 == nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.IOAVGetDownloadUrl
+L0_0 = L0_0()
+if L0_0 == nil then
   return mp.CLEAN
 end
-if (string.len)(l_0_0) < 12 then
+if string.len(L0_0) < 12 then
   return mp.CLEAN
 end
-l_0_0 = (string.lower)(l_0_0)
-local l_0_1 = false
-if (string.find)(l_0_0, "/j.mp/", 1, true) or (string.find)(l_0_0, "/www.j.mp/", 1, true) then
-  (mp.set_mpattribute)("//Lua:SuspUrlDownload")
-else
-  if (string.find)(l_0_0, "/wp-content/", 1, true) then
-    (mp.set_mpattribute)("Lua:WordPressContent")
-    l_0_1 = true
-  else
-    if (string.find)(l_0_0, "/wp-includes/", 1, true) then
-      (mp.set_mpattribute)("Lua:WordPressInclude")
-      l_0_1 = true
-    else
-      if (string.find)(l_0_0, "/wp-admin/", 1, true) then
-        (mp.set_mpattribute)("Lua:WordPressAdmin")
-        l_0_1 = true
-      end
-    end
-  end
+L0_0 = string.lower(L0_0)
+if string.find(L0_0, "/j.mp/", 1, true) or string.find(L0_0, "/www.j.mp/", 1, true) then
+  mp.set_mpattribute("//Lua:SuspUrlDownload")
+elseif string.find(L0_0, "/wp-content/", 1, true) then
+  mp.set_mpattribute("Lua:WordPressContent")
+elseif string.find(L0_0, "/wp-includes/", 1, true) then
+  mp.set_mpattribute("Lua:WordPressInclude")
+elseif string.find(L0_0, "/wp-admin/", 1, true) then
+  mp.set_mpattribute("Lua:WordPressAdmin")
 end
-if l_0_1 == true then
+if true == true then
   return mp.INFECTED
 end
 return mp.CLEAN
-

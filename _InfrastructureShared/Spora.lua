@@ -1,25 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Spora 
-
--- params : ...
--- function num : 0
-local l_0_0 = Remediation.Threat
-local l_0_1 = {}
--- DECOMPILER ERROR at PC5: No list found for R1 , SetList fails
-
--- DECOMPILER ERROR at PC6: Overwrote pending register: R2 in 'AssignReg'
-
--- DECOMPILER ERROR at PC11: Overwrote pending register: R3 in 'AssignReg'
-
-if "HKCR\\lnkfile" and (string.find)("HKLM\\software\\classes\\lnkfile", "Ransom:Win32/Spora", 1, true) then
-  for l_0_5,l_0_6 in pairs(l_0_1) do
-    local l_0_7 = (sysio.RegOpenKey)(l_0_6)
-    if l_0_7 ~= nil then
-      local l_0_8 = (sysio.GetRegValueAsString)(l_0_7, "isShortcut")
-      if l_0_8 == nil then
-        (sysio.SetRegValueAsString)(l_0_7, "isShortcut", "")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L1_1 = {L2_2, L3_3}
+if L2_2 then
+  L5_5 = 1
+  L6_6 = true
+  if L2_2 then
+    for L5_5, L6_6 in L2_2(L3_3) do
+      L7_7 = sysio
+      L7_7 = L7_7.RegOpenKey
+      L7_7 = L7_7(L6_6)
+      if L7_7 ~= nil and sysio.GetRegValueAsString(L7_7, "isShortcut") == nil then
+        sysio.SetRegValueAsString(L7_7, "isShortcut", "")
       end
     end
   end
 end
-

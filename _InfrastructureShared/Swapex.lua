@@ -1,67 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Swapex 
-
--- params : ...
--- function num : 0
-getSystemDriverPath = function()
-  -- function num : 0_0
-  local l_1_0 = (MpCommon.ExpandEnvironmentVariables)("%SystemRoot%")
-  if not l_1_0 then
+local L0_0, L1_1, L2_2, L3_3
+function L0_0()
+  local L0_4
+  L0_4 = MpCommon
+  L0_4 = L0_4.ExpandEnvironmentVariables
+  L0_4 = L0_4("%SystemRoot%")
+  if not L0_4 then
     return nil
   end
-  return l_1_0 .. "\\System32\\drivers\\"
+  return L0_4 .. "\\System32\\drivers\\"
 end
-
-getDriverName = function(l_2_0)
-  -- function num : 0_1
-  local l_2_1, l_2_2, l_2_11, l_2_12, l_2_13 = nil, nil
-  for l_2_6,l_2_7 in pairs(l_2_0.Resources) do
-    local l_2_3, l_2_4 = nil
-    -- DECOMPILER ERROR at PC4: Confused about usage of register: R7 in 'UnsetPending'
-
-    if R7_PC4.Schema == "file" and getSystemDriverPath() and (string.find)((string.lower)(R7_PC4.Path), (getSystemDriverPath()):lower(), 1, true) then
-      local l_2_10 = nil
-      if (string.match)((string.lower)(R7_PC4.Path), "\\([^\\]+)%.sys") then
-        do
-          do
-            l_2_4 = (string.match)((string.lower)(R7_PC4.Path), "\\([^\\]+)%.sys")
-            l_2_3 = l_2_10
-            do break end
-            -- DECOMPILER ERROR at PC35: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC35: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC35: LeaveBlock: unexpected jumping out IF_STMT
-
-            -- DECOMPILER ERROR at PC35: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC35: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
+getSystemDriverPath = L0_0
+function L0_0(A0_5)
+  local L1_6, L2_7, L3_8, L4_9, L5_10, L6_11, L7_12, L8_13
+  for L6_11, L7_12 in L3_8(L4_9) do
+    L8_13 = L7_12.Schema
+    if L8_13 == "file" then
+      L8_13 = string
+      L8_13 = L8_13.lower
+      L8_13 = L8_13(L7_12.Path)
+      if getSystemDriverPath() and string.find(L8_13, getSystemDriverPath():lower(), 1, true) and string.match(L8_13, "\\([^\\]+)%.sys") then
+        L2_7 = string.match(L8_13, "\\([^\\]+)%.sys")
+        L1_6 = L8_13
+        break
       end
     end
   end
-  -- DECOMPILER ERROR at PC37: Confused about usage of register: R2 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC38: Confused about usage of register: R1 in 'UnsetPending'
-
-  return l_2_4, l_2_3
+  return L3_8, L4_9
 end
-
-local l_0_0 = Remediation.Threat
-if l_0_0.Active then
-  local l_0_1, l_0_2 = getDriverName(l_0_0)
-  if l_0_1 then
-    (Remediation.FfrDriverDeleteByDriverName)(l_0_1)
-    local l_0_3 = "HKLM\\SYSTEM\\CurrentControlSet\\Services\\" .. l_0_1
-    ;
-    (Remediation.BtrDeleteRegKey)(l_0_3)
+getDriverName = L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L1_1 = L0_0.Active
+if L1_1 then
+  L1_1 = getDriverName
+  L2_2 = L0_0
+  L2_2 = L1_1(L2_2)
+  if L1_1 then
+    L3_3 = Remediation
+    L3_3 = L3_3.FfrDriverDeleteByDriverName
+    L3_3(L1_1)
+    L3_3 = "HKLM\\SYSTEM\\CurrentControlSet\\Services\\"
+    L3_3 = L3_3 .. L1_1
+    Remediation.BtrDeleteRegKey(L3_3)
   end
-  do
-    if l_0_2 then
-      (Remediation.BtrDeleteFile)(l_0_2)
-    end
+  if L2_2 then
+    L3_3 = Remediation
+    L3_3 = L3_3.BtrDeleteFile
+    L3_3(L2_2)
   end
 end
-

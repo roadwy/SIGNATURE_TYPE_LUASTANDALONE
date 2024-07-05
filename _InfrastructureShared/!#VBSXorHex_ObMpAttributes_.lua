@@ -1,41 +1,94 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#VBSXorHex_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() < 524288 then
-  (mp.readprotection)(false)
-  local l_0_0 = (mp.readfile)(0, (mp.getfilesize)())
-  local l_0_1, l_0_2 = (string.match)(l_0_0, ",[%s]+%)(%d)(%d)%([Ww][Rr][Hh][Cc][%s]+%(")
-  if l_0_2 == nil or l_0_1 == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 524288 then
+  L0_0 = mp
+  L0_0 = L0_0.readprotection
+  L1_1 = false
+  L0_0(L1_1)
+  L0_0 = mp
+  L0_0 = L0_0.readfile
+  L1_1 = 0
+  L2_2 = mp
+  L2_2 = L2_2.getfilesize
+  L14_14 = L2_2()
+  L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L2_2())
+  L1_1 = string
+  L1_1 = L1_1.match
+  L2_2 = L0_0
+  L3_3 = ",[%s]+%)(%d)(%d)%([Ww][Rr][Hh][Cc][%s]+%("
+  L2_2 = L1_1(L2_2, L3_3)
+  if L2_2 == nil or L1_1 == nil then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   end
-  local l_0_3 = tonumber(l_0_1) + 10 * tonumber(l_0_2)
-  local l_0_4 = l_0_0:find("&\"[%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x]")
-  if l_0_4 == nil then
-    return mp.CLEAN
+  L3_3 = tonumber
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4)
+  L4_4 = tonumber
+  L5_5 = L2_2
+  L4_4 = L4_4(L5_5)
+  L4_4 = 10 * L4_4
+  L3_3 = L3_3 + L4_4
+  L5_5 = L0_0
+  L4_4 = L0_0.find
+  L6_6 = "&\"[%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x]"
+  L4_4 = L4_4(L5_5, L6_6)
+  if L4_4 == nil then
+    L5_5 = mp
+    L5_5 = L5_5.CLEAN
+    return L5_5
   end
-  local l_0_5 = (l_0_0:match("[%x]+", l_0_4 + 2))
-  local l_0_6 = nil
-  l_0_4 = l_0_0:find("&\"[%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x]", l_0_4 + #l_0_5 + 3)
-  while l_0_4 ~= nil do
-    l_0_6 = l_0_0:match("[%x]+", l_0_4 + 2)
-    l_0_5 = l_0_5 .. l_0_6
-    l_0_4 = l_0_0:find("&\"[%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x]", l_0_4 + #l_0_6 + 3)
+  L6_6 = L0_0
+  L5_5 = L0_0.match
+  L7_7 = "[%x]+"
+  L8_8 = L4_4 + 2
+  L5_5 = L5_5(L6_6, L7_7, L8_8)
+  L6_6 = nil
+  L8_8 = L0_0
+  L7_7 = L0_0.find
+  L9_9 = "&\"[%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x]"
+  L10_10 = #L5_5
+  L10_10 = L4_4 + L10_10
+  L10_10 = L10_10 + 3
+  L7_7 = L7_7(L8_8, L9_9, L10_10)
+  L4_4 = L7_7
+  while L4_4 ~= nil do
+    L8_8 = L0_0
+    L7_7 = L0_0.match
+    L9_9 = "[%x]+"
+    L10_10 = L4_4 + 2
+    L7_7 = L7_7(L8_8, L9_9, L10_10)
+    L6_6 = L7_7
+    L7_7 = L5_5
+    L8_8 = L6_6
+    L5_5 = L7_7 .. L8_8
+    L8_8 = L0_0
+    L7_7 = L0_0.find
+    L9_9 = "&\"[%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x][%x]"
+    L10_10 = #L6_6
+    L10_10 = L4_4 + L10_10
+    L10_10 = L10_10 + 3
+    L7_7 = L7_7(L8_8, L9_9, L10_10)
+    L4_4 = L7_7
   end
-  local l_0_7 = (string.reverse)(l_0_5)
-  local l_0_8 = {}
-  local l_0_9, l_0_10 = nil, nil
-  for l_0_14 = 0, 255 do
-    l_0_9 = (string.format)("%02X", l_0_14)
-    l_0_10 = (mp.bitxor)(l_0_14, l_0_3)
-    l_0_8[l_0_9] = (string.format)("%c", l_0_10)
+  L7_7 = string
+  L7_7 = L7_7.reverse
+  L8_8 = L5_5
+  L7_7 = L7_7(L8_8)
+  L8_8 = {}
+  L9_9, L10_10 = nil, nil
+  for L14_14 = 0, 255 do
+    L9_9 = string.format("%02X", L14_14)
+    L10_10 = mp.bitxor(L14_14, L3_3)
+    L8_8[L9_9] = string.format("%c", L10_10)
   end
-  local l_0_15 = (string.gsub)(l_0_7, "(%x%x)", l_0_8)
-  ;
-  (mp.vfo_add_buffer)(l_0_15, "[Vbs]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+  L14_14 = L8_8
+  L14_14 = "[Vbs]"
+  L12_12(L13_13, L14_14, mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

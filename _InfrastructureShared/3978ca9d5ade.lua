@@ -1,7 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3978ca9d5ade 
-
--- params : ...
--- function num : 0
-return mp.LOWFI
-
+local L1_0
+L1_0 = mp
+L1_0 = L1_0.LOWFI
+return L1_0

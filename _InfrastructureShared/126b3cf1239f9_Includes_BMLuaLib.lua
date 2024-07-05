@@ -1,42 +1,76 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/126b3cf1239f9_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  else
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-      local l_0_1, l_0_2, l_0_3, l_0_4 = (this_sigattrlog[2]).utf8p2
-    else
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
     end
-    do
-      if not (this_sigattrlog[4]).matched or (this_sigattrlog[4]).utf8p2 == nil or (this_sigattrlog[4]).utf8p2 ~= nil then
-        local l_0_5 = nil
-        bm_AddRelatedFileFromCommandLine(l_0_5, "|.xls|.doc|.ppt|.pps|docx|pptx|ppsx|xlsx|.rtf|.js|.vbs|.wsf|.jse|.vbe|")
-        if (this_sigattrlog[9]).matched then
-          (mp.ReportLowfi)((this_sigattrlog[9]).utf8p1, 147270772)
-        end
-        if (this_sigattrlog[10]).matched then
-          (mp.ReportLowfi)((this_sigattrlog[10]).utf8p1, 982105579)
-        end
-        if (this_sigattrlog[11]).matched then
-          (mp.ReportLowfi)((this_sigattrlog[11]).utf8p1, 1815722029)
-        end
-        if (this_sigattrlog[12]).matched then
-          (mp.ReportLowfi)((this_sigattrlog[12]).utf8p1, 1078932623)
-        end
-        return mp.INFECTED
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
       end
-      return mp.CLEAN
+    else
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[4]
+          L0_0 = L1_1.utf8p2
+        end
+      end
     end
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = "|.xls|.doc|.ppt|.pps|docx|pptx|ppsx|xlsx|.rtf|.js|.vbs|.wsf|.jse|.vbe|"
+  bm_AddRelatedFileFromCommandLine(L0_0, L1_1)
+  if this_sigattrlog[9].matched then
+    mp.ReportLowfi(this_sigattrlog[9].utf8p1, 147270772)
+  end
+  if this_sigattrlog[10].matched then
+    mp.ReportLowfi(this_sigattrlog[10].utf8p1, 982105579)
+  end
+  if this_sigattrlog[11].matched then
+    mp.ReportLowfi(this_sigattrlog[11].utf8p1, 1815722029)
+  end
+  if this_sigattrlog[12].matched then
+    mp.ReportLowfi(this_sigattrlog[12].utf8p1, 1078932623)
+  end
+  return mp.INFECTED
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,7 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55291f31ad03 
-
--- params : ...
--- function num : 0
-return mp.SYNCLOWFI
-
+local L1_0
+L1_0 = mp
+L1_0 = L1_0.SYNCLOWFI
+return L1_0

@@ -1,32 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2c786fb07f5f 
-
--- params : ...
--- function num : 0
-if peattributes.isdll and peattributes.hasexports then
-  local l_0_0 = ((pehdr.DataDirectory)[1]).RVA
-  local l_0_1 = ((pehdr.DataDirectory)[1]).Size
-  local l_0_2 = (pe.foffset_rva)(l_0_0)
-  ;
-  (mp.readprotection)(false)
-  local l_0_3 = (mp.readfile)(l_0_2, l_0_1)
-  local l_0_4 = (mp.ror32)((mp.readu_u32)(l_0_3, 20), 8)
-  if l_0_4 ~= 1 then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.hasexports
+  if L0_0 then
+    L0_0 = pehdr
+    L0_0 = L0_0.DataDirectory
+    L0_0 = L0_0[1]
+    L0_0 = L0_0.RVA
+    L1_1 = pehdr
+    L1_1 = L1_1.DataDirectory
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.Size
+    L2_2 = pe
+    L2_2 = L2_2.foffset_rva
+    L3_3 = L0_0
+    L2_2 = L2_2(L3_3)
+    L3_3 = mp
+    L3_3 = L3_3.readprotection
+    L4_4 = false
+    L3_3(L4_4)
+    L3_3 = mp
+    L3_3 = L3_3.readfile
+    L4_4 = L2_2
+    L5_5 = L1_1
+    L3_3 = L3_3(L4_4, L5_5)
+    L4_4 = mp
+    L4_4 = L4_4.ror32
+    L5_5 = mp
+    L5_5 = L5_5.readu_u32
+    L6_6 = L3_3
+    L5_5 = L5_5(L6_6, 20)
+    L6_6 = 8
+    L4_4 = L4_4(L5_5, L6_6)
+    if L4_4 ~= 1 then
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
+    end
+    L5_5 = mp
+    L5_5 = L5_5.ror32
+    L6_6 = mp
+    L6_6 = L6_6.readu_u32
+    L6_6 = L6_6(L3_3, 40)
+    L5_5 = L5_5(L6_6, 8)
+    L6_6 = mp
+    L6_6 = L6_6.readfile
+    L6_6 = L6_6(0, mp.getfilesize())
+    if mp.ror32(mp.readu_u32(L6_6, mp.ror32(mp.readu_u32(L6_6, 60), 8) + 40), 8) == L5_5 then
+      return mp.CLEAN
+    end
+    mp.writeu_u32(L6_6, mp.ror32(mp.readu_u32(L6_6, 60), 8) + 40 + 1, L5_5)
+    mp.vfo_add_buffer(L6_6, "[ExportEP]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
   end
-  local l_0_5 = (mp.ror32)((mp.readu_u32)(l_0_3, 40), 8)
-  local l_0_6 = (mp.readfile)(0, (mp.getfilesize)())
-  local l_0_7 = (mp.ror32)((mp.readu_u32)(l_0_6, 60), 8)
-  local l_0_8 = (mp.ror32)((mp.readu_u32)(l_0_6, l_0_7 + 40), 8)
-  if l_0_8 == l_0_5 then
-    return mp.CLEAN
-  end
-  ;
-  (mp.writeu_u32)(l_0_6, l_0_7 + 40 + 1, l_0_5)
-  ;
-  (mp.vfo_add_buffer)(l_0_6, "[ExportEP]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

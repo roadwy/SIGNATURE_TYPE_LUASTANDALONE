@@ -1,26 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c8911d497d0 
-
--- params : ...
--- function num : 0
-(pe.mmap_patch_va)(pevars.sigaddr + 3, "êê")
-;
-(pe.mmap_patch_va)(pevars.sigaddr + 8, "\235")
-;
-(mp.set_mpattribute)("FOPEX:Deep_Analysis_Disable_APILimit")
-local l_0_0 = 512
-local l_0_1 = (pe.mmap_va)(pevars.sigaddr - 256, l_0_0)
-local l_0_2 = (string.find)(l_0_1, "@B\015%z")
-local l_0_3 = (string.find)(l_0_1, "`\174\n%z")
-local l_0_4 = (string.find)(l_0_1, "h\132\003%z%z")
-if l_0_2 and l_0_3 and l_0_4 then
-  for l_0_8 = 1, 160 do
-    if (pe.mmap_va)(pevars.sigaddr + l_0_8 + l_0_3 - 256, 1) == "\232" then
-      (pe.mmap_patch_va)(pevars.sigaddr + l_0_8 + l_0_3 - 256, "êêêê\144")
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.mmap_patch_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 3
+L0_0(L1_1, "\144\144")
+L0_0 = pe
+L0_0 = L0_0.mmap_patch_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 8
+L0_0(L1_1, "\235")
+L0_0 = mp
+L0_0 = L0_0.set_mpattribute
+L1_1 = "FOPEX:Deep_Analysis_Disable_APILimit"
+L0_0(L1_1)
+L0_0 = 512
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L1_1 = L1_1(pevars.sigaddr - 256, L0_0)
+if string.find(L1_1, "@B\015%z") and string.find(L1_1, "`\174\n%z") and string.find(L1_1, "h\132\003%z%z") then
+  for _FORV_8_ = 1, 160 do
+    if pe.mmap_va(pevars.sigaddr + _FORV_8_ + string.find(L1_1, "`\174\n%z") - 256, 1) == "\232" then
+      pe.mmap_patch_va(pevars.sigaddr + _FORV_8_ + string.find(L1_1, "`\174\n%z") - 256, "\144\144\144\144\144")
     end
   end
 end
-do
-  return mp.INFECTED
-end
-
+return _FOR_.INFECTED

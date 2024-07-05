@@ -1,112 +1,120 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1695f4fd69ed 
-
--- params : ...
--- function num : 0
-local l_0_0 = 13
-local l_0_1 = (pe.mmap_va)(pevars.sigaddr + l_0_0, 96)
-local l_0_2 = (string.byte)(l_0_1, 2) + 1
-if #l_0_1 < l_0_2 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = 13
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = pevars
+L2_2 = L2_2.sigaddr
+L2_2 = L2_2 + L0_0
+L3_3 = 96
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = L1_1
+L4_4 = 2
+L2_2 = L2_2(L3_3, L4_4)
+L2_2 = L2_2 + 1
+L3_3 = #L1_1
+if L2_2 > L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if (string.byte)(l_0_1, l_0_2) ~= 116 then
-  return mp.CLEAN
+L3_3 = string
+L3_3 = L3_3.byte
+L4_4 = L1_1
+L5_5 = L2_2
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 ~= 116 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (string.byte)(l_0_1, l_0_2 + 1) + 2 + l_0_2
-if #l_0_1 < l_0_3 then
-  return mp.CLEAN
+L3_3 = string
+L3_3 = L3_3.byte
+L4_4 = L1_1
+L5_5 = L2_2 + 1
+L3_3 = L3_3(L4_4, L5_5)
+L3_3 = L3_3 + 2
+L3_3 = L3_3 + L2_2
+L4_4 = #L1_1
+if L3_3 > L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-if (string.byte)(l_0_1, l_0_3) ~= 232 then
-  return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.byte
+L5_5 = L1_1
+L6_6 = L3_3
+L4_4 = L4_4(L5_5, L6_6)
+if L4_4 ~= 232 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = l_0_2 + 2
-local l_0_5 = 0
-local l_0_6 = false
-while 1 do
-  if l_0_4 < #l_0_1 then
-    local l_0_7 = (string.byte)(l_0_1, l_0_4)
-    local l_0_8 = false
-    if l_0_7 == 131 and (string.byte)(l_0_1, l_0_4 + 1) == 248 then
-      l_0_4 = l_0_4 + 3
-    else
-      if l_0_7 == 61 then
-        l_0_4 = l_0_4 + 5
-      else
-        if l_0_7 == 195 then
-          l_0_8 = true
-          l_0_4 = l_0_4 + 1
-        else
-          if l_0_7 == 0 then
-            l_0_8 = true
-            l_0_4 = l_0_4 + 2
-          else
-            if l_0_7 == 15 and (string.byte)(l_0_1, l_0_4 + 1) == 132 then
-              l_0_4 = l_0_4 + 6
-            else
-              if l_0_7 == 116 then
-                if l_0_3 ~= (string.byte)(l_0_1, l_0_4 + 1) + (l_0_4) then
-                  l_0_5 = l_0_5 + 1
-                end
-                if l_0_5 == 2 then
-                  return mp.CLEAN
-                end
-              else
-                if l_0_7 == 204 then
-                  local l_0_9 = (string.format)("\235%s", (string.char)(l_0_3 - 3))
-                  ;
-                  (pe.mmap_patch_va)(pevars.sigaddr + l_0_0, l_0_9)
-                  return mp.LOWFI
-                else
-                  do
-                    do
-                      do return mp.CLEAN end
-                      if l_0_6 ~= true or l_0_8 == false then
-                        return mp.CLEAN
-                      end
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out DO_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC150: LeaveBlock: unexpected jumping out IF_STMT
-
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
+L4_4 = L2_2 + 2
+L5_5 = 0
+L6_6 = false
+while true do
+  L7_7 = #L1_1
+  if L4_4 < L7_7 then
+    L7_7 = string
+    L7_7 = L7_7.byte
+    L8_8 = L1_1
+    L9_9 = L4_4
+    L7_7 = L7_7(L8_8, L9_9)
+    L8_8 = false
+    if L7_7 == 131 then
+      L9_9 = string
+      L9_9 = L9_9.byte
+      L9_9 = L9_9(L1_1, L4_4 + 1)
+      if L9_9 == 248 then
+        L4_4 = L4_4 + 3
       end
+    elseif L7_7 == 61 then
+      L4_4 = L4_4 + 5
+    elseif L7_7 == 195 then
+      L8_8 = true
+      L4_4 = L4_4 + 1
+    elseif L7_7 == 0 then
+      L8_8 = true
+      L4_4 = L4_4 + 2
+    elseif L7_7 == 15 then
+      L9_9 = string
+      L9_9 = L9_9.byte
+      L9_9 = L9_9(L1_1, L4_4 + 1)
+      if L9_9 == 132 then
+        L4_4 = L4_4 + 6
+      end
+    elseif L7_7 == 116 then
+      L9_9 = string
+      L9_9 = L9_9.byte
+      L9_9 = L9_9(L1_1, L4_4 + 1)
+      L4_4 = L4_4 + 2
+      if L3_3 ~= L9_9 + L4_4 then
+        L5_5 = L5_5 + 1
+      end
+      if L5_5 == 2 then
+        return mp.CLEAN
+      end
+    elseif L7_7 == 204 then
+      L9_9 = string
+      L9_9 = L9_9.format
+      L9_9 = L9_9("\235%s", string.char(L3_3 - 3))
+      pe.mmap_patch_va(pevars.sigaddr + L0_0, L9_9)
+      return mp.LOWFI
+    else
+      L9_9 = mp
+      L9_9 = L9_9.CLEAN
+      return L9_9
+    end
+    if L6_6 == true and L8_8 == false then
+      L9_9 = mp
+      L9_9 = L9_9.CLEAN
+      return L9_9
     end
   end
 end
-return mp.CLEAN
-
+L7_7 = mp
+L7_7 = L7_7.CLEAN
+return L7_7

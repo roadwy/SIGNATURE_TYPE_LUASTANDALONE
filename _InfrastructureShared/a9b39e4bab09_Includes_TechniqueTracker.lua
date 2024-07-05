@@ -1,26 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a9b39e4bab09_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((string.lower)((bm.get_imagepath)()))
-local l_0_1, l_0_2 = nil, nil
-local l_0_3 = function()
-  -- function num : 0_0
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L3_3 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1())
+L1_1, L2_2 = nil, nil
+function L3_3()
   TrackPidAndTechniqueBM("BM", "T1040", "network-sniffing")
 end
-
-l_0_1 = (string.find)(l_0_0, "/private/", 1, true)
-l_0_2 = (string.find)(l_0_0, "/private/var/folders/", 1, true)
-if l_0_1 == 1 and l_0_2 == nil then
-  l_0_3()
+L1_1 = string.find(L0_0, "/private/", 1, true)
+L2_2 = string.find(L0_0, "/private/var/folders/", 1, true)
+if L1_1 == 1 and L2_2 == nil then
+  L3_3()
   return mp.INFECTED
 end
-l_0_1 = (string.find)(l_0_0, "/users/", 1, true)
-l_0_2 = (string.find)(l_0_0, "/library/application support/", 7, true)
-if l_0_1 == 1 and l_0_2 ~= nil then
-  l_0_3()
+L1_1 = string.find(L0_0, "/users/", 1, true)
+L2_2 = string.find(L0_0, "/library/application support/", 7, true)
+if L1_1 == 1 and L2_2 ~= nil then
+  L3_3()
   return mp.INFECTED
 end
 return mp.CLEAN
-

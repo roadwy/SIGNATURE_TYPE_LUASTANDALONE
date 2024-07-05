@@ -1,10 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/237887428d07 
-
--- params : ...
--- function num : 0
-if peattributes.is_process == false and peattributes.x86_image == true then
-  return mp.LOWFI
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.is_process
+if L0_0 == false then
+  L0_0 = peattributes
+  L0_0 = L0_0.x86_image
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.LOWFI
+    return L0_0
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

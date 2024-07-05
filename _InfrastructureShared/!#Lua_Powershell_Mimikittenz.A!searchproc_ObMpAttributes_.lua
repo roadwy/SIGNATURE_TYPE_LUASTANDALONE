@@ -1,10 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Powershell_Mimikittenz.A!searchproc_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if ((((((mp.get_mpattribute)("SCRIPT:PowerShell/Mimikittenz.A!searchproc_sysinfo") and not (mp.get_mpattribute)("SCRIPT:PowerShell/Mimikittenz.A!searchproc_address")) or (mp.get_mpattribute)("SCRIPT:PowerShell/Mimikittenz.A!searchproc_region")) and not (mp.get_mpattribute)("SCRIPT:PowerShell/Mimikittenz.A!searchproc_readmemory")) or (mp.get_mpattribute)("SCRIPT:PowerShell/Mimikittenz.A!searchproc_regexloop")) and not (mp.get_mpattribute)("SCRIPT:PowerShell/Mimikittenz.A!searchproc_regexmatch")) or 0 + 1 + 1 + 1 + 1 + 1 + 1 >= 5 then
+local L0_0
+L0_0 = 0
+if mp.get_mpattribute("SCRIPT:PowerShell/Mimikittenz.A!searchproc_sysinfo") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:PowerShell/Mimikittenz.A!searchproc_address") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:PowerShell/Mimikittenz.A!searchproc_region") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:PowerShell/Mimikittenz.A!searchproc_readmemory") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:PowerShell/Mimikittenz.A!searchproc_regexloop") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:PowerShell/Mimikittenz.A!searchproc_regexmatch") then
+  L0_0 = L0_0 + 1
+end
+if L0_0 >= 5 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

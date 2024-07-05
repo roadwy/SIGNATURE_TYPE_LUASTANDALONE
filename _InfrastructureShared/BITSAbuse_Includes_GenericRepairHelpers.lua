@@ -1,140 +1,168 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/BITSAbuse_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-Infrastructure_ScanBITSJobs = function()
-  -- function num : 0_0
-  do
-    local l_1_0 = (MpCommon.ExpandEnvironmentVariables)("%ProgramData%")
-    if (sysio.IsFileExists)(l_1_0 .. "\\microsoft\\network\\downloader\\qmgr.db") ~= nil or (sysio.IsFileExists)(l_1_0 .. "\\microsoft\\network\\downloader\\qmgr0.dat") ~= nil then
-      local l_1_1 = (sysio.EnumerateBitsJobs)()
-      if l_1_1 == nil then
-        return 
+local L1_0
+function L1_0()
+  local L0_1, L1_2, L2_3, L3_4, L4_5, L5_6, L6_7, L7_8, L8_9, L9_10, L10_11, L11_12, L12_13, L13_14, L14_15, L15_16, L16_17, L17_18, L18_19, L19_20, L20_21, L21_22, L22_23, L23_24, L24_25, L25_26
+  L0_1 = MpCommon
+  L0_1 = L0_1.ExpandEnvironmentVariables
+  L1_2 = "%ProgramData%"
+  L0_1 = L0_1(L1_2)
+  L1_2 = sysio
+  L1_2 = L1_2.IsFileExists
+  L2_3 = L0_1
+  L3_4 = "\\microsoft\\network\\downloader\\qmgr.db"
+  L2_3 = L2_3 .. L3_4
+  L1_2 = L1_2(L2_3)
+  if L1_2 == nil then
+    L1_2 = sysio
+    L1_2 = L1_2.IsFileExists
+    L2_3 = L0_1
+    L3_4 = "\\microsoft\\network\\downloader\\qmgr0.dat"
+    L2_3 = L2_3 .. L3_4
+    L1_2 = L1_2(L2_3)
+  elseif L1_2 ~= nil then
+    L1_2 = sysio
+    L1_2 = L1_2.EnumerateBitsJobs
+    L1_2 = L1_2()
+    if L1_2 == nil then
+      return
+    end
+    L2_3 = {L3_4}
+    L3_4 = "sonyerrorreport"
+    L3_4 = {L4_5}
+    L4_5 = "errorreportclient.exe"
+    L4_5 = {
+      L5_6,
+      L6_7,
+      L7_8,
+      L8_9
+    }
+    L5_6 = "windowsimages"
+    L6_7 = "windowsbackup"
+    L5_6 = {
+      L6_7,
+      L7_8,
+      L8_9,
+      L9_10,
+      L10_11
+    }
+    L6_7 = "footballtimes"
+    L10_11 = "upnpdiscover"
+    L6_7 = {
+      L7_8,
+      L8_9,
+      L9_10
+    }
+    for L10_11, L11_12 in L7_8(L8_9) do
+      L12_13 = string
+      L12_13 = L12_13.lower
+      L13_14 = L11_12.JobName
+      L12_13 = L12_13(L13_14)
+      if L12_13 == "" or L12_13 == nil then
+        return
       end
-      local l_1_2 = {}
-      -- DECOMPILER ERROR at PC28: No list found for R2 , SetList fails
-
-      local l_1_3 = {}
-      -- DECOMPILER ERROR at PC31: No list found for R3 , SetList fails
-
-      local l_1_4 = {}
-      -- DECOMPILER ERROR at PC37: No list found for R4 , SetList fails
-
-      local l_1_5 = {}
-      -- DECOMPILER ERROR at PC39: Overwrote pending register: R6 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC40: Overwrote pending register: R7 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC41: Overwrote pending register: R8 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC44: No list found for R5 , SetList fails
-
-      local l_1_6 = {}
-      -- DECOMPILER ERROR at PC46: Overwrote pending register: R7 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC47: Overwrote pending register: R8 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC48: Overwrote pending register: R9 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC49: No list found for R6 , SetList fails
-
-      -- DECOMPILER ERROR at PC50: Overwrote pending register: R7 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC51: Overwrote pending register: R8 in 'AssignReg'
-
-      for l_1_10,l_1_11 in ("windowssearchcache")("electricweb") do
-        local l_1_12 = (string.lower)(l_1_11.JobName)
-        if l_1_12 == "" or l_1_12 == nil then
-          return 
+      L13_14 = string
+      L13_14 = L13_14.lower
+      L13_14 = L13_14(L14_15)
+      if L13_14 == "" or L13_14 == nil then
+        return
+      end
+      for L17_18 = 1, #L2_3 do
+        L20_21 = L2_3[L17_18]
+        L21_22 = 1
+        L22_23 = true
+        if L18_19 ~= nil then
+          return
         end
-        local l_1_13 = (string.lower)(l_1_11.NotifyCmdProgram)
-        if l_1_13 == "" or l_1_13 == nil then
-          return 
+      end
+      for L17_18 = 1, #L3_4 do
+        L20_21 = L3_4[L17_18]
+        L21_22 = 1
+        L22_23 = true
+        if L18_19 ~= nil then
+          return
         end
-        for l_1_17 = 1, #l_1_2 do
-          if (string.find)(l_1_12, l_1_2[l_1_17], 1, true) ~= nil then
-            return 
-          end
+      end
+      for L20_21 = 1, #L4_5 do
+        L21_22 = string
+        L21_22 = L21_22.find
+        L22_23 = L12_13
+        L21_22 = L21_22(L22_23, L23_24, L24_25, L25_26)
+        if L21_22 ~= nil then
+          break
         end
-        for l_1_21 = 1, #l_1_3 do
-          if (string.find)(l_1_13, l_1_3[l_1_21], 1, true) ~= nil then
-            return 
-          end
-        end
-        local l_1_22 = false
-        local l_1_23 = false
-        local l_1_24 = false
-        for l_1_28 = 1, #l_1_4 do
-          if (string.find)(l_1_12, l_1_4[l_1_28], 1, true) ~= nil then
-            break
-          end
-        end
-        do
-          do
-            if (string.match)((string.lower)(l_1_11.NotifyCmdProgramParam), "http[s]?%:%/%/.-%/") ~= nil then
-              local l_1_29 = (string.format)("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x", (string.byte)(l_1_11.JobId, 4), (string.byte)(l_1_11.JobId, 3), (string.byte)(l_1_11.JobId, 2), (string.byte)(l_1_11.JobId, 1), (string.byte)(l_1_11.JobId, 6), (string.byte)(l_1_11.JobId, 5), (string.byte)(l_1_11.JobId, 8), (string.byte)(l_1_11.JobId, 7), (string.byte)(l_1_11.JobId, 9, 16))
-              ;
-              (MpDetection.ReportResource)("bitsjob", l_1_29, 3345, false, false)
+      end
+      if L17_18 ~= nil then
+        L20_21 = L11_12.JobId
+        L21_22 = 4
+        L20_21 = string
+        L20_21 = L20_21.byte
+        L21_22 = L11_12.JobId
+        L22_23 = 3
+        L20_21 = L20_21(L21_22, L22_23)
+        L21_22 = string
+        L21_22 = L21_22.byte
+        L22_23 = L11_12.JobId
+        L21_22 = L21_22(L22_23, L23_24)
+        L22_23 = string
+        L22_23 = L22_23.byte
+        L22_23 = L22_23(L23_24, L24_25)
+        L20_21 = L17_18
+        L21_22 = 3345
+        L22_23 = false
+        L18_19(L19_20, L20_21, L21_22, L22_23, L23_24)
+      end
+      if L17_18 == nil then
+        return
+      end
+      for L20_21, L21_22 in L17_18(L18_19) do
+        L22_23 = string
+        L22_23 = L22_23.lower
+        L22_23 = L22_23(L23_24)
+        if L14_15 == true then
+          for _FORV_26_ = 1, L6_7 do
+            if string.find(L22_23, L6_7[_FORV_26_], 1, true) ~= nil and string.find(L22_23, L6_7[_FORV_26_], 1, true) == 1 then
+              break
             end
-            if l_1_11.JobFiles == nil then
-              return 
+          end
+        end
+        if L16_17 == true then
+          for _FORV_27_ = 1, #L5_6 do
+            if string.find(L23_24, L5_6[_FORV_27_], 1, true) ~= nil then
+              break
             end
-            for l_1_33,l_1_34 in ipairs(l_1_11.JobFiles) do
-              local l_1_35 = (string.lower)(l_1_34.FileLocalName)
-              if l_1_22 == true then
-                for l_1_39 = 1, l_1_6 do
-                  do
-                    do
-                      local l_1_40 = (string.find)(l_1_35, l_1_6[l_1_39], 1, true)
-                      if l_1_40 ~= nil and l_1_40 == 1 then
-                        break
-                      end
-                      -- DECOMPILER ERROR at PC220: LeaveBlock: unexpected jumping out DO_STMT
-
-                    end
-                  end
+          end
+        end
+        if L25_26 == L24_25 then
+          if L25_26 == nil then
+            if L25_26 == nil then
+              if L25_26 == nil then
+                if L25_26 == nil then
                 end
               end
-              local l_1_41 = (string.lower)(l_1_34.FileRemoteName)
-              if l_1_24 == true then
-                for l_1_45 = 1, #l_1_5 do
-                  if (string.find)(l_1_41, l_1_5[l_1_45], 1, true) ~= nil then
-                    break
-                  end
-                end
-              end
-              do
-                local l_1_46 = 0
-                do
-                  if l_1_11.JobType == l_1_46 and (string.match)(l_1_41, "^http[s]?%:%/%/.-%/") == nil and ((string.match)(l_1_41, "^\\\\localhost\\%a%$\\") ~= nil or (string.match)(l_1_41, "^\\\\127.0.0.1\\%a%$\\") ~= nil or (string.match)(l_1_41, "^%a:\\.+") ~= nil or (string.match)(l_1_41, "^%%%a+%%") ~= nil) then
-                    local l_1_47 = (string.format)("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x", (string.byte)(l_1_11.JobId, 4), (string.byte)(l_1_11.JobId, 3), (string.byte)(l_1_11.JobId, 2), (string.byte)(l_1_11.JobId, 1), (string.byte)(l_1_11.JobId, 6), (string.byte)(l_1_11.JobId, 5), (string.byte)(l_1_11.JobId, 8), (string.byte)(l_1_11.JobId, 7), (string.byte)(l_1_11.JobId, 9, 16))
-                    ;
-                    (MpDetection.ReportResource)("bitsjob", l_1_47, 3420, false, false)
-                  end
-                  -- DECOMPILER ERROR at PC340: LeaveBlock: unexpected jumping out DO_STMT
-
-                end
-              end
-            end
-            local l_1_48 = 1
-            do
-              if l_1_11.JobType == l_1_48 and l_1_22 == true and l_1_23 == true and l_1_24 == true then
-                local l_1_49 = (string.format)("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x", (string.byte)(l_1_11.JobId, 4), (string.byte)(l_1_11.JobId, 3), (string.byte)(l_1_11.JobId, 2), (string.byte)(l_1_11.JobId, 1), (string.byte)(l_1_11.JobId, 6), (string.byte)(l_1_11.JobId, 5), (string.byte)(l_1_11.JobId, 8), (string.byte)(l_1_11.JobId, 7), (string.byte)(l_1_11.JobId, 9, 16))
-                ;
-                (MpDetection.ReportResource)("bitsjob", l_1_49, 3482, false, false)
-              end
-              -- DECOMPILER ERROR at PC410: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC410: LeaveBlock: unexpected jumping out DO_STMT
-
+            elseif L25_26 ~= nil then
+              MpDetection.ReportResource("bitsjob", L25_26, 3420, false, false)
             end
           end
         end
+      end
+      if L18_19 == L17_18 and L14_15 == true and L15_16 == true and L16_17 == true then
+        L20_21 = string
+        L20_21 = L20_21.byte
+        L21_22 = L11_12.JobId
+        L22_23 = 4
+        L20_21 = L20_21(L21_22, L22_23)
+        L21_22 = string
+        L21_22 = L21_22.byte
+        L22_23 = L11_12.JobId
+        L21_22 = L21_22(L22_23, L23_24)
+        L22_23 = string
+        L22_23 = L22_23.byte
+        L22_23 = L22_23(L23_24, L24_25)
+        L20_21 = "bitsjob"
+        L21_22 = L18_19
+        L22_23 = 3482
+        L19_20(L20_21, L21_22, L22_23, L23_24, L24_25)
       end
     end
-    -- WARNING: undefined locals caused missing assignments!
   end
 end
-
-
+Infrastructure_ScanBITSJobs = L1_0

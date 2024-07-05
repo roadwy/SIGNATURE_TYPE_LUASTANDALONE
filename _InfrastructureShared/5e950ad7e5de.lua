@@ -1,27 +1,56 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5e950ad7e5de 
-
--- params : ...
--- function num : 0
-local l_0_0 = 16
-local l_0_1 = (pe.mmap_va)(pevars.sigaddr + l_0_0, 96)
-local l_0_2 = (string.byte)(l_0_1, 1) + 2
-if #l_0_1 < l_0_2 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = 16
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = pevars
+L2_2 = L2_2.sigaddr
+L2_2 = L2_2 + L0_0
+L3_3 = 96
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = L1_1
+L4_4 = 1
+L2_2 = L2_2(L3_3, L4_4)
+L2_2 = L2_2 + 2
+L3_3 = #L1_1
+if L2_2 > L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if (string.byte)(l_0_1, l_0_2 - 2) == 117 and (string.byte)(l_0_1, l_0_2 - 4) == 116 then
-  local l_0_3 = (string.byte)(l_0_1, l_0_2 - 3) + l_0_2 - 2
-  if #l_0_1 < l_0_3 then
-    return mp.CLEAN
+L3_3 = string
+L3_3 = L3_3.byte
+L4_4 = L1_1
+L3_3 = L3_3(L4_4, L2_2 - 2)
+if L3_3 == 117 then
+  L3_3 = string
+  L3_3 = L3_3.byte
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4, L2_2 - 4)
+  if L3_3 == 116 then
+    L3_3 = string
+    L3_3 = L3_3.byte
+    L4_4 = L1_1
+    L3_3 = L3_3(L4_4, L2_2 - 3)
+    L3_3 = L3_3 + L2_2
+    L3_3 = L3_3 - 2
+    L4_4 = #L1_1
+    if L3_3 > L4_4 then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
+    end
+    L4_4 = string
+    L4_4 = L4_4.byte
+    L4_4 = L4_4(L1_1, L3_3)
+    if L4_4 == 232 then
+      L4_4 = "\235"
+      pe.mmap_patch_va(pevars.sigaddr + L0_0 + L2_2 - 5, L4_4)
+      return mp.INFECTED
+    end
   end
-  if (string.byte)(l_0_1, l_0_3) == 232 then
-    local l_0_4 = "\235"
-    ;
-    (pe.mmap_patch_va)(pevars.sigaddr + l_0_0 + l_0_2 - 5, l_0_4)
-    return mp.INFECTED
-  end
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

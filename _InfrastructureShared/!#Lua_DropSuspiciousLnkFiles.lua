@@ -1,23 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_DropSuspiciousLnkFiles 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  if l_0_1 == "passwords.lnk" or l_0_1 == "..lnk" then
-    local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-    if (string.len)(l_0_2) < 4 or (string.len)(l_0_2) > 11 then
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L2_2 = L2_2(mp.CONTEXT_DATA_FILENAME)
+  L1_1 = L1_1(L2_2, L2_2(mp.CONTEXT_DATA_FILENAME))
+  if L1_1 == "passwords.lnk" or L1_1 == "..lnk" then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME))
+    if string.len(L2_2) < 4 or string.len(L2_2) > 11 then
       return mp.CLEAN
     end
-    local l_0_3 = (string.sub)(l_0_2, -4)
-    if l_0_3 == ".exe" and (mp.getfilesize)() < 512 then
-      (mp.set_mpattribute)("Lua:DropSuspiciousLnkFiles")
+    if string.sub(L2_2, -4) == ".exe" and mp.getfilesize() < 512 then
+      mp.set_mpattribute("Lua:DropSuspiciousLnkFiles")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

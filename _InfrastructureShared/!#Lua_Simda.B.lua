@@ -1,38 +1,68 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Simda.B 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  if l_0_1:sub(-9) == "\\apppatch" then
-    if peattributes.isdll then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_FILEPATH
+  L8_8 = L2_2(L3_3)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2(L3_3))
+  L3_3 = L1_1
+  L2_2 = L1_1.sub
+  L4_4 = -9
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 == "\\apppatch" then
+    L2_2 = peattributes
+    L2_2 = L2_2.isdll
+    if L2_2 then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
     end
-    local l_0_2 = (pe.get_versioninfo)()
-    if l_0_2 == nil then
-      return mp.CLEAN
+    L2_2 = pe
+    L2_2 = L2_2.get_versioninfo
+    L2_2 = L2_2()
+    if L2_2 == nil then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
     end
-    if l_0_2.CompanyName == "Microsoft Corporation" then
-      return mp.CLEAN
+    L3_3 = L2_2.CompanyName
+    if L3_3 == "Microsoft Corporation" then
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
     end
-    local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)
-    local l_0_4 = (string.len)(l_0_3)
-    if l_0_4 < 10 or l_0_4 > 12 then
-      return mp.CLEAN
+    L3_3 = mp
+    L3_3 = L3_3.get_contextdata
+    L4_4 = mp
+    L4_4 = L4_4.CONTEXT_DATA_FILENAME
+    L3_3 = L3_3(L4_4)
+    L4_4 = string
+    L4_4 = L4_4.len
+    L4_4 = L4_4(L5_5)
+    if L4_4 < 10 or L4_4 > 12 then
+      return L5_5
     end
-    for l_0_8 = 1, l_0_4 - 4 do
-      local l_0_9 = (string.byte)(l_0_3, l_0_8)
-      if l_0_9 < 97 or l_0_9 > 122 then
+    for L8_8 = 1, L4_4 - 4 do
+      if string.byte(L3_3, L8_8) < 97 or string.byte(L3_3, L8_8) > 122 then
         return mp.CLEAN
       end
     end
-    ;
-    (mp.set_mpattribute)("Lua:Simda.B")
+    L5_5(L6_6)
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

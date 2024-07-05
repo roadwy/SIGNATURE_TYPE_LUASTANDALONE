@@ -1,24 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b31b338268290 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1 = false
-local l_0_2 = false
-if not (this_sigattrlog[4]).matched and not (this_sigattrlog[10]).matched and not (this_sigattrlog[16]).matched and not (this_sigattrlog[22]).matched and not (this_sigattrlog[28]).matched and not (this_sigattrlog[34]).matched and not (this_sigattrlog[40]).matched and not (this_sigattrlog[46]).matched and not (this_sigattrlog[52]).matched then
-  l_0_0 = (this_sigattrlog[58]).matched
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = false
+L1_1 = false
+L2_2 = false
+L3_3 = this_sigattrlog
+L3_3 = L3_3[4]
+L3_3 = L3_3.matched
+L0_0 = L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3.matched
+L3_3 = this_sigattrlog
+L3_3 = L3_3[5]
+L3_3 = L3_3.matched
+L1_1 = L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3.matched
+L3_3 = this_sigattrlog
+L3_3 = L3_3[6]
+L3_3 = L3_3.matched
+L2_2 = L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3 or L3_3.matched
+if L0_0 and L1_1 or L0_0 and L2_2 or L1_1 and L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.INFECTED
+  return L3_3
 end
-if not (this_sigattrlog[5]).matched and not (this_sigattrlog[11]).matched and not (this_sigattrlog[17]).matched and not (this_sigattrlog[23]).matched and not (this_sigattrlog[29]).matched and not (this_sigattrlog[35]).matched and not (this_sigattrlog[41]).matched and not (this_sigattrlog[47]).matched and not (this_sigattrlog[53]).matched then
-  l_0_1 = (this_sigattrlog[59]).matched
-end
-if not (this_sigattrlog[6]).matched and not (this_sigattrlog[12]).matched and not (this_sigattrlog[18]).matched and not (this_sigattrlog[24]).matched and not (this_sigattrlog[30]).matched and not (this_sigattrlog[36]).matched and not (this_sigattrlog[42]).matched and not (this_sigattrlog[48]).matched and not (this_sigattrlog[54]).matched then
-  l_0_2 = (this_sigattrlog[60]).matched
-end
--- DECOMPILER ERROR at PC161: Unhandled construct in 'MakeBoolean' P3
-
-if (l_0_0 and l_0_1) or not l_0_0 or l_0_1 and l_0_2 then
-  return mp.INFECTED
-end
-return mp.CLEAN
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

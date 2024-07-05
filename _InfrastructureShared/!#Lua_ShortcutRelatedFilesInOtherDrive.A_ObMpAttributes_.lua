@@ -1,22 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ShortcutRelatedFilesInOtherDrive.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = tostring(headerpage)
-  local l_0_2 = (mp.GetExecutablesFromCommandLine)(l_0_1)
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    local l_0_8 = (string.lower)((mp.ContextualExpandEnvironmentVariables)(l_0_7))
-    if (sysio.IsFileExists)(l_0_8) then
-      (mp.ReportLowfi)(l_0_8, 1875954900)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L1_1 = tostring
+  L2_2 = headerpage
+  L1_1 = L1_1(L2_2)
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = string
+    L8_8 = L8_8.lower
+    L8_8 = L8_8(mp.ContextualExpandEnvironmentVariables(L7_7))
+    if sysio.IsFileExists(L8_8) then
+      mp.ReportLowfi(L8_8, 1875954900)
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

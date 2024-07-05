@@ -1,21 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b36e3a47c1 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0.integrity_level < MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.integrity_level
+if L1_1 < MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (bm.get_process_relationships)()
-if l_0_1 then
-  for l_0_6,l_0_7 in ipairs(l_0_1) do
-    if l_0_7.image_path and (mp.bitand)(l_0_7.reason_ex, 1) == 1 and (string.find)(l_0_7.image_path, "\\consent.exe", 1, true) then
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L1_1 = L1_1()
+if L1_1 then
+  for _FORV_6_, _FORV_7_ in ipairs(L1_1) do
+    if _FORV_7_.image_path and mp.bitand(_FORV_7_.reason_ex, 1) == 1 and string.find(_FORV_7_.image_path, "\\consent.exe", 1, true) then
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

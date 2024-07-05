@@ -1,25 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_WindowsCommonFiles.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_parent_filehandle)()
-if not (mp.is_handle_nil)(l_0_0) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_parent_filehandle
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.is_handle_nil
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_1 == nil or #l_0_1 < 5 then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L2_2 = L2_2(mp.CONTEXT_DATA_FILENAME)
+L1_1 = L1_1(L2_2, L2_2(mp.CONTEXT_DATA_FILENAME))
+if L1_1 ~= nil then
+  L2_2 = #L1_1
+elseif L2_2 < 5 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = "Lua:WindowsCommonFiles.A!"
-if l_0_1 == "desktop.ini" then
-  (mp.set_mpattribute)(l_0_2 .. "desktop_ini")
+L2_2 = "Lua:WindowsCommonFiles.A!"
+if L1_1 == "desktop.ini" then
+  mp.set_mpattribute(L2_2 .. "desktop_ini")
   return mp.INFECTED
-else
-  if l_0_1 == "thumbs.db" then
-    (mp.set_mpattribute)(l_0_2 .. "thumbs_db")
-    return mp.INFECTED
-  end
+elseif L1_1 == "thumbs.db" then
+  mp.set_mpattribute(L2_2 .. "thumbs_db")
+  return mp.INFECTED
 end
 return mp.CLEAN
-

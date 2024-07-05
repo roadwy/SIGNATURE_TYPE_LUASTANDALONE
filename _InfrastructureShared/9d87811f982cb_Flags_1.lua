@@ -1,12 +1,143 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/9d87811f982cb_Flags_1 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC202: Unhandled construct in 'MakeBoolean' P3
-
-if ((((((((((((((((((((((((((((((((not (hstrlog[1]).matched or (hstrlog[2]).matched) and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and not (hstrlog[5]).matched) or (hstrlog[6]).matched) and not (hstrlog[7]).matched) or (hstrlog[8]).matched) and not (hstrlog[9]).matched) or (hstrlog[10]).matched) and not (hstrlog[11]).matched) or (hstrlog[12]).matched) and not (hstrlog[13]).matched) or (hstrlog[14]).matched) and not (hstrlog[15]).matched) or (hstrlog[16]).matched) and not (hstrlog[17]).matched) or (hstrlog[18]).matched) and not (hstrlog[19]).matched) or (hstrlog[20]).matched) and not (hstrlog[21]).matched) or (hstrlog[22]).matched) and not (hstrlog[23]).matched) or (hstrlog[24]).matched) and not (hstrlog[25]).matched) or (hstrlog[26]).matched) and not (hstrlog[27]).matched) or (hstrlog[28]).matched) and not (hstrlog[29]).matched) or (hstrlog[30]).matched) and not (hstrlog[31]).matched) or (mp.getfilesize)() < 250000) and 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 1) or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 6 then
+local L0_0, L1_1, L2_2
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+L2_2 = hstrlog
+L2_2 = L2_2[10]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[11]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[12]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[13]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[14]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = 0
+if hstrlog[15].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[16].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[17].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[18].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[19].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[20].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[21].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[22].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[23].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[24].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[25].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[26].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[27].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[28].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[29].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[30].matched then
+  L2_2 = L2_2 + 1
+end
+if hstrlog[31].matched then
+  L2_2 = L2_2 + 1
+end
+if mp.getfilesize() < 250000 and L0_0 >= 1 or L1_1 >= 2 or L2_2 >= 6 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

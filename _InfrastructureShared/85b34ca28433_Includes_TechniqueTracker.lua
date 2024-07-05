@@ -1,40 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/85b34ca28433_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC16: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_2 = nil
-    for l_0_6,l_0_7 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_0)) do
-      local l_0_3 = nil
-      -- DECOMPILER ERROR at PC29: Confused about usage of register: R6 in 'UnsetPending'
-
-      R6_PC29 = (mp.ContextualExpandEnvironmentVariables)(R6_PC29)
-      if (sysio.IsFileExists)(R6_PC29) then
-        if (mp.IsKnownFriendlyFile)(R6_PC29, true, false) then
-          (mp.ReportLowfi)(R6_PC29, 1394183950)
-        else
-          TrackFileAndTechnique(R6_PC29, "T1543.003:exec_service_binary", 1000)
-          ;
-          (mp.ReportLowfi)(R6_PC29, 3656319915)
-        end
-        ;
-        (bm.add_related_file)(R6_PC29)
-      end
-    end
-  end
-  do
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    if sysio.IsFileExists(L6_6) then
+      if mp.IsKnownFriendlyFile(L6_6, true, false) then
+        mp.ReportLowfi(L6_6, 1394183950)
+      else
+        TrackFileAndTechnique(L6_6, "T1543.003:exec_service_binary", 1000)
+        mp.ReportLowfi(L6_6, 3656319915)
+      end
+      bm.add_related_file(L6_6)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

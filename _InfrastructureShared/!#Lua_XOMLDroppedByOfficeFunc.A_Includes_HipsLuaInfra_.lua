@@ -1,33 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_XOMLDroppedByOfficeFunc.A_Includes_HipsLuaInfra_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+if MpCommon.QueryPersistContext(L0_0, "Lua:XOMLDroppedByOffice") then
   return mp.CLEAN
 end
-if (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) ~= true then
+if string.sub(L0_0, -5):match("%.(%w+)$") == nil then
   return mp.CLEAN
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_1 = (MpCommon.QueryPersistContext)(l_0_0, "Lua:XOMLDroppedByOffice")
-if l_0_1 then
+if string.sub(L0_0, -5):match("%.(%w+)$") ~= "xoml" then
   return mp.CLEAN
 end
-local l_0_2 = ((string.sub)(l_0_0, -5)):match("%.(%w+)$")
-if l_0_2 == nil then
+if GetCtxOfficeProc() == "" then
   return mp.CLEAN
 end
-if l_0_2 ~= "xoml" then
-  return mp.CLEAN
-end
-local l_0_3 = GetCtxOfficeProc()
-if l_0_3 == "" then
-  return mp.CLEAN
-end
-;
-(mp.set_mpattribute)("MpDisableCaching")
-;
-(MpCommon.AppendPersistContext)(l_0_0, "Lua:XOMLDroppedByOffice", 0)
+mp.set_mpattribute("MpDisableCaching")
+MpCommon.AppendPersistContext(L0_0, "Lua:XOMLDroppedByOffice", 0)
 return mp.INFECTED
-

@@ -1,23 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_DllViaRspLoadedByRegsvr32_Includes_Path_ObMpAttr 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_0 ~= "odbcconf.exe" then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_PROCESSNAME
+L3_3 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2))
+if L0_0 ~= "odbcconf.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-local l_0_2 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-l_0_1 = normalize_path(l_0_1)
-if (MpCommon.QueryPersistContext)(l_0_1, "DllFromRsp") then
-  (mp.set_mpattribute)("Lua:Context/DllViaRspRegsvrLoad")
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_LOWERCASE
+L1_1 = L1_1(L2_2)
+L2_2 = mp
+L2_2 = L2_2.getfilename
+L3_3 = mp
+L3_3 = L3_3.bitor
+L3_3 = L3_3(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)
+L2_2 = L2_2(L3_3, L3_3(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+L3_3 = normalize_path
+L3_3 = L3_3(L1_1)
+L1_1 = L3_3
+L3_3 = MpCommon
+L3_3 = L3_3.QueryPersistContext
+L3_3 = L3_3(L1_1, "DllFromRsp")
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.set_mpattribute
+  L3_3("Lua:Context/DllViaRspRegsvrLoad")
 end
-local l_0_3 = (MpCommon.GetPersistContextNoPath)("DllFromOdbcAction")
-for l_0_7,l_0_8 in ipairs(l_0_3) do
-  if l_0_8:find(l_0_2, 1, true) or l_0_8:find(l_0_1, 1, true) then
-    (mp.set_mpattribute)("Lua:Context/DllViaOdbcconfLoad")
+L3_3 = MpCommon
+L3_3 = L3_3.GetPersistContextNoPath
+L3_3 = L3_3("DllFromOdbcAction")
+for _FORV_7_, _FORV_8_ in ipairs(L3_3) do
+  if _FORV_8_:find(L2_2, 1, true) or _FORV_8_:find(L1_1, 1, true) then
+    mp.set_mpattribute("Lua:Context/DllViaOdbcconfLoad")
   end
 end
 return mp.CLEAN
-

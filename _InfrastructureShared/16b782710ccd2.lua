@@ -1,12 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/16b782710ccd2 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC77: Unhandled construct in 'MakeBoolean' P3
-
-if (((((hstrlog[1]).matched or (hstrlog[2]).matched or (hstrlog[3]).matched or (hstrlog[4]).matched or (hstrlog[5]).matched or (hstrlog[6]).matched or (hstrlog[7]).matched or (hstrlog[8]).matched) and not (hstrlog[9]).matched) or not (hstrlog[10]).matched) and not (hstrlog[12]).matched) or 0 + 2 + 1 + 1 >= 2 then
-  return mp.INFECTED
+if peattributes.ismsil and mp.getfilesize() < 81920 then
+  if hstrlog[1].matched or hstrlog[2].matched or hstrlog[3].matched or hstrlog[4].matched or hstrlog[5].matched or hstrlog[6].matched or hstrlog[7].matched or hstrlog[8].matched then
+  end
+  if hstrlog[9].matched then
+  end
+  if hstrlog[10].matched or hstrlog[11].matched or hstrlog[12].matched then
+  end
+  if 2 <= 0 + 2 + 1 + 1 then
+    return mp.INFECTED
+  end
 end
 return mp.CLEAN
-

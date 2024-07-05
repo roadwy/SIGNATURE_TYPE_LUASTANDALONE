@@ -1,46 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b32bfbb03c 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if (MpCommon.QueryPersistContext)(l_0_0, "RunsDestructiveCMDsParentBlock") then
-  if (mp.IsHipsRuleEnabled)("c1db55ab-c21a-4637-bb3f-a12568109d35") == true then
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+L1_1 = MpCommon
+L1_1 = L1_1.QueryPersistContext
+L2_2 = L0_0
+L3_3 = "RunsDestructiveCMDsParentBlock"
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.IsHipsRuleEnabled
+  L2_2 = "c1db55ab-c21a-4637-bb3f-a12568109d35"
+  L1_1 = L1_1(L2_2)
+  if L1_1 == true then
+    L1_1 = mp
+    L1_1 = L1_1.INFECTED
+    return L1_1
   else
-    ;
-    (mp.ReportLowfi)(l_0_0, 3371538283)
-    return mp.CLEAN
+    L1_1 = mp
+    L1_1 = L1_1.ReportLowfi
+    L2_2 = L0_0
+    L3_3 = 3371538283
+    L1_1(L2_2, L3_3)
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-if not (MpCommon.QueryPersistContext)(l_0_0, "RunsDestructiveCMDsParent") then
-  return mp.CLEAN
+L1_1 = MpCommon
+L1_1 = L1_1.QueryPersistContext
+L2_2 = L0_0
+L3_3 = "RunsDestructiveCMDsParent"
+L1_1 = L1_1(L2_2, L3_3)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = -1
-local l_0_2 = -1
-local l_0_3 = (MpCommon.GetPersistContext)((string.lower)(l_0_0))
-if l_0_3 ~= nil then
-  for l_0_7,l_0_8 in ipairs(l_0_3) do
-    local l_0_9 = tonumber((string.match)(l_0_8, "^Age:([0-9]+)$"))
-    if l_0_9 ~= nil and l_0_1 < l_0_9 then
-      l_0_1 = l_0_9
+L1_1 = -1
+L2_2 = -1
+L3_3 = MpCommon
+L3_3 = L3_3.GetPersistContext
+L8_8 = L4_4(L5_5)
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L4_4(L5_5))
+if L3_3 ~= nil then
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if tonumber(string.match(L8_8, "^Age:([0-9]+)$")) ~= nil and L1_1 < tonumber(string.match(L8_8, "^Age:([0-9]+)$")) then
+      L1_1 = tonumber(string.match(L8_8, "^Age:([0-9]+)$"))
     end
-    local l_0_10 = tonumber((string.match)(l_0_8, "^Prevalence:([0-9]+)$"))
-    if l_0_10 ~= nil and l_0_2 < l_0_10 then
-      l_0_2 = l_0_10
-    end
-  end
-end
-do
-  if l_0_1 > -1 and l_0_1 <= 1 and l_0_2 > -1 and l_0_2 <= 100 then
-    if (mp.IsHipsRuleEnabled)("c1db55ab-c21a-4637-bb3f-a12568109d35") == true then
-      return mp.INFECTED
-    else
-      ;
-      (mp.ReportLowfi)(l_0_0, 3371538283)
-      return mp.CLEAN
+    if tonumber(string.match(L8_8, "^Prevalence:([0-9]+)$")) ~= nil and L2_2 < tonumber(string.match(L8_8, "^Prevalence:([0-9]+)$")) then
+      L2_2 = tonumber(string.match(L8_8, "^Prevalence:([0-9]+)$"))
     end
   end
-  return mp.CLEAN
 end
-
+if L1_1 > -1 and L1_1 <= 1 and L2_2 > -1 and L2_2 <= 100 then
+  if L4_4 == true then
+    return L4_4
+  else
+    L4_4(L5_5, L6_6)
+    return L4_4
+  end
+end
+return L4_4

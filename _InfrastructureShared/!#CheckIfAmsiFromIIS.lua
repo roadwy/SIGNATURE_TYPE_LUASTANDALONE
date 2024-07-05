@@ -1,23 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#CheckIfAmsiFromIIS 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_AMSI then
-  return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 ~= mp.SCANREASON_AMSI then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-if l_0_0 ~= nil then
-  l_0_0 = (string.lower)(l_0_0)
-  if l_0_0 == "w3wp.exe" then
-    local l_0_1, l_0_2 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME)
-    if l_0_1 and l_0_2 ~= nil and l_0_2 == "DotNet" then
-      (mp.set_mpattribute)("Lua:IsIISAmsiScan")
-      return mp.INFECTED
-    end
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_PROCESSNAME)
+if L0_0 ~= nil then
+  L0_0 = string.lower(L0_0)
+  if L0_0 == "w3wp.exe" and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME) and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME) ~= nil and pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_APPNAME) == "DotNet" then
+    mp.set_mpattribute("Lua:IsIISAmsiScan")
+    return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

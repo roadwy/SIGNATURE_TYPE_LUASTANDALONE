@@ -1,42 +1,89 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5978ed5963d7 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.LOWFI
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.LOWFI
+  return L0_0
 end
-local l_0_0 = (pesecs[pehdr.NumberOfSections]).PointerToRawData + (pesecs[pehdr.NumberOfSections]).SizeOfRawData
-if (mp.getfilesize)() < l_0_0 + 1 + 38 then
-  (mp.changedetectionname)(192)
-  return mp.SUSPICIOUS
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.PointerToRawData
+L1_1 = pesecs
+L2_2 = pehdr
+L2_2 = L2_2.NumberOfSections
+L1_1 = L1_1[L2_2]
+L1_1 = L1_1.SizeOfRawData
+L0_0 = L0_0 + L1_1
+L1_1 = L0_0 + 1
+L1_1 = L1_1 + 38
+L2_2 = mp
+L2_2 = L2_2.getfilesize
+L2_2 = L2_2()
+if L1_1 > L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.changedetectionname
+  L2_2 = 192
+  L1_1(L2_2)
+  L1_1 = mp
+  L1_1 = L1_1.SUSPICIOUS
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(l_0_0, 38)
-do
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC80: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC81: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC82: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC83: Overwrote pending register: R5 in 'AssignReg'
-
-  for l_0_6 = 97, 67, 102 do
-    -- DECOMPILER ERROR at PC85: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC87: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC88: Overwrote pending register: R9 in 'AssignReg'
-
-    if ((57).byte)(50, 75) ~= l_0_2[l_0_6] then
-      (mp.changedetectionname)(192)
-      return mp.SUSPICIOUS
-    end
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = {
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  57,
+  50,
+  75,
+  88,
+  50,
+  55,
+  69,
+  104,
+  87,
+  54,
+  67,
+  113,
+  112,
+  99,
+  83,
+  111,
+  52,
+  89,
+  57,
+  52,
+  66,
+  110,
+  85,
+  114,
+  70,
+  109,
+  110,
+  78,
+  107,
+  80,
+  53,
+  69,
+  110,
+  84
+}
+L6_6 = 71
+for L6_6 = 1, 38 do
+  if string.byte(L1_1, L6_6) ~= L2_2[L6_6] then
+    mp.changedetectionname(192)
+    return mp.SUSPICIOUS
   end
-  do return mp.INFECTED end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+return L3_3

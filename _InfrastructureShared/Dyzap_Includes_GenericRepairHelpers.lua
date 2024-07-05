@@ -1,31 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Dyzap_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-if (Remediation.Threat).Active then
-  local l_0_0 = (sysio.RegOpenKey)("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa")
-  if l_0_0 then
-    (sysio.SetRegValueAsDword)(l_0_0, "Limitblankpassworduse", 1)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Active
+if L0_0 then
+  L0_0 = sysio
+  L0_0 = L0_0.RegOpenKey
+  L1_1 = "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa"
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L1_1 = sysio
+    L1_1 = L1_1.SetRegValueAsDword
+    L2_2 = L0_0
+    L3_3 = "Limitblankpassworduse"
+    L4_4 = 1
+    L1_1(L2_2, L3_3, L4_4)
   end
-  local l_0_1, l_0_2, l_0_3 = nil, nil, nil
-  local l_0_4 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")
-  for l_0_8,l_0_9 in pairs(l_0_4) do
-    l_0_2 = (sysio.RegOpenKey)(l_0_9)
-    if l_0_2 then
-      l_0_1 = (sysio.RegEnumValues)(l_0_2)
-      for l_0_13,l_0_14 in pairs(l_0_1) do
-        if l_0_14 then
-          l_0_3 = (sysio.GetRegValueAsString)(l_0_2, l_0_14)
-          if l_0_3 then
-            local l_0_15 = nil
-            l_0_15 = (string.match)((string.lower)(l_0_3), "appdata\\local\\%a%a%a%a%a%a%a%a%a%a%a%a%a%a%a%.exe$")
-            if l_0_15 ~= nil then
-              (sysio.DeleteRegValue)(l_0_2, l_0_14)
-              if (sysio.IsFileExists)(l_0_15) then
-                (MpCommon.ReportLowfi)(l_0_15, 1512152387)
-                ;
-                (sysio.DeleteFile)(l_0_15)
+  L1_1, L2_2, L3_3 = nil, nil, nil
+  L4_4 = sysio
+  L4_4 = L4_4.RegExpandUserKey
+  L4_4 = L4_4(L5_5)
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L2_2 = L10_10
+    if L2_2 then
+      L1_1 = L10_10
+      for L13_13, L14_14 in L10_10(L11_11) do
+        if L14_14 then
+          L15_15 = sysio
+          L15_15 = L15_15.GetRegValueAsString
+          L15_15 = L15_15(L2_2, L14_14)
+          L3_3 = L15_15
+          if L3_3 then
+            L15_15 = nil
+            L15_15 = string.match(string.lower(L3_3), "appdata\\local\\%a%a%a%a%a%a%a%a%a%a%a%a%a%a%a%.exe$")
+            if L15_15 ~= nil then
+              sysio.DeleteRegValue(L2_2, L14_14)
+              if sysio.IsFileExists(L15_15) then
+                MpCommon.ReportLowfi(L15_15, 1512152387)
+                sysio.DeleteFile(L15_15)
               end
             end
           end
@@ -33,16 +44,31 @@ if (Remediation.Threat).Active then
       end
     end
   end
-  local l_0_16, l_0_17 = nil, nil
-  l_0_16 = (sysio.GetCommandLineFromService)("googleupdate")
-  l_0_17 = (l_0_16:lower()):match("\\(%a%a%a%a%a%a%a%a%a%a%a%a%a%a%a%.exe)$")
-  if l_0_17 ~= nil and (((MpCommon.ExpandEnvironmentVariables)("%windir%")):lower()):gsub("\\\\%?\\", "") .. "\\" .. l_0_17 == l_0_16:lower() then
-    (sysio.DeleteService)("googleupdate")
-    if (sysio.IsFileExists)(l_0_16) then
-      (MpCommon.ReportLowfi)(l_0_16, 889980315)
-      ;
-      (sysio.DeleteFile)(l_0_16)
+  L8_8 = "googleupdate"
+  L8_8 = L5_5
+  L8_8 = L7_7
+  L9_9 = "\\(%a%a%a%a%a%a%a%a%a%a%a%a%a%a%a%.exe)$"
+  if L6_6 ~= nil then
+    L8_8 = "%windir%"
+    L8_8 = L7_7
+    L8_8 = L7_7
+    L9_9 = "\\\\%?\\"
+    L8_8 = "\\"
+    L9_9 = L6_6
+    L9_9 = L5_5
+    L8_8 = L5_5.lower
+    L8_8 = L8_8(L9_9)
+    if L7_7 == L8_8 then
+      L8_8 = "googleupdate"
+      L7_7(L8_8)
+      L8_8 = L5_5
+      if L7_7 then
+        L8_8 = L5_5
+        L9_9 = 889980315
+        L7_7(L8_8, L9_9)
+        L8_8 = L5_5
+        L7_7(L8_8)
+      end
     end
   end
 end
-

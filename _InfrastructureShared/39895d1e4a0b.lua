@@ -1,31 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/39895d1e4a0b 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr, 32)
-local l_0_1 = (string.byte)(l_0_0, 13) + (string.byte)(l_0_0, 14) * 256 + (string.byte)(l_0_0, 15) * 65536 + (string.byte)(l_0_0, 16) * 16777216
-if l_0_1 < 53248 then
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L2_2 = 32
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = string
+L1_1 = L1_1.byte
+L2_2 = L0_0
+L3_3 = 13
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = L0_0
+L4_4 = 14
+L2_2 = L2_2(L3_3, L4_4)
+L2_2 = L2_2 * 256
+L1_1 = L1_1 + L2_2
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = L0_0
+L4_4 = 15
+L2_2 = L2_2(L3_3, L4_4)
+L2_2 = L2_2 * 65536
+L1_1 = L1_1 + L2_2
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = L0_0
+L4_4 = 16
+L2_2 = L2_2(L3_3, L4_4)
+L2_2 = L2_2 * 16777216
+L1_1 = L1_1 + L2_2
+if L1_1 < 53248 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = L0_0
+L4_4 = 18
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 < 48 then
+  L3_3 = mp
+  L3_3 = L3_3.INFECTED
+  return L3_3
+end
+L3_3 = pevars
+L3_3 = L3_3.sigaddr
+L3_3 = L3_3 + 18
+L3_3 = L3_3 + L2_2
+L4_4 = pe
+L4_4 = L4_4.mmap_va
+L4_4 = L4_4(L3_3 - 1, 4)
+L0_0 = L4_4
+L4_4 = string
+L4_4 = L4_4.byte
+L4_4 = L4_4(L0_0, 1)
+if L4_4 < 128 then
   return mp.INFECTED
 end
-local l_0_2 = (string.byte)(l_0_0, 18)
-if l_0_2 < 48 then
+L4_4 = mp.bitor(L4_4, 4294967040)
+if mp.bitand(L3_3 + L4_4, 4294967295) ~= pevars.sigaddr then
   return mp.INFECTED
 end
-local l_0_3 = pevars.sigaddr + 18 + l_0_2
-l_0_0 = (pe.mmap_va)(l_0_3 - 1, 4)
-local l_0_4 = (string.byte)(l_0_0, 1)
-if l_0_4 < 128 then
-  return mp.INFECTED
-end
-l_0_4 = (mp.bitor)(l_0_4, 4294967040)
-local l_0_5 = (mp.bitand)(l_0_3 + l_0_4, 4294967295)
-if l_0_5 ~= pevars.sigaddr then
-  return mp.INFECTED
-end
-;
-(mp.set_mpattribute)("lua_codepatch_fakesysdef_1")
-;
-(pe.mmap_patch_va)(pevars.sigaddr + 12, "\000\000\000\000")
+mp.set_mpattribute("lua_codepatch_fakesysdef_1")
+pe.mmap_patch_va(pevars.sigaddr + 12, "\000\000\000\000")
 return mp.INFECTED
-

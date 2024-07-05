@@ -1,37 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_WebShellImage 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 16 or l_0_0 > 1048576 then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 16 or L0_0 > 1048576 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.HEADERPAGE_SZ
+if 0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L1_1 = L1_1()
+L3_3 = L1_1
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, "\\Temporary Internet Files\\Content.IE5\\")
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2, L3_3 = nil, nil
+L2_2, L3_3 = L1_1:find("%.%w+$")
+if nil == L2_2 then
   return mp.CLEAN
 end
-if mp.HEADERPAGE_SZ == 0 then
+if false == true then
   return mp.CLEAN
 end
-local l_0_1 = (mp.getfilename)()
-if l_0_1:find("\\Temporary Internet Files\\Content.IE5\\") then
-  return mp.CLEAN
-end
-local l_0_2, l_0_3 = nil, nil
-l_0_2 = l_0_1:find("%.%w+$")
-if l_0_2 == nil then
-  return mp.CLEAN
-end
-local l_0_4 = l_0_1:sub(l_0_2, l_0_3)
-local l_0_5 = false
-if l_0_4 == ".asp" or l_0_4 == ".aspx" or l_0_4 == ".php" or l_0_4 == ".php5" or l_0_4 == ".phtml" or l_0_4 == ".cgi" or l_0_4 == ".pl" or l_0_4 == ".cfm" or l_0_4 == ".cfc" or l_0_4 == ".jsp" or l_0_4 == ".js" or l_0_4 == ".py" or l_0_4 == ".rb" then
-  l_0_5 = true
-end
-if l_0_5 == false then
-  return mp.CLEAN
-end
-if (mp.crc32)(0, headerpage, 1, 3) == 3665532023 then
-  if mp.FOOTERPAGE_SZ ~= 0 and (mp.crc32)(0, footerpage, mp.FOOTERPAGE_SZ - 1, 2) == 1814796034 then
+if 3665532023 == mp.crc32(0, headerpage, 1, 3) then
+  if 0 ~= mp.FOOTERPAGE_SZ and 1814796034 == mp.crc32(0, footerpage, mp.FOOTERPAGE_SZ - 1, 2) then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
 return mp.CLEAN
-

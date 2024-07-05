@@ -1,41 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2fb34935d330 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0.integrity_level == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.integrity_level
+if L1_1 == L2_2 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((this_sigattrlog[1]).utf8p2)
-for l_0_5 in (string.gmatch)(l_0_1, "[^|]+") do
-  if not (string.find)(l_0_5, "fileshares", 1, true) then
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(L2_2)
+for L5_5 in L2_2(L3_3, L4_4) do
+  L7_7 = L5_5
+  if not L6_6 then
+    return L6_6
+  end
+end
+if not L2_2 then
+  if not L2_2 then
+    return L3_3
+  end
+end
+if not L3_3 then
+  return L4_4
+end
+for L7_7 in L4_4(L5_5, L6_6) do
+  if string.find(L7_7, "\\\\[^\\]+\\[^\\]+") then
     return mp.CLEAN
   end
 end
-do
-  if not (sysio.RegOpenKey)("HKLM\\SOFTWARE\\POLICIES\\Microsoft\\Windows Defender\\Signature Updates") then
-    local l_0_6, l_0_7 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Signature Updates")
-    if not l_0_6 then
-      l_0_7 = mp
-      l_0_7 = l_0_7.INFECTED
-      return l_0_7
-    end
-  end
-  -- DECOMPILER ERROR at PC55: Confused about usage of register: R2 in 'UnsetPending'
-
-  local l_0_8 = nil
-  if not (sysio.GetRegValueAsString)(l_0_6, "DefinitionUpdateFileSharesSources") then
-    return mp.INFECTED
-  end
-  for l_0_12 in (string.gmatch)((sysio.GetRegValueAsString)(l_0_6, "DefinitionUpdateFileSharesSources"), "[^|]+") do
-    local l_0_9 = nil
-    -- DECOMPILER ERROR at PC71: Confused about usage of register: R7 in 'UnsetPending'
-
-    if (string.find)(l_0_5, "\\\\[^\\]+\\[^\\]+") then
-      return mp.CLEAN
-    end
-  end
-  return mp.INFECTED
-end
-
+return L4_4

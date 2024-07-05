@@ -1,14 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d7b320d0e208 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.enum_mpattributesubstring)("Behavior:Win32/BlockMpTamper")
-if #l_0_0 == 0 or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.enum_mpattributesubstring
+L0_0 = L0_0(L1_1)
+if L1_1 == 0 or L0_0 == nil then
+  return L1_1
 end
-for l_0_4,l_0_5 in ipairs(l_0_0) do
-  (bm.add_related_string)("RelatedBMHits", l_0_5, bm.RelatedStringBMReport)
+for L4_4, L5_5 in L1_1(L2_2) do
+  bm.add_related_string("RelatedBMHits", L5_5, bm.RelatedStringBMReport)
 end
-return mp.INFECTED
-
+return L1_1

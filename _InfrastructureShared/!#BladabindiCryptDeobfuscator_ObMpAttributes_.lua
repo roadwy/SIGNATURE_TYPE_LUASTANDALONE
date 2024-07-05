@@ -1,42 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#BladabindiCryptDeobfuscator_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if mp.HEADERPAGE_SZ < l_0_0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.HEADERPAGE_SZ
+if L0_0 > L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = tostring(headerpage)
-local l_0_2, l_0_3, l_0_4, l_0_5, l_0_6 = (string.find)(l_0_1, "\"(.-)\".-\"(.-)\".-%-.-%-%s-0-([1-9]%d-)%)")
-if l_0_4 == nil then
-  return mp.CLEAN
+L1_1 = tostring
+L2_2 = headerpage
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = "\"(.-)\".-\"(.-)\".-%-.-%-%s-0-([1-9]%d-)%)"
+L6_6 = L2_2(L3_3, L4_4)
+if L4_4 == nil then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
 end
-local l_0_7, l_0_8 = (string.gsub)(l_0_5, "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])", "%%%1")
-local l_0_9 = string.format
-do
-  local l_0_11, l_0_12 = , (string.gsub)(l_0_4, "(%d-)" .. l_0_7, function(l_1_0)
-  -- function num : 0_0 , upvalues : l_0_9, l_0_6
-  local l_1_1 = l_0_9
-  local l_1_2 = "%c"
-  do
-    local l_1_5 = tonumber
-    l_1_5 = l_1_5(l_1_0, 10)
-    local l_1_4 = l_0_6
-    l_1_5 = l_1_5 - l_1_4
-    local l_1_3 = nil
-    do return l_1_1(l_1_2, l_1_5) end
-    -- DECOMPILER ERROR at PC10: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+L7_7 = string
+L7_7 = L7_7.gsub
+L8_8 = L5_5
+L9_9 = "([%.%$%%%^%+%-%*%?%(%)%{%}%[%]])"
+L10_10 = "%%%1"
+L8_8 = L7_7(L8_8, L9_9, L10_10)
+L9_9 = string
+L9_9 = L9_9.format
+function L10_10(A0_13)
+  return _UPVALUE0_("%c", tonumber(A0_13, 10) - _UPVALUE1_)
 end
-, 6144)
-  ;
-  (mp.vfo_add_buffer)(l_0_12:sub(1, R17_PC48), "[DeBLAD]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-  ;
-  (mp.set_mpattribute)("//LOWFI:LUA:Bladabindi")
-  do return mp.CLEAN end
-  -- DECOMPILER ERROR at PC60: freeLocal<0 in 'ReleaseLocals'
-
-end
-
+L11_11 = string
+L11_11 = L11_11.gsub
+L12_12 = L4_4
+L12_12 = L11_11(L12_12, "(%d-)" .. L7_7, L10_10, 6144)
+mp.vfo_add_buffer(L11_11:sub(1, L12_12), "[DeBLAD]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+mp.set_mpattribute("//LOWFI:LUA:Bladabindi")
+return mp.CLEAN

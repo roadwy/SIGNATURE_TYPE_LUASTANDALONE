@@ -1,112 +1,174 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2978a76095b8 
-
--- params : ...
--- function num : 0
-if peattributes.is_delphi then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = peattributes
+L0_0 = L0_0.is_delphi
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not peattributes.isdll then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not peattributes.hasexports then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < 5 or pehdr.NumberOfSections > 6 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if not (L0_0 < 5) then
+  L0_0 = pehdr
+  L0_0 = L0_0.NumberOfSections
+elseif L0_0 > 6 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).Name ~= ".text" then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.Name
+if L0_0 ~= ".text" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[3]).Name ~= ".data" then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[3]
+L0_0 = L0_0.Name
+if L0_0 ~= ".data" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-bytes_to_int = function(l_1_0, l_1_1, l_1_2, l_1_3)
-  -- function num : 0_0
-  if not l_1_3 then
+function L0_0(A0_10, A1_11, A2_12, A3_13)
+  if not A3_13 then
     error("need four bytes to convert to int", 2)
   end
-  return l_1_0 + l_1_1 * 256 + l_1_2 * 65536 + l_1_3 * 16777216
+  return A0_10 + A1_11 * 256 + A2_12 * 65536 + A3_13 * 16777216
 end
-
-pointer2int = function(l_2_0, l_2_1)
-  -- function num : 0_1
-  local l_2_2 = (string.byte)(l_2_0, l_2_1)
-  local l_2_3 = (string.byte)(l_2_0, l_2_1 + 1)
-  local l_2_4 = (string.byte)(l_2_0, l_2_1 + 2)
-  local l_2_5 = (string.byte)(l_2_0, l_2_1 + 3)
-  return bytes_to_int(l_2_2, l_2_3, l_2_4, l_2_5)
+bytes_to_int = L0_0
+function L0_0(A0_14, A1_15)
+  local L2_16, L3_17, L4_18, L5_19
+  L2_16 = string
+  L2_16 = L2_16.byte
+  L3_17 = A0_14
+  L4_18 = A1_15
+  L2_16 = L2_16(L3_17, L4_18)
+  L3_17 = string
+  L3_17 = L3_17.byte
+  L4_18 = A0_14
+  L5_19 = A1_15 + 1
+  L3_17 = L3_17(L4_18, L5_19)
+  L4_18 = string
+  L4_18 = L4_18.byte
+  L5_19 = A0_14
+  L4_18 = L4_18(L5_19, A1_15 + 2)
+  L5_19 = string
+  L5_19 = L5_19.byte
+  L5_19 = L5_19(A0_14, A1_15 + 3)
+  return (bytes_to_int(L2_16, L3_17, L4_18, L5_19))
 end
-
-if (mp.getfilesize)() > 512000 then
-  return mp.CLEAN
+pointer2int = L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 512000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = 64
-local l_0_1 = 0
-local l_0_2 = 0
-if (hstrlog[1]).matched then
-  l_0_2 = (hstrlog[1]).VA
+L0_0 = 64
+L1_1 = 0
+L2_2 = 0
+L3_3 = hstrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = hstrlog
+  L3_3 = L3_3[1]
+  L2_2 = L3_3.VA
 else
-  if (hstrlog[2]).matched then
-    l_0_2 = (hstrlog[2]).VA
+  L3_3 = hstrlog
+  L3_3 = L3_3[2]
+  L3_3 = L3_3.matched
+  if L3_3 then
+    L3_3 = hstrlog
+    L3_3 = L3_3[2]
+    L2_2 = L3_3.VA
   else
-    if (hstrlog[3]).matched then
-      l_0_2 = (hstrlog[3]).VA
+    L3_3 = hstrlog
+    L3_3 = L3_3[3]
+    L3_3 = L3_3.matched
+    if L3_3 then
+      L3_3 = hstrlog
+      L3_3 = L3_3[3]
+      L2_2 = L3_3.VA
     else
-      return mp.CLEAN
+      L3_3 = mp
+      L3_3 = L3_3.CLEAN
+      return L3_3
     end
   end
 end
-;
-(mp.readprotection)(false)
-local l_0_3 = (pe.mmap_va)(l_0_2 - l_0_0, l_0_0)
-for l_0_7 = 1, l_0_0 do
-  if (string.byte)(l_0_3, l_0_7) == 128 and (string.byte)(l_0_3, l_0_7 + 1) == 61 and (string.byte)(l_0_3, l_0_7 + 6) == 77 then
-    l_0_1 = pointer2int(l_0_3, l_0_7 + 2)
-    break
-  end
-end
-do
-  if l_0_1 == 0 then
-    return mp.CLEAN
-  end
-  local l_0_8 = 0
-  for l_0_12 = 1, l_0_0 do
-    local l_0_13 = (string.byte)(l_0_3, l_0_12)
-    if l_0_13 == 52 and (string.byte)(l_0_3, l_0_12 + 2) == 44 then
-      l_0_8 = (string.byte)(l_0_3, l_0_12 + 1)
-      if l_0_8 ~= 0 then
-        break
-      end
-    end
-    if l_0_13 == 128 and (string.byte)(l_0_3, l_0_12 + 3) == 128 then
-      do
-        do
-          l_0_8 = (string.byte)(l_0_3, l_0_12 + 2)
-          if l_0_8 ~= 0 then
-            break
-          end
-          -- DECOMPILER ERROR at PC185: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC185: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC185: LeaveBlock: unexpected jumping out IF_STMT
-
-        end
-      end
+L3_3 = mp
+L3_3 = L3_3.readprotection
+L3_3(L4_4)
+L3_3 = pe
+L3_3 = L3_3.mmap_va
+L3_3 = L3_3(L4_4, L5_5)
+for L7_7 = 1, L0_0 do
+  L8_8 = string
+  L8_8 = L8_8.byte
+  L9_9 = L3_3
+  L8_8 = L8_8(L9_9, L7_7)
+  if L8_8 == 128 then
+    L9_9 = string
+    L9_9 = L9_9.byte
+    L9_9 = L9_9(L3_3, L7_7 + 1)
+    if L9_9 == 61 and string.byte(L3_3, L7_7 + 6) == 77 then
+      L1_1 = pointer2int(L3_3, L7_7 + 2)
+      break
     end
   end
-  if l_0_8 == 0 then
-    return mp.CLEAN
-  end
-  local l_0_14 = (pe.mmap_va)(l_0_1, 4)
-  local l_0_15 = (string.byte)(l_0_14, 1)
-  local l_0_16 = (string.byte)(l_0_14, 2)
-  local l_0_17 = (string.byte)(l_0_14, 3)
-  local l_0_18 = (string.byte)(l_0_14, 4)
-  if (mp.bitxor)(l_0_15, l_0_8) - l_0_8 == 77 and (mp.bitxor)(l_0_16, l_0_8) - l_0_8 == 90 and (mp.bitxor)(l_0_17, l_0_8) - l_0_8 == 144 and (mp.bitxor)(l_0_18, l_0_8) - l_0_8 == 0 then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
 end
-
+if L1_1 == 0 then
+  return L4_4
+end
+for L8_8 = 1, L0_0 do
+  L9_9 = string
+  L9_9 = L9_9.byte
+  L9_9 = L9_9(L3_3, L8_8)
+  if L9_9 == 52 and string.byte(L3_3, L8_8 + 2) == 44 then
+    if L4_4 ~= 0 then
+      break
+    end
+  end
+  if L9_9 == 128 and string.byte(L3_3, L8_8 + 3) == 128 then
+    if L4_4 ~= 0 then
+      break
+    end
+  end
+end
+if L4_4 == 0 then
+  return L5_5
+end
+L8_8 = 1
+L8_8 = L5_5
+L9_9 = 2
+L8_8 = string
+L8_8 = L8_8.byte
+L9_9 = L5_5
+L8_8 = L8_8(L9_9, 3)
+L9_9 = string
+L9_9 = L9_9.byte
+L9_9 = L9_9(L5_5, 4)
+if mp.bitxor(L6_6, L4_4) - L4_4 == 77 and mp.bitxor(L7_7, L4_4) - L4_4 == 90 and mp.bitxor(L8_8, L4_4) - L4_4 == 144 and mp.bitxor(L9_9, L4_4) - L4_4 == 0 then
+  return mp.INFECTED
+end
+return mp.CLEAN

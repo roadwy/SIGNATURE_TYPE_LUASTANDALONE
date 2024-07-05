@@ -1,40 +1,73 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VBS_Obfuscator.AA_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_parent_filehandle)()
-if (mp.is_handle_nil)(l_0_0) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = mp
+L0_0 = L0_0.get_parent_filehandle
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.is_handle_nil
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.get_filesize_by_handle)(l_0_0)
-if l_0_1 > 65536 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.get_filesize_by_handle
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 > 65536 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(mp.readprotection)(false)
-local l_0_2 = (mp.readfile_by_handle)(l_0_0, 0, l_0_1)
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile_by_handle
+L3_3 = L0_0
+L4_4 = 0
+L5_5 = L1_1
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-l_0_2 = tostring(l_0_2)
-local l_0_3 = (string.match)(l_0_2, "%z\r%z\n%zS%zT%z %z=%z %z\"%z(.-)\"%z\r%z\n")
-if l_0_3 == nil then
-  return mp.CLEAN
+L3_3 = tostring
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+L2_2 = L3_3
+L3_3 = string
+L3_3 = L3_3.match
+L4_4 = L2_2
+L5_5 = "%z\r%z\n%zS%zT%z %z=%z %z\"%z(.-)\"%z\r%z\n"
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (string.match)(l_0_2, "%z\r%z\n%zN%zN%z %z=%z %z\"(.-)%z\"%z\r%z\n")
-if l_0_4 == nil then
-  return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.match
+L5_5 = L2_2
+L4_4 = L4_4(L5_5, L6_6)
+if L4_4 == nil then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_5 = 0
-for l_0_9 in l_0_4:gmatch("..") do
-  l_0_5 = l_0_5 + (string.byte)(l_0_9, 1, 2) * 256 + l_0_9
+L5_5 = 0
+for L9_9 in L6_6(L7_7, L8_8) do
+  L10_10 = string
+  L10_10 = L10_10.byte
+  L10_10 = L10_10(L9_9, 1, 2)
+  L5_5 = L5_5 + L10_10 * 256 + L10_10(L9_9, 1, 2)
 end
-local l_0_10 = ""
-for l_0_14 in l_0_3:gmatch("..") do
-  l_0_10 = l_0_10 .. (string.format)("%c", l_0_14 * 256 + (string.byte)(l_0_14, 1, 2) - (l_0_5) + (string.len)(l_0_4) / 2)
+for L10_10 in L7_7(L8_8, L9_9) do
 end
-;
-(mp.vfo_add_buffer)(l_0_10, "[Obfuscator.AA]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-return mp.CLEAN
-
+L10_10 = mp
+L10_10 = L10_10.ADD_VFO_TAKE_ACTION_ON_DAD
+L7_7(L8_8, L9_9, L10_10)
+return L7_7

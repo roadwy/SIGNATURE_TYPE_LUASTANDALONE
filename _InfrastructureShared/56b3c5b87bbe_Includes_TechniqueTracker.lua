@@ -1,49 +1,54 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/56b3c5b87bbe_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[1]).matched then
-  do
-    if (this_sigattrlog[1]).utf8p1 ~= nil then
-      local l_0_0, l_0_1, l_0_2, l_0_4, l_0_6, l_0_8, l_0_10, l_0_12, l_0_14, l_0_16, l_0_18 = nil, nil
-    end
-    do
-      if (this_sigattrlog[1]).utf8p2 ~= nil then
-        local l_0_3, l_0_5, l_0_7, l_0_9, l_0_11, l_0_13, l_0_15, l_0_17, l_0_19 = , (this_sigattrlog[1]).utf8p2
-      end
-      -- DECOMPILER ERROR at PC21: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC25: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC31: Confused about usage of register: R0 in 'UnsetPending'
-
-      if l_0_3 ~= nil and (sysio.IsFileExists)(l_0_3) then
-        (bm.add_related_file)(l_0_3)
-      end
-      -- DECOMPILER ERROR at PC33: Confused about usage of register: R1 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC37: Confused about usage of register: R1 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC43: Confused about usage of register: R1 in 'UnsetPending'
-
-      if l_0_5 ~= nil and (sysio.IsFileExists)(l_0_5) then
-        (bm.add_related_file)(l_0_5)
-        -- DECOMPILER ERROR at PC49: Confused about usage of register: R1 in 'UnsetPending'
-
-        ;
-        (MpCommon.AppendPersistContext)((string.lower)(l_0_5), "MasqSuspRenameTarget", 3600)
-        local l_0_20 = nil
-        -- DECOMPILER ERROR at PC60: Confused about usage of register: R1 in 'UnsetPending'
-
-        TrackFileAndTechnique(l_0_5, {"T1036.003:masquerading_target", "T1036.003:defenseevasion_target", "T1036.003:MasqSuspRename.C"})
-      end
-      do
-        return mp.INFECTED
-      end
-    end
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p1
+  end
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
   end
 end
-
+if L0_0 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.IsFileExists
+  L2_2 = L2_2(L0_0)
+  if L2_2 then
+    L2_2 = bm
+    L2_2 = L2_2.add_related_file
+    L2_2(L0_0)
+  end
+end
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.IsFileExists
+  L2_2 = L2_2(L1_1)
+  if L2_2 then
+    L2_2 = bm
+    L2_2 = L2_2.add_related_file
+    L2_2(L1_1)
+    L2_2 = MpCommon
+    L2_2 = L2_2.AppendPersistContext
+    L2_2(string.lower(L1_1), "MasqSuspRenameTarget", 3600)
+    L2_2 = {
+      "T1036.003:masquerading_target",
+      "T1036.003:defenseevasion_target",
+      "T1036.003:MasqSuspRename.C"
+    }
+    TrackFileAndTechnique(L1_1, L2_2)
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

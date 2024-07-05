@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/aa29a8be1bca 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)()
-if l_0_0 and (string.find)((string.lower)(l_0_0), "\\servicing\\packages\\microsoft%-windows%-client%-desktop%-required%-package.+%.mum") then
-  (mp.set_mpattribute)("SelectableWinDefendPkgInServicing")
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if L0_0 and string.find(string.lower(L0_0), "\\servicing\\packages\\microsoft%-windows%-client%-desktop%-required%-package.+%.mum") then
+  mp.set_mpattribute("SelectableWinDefendPkgInServicing")
 end
 return mp.CLEAN
-

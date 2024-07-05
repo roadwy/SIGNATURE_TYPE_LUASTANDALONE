@@ -1,26 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7db327498bc3 
-
--- params : ...
--- function num : 0
-if not (this_sigattrlog[5]).matched then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[5]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (bm.get_current_process_startup_info)()
-if not l_0_0 or l_0_0.integrity_level == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
-  return mp.CLEAN
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 then
+  L1_1 = L0_0.integrity_level
+elseif L1_1 == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[5]).utf8p1))
-if l_0_1 then
-  if (string.find)(l_0_1, "windows\\assembly\\nativeimages_v4", 1, true) then
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[5].utf8p1))
+if L1_1 then
+  if string.find(L1_1, "windows\\assembly\\nativeimages_v4", 1, true) then
     return mp.CLEAN
   end
-  if (string.find)(l_0_1, "packagemanagement\\providerassemblies\\nuget", 1, true) then
+  if string.find(L1_1, "packagemanagement\\providerassemblies\\nuget", 1, true) then
     return mp.CLEAN
   end
-  if not (mp.IsKnownFriendlyFile)(l_0_1, false, false) then
-    (mp.ReportLowfi)(l_0_1, 2040612934)
+  if not mp.IsKnownFriendlyFile(L1_1, false, false) then
+    mp.ReportLowfi(L1_1, 2040612934)
   end
 end
 return mp.INFECTED
-

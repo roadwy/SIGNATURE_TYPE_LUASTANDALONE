@@ -1,18 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3378d368879f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (hstrlog[1]).VA
-local l_0_1 = (pe.mmap_va)(l_0_0 + 8, 4)
-local l_0_2 = (string.byte)(l_0_1, 1) + (string.byte)(l_0_1, 2) * 256 + (string.byte)(l_0_1, 3) * 65536
-if l_0_2 < 1048575 then
-  (mp.readprotection)(false)
-  local l_0_3 = (pe.mmap_va)(l_0_0, l_0_2)
-  ;
-  (mp.vfo_add_buffer)(l_0_3, "[Cabinet]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.VA
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = L0_0 + 8
+L3_3 = 4
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.byte
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, 1)
+L3_3 = string
+L3_3 = L3_3.byte
+L3_3 = L3_3(L1_1, 2)
+L3_3 = L3_3 * 256
+L2_2 = L2_2 + L3_3
+L3_3 = string
+L3_3 = L3_3.byte
+L3_3 = L3_3(L1_1, 3)
+L3_3 = L3_3 * 65536
+L2_2 = L2_2 + L3_3
+if L2_2 < 1048575 then
+  L3_3 = mp
+  L3_3 = L3_3.readprotection
+  L3_3(false)
+  L3_3 = pe
+  L3_3 = L3_3.mmap_va
+  L3_3 = L3_3(L0_0, L2_2)
+  mp.vfo_add_buffer(L3_3, "[Cabinet]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

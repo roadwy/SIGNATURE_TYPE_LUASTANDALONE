@@ -1,278 +1,240 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Trojan_Win32_BITSAbuse.G_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)) == "svchost.exe" then
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESS_PPID)
-  local l_0_2 = (mp.GetProcessCommandLine)(l_0_1)
-  if l_0_2 == nil or (string.len)(l_0_2) == 0 then
-    return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_PROCESSNAME
+L17_17 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L2_2(L3_3))
+if L1_1 == "svchost.exe" then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_PROCESS_PPID
+  L1_1 = L1_1(L2_2)
+  L2_2 = mp
+  L2_2 = L2_2.GetProcessCommandLine
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  if L2_2 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.len
+    L4_4 = L2_2
+    L3_3 = L3_3(L4_4)
+  elseif L3_3 == 0 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   end
-  if (string.lower)((string.match)(l_0_2, "-s%s+([^%s]+)")) ~= "bits" then
-    return mp.CLEAN
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L4_4 = string
+  L4_4 = L4_4.match
+  L5_5 = L2_2
+  L6_6 = "-s%s+([^%s]+)"
+  L17_17 = L4_4(L5_5, L6_6)
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, L4_4(L5_5, L6_6))
+  if L3_3 ~= "bits" then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
   end
 else
-  do
-    if (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME) ~= "sumagar_test.goforit" then
-      return mp.CLEAN
-    end
-    local l_0_3 = (sysio.EnumerateBitsJobs)()
-    if l_0_3 == nil then
-      return mp.CLEAN
-    end
-    local l_0_4 = {}
-    local l_0_5 = {}
-    local l_0_6 = 0
-    local l_0_7, l_0_8 = nil, nil
-    local l_0_9 = (MpCommon.GetPersistContextCountNoPath)("urlsFromBitsJobs")
-    local l_0_10 = {}
-    if l_0_9 > 0 then
-      l_0_10 = (MpCommon.GetPersistContextNoPath)("urlsFromBitsJobs")
-    end
-    l_0_5.SIG_CONTEXT = "LUA_GENERIC"
-    l_0_5.CONTENT_SOURCE = "BITS"
-    l_0_5.PROCESS_CONTEXT = "SVCHOST.EXE"
-    l_0_5.PARENT_CONTEXT = nil
-    l_0_5.FILELESS = "true"
-    l_0_5.CMDLINE_URL = "false"
-    l_0_5.BREAK_AT_FIRST_HIT_MALWARE = "40"
-    local l_0_11 = false
-    local l_0_12 = nil
-    for l_0_16,l_0_17 in pairs(l_0_3) do
-      if (string.sub)(l_0_17.JobName, 1, 10) ~= "CCMDTS Job" then
-        if l_0_9 >= 256 then
-          break
-        end
-        if l_0_6 >= 30 then
-          break
-        end
-        local l_0_18 = (string.format)("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x", (string.byte)(l_0_17.JobId, 4), (string.byte)(l_0_17.JobId, 3), (string.byte)(l_0_17.JobId, 2), (string.byte)(l_0_17.JobId, 1), (string.byte)(l_0_17.JobId, 6), (string.byte)(l_0_17.JobId, 5), (string.byte)(l_0_17.JobId, 8), (string.byte)(l_0_17.JobId, 7), (string.byte)(l_0_17.JobId, 9, 16))
-        local l_0_19 = (string.lower)(l_0_17.NotifyCmdProgramParam)
-        if l_0_19 ~= "" and l_0_19 ~= nil then
-          for l_0_23 in (string.gmatch)(l_0_19, "http[s]?:[^%s\"\']+") do
-            if l_0_9 > 0 then
-              for l_0_27,l_0_28 in ipairs(l_0_10) do
-                if l_0_23 == l_0_28 then
-                  l_0_23 = nil
-                  break
-                end
-              end
-            end
-            do
-              do
-                if l_0_23 ~= nil then
-                  local l_0_29, l_0_30 = (mp.CheckUrl)(l_0_23)
-                  if l_0_29 == 0 or l_0_29 == 1 and l_0_30 == 0 then
-                    l_0_6 = l_0_6 + 1
-                    if l_0_6 > 30 then
-                      break
-                    end
-                    l_0_9 = l_0_9 + 1
-                    if l_0_9 > 256 then
-                      break
-                    end
-                    ;
-                    (table.insert)(l_0_4, l_0_6, l_0_23)
-                    l_0_8 = l_0_18 .. "<$>" .. (string.sub)(l_0_17.JobName, 1, 32) .. "<$>" .. l_0_17.JobType .. "<$>" .. l_0_17.JobRetryDelay .. "<$>" .. l_0_17.JobNoProgressTimeout .. "<$>" .. l_0_17.JobLastError .. "<$>" .. l_0_17.JobLastErrorContext .. "<$>" .. (string.sub)(l_0_17.NotifyCmdProgram, 1, 64) .. "<$>" .. (string.sub)(l_0_17.NotifyCmdProgramParam, 1, 128)
-                    l_0_7 = tostring(l_0_6)
-                    l_0_5[l_0_7] = l_0_8
-                    ;
-                    (table.insert)(l_0_10, l_0_23)
-                    ;
-                    (MpCommon.AppendPersistContextNoPath)("urlsFromBitsJobs", l_0_23, 0)
-                  end
-                end
-                -- DECOMPILER ERROR at PC268: LeaveBlock: unexpected jumping out DO_STMT
-
-              end
-            end
-          end
-          for l_0_34 in (string.gmatch)(l_0_19, "ftp[s]?:[^%s\"\']+") do
-            if l_0_9 > 0 then
-              for l_0_38,l_0_39 in ipairs(l_0_10) do
-                if l_0_34 == l_0_39 then
-                  l_0_34 = nil
-                  break
-                end
-              end
-            end
-            do
-              do
-                if l_0_34 ~= nil and (mp.CheckUrl)(l_0_34) ~= 0 then
-                  local l_0_40, l_0_41 = (mp.CheckUrl)(l_0_34)
-                  if l_0_40 == 0 or l_0_40 == 1 and l_0_41 == 0 then
-                    l_0_6 = l_0_6 + 1
-                    if l_0_6 > 30 then
-                      break
-                    end
-                    l_0_9 = l_0_9 + 1
-                    if l_0_9 > 256 then
-                      break
-                    end
-                    ;
-                    (table.insert)(l_0_4, l_0_6, l_0_34)
-                    l_0_8 = l_0_18 .. "<$>" .. (string.sub)(l_0_17.JobName, 1, 32) .. "<$>" .. l_0_17.JobType .. "<$>" .. l_0_17.JobRetryDelay .. "<$>" .. l_0_17.JobNoProgressTimeout .. "<$>" .. l_0_17.JobLastError .. "<$>" .. l_0_17.JobLastErrorContext .. "<$>" .. (string.sub)(l_0_17.NotifyCmdProgram, 1, 64) .. "<$>" .. (string.sub)(l_0_17.NotifyCmdProgramParam, 1, 128)
-                    l_0_7 = tostring(l_0_6)
-                    l_0_5[l_0_7] = l_0_8
-                    ;
-                    (table.insert)(l_0_10, l_0_34)
-                    ;
-                    (MpCommon.AppendPersistContextNoPath)("urlsFromBitsJobs", l_0_34, 0)
-                  end
-                end
-                -- DECOMPILER ERROR at PC369: LeaveBlock: unexpected jumping out DO_STMT
-
-              end
-            end
-          end
-        end
-        if l_0_17.JobFiles ~= nil then
-          for l_0_45,l_0_46 in ipairs(l_0_17.JobFiles) do
-            if (string.find)((string.lower)((string.sub)(l_0_46.FileLocalName, 1, 32)), "\\windows\\ccm\\", 1, true) == nil then
-              local l_0_47 = (string.lower)(l_0_46.FileRemoteName)
-              if l_0_47 ~= "" and l_0_47 ~= nil then
-                l_0_11 = (MpCommon.StringRegExpSearch)("[\"]?((http[s]?|ftp[s]?):[^\\s\"\']+)[\"]?", l_0_47)
-                if l_0_11 == true and l_0_12 ~= "" and l_0_12 ~= nil then
-                  if l_0_9 > 0 then
-                    for l_0_51,l_0_52 in ipairs(l_0_10) do
-                      -- DECOMPILER ERROR at PC424: Overwrote pending register: R10 in 'AssignReg'
-
-                      if l_0_12 == l_0_52 then
-                        break
-                      end
-                    end
-                  end
-                  do
-                    do
-                      if l_0_12 ~= nil then
-                        local l_0_53, l_0_54 = (mp.CheckUrl)(l_0_12)
-                        if l_0_53 == 0 or l_0_53 == 1 and l_0_54 == 0 then
-                          l_0_6 = l_0_6 + 1
-                          if l_0_6 > 30 then
-                            break
-                          end
-                          l_0_9 = l_0_9 + 1
-                          if l_0_9 > 256 then
-                            break
-                          end
-                          ;
-                          (table.insert)(l_0_4, l_0_6, l_0_12)
-                          l_0_8 = l_0_18 .. "<$>" .. (string.sub)(l_0_17.JobName, 1, 32) .. "<$>" .. l_0_17.JobType .. "<$>" .. l_0_17.JobRetryDelay .. "<$>" .. l_0_17.JobNoProgressTimeout .. "<$>" .. l_0_17.JobLastError .. "<$>" .. l_0_17.JobLastErrorContext .. "<$>" .. (string.sub)(l_0_17.NotifyCmdProgram, 1, 64) .. "<$>" .. (string.sub)(l_0_17.NotifyCmdProgramParam, 1, 128) .. "<$>" .. (string.sub)(l_0_46.FileLocalName, 1, 128) .. "<$>" .. (string.sub)(l_0_46.FileRemoteName, 1, 256)
-                          l_0_7 = tostring(l_0_6)
-                          l_0_5[l_0_7] = l_0_8
-                          ;
-                          (table.insert)(l_0_10, l_0_12)
-                          ;
-                          (MpCommon.AppendPersistContextNoPath)("urlsFromBitsJobs", l_0_12, 0)
-                        end
-                      end
-                      -- DECOMPILER ERROR at PC517: LeaveBlock: unexpected jumping out DO_STMT
-
-                      -- DECOMPILER ERROR at PC517: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC517: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC517: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC517: LeaveBlock: unexpected jumping out IF_STMT
-
-                      -- DECOMPILER ERROR at PC517: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                      -- DECOMPILER ERROR at PC517: LeaveBlock: unexpected jumping out IF_STMT
-
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-    if l_0_6 == 0 then
-      return mp.CLEAN
-    else
-      if #l_0_4 == 0 then
-        return mp.CLEAN
-      end
-    end
-    ;
-    (mp.ReportLowfi)((mp.getfilename)(), 4272609966)
-    local l_0_55 = nil
-    -- DECOMPILER ERROR at PC550: Overwrote pending register: R13 in 'AssignReg'
-
-    if (mp.GetUrlReputation)(l_0_4, l_0_5) ~= nil then
-      (mp.ReportLowfi)(l_0_55, 1738771220)
-      local l_0_56 = nil
-      -- DECOMPILER ERROR at PC555: Overwrote pending register: R13 in 'AssignReg'
-
-      l_0_56 = ((mp.GetUrlReputation)(l_0_4, l_0_5)).urls
-      l_0_55 = l_0_55(l_0_56)
-      for l_0_60,l_0_61 in l_0_55 do
-        local l_0_60, l_0_61 = nil
-        l_0_60 = nil
-        local l_0_62 = nil
-        l_0_61 = ipairs
-        l_0_62 = l_0_4
-        l_0_61 = l_0_61(l_0_62)
-        for l_0_66,l_0_67 in l_0_61 do
-          local l_0_66, l_0_67 = nil
-          l_0_66 = l_0_59.url
-          if l_0_65 == l_0_66 then
-            l_0_66 = tostring
-            l_0_67 = l_0_64
-            l_0_66 = l_0_66(l_0_67)
-            l_0_60 = l_0_66
-          end
-        end
-        if l_0_60 == nil then
-          return mp.CLEAN
-        end
-        local l_0_68 = nil
-        if l_0_59.determination == 2 then
-          (MpCommon.ReportFilelessResource)(l_0_68, (string.match)(l_0_5[l_0_60], "(.-)<$>"), 4245)
-        else
-          -- DECOMPILER ERROR at PC598: Overwrote pending register: R21 in 'AssignReg'
-
-          if l_0_59.determination == 3 then
-            (MpCommon.ReportFilelessResource)(l_0_68, (string.match)(l_0_5[l_0_60], "(.-)<$>"), 4246)
-          else
-            -- DECOMPILER ERROR at PC608: Overwrote pending register: R21 in 'AssignReg'
-
-            if l_0_59.determination == 4 then
-              do
-                (MpCommon.ReportFilelessResource)(l_0_68, (string.match)(l_0_5[l_0_60], "(.-)<$>"), 4247)
-                do return mp.INFECTED end
-                -- DECOMPILER ERROR at PC615: Confused about usage of register R20 for local variables in 'ReleaseLocals'
-
-                -- DECOMPILER ERROR at PC615: LeaveBlock: unexpected jumping out DO_STMT
-
-                -- DECOMPILER ERROR at PC615: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC615: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC615: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                -- DECOMPILER ERROR at PC615: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC615: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                -- DECOMPILER ERROR at PC615: LeaveBlock: unexpected jumping out IF_STMT
-
-              end
-            end
-          end
-        end
-      end
-    end
-    do return mp.CLEAN end
-    -- DECOMPILER ERROR at PC620: Confused about usage of register R19 for local variables in 'ReleaseLocals'
-
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L2_2 = mp
+  L2_2 = L2_2.CONTEXT_DATA_FILENAME
+  L1_1 = L1_1(L2_2)
+  if L1_1 ~= "sumagar_test.goforit" then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+L1_1 = sysio
+L1_1 = L1_1.EnumerateBitsJobs
+L1_1 = L1_1()
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = {}
+L3_3 = {}
+L4_4 = 0
+L5_5, L6_6 = nil, nil
+L7_7 = MpCommon
+L7_7 = L7_7.GetPersistContextCountNoPath
+L8_8 = "urlsFromBitsJobs"
+L7_7 = L7_7(L8_8)
+L8_8 = {}
+if L7_7 > 0 then
+  L9_9 = MpCommon
+  L9_9 = L9_9.GetPersistContextNoPath
+  L10_10 = "urlsFromBitsJobs"
+  L9_9 = L9_9(L10_10)
+  L8_8 = L9_9
+end
+L3_3.SIG_CONTEXT = "LUA_GENERIC"
+L3_3.CONTENT_SOURCE = "BITS"
+L3_3.PROCESS_CONTEXT = "SVCHOST.EXE"
+L3_3.PARENT_CONTEXT = nil
+L3_3.FILELESS = "true"
+L3_3.CMDLINE_URL = "false"
+L3_3.BREAK_AT_FIRST_HIT_MALWARE = "40"
+L9_9 = false
+L10_10 = nil
+for L14_14, L15_15 in L11_11(L12_12) do
+  L16_16 = string
+  L16_16 = L16_16.sub
+  L17_17 = L15_15.JobName
+  L16_16 = L16_16(L17_17, L18_18, L19_19)
+  if L16_16 ~= "CCMDTS Job" then
+    if L7_7 >= 256 then
+      break
+    end
+    if L4_4 >= 30 then
+      break
+    end
+    L16_16 = string
+    L16_16 = L16_16.format
+    L17_17 = "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x"
+    L16_16 = L16_16(L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23, string.byte(L15_15.JobId, 8), string.byte(L15_15.JobId, 7), string.byte(L15_15.JobId, 9, 16))
+    L17_17 = string
+    L17_17 = L17_17.lower
+    L17_17 = L17_17(L18_18)
+    if L17_17 ~= "" and L17_17 ~= nil then
+      for L21_21 in L18_18(L19_19, L20_20) do
+        if L7_7 > 0 then
+          for _FORV_25_, _FORV_26_ in L22_22(L23_23) do
+            if L21_21 == _FORV_26_ then
+              break
+            end
+          end
+        end
+        if L21_21 ~= nil then
+          if L22_22 == 0 or L22_22 == 1 and L23_23 == 0 then
+            L4_4 = L4_4 + 1
+            if L4_4 > 30 then
+              break
+            end
+            L7_7 = L7_7 + 1
+            if L7_7 > 256 then
+              break
+            end
+            table.insert(L2_2, L4_4, L21_21)
+            L6_6 = L16_16 .. "<$>" .. string.sub(L15_15.JobName, 1, 32) .. "<$>" .. L15_15.JobType .. "<$>" .. L15_15.JobRetryDelay .. "<$>" .. L15_15.JobNoProgressTimeout .. "<$>" .. L15_15.JobLastError .. "<$>" .. L15_15.JobLastErrorContext .. "<$>" .. string.sub(L15_15.NotifyCmdProgram, 1, 64) .. "<$>" .. string.sub(L15_15.NotifyCmdProgramParam, 1, 128)
+            L5_5 = tostring(L4_4)
+            L3_3[L5_5] = L6_6
+            table.insert(L8_8, L21_21)
+            MpCommon.AppendPersistContextNoPath("urlsFromBitsJobs", L21_21, 0)
+          end
+        end
+      end
+      for L21_21 in L18_18(L19_19, L20_20) do
+        if L7_7 > 0 then
+          for _FORV_25_, _FORV_26_ in L22_22(L23_23) do
+            if L21_21 == _FORV_26_ then
+              break
+            end
+          end
+        end
+        if L21_21 ~= nil then
+          if L22_22 ~= 0 then
+            if L22_22 == 0 or L22_22 == 1 and L23_23 == 0 then
+              L4_4 = L4_4 + 1
+              if L4_4 > 30 then
+                break
+              end
+              L7_7 = L7_7 + 1
+              if L7_7 > 256 then
+                break
+              end
+              table.insert(L2_2, L4_4, L21_21)
+              L6_6 = L16_16 .. "<$>" .. string.sub(L15_15.JobName, 1, 32) .. "<$>" .. L15_15.JobType .. "<$>" .. L15_15.JobRetryDelay .. "<$>" .. L15_15.JobNoProgressTimeout .. "<$>" .. L15_15.JobLastError .. "<$>" .. L15_15.JobLastErrorContext .. "<$>" .. string.sub(L15_15.NotifyCmdProgram, 1, 64) .. "<$>" .. string.sub(L15_15.NotifyCmdProgramParam, 1, 128)
+              L5_5 = tostring(L4_4)
+              L3_3[L5_5] = L6_6
+              table.insert(L8_8, L21_21)
+              MpCommon.AppendPersistContextNoPath("urlsFromBitsJobs", L21_21, 0)
+            end
+          end
+        end
+      end
+    end
+    if L18_18 ~= nil then
+      for L21_21, L22_22 in L18_18(L19_19) do
+        if L23_23 == nil then
+          if L23_23 ~= "" and L23_23 ~= nil then
+            L9_9, L10_10 = MpCommon.StringRegExpSearch("[\"]?((http[s]?|ftp[s]?):[^\\s\"']+)[\"]?", L23_23)
+            if L9_9 == true and L10_10 ~= "" and L10_10 ~= nil then
+              if L7_7 > 0 then
+                for _FORV_27_, _FORV_28_ in ipairs(L8_8) do
+                  if L10_10 == _FORV_28_ then
+                    L10_10 = nil
+                    break
+                  end
+                end
+              end
+              if L10_10 ~= nil and (mp.CheckUrl(L10_10) == 0 or mp.CheckUrl(L10_10) == 1 and mp.CheckUrl(L10_10) == 0) then
+                L4_4 = L4_4 + 1
+                if L4_4 > 30 then
+                  break
+                end
+                L7_7 = L7_7 + 1
+                if L7_7 > 256 then
+                  break
+                end
+                table.insert(L2_2, L4_4, L10_10)
+                L6_6 = L16_16 .. "<$>" .. string.sub(L15_15.JobName, 1, 32) .. "<$>" .. L15_15.JobType .. "<$>" .. L15_15.JobRetryDelay .. "<$>" .. L15_15.JobNoProgressTimeout .. "<$>" .. L15_15.JobLastError .. "<$>" .. L15_15.JobLastErrorContext .. "<$>" .. string.sub(L15_15.NotifyCmdProgram, 1, 64) .. "<$>" .. string.sub(L15_15.NotifyCmdProgramParam, 1, 128) .. "<$>" .. string.sub(L22_22.FileLocalName, 1, 128) .. "<$>" .. string.sub(L22_22.FileRemoteName, 1, 256)
+                L5_5 = tostring(L4_4)
+                L3_3[L5_5] = L6_6
+                table.insert(L8_8, L10_10)
+                MpCommon.AppendPersistContextNoPath("urlsFromBitsJobs", L10_10, 0)
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+if L4_4 == 0 then
+  return L11_11
+elseif L11_11 == 0 then
+  return L11_11
+end
+L11_11(L12_12, L13_13)
+if L11_11 ~= nil then
+  L12_12(L13_13, L14_14)
+  for L16_16, L17_17 in L13_13(L14_14) do
+    for L22_22, L23_23 in L19_19(L20_20) do
+      if L23_23 == L17_17.url then
+      end
+    end
+    if L18_18 == nil then
+      return L19_19
+    end
+    if L20_20 == 2 then
+      L20_20(L21_21, L22_22, L23_23)
+    elseif L20_20 == 3 then
+      L20_20(L21_21, L22_22, L23_23)
+    elseif L20_20 == 4 then
+      L20_20(L21_21, L22_22, L23_23)
+      return L20_20
+    end
+  end
+end
+return L12_12

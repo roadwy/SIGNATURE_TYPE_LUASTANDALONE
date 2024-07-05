@@ -1,30 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_IOAVBrowser 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.IOAVGetDownloadBrowser)()
-if l_0_0 ~= nil then
-  l_0_0 = (string.lower)(l_0_0)
-  if l_0_0 == "utorrent.exe" or l_0_0 == "bittorrent.exe" then
-    (mp.set_mpattribute)("Lua:IOAVBrowserUtorrent")
-  else
-    if l_0_0 == "chrome.exe" then
-      (mp.set_mpattribute)("Lua:IOAVBrowserChrome")
-    else
-      if l_0_0 == "browser_broker.exe" then
-        (mp.set_mpattribute)("Lua:IOAVBrowserEdge")
-      else
-        if l_0_0 == "iexplore.exe" then
-          (mp.set_mpattribute)("Lua:IOAVBrowserIE")
-        else
-          if l_0_0 == "opera.exe" then
-            (mp.set_mpattribute)("Lua:IOAVBrowserOpera")
-          end
-        end
-      end
-    end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.IOAVGetDownloadBrowser
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L0_0 = string.lower(L0_0)
+  if L0_0 == "utorrent.exe" or L0_0 == "bittorrent.exe" then
+    mp.set_mpattribute("Lua:IOAVBrowserUtorrent")
+  elseif L0_0 == "chrome.exe" then
+    mp.set_mpattribute("Lua:IOAVBrowserChrome")
+  elseif L0_0 == "browser_broker.exe" then
+    mp.set_mpattribute("Lua:IOAVBrowserEdge")
+  elseif L0_0 == "iexplore.exe" then
+    mp.set_mpattribute("Lua:IOAVBrowserIE")
+  elseif L0_0 == "opera.exe" then
+    mp.set_mpattribute("Lua:IOAVBrowserOpera")
   end
 end
 return mp.CLEAN
-

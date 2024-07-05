@@ -1,10 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/37783d548e0c 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections == 3 and ((pesecs[1]).SizeOfRawData == 12288 or (pesecs[1]).SizeOfRawData == 16384) then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 3 then
+  L0_0 = pesecs
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.SizeOfRawData
+  if L0_0 ~= 12288 then
+    L0_0 = pesecs
+    L0_0 = L0_0[1]
+    L0_0 = L0_0.SizeOfRawData
+  elseif L0_0 == 16384 then
+    L0_0 = mp
+    L0_0 = L0_0.INFECTED
+    return L0_0
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

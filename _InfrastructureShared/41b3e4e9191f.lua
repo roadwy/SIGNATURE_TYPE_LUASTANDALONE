@@ -1,17 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3e4e9191f 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.utf8p2
   end
-  if not (this_sigattrlog[3]).matched or (this_sigattrlog[3]).utf8p1 == nil or (string.lower)((string.sub)((this_sigattrlog[3]).utf8p1, -11)) == "\\target.lnk" then
-    return mp.CLEAN
-  end
-  return mp.INFECTED
 end
-
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.utf8p1
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L0_0 = L1_1.utf8p1
+  end
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(string.sub(L0_0, -11))
+if L1_1 == "\\target.lnk" then
+  return mp.CLEAN
+end
+return mp.INFECTED

@@ -1,16 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a27860794b05_Flags_1 
-
--- params : ...
--- function num : 0
-local l_0_0 = (hstrlog[3]).matched
-local l_0_1 = (hstrlog[4]).matched
-local l_0_2 = (hstrlog[5]).matched
-local l_0_3 = (l_0_0 and 1 or 0) + (l_0_1 and 1 or 0) + (l_0_2 and 1 or 0)
-if l_0_3 >= 2 then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = hstrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+L2_2 = hstrlog
+L2_2 = L2_2[5]
+L2_2 = L2_2.matched
+if L0_0 then
+  L3_3 = 1
+else
+  L3_3 = L3_3 or 0
+end
+L3_3 = L3_3 + (L1_1 and 1 or 0)
+L3_3 = L3_3 + (L2_2 and 1 or 0)
+if L3_3 >= 2 then
   return mp.SUSPICIOUS
 end
-;
-(mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.AFG")
+mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.AFG")
 return mp.CLEAN
-

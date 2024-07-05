@@ -1,195 +1,283 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_EmlWithEmbeddedPassword_Includes_LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)()
-if (string.find)(l_0_0, "%->%(part000%d:%)", -18) == nil and (string.find)(l_0_0, "->(MSG)", -18, true) == nil then
-  return mp.CLEAN
-end
-local l_0_1 = (mp.getfilesize)()
-if l_0_1 == nil or l_0_1 < 20 then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-local l_0_2 = 4096
-local l_0_3 = (mp.readfile)(0, math_min(l_0_1, l_0_2))
-if l_0_3 == nil then
-  return mp.CLEAN
-end
-local l_0_4 = (string.lower)((string.sub)(l_0_3, 1, math_min(32, l_0_1)))
-if (string.find)(l_0_4, "<html>", 1, true) ~= nil then
-  l_0_3 = (string.gsub)(l_0_3, "<[^>]->", "")
-else
-  if (string.find)(l_0_4, "{\\rtf1\\", 1, true) ~= nil then
-    l_0_3 = (string.gsub)(l_0_3, "{.-}", "")
-    l_0_3 = (string.gsub)(l_0_3, "\\%w+", "")
-    l_0_3 = trim(l_0_3, "%s{}")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = "%->%(part000%d:%)"
+L4_4 = -18
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+if L1_1 == nil then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L3_3 = "->(MSG)"
+  L4_4 = -18
+  L5_5 = true
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if L1_1 == nil then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-local l_0_5 = {}
--- DECOMPILER ERROR at PC159: No list found for R5 , SetList fails
-
--- DECOMPILER ERROR at PC160: Overwrote pending register: R6 in 'AssignReg'
-
--- DECOMPILER ERROR at PC161: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC162: Overwrote pending register: R8 in 'AssignReg'
-
--- DECOMPILER ERROR at PC163: Overwrote pending register: R9 in 'AssignReg'
-
--- DECOMPILER ERROR at PC164: Overwrote pending register: R10 in 'AssignReg'
-
--- DECOMPILER ERROR at PC165: Overwrote pending register: R11 in 'AssignReg'
-
--- DECOMPILER ERROR at PC166: Overwrote pending register: R12 in 'AssignReg'
-
--- DECOMPILER ERROR at PC167: Overwrote pending register: R13 in 'AssignReg'
-
--- DECOMPILER ERROR at PC168: Overwrote pending register: R14 in 'AssignReg'
-
--- DECOMPILER ERROR at PC169: Overwrote pending register: R15 in 'AssignReg'
-
--- DECOMPILER ERROR at PC170: Overwrote pending register: R16 in 'AssignReg'
-
--- DECOMPILER ERROR at PC171: Overwrote pending register: R17 in 'AssignReg'
-
--- DECOMPILER ERROR at PC172: Overwrote pending register: R18 in 'AssignReg'
-
--- DECOMPILER ERROR at PC173: Overwrote pending register: R19 in 'AssignReg'
-
--- DECOMPILER ERROR at PC174: Overwrote pending register: R20 in 'AssignReg'
-
--- DECOMPILER ERROR at PC175: Overwrote pending register: R21 in 'AssignReg'
-
--- DECOMPILER ERROR at PC176: Overwrote pending register: R22 in 'AssignReg'
-
--- DECOMPILER ERROR at PC177: Overwrote pending register: R23 in 'AssignReg'
-
--- DECOMPILER ERROR at PC178: Overwrote pending register: R24 in 'AssignReg'
-
--- DECOMPILER ERROR at PC179: Overwrote pending register: R25 in 'AssignReg'
-
--- DECOMPILER ERROR at PC180: No list found for R5 , SetList fails
-
-local l_0_6 = {}
--- DECOMPILER ERROR at PC182: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC183: Overwrote pending register: R8 in 'AssignReg'
-
--- DECOMPILER ERROR at PC184: Overwrote pending register: R9 in 'AssignReg'
-
--- DECOMPILER ERROR at PC185: Overwrote pending register: R10 in 'AssignReg'
-
--- DECOMPILER ERROR at PC186: Overwrote pending register: R11 in 'AssignReg'
-
--- DECOMPILER ERROR at PC187: Overwrote pending register: R12 in 'AssignReg'
-
--- DECOMPILER ERROR at PC188: Overwrote pending register: R13 in 'AssignReg'
-
--- DECOMPILER ERROR at PC189: Overwrote pending register: R14 in 'AssignReg'
-
--- DECOMPILER ERROR at PC190: Overwrote pending register: R15 in 'AssignReg'
-
--- DECOMPILER ERROR at PC191: Overwrote pending register: R16 in 'AssignReg'
-
--- DECOMPILER ERROR at PC192: No list found for R6 , SetList fails
-
--- DECOMPILER ERROR at PC193: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC195: Overwrote pending register: R8 in 'AssignReg'
-
-local l_0_7 = (("pwd").lower)("pasword")
-local l_0_8 = {}
--- DECOMPILER ERROR at PC198: Overwrote pending register: R9 in 'AssignReg'
-
--- DECOMPILER ERROR at PC199: Overwrote pending register: R10 in 'AssignReg'
-
--- DECOMPILER ERROR at PC200: Overwrote pending register: R11 in 'AssignReg'
-
-for l_0_12 = "code", "key", "credential" do
-  -- DECOMPILER ERROR at PC202: Overwrote pending register: R13 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC204: Overwrote pending register: R14 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC205: Overwrote pending register: R15 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC206: Overwrote pending register: R16 in 'AssignReg'
-
-  local l_0_13, l_0_14 = (("achinsinsi").find)("adgangskode", "contraseña", "contrasenya", true)
-  while 1 do
-    -- DECOMPILER ERROR at PC215: Overwrote pending register: R18 in 'AssignReg'
-
-    if l_0_14 ~= nil then
-      do
-        local l_0_15 = (string.match)(l_0_3, "[%s:-=](%S+)", "cyfrinair")
-        -- DECOMPILER ERROR at PC233: Overwrote pending register: R19 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC268: Overwrote pending register: R15 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC276: Overwrote pending register: R15 in 'AssignReg'
-
-        if ((l_0_15 ~= nil and ((#l_0_15 >= 3 and not (string.match)(l_0_15, "^%p+$")) or l_0_15 ~= nil) and #l_0_15 >= 25) or #l_0_15 < 3 or ((string.sub)(l_0_15, 1, 1) ~= "\"" or (string.sub)(l_0_15, -1) == "\"" or table_hasvalue(l_0_8, l_0_15) == false)) then
-          (table.insert)(l_0_8, l_0_15)
-        end
-        -- DECOMPILER ERROR at PC294: Overwrote pending register: R15 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC309: Overwrote pending register: R15 in 'AssignReg'
-
-        if l_0_15 ~= nil and #l_0_15 < 25 and #l_0_15 > 3 and table_hasvalue(l_0_8, l_0_15) == false then
-          (table.insert)(l_0_8, l_0_15)
-        end
-        -- DECOMPILER ERROR at PC328: Overwrote pending register: R14 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC329: Overwrote pending register: R13 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC330: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC330: LeaveBlock: unexpected jumping out IF_STMT
-
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+if L1_1 == nil or L1_1 < 20 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = 4096
+L3_3 = mp
+L3_3 = L3_3.readfile
+L4_4 = 0
+L5_5 = math_min
+L6_6 = L1_1
+L7_7 = L2_2
+L15_15 = L5_5(L6_6, L7_7)
+L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L5_5(L6_6, L7_7))
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = string
+L4_4 = L4_4.lower
+L5_5 = string
+L5_5 = L5_5.sub
+L6_6 = L3_3
+L7_7 = 1
+L8_8 = math_min
+L15_15 = L8_8(L9_9, L10_10)
+L15_15 = L5_5(L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L8_8(L9_9, L10_10))
+L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L5_5(L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L8_8(L9_9, L10_10)))
+L5_5 = string
+L5_5 = L5_5.find
+L6_6 = L4_4
+L7_7 = "<html>"
+L8_8 = 1
+L5_5 = L5_5(L6_6, L7_7, L8_8, L9_9)
+if L5_5 ~= nil then
+  L5_5 = string
+  L5_5 = L5_5.gsub
+  L6_6 = L3_3
+  L7_7 = "<[^>]->"
+  L8_8 = ""
+  L5_5 = L5_5(L6_6, L7_7, L8_8)
+  L3_3 = L5_5
+else
+  L5_5 = string
+  L5_5 = L5_5.find
+  L6_6 = L4_4
+  L7_7 = "{\\rtf1\\"
+  L8_8 = 1
+  L5_5 = L5_5(L6_6, L7_7, L8_8, L9_9)
+  if L5_5 ~= nil then
+    L5_5 = string
+    L5_5 = L5_5.gsub
+    L6_6 = L3_3
+    L7_7 = "{.-}"
+    L8_8 = ""
+    L5_5 = L5_5(L6_6, L7_7, L8_8)
+    L3_3 = L5_5
+    L5_5 = string
+    L5_5 = L5_5.gsub
+    L6_6 = L3_3
+    L7_7 = "\\%w+"
+    L8_8 = ""
+    L5_5 = L5_5(L6_6, L7_7, L8_8)
+    L3_3 = L5_5
+    L5_5 = trim
+    L6_6 = L3_3
+    L7_7 = "%s{}"
+    L5_5 = L5_5(L6_6, L7_7)
+    L3_3 = L5_5
+  end
+end
+L5_5 = {
+  L6_6,
+  L7_7,
+  L8_8,
+  L9_9,
+  L10_10,
+  L11_11,
+  L12_12,
+  L13_13,
+  L14_14,
+  L15_15,
+  "contrasenya",
+  "contrasinal",
+  "cyfrinair",
+  "fjal\195\171kalim",
+  "faire",
+  "clave",
+  "geslo",
+  "has\197\130o",
+  "heslo",
+  "iphasiwedi",
+  "jelsz\195\179",
+  "sirri",
+  "kata",
+  "kupuhipa",
+  "zais",
+  "l\195\182senord",
+  "lozinka",
+  "lykilor\195\176",
+  "kh\225\186\169u",
+  "modpas",
+  "\225\187\157r\225\187\157igbaniw\225\187\157le",
+  "parol",
+  "parool",
+  "pasahitza",
+  "pasvorto",
+  "pasw\225\187\157\225\187\157d\225\187\165",
+  "phasewete",
+  "salasana",
+  "sandi",
+  "slapta\197\190odis",
+  "tenimiafina",
+  "wachtwoord",
+  "wagwoord",
+  "\207\128\207\157\207\140\207\131\206\178\206\177\207\131\206\183\207\130",
+  "\208\179\209\131\208\183\208\176\209\128\208\178\208\190\208\182\208\176",
+  "\208\187\208\190\208\183\208\184\208\189\208\186\208\176",
+  "\208\189\209\131\209\131\209\134",
+  "\208\191\208\176\209\128\208\190\208\187\208\176",
+  "\208\191\208\176\209\128\208\190\208\187\209\140",
+  "\213\163\213\161\213\178\213\191\213\182\213\161\213\162\213\161\213\188",
+  L6_6,
+  L7_7,
+  L8_8,
+  L9_9,
+  L10_10,
+  L11_11,
+  L12_12,
+  L13_13,
+  L14_14,
+  L15_15,
+  "\224\176\170\224\176\190\224\176\184\224\177\157\224\176\181\224\176\176\224\177\157\224\176\161\224\177\157",
+  "\224\178\170\224\178\190\224\178\184\224\179\157\224\178\181\224\178\176\224\179\157\224\178\161\224\179\157",
+  "\224\182\184\224\183\148\224\182\187\224\182\180\224\182\175\224\182\186",
+  "\224\184\163\224\184\171\224\184\177\224\184\170\224\184\156\224\185\136\224\184\178\224\184\153",
+  "\225\128\133\225\128\128\225\128\172\225\128\184\225\128\157\225\128\190\225\128\128\225\128\186\225\128\128\225\128\173\225\128\175",
+  "\224\186\165\224\186\176\224\186\171\224\186\177\224\186\148\224\186\156\224\187\136\224\186\178\224\186\153",
+  "\225\158\128\225\158\182\225\158\154\225\158\150\225\158\182\225\158\128\225\159\146\225\158\153\225\158\159\225\158\152\225\159\146\225\158\132\225\158\182\225\158\157\225\159\139",
+  "\236\149\148\237\152\184",
+  "\229\175\134\231\160\157",
+  "\229\175\134\231\162\188"
+}
+L6_6 = "pass"
+L7_7 = "pwd"
+L8_8 = "pasword"
+L14_14 = "adgangskode"
+L15_15 = "contrase\195\177a"
+L6_6 = "\225\131\147\225\131\157\225\131\146\225\131\157\225\131\149\225\131\152\225\131\172\225\131\167\225\131\147\225\131\157\225\131\151"
+L7_7 = "\227\131\145\227\130\185\227\131\175\227\131\188\227\131\137"
+L8_8 = "\215\161\215\153\215\161\215\158\215\148"
+L14_14 = "\224\170\170\224\170\190\224\170\184\224\170\181\224\170\176\224\171\157\224\170\161"
+L15_15 = "\224\174\149\224\174\159\224\174\181\224\175\157\224\174\154\224\175\157\224\174\154\224\175\134\224\174\190\224\174\178\224\175\157"
+L6_6 = {
+  L7_7,
+  L8_8,
+  L9_9,
+  L10_10,
+  L11_11,
+  L12_12,
+  L13_13,
+  L14_14,
+  L15_15,
+  "mailto"
+}
+L7_7 = "protected"
+L8_8 = "archivo"
+L14_14 = "https://"
+L15_15 = "saludos"
+L7_7 = string
+L7_7 = L7_7.lower
+L8_8 = L3_3
+L7_7 = L7_7(L8_8)
+L8_8 = {}
+for L12_12 = 1, #L5_5 do
+  L14_14 = L7_7
+  L15_15 = L5_5[L12_12]
+  L14_14 = L13_13(L14_14, L15_15, 1, true)
+  while L14_14 ~= nil do
+    L15_15 = string
+    L15_15 = L15_15.match
+    L15_15 = L15_15(L3_3, "[%s:-=](%S+)", L14_14 + 1)
+    if L15_15 ~= nil and (#L15_15 < 3 or string.match(L15_15, "^%p+$")) then
+      L14_14, L15_15 = string.find(L3_3, "%s+%S+%s+(%S+)", L14_14 + 1, false)
+    end
+    if L15_15 ~= nil and #L15_15 < 25 and #L15_15 >= 3 then
+      if string.sub(L15_15, 1, 1) == "\"" and string.sub(L15_15, -1) ~= "\"" then
+        L15_15 = string.match(L3_3, "\"(.-)\"", L14_14 + 1)
+      else
+        L15_15 = string.gsub(L15_15, "\"", "")
+      end
+      if table_hasvalue(L8_8, L15_15) == false then
+        table.insert(L8_8, L15_15)
+      end
+    end
+    L15_15 = string.match(L3_3, "[\r\n]+%s*(%S+)%s*[\r\n]", L14_14 + 1)
+    if L15_15 ~= nil and #L15_15 < 25 and #L15_15 > 3 then
+      L15_15 = string.gsub(L15_15, "\"", "")
+      if table_hasvalue(L8_8, L15_15) == false then
+        table.insert(L8_8, L15_15)
+      end
+    end
+    L14_14 = string.find(L7_7, L5_5[L12_12], L14_14 + 1, true)
+  end
+end
+for L12_12 in L9_9(L10_10, L11_11) do
+  L14_14 = L8_8
+  L15_15 = L12_12
+  if L13_13 == false then
+    if L13_13 >= 3 then
+      if L13_13 < 25 then
+        L14_14 = L8_8
+        L15_15 = L12_12
+        L13_13(L14_14, L15_15)
       end
     end
   end
 end
-for l_0_19 in (string.gmatch)(l_0_3, "[:=%-]+%s*\"([^\"]+)\"%s*[\r\n]") do
-  -- DECOMPILER ERROR at PC338: Overwrote pending register: R13 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC339: Overwrote pending register: R14 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC340: Overwrote pending register: R15 in 'AssignReg'
-
-  if l_0_13(l_0_14, l_0_15) == false and #l_0_19 >= 3 and #l_0_19 < 25 then
-    (table.insert)(l_0_8, l_0_19)
-  end
-end
-for l_0_23 in (string.gmatch)(l_0_3, "[:=%-]+%s*(%S+)%s*[\r\n]") do
-  if table_hasvalue(l_0_8, l_0_23) == false and #l_0_23 >= 3 and #l_0_23 < 25 then
-    (table.insert)(l_0_8, l_0_23)
-  end
-end
-local l_0_24 = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  for l_1_5,l_1_6 in ipairs(l_1_1) do
-    if (string.find)(l_1_0, l_1_6, 1, true) then
-      return true
+for L12_12 in L9_9(L10_10, L11_11) do
+  L14_14 = L8_8
+  L15_15 = L12_12
+  if L13_13 == false then
+    if L13_13 >= 3 then
+      if L13_13 < 25 then
+        L14_14 = L8_8
+        L15_15 = L12_12
+        L13_13(L14_14, L15_15)
+      end
     end
   end
-  return false
 end
-
-do
-  local l_0_25 = {}
-  for l_0_29 = 1, #l_0_8 do
-    if not l_0_24((string.lower)(l_0_8[l_0_29]), l_0_6) then
-      (table.insert)(l_0_25, l_0_8[l_0_29])
-    end
+for L14_14 = 1, #L8_8 do
+  L15_15 = L9_9
+  L15_15 = L15_15(string.lower(L8_8[L14_14]), L6_6)
+  if not L15_15 then
+    L15_15 = string
+    L15_15 = L15_15.gsub
+    L15_15 = L15_15(L8_8[L14_14], "([;'])", "\\%1")
+    L8_8[L14_14] = L15_15
+    L15_15 = table
+    L15_15 = L15_15.insert
+    L15_15(L10_10, L8_8[L14_14])
   end
-  if #l_0_25 > 0 then
-    (mp.set_mpattribute)("//MpArchivePasswords=" .. (table.concat)(l_0_25, ";", 1, math_min(#l_0_25, 10)))
-    return mp.INFECTED
-  end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+if L11_11 > 0 then
+  L14_14 = L10_10
+  L15_15 = ";"
+  L11_11(L12_12)
+  return L11_11
+end
+return L11_11

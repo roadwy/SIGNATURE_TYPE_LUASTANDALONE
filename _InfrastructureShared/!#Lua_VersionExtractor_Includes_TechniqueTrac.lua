@@ -1,45 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VersionExtractor_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) then
-  local l_0_0 = (mp.getfilename)()
-  local l_0_1 = ((MpCommon.GetPersistContext)(l_0_0))
-  local l_0_2, l_0_3, l_0_4 = nil, nil, nil
-  if l_0_1 ~= nil then
-    for l_0_8,l_0_9 in ipairs(l_0_1) do
-      local l_0_10 = (string.match)(l_0_9, "^AppName:([%w%.]+)$")
-      if l_0_10 ~= nil then
-        l_0_2 = l_0_10
-      end
-      l_0_10 = (string.match)(l_0_9, "^AppVersion:([%w%.]+)$")
-      if l_0_10 ~= nil then
-        l_0_3 = l_0_10
-      end
-      l_0_10 = (string.match)(l_0_9, "^AppVersionStr:([%w%.]+)$")
-      if l_0_10 ~= nil then
-        l_0_4 = l_0_10
-      end
-    end
-  end
-  do
-    if l_0_2 == nil then
-      return mp.CLEAN
-    end
-    local l_0_11 = "app_version_" .. l_0_2
-    local l_0_12 = 31536000
-    do
-      local l_0_13 = 50
-      if l_0_3 ~= nil then
-        AppendToRollingQueue(l_0_11, l_0_0, l_0_3, l_0_12, l_0_13)
-      else
-        if l_0_4 ~= nil then
-          AppendToRollingQueue(l_0_11, l_0_0, l_0_4, l_0_12, l_0_13)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.getfilename
+    L0_0 = L0_0()
+    L1_1 = MpCommon
+    L1_1 = L1_1.GetPersistContext
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2)
+    L2_2, L3_3, L4_4 = nil, nil, nil
+    if L1_1 ~= nil then
+      for L8_8, L9_9 in L5_5(L6_6) do
+        L10_10 = string
+        L10_10 = L10_10.match
+        L10_10 = L10_10(L9_9, "^AppName:([%w%.]+)$")
+        if L10_10 ~= nil then
+          L2_2 = L10_10
+        end
+        L10_10 = string.match(L9_9, "^AppVersion:([%w%.]+)$")
+        if L10_10 ~= nil then
+          L3_3 = L10_10
+        end
+        L10_10 = string.match(L9_9, "^AppVersionStr:([%w%.]+)$")
+        if L10_10 ~= nil then
+          L4_4 = L10_10
         end
       end
-      return mp.INFECTED
+    end
+    if L2_2 == nil then
+      return L5_5
+    end
+    if L3_3 ~= nil then
+      L8_8 = AppendToRollingQueue
+      L9_9 = L5_5
+      L10_10 = L0_0
+      L8_8(L9_9, L10_10, L3_3, L6_6, L7_7)
+    elseif L4_4 ~= nil then
+      L8_8 = AppendToRollingQueue
+      L9_9 = L5_5
+      L10_10 = L0_0
+      L8_8(L9_9, L10_10, L4_4, L6_6, L7_7)
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

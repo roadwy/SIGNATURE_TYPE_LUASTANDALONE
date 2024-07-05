@@ -1,42 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75b30c854b45 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1, l_0_2 = (bm.get_process_relationships)()
-if l_0_1 ~= nil then
-  for l_0_6,l_0_7 in ipairs(l_0_1) do
-    if l_0_7.image_path ~= nil and l_0_7.reason == bm.RELATIONSHIP_INJECTION then
-      local l_0_8 = (string.lower)((MpCommon.PathToWin32Path)(l_0_7.image_path))
-      if (string.find)(l_0_8, "\\comodo internet security\\cavwp.exe", -35, true) or (string.find)(l_0_8, "\\hummingheads\\securityplatform\\bkhost.exe", -41, true) then
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L2_2 = L1_1()
+if L1_1 ~= nil then
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = L7_7.image_path
+    if L8_8 ~= nil then
+      L8_8 = L7_7.reason
+      if L8_8 == bm.RELATIONSHIP_INJECTION then
+        L8_8 = string
+        L8_8 = L8_8.lower
+        L8_8 = L8_8(MpCommon.PathToWin32Path(L7_7.image_path))
+        if string.find(L8_8, "\\comodo internet security\\cavwp.exe", -35, true) or string.find(L8_8, "\\hummingheads\\securityplatform\\bkhost.exe", -41, true) then
+          return mp.CLEAN
+        end
       end
     end
   end
 end
-do
-  if l_0_2 ~= nil then
-    for l_0_12,l_0_13 in ipairs(l_0_2) do
-      if l_0_13.image_path ~= nil and l_0_13.reason == bm.RELATIONSHIP_INJECTION then
-        local l_0_14 = (string.lower)((MpCommon.PathToWin32Path)(l_0_13.image_path))
-        if (string.find)(l_0_14, "\\acrord32.exe", -13, true) or (string.find)(l_0_14, "\\adobearm.exe", -13, true) or (string.find)(l_0_14, "\\comodo internet security\\cavwp.exe", -35, true) or (string.find)(l_0_14, "\\acrobat reader dc\\reader\\reader_sl.exe", -39, true) or (string.find)(l_0_14, "\\hummingheads\\securityplatform\\bkhost.exe", -41, true) or (string.find)(l_0_14, "\\rdrcef.exe", -11, true) then
+if L2_2 ~= nil then
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = L7_7.image_path
+    if L8_8 ~= nil then
+      L8_8 = L7_7.reason
+      if L8_8 == bm.RELATIONSHIP_INJECTION then
+        L8_8 = string
+        L8_8 = L8_8.lower
+        L8_8 = L8_8(MpCommon.PathToWin32Path(L7_7.image_path))
+        if string.find(L8_8, "\\acrord32.exe", -13, true) or string.find(L8_8, "\\adobearm.exe", -13, true) or string.find(L8_8, "\\comodo internet security\\cavwp.exe", -35, true) or string.find(L8_8, "\\acrobat reader dc\\reader\\reader_sl.exe", -39, true) or string.find(L8_8, "\\hummingheads\\securityplatform\\bkhost.exe", -41, true) or string.find(L8_8, "\\rdrcef.exe", -11, true) then
           return mp.CLEAN
         end
-        local l_0_15 = (MpCommon.GetProcessElevationAndIntegrityLevel)(l_0_13.ppid)
-        if l_0_0.integrity_level < l_0_15.IntegrityLevel then
-          (bm.request_SMS)(l_0_13.ppid, "l+")
-          ;
-          (bm.add_action)("SmsAsyncScanEvent", 1)
-          ;
-          (bm.trigger_sig)("Arya", "Acrord32")
+        if MpCommon.GetProcessElevationAndIntegrityLevel(L7_7.ppid).IntegrityLevel > L0_0.integrity_level then
+          bm.request_SMS(L7_7.ppid, "l+")
+          bm.add_action("SmsAsyncScanEvent", 1)
+          bm.trigger_sig("Arya", "Acrord32")
           return mp.INFECTED
         end
       end
     end
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+return L3_3

@@ -1,36 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SIGATTR_RegOpenKeyBailOut 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.get_postemu_sigattr_log_tail_size)()
-for l_0_4 = l_0_0, 1, -1 do
-  local l_0_5 = (pe.get_postemu_sigattr_log_tail)(l_0_4)
-  if l_0_5.attribute ~= 12305 and l_0_5.attribute ~= 12363 then
-    if l_0_5.attribute == 12300 then
-      local l_0_6 = l_0_5.p1
-      if (string.sub)(l_0_6, 1, (string.len)("SOFTWARE\\Microsoft\\VBA\\Monitors")) == "SOFTWARE\\Microsoft\\VBA\\Monitors" then
-        return mp.CLEAN
-      end
-      return mp.INFECTED
-    else
-      do
-        do
-          do return mp.CLEAN end
-          -- DECOMPILER ERROR at PC42: LeaveBlock: unexpected jumping out DO_STMT
-
-          -- DECOMPILER ERROR at PC42: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-          -- DECOMPILER ERROR at PC42: LeaveBlock: unexpected jumping out IF_STMT
-
-          -- DECOMPILER ERROR at PC42: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-          -- DECOMPILER ERROR at PC42: LeaveBlock: unexpected jumping out IF_STMT
-
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = pe
+L0_0 = L0_0.get_postemu_sigattr_log_tail_size
+L0_0 = L0_0()
+for L4_4 = L0_0, 1, -1 do
+  L5_5 = pe
+  L5_5 = L5_5.get_postemu_sigattr_log_tail
+  L6_6 = L4_4
+  L5_5 = L5_5(L6_6)
+  L6_6 = L5_5.attribute
+  if L6_6 ~= 12305 then
+    L6_6 = L5_5.attribute
+    if L6_6 ~= 12363 then
+      L6_6 = L5_5.attribute
+      if L6_6 == 12300 then
+        L6_6 = L5_5.p1
+        if string.sub(L6_6, 1, string.len("SOFTWARE\\Microsoft\\VBA\\Monitors")) == "SOFTWARE\\Microsoft\\VBA\\Monitors" then
+          return mp.CLEAN
         end
+        return mp.INFECTED
+      else
+        L6_6 = mp
+        L6_6 = L6_6.CLEAN
+        return L6_6
       end
     end
   end
 end
-return mp.CLEAN
-
+return L1_1

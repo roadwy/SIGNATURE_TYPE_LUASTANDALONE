@@ -1,137 +1,420 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/271b32d566cfd 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-      local l_0_1 = (this_sigattrlog[2]).utf8p2
-    else
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
     end
-    -- DECOMPILER ERROR at PC68: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if (not (this_sigattrlog[4]).matched or (this_sigattrlog[4]).utf8p2 == nil or (this_sigattrlog[5]).matched) and (this_sigattrlog[5]).utf8p2 ~= nil then
-        local l_0_2 = (this_sigattrlog[4]).utf8p2
-      else
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
       end
-      -- DECOMPILER ERROR at PC96: Overwrote pending register: R0 in 'AssignReg'
-
-      do
-        if (not (this_sigattrlog[6]).matched or (this_sigattrlog[6]).utf8p2 == nil or (this_sigattrlog[7]).matched) and (this_sigattrlog[7]).utf8p2 ~= nil then
-          local l_0_3 = (this_sigattrlog[6]).utf8p2
-        else
+    else
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[4]
+          L0_0 = L1_1.utf8p2
         end
-        -- DECOMPILER ERROR at PC124: Overwrote pending register: R0 in 'AssignReg'
-
-        do
-          if (not (this_sigattrlog[8]).matched or (this_sigattrlog[8]).utf8p2 == nil or (this_sigattrlog[9]).matched) and (this_sigattrlog[9]).utf8p2 ~= nil then
-            local l_0_4 = (this_sigattrlog[8]).utf8p2
-          else
+      else
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.utf8p2
+          if L1_1 ~= nil then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[5]
+            L0_0 = L1_1.utf8p2
           end
-          -- DECOMPILER ERROR at PC152: Overwrote pending register: R0 in 'AssignReg'
-
-          do
-            if (not (this_sigattrlog[10]).matched or (this_sigattrlog[10]).utf8p2 == nil or (this_sigattrlog[11]).matched) and (this_sigattrlog[11]).utf8p2 ~= nil then
-              local l_0_5 = (this_sigattrlog[10]).utf8p2
-            else
+        else
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[6]
+            L1_1 = L1_1.utf8p2
+            if L1_1 ~= nil then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[6]
+              L0_0 = L1_1.utf8p2
             end
-            -- DECOMPILER ERROR at PC180: Overwrote pending register: R0 in 'AssignReg'
-
-            do
-              if (not (this_sigattrlog[12]).matched or (this_sigattrlog[12]).utf8p2 == nil or (this_sigattrlog[13]).matched) and (this_sigattrlog[13]).utf8p2 ~= nil then
-                local l_0_6 = (this_sigattrlog[12]).utf8p2
-              else
+          else
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[7]
+            L1_1 = L1_1.matched
+            if L1_1 then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[7]
+              L1_1 = L1_1.utf8p2
+              if L1_1 ~= nil then
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[7]
+                L0_0 = L1_1.utf8p2
               end
-              -- DECOMPILER ERROR at PC208: Overwrote pending register: R0 in 'AssignReg'
-
-              do
-                if (not (this_sigattrlog[14]).matched or (this_sigattrlog[14]).utf8p2 == nil or (this_sigattrlog[15]).matched) and (this_sigattrlog[15]).utf8p2 ~= nil then
-                  local l_0_7 = (this_sigattrlog[14]).utf8p2
-                else
+            else
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[8]
+              L1_1 = L1_1.matched
+              if L1_1 then
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[8]
+                L1_1 = L1_1.utf8p2
+                if L1_1 ~= nil then
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[8]
+                  L0_0 = L1_1.utf8p2
                 end
-                -- DECOMPILER ERROR at PC236: Overwrote pending register: R0 in 'AssignReg'
-
-                do
-                  if (not (this_sigattrlog[16]).matched or (this_sigattrlog[16]).utf8p2 == nil or (this_sigattrlog[17]).matched) and (this_sigattrlog[17]).utf8p2 ~= nil then
-                    local l_0_8 = (this_sigattrlog[16]).utf8p2
-                  else
+              else
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[9]
+                L1_1 = L1_1.matched
+                if L1_1 then
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[9]
+                  L1_1 = L1_1.utf8p2
+                  if L1_1 ~= nil then
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[9]
+                    L0_0 = L1_1.utf8p2
                   end
-                  -- DECOMPILER ERROR at PC264: Overwrote pending register: R0 in 'AssignReg'
-
-                  do
-                    if (not (this_sigattrlog[18]).matched or (this_sigattrlog[18]).utf8p2 == nil or (this_sigattrlog[19]).matched) and (this_sigattrlog[19]).utf8p2 ~= nil then
-                      local l_0_9 = (this_sigattrlog[18]).utf8p2
-                    else
+                else
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[10]
+                  L1_1 = L1_1.matched
+                  if L1_1 then
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[10]
+                    L1_1 = L1_1.utf8p2
+                    if L1_1 ~= nil then
+                      L1_1 = this_sigattrlog
+                      L1_1 = L1_1[10]
+                      L0_0 = L1_1.utf8p2
                     end
-                    -- DECOMPILER ERROR at PC292: Overwrote pending register: R0 in 'AssignReg'
-
-                    do
-                      if (not (this_sigattrlog[20]).matched or (this_sigattrlog[20]).utf8p2 == nil or (this_sigattrlog[21]).matched) and (this_sigattrlog[21]).utf8p2 ~= nil then
-                        local l_0_10 = (this_sigattrlog[20]).utf8p2
-                      else
+                  else
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[11]
+                    L1_1 = L1_1.matched
+                    if L1_1 then
+                      L1_1 = this_sigattrlog
+                      L1_1 = L1_1[11]
+                      L1_1 = L1_1.utf8p2
+                      if L1_1 ~= nil then
+                        L1_1 = this_sigattrlog
+                        L1_1 = L1_1[11]
+                        L0_0 = L1_1.utf8p2
                       end
-                      -- DECOMPILER ERROR at PC320: Overwrote pending register: R0 in 'AssignReg'
-
-                      do
-                        if (not (this_sigattrlog[22]).matched or (this_sigattrlog[22]).utf8p2 == nil or (this_sigattrlog[23]).matched) and (this_sigattrlog[23]).utf8p2 ~= nil then
-                          local l_0_11 = (this_sigattrlog[22]).utf8p2
-                        else
+                    else
+                      L1_1 = this_sigattrlog
+                      L1_1 = L1_1[12]
+                      L1_1 = L1_1.matched
+                      if L1_1 then
+                        L1_1 = this_sigattrlog
+                        L1_1 = L1_1[12]
+                        L1_1 = L1_1.utf8p2
+                        if L1_1 ~= nil then
+                          L1_1 = this_sigattrlog
+                          L1_1 = L1_1[12]
+                          L0_0 = L1_1.utf8p2
                         end
-                        -- DECOMPILER ERROR at PC348: Overwrote pending register: R0 in 'AssignReg'
-
-                        do
-                          if (not (this_sigattrlog[24]).matched or (this_sigattrlog[24]).utf8p2 == nil or (this_sigattrlog[25]).matched) and (this_sigattrlog[25]).utf8p2 ~= nil then
-                            local l_0_12 = (this_sigattrlog[24]).utf8p2
-                          else
+                      else
+                        L1_1 = this_sigattrlog
+                        L1_1 = L1_1[13]
+                        L1_1 = L1_1.matched
+                        if L1_1 then
+                          L1_1 = this_sigattrlog
+                          L1_1 = L1_1[13]
+                          L1_1 = L1_1.utf8p2
+                          if L1_1 ~= nil then
+                            L1_1 = this_sigattrlog
+                            L1_1 = L1_1[13]
+                            L0_0 = L1_1.utf8p2
                           end
-                          -- DECOMPILER ERROR at PC376: Overwrote pending register: R0 in 'AssignReg'
-
-                          do
-                            if (not (this_sigattrlog[26]).matched or (this_sigattrlog[26]).utf8p2 == nil or (this_sigattrlog[27]).matched) and (this_sigattrlog[27]).utf8p2 ~= nil then
-                              local l_0_13 = (this_sigattrlog[26]).utf8p2
-                            else
+                        else
+                          L1_1 = this_sigattrlog
+                          L1_1 = L1_1[14]
+                          L1_1 = L1_1.matched
+                          if L1_1 then
+                            L1_1 = this_sigattrlog
+                            L1_1 = L1_1[14]
+                            L1_1 = L1_1.utf8p2
+                            if L1_1 ~= nil then
+                              L1_1 = this_sigattrlog
+                              L1_1 = L1_1[14]
+                              L0_0 = L1_1.utf8p2
                             end
-                            -- DECOMPILER ERROR at PC404: Overwrote pending register: R0 in 'AssignReg'
-
-                            do
-                              if (not (this_sigattrlog[28]).matched or (this_sigattrlog[28]).utf8p2 == nil or (this_sigattrlog[29]).matched) and (this_sigattrlog[29]).utf8p2 ~= nil then
-                                local l_0_14 = (this_sigattrlog[28]).utf8p2
-                              else
+                          else
+                            L1_1 = this_sigattrlog
+                            L1_1 = L1_1[15]
+                            L1_1 = L1_1.matched
+                            if L1_1 then
+                              L1_1 = this_sigattrlog
+                              L1_1 = L1_1[15]
+                              L1_1 = L1_1.utf8p2
+                              if L1_1 ~= nil then
+                                L1_1 = this_sigattrlog
+                                L1_1 = L1_1[15]
+                                L0_0 = L1_1.utf8p2
                               end
-                              -- DECOMPILER ERROR at PC432: Overwrote pending register: R0 in 'AssignReg'
-
-                              do
-                                if (not (this_sigattrlog[30]).matched or (this_sigattrlog[30]).utf8p2 == nil or (this_sigattrlog[31]).matched) and (this_sigattrlog[31]).utf8p2 ~= nil then
-                                  local l_0_15, l_0_16 = (this_sigattrlog[30]).utf8p2
+                            else
+                              L1_1 = this_sigattrlog
+                              L1_1 = L1_1[16]
+                              L1_1 = L1_1.matched
+                              if L1_1 then
+                                L1_1 = this_sigattrlog
+                                L1_1 = L1_1[16]
+                                L1_1 = L1_1.utf8p2
+                                if L1_1 ~= nil then
+                                  L1_1 = this_sigattrlog
+                                  L1_1 = L1_1[16]
+                                  L0_0 = L1_1.utf8p2
                                 end
-                                -- DECOMPILER ERROR at PC433: Confused about usage of register: R0 in 'UnsetPending'
-
-                                -- DECOMPILER ERROR at PC437: Confused about usage of register: R0 in 'UnsetPending'
-
-                                if l_0_15 ~= nil then
-                                  local l_0_17 = nil
-                                  for l_0_21,l_0_22 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_15)) do
-                                    local l_0_18 = nil
-                                    -- DECOMPILER ERROR at PC445: Confused about usage of register: R6 in 'UnsetPending'
-
-                                    R6_PC445 = (mp.ContextualExpandEnvironmentVariables)(R6_PC445)
-                                    if (sysio.IsFileExists)(R6_PC445) then
-                                      (bm.add_related_file)(R6_PC445)
+                              else
+                                L1_1 = this_sigattrlog
+                                L1_1 = L1_1[17]
+                                L1_1 = L1_1.matched
+                                if L1_1 then
+                                  L1_1 = this_sigattrlog
+                                  L1_1 = L1_1[17]
+                                  L1_1 = L1_1.utf8p2
+                                  if L1_1 ~= nil then
+                                    L1_1 = this_sigattrlog
+                                    L1_1 = L1_1[17]
+                                    L0_0 = L1_1.utf8p2
+                                  end
+                                else
+                                  L1_1 = this_sigattrlog
+                                  L1_1 = L1_1[18]
+                                  L1_1 = L1_1.matched
+                                  if L1_1 then
+                                    L1_1 = this_sigattrlog
+                                    L1_1 = L1_1[18]
+                                    L1_1 = L1_1.utf8p2
+                                    if L1_1 ~= nil then
+                                      L1_1 = this_sigattrlog
+                                      L1_1 = L1_1[18]
+                                      L0_0 = L1_1.utf8p2
+                                    end
+                                  else
+                                    L1_1 = this_sigattrlog
+                                    L1_1 = L1_1[19]
+                                    L1_1 = L1_1.matched
+                                    if L1_1 then
+                                      L1_1 = this_sigattrlog
+                                      L1_1 = L1_1[19]
+                                      L1_1 = L1_1.utf8p2
+                                      if L1_1 ~= nil then
+                                        L1_1 = this_sigattrlog
+                                        L1_1 = L1_1[19]
+                                        L0_0 = L1_1.utf8p2
+                                      end
+                                    else
+                                      L1_1 = this_sigattrlog
+                                      L1_1 = L1_1[20]
+                                      L1_1 = L1_1.matched
+                                      if L1_1 then
+                                        L1_1 = this_sigattrlog
+                                        L1_1 = L1_1[20]
+                                        L1_1 = L1_1.utf8p2
+                                        if L1_1 ~= nil then
+                                          L1_1 = this_sigattrlog
+                                          L1_1 = L1_1[20]
+                                          L0_0 = L1_1.utf8p2
+                                        end
+                                      else
+                                        L1_1 = this_sigattrlog
+                                        L1_1 = L1_1[21]
+                                        L1_1 = L1_1.matched
+                                        if L1_1 then
+                                          L1_1 = this_sigattrlog
+                                          L1_1 = L1_1[21]
+                                          L1_1 = L1_1.utf8p2
+                                          if L1_1 ~= nil then
+                                            L1_1 = this_sigattrlog
+                                            L1_1 = L1_1[21]
+                                            L0_0 = L1_1.utf8p2
+                                          end
+                                        else
+                                          L1_1 = this_sigattrlog
+                                          L1_1 = L1_1[22]
+                                          L1_1 = L1_1.matched
+                                          if L1_1 then
+                                            L1_1 = this_sigattrlog
+                                            L1_1 = L1_1[22]
+                                            L1_1 = L1_1.utf8p2
+                                            if L1_1 ~= nil then
+                                              L1_1 = this_sigattrlog
+                                              L1_1 = L1_1[22]
+                                              L0_0 = L1_1.utf8p2
+                                            end
+                                          else
+                                            L1_1 = this_sigattrlog
+                                            L1_1 = L1_1[23]
+                                            L1_1 = L1_1.matched
+                                            if L1_1 then
+                                              L1_1 = this_sigattrlog
+                                              L1_1 = L1_1[23]
+                                              L1_1 = L1_1.utf8p2
+                                              if L1_1 ~= nil then
+                                                L1_1 = this_sigattrlog
+                                                L1_1 = L1_1[23]
+                                                L0_0 = L1_1.utf8p2
+                                              end
+                                            else
+                                              L1_1 = this_sigattrlog
+                                              L1_1 = L1_1[24]
+                                              L1_1 = L1_1.matched
+                                              if L1_1 then
+                                                L1_1 = this_sigattrlog
+                                                L1_1 = L1_1[24]
+                                                L1_1 = L1_1.utf8p2
+                                                if L1_1 ~= nil then
+                                                  L1_1 = this_sigattrlog
+                                                  L1_1 = L1_1[24]
+                                                  L0_0 = L1_1.utf8p2
+                                                end
+                                              else
+                                                L1_1 = this_sigattrlog
+                                                L1_1 = L1_1[25]
+                                                L1_1 = L1_1.matched
+                                                if L1_1 then
+                                                  L1_1 = this_sigattrlog
+                                                  L1_1 = L1_1[25]
+                                                  L1_1 = L1_1.utf8p2
+                                                  if L1_1 ~= nil then
+                                                    L1_1 = this_sigattrlog
+                                                    L1_1 = L1_1[25]
+                                                    L0_0 = L1_1.utf8p2
+                                                  end
+                                                else
+                                                  L1_1 = this_sigattrlog
+                                                  L1_1 = L1_1[26]
+                                                  L1_1 = L1_1.matched
+                                                  if L1_1 then
+                                                    L1_1 = this_sigattrlog
+                                                    L1_1 = L1_1[26]
+                                                    L1_1 = L1_1.utf8p2
+                                                    if L1_1 ~= nil then
+                                                      L1_1 = this_sigattrlog
+                                                      L1_1 = L1_1[26]
+                                                      L0_0 = L1_1.utf8p2
+                                                    end
+                                                  else
+                                                    L1_1 = this_sigattrlog
+                                                    L1_1 = L1_1[27]
+                                                    L1_1 = L1_1.matched
+                                                    if L1_1 then
+                                                      L1_1 = this_sigattrlog
+                                                      L1_1 = L1_1[27]
+                                                      L1_1 = L1_1.utf8p2
+                                                      if L1_1 ~= nil then
+                                                        L1_1 = this_sigattrlog
+                                                        L1_1 = L1_1[27]
+                                                        L0_0 = L1_1.utf8p2
+                                                      end
+                                                    else
+                                                      L1_1 = this_sigattrlog
+                                                      L1_1 = L1_1[28]
+                                                      L1_1 = L1_1.matched
+                                                      if L1_1 then
+                                                        L1_1 = this_sigattrlog
+                                                        L1_1 = L1_1[28]
+                                                        L1_1 = L1_1.utf8p2
+                                                        if L1_1 ~= nil then
+                                                          L1_1 = this_sigattrlog
+                                                          L1_1 = L1_1[28]
+                                                          L0_0 = L1_1.utf8p2
+                                                        end
+                                                      else
+                                                        L1_1 = this_sigattrlog
+                                                        L1_1 = L1_1[29]
+                                                        L1_1 = L1_1.matched
+                                                        if L1_1 then
+                                                          L1_1 = this_sigattrlog
+                                                          L1_1 = L1_1[29]
+                                                          L1_1 = L1_1.utf8p2
+                                                          if L1_1 ~= nil then
+                                                            L1_1 = this_sigattrlog
+                                                            L1_1 = L1_1[29]
+                                                            L0_0 = L1_1.utf8p2
+                                                          end
+                                                        else
+                                                          L1_1 = this_sigattrlog
+                                                          L1_1 = L1_1[30]
+                                                          L1_1 = L1_1.matched
+                                                          if L1_1 then
+                                                            L1_1 = this_sigattrlog
+                                                            L1_1 = L1_1[30]
+                                                            L1_1 = L1_1.utf8p2
+                                                            if L1_1 ~= nil then
+                                                              L1_1 = this_sigattrlog
+                                                              L1_1 = L1_1[30]
+                                                              L0_0 = L1_1.utf8p2
+                                                            end
+                                                          else
+                                                            L1_1 = this_sigattrlog
+                                                            L1_1 = L1_1[31]
+                                                            L1_1 = L1_1.matched
+                                                            if L1_1 then
+                                                              L1_1 = this_sigattrlog
+                                                              L1_1 = L1_1[31]
+                                                              L1_1 = L1_1.utf8p2
+                                                              if L1_1 ~= nil then
+                                                                L1_1 = this_sigattrlog
+                                                                L1_1 = L1_1[31]
+                                                                L0_0 = L1_1.utf8p2
+                                                              end
+                                                            end
+                                                          end
+                                                        end
+                                                      end
+                                                    end
+                                                  end
+                                                end
+                                              end
+                                            end
+                                          end
+                                        end
+                                      end
                                     end
                                   end
-                                end
-                                do
-                                  return mp.INFECTED
                                 end
                               end
                             end
@@ -149,4 +432,17 @@ do
     end
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    if sysio.IsFileExists(L6_6) then
+      bm.add_related_file(L6_6)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

@@ -1,19 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/39b3d0694033 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[1]).utf8p2
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.utf8p2
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-local l_0_2 = (string.find)(l_0_1[2], ",", 1, true)
-if l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetExecutablesFromCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1[2]
+L2_2 = L2_2(L3_3, ",", 1, true)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (string.sub)(l_0_1[2], 1, l_0_2 - 1)
-;
-(mp.ReportLowfi)(l_0_3, 503412062)
+L3_3 = string
+L3_3 = L3_3.sub
+L3_3 = L3_3(L1_1[2], 1, L2_2 - 1)
+mp.ReportLowfi(L3_3, 503412062)
 return mp.INFECTED
-

@@ -1,99 +1,68 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Worm_VBS_Jenxcus.DE_Includes_ConversionToB 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-if l_0_1 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if #l_0_1 < 5000 then
-  return mp.CLEAN
+L2_2 = #L1_1
+if L2_2 < 5000 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2, l_0_3 = (mp.UfsGetMetadataStringA)("dkey", true)
-local l_0_4, l_0_5 = l_0_1:sub(1, #l_0_1 - 44)
-do
-  local l_0_7 = nil
-  if (mp.crc32)(-1, (function(l_1_0, l_1_1)
-  -- function num : 0_0 , upvalues : l_0_5
-  local l_1_2 = table.insert
-  local l_1_3 = table.concat
-  local l_1_4 = {}
-  for l_1_8 in l_1_1:gmatch("(.)") do
-    l_1_2(l_1_4, l_1_8:byte())
+L2_2 = mp
+L2_2 = L2_2.UfsGetMetadataStringA
+L3_3 = "dkey"
+L4_4 = true
+L3_3 = L2_2(L3_3, L4_4)
+L5_5 = L1_1
+L4_4 = L1_1.sub
+L6_6 = 1
+L7_7 = #L1_1
+L7_7 = L7_7 - 44
+L5_5 = L4_4(L5_5, L6_6, L7_7)
+function L6_6(A0_8, A1_9)
+  local L2_10, L3_11, L4_12, L5_13, L6_14, L7_15, L8_16, L9_17
+  L2_10 = table
+  L2_10 = L2_10.insert
+  L3_11 = table
+  L3_11 = L3_11.concat
+  L4_12 = {}
+  for L8_16 in L5_13(L6_14, L7_15) do
+    L9_17 = L2_10
+    L9_17(L4_12, L8_16:byte())
   end
-  l_1_4[#l_1_4 + 1] = 0
-  local l_1_9 = {}
-  for l_1_13 in (string.gmatch)(l_1_0, "(.)") do
-    l_1_2(l_1_9, l_1_13:byte())
-    if #l_1_9 > 3900 then
+  L4_12[L5_13] = 0
+  for L9_17 in L6_14(L7_15, L8_16) do
+    L2_10(L5_13, L9_17:byte())
+    if #L5_13 > 3900 then
       break
     end
   end
-  do
-    local l_1_14 = 2
-    local l_1_15, l_1_16, l_1_17 = nil, nil, nil
-    l_1_17 = {}
-    for l_1_21 = 1, 1500 do
-      l_1_16 = l_1_9[l_1_21] - l_1_4[l_1_14]
-      if l_1_16 < 0 then
-        l_1_16 = l_1_16 + 256
-      end
-      l_1_2(l_1_17, l_1_16)
-      l_1_14 = l_1_14 + 1
-      if #l_1_4 < l_1_14 then
-        l_1_14 = 1
-      end
-    end
-    l_1_0 = (fastDec2Bin(l_1_3(l_1_17, ",") .. ",", "(%d-),")):sub(1, l_1_15)
-    return l_1_0
+  L9_17 = nil
+  L9_17 = {}
+  for _FORV_13_ = 1, 1500 do
+    L2_10(L9_17, L8_16)
   end
+  A0_8, _UPVALUE0_ = fastDec2Bin(L3_11(L9_17, ",") .. ",", "(%d-),"):sub(1, L7_15)
+  return A0_8
 end
-)(l_0_4, l_0_3), 1, 1500) == 3787559893 then
-    return mp.INFECTED
-  end
-  ;
-  (mp.vfo_add_buffer)((function(l_1_0, l_1_1)
-  -- function num : 0_0 , upvalues : l_0_5
-  local l_1_2 = table.insert
-  local l_1_3 = table.concat
-  local l_1_4 = {}
-  for l_1_8 in l_1_1:gmatch("(.)") do
-    l_1_2(l_1_4, l_1_8:byte())
-  end
-  l_1_4[#l_1_4 + 1] = 0
-  local l_1_9 = {}
-  for l_1_13 in (string.gmatch)(l_1_0, "(.)") do
-    l_1_2(l_1_9, l_1_13:byte())
-    if #l_1_9 > 3900 then
-      break
-    end
-  end
-  do
-    local l_1_14 = 2
-    local l_1_15, l_1_16, l_1_17 = nil, nil, nil
-    l_1_17 = {}
-    for l_1_21 = 1, 1500 do
-      l_1_16 = l_1_9[l_1_21] - l_1_4[l_1_14]
-      if l_1_16 < 0 then
-        l_1_16 = l_1_16 + 256
-      end
-      l_1_2(l_1_17, l_1_16)
-      l_1_14 = l_1_14 + 1
-      if #l_1_4 < l_1_14 then
-        l_1_14 = 1
-      end
-    end
-    l_1_0 = (fastDec2Bin(l_1_3(l_1_17, ",") .. ",", "(%d-),")):sub(1, l_1_15)
-    return l_1_0
-  end
+L7_7 = L6_6
+L7_7 = L7_7(L4_4, L3_3)
+if mp.crc32(-1, L7_7, 1, 1500) == 3787559893 then
+  return mp.INFECTED
 end
-)(l_0_4, l_0_3), "[JenxcusToStrV3]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-  do return mp.CLEAN end
-  -- DECOMPILER ERROR at PC61: freeLocal<0 in 'ReleaseLocals'
-
-end
-
+mp.vfo_add_buffer(L7_7, "[JenxcusToStrV3]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+return mp.CLEAN

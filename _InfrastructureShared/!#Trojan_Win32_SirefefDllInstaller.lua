@@ -1,15 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Trojan_Win32_SirefefDllInstaller 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN then
-    local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-    if (mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME) == "msimg32.dll" and (string.lower)((string.sub)(l_0_0, -5, -1)) == "\\temp" and ((pe.get_versioninfo)()).CompanyName ~= "Microsoft Corporation" then
-      return mp.LOWFI
-    end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 == mp.SCANREASON_ONOPEN then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L0_0 = L0_0(mp.CONTEXT_DATA_FILEPATH)
+  if mp.get_contextdata(mp.CONTEXT_DATA_FILENAME) == "msimg32.dll" and string.lower(string.sub(L0_0, -5, -1)) == "\\temp" and pe.get_versioninfo().CompanyName ~= "Microsoft Corporation" then
+    return mp.LOWFI
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

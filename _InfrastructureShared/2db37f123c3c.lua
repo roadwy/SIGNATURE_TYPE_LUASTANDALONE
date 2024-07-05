@@ -1,35 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db37f123c3c 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
--- DECOMPILER ERROR at PC7: Overwrote pending register: R1 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched then
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC13: Overwrote pending register: R3 in 'AssignReg'
-
-  local l_0_3 = nil
-  -- DECOMPILER ERROR at PC14: Overwrote pending register: R2 in 'AssignReg'
-
-  local l_0_2 = nil
-  -- DECOMPILER ERROR at PC23: Confused about usage of register: R3 in 'UnsetPending'
-
-  if l_0_2 ~= nil and nil ~= nil then
-    l_0_1 = (string.sub)(l_0_3, 1, nil - 1)
+local L0_0, L1_1, L2_2, L3_3
+if this_sigattrlog[2].matched then
+  L1_1 = this_sigattrlog[2].utf8p2
+  L2_2, L3_3 = string.find(L1_1, ".cpl,")
+  if L2_2 ~= nil and L3_3 ~= nil then
+    L0_0 = string.sub(L1_1, 1, L3_3 - 1)
   else
-    l_0_1 = l_0_3
+    L0_0 = L1_1
   end
-  if l_0_1 == nil or l_0_1 == "" or (sysio.IsFileExists)(l_0_1) == false then
+  if L0_0 == nil or L0_0 == "" or sysio.IsFileExists(L0_0) == false then
     return mp.CLEAN
   end
-  if (string.find)(l_0_1, ".cpl", -4, true) then
-    (bm.add_related_file)(l_0_1)
+  if string.find(L0_0, ".cpl", -4, true) then
+    bm.add_related_file(L0_0)
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

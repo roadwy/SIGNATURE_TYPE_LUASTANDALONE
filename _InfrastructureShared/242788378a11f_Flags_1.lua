@@ -1,12 +1,109 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/242788378a11f_Flags_1 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC156: Unhandled construct in 'MakeBoolean' P3
-
-if ((((((((((((((((((((((((not (hstrlog[2]).matched or (hstrlog[3]).matched) and not (hstrlog[4]).matched) or (hstrlog[5]).matched) and not (hstrlog[6]).matched) or (hstrlog[7]).matched) and not (hstrlog[8]).matched) or (hstrlog[9]).matched) and not (hstrlog[10]).matched) or (hstrlog[11]).matched) and not (hstrlog[12]).matched) or (hstrlog[1]).matched) and not (hstrlog[2]).matched) or (hstrlog[3]).matched) and not (hstrlog[4]).matched) or (hstrlog[5]).matched) and not (hstrlog[6]).matched) or (hstrlog[7]).matched) and not (hstrlog[8]).matched) or (hstrlog[9]).matched) and not (hstrlog[10]).matched) or (hstrlog[11]).matched) and not (hstrlog[12]).matched) or (mp.getfilesize)() < 5000000) and (hstrlog[1]).matched) or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 == 12 then
+local L0_0, L1_1
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[10]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[11]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[12]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+if hstrlog[1].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[2].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[3].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[4].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[5].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[6].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[7].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[8].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[9].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[10].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[11].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[12].matched then
+  L1_1 = L1_1 + 1
+end
+if mp.getfilesize() < 5000000 and (hstrlog[1].matched or L0_0 == 11) or L1_1 == 12 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,68 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/152b3f7634328_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_3 = nil
-do
-  if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 ~= nil then
-    local l_0_0 = (this_sigattrlog[4]).utf8p2
-  else
-  end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[5]).matched or (this_sigattrlog[5]).utf8p2 == nil or (this_sigattrlog[6]).matched) and (this_sigattrlog[6]).utf8p2 ~= nil then
-      local l_0_1, l_0_2 = (this_sigattrlog[5]).utf8p2, nil
-    end
-    local l_0_4 = nil
-    local l_0_5 = nil
-    local l_0_6 = contains
-    l_0_6 = l_0_6(l_0_4, {"rundll32", "regsvr32"})
-    if l_0_6 then
-      l_0_6 = l_0_6(l_0_4)
-      l_0_4 = l_0_6
-    else
-      l_0_6 = contains
-      l_0_6 = l_0_6(l_0_4, "%-[eE][ncodemaNCODEMA]*%s+", false)
-      if l_0_6 then
-        l_0_6 = NormalizeCmdline
-        l_0_6 = l_0_6("powershell", l_0_4)
-        l_0_5 = l_0_6
-        l_0_6 = contains
-        l_0_6 = l_0_6(l_0_5, {"rundll32", "regsvr32"})
-        if l_0_6 then
-          l_0_6 = l_0_6(l_0_5)
-          l_0_4 = l_0_6
-        end
-      else
-        l_0_6 = mp
-        l_0_6 = l_0_6.CLEAN
-        return l_0_6
-      end
-    end
-    l_0_6 = contains
-    l_0_6 = l_0_6(l_0_4, "http")
-    if l_0_6 then
-      l_0_6 = contains
-      l_0_6 = l_0_6(l_0_4, "invoke-webRequest")
-      if l_0_6 then
-        l_0_6 = contains
-        l_0_6 = l_0_6(l_0_4, "start-process")
-        if not l_0_6 then
-          l_0_6 = contains
-          l_0_6 = l_0_6(l_0_4, "get%-item.*%).length%s+%-ge%s+", false)
-        end
-        if l_0_6 then
-          l_0_6 = mp
-          l_0_6 = l_0_6.INFECTED
-          return l_0_6
-        end
-      end
-    end
-    l_0_6 = mp
-    l_0_6 = l_0_6.CLEAN
-    return l_0_6
-  end
+local L0_0, L1_1
+if this_sigattrlog[4].matched and this_sigattrlog[4].utf8p2 ~= nil then
+  L0_0 = this_sigattrlog[4].utf8p2
+elseif this_sigattrlog[5].matched and this_sigattrlog[5].utf8p2 ~= nil then
+  L0_0 = this_sigattrlog[5].utf8p2
+elseif this_sigattrlog[6].matched and this_sigattrlog[6].utf8p2 ~= nil then
+  L0_0 = this_sigattrlog[6].utf8p2
 end
-
+if contains(L0_0, {"rundll32", "regsvr32"}) then
+  L0_0 = L0_0:lower()
+elseif contains(L0_0, "%-[eE][ncodemaNCODEMA]*%s+", false) then
+  L1_1 = NormalizeCmdline("powershell", L0_0)
+  if contains(L1_1, {"rundll32", "regsvr32"}) then
+    L0_0 = L1_1:lower()
+  end
+else
+  return mp.CLEAN
+end
+if contains(L0_0, "http") and contains(L0_0, "invoke-webRequest") and (contains(L0_0, "start-process") or contains(L0_0, "get%-item.*%).length%s+%-ge%s+", false)) then
+  return mp.INFECTED
+end
+return mp.CLEAN

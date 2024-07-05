@@ -1,115 +1,191 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8bb3963e9ad7_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[2]).matched == false then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (this_sigattrlog[3]).matched == false then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (this_sigattrlog[4]).matched == false then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[4]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (this_sigattrlog[5]).matched == false then
-  return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[5]
+L0_0 = L0_0.matched
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (this_sigattrlog[1]).utf8p1
-  if l_0_0 == nil and (string.len)(l_0_0) <= 4 then
-    return mp.CLEAN
-  end
-  local l_0_1 = (this_sigattrlog[1]).utf8p2
-  if l_0_1 == nil and (string.len)(l_0_1) <= 4 then
-    return mp.CLEAN
-  end
-  local l_0_2 = {}
-  l_0_2["winword.exe"] = true
-  l_0_2["excel.exe"] = true
-  l_0_2["powerpnt.exe"] = true
-  local l_0_3 = (string.lower)((string.match)(l_0_0, "([^\\]-[^\\%.]+)$"))
-  if l_0_3 == nil and (string.len)(l_0_3) <= 4 then
-    return mp.CLEAN
-  end
-  if l_0_2[l_0_3] then
-    local l_0_4 = (this_sigattrlog[1]).ppid
-    local l_0_5 = (this_sigattrlog[2]).ppid
-    if l_0_4 ~= l_0_5 then
-      return mp.CLEAN
-    end
-    local l_0_6, l_0_7 = (bm.get_process_relationships)(l_0_4)
-    if #l_0_7 ~= 3 then
-      return mp.CLEAN
-    end
-    local l_0_8 = false
-    local l_0_9 = false
-    local l_0_10 = false
-    local l_0_11 = {}
-    l_0_11["\\wscript.exe"] = true
-    l_0_11["\\cscript.exe"] = true
-    for l_0_15,l_0_16 in ipairs(l_0_7) do
-      local l_0_17 = l_0_16.image_path
-      local l_0_18 = (mp.bitand)(l_0_16.reason_ex, 1)
-      if (string.len)(l_0_17) > 8 and (string.sub)(l_0_17, -8) == "\\cmd.exe" and l_0_18 == 1 then
-        l_0_8 = true
-      end
-      if (string.len)(l_0_17) > 12 and l_0_11[(string.sub)(l_0_17, -12)] and l_0_18 ~= 1 then
-        l_0_9 = true
-      end
-      if (string.len)(l_0_17) > 15 and (string.sub)(l_0_17, -15) == "\\powershell.exe" and l_0_18 ~= 1 then
-        l_0_10 = true
-      end
-    end
-    do
-      if l_0_8 == false or l_0_9 == false or l_0_10 == false then
-        return mp.CLEAN
-      end
-      local l_0_19 = (this_sigattrlog[4]).ppid
-      local l_0_20 = (this_sigattrlog[5]).ppid
-      local l_0_21, l_0_22 = (bm.get_process_relationships)(l_0_19)
-      if #l_0_22 ~= 1 then
-        return mp.CLEAN
-      end
-      if (l_0_22[1]).ppid ~= l_0_20 then
-        return mp.CLEAN
-      end
-      local l_0_23 = {}
-      l_0_23[".xls"] = true
-      l_0_23[".doc"] = true
-      l_0_23[".ppt"] = true
-      l_0_23[".pps"] = true
-      l_0_23.docx = true
-      l_0_23.pptx = true
-      l_0_23.ppsx = true
-      l_0_23.xlsx = true
-      l_0_23[".rtf"] = true
-      l_0_23[".xml"] = true
-      l_0_23.dotx = true
-      l_0_23.dotm = true
-      l_0_23[".odt"] = true
-      l_0_23.xlsb = true
-      l_0_23.xltx = true
-      l_0_23.xltm = true
-      l_0_23.xlam = true
-      l_0_23[".xla"] = true
-      l_0_23.docm = true
-      l_0_23.xlsm = true
-      l_0_23.pptm = true
-      bm_AddRelatedFileFromCommandLine(l_0_1, l_0_23)
-      local l_0_24 = {}
-      l_0_24[".js"] = true
-      l_0_24.vbs = true
-      l_0_24.wsf = true
-      l_0_24.jse = true
-      l_0_24.vbe = true
-      do
-        local l_0_25 = (this_sigattrlog[3]).utf8p2
-        bm_AddRelatedFileFromCommandLine(l_0_25, l_0_24, 3)
-        do return mp.INFECTED end
-        return mp.CLEAN
-      end
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p1
+  if L0_0 == nil then
+    L1_1 = string
+    L1_1 = L1_1.len
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2)
+    if L1_1 <= 4 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     end
   end
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 == nil then
+    L2_2 = string
+    L2_2 = L2_2.len
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3)
+    if L2_2 <= 4 then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
+    end
+  end
+  L2_2 = {}
+  L2_2["winword.exe"] = true
+  L2_2["excel.exe"] = true
+  L2_2["powerpnt.exe"] = true
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L4_4 = string
+  L4_4 = L4_4.match
+  L5_5 = L0_0
+  L6_6 = "([^\\]-[^\\%.]+)$"
+  L18_18 = L4_4(L5_5, L6_6)
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L4_4(L5_5, L6_6))
+  if L3_3 == nil then
+    L4_4 = string
+    L4_4 = L4_4.len
+    L5_5 = L3_3
+    L4_4 = L4_4(L5_5)
+    if L4_4 <= 4 then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
+    end
+  end
+  L4_4 = L2_2[L3_3]
+  if L4_4 then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[1]
+    L4_4 = L4_4.ppid
+    L5_5 = this_sigattrlog
+    L5_5 = L5_5[2]
+    L5_5 = L5_5.ppid
+    if L4_4 ~= L5_5 then
+      L6_6 = mp
+      L6_6 = L6_6.CLEAN
+      return L6_6
+    end
+    L6_6 = bm
+    L6_6 = L6_6.get_process_relationships
+    L7_7 = L4_4
+    L7_7 = L6_6(L7_7)
+    L8_8 = #L7_7
+    if L8_8 ~= 3 then
+      L8_8 = mp
+      L8_8 = L8_8.CLEAN
+      return L8_8
+    end
+    L8_8 = false
+    L9_9 = false
+    L10_10 = false
+    L11_11 = {}
+    L11_11["\\wscript.exe"] = true
+    L11_11["\\cscript.exe"] = true
+    for L15_15, L16_16 in L12_12(L13_13) do
+      L17_17 = L16_16.image_path
+      L18_18 = mp
+      L18_18 = L18_18.bitand
+      L18_18 = L18_18(L16_16.reason_ex, 1)
+      if string.len(L17_17) > 8 and string.sub(L17_17, -8) == "\\cmd.exe" and L18_18 == 1 then
+        L8_8 = true
+      end
+      if string.len(L17_17) > 12 and L11_11[string.sub(L17_17, -12)] and L18_18 ~= 1 then
+        L9_9 = true
+      end
+      if string.len(L17_17) > 15 and string.sub(L17_17, -15) == "\\powershell.exe" and L18_18 ~= 1 then
+        L10_10 = true
+      end
+    end
+    if L8_8 == false or L9_9 == false or L10_10 == false then
+      return L12_12
+    end
+    L15_15 = L12_12
+    L15_15 = L14_14(L15_15)
+    L16_16 = #L15_15
+    if L16_16 ~= 1 then
+      L16_16 = mp
+      L16_16 = L16_16.CLEAN
+      return L16_16
+    end
+    L16_16 = L15_15[1]
+    L16_16 = L16_16.ppid
+    if L16_16 ~= L13_13 then
+      L16_16 = mp
+      L16_16 = L16_16.CLEAN
+      return L16_16
+    end
+    L16_16 = {}
+    L16_16[".xls"] = true
+    L16_16[".doc"] = true
+    L16_16[".ppt"] = true
+    L16_16[".pps"] = true
+    L16_16.docx = true
+    L16_16.pptx = true
+    L16_16.ppsx = true
+    L16_16.xlsx = true
+    L16_16[".rtf"] = true
+    L16_16[".xml"] = true
+    L16_16.dotx = true
+    L16_16.dotm = true
+    L16_16[".odt"] = true
+    L16_16.xlsb = true
+    L16_16.xltx = true
+    L16_16.xltm = true
+    L16_16.xlam = true
+    L16_16[".xla"] = true
+    L16_16.docm = true
+    L16_16.xlsm = true
+    L16_16.pptm = true
+    L17_17 = bm_AddRelatedFileFromCommandLine
+    L18_18 = L1_1
+    L17_17(L18_18, L16_16)
+    L17_17 = {}
+    L17_17[".js"] = true
+    L17_17.vbs = true
+    L17_17.wsf = true
+    L17_17.jse = true
+    L17_17.vbe = true
+    L18_18 = this_sigattrlog
+    L18_18 = L18_18[3]
+    L18_18 = L18_18.utf8p2
+    bm_AddRelatedFileFromCommandLine(L18_18, L17_17, 3)
+    return mp.INFECTED
+  end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

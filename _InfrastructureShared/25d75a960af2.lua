@@ -1,42 +1,69 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25d75a960af2 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == "" or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 == "" or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "werfault%.exe\"?%s+-s%s+.+%s+-e%s+(%d+)"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == "" or L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = tonumber
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+if L3_3 == "" or L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.GetPPidFromPid
+L5_5 = L3_3
+L4_4 = L4_4(L5_5)
+if L4_4 == "" or L4_4 == nil then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = mp
+L5_5 = L5_5.GetProcessCommandLine
+L5_5 = L5_5(L4_4)
+if L5_5 == "" or L5_5 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if l_0_1 == "" or l_0_1 == nil then
+L5_5 = string.lower(L5_5)
+if L5_5 == "" or L5_5 == nil then
   return mp.CLEAN
 end
-l_0_1 = (string.lower)(l_0_1)
-if l_0_1 == "" or l_0_1 == nil then
-  return mp.CLEAN
-end
-local l_0_2 = (string.match)(l_0_1, "werfault%.exe\"?%s+-s%s+.+%s+-e%s+(%d+)")
-if l_0_2 == "" or l_0_2 == nil then
-  return mp.CLEAN
-end
-local l_0_3 = tonumber(l_0_2)
-if l_0_3 == "" or l_0_3 == nil then
-  return mp.CLEAN
-end
-local l_0_4 = (mp.GetPPidFromPid)(l_0_3)
-if l_0_4 == "" or l_0_4 == nil then
-  return mp.CLEAN
-end
-local l_0_5 = (mp.GetProcessCommandLine)(l_0_4)
-if l_0_5 == "" or l_0_5 == nil then
-  return mp.CLEAN
-end
-l_0_5 = (string.lower)(l_0_5)
-if l_0_5 == "" or l_0_5 == nil then
-  return mp.CLEAN
-end
-if (string.find)(l_0_5, "lsass.exe", 1, true) then
+if string.find(L5_5, "lsass.exe", 1, true) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

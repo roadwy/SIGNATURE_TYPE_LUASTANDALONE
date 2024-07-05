@@ -1,28 +1,85 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ShortcutClassifierA_Includes_SetAttributeF 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_mpattributevalue)("RPF:ShortcutClassifierA")
-do
-  do
-    if l_0_0 ~= nil then
-      local l_0_1 = {}
-      -- DECOMPILER ERROR at PC13: No list found for R1 , SetList fails
-
-      -- DECOMPILER ERROR at PC14: Overwrote pending register: R2 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC15: Overwrote pending register: R3 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC16: Overwrote pending register: R4 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC17: Overwrote pending register: R5 in 'AssignReg'
-
-      ;
-      (100)(95, 90, 80)
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "Lua:LastFolder1!programs"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "Lua:LastFolder2!start/x20menu"
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "Lua:LastFolder3!windows"
+    L0_0 = L0_0(L1_1)
+    if L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.get_mpattribute
+      L1_1 = "Lua:LastFolder4!microsoft"
+      L0_0 = L0_0(L1_1)
+      if L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.get_mpattribute
+        L1_1 = "Lua:LastFolder5!roaming"
+        L0_0 = L0_0(L1_1)
+        if L0_0 then
+          L0_0 = mp
+          L0_0 = L0_0.CLEAN
+          return L0_0
+        end
+      end
     end
-    do return mp.CLEAN end
-    -- WARNING: undefined locals caused missing assignments!
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "Lua:LastFolder2!programs"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L1_1 = "Lua:LastFolder3!start/x20menu"
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattribute
+    L1_1 = "Lua:LastFolder4!windows"
+    L0_0 = L0_0(L1_1)
+    if L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.get_mpattribute
+      L1_1 = "Lua:LastFolder5!microsoft"
+      L0_0 = L0_0(L1_1)
+      if L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.get_mpattribute
+        L1_1 = "Lua:LastFolder6!roaming"
+        L0_0 = L0_0(L1_1)
+        if L0_0 then
+          L0_0 = mp
+          L0_0 = L0_0.CLEAN
+          return L0_0
+        end
+      end
+    end
+  end
+end
+L0_0 = mp
+L0_0 = L0_0.get_mpattributevalue
+L1_1 = "RPF:ShortcutClassifierA"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = {
+    100,
+    95,
+    90,
+    80,
+    70,
+    60
+  }
+  SetAttributeFromClassifierScoresEx(L0_0, L1_1, "Lua:ShortcutClassifierA:")
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

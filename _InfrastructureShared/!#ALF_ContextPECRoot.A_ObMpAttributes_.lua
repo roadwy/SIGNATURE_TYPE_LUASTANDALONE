@@ -1,21 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_ContextPECRoot.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-    local l_0_0 = ((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)):lower()
-    if l_0_0:sub(1, 8) == "\\device\\" then
-      l_0_0 = ((MpCommon.PathToWin32Path)(l_0_0)):lower()
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L0_0 = L0_0(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.get_contextdata
+    L0_0 = L0_0(mp.CONTEXT_DATA_FILEPATH)
+    L0_0 = L0_0.lower
+    L0_0 = L0_0(L0_0)
+    if L0_0:sub(1, 8) == "\\device\\" then
+      L0_0 = MpCommon.PathToWin32Path(L0_0):lower()
     end
-    if l_0_0 == "c:" and (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESS_ID) < 12 and (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME) == "" then
-      if (mp.getfilesize)() < 1048576 then
-        (mp.set_mpattribute)("Lua:ContextPECRoot.A1")
+    if L0_0 == "c:" and mp.get_contextdata(mp.CONTEXT_DATA_PROCESS_ID) < 12 and "" == mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME) then
+      if mp.getfilesize() < 1048576 then
+        mp.set_mpattribute("Lua:ContextPECRoot.A1")
       end
       return mp.INFECTED
     end
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

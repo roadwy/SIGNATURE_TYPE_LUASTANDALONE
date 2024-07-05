@@ -1,31 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3c00ec153_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 == nil or #l_0_0 < 1 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L8_8 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L1_1())
+if L0_0 ~= nil then
+  L1_1 = #L0_0
+elseif L1_1 < 1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.find)(l_0_0, "\\program files", 1, true) or (string.find)(l_0_0, "\\mpsigstub.exe", 1, true) or (string.find)(l_0_0, "\\mpcmdrun.exe", 1, true) then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+if not L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  end
+elseif L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.find)(l_0_0, "\\lsass.exe", 1, true) then
-  local l_0_1, l_0_2 = (bm.get_process_relationships)()
-  if l_0_1 then
-    for l_0_6,l_0_7 in ipairs(l_0_1) do
-      if l_0_7.image_path ~= nil and (mp.bitand)(l_0_7.reason_ex, 2) == 2 then
-        local l_0_8 = (string.lower)(l_0_7.image_path)
-        if (string.find)(l_0_8, "\\dell secureworks\\red cloak\\[^\\]+\\entwine.exe") or (string.find)(l_0_8, "\\program files\\morphisec\\bin\\protectorservice64.exe", 1, true) or (string.find)(l_0_8, "\\sentinelone\\sentinel agent[^\\]+\\sentinelagent.exe") then
-          return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+if L1_1 then
+  L1_1 = bm
+  L1_1 = L1_1.get_process_relationships
+  L2_2 = L1_1()
+  if L1_1 then
+    for L6_6, L7_7 in L3_3(L4_4) do
+      L8_8 = L7_7.image_path
+      if L8_8 ~= nil then
+        L8_8 = mp
+        L8_8 = L8_8.bitand
+        L8_8 = L8_8(L7_7.reason_ex, 2)
+        if L8_8 == 2 then
+          L8_8 = string
+          L8_8 = L8_8.lower
+          L8_8 = L8_8(L7_7.image_path)
+          if string.find(L8_8, "\\dell secureworks\\red cloak\\[^\\]+\\entwine.exe") or string.find(L8_8, "\\program files\\morphisec\\bin\\protectorservice64.exe", 1, true) or string.find(L8_8, "\\sentinelone\\sentinel agent[^\\]+\\sentinelagent.exe") then
+            return mp.CLEAN
+          end
         end
       end
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.INFECTED
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

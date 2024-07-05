@@ -1,8 +1,2 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/636189629c17 
-
--- params : ...
--- function num : 0
-(mp.set_mpattribute)("PUA:Block:BitLord")
+mp.set_mpattribute("PUA:Block:BitLord")
 return mp.INFECTED
-

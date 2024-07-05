@@ -1,48 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/277f79ac7c26 
-
--- params : ...
--- function num : 0
-simdmpemb = function(l_1_0, l_1_1, l_1_2)
-  -- function num : 0_0
-  if l_1_0 <= 0 or l_1_2 <= l_1_1 + 24 then
+local L0_0, L1_1
+function L0_0(A0_2, A1_3, A2_4)
+  local L3_5, L4_6
+  if not (A0_2 <= 0) then
+    L3_5 = A1_3 + 24
+  elseif A2_4 <= L3_5 then
+    L3_5 = mp
+    L3_5 = L3_5.CLEAN
+    return L3_5
+  end
+  L3_5 = mp
+  L3_5 = L3_5.readfile
+  L4_6 = A1_3
+  L3_5 = L3_5(L4_6, 24)
+  L4_6 = mp
+  L4_6 = L4_6.readu_u32
+  L4_6 = L4_6(L3_5, 9)
+  if L4_6 ~= 0 then
+    L4_6 = mp
+    L4_6 = L4_6.CLEAN
+    return L4_6
+  end
+  L4_6 = mp
+  L4_6 = L4_6.readu_u32
+  L4_6 = L4_6(L3_5, 5)
+  if L4_6 < 0 or A2_4 <= L4_6 then
     return mp.CLEAN
   end
-  local l_1_3 = (mp.readfile)(l_1_1, 24)
-  if (mp.readu_u32)(l_1_3, 9) ~= 0 then
-    return mp.CLEAN
+  if L4_6 >= 32 then
+    mp.vfo_add_buffer(mp.readfile(A1_3 + 24, L4_6), string.format("[SmrtInstMkrEmb%x]", A1_3), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
   end
-  local l_1_4 = (mp.readu_u32)(l_1_3, 5)
-  if l_1_4 < 0 or l_1_2 <= l_1_4 then
-    return mp.CLEAN
-  end
-  do
-    if l_1_4 >= 32 then
-      local l_1_9 = mp.vfo_add_buffer
-      l_1_9((mp.readfile)(l_1_1 + 24, l_1_4), (string.format)("[SmrtInstMkrEmb%x]", l_1_1), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-    end
-    local l_1_5 = simdmpemb
-    local l_1_6 = l_1_0 - 1
-    local l_1_7 = l_1_1 + l_1_4 + 24
-    do
-      local l_1_8 = l_1_2
-      do return l_1_5(l_1_6, l_1_7, l_1_8) end
-      -- DECOMPILER ERROR at PC59: Confused about usage of register R6 for local variables in 'ReleaseLocals'
-
-    end
-  end
+  return simdmpemb(A0_2 - 1, A1_3 + L4_6 + 24, A2_4)
 end
-
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 4096 or l_0_0 > 16777216 then
+simdmpemb = L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 4096 or L0_0 > 16777216 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = pe
+L1_1 = L1_1.get_regval
+L1_1 = L1_1(pe.REG_EAX)
+if L1_1 <= 0 or L1_1 > 16777216 then
   return mp.CLEAN
 end
-local l_0_1 = (pe.get_regval)(pe.REG_EAX)
-if l_0_1 <= 0 or l_0_1 > 16777216 then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-simdmpemb(10, l_0_1, l_0_0)
+mp.readprotection(false)
+simdmpemb(10, L1_1, L0_0)
 return mp.CLEAN
-

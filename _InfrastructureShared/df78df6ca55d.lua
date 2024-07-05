@@ -1,22 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/df78df6ca55d 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC8: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (hstrlog[3]).matched then
-    local l_0_0, l_0_1, l_0_2 = nil
-  else
-  end
-  if (hstrlog[4]).matched then
-    do return mp.CLEAN end
-    local l_0_3 = nil
-    if (mp.readu_u32)((pe.mmap_va)((hstrlog[4]).VA - 4, 4), 1) >= 24576 and (mp.readu_u32)((pe.mmap_va)((hstrlog[4]).VA - 4, 4), 1) < 28672 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0
+if hstrlog[3].matched then
+  L0_0 = hstrlog[3].VA - 4
+elseif hstrlog[4].matched then
+  L0_0 = hstrlog[4].VA - 4
+else
+  return mp.CLEAN
 end
-
+if mp.readu_u32(pe.mmap_va(L0_0, 4), 1) >= 24576 and mp.readu_u32(pe.mmap_va(L0_0, 4), 1) < 28672 then
+  return mp.INFECTED
+end
+return mp.CLEAN

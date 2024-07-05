@@ -1,31 +1,53 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/43b3a4032352_Includes_LuaFuncHelper,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = GetRealPidForScenario(l_0_0.ppid)
-local l_0_2 = {}
-do
-  if GetRollingQueueKeysAsString("Tech-" .. l_0_1) == nil then
-    local l_0_3, l_0_4 = l_0_0.ppid .. " tech table missing"
-  end
-  -- DECOMPILER ERROR at PC17: Confused about usage of register: R3 in 'UnsetPending'
-
-  l_0_2.TrackedPidTechniques = l_0_3
-  do
-    if GetRollingQueueKeysAsString("Tact-" .. l_0_1) == nil then
-      local l_0_5 = nil
-    end
-    l_0_2.TrackedPidTactics = l_0_0.ppid .. " tact table missing"
-    local l_0_6, l_0_7 = nil
-    l_0_2.IsThresholdMet = tostring(GetDetectionThresholdMetLinuxReason(l_0_0.ppid))
-    l_0_2.ThresholdMetReason = "000" .. tostring(R9_PC39)
-    local l_0_8 = nil
-    if json_encode(l_0_2) ~= nil then
-      (bm.add_related_string)(R9_PC39, json_encode(l_0_2), bm.RelatedStringBMReport)
-    end
-    return mp.INFECTED
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = GetRealPidForScenario
+L2_2 = L0_0.ppid
+L1_1 = L1_1(L2_2)
+L2_2 = {}
+L3_3 = GetRollingQueueKeysAsString
+L4_4 = "Tech-"
+L5_5 = L1_1
+L4_4 = L4_4 .. L5_5
+L3_3 = L3_3(L4_4)
+if L3_3 == nil then
+  L4_4 = L0_0.ppid
+  L5_5 = " tech table missing"
+  L3_3 = L4_4 .. L5_5
 end
-
+L2_2.TrackedPidTechniques = L3_3
+L4_4 = GetRollingQueueKeysAsString
+L5_5 = "Tact-"
+L6_6 = L1_1
+L5_5 = L5_5 .. L6_6
+L4_4 = L4_4(L5_5)
+if L4_4 == nil then
+  L5_5 = L0_0.ppid
+  L6_6 = " tact table missing"
+  L4_4 = L5_5 .. L6_6
+end
+L2_2.TrackedPidTactics = L4_4
+L5_5 = GetDetectionThresholdMetLinuxReason
+L6_6 = L0_0.ppid
+L6_6 = L5_5(L6_6)
+L7_7 = tostring
+L8_8 = L5_5
+L7_7 = L7_7(L8_8)
+L2_2.IsThresholdMet = L7_7
+L7_7 = "000"
+L8_8 = tostring
+L8_8 = L8_8(L6_6)
+L7_7 = L7_7 .. L8_8
+L2_2.ThresholdMetReason = L7_7
+L7_7 = safeJsonSerialize
+L8_8 = L2_2
+L7_7 = L7_7(L8_8)
+if L7_7 ~= nil then
+  L8_8 = bm
+  L8_8 = L8_8.add_related_string
+  L8_8("TTData", L7_7, bm.RelatedStringBMReport)
+end
+L8_8 = mp
+L8_8 = L8_8.INFECTED
+return L8_8

@@ -1,78 +1,172 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/99b32ecd14ec 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).utf8p2 ~= nil then
-  local l_0_1 = 0
-  local l_0_2 = (this_sigattrlog[5]).utf8p2
-  l_0_2 = (string.gsub)(l_0_2, "%^", "")
-  l_0_2 = (string.lower)(l_0_2)
-  if l_0_1 > 10 and (string.find)(l_0_2, "powershell", 1, true) then
-    l_0_0 = true
-  end
-end
-do
-  -- DECOMPILER ERROR at PC42: Overwrote pending register: R1 in 'AssignReg'
-
-  if not l_0_0 and (l_0_1[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-    local l_0_3 = 0
-    local l_0_4 = (this_sigattrlog[6]).utf8p2
-    l_0_4 = (string.gsub)(l_0_4, "`", "")
-    l_0_4 = (string.lower)(l_0_4)
-    if l_0_3 > 10 and ((string.find)(l_0_4, "bypass", 1, true) or (string.find)(l_0_4, "webclient", 1, true) or (string.find)(l_0_4, "newscriptblock", 1, true) or (string.find)(l_0_4, "http:", 1, true)) then
-      l_0_0 = true
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = false
+L1_1 = this_sigattrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[5]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = 0
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[5]
+    L2_2 = L2_2.utf8p2
+    L3_3 = string
+    L3_3 = L3_3.gsub
+    L4_4 = L2_2
+    L4_4 = L3_3(L4_4, L5_5, L6_6)
+    L1_1 = L4_4
+    L2_2 = L3_3
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L4_4 = L2_2
+    L3_3 = L3_3(L4_4)
+    L2_2 = L3_3
+    if L1_1 > 10 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L4_4 = L2_2
+      L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+      if L3_3 then
+        L0_0 = true
+      end
     end
   end
-  do
-    -- DECOMPILER ERROR at PC110: Overwrote pending register: R1 in 'AssignReg'
-
-    if l_0_0 then
-      local l_0_5 = l_0_3
-      local l_0_6 = true
-      local l_0_7 = 0
-      if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-        l_0_5 = (this_sigattrlog[1]).utf8p2
-      end
-      if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-        l_0_5 = (this_sigattrlog[2]).utf8p2
-      end
-      if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-        l_0_5 = (this_sigattrlog[3]).utf8p2
-      end
-      if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 ~= nil then
-        l_0_5 = (this_sigattrlog[4]).utf8p2
-      end
-      if l_0_5 ~= nil then
-        local l_0_8 = (mp.GetExecutablesFromCommandLine)(l_0_5)
-        for l_0_12,l_0_13 in ipairs(l_0_8) do
-          if (sysio.IsFileExists)(l_0_13) then
-            l_0_7 = l_0_7 + 1
-            if (mp.IsKnownFriendlyFile)(l_0_13, true, true) == false then
-              l_0_6 = false
-              break
+end
+if not L0_0 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[6]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[6]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = 0
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[6]
+      L2_2 = L2_2.utf8p2
+      L3_3 = string
+      L3_3 = L3_3.gsub
+      L4_4 = L2_2
+      L4_4 = L3_3(L4_4, L5_5, L6_6)
+      L1_1 = L4_4
+      L2_2 = L3_3
+      L3_3 = string
+      L3_3 = L3_3.lower
+      L4_4 = L2_2
+      L3_3 = L3_3(L4_4)
+      L2_2 = L3_3
+      if L1_1 > 10 then
+        L3_3 = string
+        L3_3 = L3_3.find
+        L4_4 = L2_2
+        L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+        if not L3_3 then
+          L3_3 = string
+          L3_3 = L3_3.find
+          L4_4 = L2_2
+          L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+          if not L3_3 then
+            L3_3 = string
+            L3_3 = L3_3.find
+            L4_4 = L2_2
+            L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+            if not L3_3 then
+              L3_3 = string
+              L3_3 = L3_3.find
+              L4_4 = L2_2
+              L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
             end
           end
-        end
-      end
-      do
-        do
-          if l_0_7 > 0 and l_0_6 then
-            l_0_8 = mp
-            l_0_8 = l_0_8.CLEAN
-            return l_0_8
-          else
-            l_0_8 = mp
-            l_0_8 = l_0_8.INFECTED
-            return l_0_8
-          end
-          l_0_5 = mp
-          l_0_5 = l_0_5.CLEAN
-          return l_0_5
+        elseif L3_3 then
+          L0_0 = true
         end
       end
     end
   end
 end
-
+if L0_0 then
+  L1_1 = nil
+  L2_2 = true
+  L3_3 = 0
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[1]
+    L4_4 = L4_4.utf8p2
+    if L4_4 ~= nil then
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[1]
+      L1_1 = L4_4.utf8p2
+    end
+  end
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[2]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[2]
+    L4_4 = L4_4.utf8p2
+    if L4_4 ~= nil then
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[2]
+      L1_1 = L4_4.utf8p2
+    end
+  end
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[3]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[3]
+    L4_4 = L4_4.utf8p2
+    if L4_4 ~= nil then
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[3]
+      L1_1 = L4_4.utf8p2
+    end
+  end
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[4]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[4]
+    L4_4 = L4_4.utf8p2
+    if L4_4 ~= nil then
+      L4_4 = this_sigattrlog
+      L4_4 = L4_4[4]
+      L1_1 = L4_4.utf8p2
+    end
+  end
+  if L1_1 ~= nil then
+    L4_4 = mp
+    L4_4 = L4_4.GetExecutablesFromCommandLine
+    L4_4 = L4_4(L5_5)
+    for L8_8, L9_9 in L5_5(L6_6) do
+      if sysio.IsFileExists(L9_9) then
+        L3_3 = L3_3 + 1
+        if mp.IsKnownFriendlyFile(L9_9, true, true) == false then
+          L2_2 = false
+          break
+        end
+      end
+    end
+  end
+  if L3_3 > 0 and L2_2 then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
+  else
+    L4_4 = mp
+    L4_4 = L4_4.INFECTED
+    return L4_4
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

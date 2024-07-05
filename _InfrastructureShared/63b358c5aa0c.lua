@@ -1,31 +1,98 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/63b358c5aa0c 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  if l_0_6.image_path ~= nil then
-    local l_0_7 = (string.lower)(l_0_6.image_path)
-    if (mp.bitand)(l_0_6.reason_ex, 1) == 1 and ((string.find)(l_0_7, "\\program files (x86)\\", 1, true) or (string.find)(l_0_7, "\\program files\\", 1, true) or (string.find)(l_0_7, "\\winreseau.exe", 1, true)) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = L6_6.image_path
+  if L7_7 ~= nil then
+    L7_7 = string
+    L7_7 = L7_7.lower
+    L7_7 = L7_7(L6_6.image_path)
+    if mp.bitand(L6_6.reason_ex, 1) == 1 and (string.find(L7_7, "\\program files (x86)\\", 1, true) or string.find(L7_7, "\\program files\\", 1, true) or string.find(L7_7, "\\winreseau.exe", 1, true)) then
       return mp.CLEAN
     end
   end
 end
-local l_0_8 = (string.lower)((bm.get_imagepath)())
-if (string.find)(l_0_8, "\\program files\\", 1, true) or (string.find)(l_0_8, "\\program files (x86)\\", 1, true) or (string.find)(l_0_8, "\\putty.exe", 1, true) or (string.find)(l_0_8, "\\taputty.exe", 1, true) or (string.find)(l_0_8, "\\njlink.exe", 1, true) or (string.find)(l_0_8, "\\bmc", 1, true) or (string.find)(l_0_8, "\\ebarsoftware", 1, true) or (string.find)(l_0_8, "\\aethos", 1, true) or (string.find)(l_0_8, "\\aquasuite_rap", 1, true) or (string.find)(l_0_8, "\\runremote", 1, true) or (string.find)(l_0_8, "\\util\\bin\\ssh", 1, true) or (string.find)(l_0_8, "\\tightvnc", 1, true) then
-  return mp.CLEAN
+L7_7 = L3_3()
+L5_5 = "\\program files\\"
+L6_6 = 1
+L7_7 = true
+if not L3_3 then
+  L5_5 = "\\program files (x86)\\"
+  L6_6 = 1
+  L7_7 = true
+  if not L3_3 then
+    L5_5 = "\\putty.exe"
+    L6_6 = 1
+    L7_7 = true
+    if not L3_3 then
+      L5_5 = "\\taputty.exe"
+      L6_6 = 1
+      L7_7 = true
+      if not L3_3 then
+        L5_5 = "\\njlink.exe"
+        L6_6 = 1
+        L7_7 = true
+        if not L3_3 then
+          L5_5 = "\\bmc"
+          L6_6 = 1
+          L7_7 = true
+          if not L3_3 then
+            L5_5 = "\\ebarsoftware"
+            L6_6 = 1
+            L7_7 = true
+            if not L3_3 then
+              L5_5 = "\\aethos"
+              L6_6 = 1
+              L7_7 = true
+              if not L3_3 then
+                L5_5 = "\\aquasuite_rap"
+                L6_6 = 1
+                L7_7 = true
+                if not L3_3 then
+                  L5_5 = "\\runremote"
+                  L6_6 = 1
+                  L7_7 = true
+                  if not L3_3 then
+                    L5_5 = "\\util\\bin\\ssh"
+                    L6_6 = 1
+                    L7_7 = true
+                    if not L3_3 then
+                      L5_5 = "\\tightvnc"
+                      L6_6 = 1
+                      L7_7 = true
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+elseif L3_3 then
+  return L3_3
 end
-local l_0_9 = ""
-if (this_sigattrlog[1]).matched then
-  l_0_9 = (this_sigattrlog[1]).utf8p2
+if L4_4 then
 else
-  if (this_sigattrlog[2]).matched then
-    l_0_9 = (this_sigattrlog[2]).utf8p2
+end
+if L3_3 ~= "" then
+  L5_5 = L3_3
+  L6_6 = " -pw "
+  L7_7 = 1
+  if L4_4 then
+    L5_5 = L3_3
+    L6_6 = " -P "
+    L7_7 = 1
+    if L4_4 then
+      L5_5 = L3_3
+      L6_6 = " -R "
+      L7_7 = 1
+      if L4_4 then
+        return L4_4
+      end
+    end
   end
 end
-if l_0_9 ~= "" and (string.find)(l_0_9, " -pw ", 1, true) and (string.find)(l_0_9, " -P ", 1, true) and (string.find)(l_0_9, " -R ", 1, true) then
-  return mp.INFECTED
-end
-return mp.CLEAN
-
+return L4_4

@@ -1,10 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_RTF_File_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if headerpage[1] ~= 123 or headerpage[2] ~= 92 or headerpage[3] ~= 114 or headerpage[4] ~= 116 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = headerpage
+L0_0 = L0_0[1]
+if L0_0 == 123 then
+  L0_0 = headerpage
+  L0_0 = L0_0[2]
+  if L0_0 == 92 then
+    L0_0 = headerpage
+    L0_0 = L0_0[3]
+    if L0_0 == 114 then
+      L0_0 = headerpage
+      L0_0 = L0_0[4]
+    end
+  end
+elseif L0_0 ~= 116 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

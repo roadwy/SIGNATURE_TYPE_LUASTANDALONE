@@ -1,8 +1,3 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Trojan_Win32_Skintrim!attr1 
-
--- params : ...
--- function num : 0
 if peattributes.isexe ~= true then
   return mp.CLEAN
 end
@@ -36,29 +31,28 @@ end
 if pehdr.SizeOfInitializedData > 258048 then
   return mp.CLEAN
 end
-if (pesecs[1]).Characteristics ~= 1610612768 then
+if pesecs[1].Characteristics ~= 1610612768 then
   return mp.CLEAN
 end
-if (pesecs[pehdr.NumberOfSections]).Characteristics ~= 1073741888 then
+if pesecs[pehdr.NumberOfSections].Characteristics ~= 1073741888 then
   return mp.CLEAN
 end
-if (pesecs[pehdr.NumberOfSections]).SizeOfRawData > 8192 then
+if pesecs[pehdr.NumberOfSections].SizeOfRawData > 8192 then
   return mp.CLEAN
 end
-if (pesecs[1]).SizeOfRawData < 16384 then
+if pesecs[1].SizeOfRawData < 16384 then
   return mp.CLEAN
 end
-if (pesecs[1]).SizeOfRawData > 36352 then
+if 36352 < pesecs[1].SizeOfRawData then
   return mp.CLEAN
 end
-if (pesecs[1]).NameDW ~= 2019914798 then
+if pesecs[1].NameDW ~= 2019914798 then
   return mp.CLEAN
 end
-if (pesecs[pehdr.NumberOfSections]).NameDW ~= 1920168494 then
+if pesecs[pehdr.NumberOfSections].NameDW ~= 1920168494 then
   return mp.CLEAN
 end
-if (mp.readu_u16)(epcode, 1) ~= 35669 then
+if mp.readu_u16(epcode, 1) ~= 35669 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

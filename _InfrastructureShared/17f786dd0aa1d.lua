@@ -1,18 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/17f786dd0aa1d 
-
--- params : ...
--- function num : 0
-if peattributes.isdll and (mp.getfilesize)() < 390000 then
+if peattributes.isdll and mp.getfilesize() < 390000 then
   if mp.HSTR_WEIGHT >= 11 then
     return mp.SUSPICIOUS
   end
   if mp.HSTR_WEIGHT >= 10 then
-    (pe.set_peattribute)("hstr_exhaustive", true)
-    ;
-    (pe.reemulate)()
+    pe.set_peattribute("hstr_exhaustive", true)
+    pe.reemulate()
   end
   return mp.LOWFI
 end
 return mp.CLEAN
-

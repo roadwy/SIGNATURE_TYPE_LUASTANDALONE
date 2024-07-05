@@ -1,23 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#FDR_Lua_FDRByFilename 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 == nil or l_0_0:len() < 5 then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if L0_0 == nil or L0_0:len() < 5 then
   return mp.CLEAN
 end
-local l_0_1 = {}
--- DECOMPILER ERROR at PC22: No list found for R1 , SetList fails
-
--- DECOMPILER ERROR at PC23: Overwrote pending register: R2 in 'AssignReg'
-
--- DECOMPILER ERROR at PC24: Overwrote pending register: R3 in 'AssignReg'
-
-for l_0_5 = "^deedee%.exe$", "^tm%(.+%)11%d%d%.exe$" do
-  if l_0_0:find(l_0_1[l_0_5]) then
+for _FORV_5_ = 1, #{
+  "^deedee%.exe$",
+  "^tm%(.+%)11%d%d%.exe$"
+} do
+  if L0_0:find(({
+    "^deedee%.exe$",
+    "^tm%(.+%)11%d%d%.exe$"
+  })[_FORV_5_]) then
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return _FOR_.CLEAN

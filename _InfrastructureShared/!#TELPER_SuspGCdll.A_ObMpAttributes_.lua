@@ -1,33 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TELPER_SuspGCdll.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 >= 1048576 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 >= 1048576 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (pe.get_exports)()
-if l_0_1 == 1 then
-  local l_0_3 = (pe.mmap_string_rva)((l_0_2[1]).namerva, 64)
-  if l_0_3 == "GC_VersionInfo" then
-    local l_0_4 = pe.query_import
-    if l_0_4(pe.IMPORT_STATIC, 3306045273) == 0 then
+L1_1 = pe
+L1_1 = L1_1.get_exports
+L2_2 = L1_1()
+if L1_1 == 1 then
+  L3_3 = pe
+  L3_3 = L3_3.mmap_string_rva
+  L4_4 = L2_2[1]
+  L4_4 = L4_4.namerva
+  L3_3 = L3_3(L4_4, 64)
+  if L3_3 == "GC_VersionInfo" then
+    L4_4 = pe
+    L4_4 = L4_4.query_import
+    if 0 == L4_4(pe.IMPORT_STATIC, 3306045273) then
       return mp.CLEAN
     end
-    if l_0_4(pe.IMPORT_STATIC, 2141573459) == 0 then
+    if 0 == L4_4(pe.IMPORT_STATIC, 2141573459) then
       return mp.CLEAN
     end
-    if l_0_4(pe.IMPORT_STATIC, 3604202544) == 0 then
+    if 0 == L4_4(pe.IMPORT_STATIC, 3604202544) then
       return mp.CLEAN
     end
-    if l_0_4(pe.IMPORT_STATIC, 1712054030) == 0 then
+    if 0 == L4_4(pe.IMPORT_STATIC, 1712054030) then
       return mp.CLEAN
     end
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

@@ -1,22 +1,219 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5dd78c33e14a9_Flags_1 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC217: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC217: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC217: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC217: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC217: Unhandled construct in 'MakeBoolean' P3
-
--- DECOMPILER ERROR at PC217: Unhandled construct in 'MakeBoolean' P3
-
-if ((hstrlog[1]).matched and (hstrlog[16]).matched and (hstrlog[17]).matched and (hstrlog[18]).matched and (hstrlog[19]).matched and (hstrlog[20]).matched and (hstrlog[21]).matched and (hstrlog[22]).matched) or not (hstrlog[23]).matched or not (hstrlog[24]).matched or not (hstrlog[25]).matched or not (hstrlog[26]).matched or not (hstrlog[27]).matched or not (hstrlog[28]).matched or not (hstrlog[29]).matched or not (hstrlog[30]).matched or not (hstrlog[31]).matched or not (hstrlog[32]).matched or not (hstrlog[33]).matched or not (hstrlog[34]).matched or not (hstrlog[35]).matched or not (hstrlog[36]).matched or not (hstrlog[37]).matched or not (hstrlog[38]).matched or not (hstrlog[39]).matched or not (hstrlog[4]).matched or not (hstrlog[5]).matched or not (hstrlog[6]).matched or not (hstrlog[7]).matched or not (hstrlog[8]).matched or not (hstrlog[9]).matched or (hstrlog[10]).matched and (hstrlog[11]).matched and (hstrlog[12]).matched and (hstrlog[13]).matched and ((hstrlog[14]).matched or (hstrlog[15]).matched) then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[16]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[17]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[18]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[19]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[20]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[21]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = hstrlog
+              L0_0 = L0_0[22]
+              L0_0 = L0_0.matched
+            end
+          end
+        end
+      end
+    end
+  end
+else
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[23]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[24]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[25]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[26]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[27]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = hstrlog
+              L0_0 = L0_0[28]
+              L0_0 = L0_0.matched
+              if L0_0 then
+                L0_0 = hstrlog
+                L0_0 = L0_0[29]
+                L0_0 = L0_0.matched
+                if L0_0 then
+                  L0_0 = hstrlog
+                  L0_0 = L0_0[30]
+                  L0_0 = L0_0.matched
+                  if L0_0 then
+                    L0_0 = hstrlog
+                    L0_0 = L0_0[31]
+                    L0_0 = L0_0.matched
+                    if L0_0 then
+                      L0_0 = hstrlog
+                      L0_0 = L0_0[32]
+                      L0_0 = L0_0.matched
+                      if L0_0 then
+                        L0_0 = hstrlog
+                        L0_0 = L0_0[2]
+                        L0_0 = L0_0.matched
+                        if not L0_0 then
+                          L0_0 = hstrlog
+                          L0_0 = L0_0[3]
+                          L0_0 = L0_0.matched
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    elseif not L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[33]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[34]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[35]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[36]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = hstrlog
+              L0_0 = L0_0[37]
+              L0_0 = L0_0.matched
+              if L0_0 then
+                L0_0 = hstrlog
+                L0_0 = L0_0[38]
+                L0_0 = L0_0.matched
+                if L0_0 then
+                  L0_0 = hstrlog
+                  L0_0 = L0_0[39]
+                  L0_0 = L0_0.matched
+                  if L0_0 then
+                    L0_0 = hstrlog
+                    L0_0 = L0_0[2]
+                    L0_0 = L0_0.matched
+                    if not L0_0 then
+                      L0_0 = hstrlog
+                      L0_0 = L0_0[3]
+                      L0_0 = L0_0.matched
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      elseif not L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[4]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[5]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[6]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = hstrlog
+              L0_0 = L0_0[7]
+              L0_0 = L0_0.matched
+              if L0_0 then
+                L0_0 = hstrlog
+                L0_0 = L0_0[8]
+                L0_0 = L0_0.matched
+                if L0_0 then
+                  L0_0 = hstrlog
+                  L0_0 = L0_0[9]
+                  L0_0 = L0_0.matched
+                  if L0_0 then
+                    L0_0 = hstrlog
+                    L0_0 = L0_0[14]
+                    L0_0 = L0_0.matched
+                    if not L0_0 then
+                      L0_0 = hstrlog
+                      L0_0 = L0_0[15]
+                      L0_0 = L0_0.matched
+                    end
+                  end
+                end
+              end
+            end
+          end
+        elseif not L0_0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[10]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = hstrlog
+            L0_0 = L0_0[11]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = hstrlog
+              L0_0 = L0_0[12]
+              L0_0 = L0_0.matched
+              if L0_0 then
+                L0_0 = hstrlog
+                L0_0 = L0_0[13]
+                L0_0 = L0_0.matched
+                if L0_0 then
+                  L0_0 = hstrlog
+                  L0_0 = L0_0[14]
+                  L0_0 = L0_0.matched
+                  if not L0_0 then
+                    L0_0 = hstrlog
+                    L0_0 = L0_0[15]
+                    L0_0 = L0_0.matched
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
 end
-return mp.CLEAN
-
+elseif L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

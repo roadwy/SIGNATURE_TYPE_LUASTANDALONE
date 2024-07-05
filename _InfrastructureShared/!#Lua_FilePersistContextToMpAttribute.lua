@@ -1,35 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FilePersistContextToMpAttribute 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_parent_filehandle)()
-if not (mp.is_handle_nil)(l_0_0) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.get_parent_filehandle
+L0_0 = L0_0()
+L1_1 = mp
+L1_1 = L1_1.is_handle_nil
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if l_0_1 == nil or #l_0_1 <= 3 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_LOWERCASE
+L1_1 = L1_1(L2_2)
+if L1_1 ~= nil then
+  L2_2 = #L1_1
+elseif L2_2 <= 3 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_1 = (string.lower)(l_0_1)
-local l_0_2 = (MpCommon.GetPersistContextCount)(l_0_1)
-if l_0_2 <= 0 or l_0_2 > 100 then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L2_2 = MpCommon
+L2_2 = L2_2.GetPersistContextCount
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+if L2_2 <= 0 or L2_2 > 100 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if (MpCommon.QueryPersistContext)(l_0_1, "RegistryValueDataToFilePersistContext.A") or (MpCommon.QueryPersistContext)(l_0_1, "BitsadminTargetForExec") or (MpCommon.QueryPersistContext)(l_0_1, "FilePersistContextToMpAttribute.A") then
-  local l_0_3 = (MpCommon.GetPersistContext)(l_0_1)
-  if l_0_3 == nil then
-    return mp.CLEAN
+L3_3 = MpCommon
+L3_3 = L3_3.QueryPersistContext
+L3_3 = L3_3(L4_4, L5_5)
+if not L3_3 then
+  L3_3 = MpCommon
+  L3_3 = L3_3.QueryPersistContext
+  L3_3 = L3_3(L4_4, L5_5)
+  if not L3_3 then
+    L3_3 = MpCommon
+    L3_3 = L3_3.QueryPersistContext
+    L3_3 = L3_3(L4_4, L5_5)
   end
-  for l_0_7,l_0_8 in ipairs(l_0_3) do
-    if #l_0_8 >= 8 and (string.sub)(l_0_8, 0, 4) == "BM_M" then
-      (mp.set_mpattribute)(l_0_8)
+elseif L3_3 then
+  L3_3 = MpCommon
+  L3_3 = L3_3.GetPersistContext
+  L3_3 = L3_3(L4_4)
+  if L3_3 == nil then
+    return L4_4
+  end
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if #L8_8 >= 8 and string.sub(L8_8, 0, 4) == "BM_M" then
+      mp.set_mpattribute(L8_8)
     end
   end
 end
-do
-  l_0_3 = mp
-  l_0_3 = l_0_3.CLEAN
-  return l_0_3
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

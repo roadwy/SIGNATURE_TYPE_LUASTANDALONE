@@ -1,107 +1,79 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2f89634033f6 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr + 15, 255)
-local l_0_1 = 1
-while 1 do
-  while 1 do
-    while 1 do
-      while 1 do
-        while 1 do
-          while 1 do
-            while 1 do
-              if l_0_1 < #l_0_0 then
-                local l_0_3 = 1
-                if (string.byte)(l_0_0, l_0_1) == 254 then
-                  if (string.byte)(l_0_0, l_0_1 + 1) ~= 192 then
-                    return mp.CLEAN
-                  end
-                  l_0_3 = l_0_3 + 1
-                  do
-                    local l_0_2 = nil
-                    l_0_1 = l_0_1 + 2
-                    -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_STMT
-
-                    -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC31: LeaveBlock: unexpected jumping out IF_STMT
-
-                  end
-                end
-              end
-            end
-            -- DECOMPILER ERROR at PC32: Confused about usage of register: R3 in 'UnsetPending'
-
-            if l_0_2 == 4 then
-              l_0_3 = l_0_3 + (string.byte)(l_0_0, l_0_1 + 1)
-              l_0_1 = l_0_1 + 2
-              -- DECOMPILER ERROR at PC41: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC41: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
-          -- DECOMPILER ERROR at PC42: Confused about usage of register: R3 in 'UnsetPending'
-
-          if l_0_2 == 44 then
-            l_0_3 = l_0_3 - (string.byte)(l_0_0, l_0_1 + 1)
-            l_0_1 = l_0_1 + 2
-            -- DECOMPILER ERROR at PC51: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC51: LeaveBlock: unexpected jumping out IF_STMT
-
-          end
-        end
-        -- DECOMPILER ERROR at PC52: Confused about usage of register: R3 in 'UnsetPending'
-
-        if l_0_2 == 60 then
-          local l_0_4 = nil
-          do
-            do
-              if (l_0_3 + 110 <= (string.byte)(l_0_0, l_0_1 + 1) and (string.byte)(l_0_0, l_0_1 + 1) <= l_0_3 + 112) or (string.byte)(l_0_0, l_0_1 + 1) == l_0_3 then
-                local l_0_5 = nil
-                ;
-                (pe.mmap_patch_va)(pevars.sigaddr + (l_0_1) + 16, "\235")
-                return mp.INFECTED
-              end
-              l_0_1 = l_0_1 + 2
-              -- DECOMPILER ERROR at PC80: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC80: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC80: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
-        end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 15
+L2_2 = 255
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = 1
+L2_2 = 1
+while true do
+  L3_3 = #L0_0
+  if L1_1 < L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.byte
+    L4_4 = L0_0
+    L5_5 = L1_1
+    L3_3 = L3_3(L4_4, L5_5)
+    if L3_3 == 254 then
+      L4_4 = string
+      L4_4 = L4_4.byte
+      L5_5 = L0_0
+      L4_4 = L4_4(L5_5, L1_1 + 1)
+      if L4_4 ~= 192 then
+        L4_4 = mp
+        L4_4 = L4_4.CLEAN
+        return L4_4
       end
-      -- DECOMPILER ERROR at PC81: Confused about usage of register: R3 in 'UnsetPending'
-
-      if l_0_4 == 116 then
-        l_0_1 = l_0_1 + 2
-        -- DECOMPILER ERROR at PC84: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC84: LeaveBlock: unexpected jumping out IF_STMT
-
+      L2_2 = L2_2 + 1
+      L1_1 = L1_1 + 2
+    elseif L3_3 == 4 then
+      L4_4 = string
+      L4_4 = L4_4.byte
+      L5_5 = L0_0
+      L4_4 = L4_4(L5_5, L1_1 + 1)
+      L2_2 = L2_2 + L4_4
+      L1_1 = L1_1 + 2
+    elseif L3_3 == 44 then
+      L4_4 = string
+      L4_4 = L4_4.byte
+      L5_5 = L0_0
+      L4_4 = L4_4(L5_5, L1_1 + 1)
+      L2_2 = L2_2 - L4_4
+      L1_1 = L1_1 + 2
+    elseif L3_3 == 60 then
+      L4_4 = string
+      L4_4 = L4_4.byte
+      L5_5 = L0_0
+      L4_4 = L4_4(L5_5, L1_1 + 1)
+      L5_5 = L2_2 + 110
+      if L4_4 >= L5_5 then
+        L5_5 = L2_2 + 112
+      else
       end
-    end
-    -- DECOMPILER ERROR at PC85: Confused about usage of register: R3 in 'UnsetPending'
-
-    if l_0_4 == 117 then
-      l_0_1 = l_0_1 + ((string.byte)(l_0_0, l_0_1 + 1) + 2)
-      -- DECOMPILER ERROR at PC94: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-      -- DECOMPILER ERROR at PC94: LeaveBlock: unexpected jumping out IF_STMT
-
+      if L4_4 <= L5_5 or L4_4 == L2_2 then
+        L5_5 = "\235"
+        pe.mmap_patch_va(pevars.sigaddr + L1_1 + 16, L5_5)
+        return mp.INFECTED
+      end
+      L1_1 = L1_1 + 2
+    elseif L3_3 == 116 then
+      L1_1 = L1_1 + 2
+    elseif L3_3 == 117 then
+      L4_4 = string
+      L4_4 = L4_4.byte
+      L5_5 = L0_0
+      L4_4 = L4_4(L5_5, L1_1 + 1)
+      L4_4 = L4_4 + 2
+      L1_1 = L1_1 + L4_4
+    else
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
     end
   end
-  return mp.CLEAN
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

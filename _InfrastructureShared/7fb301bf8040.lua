@@ -1,13 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7fb301bf8040 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 ~= nil and l_0_0.ppid ~= nil then
-  (bm.request_SMS)(l_0_0.ppid, "m")
-  ;
-  (bm.add_action)("SmsAsyncScanEvent", 1000)
+if bm.get_current_process_startup_info() ~= nil and bm.get_current_process_startup_info().ppid ~= nil then
+  bm.request_SMS(bm.get_current_process_startup_info().ppid, "m")
+  bm.add_action("SmsAsyncScanEvent", 1000)
 end
 return mp.INFECTED
-

@@ -1,14 +1,9 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/24890537293b 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.get_regval)(pe.REG_EBX)
-local l_0_1 = (pe.get_api_id)(l_0_0)
-if l_0_1 == 1269389306 then
-  (mp.set_mpattribute)("lua_codepatch_Obfuscator.zg")
-  ;
-  (pe.mmap_patch_va)(pevars.sigaddr + 16, "êê")
+local L0_0
+L0_0 = pe
+L0_0 = L0_0.get_regval
+L0_0 = L0_0(pe.REG_EBX)
+if pe.get_api_id(L0_0) == 1269389306 then
+  mp.set_mpattribute("lua_codepatch_Obfuscator.zg")
+  pe.mmap_patch_va(pevars.sigaddr + 16, "\144\144")
 end
 return mp.CLEAN
-

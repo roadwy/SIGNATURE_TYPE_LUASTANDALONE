@@ -1,35 +1,140 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75b305e6afdd_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(bm.get_current_process_startup_info)
-if l_0_0 and l_0_1 ~= nil then
-  local l_0_2 = l_0_1.ppid
-  if l_0_2 ~= nil then
-    local l_0_3 = l_0_1.command_line
-    if l_0_3 ~= nil then
-      l_0_3 = (string.lower)(l_0_3)
-      if l_0_3:find("javaw.exe") or l_0_3:find("node.exe") or l_0_3:find("code.exe") or l_0_3:find("chrome.exe") or l_0_3:find("discord.exe") or l_0_3:find("java.exe") or l_0_3:find("msedge.exe") or l_0_3:find("letsignit app.exe") or l_0_3:find("springtoolsuite4.exe") or l_0_3:find("atom.exe") or l_0_3:find("iisexpress.exe") or l_0_3:find("gitkraken.exe") or l_0_3:find("eclipse.exe") or l_0_3:find("atom.exe") or l_0_3:find("springtoolsuite4.exe") or l_0_3:find("gitkraken.exe") then
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = pcall
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L0_0(L1_1)
+if L0_0 and L1_1 ~= nil then
+  L2_2 = L1_1.ppid
+  if L2_2 ~= nil then
+    L3_3 = L1_1.command_line
+    if L3_3 ~= nil then
+      L4_4 = string
+      L4_4 = L4_4.lower
+      L5_5 = L3_3
+      L4_4 = L4_4(L5_5)
+      L3_3 = L4_4
+      L5_5 = L3_3
+      L4_4 = L3_3.find
+      L6_6 = "javaw.exe"
+      L4_4 = L4_4(L5_5, L6_6)
+      if not L4_4 then
+        L5_5 = L3_3
+        L4_4 = L3_3.find
+        L6_6 = "node.exe"
+        L4_4 = L4_4(L5_5, L6_6)
+        if not L4_4 then
+          L5_5 = L3_3
+          L4_4 = L3_3.find
+          L6_6 = "code.exe"
+          L4_4 = L4_4(L5_5, L6_6)
+          if not L4_4 then
+            L5_5 = L3_3
+            L4_4 = L3_3.find
+            L6_6 = "chrome.exe"
+            L4_4 = L4_4(L5_5, L6_6)
+            if not L4_4 then
+              L5_5 = L3_3
+              L4_4 = L3_3.find
+              L6_6 = "discord.exe"
+              L4_4 = L4_4(L5_5, L6_6)
+              if not L4_4 then
+                L5_5 = L3_3
+                L4_4 = L3_3.find
+                L6_6 = "java.exe"
+                L4_4 = L4_4(L5_5, L6_6)
+                if not L4_4 then
+                  L5_5 = L3_3
+                  L4_4 = L3_3.find
+                  L6_6 = "msedge.exe"
+                  L4_4 = L4_4(L5_5, L6_6)
+                  if not L4_4 then
+                    L5_5 = L3_3
+                    L4_4 = L3_3.find
+                    L6_6 = "letsignit app.exe"
+                    L4_4 = L4_4(L5_5, L6_6)
+                    if not L4_4 then
+                      L5_5 = L3_3
+                      L4_4 = L3_3.find
+                      L6_6 = "springtoolsuite4.exe"
+                      L4_4 = L4_4(L5_5, L6_6)
+                      if not L4_4 then
+                        L5_5 = L3_3
+                        L4_4 = L3_3.find
+                        L6_6 = "atom.exe"
+                        L4_4 = L4_4(L5_5, L6_6)
+                        if not L4_4 then
+                          L5_5 = L3_3
+                          L4_4 = L3_3.find
+                          L6_6 = "iisexpress.exe"
+                          L4_4 = L4_4(L5_5, L6_6)
+                          if not L4_4 then
+                            L5_5 = L3_3
+                            L4_4 = L3_3.find
+                            L6_6 = "gitkraken.exe"
+                            L4_4 = L4_4(L5_5, L6_6)
+                            if not L4_4 then
+                              L5_5 = L3_3
+                              L4_4 = L3_3.find
+                              L6_6 = "eclipse.exe"
+                              L4_4 = L4_4(L5_5, L6_6)
+                              if not L4_4 then
+                                L5_5 = L3_3
+                                L4_4 = L3_3.find
+                                L6_6 = "atom.exe"
+                                L4_4 = L4_4(L5_5, L6_6)
+                                if not L4_4 then
+                                  L5_5 = L3_3
+                                  L4_4 = L3_3.find
+                                  L6_6 = "springtoolsuite4.exe"
+                                  L4_4 = L4_4(L5_5, L6_6)
+                                  if not L4_4 then
+                                    L5_5 = L3_3
+                                    L4_4 = L3_3.find
+                                    L6_6 = "gitkraken.exe"
+                                    L4_4 = L4_4(L5_5, L6_6)
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      elseif L4_4 then
+        L4_4 = mp
+        L4_4 = L4_4.CLEAN
+        return L4_4
       end
     end
-    if IsTacticObservedForPid(l_0_2, "processinjection_target") then
-      TrackPidAndTechniqueBM("BM", "T1059", "commandscriptinj")
-      local l_0_4, l_0_5 = (bm.get_process_relationships)()
-      local l_0_6 = nil
-      for l_0_10,l_0_11 in ipairs(l_0_5) do
-        local l_0_12 = (mp.bitand)(l_0_11.reason_ex, 1)
-        if l_0_12 == 1 and ((string.find)((string.lower)(l_0_11.image_path), "\\cmd.exe\\", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\powershell.exe\\", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\wscript.exe\\", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\cscript.exe\\", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\mshta.exe\\", 1, true)) then
-          l_0_6 = l_0_11.ppid
-          TrackPidAndTechniqueBM(l_0_6, "T1059", "commandscriptinj")
+    L4_4 = IsTacticObservedForPid
+    L5_5 = L2_2
+    L6_6 = "processinjection_target"
+    L4_4 = L4_4(L5_5, L6_6)
+    if L4_4 then
+      L4_4 = TrackPidAndTechniqueBM
+      L5_5 = "BM"
+      L6_6 = "T1059"
+      L4_4(L5_5, L6_6, "commandscriptinj")
+      L4_4 = bm
+      L4_4 = L4_4.get_process_relationships
+      L5_5 = L4_4()
+      L6_6 = nil
+      for _FORV_10_, _FORV_11_ in ipairs(L5_5) do
+        if mp.bitand(_FORV_11_.reason_ex, 1) == 1 and (string.find(string.lower(_FORV_11_.image_path), "\\cmd.exe\\", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\powershell.exe\\", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\wscript.exe\\", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\cscript.exe\\", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\mshta.exe\\", 1, true)) then
+          L6_6 = _FORV_11_.ppid
+          TrackPidAndTechniqueBM(L6_6, "T1059", "commandscriptinj")
         end
       end
       return mp.INFECTED
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

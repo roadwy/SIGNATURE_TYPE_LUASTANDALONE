@@ -1,16 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4db3f223485f 
-
--- params : ...
--- function num : 0
-if not (this_sigattrlog[1]).matched or (this_sigattrlog[1]).wp2 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.wp2
+elseif L0_0 == nil then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  if l_0_6.image_path ~= nil and (mp.bitand)(l_0_6.reason_ex, 1) == 1 and ((string.lower)((string.sub)(l_0_6.image_path, -12)) == "\\wscript.exe" or (string.lower)((string.sub)(l_0_6.image_path, -12)) == "\\cscript.exe") then
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for _FORV_5_, _FORV_6_ in L2_2(L3_3) do
+  if _FORV_6_.image_path ~= nil and mp.bitand(_FORV_6_.reason_ex, 1) == 1 and (string.lower(string.sub(_FORV_6_.image_path, -12)) == "\\wscript.exe" or string.lower(string.sub(_FORV_6_.image_path, -12)) == "\\cscript.exe") then
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L2_2

@@ -1,88 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/fdb3ebdd886c 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = pcall(bm.get_current_process_startup_info)
-if l_0_0 then
-  local l_0_2 = l_0_1.command_line
-  if l_0_2 ~= nil then
-    l_0_2 = (string.lower)(l_0_2)
-    local l_0_3 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-    for l_0_7,l_0_8 in ipairs(l_0_3) do
-      l_0_8 = (mp.ContextualExpandEnvironmentVariables)(l_0_8)
-      if (sysio.IsFileExists)(l_0_8) then
-        (bm.add_related_file)(l_0_8)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = pcall
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L0_0(L1_1)
+if L0_0 then
+  L2_2 = L1_1.command_line
+  if L2_2 ~= nil then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(L4_4)
+    L2_2 = L3_3
+    L3_3 = mp
+    L3_3 = L3_3.GetExecutablesFromCommandLine
+    L3_3 = L3_3(L4_4)
+    for L7_7, L8_8 in L4_4(L5_5) do
+      L8_8 = mp.ContextualExpandEnvironmentVariables(L8_8)
+      if sysio.IsFileExists(L8_8) then
+        bm.add_related_file(L8_8)
       end
     end
   end
 end
-do
-  l_0_2, l_0_3 = nil
-  local l_0_9, l_0_10 = nil
-  l_0_9 = this_sigattrlog
-  l_0_9 = l_0_9[4]
-  l_0_9 = l_0_9.matched
-  if l_0_9 then
-    l_0_9 = this_sigattrlog
-    l_0_9 = l_0_9[4]
-    l_0_9 = l_0_9.utf8p2
-    if l_0_9 ~= nil then
-      l_0_9 = this_sigattrlog
-      l_0_9 = l_0_9[4]
-      l_0_2 = l_0_9.utf8p2
-    end
-  end
-  l_0_9 = this_sigattrlog
-  l_0_9 = l_0_9[5]
-  l_0_9 = l_0_9.matched
-  if l_0_9 then
-    l_0_9 = this_sigattrlog
-    l_0_9 = l_0_9[5]
-    l_0_9 = l_0_9.utf8p1
-    if l_0_9 ~= nil then
-      l_0_9 = this_sigattrlog
-      l_0_9 = l_0_9[5]
-      l_0_3 = l_0_9.utf8p1
-    end
-  end
-  l_0_9 = this_sigattrlog
-  l_0_9 = l_0_9[6]
-  l_0_9 = l_0_9.matched
-  if l_0_9 then
-    l_0_9 = this_sigattrlog
-    l_0_9 = l_0_9[6]
-    l_0_9 = l_0_9.utf8p1
-    if l_0_9 ~= nil then
-      l_0_9 = this_sigattrlog
-      l_0_9 = l_0_9[6]
-      l_0_3 = l_0_9.utf8p1
-    end
-  end
-  if l_0_2 ~= nil and l_0_3 ~= nil then
-    l_0_9 = string
-    l_0_9 = l_0_9.lower
-    l_0_10 = l_0_2
-    l_0_9 = l_0_9(l_0_10)
-    l_0_2 = l_0_9
-    l_0_9 = string
-    l_0_9 = l_0_9.lower
-    l_0_9 = l_0_9(l_0_10(l_0_3, "\\([^\\]+)$"))
-    local l_0_11 = nil
-    -- DECOMPILER ERROR at PC101: Overwrote pending register: R6 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC107: Overwrote pending register: R6 in 'AssignReg'
-
-    if l_0_2:find(l_0_9) and (sysio.IsFileExists)(l_0_11) then
-      (bm.add_threat_file)(l_0_11)
-    end
-  end
-  do
-    l_0_9 = mp
-    l_0_9 = l_0_9.INFECTED
-    do return l_0_9 end
-    -- DECOMPILER ERROR at PC112: Confused about usage of register R5 for local variables in 'ReleaseLocals'
-
+L2_2, L3_3 = nil, nil
+if L4_4 then
+  if L4_4 ~= nil then
+    L2_2 = L4_4.utf8p2
   end
 end
-
+if L4_4 then
+  if L4_4 ~= nil then
+    L3_3 = L4_4.utf8p1
+  end
+end
+if L4_4 then
+  if L4_4 ~= nil then
+    L3_3 = L4_4.utf8p1
+  end
+end
+if L2_2 ~= nil and L3_3 ~= nil then
+  L2_2 = L4_4
+  L7_7 = "\\([^\\]+)$"
+  L8_8 = L5_5(L6_6, L7_7)
+  L7_7 = L4_4
+  if L5_5 then
+    if L5_5 then
+      L5_5(L6_6)
+    end
+  end
+end
+return L4_4

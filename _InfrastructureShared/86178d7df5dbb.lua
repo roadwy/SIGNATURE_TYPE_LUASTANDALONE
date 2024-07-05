@@ -1,766 +1,1434 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/86178d7df5dbb 
-
--- params : ...
--- function num : 0
-(mp.readprotection)(false)
-if (hstrlog[1]).matched then
-  (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_6EF2")
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L1_1 = false
+L0_0(L1_1)
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.set_mpattribute
+  L1_1 = "HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_6EF2"
+  L0_0(L1_1)
 else
-  if (hstrlog[2]).matched or (hstrlog[4]).matched then
-    (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_6FF3")
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[4]
+    L0_0 = L0_0.matched
   else
-    if (hstrlog[3]).matched then
-      local l_0_0 = (pe.mmap_va_nofastfail)((hstrlog[3]).VA + 4, 1)
-      local l_0_1 = (pe.mmap_va_nofastfail)((hstrlog[3]).VA + 7, 1)
-      ;
-      (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_0), (mp.bitand)(-(string.byte)(l_0_1), 255)))
+    if L0_0 then
+      L0_0 = mp
+      L0_0 = L0_0.set_mpattribute
+      L1_1 = "HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_6FF3"
+      L0_0(L1_1)
+  end
+  else
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = pe
+      L0_0 = L0_0.mmap_va_nofastfail
+      L1_1 = hstrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.VA
+      L1_1 = L1_1 + 4
+      L0_0 = L0_0(L1_1, 1)
+      L1_1 = pe
+      L1_1 = L1_1.mmap_va_nofastfail
+      L1_1 = L1_1(hstrlog[3].VA + 7, 1)
+      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
     else
-      do
-        if (hstrlog[5]).matched then
-          (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_3CBE")
+      L0_0 = hstrlog
+      L0_0 = L0_0[5]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = mp
+        L0_0 = L0_0.set_mpattribute
+        L1_1 = "HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_3CBE"
+        L0_0(L1_1)
+      else
+        L0_0 = hstrlog
+        L0_0 = L0_0[6]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = pe
+          L0_0 = L0_0.mmap_va_nofastfail
+          L1_1 = hstrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.VA
+          L1_1 = L1_1 + 11
+          L0_0 = L0_0(L1_1, 1)
+          L1_1 = pe
+          L1_1 = L1_1.mmap_va_nofastfail
+          L1_1 = L1_1(hstrlog[6].VA + 14, 1)
+          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
         else
-          if (hstrlog[6]).matched then
-            local l_0_2 = (pe.mmap_va_nofastfail)((hstrlog[6]).VA + 11, 1)
-            local l_0_3 = (pe.mmap_va_nofastfail)((hstrlog[6]).VA + 14, 1)
-            ;
-            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_2), (mp.bitand)(-(string.byte)(l_0_3), 255)))
+          L0_0 = hstrlog
+          L0_0 = L0_0[7]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = mp
+            L0_0 = L0_0.set_mpattribute
+            L1_1 = "HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_73F7"
+            L0_0(L1_1)
           else
-            do
-              if (hstrlog[7]).matched then
-                (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_73F7")
+            L0_0 = hstrlog
+            L0_0 = L0_0[8]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = mp
+              L0_0 = L0_0.set_mpattribute
+              L1_1 = "HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_74F8"
+              L0_0(L1_1)
+            else
+              L0_0 = hstrlog
+              L0_0 = L0_0[9]
+              L0_0 = L0_0.matched
+              if L0_0 then
+                L0_0 = mp
+                L0_0 = L0_0.set_mpattribute
+                L1_1 = "HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_77FB"
+                L0_0(L1_1)
               else
-                if (hstrlog[8]).matched then
-                  (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_74F8")
+                L0_0 = hstrlog
+                L0_0 = L0_0[10]
+                L0_0 = L0_0.matched
+                if L0_0 then
+                  L0_0 = mp
+                  L0_0 = L0_0.set_mpattribute
+                  L1_1 = "HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_C3B2"
+                  L0_0(L1_1)
                 else
-                  if (hstrlog[9]).matched then
-                    (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_77FB")
+                  L0_0 = hstrlog
+                  L0_0 = L0_0[11]
+                  L0_0 = L0_0.matched
+                  if L0_0 then
+                    L0_0 = pe
+                    L0_0 = L0_0.mmap_va_nofastfail
+                    L1_1 = hstrlog
+                    L1_1 = L1_1[11]
+                    L1_1 = L1_1.VA
+                    L1_1 = L1_1 - 3
+                    L0_0 = L0_0(L1_1, 1)
+                    L1_1 = pe
+                    L1_1 = L1_1.mmap_va_nofastfail
+                    L1_1 = L1_1(hstrlog[11].VA - 1, 1)
+                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                   else
-                    if (hstrlog[10]).matched then
-                      (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_C3B2")
+                    L0_0 = hstrlog
+                    L0_0 = L0_0[12]
+                    L0_0 = L0_0.matched
+                    if L0_0 then
+                      L0_0 = pe
+                      L0_0 = L0_0.mmap_va_nofastfail
+                      L1_1 = hstrlog
+                      L1_1 = L1_1[12]
+                      L1_1 = L1_1.VA
+                      L1_1 = L1_1 + 4
+                      L0_0 = L0_0(L1_1, 1)
+                      L1_1 = mp
+                      L1_1 = L1_1.set_mpattribute
+                      L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), 255))
                     else
-                      if (hstrlog[11]).matched then
-                        local l_0_4 = (pe.mmap_va_nofastfail)((hstrlog[11]).VA - 3, 1)
-                        local l_0_5 = (pe.mmap_va_nofastfail)((hstrlog[11]).VA - 1, 1)
-                        ;
-                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_4), (mp.bitand)(-(string.byte)(l_0_5), 255)))
+                      L0_0 = hstrlog
+                      L0_0 = L0_0[13]
+                      L0_0 = L0_0.matched
+                      if L0_0 then
+                        L0_0 = pe
+                        L0_0 = L0_0.mmap_va_nofastfail
+                        L1_1 = hstrlog
+                        L1_1 = L1_1[13]
+                        L1_1 = L1_1.VA
+                        L1_1 = L1_1 + 4
+                        L0_0 = L0_0(L1_1, 1)
+                        L1_1 = mp
+                        L1_1 = L1_1.set_mpattribute
+                        L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), 1))
                       else
-                        do
-                          if (hstrlog[12]).matched then
-                            local l_0_6 = (pe.mmap_va_nofastfail)((hstrlog[12]).VA + 4, 1)
-                            ;
-                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_6), 255))
+                        L0_0 = hstrlog
+                        L0_0 = L0_0[14]
+                        L0_0 = L0_0.matched
+                        if L0_0 then
+                          L0_0 = pe
+                          L0_0 = L0_0.mmap_va_nofastfail
+                          L1_1 = hstrlog
+                          L1_1 = L1_1[14]
+                          L1_1 = L1_1.VA
+                          L1_1 = L1_1 + 4
+                          L0_0 = L0_0(L1_1, 1)
+                          L1_1 = pe
+                          L1_1 = L1_1.mmap_va_nofastfail
+                          L1_1 = L1_1(hstrlog[14].VA + 7, 1)
+                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                        else
+                          L0_0 = hstrlog
+                          L0_0 = L0_0[15]
+                          L0_0 = L0_0.matched
+                          if L0_0 then
+                            L0_0 = pe
+                            L0_0 = L0_0.mmap_va_nofastfail
+                            L1_1 = hstrlog
+                            L1_1 = L1_1[15]
+                            L1_1 = L1_1.VA
+                            L1_1 = L1_1 + 4
+                            L0_0 = L0_0(L1_1, 1)
+                            L1_1 = pe
+                            L1_1 = L1_1.mmap_va_nofastfail
+                            L1_1 = L1_1(hstrlog[15].VA + 7, 1)
+                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                           else
-                            do
-                              if (hstrlog[13]).matched then
-                                local l_0_7 = (pe.mmap_va_nofastfail)((hstrlog[13]).VA + 4, 1)
-                                ;
-                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_7), 1))
+                            L0_0 = hstrlog
+                            L0_0 = L0_0[16]
+                            L0_0 = L0_0.matched
+                            if L0_0 then
+                              L0_0 = pe
+                              L0_0 = L0_0.mmap_va_nofastfail
+                              L1_1 = hstrlog
+                              L1_1 = L1_1[16]
+                              L1_1 = L1_1.VA
+                              L1_1 = L1_1 + 4
+                              L0_0 = L0_0(L1_1, 1)
+                              L1_1 = pe
+                              L1_1 = L1_1.mmap_va_nofastfail
+                              L1_1 = L1_1(hstrlog[16].VA + 6, 1)
+                              if L0_0 == "" or L1_1 == "" then
+                                L0_0 = mp.readfile(pe.foffset_va(hstrlog[16].VA + 4), 1)
+                                L1_1 = mp.readfile(pe.foffset_va(hstrlog[16].VA + 6), 1)
+                              end
+                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                            else
+                              L0_0 = hstrlog
+                              L0_0 = L0_0[18]
+                              L0_0 = L0_0.matched
+                              if L0_0 then
+                                L0_0 = pe
+                                L0_0 = L0_0.mmap_va_nofastfail
+                                L1_1 = hstrlog
+                                L1_1 = L1_1[18]
+                                L1_1 = L1_1.VA
+                                L1_1 = L1_1 + 8
+                                L0_0 = L0_0(L1_1, 1)
+                                L1_1 = pe
+                                L1_1 = L1_1.mmap_va_nofastfail
+                                L1_1 = L1_1(hstrlog[18].VA + 11, 1)
+                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                               else
-                                do
-                                  if (hstrlog[14]).matched then
-                                    local l_0_8 = (pe.mmap_va_nofastfail)((hstrlog[14]).VA + 4, 1)
-                                    local l_0_9 = (pe.mmap_va_nofastfail)((hstrlog[14]).VA + 7, 1)
-                                    ;
-                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_8), (string.byte)(l_0_9)))
+                                L0_0 = hstrlog
+                                L0_0 = L0_0[19]
+                                L0_0 = L0_0.matched
+                                if L0_0 then
+                                  L0_0 = pe
+                                  L0_0 = L0_0.mmap_va_nofastfail
+                                  L1_1 = hstrlog
+                                  L1_1 = L1_1[19]
+                                  L1_1 = L1_1.VA
+                                  L1_1 = L1_1 + 10
+                                  L0_0 = L0_0(L1_1, 1)
+                                  L1_1 = pe
+                                  L1_1 = L1_1.mmap_va_nofastfail
+                                  L1_1 = L1_1(hstrlog[19].VA + 12, 1)
+                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                else
+                                  L0_0 = hstrlog
+                                  L0_0 = L0_0[20]
+                                  L0_0 = L0_0.matched
+                                  if L0_0 then
+                                    L0_0 = pe
+                                    L0_0 = L0_0.mmap_va_nofastfail
+                                    L1_1 = hstrlog
+                                    L1_1 = L1_1[20]
+                                    L1_1 = L1_1.VA
+                                    L1_1 = L1_1 + 14
+                                    L0_0 = L0_0(L1_1, 1)
+                                    L1_1 = pe
+                                    L1_1 = L1_1.mmap_va_nofastfail
+                                    L1_1 = L1_1(hstrlog[20].VA + 20, 1)
+                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                   else
-                                    do
-                                      if (hstrlog[15]).matched then
-                                        local l_0_10 = (pe.mmap_va_nofastfail)((hstrlog[15]).VA + 4, 1)
-                                        local l_0_11 = (pe.mmap_va_nofastfail)((hstrlog[15]).VA + 7, 1)
-                                        ;
-                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_10), (string.byte)(l_0_11)))
+                                    L0_0 = hstrlog
+                                    L0_0 = L0_0[21]
+                                    L0_0 = L0_0.matched
+                                    if L0_0 then
+                                      L0_0 = pe
+                                      L0_0 = L0_0.mmap_va_nofastfail
+                                      L1_1 = hstrlog
+                                      L1_1 = L1_1[21]
+                                      L1_1 = L1_1.VA
+                                      L1_1 = L1_1 + 16
+                                      L0_0 = L0_0(L1_1, 1)
+                                      L1_1 = pe
+                                      L1_1 = L1_1.mmap_va_nofastfail
+                                      L1_1 = L1_1(hstrlog[21].VA + 22, 1)
+                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                    else
+                                      L0_0 = hstrlog
+                                      L0_0 = L0_0[22]
+                                      L0_0 = L0_0.matched
+                                      if L0_0 then
+                                        L0_0 = pe
+                                        L0_0 = L0_0.mmap_va_nofastfail
+                                        L1_1 = hstrlog
+                                        L1_1 = L1_1[22]
+                                        L1_1 = L1_1.VA
+                                        L1_1 = L1_1 + 13
+                                        L0_0 = L0_0(L1_1, 1)
+                                        L1_1 = pe
+                                        L1_1 = L1_1.mmap_va_nofastfail
+                                        L1_1 = L1_1(hstrlog[22].VA + 16, 1)
+                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                       else
-                                        do
-                                          if (hstrlog[16]).matched then
-                                            if (pe.mmap_va_nofastfail)((hstrlog[16]).VA + 4, 1) == "" or (pe.mmap_va_nofastfail)((hstrlog[16]).VA + 6, 1) == "" then
-                                              local l_0_12, l_0_13, l_0_15 = (mp.readfile)((pe.foffset_va)((hstrlog[16]).VA + 4), 1)
-                                              l_0_15 = mp
-                                              l_0_15 = l_0_15.readfile
-                                              l_0_15 = l_0_15((pe.foffset_va)((hstrlog[16]).VA + 6), 1)
-                                              l_0_13 = l_0_15
-                                              local l_0_14, l_0_16 = nil
-                                            end
-                                            do
-                                              -- DECOMPILER ERROR at PC387: Confused about usage of register: R0 in 'UnsetPending'
-
-                                              -- DECOMPILER ERROR at PC391: Confused about usage of register: R1 in 'UnsetPending'
-
-                                              ;
-                                              (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_12), (string.byte)(l_0_13)))
-                                              if (hstrlog[18]).matched then
-                                                local l_0_17 = (pe.mmap_va_nofastfail)((hstrlog[18]).VA + 8, 1)
-                                                local l_0_18 = (pe.mmap_va_nofastfail)((hstrlog[18]).VA + 11, 1)
-                                                ;
-                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_17), (string.byte)(l_0_18)))
+                                        L0_0 = hstrlog
+                                        L0_0 = L0_0[23]
+                                        L0_0 = L0_0.matched
+                                        if L0_0 then
+                                          L0_0 = pe
+                                          L0_0 = L0_0.mmap_va_nofastfail
+                                          L1_1 = hstrlog
+                                          L1_1 = L1_1[23]
+                                          L1_1 = L1_1.VA
+                                          L1_1 = L1_1 + 5
+                                          L0_0 = L0_0(L1_1, 1)
+                                          L1_1 = pe
+                                          L1_1 = L1_1.mmap_va_nofastfail
+                                          L1_1 = L1_1(hstrlog[23].VA + 8, 1)
+                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                        else
+                                          L0_0 = hstrlog
+                                          L0_0 = L0_0[24]
+                                          L0_0 = L0_0.matched
+                                          if L0_0 then
+                                            L0_0 = pe
+                                            L0_0 = L0_0.mmap_va_nofastfail
+                                            L1_1 = hstrlog
+                                            L1_1 = L1_1[24]
+                                            L1_1 = L1_1.VA
+                                            L1_1 = L1_1 + 4
+                                            L0_0 = L0_0(L1_1, 1)
+                                            L1_1 = pe
+                                            L1_1 = L1_1.mmap_va_nofastfail
+                                            L1_1 = L1_1(hstrlog[24].VA + 6, 1)
+                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                          else
+                                            L0_0 = hstrlog
+                                            L0_0 = L0_0[25]
+                                            L0_0 = L0_0.matched
+                                            if L0_0 then
+                                              L0_0 = pe
+                                              L0_0 = L0_0.mmap_va_nofastfail
+                                              L1_1 = hstrlog
+                                              L1_1 = L1_1[25]
+                                              L1_1 = L1_1.VA
+                                              L1_1 = L1_1 + 4
+                                              L0_0 = L0_0(L1_1, 1)
+                                              L1_1 = pe
+                                              L1_1 = L1_1.mmap_va_nofastfail
+                                              L1_1 = L1_1(hstrlog[25].VA + 19, 1)
+                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                            else
+                                              L0_0 = hstrlog
+                                              L0_0 = L0_0[26]
+                                              L0_0 = L0_0.matched
+                                              if L0_0 then
+                                                L0_0 = pe
+                                                L0_0 = L0_0.mmap_va_nofastfail
+                                                L1_1 = hstrlog
+                                                L1_1 = L1_1[26]
+                                                L1_1 = L1_1.VA
+                                                L1_1 = L1_1 + 14
+                                                L0_0 = L0_0(L1_1, 1)
+                                                L1_1 = pe
+                                                L1_1 = L1_1.mmap_va_nofastfail
+                                                L1_1 = L1_1(hstrlog[26].VA + 26, 1)
+                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                               else
-                                                do
-                                                  if (hstrlog[19]).matched then
-                                                    local l_0_19 = (pe.mmap_va_nofastfail)((hstrlog[19]).VA + 10, 1)
-                                                    local l_0_20 = (pe.mmap_va_nofastfail)((hstrlog[19]).VA + 12, 1)
-                                                    ;
-                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_19), (string.byte)(l_0_20)))
+                                                L0_0 = hstrlog
+                                                L0_0 = L0_0[27]
+                                                L0_0 = L0_0.matched
+                                                if L0_0 then
+                                                  L0_0 = pe
+                                                  L0_0 = L0_0.mmap_va_nofastfail
+                                                  L1_1 = hstrlog
+                                                  L1_1 = L1_1[27]
+                                                  L1_1 = L1_1.VA
+                                                  L1_1 = L1_1 + 4
+                                                  L0_0 = L0_0(L1_1, 1)
+                                                  L1_1 = pe
+                                                  L1_1 = L1_1.mmap_va_nofastfail
+                                                  L1_1 = L1_1(hstrlog[27].VA + 6, 1)
+                                                  if L0_0 == "" or L1_1 == "" then
+                                                    L0_0 = mp.readfile(pe.foffset_va(hstrlog[27].VA + 4), 1)
+                                                    L1_1 = mp.readfile(pe.foffset_va(hstrlog[27].VA + 6), 1)
+                                                  end
+                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                else
+                                                  L0_0 = hstrlog
+                                                  L0_0 = L0_0[28]
+                                                  L0_0 = L0_0.matched
+                                                  if L0_0 then
+                                                    L0_0 = pe
+                                                    L0_0 = L0_0.mmap_va_nofastfail
+                                                    L1_1 = hstrlog
+                                                    L1_1 = L1_1[28]
+                                                    L1_1 = L1_1.VA
+                                                    L1_1 = L1_1 + 4
+                                                    L0_0 = L0_0(L1_1, 1)
+                                                    L1_1 = pe
+                                                    L1_1 = L1_1.mmap_va_nofastfail
+                                                    L1_1 = L1_1(hstrlog[28].VA + 9, 1)
+                                                    if L0_0 == "" or L1_1 == "" then
+                                                      L0_0 = mp.readfile(pe.foffset_va(hstrlog[28].VA + 4), 1)
+                                                      L1_1 = mp.readfile(pe.foffset_va(hstrlog[28].VA + 9), 1)
+                                                    end
+                                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                   else
-                                                    do
-                                                      if (hstrlog[20]).matched then
-                                                        local l_0_21 = (pe.mmap_va_nofastfail)((hstrlog[20]).VA + 14, 1)
-                                                        local l_0_22 = (pe.mmap_va_nofastfail)((hstrlog[20]).VA + 20, 1)
-                                                        ;
-                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_21), (string.byte)(l_0_22)))
+                                                    L0_0 = hstrlog
+                                                    L0_0 = L0_0[29]
+                                                    L0_0 = L0_0.matched
+                                                    if L0_0 then
+                                                      L0_0 = pe
+                                                      L0_0 = L0_0.mmap_va_nofastfail
+                                                      L1_1 = hstrlog
+                                                      L1_1 = L1_1[29]
+                                                      L1_1 = L1_1.VA
+                                                      L1_1 = L1_1 + 14
+                                                      L0_0 = L0_0(L1_1, 1)
+                                                      L1_1 = pe
+                                                      L1_1 = L1_1.mmap_va_nofastfail
+                                                      L1_1 = L1_1(hstrlog[29].VA + 26, 1)
+                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                    else
+                                                      L0_0 = hstrlog
+                                                      L0_0 = L0_0[30]
+                                                      L0_0 = L0_0.matched
+                                                      if L0_0 then
+                                                        L0_0 = pe
+                                                        L0_0 = L0_0.mmap_va_nofastfail
+                                                        L1_1 = hstrlog
+                                                        L1_1 = L1_1[30]
+                                                        L1_1 = L1_1.VA
+                                                        L1_1 = L1_1 + 4
+                                                        L0_0 = L0_0(L1_1, 1)
+                                                        L1_1 = pe
+                                                        L1_1 = L1_1.mmap_va_nofastfail
+                                                        L1_1 = L1_1(hstrlog[30].VA + 6, 1)
+                                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                       else
-                                                        do
-                                                          if (hstrlog[21]).matched then
-                                                            local l_0_23 = (pe.mmap_va_nofastfail)((hstrlog[21]).VA + 16, 1)
-                                                            local l_0_24 = (pe.mmap_va_nofastfail)((hstrlog[21]).VA + 22, 1)
-                                                            ;
-                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_23), (string.byte)(l_0_24)))
+                                                        L0_0 = hstrlog
+                                                        L0_0 = L0_0[31]
+                                                        L0_0 = L0_0.matched
+                                                        if L0_0 then
+                                                          L0_0 = pe
+                                                          L0_0 = L0_0.mmap_va_nofastfail
+                                                          L1_1 = hstrlog
+                                                          L1_1 = L1_1[31]
+                                                          L1_1 = L1_1.VA
+                                                          L1_1 = L1_1 + 11
+                                                          L0_0 = L0_0(L1_1, 1)
+                                                          L1_1 = pe
+                                                          L1_1 = L1_1.mmap_va_nofastfail
+                                                          L1_1 = L1_1(hstrlog[31].VA + 13, 1)
+                                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                        else
+                                                          L0_0 = hstrlog
+                                                          L0_0 = L0_0[32]
+                                                          L0_0 = L0_0.matched
+                                                          if L0_0 then
+                                                            L0_0 = pe
+                                                            L0_0 = L0_0.mmap_va_nofastfail
+                                                            L1_1 = hstrlog
+                                                            L1_1 = L1_1[32]
+                                                            L1_1 = L1_1.VA
+                                                            L1_1 = L1_1 + 4
+                                                            L0_0 = L0_0(L1_1, 1)
+                                                            L1_1 = pe
+                                                            L1_1 = L1_1.mmap_va_nofastfail
+                                                            L1_1 = L1_1(hstrlog[32].VA + 9, 1)
+                                                            if L0_0 == "" or L1_1 == "" then
+                                                              L0_0 = mp.readfile(pe.foffset_va(hstrlog[32].VA + 4), 1)
+                                                              L1_1 = mp.readfile(pe.foffset_va(hstrlog[32].VA + 9), 1)
+                                                            end
+                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                           else
-                                                            do
-                                                              if (hstrlog[22]).matched then
-                                                                local l_0_25 = (pe.mmap_va_nofastfail)((hstrlog[22]).VA + 13, 1)
-                                                                local l_0_26 = (pe.mmap_va_nofastfail)((hstrlog[22]).VA + 16, 1)
-                                                                ;
-                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_25), (string.byte)(l_0_26)))
+                                                            L0_0 = hstrlog
+                                                            L0_0 = L0_0[33]
+                                                            L0_0 = L0_0.matched
+                                                            if L0_0 then
+                                                              L0_0 = pe
+                                                              L0_0 = L0_0.mmap_va_nofastfail
+                                                              L1_1 = hstrlog
+                                                              L1_1 = L1_1[33]
+                                                              L1_1 = L1_1.VA
+                                                              L1_1 = L1_1 + 5
+                                                              L0_0 = L0_0(L1_1, 1)
+                                                              L1_1 = pe
+                                                              L1_1 = L1_1.mmap_va_nofastfail
+                                                              L1_1 = L1_1(hstrlog[33].VA + 11, 1)
+                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                            else
+                                                              L0_0 = hstrlog
+                                                              L0_0 = L0_0[34]
+                                                              L0_0 = L0_0.matched
+                                                              if L0_0 then
+                                                                L0_0 = pe
+                                                                L0_0 = L0_0.mmap_va_nofastfail
+                                                                L1_1 = hstrlog
+                                                                L1_1 = L1_1[34]
+                                                                L1_1 = L1_1.VA
+                                                                L1_1 = L1_1 + 4
+                                                                L0_0 = L0_0(L1_1, 1)
+                                                                L1_1 = pe
+                                                                L1_1 = L1_1.mmap_va_nofastfail
+                                                                L1_1 = L1_1(hstrlog[34].VA + 29, 1)
+                                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                               else
-                                                                do
-                                                                  if (hstrlog[23]).matched then
-                                                                    local l_0_27 = (pe.mmap_va_nofastfail)((hstrlog[23]).VA + 5, 1)
-                                                                    local l_0_28 = (pe.mmap_va_nofastfail)((hstrlog[23]).VA + 8, 1)
-                                                                    ;
-                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_27), (string.byte)(l_0_28)))
+                                                                L0_0 = hstrlog
+                                                                L0_0 = L0_0[35]
+                                                                L0_0 = L0_0.matched
+                                                                if L0_0 then
+                                                                  L0_0 = pe
+                                                                  L0_0 = L0_0.mmap_va_nofastfail
+                                                                  L1_1 = hstrlog
+                                                                  L1_1 = L1_1[35]
+                                                                  L1_1 = L1_1.VA
+                                                                  L1_1 = L1_1 + 5
+                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                  L1_1 = pe
+                                                                  L1_1 = L1_1.mmap_va_nofastfail
+                                                                  L1_1 = L1_1(hstrlog[35].VA + 7, 1)
+                                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                else
+                                                                  L0_0 = hstrlog
+                                                                  L0_0 = L0_0[36]
+                                                                  L0_0 = L0_0.matched
+                                                                  if L0_0 then
+                                                                    L0_0 = pe
+                                                                    L0_0 = L0_0.mmap_va_nofastfail
+                                                                    L1_1 = hstrlog
+                                                                    L1_1 = L1_1[36]
+                                                                    L1_1 = L1_1.VA
+                                                                    L1_1 = L1_1 + 15
+                                                                    L0_0 = L0_0(L1_1, 1)
+                                                                    L1_1 = pe
+                                                                    L1_1 = L1_1.mmap_va_nofastfail
+                                                                    L1_1 = L1_1(hstrlog[36].VA + 21, 1)
+                                                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                   else
-                                                                    do
-                                                                      if (hstrlog[24]).matched then
-                                                                        local l_0_29 = (pe.mmap_va_nofastfail)((hstrlog[24]).VA + 4, 1)
-                                                                        local l_0_30 = (pe.mmap_va_nofastfail)((hstrlog[24]).VA + 6, 1)
-                                                                        ;
-                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_29), (string.byte)(l_0_30)))
+                                                                    L0_0 = hstrlog
+                                                                    L0_0 = L0_0[37]
+                                                                    L0_0 = L0_0.matched
+                                                                    if L0_0 then
+                                                                      L0_0 = pe
+                                                                      L0_0 = L0_0.mmap_va_nofastfail
+                                                                      L1_1 = hstrlog
+                                                                      L1_1 = L1_1[37]
+                                                                      L1_1 = L1_1.VA
+                                                                      L1_1 = L1_1 + 5
+                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                      L1_1 = pe
+                                                                      L1_1 = L1_1.mmap_va_nofastfail
+                                                                      L1_1 = L1_1(hstrlog[37].VA + 7, 1)
+                                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                    else
+                                                                      L0_0 = hstrlog
+                                                                      L0_0 = L0_0[38]
+                                                                      L0_0 = L0_0.matched
+                                                                      if L0_0 then
+                                                                        L0_0 = pe
+                                                                        L0_0 = L0_0.mmap_va_nofastfail
+                                                                        L1_1 = hstrlog
+                                                                        L1_1 = L1_1[38]
+                                                                        L1_1 = L1_1.VA
+                                                                        L1_1 = L1_1 + 11
+                                                                        L0_0 = L0_0(L1_1, 1)
+                                                                        L1_1 = pe
+                                                                        L1_1 = L1_1.mmap_va_nofastfail
+                                                                        L1_1 = L1_1(hstrlog[38].VA + 13, 1)
+                                                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                       else
-                                                                        do
-                                                                          if (hstrlog[25]).matched then
-                                                                            local l_0_31 = (pe.mmap_va_nofastfail)((hstrlog[25]).VA + 4, 1)
-                                                                            local l_0_32 = (pe.mmap_va_nofastfail)((hstrlog[25]).VA + 19, 1)
-                                                                            ;
-                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_31), (string.byte)(l_0_32)))
+                                                                        L0_0 = hstrlog
+                                                                        L0_0 = L0_0[39]
+                                                                        L0_0 = L0_0.matched
+                                                                        if L0_0 then
+                                                                          L0_0 = mp
+                                                                          L0_0 = L0_0.readfile
+                                                                          L1_1 = pe
+                                                                          L1_1 = L1_1.foffset_va
+                                                                          L1_1 = L1_1(hstrlog[39].VA + 6)
+                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                          L1_1 = mp
+                                                                          L1_1 = L1_1.readfile
+                                                                          L1_1 = L1_1(pe.foffset_va(hstrlog[39].VA + 9), 1)
+                                                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                        else
+                                                                          L0_0 = hstrlog
+                                                                          L0_0 = L0_0[40]
+                                                                          L0_0 = L0_0.matched
+                                                                          if L0_0 then
+                                                                            L0_0 = pe
+                                                                            L0_0 = L0_0.mmap_va_nofastfail
+                                                                            L1_1 = hstrlog
+                                                                            L1_1 = L1_1[40]
+                                                                            L1_1 = L1_1.VA
+                                                                            L1_1 = L1_1 + 12
+                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                            L1_1 = pe
+                                                                            L1_1 = L1_1.mmap_va_nofastfail
+                                                                            L1_1 = L1_1(hstrlog[40].VA + 24, 1)
+                                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                           else
-                                                                            do
-                                                                              if (hstrlog[26]).matched then
-                                                                                local l_0_33 = (pe.mmap_va_nofastfail)((hstrlog[26]).VA + 14, 1)
-                                                                                local l_0_34 = (pe.mmap_va_nofastfail)((hstrlog[26]).VA + 26, 1)
-                                                                                ;
-                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_33), (string.byte)(l_0_34)))
+                                                                            L0_0 = hstrlog
+                                                                            L0_0 = L0_0[41]
+                                                                            L0_0 = L0_0.matched
+                                                                            if L0_0 then
+                                                                              L0_0 = mp
+                                                                              L0_0 = L0_0.readfile
+                                                                              L1_1 = pe
+                                                                              L1_1 = L1_1.foffset_va
+                                                                              L1_1 = L1_1(hstrlog[41].VA + 5)
+                                                                              L0_0 = L0_0(L1_1, 1)
+                                                                              L1_1 = mp
+                                                                              L1_1 = L1_1.readfile
+                                                                              L1_1 = L1_1(pe.foffset_va(hstrlog[41].VA + 7), 1)
+                                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                            else
+                                                                              L0_0 = hstrlog
+                                                                              L0_0 = L0_0[42]
+                                                                              L0_0 = L0_0.matched
+                                                                              if L0_0 then
+                                                                                L0_0 = mp
+                                                                                L0_0 = L0_0.readfile
+                                                                                L1_1 = pe
+                                                                                L1_1 = L1_1.foffset_va
+                                                                                L1_1 = L1_1(hstrlog[42].VA + 13)
+                                                                                L0_0 = L0_0(L1_1, 1)
+                                                                                L1_1 = mp
+                                                                                L1_1 = L1_1.readfile
+                                                                                L1_1 = L1_1(pe.foffset_va(hstrlog[42].VA + 15), 1)
+                                                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                               else
-                                                                                do
-                                                                                  if (hstrlog[27]).matched then
-                                                                                    if (pe.mmap_va_nofastfail)((hstrlog[27]).VA + 4, 1) == "" or (pe.mmap_va_nofastfail)((hstrlog[27]).VA + 6, 1) == "" then
-                                                                                      local l_0_35, l_0_36, l_0_38 = (mp.readfile)((pe.foffset_va)((hstrlog[27]).VA + 4), 1)
-                                                                                      l_0_38 = mp
-                                                                                      l_0_38 = l_0_38.readfile
-                                                                                      l_0_38 = l_0_38((pe.foffset_va)((hstrlog[27]).VA + 6), 1)
-                                                                                      l_0_36 = l_0_38
-                                                                                      local l_0_37, l_0_39 = nil
-                                                                                    end
-                                                                                    do
-                                                                                      -- DECOMPILER ERROR at PC785: Confused about usage of register: R0 in 'UnsetPending'
-
-                                                                                      -- DECOMPILER ERROR at PC789: Confused about usage of register: R1 in 'UnsetPending'
-
-                                                                                      ;
-                                                                                      (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_35), (string.byte)(l_0_36)))
-                                                                                      if (hstrlog[28]).matched then
-                                                                                        if (pe.mmap_va_nofastfail)((hstrlog[28]).VA + 4, 1) == "" or (pe.mmap_va_nofastfail)((hstrlog[28]).VA + 9, 1) == "" then
-                                                                                          local l_0_40, l_0_41, l_0_43 = (mp.readfile)((pe.foffset_va)((hstrlog[28]).VA + 4), 1)
-                                                                                          l_0_43 = mp
-                                                                                          l_0_43 = l_0_43.readfile
-                                                                                          l_0_43 = l_0_43((pe.foffset_va)((hstrlog[28]).VA + 9), 1)
-                                                                                          l_0_41 = l_0_43
-                                                                                          local l_0_42, l_0_44 = nil
-                                                                                        end
-                                                                                        do
-                                                                                          -- DECOMPILER ERROR at PC850: Confused about usage of register: R0 in 'UnsetPending'
-
-                                                                                          -- DECOMPILER ERROR at PC854: Confused about usage of register: R1 in 'UnsetPending'
-
-                                                                                          ;
-                                                                                          (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_40), (string.byte)(l_0_41)))
-                                                                                          if (hstrlog[29]).matched then
-                                                                                            local l_0_45 = (pe.mmap_va_nofastfail)((hstrlog[29]).VA + 14, 1)
-                                                                                            local l_0_46 = (pe.mmap_va_nofastfail)((hstrlog[29]).VA + 26, 1)
-                                                                                            ;
-                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_45), (string.byte)(l_0_46)))
+                                                                                L0_0 = hstrlog
+                                                                                L0_0 = L0_0[43]
+                                                                                L0_0 = L0_0.matched
+                                                                                if L0_0 then
+                                                                                  L0_0 = mp
+                                                                                  L0_0 = L0_0.readfile
+                                                                                  L1_1 = pe
+                                                                                  L1_1 = L1_1.foffset_va
+                                                                                  L1_1 = L1_1(hstrlog[43].VA + 4)
+                                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                                  L1_1 = mp
+                                                                                  L1_1 = L1_1.readfile
+                                                                                  L1_1 = L1_1(pe.foffset_va(hstrlog[43].VA + 7), 1)
+                                                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                else
+                                                                                  L0_0 = hstrlog
+                                                                                  L0_0 = L0_0[44]
+                                                                                  L0_0 = L0_0.matched
+                                                                                  if L0_0 then
+                                                                                    L0_0 = mp
+                                                                                    L0_0 = L0_0.set_mpattribute
+                                                                                    L1_1 = string
+                                                                                    L1_1 = L1_1.format
+                                                                                    L1_1 = L1_1("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 66, 106)
+                                                                                    L0_0(L1_1, L1_1("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 66, 106))
+                                                                                  else
+                                                                                    L0_0 = hstrlog
+                                                                                    L0_0 = L0_0[45]
+                                                                                    L0_0 = L0_0.matched
+                                                                                    if L0_0 then
+                                                                                      L0_0 = mp
+                                                                                      L0_0 = L0_0.readfile
+                                                                                      L1_1 = pe
+                                                                                      L1_1 = L1_1.foffset_va
+                                                                                      L1_1 = L1_1(hstrlog[45].VA + 4)
+                                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                                      L1_1 = mp
+                                                                                      L1_1 = L1_1.readfile
+                                                                                      L1_1 = L1_1(pe.foffset_va(hstrlog[45].VA + 6), 1)
+                                                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                    else
+                                                                                      L0_0 = hstrlog
+                                                                                      L0_0 = L0_0[46]
+                                                                                      L0_0 = L0_0.matched
+                                                                                      if L0_0 then
+                                                                                        L0_0 = mp
+                                                                                        L0_0 = L0_0.set_mpattribute
+                                                                                        L1_1 = string
+                                                                                        L1_1 = L1_1.format
+                                                                                        L1_1 = L1_1("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 109, 109)
+                                                                                        L0_0(L1_1, L1_1("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 109, 109))
+                                                                                      else
+                                                                                        L0_0 = hstrlog
+                                                                                        L0_0 = L0_0[47]
+                                                                                        L0_0 = L0_0.matched
+                                                                                        if L0_0 then
+                                                                                          L0_0 = mp
+                                                                                          L0_0 = L0_0.readfile
+                                                                                          L1_1 = pe
+                                                                                          L1_1 = L1_1.foffset_va
+                                                                                          L1_1 = L1_1(hstrlog[47].VA + 28)
+                                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                                          L1_1 = mp
+                                                                                          L1_1 = L1_1.readfile
+                                                                                          L1_1 = L1_1(pe.foffset_va(hstrlog[47].VA + 40), 1)
+                                                                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                        else
+                                                                                          L0_0 = hstrlog
+                                                                                          L0_0 = L0_0[48]
+                                                                                          L0_0 = L0_0.matched
+                                                                                          if L0_0 then
+                                                                                            L0_0 = mp
+                                                                                            L0_0 = L0_0.readfile
+                                                                                            L1_1 = pe
+                                                                                            L1_1 = L1_1.foffset_va
+                                                                                            L1_1 = L1_1(hstrlog[48].VA + 9)
+                                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                                            L1_1 = mp
+                                                                                            L1_1 = L1_1.readfile
+                                                                                            L1_1 = L1_1(pe.foffset_va(hstrlog[48].VA + 11), 1)
+                                                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                           else
-                                                                                            do
-                                                                                              if (hstrlog[30]).matched then
-                                                                                                local l_0_47 = (pe.mmap_va_nofastfail)((hstrlog[30]).VA + 4, 1)
-                                                                                                local l_0_48 = (pe.mmap_va_nofastfail)((hstrlog[30]).VA + 6, 1)
-                                                                                                ;
-                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_47), (string.byte)(l_0_48)))
+                                                                                            L0_0 = hstrlog
+                                                                                            L0_0 = L0_0[49]
+                                                                                            L0_0 = L0_0.matched
+                                                                                            if L0_0 then
+                                                                                              L0_0 = mp
+                                                                                              L0_0 = L0_0.readfile
+                                                                                              L1_1 = pe
+                                                                                              L1_1 = L1_1.foffset_va
+                                                                                              L1_1 = L1_1(hstrlog[49].VA + 35)
+                                                                                              L0_0 = L0_0(L1_1, 1)
+                                                                                              L1_1 = mp
+                                                                                              L1_1 = L1_1.readfile
+                                                                                              L1_1 = L1_1(pe.foffset_va(hstrlog[49].VA + 43), 1)
+                                                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                            else
+                                                                                              L0_0 = hstrlog
+                                                                                              L0_0 = L0_0[50]
+                                                                                              L0_0 = L0_0.matched
+                                                                                              if L0_0 then
+                                                                                                L0_0 = mp
+                                                                                                L0_0 = L0_0.readfile
+                                                                                                L1_1 = pe
+                                                                                                L1_1 = L1_1.foffset_va
+                                                                                                L1_1 = L1_1(hstrlog[50].VA + 22)
+                                                                                                L0_0 = L0_0(L1_1, 1)
+                                                                                                L1_1 = mp
+                                                                                                L1_1 = L1_1.readfile
+                                                                                                L1_1 = L1_1(pe.foffset_va(hstrlog[50].VA + 34), 1)
+                                                                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                               else
-                                                                                                do
-                                                                                                  if (hstrlog[31]).matched then
-                                                                                                    local l_0_49 = (pe.mmap_va_nofastfail)((hstrlog[31]).VA + 11, 1)
-                                                                                                    local l_0_50 = (pe.mmap_va_nofastfail)((hstrlog[31]).VA + 13, 1)
-                                                                                                    ;
-                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_49), (string.byte)(l_0_50)))
+                                                                                                L0_0 = hstrlog
+                                                                                                L0_0 = L0_0[51]
+                                                                                                L0_0 = L0_0.matched
+                                                                                                if L0_0 then
+                                                                                                  L0_0 = mp
+                                                                                                  L0_0 = L0_0.readfile
+                                                                                                  L1_1 = pe
+                                                                                                  L1_1 = L1_1.foffset_va
+                                                                                                  L1_1 = L1_1(hstrlog[51].VA + 25)
+                                                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                                                  L1_1 = mp
+                                                                                                  L1_1 = L1_1.readfile
+                                                                                                  L1_1 = L1_1(pe.foffset_va(hstrlog[51].VA + 27), 1)
+                                                                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                else
+                                                                                                  L0_0 = hstrlog
+                                                                                                  L0_0 = L0_0[52]
+                                                                                                  L0_0 = L0_0.matched
+                                                                                                  if L0_0 then
+                                                                                                    L0_0 = mp
+                                                                                                    L0_0 = L0_0.readfile
+                                                                                                    L1_1 = pe
+                                                                                                    L1_1 = L1_1.foffset_va
+                                                                                                    L1_1 = L1_1(hstrlog[52].VA + 35)
+                                                                                                    L0_0 = L0_0(L1_1, 1)
+                                                                                                    L1_1 = mp
+                                                                                                    L1_1 = L1_1.readfile
+                                                                                                    L1_1 = L1_1(pe.foffset_va(hstrlog[52].VA + 37), 1)
+                                                                                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                   else
-                                                                                                    do
-                                                                                                      if (hstrlog[32]).matched then
-                                                                                                        if (pe.mmap_va_nofastfail)((hstrlog[32]).VA + 4, 1) == "" or (pe.mmap_va_nofastfail)((hstrlog[32]).VA + 9, 1) == "" then
-                                                                                                          local l_0_51, l_0_52, l_0_54 = (mp.readfile)((pe.foffset_va)((hstrlog[32]).VA + 4), 1)
-                                                                                                          l_0_54 = mp
-                                                                                                          l_0_54 = l_0_54.readfile
-                                                                                                          l_0_54 = l_0_54((pe.foffset_va)((hstrlog[32]).VA + 9), 1)
-                                                                                                          l_0_52 = l_0_54
-                                                                                                          local l_0_53, l_0_55 = nil
-                                                                                                        end
-                                                                                                        do
-                                                                                                          -- DECOMPILER ERROR at PC1026: Confused about usage of register: R0 in 'UnsetPending'
-
-                                                                                                          -- DECOMPILER ERROR at PC1030: Confused about usage of register: R1 in 'UnsetPending'
-
-                                                                                                          ;
-                                                                                                          (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_51), (string.byte)(l_0_52)))
-                                                                                                          if (hstrlog[33]).matched then
-                                                                                                            local l_0_56 = (pe.mmap_va_nofastfail)((hstrlog[33]).VA + 5, 1)
-                                                                                                            local l_0_57 = (pe.mmap_va_nofastfail)((hstrlog[33]).VA + 11, 1)
-                                                                                                            ;
-                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_56), (string.byte)(l_0_57)))
+                                                                                                    L0_0 = hstrlog
+                                                                                                    L0_0 = L0_0[53]
+                                                                                                    L0_0 = L0_0.matched
+                                                                                                    if L0_0 then
+                                                                                                      L0_0 = mp
+                                                                                                      L0_0 = L0_0.readfile
+                                                                                                      L1_1 = pe
+                                                                                                      L1_1 = L1_1.foffset_va
+                                                                                                      L1_1 = L1_1(hstrlog[53].VA + 6)
+                                                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                                                      L1_1 = mp
+                                                                                                      L1_1 = L1_1.readfile
+                                                                                                      L1_1 = L1_1(pe.foffset_va(hstrlog[53].VA + 4), 1)
+                                                                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                    else
+                                                                                                      L0_0 = hstrlog
+                                                                                                      L0_0 = L0_0[54]
+                                                                                                      L0_0 = L0_0.matched
+                                                                                                      if L0_0 then
+                                                                                                        L0_0 = mp
+                                                                                                        L0_0 = L0_0.readfile
+                                                                                                        L1_1 = pe
+                                                                                                        L1_1 = L1_1.foffset_va
+                                                                                                        L1_1 = L1_1(hstrlog[54].VA + 6)
+                                                                                                        L0_0 = L0_0(L1_1, 1)
+                                                                                                        L1_1 = mp
+                                                                                                        L1_1 = L1_1.readfile
+                                                                                                        L1_1 = L1_1(pe.foffset_va(hstrlog[54].VA + 4), 1)
+                                                                                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                      else
+                                                                                                        L0_0 = hstrlog
+                                                                                                        L0_0 = L0_0[55]
+                                                                                                        L0_0 = L0_0.matched
+                                                                                                        if L0_0 then
+                                                                                                          L0_0 = mp
+                                                                                                          L0_0 = L0_0.readfile
+                                                                                                          L1_1 = pe
+                                                                                                          L1_1 = L1_1.foffset_va
+                                                                                                          L1_1 = L1_1(hstrlog[55].VA + 13)
+                                                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                                                          L1_1 = mp
+                                                                                                          L1_1 = L1_1.set_mpattribute
+                                                                                                          L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L0_0)))
+                                                                                                        else
+                                                                                                          L0_0 = hstrlog
+                                                                                                          L0_0 = L0_0[56]
+                                                                                                          L0_0 = L0_0.matched
+                                                                                                          if L0_0 then
+                                                                                                            L0_0 = mp
+                                                                                                            L0_0 = L0_0.readfile
+                                                                                                            L1_1 = pe
+                                                                                                            L1_1 = L1_1.foffset_va
+                                                                                                            L1_1 = L1_1(hstrlog[56].VA + 10)
+                                                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                                                            L1_1 = mp
+                                                                                                            L1_1 = L1_1.readfile
+                                                                                                            L1_1 = L1_1(pe.foffset_va(hstrlog[56].VA + 12), 1)
+                                                                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                                           else
-                                                                                                            do
-                                                                                                              if (hstrlog[34]).matched then
-                                                                                                                local l_0_58 = (pe.mmap_va_nofastfail)((hstrlog[34]).VA + 4, 1)
-                                                                                                                local l_0_59 = (pe.mmap_va_nofastfail)((hstrlog[34]).VA + 29, 1)
-                                                                                                                ;
-                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_58), (string.byte)(l_0_59)))
+                                                                                                            L0_0 = hstrlog
+                                                                                                            L0_0 = L0_0[57]
+                                                                                                            L0_0 = L0_0.matched
+                                                                                                            if L0_0 then
+                                                                                                              L0_0 = mp
+                                                                                                              L0_0 = L0_0.readfile
+                                                                                                              L1_1 = pe
+                                                                                                              L1_1 = L1_1.foffset_va
+                                                                                                              L1_1 = L1_1(hstrlog[57].VA + 8)
+                                                                                                              L0_0 = L0_0(L1_1, 1)
+                                                                                                              L1_1 = mp
+                                                                                                              L1_1 = L1_1.readfile
+                                                                                                              L1_1 = L1_1(pe.foffset_va(hstrlog[57].VA + 5), 1)
+                                                                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                            else
+                                                                                                              L0_0 = hstrlog
+                                                                                                              L0_0 = L0_0[58]
+                                                                                                              L0_0 = L0_0.matched
+                                                                                                              if L0_0 then
+                                                                                                                L0_0 = mp
+                                                                                                                L0_0 = L0_0.readfile
+                                                                                                                L1_1 = pe
+                                                                                                                L1_1 = L1_1.foffset_va
+                                                                                                                L1_1 = L1_1(hstrlog[58].VA + 11)
+                                                                                                                L0_0 = L0_0(L1_1, 1)
+                                                                                                                L1_1 = mp
+                                                                                                                L1_1 = L1_1.readfile
+                                                                                                                L1_1 = L1_1(pe.foffset_va(hstrlog[58].VA + 14), 1)
+                                                                                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                                               else
-                                                                                                                do
-                                                                                                                  if (hstrlog[35]).matched then
-                                                                                                                    local l_0_60 = (pe.mmap_va_nofastfail)((hstrlog[35]).VA + 5, 1)
-                                                                                                                    local l_0_61 = (pe.mmap_va_nofastfail)((hstrlog[35]).VA + 7, 1)
-                                                                                                                    ;
-                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_60), (string.byte)(l_0_61)))
+                                                                                                                L0_0 = hstrlog
+                                                                                                                L0_0 = L0_0[59]
+                                                                                                                L0_0 = L0_0.matched
+                                                                                                                if L0_0 then
+                                                                                                                  L0_0 = mp
+                                                                                                                  L0_0 = L0_0.readfile
+                                                                                                                  L1_1 = pe
+                                                                                                                  L1_1 = L1_1.foffset_va
+                                                                                                                  L1_1 = L1_1(hstrlog[59].VA + 6)
+                                                                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                                                                  L1_1 = mp
+                                                                                                                  L1_1 = L1_1.readfile
+                                                                                                                  L1_1 = L1_1(pe.foffset_va(hstrlog[59].VA + 4), 1)
+                                                                                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                else
+                                                                                                                  L0_0 = hstrlog
+                                                                                                                  L0_0 = L0_0[60]
+                                                                                                                  L0_0 = L0_0.matched
+                                                                                                                  if L0_0 then
+                                                                                                                    L0_0 = mp
+                                                                                                                    L0_0 = L0_0.readfile
+                                                                                                                    L1_1 = pe
+                                                                                                                    L1_1 = L1_1.foffset_va
+                                                                                                                    L1_1 = L1_1(hstrlog[60].VA + 10)
+                                                                                                                    L0_0 = L0_0(L1_1, 1)
+                                                                                                                    L1_1 = mp
+                                                                                                                    L1_1 = L1_1.readfile
+                                                                                                                    L1_1 = L1_1(pe.foffset_va(hstrlog[60].VA + 12), 1)
+                                                                                                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                                                   else
-                                                                                                                    do
-                                                                                                                      if (hstrlog[36]).matched then
-                                                                                                                        local l_0_62 = (pe.mmap_va_nofastfail)((hstrlog[36]).VA + 15, 1)
-                                                                                                                        local l_0_63 = (pe.mmap_va_nofastfail)((hstrlog[36]).VA + 21, 1)
-                                                                                                                        ;
-                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_62), (string.byte)(l_0_63)))
+                                                                                                                    L0_0 = hstrlog
+                                                                                                                    L0_0 = L0_0[61]
+                                                                                                                    L0_0 = L0_0.matched
+                                                                                                                    if L0_0 then
+                                                                                                                      L0_0 = mp
+                                                                                                                      L0_0 = L0_0.readfile
+                                                                                                                      L1_1 = pe
+                                                                                                                      L1_1 = L1_1.foffset_va
+                                                                                                                      L1_1 = L1_1(hstrlog[61].VA + 10)
+                                                                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                                                                      L1_1 = mp
+                                                                                                                      L1_1 = L1_1.readfile
+                                                                                                                      L1_1 = L1_1(pe.foffset_va(hstrlog[61].VA + 12), 1)
+                                                                                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                                    else
+                                                                                                                      L0_0 = hstrlog
+                                                                                                                      L0_0 = L0_0[62]
+                                                                                                                      L0_0 = L0_0.matched
+                                                                                                                      if L0_0 then
+                                                                                                                        L0_0 = mp
+                                                                                                                        L0_0 = L0_0.readfile
+                                                                                                                        L1_1 = pe
+                                                                                                                        L1_1 = L1_1.foffset_va
+                                                                                                                        L1_1 = L1_1(hstrlog[62].VA + 4)
+                                                                                                                        L0_0 = L0_0(L1_1, 1)
+                                                                                                                        L1_1 = L0_0
+                                                                                                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                                                       else
-                                                                                                                        do
-                                                                                                                          if (hstrlog[37]).matched then
-                                                                                                                            local l_0_64 = (pe.mmap_va_nofastfail)((hstrlog[37]).VA + 5, 1)
-                                                                                                                            local l_0_65 = (pe.mmap_va_nofastfail)((hstrlog[37]).VA + 7, 1)
-                                                                                                                            ;
-                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_64), (string.byte)(l_0_65)))
+                                                                                                                        L0_0 = hstrlog
+                                                                                                                        L0_0 = L0_0[63]
+                                                                                                                        L0_0 = L0_0.matched
+                                                                                                                        if L0_0 then
+                                                                                                                          L0_0 = mp
+                                                                                                                          L0_0 = L0_0.readfile
+                                                                                                                          L1_1 = pe
+                                                                                                                          L1_1 = L1_1.foffset_va
+                                                                                                                          L1_1 = L1_1(hstrlog[63].VA + 6)
+                                                                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                                                                          L1_1 = mp
+                                                                                                                          L1_1 = L1_1.readfile
+                                                                                                                          L1_1 = L1_1(pe.foffset_va(hstrlog[63].VA + 4), 1)
+                                                                                                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                        else
+                                                                                                                          L0_0 = hstrlog
+                                                                                                                          L0_0 = L0_0[64]
+                                                                                                                          L0_0 = L0_0.matched
+                                                                                                                          if L0_0 then
+                                                                                                                            L0_0 = mp
+                                                                                                                            L0_0 = L0_0.readfile
+                                                                                                                            L1_1 = pe
+                                                                                                                            L1_1 = L1_1.foffset_va
+                                                                                                                            L1_1 = L1_1(hstrlog[64].VA + 13)
+                                                                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                                                                            L1_1 = mp
+                                                                                                                            L1_1 = L1_1.readfile
+                                                                                                                            L1_1 = L1_1(pe.foffset_va(hstrlog[64].VA + 15), 1)
+                                                                                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                           else
-                                                                                                                            do
-                                                                                                                              if (hstrlog[38]).matched then
-                                                                                                                                local l_0_66 = (pe.mmap_va_nofastfail)((hstrlog[38]).VA + 11, 1)
-                                                                                                                                local l_0_67 = (pe.mmap_va_nofastfail)((hstrlog[38]).VA + 13, 1)
-                                                                                                                                ;
-                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_66), (string.byte)(l_0_67)))
+                                                                                                                            L0_0 = hstrlog
+                                                                                                                            L0_0 = L0_0[65]
+                                                                                                                            L0_0 = L0_0.matched
+                                                                                                                            if L0_0 then
+                                                                                                                              L0_0 = mp
+                                                                                                                              L0_0 = L0_0.readfile
+                                                                                                                              L1_1 = pe
+                                                                                                                              L1_1 = L1_1.foffset_va
+                                                                                                                              L1_1 = L1_1(hstrlog[65].VA + 33)
+                                                                                                                              L0_0 = L0_0(L1_1, 1)
+                                                                                                                              L1_1 = mp
+                                                                                                                              L1_1 = L1_1.readfile
+                                                                                                                              L1_1 = L1_1(pe.foffset_va(hstrlog[65].VA + 45), 1)
+                                                                                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                            else
+                                                                                                                              L0_0 = hstrlog
+                                                                                                                              L0_0 = L0_0[66]
+                                                                                                                              L0_0 = L0_0.matched
+                                                                                                                              if L0_0 then
+                                                                                                                                L0_0 = mp
+                                                                                                                                L0_0 = L0_0.readfile
+                                                                                                                                L1_1 = pe
+                                                                                                                                L1_1 = L1_1.foffset_va
+                                                                                                                                L1_1 = L1_1(hstrlog[66].VA + 38)
+                                                                                                                                L0_0 = L0_0(L1_1, 1)
+                                                                                                                                L1_1 = mp
+                                                                                                                                L1_1 = L1_1.readfile
+                                                                                                                                L1_1 = L1_1(pe.foffset_va(hstrlog[66].VA + 26), 1)
+                                                                                                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                               else
-                                                                                                                                do
-                                                                                                                                  if (hstrlog[39]).matched then
-                                                                                                                                    local l_0_68 = (mp.readfile)((pe.foffset_va)((hstrlog[39]).VA + 6), 1)
-                                                                                                                                    local l_0_69 = (mp.readfile)((pe.foffset_va)((hstrlog[39]).VA + 9), 1)
-                                                                                                                                    ;
-                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_68), (string.byte)(l_0_69)))
+                                                                                                                                L0_0 = hstrlog
+                                                                                                                                L0_0 = L0_0[67]
+                                                                                                                                L0_0 = L0_0.matched
+                                                                                                                                if L0_0 then
+                                                                                                                                  L0_0 = mp
+                                                                                                                                  L0_0 = L0_0.readfile
+                                                                                                                                  L1_1 = pe
+                                                                                                                                  L1_1 = L1_1.foffset_va
+                                                                                                                                  L1_1 = L1_1(hstrlog[67].VA + 10)
+                                                                                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                                                                                  L1_1 = mp
+                                                                                                                                  L1_1 = L1_1.readfile
+                                                                                                                                  L1_1 = L1_1(pe.foffset_va(hstrlog[67].VA + 12), 1)
+                                                                                                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                                else
+                                                                                                                                  L0_0 = hstrlog
+                                                                                                                                  L0_0 = L0_0[68]
+                                                                                                                                  L0_0 = L0_0.matched
+                                                                                                                                  if L0_0 then
+                                                                                                                                    L0_0 = mp
+                                                                                                                                    L0_0 = L0_0.readfile
+                                                                                                                                    L1_1 = pe
+                                                                                                                                    L1_1 = L1_1.foffset_va
+                                                                                                                                    L1_1 = L1_1(hstrlog[68].VA + 18)
+                                                                                                                                    L0_0 = L0_0(L1_1, 1)
+                                                                                                                                    L1_1 = mp
+                                                                                                                                    L1_1 = L1_1.readfile
+                                                                                                                                    L1_1 = L1_1(pe.foffset_va(hstrlog[68].VA + 16), 1)
+                                                                                                                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                   else
-                                                                                                                                    do
-                                                                                                                                      if (hstrlog[40]).matched then
-                                                                                                                                        local l_0_70 = (pe.mmap_va_nofastfail)((hstrlog[40]).VA + 12, 1)
-                                                                                                                                        local l_0_71 = (pe.mmap_va_nofastfail)((hstrlog[40]).VA + 24, 1)
-                                                                                                                                        ;
-                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_70), (string.byte)(l_0_71)))
+                                                                                                                                    L0_0 = hstrlog
+                                                                                                                                    L0_0 = L0_0[69]
+                                                                                                                                    L0_0 = L0_0.matched
+                                                                                                                                    if L0_0 then
+                                                                                                                                      L0_0 = mp
+                                                                                                                                      L0_0 = L0_0.readfile
+                                                                                                                                      L1_1 = pe
+                                                                                                                                      L1_1 = L1_1.foffset_va
+                                                                                                                                      L1_1 = L1_1(hstrlog[69].VA + 11)
+                                                                                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                                                                                      L1_1 = mp
+                                                                                                                                      L1_1 = L1_1.readfile
+                                                                                                                                      L1_1 = L1_1(pe.foffset_va(hstrlog[69].VA + 16), 1)
+                                                                                                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                                                      mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
+                                                                                                                                    else
+                                                                                                                                      L0_0 = hstrlog
+                                                                                                                                      L0_0 = L0_0[70]
+                                                                                                                                      L0_0 = L0_0.matched
+                                                                                                                                      if L0_0 then
+                                                                                                                                        L0_0 = mp
+                                                                                                                                        L0_0 = L0_0.readfile
+                                                                                                                                        L1_1 = pe
+                                                                                                                                        L1_1 = L1_1.foffset_va
+                                                                                                                                        L1_1 = L1_1(hstrlog[70].VA + 9)
+                                                                                                                                        L0_0 = L0_0(L1_1, 1)
+                                                                                                                                        L1_1 = mp
+                                                                                                                                        L1_1 = L1_1.readfile
+                                                                                                                                        L1_1 = L1_1(pe.foffset_va(hstrlog[70].VA + 7), 1)
+                                                                                                                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                       else
-                                                                                                                                        do
-                                                                                                                                          if (hstrlog[41]).matched then
-                                                                                                                                            local l_0_72 = (mp.readfile)((pe.foffset_va)((hstrlog[41]).VA + 5), 1)
-                                                                                                                                            local l_0_73 = (mp.readfile)((pe.foffset_va)((hstrlog[41]).VA + 7), 1)
-                                                                                                                                            ;
-                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_72), (string.byte)(l_0_73)))
+                                                                                                                                        L0_0 = hstrlog
+                                                                                                                                        L0_0 = L0_0[71]
+                                                                                                                                        L0_0 = L0_0.matched
+                                                                                                                                        if L0_0 then
+                                                                                                                                          L0_0 = mp
+                                                                                                                                          L0_0 = L0_0.readfile
+                                                                                                                                          L1_1 = pe
+                                                                                                                                          L1_1 = L1_1.foffset_va
+                                                                                                                                          L1_1 = L1_1(hstrlog[71].VA + 11)
+                                                                                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                                                                                          L1_1 = mp
+                                                                                                                                          L1_1 = L1_1.readfile
+                                                                                                                                          L1_1 = L1_1(pe.foffset_va(hstrlog[71].VA + 16), 1)
+                                                                                                                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                                                          mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
+                                                                                                                                        else
+                                                                                                                                          L0_0 = hstrlog
+                                                                                                                                          L0_0 = L0_0[72]
+                                                                                                                                          L0_0 = L0_0.matched
+                                                                                                                                          if L0_0 then
+                                                                                                                                            L0_0 = mp
+                                                                                                                                            L0_0 = L0_0.readfile
+                                                                                                                                            L1_1 = pe
+                                                                                                                                            L1_1 = L1_1.foffset_va
+                                                                                                                                            L1_1 = L1_1(hstrlog[72].VA + 6)
+                                                                                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                                                                                            L1_1 = mp
+                                                                                                                                            L1_1 = L1_1.readfile
+                                                                                                                                            L1_1 = L1_1(pe.foffset_va(hstrlog[72].VA + 11), 1)
+                                                                                                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                                                            mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
                                                                                                                                           else
-                                                                                                                                            do
-                                                                                                                                              if (hstrlog[42]).matched then
-                                                                                                                                                local l_0_74 = (mp.readfile)((pe.foffset_va)((hstrlog[42]).VA + 13), 1)
-                                                                                                                                                local l_0_75 = (mp.readfile)((pe.foffset_va)((hstrlog[42]).VA + 15), 1)
-                                                                                                                                                ;
-                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_74), (string.byte)(l_0_75)))
+                                                                                                                                            L0_0 = hstrlog
+                                                                                                                                            L0_0 = L0_0[73]
+                                                                                                                                            L0_0 = L0_0.matched
+                                                                                                                                            if L0_0 then
+                                                                                                                                              L0_0 = mp
+                                                                                                                                              L0_0 = L0_0.readfile
+                                                                                                                                              L1_1 = pe
+                                                                                                                                              L1_1 = L1_1.foffset_va
+                                                                                                                                              L1_1 = L1_1(hstrlog[73].VA + 9)
+                                                                                                                                              L0_0 = L0_0(L1_1, 1)
+                                                                                                                                              L1_1 = mp
+                                                                                                                                              L1_1 = L1_1.readfile
+                                                                                                                                              L1_1 = L1_1(pe.foffset_va(hstrlog[73].VA + 7), 1)
+                                                                                                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                                            else
+                                                                                                                                              L0_0 = hstrlog
+                                                                                                                                              L0_0 = L0_0[74]
+                                                                                                                                              L0_0 = L0_0.matched
+                                                                                                                                              if L0_0 then
+                                                                                                                                                L0_0 = mp
+                                                                                                                                                L0_0 = L0_0.readfile
+                                                                                                                                                L1_1 = pe
+                                                                                                                                                L1_1 = L1_1.foffset_va
+                                                                                                                                                L1_1 = L1_1(hstrlog[74].VA + 11)
+                                                                                                                                                L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                L1_1 = mp
+                                                                                                                                                L1_1 = L1_1.readfile
+                                                                                                                                                L1_1 = L1_1(pe.foffset_va(hstrlog[74].VA + 14), 1)
+                                                                                                                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                               else
-                                                                                                                                                do
-                                                                                                                                                  if (hstrlog[43]).matched then
-                                                                                                                                                    local l_0_76 = (mp.readfile)((pe.foffset_va)((hstrlog[43]).VA + 4), 1)
-                                                                                                                                                    local l_0_77 = (mp.readfile)((pe.foffset_va)((hstrlog[43]).VA + 7), 1)
-                                                                                                                                                    ;
-                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_76), (string.byte)(l_0_77)))
+                                                                                                                                                L0_0 = hstrlog
+                                                                                                                                                L0_0 = L0_0[75]
+                                                                                                                                                L0_0 = L0_0.matched
+                                                                                                                                                if L0_0 then
+                                                                                                                                                  L0_0 = mp
+                                                                                                                                                  L0_0 = L0_0.readfile
+                                                                                                                                                  L1_1 = pe
+                                                                                                                                                  L1_1 = L1_1.foffset_va
+                                                                                                                                                  L1_1 = L1_1(hstrlog[75].VA + 8)
+                                                                                                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                  L1_1 = mp
+                                                                                                                                                  L1_1 = L1_1.readfile
+                                                                                                                                                  L1_1 = L1_1(pe.foffset_va(hstrlog[75].VA + 5), 1)
+                                                                                                                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                                                else
+                                                                                                                                                  L0_0 = hstrlog
+                                                                                                                                                  L0_0 = L0_0[76]
+                                                                                                                                                  L0_0 = L0_0.matched
+                                                                                                                                                  if L0_0 then
+                                                                                                                                                    L0_0 = mp
+                                                                                                                                                    L0_0 = L0_0.readfile
+                                                                                                                                                    L1_1 = pe
+                                                                                                                                                    L1_1 = L1_1.foffset_va
+                                                                                                                                                    L1_1 = L1_1(hstrlog[76].VA + 4)
+                                                                                                                                                    L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                    L1_1 = mp
+                                                                                                                                                    L1_1 = L1_1.readfile
+                                                                                                                                                    L1_1 = L1_1(pe.foffset_va(hstrlog[76].VA + 6), 1)
+                                                                                                                                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                                                                                   else
-                                                                                                                                                    do
-                                                                                                                                                      if (hstrlog[44]).matched then
-                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 66, 106))
+                                                                                                                                                    L0_0 = hstrlog
+                                                                                                                                                    L0_0 = L0_0[77]
+                                                                                                                                                    L0_0 = L0_0.matched
+                                                                                                                                                    if L0_0 then
+                                                                                                                                                      L0_0 = mp
+                                                                                                                                                      L0_0 = L0_0.readfile
+                                                                                                                                                      L1_1 = pe
+                                                                                                                                                      L1_1 = L1_1.foffset_va
+                                                                                                                                                      L1_1 = L1_1(hstrlog[77].VA + 8)
+                                                                                                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                      L1_1 = mp
+                                                                                                                                                      L1_1 = L1_1.readfile
+                                                                                                                                                      L1_1 = L1_1(pe.foffset_va(hstrlog[77].VA + 11), 1)
+                                                                                                                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                                                    else
+                                                                                                                                                      L0_0 = hstrlog
+                                                                                                                                                      L0_0 = L0_0[78]
+                                                                                                                                                      L0_0 = L0_0.matched
+                                                                                                                                                      if L0_0 then
+                                                                                                                                                        L0_0 = mp
+                                                                                                                                                        L0_0 = L0_0.readfile
+                                                                                                                                                        L1_1 = pe
+                                                                                                                                                        L1_1 = L1_1.foffset_va
+                                                                                                                                                        L1_1 = L1_1(hstrlog[78].VA + 18)
+                                                                                                                                                        L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                        L1_1 = mp
+                                                                                                                                                        L1_1 = L1_1.readfile
+                                                                                                                                                        L1_1 = L1_1(pe.foffset_va(hstrlog[78].VA + 21), 1)
+                                                                                                                                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                                       else
-                                                                                                                                                        if (hstrlog[45]).matched then
-                                                                                                                                                          local l_0_78 = (mp.readfile)((pe.foffset_va)((hstrlog[45]).VA + 4), 1)
-                                                                                                                                                          local l_0_79 = (mp.readfile)((pe.foffset_va)((hstrlog[45]).VA + 6), 1)
-                                                                                                                                                          ;
-                                                                                                                                                          (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_78), (string.byte)(l_0_79)))
+                                                                                                                                                        L0_0 = hstrlog
+                                                                                                                                                        L0_0 = L0_0[79]
+                                                                                                                                                        L0_0 = L0_0.matched
+                                                                                                                                                        if L0_0 then
+                                                                                                                                                          L0_0 = mp
+                                                                                                                                                          L0_0 = L0_0.readfile
+                                                                                                                                                          L1_1 = pe
+                                                                                                                                                          L1_1 = L1_1.foffset_va
+                                                                                                                                                          L1_1 = L1_1(hstrlog[79].VA + 18)
+                                                                                                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                          L1_1 = mp
+                                                                                                                                                          L1_1 = L1_1.readfile
+                                                                                                                                                          L1_1 = L1_1(pe.foffset_va(hstrlog[79].VA + 31), 1)
+                                                                                                                                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                                         else
-                                                                                                                                                          do
-                                                                                                                                                            if (hstrlog[46]).matched then
-                                                                                                                                                              (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 109, 109))
+                                                                                                                                                          L0_0 = hstrlog
+                                                                                                                                                          L0_0 = L0_0[80]
+                                                                                                                                                          L0_0 = L0_0.matched
+                                                                                                                                                          if L0_0 then
+                                                                                                                                                            L0_0 = mp
+                                                                                                                                                            L0_0 = L0_0.readfile
+                                                                                                                                                            L1_1 = pe
+                                                                                                                                                            L1_1 = L1_1.foffset_va
+                                                                                                                                                            L1_1 = L1_1(hstrlog[80].VA + 18)
+                                                                                                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                            L1_1 = mp
+                                                                                                                                                            L1_1 = L1_1.readfile
+                                                                                                                                                            L1_1 = L1_1(pe.foffset_va(hstrlog[80].VA + 21), 1)
+                                                                                                                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                                                          else
+                                                                                                                                                            L0_0 = hstrlog
+                                                                                                                                                            L0_0 = L0_0[81]
+                                                                                                                                                            L0_0 = L0_0.matched
+                                                                                                                                                            if L0_0 then
+                                                                                                                                                              L0_0 = mp
+                                                                                                                                                              L0_0 = L0_0.readfile
+                                                                                                                                                              L1_1 = pe
+                                                                                                                                                              L1_1 = L1_1.foffset_va
+                                                                                                                                                              L1_1 = L1_1(hstrlog[81].VA + 8)
+                                                                                                                                                              L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                              L1_1 = mp
+                                                                                                                                                              L1_1 = L1_1.readfile
+                                                                                                                                                              L1_1 = L1_1(pe.foffset_va(hstrlog[81].VA + 11), 1)
+                                                                                                                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                                             else
-                                                                                                                                                              if (hstrlog[47]).matched then
-                                                                                                                                                                local l_0_80 = (mp.readfile)((pe.foffset_va)((hstrlog[47]).VA + 28), 1)
-                                                                                                                                                                local l_0_81 = (mp.readfile)((pe.foffset_va)((hstrlog[47]).VA + 40), 1)
-                                                                                                                                                                ;
-                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_80), (string.byte)(l_0_81)))
+                                                                                                                                                              L0_0 = hstrlog
+                                                                                                                                                              L0_0 = L0_0[82]
+                                                                                                                                                              L0_0 = L0_0.matched
+                                                                                                                                                              if L0_0 then
+                                                                                                                                                                L0_0 = mp
+                                                                                                                                                                L0_0 = L0_0.readfile
+                                                                                                                                                                L1_1 = pe
+                                                                                                                                                                L1_1 = L1_1.foffset_va
+                                                                                                                                                                L1_1 = L1_1(hstrlog[82].VA + 8)
+                                                                                                                                                                L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                L1_1 = mp
+                                                                                                                                                                L1_1 = L1_1.readfile
+                                                                                                                                                                L1_1 = L1_1(pe.foffset_va(hstrlog[82].VA + 21), 1)
+                                                                                                                                                                mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                                               else
-                                                                                                                                                                do
-                                                                                                                                                                  if (hstrlog[48]).matched then
-                                                                                                                                                                    local l_0_82 = (mp.readfile)((pe.foffset_va)((hstrlog[48]).VA + 9), 1)
-                                                                                                                                                                    local l_0_83 = (mp.readfile)((pe.foffset_va)((hstrlog[48]).VA + 11), 1)
-                                                                                                                                                                    ;
-                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_82), (mp.bitand)(-(string.byte)(l_0_83), 255)))
+                                                                                                                                                                L0_0 = hstrlog
+                                                                                                                                                                L0_0 = L0_0[83]
+                                                                                                                                                                L0_0 = L0_0.matched
+                                                                                                                                                                if L0_0 then
+                                                                                                                                                                  L0_0 = mp
+                                                                                                                                                                  L0_0 = L0_0.readfile
+                                                                                                                                                                  L1_1 = pe
+                                                                                                                                                                  L1_1 = L1_1.foffset_va
+                                                                                                                                                                  L1_1 = L1_1(hstrlog[83].VA + 18)
+                                                                                                                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                  L1_1 = mp
+                                                                                                                                                                  L1_1 = L1_1.readfile
+                                                                                                                                                                  L1_1 = L1_1(pe.foffset_va(hstrlog[83].VA + 31), 1)
+                                                                                                                                                                  mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                                                                else
+                                                                                                                                                                  L0_0 = hstrlog
+                                                                                                                                                                  L0_0 = L0_0[84]
+                                                                                                                                                                  L0_0 = L0_0.matched
+                                                                                                                                                                  if L0_0 then
+                                                                                                                                                                    L0_0 = mp
+                                                                                                                                                                    L0_0 = L0_0.readfile
+                                                                                                                                                                    L1_1 = pe
+                                                                                                                                                                    L1_1 = L1_1.foffset_va
+                                                                                                                                                                    L1_1 = L1_1(hstrlog[84].VA + 8)
+                                                                                                                                                                    L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                    L1_1 = mp
+                                                                                                                                                                    L1_1 = L1_1.readfile
+                                                                                                                                                                    L1_1 = L1_1(pe.foffset_va(hstrlog[84].VA + 21), 1)
+                                                                                                                                                                    mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
                                                                                                                                                                   else
-                                                                                                                                                                    do
-                                                                                                                                                                      if (hstrlog[49]).matched then
-                                                                                                                                                                        local l_0_84 = (mp.readfile)((pe.foffset_va)((hstrlog[49]).VA + 35), 1)
-                                                                                                                                                                        local l_0_85 = (mp.readfile)((pe.foffset_va)((hstrlog[49]).VA + 43), 1)
-                                                                                                                                                                        ;
-                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_84), (string.byte)(l_0_85)))
+                                                                                                                                                                    L0_0 = hstrlog
+                                                                                                                                                                    L0_0 = L0_0[85]
+                                                                                                                                                                    L0_0 = L0_0.matched
+                                                                                                                                                                    if L0_0 then
+                                                                                                                                                                      L0_0 = mp
+                                                                                                                                                                      L0_0 = L0_0.readfile
+                                                                                                                                                                      L1_1 = pe
+                                                                                                                                                                      L1_1 = L1_1.foffset_va
+                                                                                                                                                                      L1_1 = L1_1(hstrlog[85].VA + 5)
+                                                                                                                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                      L1_1 = mp
+                                                                                                                                                                      L1_1 = L1_1.readfile
+                                                                                                                                                                      L1_1 = L1_1(pe.foffset_va(hstrlog[85].VA + 8), 1)
+                                                                                                                                                                      mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), mp.bitand(-string.byte(L1_1), 255)))
+                                                                                                                                                                    else
+                                                                                                                                                                      L0_0 = hstrlog
+                                                                                                                                                                      L0_0 = L0_0[86]
+                                                                                                                                                                      L0_0 = L0_0.matched
+                                                                                                                                                                      if L0_0 then
+                                                                                                                                                                        L0_0 = mp
+                                                                                                                                                                        L0_0 = L0_0.readfile
+                                                                                                                                                                        L1_1 = pe
+                                                                                                                                                                        L1_1 = L1_1.foffset_va
+                                                                                                                                                                        L1_1 = L1_1(hstrlog[86].VA + 5)
+                                                                                                                                                                        L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                        L1_1 = mp
+                                                                                                                                                                        L1_1 = L1_1.readfile
+                                                                                                                                                                        L1_1 = L1_1(pe.foffset_va(hstrlog[86].VA + 8), 1)
+                                                                                                                                                                        mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                                                                                                       else
-                                                                                                                                                                        do
-                                                                                                                                                                          if (hstrlog[50]).matched then
-                                                                                                                                                                            local l_0_86 = (mp.readfile)((pe.foffset_va)((hstrlog[50]).VA + 22), 1)
-                                                                                                                                                                            local l_0_87 = (mp.readfile)((pe.foffset_va)((hstrlog[50]).VA + 34), 1)
-                                                                                                                                                                            ;
-                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_86), (string.byte)(l_0_87)))
+                                                                                                                                                                        L0_0 = hstrlog
+                                                                                                                                                                        L0_0 = L0_0[87]
+                                                                                                                                                                        L0_0 = L0_0.matched
+                                                                                                                                                                        if L0_0 then
+                                                                                                                                                                          L0_0 = mp
+                                                                                                                                                                          L0_0 = L0_0.readfile
+                                                                                                                                                                          L1_1 = pe
+                                                                                                                                                                          L1_1 = L1_1.foffset_va
+                                                                                                                                                                          L1_1 = L1_1(hstrlog[87].VA + 8)
+                                                                                                                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                          L1_1 = mp
+                                                                                                                                                                          L1_1 = L1_1.readfile
+                                                                                                                                                                          L1_1 = L1_1(pe.foffset_va(hstrlog[87].VA + 11), 1)
+                                                                                                                                                                          mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                                                                                          mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
+                                                                                                                                                                        else
+                                                                                                                                                                          L0_0 = hstrlog
+                                                                                                                                                                          L0_0 = L0_0[88]
+                                                                                                                                                                          L0_0 = L0_0.matched
+                                                                                                                                                                          if L0_0 then
+                                                                                                                                                                            L0_0 = mp
+                                                                                                                                                                            L0_0 = L0_0.readfile
+                                                                                                                                                                            L1_1 = pe
+                                                                                                                                                                            L1_1 = L1_1.foffset_va
+                                                                                                                                                                            L1_1 = L1_1(hstrlog[88].VA + 6)
+                                                                                                                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                            L1_1 = mp
+                                                                                                                                                                            L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                            L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, string.byte(L0_0)))
+                                                                                                                                                                            L1_1 = mp
+                                                                                                                                                                            L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                            L1_1("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
                                                                                                                                                                           else
-                                                                                                                                                                            do
-                                                                                                                                                                              if (hstrlog[51]).matched then
-                                                                                                                                                                                local l_0_88 = (mp.readfile)((pe.foffset_va)((hstrlog[51]).VA + 25), 1)
-                                                                                                                                                                                local l_0_89 = (mp.readfile)((pe.foffset_va)((hstrlog[51]).VA + 27), 1)
-                                                                                                                                                                                ;
-                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_88), (mp.bitand)(-(string.byte)(l_0_89), 255)))
+                                                                                                                                                                            L0_0 = hstrlog
+                                                                                                                                                                            L0_0 = L0_0[89]
+                                                                                                                                                                            L0_0 = L0_0.matched
+                                                                                                                                                                            if L0_0 then
+                                                                                                                                                                              L0_0 = mp
+                                                                                                                                                                              L0_0 = L0_0.readfile
+                                                                                                                                                                              L1_1 = pe
+                                                                                                                                                                              L1_1 = L1_1.foffset_va
+                                                                                                                                                                              L1_1 = L1_1(hstrlog[89].VA + 6)
+                                                                                                                                                                              L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                              L1_1 = mp
+                                                                                                                                                                              L1_1 = L1_1.readfile
+                                                                                                                                                                              L1_1 = L1_1(pe.foffset_va(hstrlog[89].VA + 9), 1)
+                                                                                                                                                                              mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
+                                                                                                                                                                              mp.set_mpattribute("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
+                                                                                                                                                                            else
+                                                                                                                                                                              L0_0 = hstrlog
+                                                                                                                                                                              L0_0 = L0_0[90]
+                                                                                                                                                                              L0_0 = L0_0.matched
+                                                                                                                                                                              if L0_0 then
+                                                                                                                                                                                L0_0 = mp
+                                                                                                                                                                                L0_0 = L0_0.readfile
+                                                                                                                                                                                L1_1 = pe
+                                                                                                                                                                                L1_1 = L1_1.foffset_va
+                                                                                                                                                                                L1_1 = L1_1(hstrlog[90].VA + 6)
+                                                                                                                                                                                L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                                L1_1 = mp
+                                                                                                                                                                                L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, string.byte(L0_0)))
+                                                                                                                                                                                L1_1 = mp
+                                                                                                                                                                                L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                L1_1("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
                                                                                                                                                                               else
-                                                                                                                                                                                do
-                                                                                                                                                                                  if (hstrlog[52]).matched then
-                                                                                                                                                                                    local l_0_90 = (mp.readfile)((pe.foffset_va)((hstrlog[52]).VA + 35), 1)
-                                                                                                                                                                                    local l_0_91 = (mp.readfile)((pe.foffset_va)((hstrlog[52]).VA + 37), 1)
-                                                                                                                                                                                    ;
-                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_90), (mp.bitand)(-(string.byte)(l_0_91), 255)))
+                                                                                                                                                                                L0_0 = hstrlog
+                                                                                                                                                                                L0_0 = L0_0[91]
+                                                                                                                                                                                L0_0 = L0_0.matched
+                                                                                                                                                                                if L0_0 then
+                                                                                                                                                                                  L0_0 = mp
+                                                                                                                                                                                  L0_0 = L0_0.readfile
+                                                                                                                                                                                  L1_1 = pe
+                                                                                                                                                                                  L1_1 = L1_1.foffset_va
+                                                                                                                                                                                  L1_1 = L1_1(hstrlog[91].VA + 8)
+                                                                                                                                                                                  L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                                  L1_1 = mp
+                                                                                                                                                                                  L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                  L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, string.byte(L0_0)))
+                                                                                                                                                                                  L1_1 = mp
+                                                                                                                                                                                  L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                  L1_1("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
+                                                                                                                                                                                else
+                                                                                                                                                                                  L0_0 = hstrlog
+                                                                                                                                                                                  L0_0 = L0_0[92]
+                                                                                                                                                                                  L0_0 = L0_0.matched
+                                                                                                                                                                                  if L0_0 then
+                                                                                                                                                                                    L0_0 = mp
+                                                                                                                                                                                    L0_0 = L0_0.readfile
+                                                                                                                                                                                    L1_1 = pe
+                                                                                                                                                                                    L1_1 = L1_1.foffset_va
+                                                                                                                                                                                    L1_1 = L1_1(hstrlog[92].VA + 8)
+                                                                                                                                                                                    L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                                    L1_1 = mp
+                                                                                                                                                                                    L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                    L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, string.byte(L0_0)))
+                                                                                                                                                                                    L1_1 = mp
+                                                                                                                                                                                    L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                    L1_1("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
                                                                                                                                                                                   else
-                                                                                                                                                                                    do
-                                                                                                                                                                                      if (hstrlog[53]).matched then
-                                                                                                                                                                                        local l_0_92 = (mp.readfile)((pe.foffset_va)((hstrlog[53]).VA + 6), 1)
-                                                                                                                                                                                        local l_0_93 = (mp.readfile)((pe.foffset_va)((hstrlog[53]).VA + 4), 1)
-                                                                                                                                                                                        ;
-                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_92), (mp.bitand)(-(string.byte)(l_0_93), 255)))
+                                                                                                                                                                                    L0_0 = hstrlog
+                                                                                                                                                                                    L0_0 = L0_0[93]
+                                                                                                                                                                                    L0_0 = L0_0.matched
+                                                                                                                                                                                    if L0_0 then
+                                                                                                                                                                                      L0_0 = mp
+                                                                                                                                                                                      L0_0 = L0_0.readfile
+                                                                                                                                                                                      L1_1 = pe
+                                                                                                                                                                                      L1_1 = L1_1.foffset_va
+                                                                                                                                                                                      L1_1 = L1_1(hstrlog[93].VA + 8)
+                                                                                                                                                                                      L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                                      L1_1 = mp
+                                                                                                                                                                                      L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                      L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, mp.bitand(-string.byte(L0_0), 255)))
+                                                                                                                                                                                      L1_1 = mp
+                                                                                                                                                                                      L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                      L1_1("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
+                                                                                                                                                                                    else
+                                                                                                                                                                                      L0_0 = hstrlog
+                                                                                                                                                                                      L0_0 = L0_0[94]
+                                                                                                                                                                                      L0_0 = L0_0.matched
+                                                                                                                                                                                      if L0_0 then
+                                                                                                                                                                                        L0_0 = mp
+                                                                                                                                                                                        L0_0 = L0_0.readfile
+                                                                                                                                                                                        L1_1 = pe
+                                                                                                                                                                                        L1_1 = L1_1.foffset_va
+                                                                                                                                                                                        L1_1 = L1_1(hstrlog[94].VA + 6)
+                                                                                                                                                                                        L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                                        L1_1 = mp
+                                                                                                                                                                                        L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                        L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, string.byte(L0_0)))
+                                                                                                                                                                                        L1_1 = mp
+                                                                                                                                                                                        L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                        L1_1("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
                                                                                                                                                                                       else
-                                                                                                                                                                                        do
-                                                                                                                                                                                          if (hstrlog[54]).matched then
-                                                                                                                                                                                            local l_0_94 = (mp.readfile)((pe.foffset_va)((hstrlog[54]).VA + 6), 1)
-                                                                                                                                                                                            local l_0_95 = (mp.readfile)((pe.foffset_va)((hstrlog[54]).VA + 4), 1)
-                                                                                                                                                                                            ;
-                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_94), (string.byte)(l_0_95)))
-                                                                                                                                                                                          else
-                                                                                                                                                                                            do
-                                                                                                                                                                                              if (hstrlog[55]).matched then
-                                                                                                                                                                                                local l_0_96 = (mp.readfile)((pe.foffset_va)((hstrlog[55]).VA + 13), 1)
-                                                                                                                                                                                                ;
-                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_96), (string.byte)(l_0_96)))
-                                                                                                                                                                                              else
-                                                                                                                                                                                                do
-                                                                                                                                                                                                  if (hstrlog[56]).matched then
-                                                                                                                                                                                                    local l_0_97 = (mp.readfile)((pe.foffset_va)((hstrlog[56]).VA + 10), 1)
-                                                                                                                                                                                                    local l_0_98 = (mp.readfile)((pe.foffset_va)((hstrlog[56]).VA + 12), 1)
-                                                                                                                                                                                                    ;
-                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_97), (string.byte)(l_0_98)))
-                                                                                                                                                                                                  else
-                                                                                                                                                                                                    do
-                                                                                                                                                                                                      if (hstrlog[57]).matched then
-                                                                                                                                                                                                        local l_0_99 = (mp.readfile)((pe.foffset_va)((hstrlog[57]).VA + 8), 1)
-                                                                                                                                                                                                        local l_0_100 = (mp.readfile)((pe.foffset_va)((hstrlog[57]).VA + 5), 1)
-                                                                                                                                                                                                        ;
-                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_99), (string.byte)(l_0_100)))
-                                                                                                                                                                                                      else
-                                                                                                                                                                                                        do
-                                                                                                                                                                                                          if (hstrlog[58]).matched then
-                                                                                                                                                                                                            local l_0_101 = (mp.readfile)((pe.foffset_va)((hstrlog[58]).VA + 11), 1)
-                                                                                                                                                                                                            local l_0_102 = (mp.readfile)((pe.foffset_va)((hstrlog[58]).VA + 14), 1)
-                                                                                                                                                                                                            ;
-                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_101), (string.byte)(l_0_102)))
-                                                                                                                                                                                                          else
-                                                                                                                                                                                                            do
-                                                                                                                                                                                                              if (hstrlog[59]).matched then
-                                                                                                                                                                                                                local l_0_103 = (mp.readfile)((pe.foffset_va)((hstrlog[59]).VA + 6), 1)
-                                                                                                                                                                                                                local l_0_104 = (mp.readfile)((pe.foffset_va)((hstrlog[59]).VA + 4), 1)
-                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_103), (mp.bitand)(-(string.byte)(l_0_104), 255)))
-                                                                                                                                                                                                              else
-                                                                                                                                                                                                                do
-                                                                                                                                                                                                                  if (hstrlog[60]).matched then
-                                                                                                                                                                                                                    local l_0_105 = (mp.readfile)((pe.foffset_va)((hstrlog[60]).VA + 10), 1)
-                                                                                                                                                                                                                    local l_0_106 = (mp.readfile)((pe.foffset_va)((hstrlog[60]).VA + 12), 1)
-                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_105), (string.byte)(l_0_106)))
-                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                      if (hstrlog[61]).matched then
-                                                                                                                                                                                                                        local l_0_107 = (mp.readfile)((pe.foffset_va)((hstrlog[61]).VA + 10), 1)
-                                                                                                                                                                                                                        local l_0_108 = (mp.readfile)((pe.foffset_va)((hstrlog[61]).VA + 12), 1)
-                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_107), (string.byte)(l_0_108)))
-                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                          if (hstrlog[62]).matched then
-                                                                                                                                                                                                                            local l_0_109 = (mp.readfile)((pe.foffset_va)((hstrlog[62]).VA + 4), 1)
-                                                                                                                                                                                                                            local l_0_110 = l_0_109
-                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_109), (string.byte)(l_0_110)))
-                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                              if (hstrlog[63]).matched then
-                                                                                                                                                                                                                                local l_0_111 = (mp.readfile)((pe.foffset_va)((hstrlog[63]).VA + 6), 1)
-                                                                                                                                                                                                                                local l_0_112 = (mp.readfile)((pe.foffset_va)((hstrlog[63]).VA + 4), 1)
-                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_111), (mp.bitand)(-(string.byte)(l_0_112), 255)))
-                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                  if (hstrlog[64]).matched then
-                                                                                                                                                                                                                                    local l_0_113 = (mp.readfile)((pe.foffset_va)((hstrlog[64]).VA + 13), 1)
-                                                                                                                                                                                                                                    local l_0_114 = (mp.readfile)((pe.foffset_va)((hstrlog[64]).VA + 15), 1)
-                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_113), (mp.bitand)(-(string.byte)(l_0_114), 255)))
-                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                      if (hstrlog[65]).matched then
-                                                                                                                                                                                                                                        local l_0_115 = (mp.readfile)((pe.foffset_va)((hstrlog[65]).VA + 33), 1)
-                                                                                                                                                                                                                                        local l_0_116 = (mp.readfile)((pe.foffset_va)((hstrlog[65]).VA + 45), 1)
-                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_115), (mp.bitand)(-(string.byte)(l_0_116), 255)))
-                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                          if (hstrlog[66]).matched then
-                                                                                                                                                                                                                                            local l_0_117 = (mp.readfile)((pe.foffset_va)((hstrlog[66]).VA + 38), 1)
-                                                                                                                                                                                                                                            local l_0_118 = (mp.readfile)((pe.foffset_va)((hstrlog[66]).VA + 26), 1)
-                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_117), (mp.bitand)(-(string.byte)(l_0_118), 255)))
-                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                              if (hstrlog[67]).matched then
-                                                                                                                                                                                                                                                local l_0_119 = (mp.readfile)((pe.foffset_va)((hstrlog[67]).VA + 10), 1)
-                                                                                                                                                                                                                                                local l_0_120 = (mp.readfile)((pe.foffset_va)((hstrlog[67]).VA + 12), 1)
-                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_119), (mp.bitand)(-(string.byte)(l_0_120), 255)))
-                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                  if (hstrlog[68]).matched then
-                                                                                                                                                                                                                                                    local l_0_121 = (mp.readfile)((pe.foffset_va)((hstrlog[68]).VA + 18), 1)
-                                                                                                                                                                                                                                                    local l_0_122 = (mp.readfile)((pe.foffset_va)((hstrlog[68]).VA + 16), 1)
-                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_121), (mp.bitand)(-(string.byte)(l_0_122), 255)))
-                                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                                      if (hstrlog[69]).matched then
-                                                                                                                                                                                                                                                        local l_0_123 = (mp.readfile)((pe.foffset_va)((hstrlog[69]).VA + 11), 1)
-                                                                                                                                                                                                                                                        local l_0_124 = (mp.readfile)((pe.foffset_va)((hstrlog[69]).VA + 16), 1)
-                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_123), (string.byte)(l_0_124)))
-                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                        (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                                          if (hstrlog[70]).matched then
-                                                                                                                                                                                                                                                            local l_0_125 = (mp.readfile)((pe.foffset_va)((hstrlog[70]).VA + 9), 1)
-                                                                                                                                                                                                                                                            local l_0_126 = (mp.readfile)((pe.foffset_va)((hstrlog[70]).VA + 7), 1)
-                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_125), (mp.bitand)(-(string.byte)(l_0_126), 255)))
-                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                                              if (hstrlog[71]).matched then
-                                                                                                                                                                                                                                                                local l_0_127 = (mp.readfile)((pe.foffset_va)((hstrlog[71]).VA + 11), 1)
-                                                                                                                                                                                                                                                                local l_0_128 = (mp.readfile)((pe.foffset_va)((hstrlog[71]).VA + 16), 1)
-                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_127), (string.byte)(l_0_128)))
-                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                                  if (hstrlog[72]).matched then
-                                                                                                                                                                                                                                                                    local l_0_129 = (mp.readfile)((pe.foffset_va)((hstrlog[72]).VA + 6), 1)
-                                                                                                                                                                                                                                                                    local l_0_130 = (mp.readfile)((pe.foffset_va)((hstrlog[72]).VA + 11), 1)
-                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_129), (string.byte)(l_0_130)))
-                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                    (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                                                      if (hstrlog[73]).matched then
-                                                                                                                                                                                                                                                                        local l_0_131 = (mp.readfile)((pe.foffset_va)((hstrlog[73]).VA + 9), 1)
-                                                                                                                                                                                                                                                                        local l_0_132 = (mp.readfile)((pe.foffset_va)((hstrlog[73]).VA + 7), 1)
-                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_131), (mp.bitand)(-(string.byte)(l_0_132), 255)))
-                                                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                                                          if (hstrlog[74]).matched then
-                                                                                                                                                                                                                                                                            local l_0_133 = (mp.readfile)((pe.foffset_va)((hstrlog[74]).VA + 11), 1)
-                                                                                                                                                                                                                                                                            local l_0_134 = (mp.readfile)((pe.foffset_va)((hstrlog[74]).VA + 14), 1)
-                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_133), (mp.bitand)(-(string.byte)(l_0_134), 255)))
-                                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                                                              if (hstrlog[75]).matched then
-                                                                                                                                                                                                                                                                                local l_0_135 = (mp.readfile)((pe.foffset_va)((hstrlog[75]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                local l_0_136 = (mp.readfile)((pe.foffset_va)((hstrlog[75]).VA + 5), 1)
-                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_135), (mp.bitand)(-(string.byte)(l_0_136), 255)))
-                                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                                                  if (hstrlog[76]).matched then
-                                                                                                                                                                                                                                                                                    local l_0_137 = (mp.readfile)((pe.foffset_va)((hstrlog[76]).VA + 4), 1)
-                                                                                                                                                                                                                                                                                    local l_0_138 = (mp.readfile)((pe.foffset_va)((hstrlog[76]).VA + 6), 1)
-                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_137), (string.byte)(l_0_138)))
-                                                                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                                                                      if (hstrlog[77]).matched then
-                                                                                                                                                                                                                                                                                        local l_0_139 = (mp.readfile)((pe.foffset_va)((hstrlog[77]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                        local l_0_140 = (mp.readfile)((pe.foffset_va)((hstrlog[77]).VA + 11), 1)
-                                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_139), (mp.bitand)(-(string.byte)(l_0_140), 255)))
-                                                                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                                                                          if (hstrlog[78]).matched then
-                                                                                                                                                                                                                                                                                            local l_0_141 = (mp.readfile)((pe.foffset_va)((hstrlog[78]).VA + 18), 1)
-                                                                                                                                                                                                                                                                                            local l_0_142 = (mp.readfile)((pe.foffset_va)((hstrlog[78]).VA + 21), 1)
-                                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_141), (mp.bitand)(-(string.byte)(l_0_142), 255)))
-                                                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                                                                              if (hstrlog[79]).matched then
-                                                                                                                                                                                                                                                                                                local l_0_143 = (mp.readfile)((pe.foffset_va)((hstrlog[79]).VA + 18), 1)
-                                                                                                                                                                                                                                                                                                local l_0_144 = (mp.readfile)((pe.foffset_va)((hstrlog[79]).VA + 31), 1)
-                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_143), (mp.bitand)(-(string.byte)(l_0_144), 255)))
-                                                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                                                                  if (hstrlog[80]).matched then
-                                                                                                                                                                                                                                                                                                    local l_0_145 = (mp.readfile)((pe.foffset_va)((hstrlog[80]).VA + 18), 1)
-                                                                                                                                                                                                                                                                                                    local l_0_146 = (mp.readfile)((pe.foffset_va)((hstrlog[80]).VA + 21), 1)
-                                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_145), (mp.bitand)(-(string.byte)(l_0_146), 255)))
-                                                                                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                                                                                      if (hstrlog[81]).matched then
-                                                                                                                                                                                                                                                                                                        local l_0_147 = (mp.readfile)((pe.foffset_va)((hstrlog[81]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                        local l_0_148 = (mp.readfile)((pe.foffset_va)((hstrlog[81]).VA + 11), 1)
-                                                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_147), (mp.bitand)(-(string.byte)(l_0_148), 255)))
-                                                                                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                                                                                          if (hstrlog[82]).matched then
-                                                                                                                                                                                                                                                                                                            local l_0_149 = (mp.readfile)((pe.foffset_va)((hstrlog[82]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                            local l_0_150 = (mp.readfile)((pe.foffset_va)((hstrlog[82]).VA + 21), 1)
-                                                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_149), (mp.bitand)(-(string.byte)(l_0_150), 255)))
-                                                                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                                                                                              if (hstrlog[83]).matched then
-                                                                                                                                                                                                                                                                                                                local l_0_151 = (mp.readfile)((pe.foffset_va)((hstrlog[83]).VA + 18), 1)
-                                                                                                                                                                                                                                                                                                                local l_0_152 = (mp.readfile)((pe.foffset_va)((hstrlog[83]).VA + 31), 1)
-                                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_151), (mp.bitand)(-(string.byte)(l_0_152), 255)))
-                                                                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                                                                                  if (hstrlog[84]).matched then
-                                                                                                                                                                                                                                                                                                                    local l_0_153 = (mp.readfile)((pe.foffset_va)((hstrlog[84]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                                    local l_0_154 = (mp.readfile)((pe.foffset_va)((hstrlog[84]).VA + 21), 1)
-                                                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_153), (mp.bitand)(-(string.byte)(l_0_154), 255)))
-                                                                                                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                                                                                                      if (hstrlog[85]).matched then
-                                                                                                                                                                                                                                                                                                                        local l_0_155 = (mp.readfile)((pe.foffset_va)((hstrlog[85]).VA + 5), 1)
-                                                                                                                                                                                                                                                                                                                        local l_0_156 = (mp.readfile)((pe.foffset_va)((hstrlog[85]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_155), (mp.bitand)(-(string.byte)(l_0_156), 255)))
-                                                                                                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                                                                                                          if (hstrlog[86]).matched then
-                                                                                                                                                                                                                                                                                                                            local l_0_157 = (mp.readfile)((pe.foffset_va)((hstrlog[86]).VA + 5), 1)
-                                                                                                                                                                                                                                                                                                                            local l_0_158 = (mp.readfile)((pe.foffset_va)((hstrlog[86]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_157), (string.byte)(l_0_158)))
-                                                                                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                                                                                                              if (hstrlog[87]).matched then
-                                                                                                                                                                                                                                                                                                                                local l_0_159 = (mp.readfile)((pe.foffset_va)((hstrlog[87]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                                                local l_0_160 = (mp.readfile)((pe.foffset_va)((hstrlog[87]).VA + 11), 1)
-                                                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_159), (string.byte)(l_0_160)))
-                                                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                                                                                                  if (hstrlog[88]).matched then
-                                                                                                                                                                                                                                                                                                                                    local l_0_161 = (mp.readfile)((pe.foffset_va)((hstrlog[88]).VA + 6), 1)
-                                                                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, (string.byte)(l_0_161)))
-                                                                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                                                                                                                      if (hstrlog[89]).matched then
-                                                                                                                                                                                                                                                                                                                                        local l_0_162 = (mp.readfile)((pe.foffset_va)((hstrlog[89]).VA + 6), 1)
-                                                                                                                                                                                                                                                                                                                                        local l_0_163 = (mp.readfile)((pe.foffset_va)((hstrlog[89]).VA + 9), 1)
-                                                                                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_162), (string.byte)(l_0_163)))
-                                                                                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                                                                                        (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                                                                                                                          if (hstrlog[90]).matched then
-                                                                                                                                                                                                                                                                                                                                            local l_0_164 = (mp.readfile)((pe.foffset_va)((hstrlog[90]).VA + 6), 1)
-                                                                                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, (string.byte)(l_0_164)))
-                                                                                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                                                                                            (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                                                                                                                              if (hstrlog[91]).matched then
-                                                                                                                                                                                                                                                                                                                                                local l_0_165 = (mp.readfile)((pe.foffset_va)((hstrlog[91]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, (string.byte)(l_0_165)))
-                                                                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                                                                                                                  if (hstrlog[92]).matched then
-                                                                                                                                                                                                                                                                                                                                                    local l_0_166 = (mp.readfile)((pe.foffset_va)((hstrlog[92]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, (string.byte)(l_0_166)))
-                                                                                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                                  else
-                                                                                                                                                                                                                                                                                                                                                    do
-                                                                                                                                                                                                                                                                                                                                                      if (hstrlog[93]).matched then
-                                                                                                                                                                                                                                                                                                                                                        local l_0_167 = (mp.readfile)((pe.foffset_va)((hstrlog[93]).VA + 8), 1)
-                                                                                                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                                                                                                        (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, (mp.bitand)(-(string.byte)(l_0_167), 255)))
-                                                                                                                                                                                                                                                                                                                                                        ;
-                                                                                                                                                                                                                                                                                                                                                        (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                                      else
-                                                                                                                                                                                                                                                                                                                                                        do
-                                                                                                                                                                                                                                                                                                                                                          if (hstrlog[94]).matched then
-                                                                                                                                                                                                                                                                                                                                                            local l_0_168 = (mp.readfile)((pe.foffset_va)((hstrlog[94]).VA + 6), 1)
-                                                                                                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                                                                                                            (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, (string.byte)(l_0_168)))
-                                                                                                                                                                                                                                                                                                                                                            ;
-                                                                                                                                                                                                                                                                                                                                                            (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                                                                                                                            do
-                                                                                                                                                                                                                                                                                                                                                              if (hstrlog[95]).matched then
-                                                                                                                                                                                                                                                                                                                                                                local l_0_169 = (mp.readfile)((pe.foffset_va)((hstrlog[95]).VA + 7), 1)
-                                                                                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, (string.byte)(l_0_169)))
-                                                                                                                                                                                                                                                                                                                                                                ;
-                                                                                                                                                                                                                                                                                                                                                                (mp.set_mpattribute)("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
-                                                                                                                                                                                                                                                                                                                                                              else
-                                                                                                                                                                                                                                                                                                                                                                do
-                                                                                                                                                                                                                                                                                                                                                                  if (hstrlog[17]).matched then
-                                                                                                                                                                                                                                                                                                                                                                    local l_0_170 = (pe.mmap_va_nofastfail)((hstrlog[17]).VA + 4, 1)
-                                                                                                                                                                                                                                                                                                                                                                    local l_0_171 = (pe.mmap_va_nofastfail)((hstrlog[17]).VA + 16, 1)
-                                                                                                                                                                                                                                                                                                                                                                    ;
-                                                                                                                                                                                                                                                                                                                                                                    (mp.set_mpattribute)((string.format)("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", (string.byte)(l_0_170), (string.byte)(l_0_171)))
-                                                                                                                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                                                                                                                  do
-                                                                                                                                                                                                                                                                                                                                                                    return mp.CLEAN
-                                                                                                                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                                end
-                                                                                                                                                                                                                              end
-                                                                                                                                                                                                                            end
-                                                                                                                                                                                                                          end
-                                                                                                                                                                                                                        end
-                                                                                                                                                                                                                      end
-                                                                                                                                                                                                                    end
-                                                                                                                                                                                                                  end
-                                                                                                                                                                                                                end
-                                                                                                                                                                                                              end
-                                                                                                                                                                                                            end
-                                                                                                                                                                                                          end
-                                                                                                                                                                                                        end
-                                                                                                                                                                                                      end
-                                                                                                                                                                                                    end
-                                                                                                                                                                                                  end
-                                                                                                                                                                                                end
-                                                                                                                                                                                              end
-                                                                                                                                                                                            end
+                                                                                                                                                                                        L0_0 = hstrlog
+                                                                                                                                                                                        L0_0 = L0_0[95]
+                                                                                                                                                                                        L0_0 = L0_0.matched
+                                                                                                                                                                                        if L0_0 then
+                                                                                                                                                                                          L0_0 = mp
+                                                                                                                                                                                          L0_0 = L0_0.readfile
+                                                                                                                                                                                          L1_1 = pe
+                                                                                                                                                                                          L1_1 = L1_1.foffset_va
+                                                                                                                                                                                          L1_1 = L1_1(hstrlog[95].VA + 7)
+                                                                                                                                                                                          L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                                          L1_1 = mp
+                                                                                                                                                                                          L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                          L1_1(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", 0, string.byte(L0_0)))
+                                                                                                                                                                                          L1_1 = mp
+                                                                                                                                                                                          L1_1 = L1_1.set_mpattribute
+                                                                                                                                                                                          L1_1("HSTR:VirTool:Win32/Obfuscator.PN!hdsz.1C")
+                                                                                                                                                                                        else
+                                                                                                                                                                                          L0_0 = hstrlog
+                                                                                                                                                                                          L0_0 = L0_0[17]
+                                                                                                                                                                                          L0_0 = L0_0.matched
+                                                                                                                                                                                          if L0_0 then
+                                                                                                                                                                                            L0_0 = pe
+                                                                                                                                                                                            L0_0 = L0_0.mmap_va_nofastfail
+                                                                                                                                                                                            L1_1 = hstrlog
+                                                                                                                                                                                            L1_1 = L1_1[17]
+                                                                                                                                                                                            L1_1 = L1_1.VA
+                                                                                                                                                                                            L1_1 = L1_1 + 4
+                                                                                                                                                                                            L0_0 = L0_0(L1_1, 1)
+                                                                                                                                                                                            L1_1 = pe
+                                                                                                                                                                                            L1_1 = L1_1.mmap_va_nofastfail
+                                                                                                                                                                                            L1_1 = L1_1(hstrlog[17].VA + 16, 1)
+                                                                                                                                                                                            mp.set_mpattribute(string.format("HSTR:VirTool:Win32/Obfuscator.PN!k4_k5.0_%02X%02X", string.byte(L0_0), string.byte(L1_1)))
                                                                                                                                                                                           end
                                                                                                                                                                                         end
                                                                                                                                                                                       end
@@ -855,4 +1523,6 @@ else
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

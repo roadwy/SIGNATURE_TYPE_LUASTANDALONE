@@ -1,30 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ddb39cd2850b 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[2]).utf8p1
-if not l_0_0 then
+local L0_0
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.utf8p1
+if not L0_0 then
   return mp.CLEAN
 end
-l_0_0 = (string.lower)(l_0_0)
-if not l_0_0 or (string.len)(l_0_0) < 5 then
+L0_0 = string.lower(L0_0)
+if not L0_0 or string.len(L0_0) < 5 then
   return mp.CLEAN
 end
-local l_0_1 = {}
-l_0_1[".jpg"] = true
-l_0_1.jpeg = true
-l_0_1[".png"] = true
-l_0_1[".gif"] = true
-l_0_1[".bmp"] = true
-l_0_1.tiff = true
-l_0_1[".tif"] = true
-l_0_1[".ppm"] = true
-l_0_1[".pnm"] = true
-l_0_1[".pgm"] = true
-l_0_1[".pbm"] = true
-if l_0_1[l_0_0:sub(-4)] and ((string.find)(l_0_0, "%appdata%\\", 1, true) or (string.find)(l_0_0, "appdata\\roaming\\", 1, true)) then
+if ({
+  [".jpg"] = true,
+  ["jpeg"] = true,
+  [".png"] = true,
+  [".gif"] = true,
+  [".bmp"] = true,
+  ["tiff"] = true,
+  [".tif"] = true,
+  [".ppm"] = true,
+  [".pnm"] = true,
+  [".pgm"] = true,
+  [".pbm"] = true
+})[L0_0:sub(-4)] and (string.find(L0_0, "%appdata%\\", 1, true) or string.find(L0_0, "appdata\\roaming\\", 1, true)) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

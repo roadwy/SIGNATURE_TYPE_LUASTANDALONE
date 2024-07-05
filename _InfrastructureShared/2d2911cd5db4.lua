@@ -1,16 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2d2911cd5db4 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattribute)("PACKED_WITH:[CMDEmbedded]") then
-    local l_0_0 = tostring(headerpage)
-    l_0_0 = (string.lower)(l_0_0:gsub("`", "", 100))
-    if (string.find)(l_0_0, "new-object", 1, true) or (string.find)(l_0_0, "webclient", 1, true) or (string.find)(l_0_0, "newscriptblock", 1, true) or (string.find)(l_0_0, "executioncontext", 1, true) then
-      return mp.INFECTED
-    end
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("PACKED_WITH:[CMDEmbedded]")
+if L0_0 then
+  L0_0 = tostring
+  L0_0 = L0_0(headerpage)
+  L0_0 = string.lower(L0_0:gsub("`", "", 100))
+  if string.find(L0_0, "new-object", 1, true) or string.find(L0_0, "webclient", 1, true) or string.find(L0_0, "newscriptblock", 1, true) or string.find(L0_0, "executioncontext", 1, true) then
+    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

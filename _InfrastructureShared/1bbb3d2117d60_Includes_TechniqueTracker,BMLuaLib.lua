@@ -1,41 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1bbb3d2117d60_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((MpCommon.PathToWin32Path)((bm.get_imagepath)())):lower()
-local l_0_1 = {}
--- DECOMPILER ERROR at PC24: No list found for R1 , SetList fails
-
--- DECOMPILER ERROR at PC25: Overwrote pending register: R2 in 'AssignReg'
-
--- DECOMPILER ERROR at PC26: Overwrote pending register: R3 in 'AssignReg'
-
--- DECOMPILER ERROR at PC27: Overwrote pending register: R4 in 'AssignReg'
-
-if ("putty")("psftp", "plink") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = MpCommon
+L0_0 = L0_0.PathToWin32Path
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+L1_1 = L0_0
+L0_0 = L0_0.lower
+L0_0 = L0_0(L1_1)
+L1_1 = {
+  L2_2,
+  "psftp",
+  "plink",
+  "pscp",
+  "puttygen",
+  "pageant",
+  "mobaxterm",
+  "RoyalTS_PuTTY64",
+  "fzsftp",
+  "mobascp",
+  "mobacptransfer",
+  "acs_ssh.exe",
+  "ssh.exe",
+  "imcnetresdm.exe",
+  "mfg pro.exe"
+}
+L2_2 = "putty"
+L2_2 = contains
+L2_2 = L2_2(L0_0, L1_1)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
--- DECOMPILER ERROR at PC38: Overwrote pending register: R5 in 'AssignReg'
-
-if not contains(l_0_0, (mp.ContextualExpandEnvironmentVariables)("pscp")) then
-  return mp.CLEAN
+L2_2 = contains
+L2_2 = L2_2(L0_0, MpCommon.ExpandEnvironmentVariables("%systemdrive%"))
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-do
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC48: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC49: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC58: Overwrote pending register: R6 in 'AssignReg'
-
-  if not ("program files")(l_0_0, l_0_2) then
-    TrackPidAndTechniqueBM("BM", "T1567", "puttygen")
-    reportRelatedBmHits()
-    add_parents()
-    return mp.INFECTED
-  end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
+L2_2 = {
+  "program files"
+}
+if not contains(L0_0, L2_2) then
+  TrackPidAndTechniqueBM("BM", "T1567", "ToolExfilOverWeb")
+  reportRelatedBmHits()
+  add_parents()
+  return mp.INFECTED
 end
-
+return mp.CLEAN

@@ -1,60 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_RecentTimeDateStamp 
-
--- params : ...
--- function num : 0
 if peattributes.x86_image == false then
   return mp.CLEAN
 end
-if pehdr.TimeDateStamp ~= 0 then
-  local l_0_0 = (MpCommon.GetCurrentTimeT)()
-  if pehdr.TimeDateStamp < l_0_0 then
-    local l_0_1 = l_0_0 - pehdr.TimeDateStamp
-    if l_0_1 <= 345600 then
-      (mp.set_mpattribute)("Lua:PETimeStampLastFiveDays")
-    end
-    if l_0_1 <= 777600 then
-      (mp.set_mpattribute)("Lua:PETimeStampLastTenDays")
-    end
-    if l_0_1 <= 2592000 then
-      (mp.set_mpattribute)("Lua:PETimeStampLastThirtyDays")
-    end
-    if l_0_1 <= 31536000 then
-      (mp.set_mpattribute)("Lua:PETimeStampLastYear")
-    end
+if pehdr.TimeDateStamp ~= 0 and MpCommon.GetCurrentTimeT() > pehdr.TimeDateStamp then
+  if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 345600 then
+    mp.set_mpattribute("Lua:PETimeStampLastFiveDays")
+  end
+  if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 777600 then
+    mp.set_mpattribute("Lua:PETimeStampLastTenDays")
+  end
+  if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 2592000 then
+    mp.set_mpattribute("Lua:PETimeStampLastThirtyDays")
+  end
+  if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 31536000 then
+    mp.set_mpattribute("Lua:PETimeStampLastYear")
   end
 end
-do
-  local l_0_2 = ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_EXPORT]).RVA
-  if l_0_2 ~= 0 and ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_EXPORT]).Size ~= 0 then
-    (mp.readprotection)(false)
-    local l_0_3 = (mp.readu_u32)((pe.mmap_rva)(l_0_2 + 20, 4), 1)
-    if l_0_3 < 5 then
-      (mp.set_mpattribute)("Lua:ETWithLessThanFiveExports")
+if pehdr.DataDirectory[pe.IMAGE_DIRECTORY_ENTRY_EXPORT].RVA ~= 0 and pehdr.DataDirectory[pe.IMAGE_DIRECTORY_ENTRY_EXPORT].Size ~= 0 then
+  mp.readprotection(false)
+  if mp.readu_u32(pe.mmap_rva(pehdr.DataDirectory[pe.IMAGE_DIRECTORY_ENTRY_EXPORT].RVA + 20, 4), 1) < 5 then
+    mp.set_mpattribute("Lua:ETWithLessThanFiveExports")
+  end
+  if MpCommon.GetCurrentTimeT() > pehdr.TimeDateStamp then
+    if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 345600 then
+      mp.set_mpattribute("Lua:ExportTimeStampLastFiveDays")
     end
-    local l_0_4 = (MpCommon.GetCurrentTimeT)()
-    if pehdr.TimeDateStamp < l_0_4 then
-      local l_0_5 = l_0_4 - pehdr.TimeDateStamp
-      if l_0_5 <= 345600 then
-        (mp.set_mpattribute)("Lua:ExportTimeStampLastFiveDays")
-      end
-      if l_0_5 <= 777600 then
-        (mp.set_mpattribute)("Lua:ExportTimeStampLastTenDays")
-      end
-      if l_0_5 <= 2592000 then
-        (mp.set_mpattribute)("Lua:ExportTimeStampLastThirtyDays")
-      end
-      if l_0_5 <= 31536000 then
-        (mp.set_mpattribute)("Lua:ExportTimeStampLastYear")
-      end
+    if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 777600 then
+      mp.set_mpattribute("Lua:ExportTimeStampLastTenDays")
     end
-  else
-    do
-      if peattributes.isdll then
-        (mp.set_mpattribute)("Lua:DllWithNoExportTable")
-      end
-      return mp.CLEAN
+    if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 2592000 then
+      mp.set_mpattribute("Lua:ExportTimeStampLastThirtyDays")
+    end
+    if MpCommon.GetCurrentTimeT() - pehdr.TimeDateStamp <= 31536000 then
+      mp.set_mpattribute("Lua:ExportTimeStampLastYear")
     end
   end
+elseif peattributes.isdll then
+  mp.set_mpattribute("Lua:DllWithNoExportTable")
 end
-
+return mp.CLEAN

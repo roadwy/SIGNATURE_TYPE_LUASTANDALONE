@@ -1,21 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b3d475ad80 
-
--- params : ...
--- function num : 0
-local l_0_0 = "%localappdata%\\Microsoft\\Edge\\User Data\\Default\\Extensions\\"
-local l_0_1 = (sysio.FindFiles)(l_0_0, "manifest.json", -1)
-for l_0_5,l_0_6 in pairs(l_0_1) do
-  (bm.add_related_file)(l_0_6)
-  ;
-  (bm.add_related_string)("file", l_0_6, bm.RelatedStringBMReport)
-  ;
-  (bm.add_related_string)("file", l_0_6, bm.RelatedStringFileReport)
-  if l_0_5 > 10 then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = "%localappdata%\\Microsoft\\Edge\\User Data\\Default\\Extensions\\"
+L1_1 = sysio
+L1_1 = L1_1.FindFiles
+L1_1 = L1_1(L2_2, L3_3, L4_4)
+for L5_5, L6_6 in L2_2(L3_3) do
+  bm.add_related_file(L6_6)
+  bm.add_related_string("file", L6_6, bm.RelatedStringBMReport)
+  bm.add_related_string("file", L6_6, bm.RelatedStringFileReport)
+  if L5_5 > 10 then
     break
   end
 end
-do
-  return mp.INFECTED
-end
-
+return L2_2

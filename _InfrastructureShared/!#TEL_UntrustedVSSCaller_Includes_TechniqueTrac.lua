@@ -1,54 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_UntrustedVSSCaller_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_mpattributevalue)("VSSAMSI_CallerPID")
-local l_0_1 = (mp.get_mpattributevalue)("VSSAMSI_ProcessStartTime")
-if l_0_0 == nil or l_0_1 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.get_mpattributevalue
+L1_1 = "VSSAMSI_CallerPID"
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.get_mpattributevalue
+L2_2 = "VSSAMSI_ProcessStartTime"
+L1_1 = L1_1(L2_2)
+if L0_0 == nil or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = true
-local l_0_3 = false
-local l_0_4, l_0_5, l_0_6 = nil, nil, nil
-local l_0_7 = true
-local l_0_8 = (string.format)("pid:%u,ProcessStart:%u", l_0_0, l_0_1)
-l_0_7 = pcall((MpCommon.IsFriendlyProcess)(l_0_8))
-do
-  if l_0_7 == true and l_0_2 == false then
-    local l_0_9 = (mp.GetProcessCommandLine)(l_0_8)
-    ;
-    (mp.set_mpattribute)((string.format)("MpInternal_researchdata=VSSUntrustedCaller=%s", l_0_9))
+L2_2 = true
+L3_3 = false
+L4_4, L5_5, L6_6 = nil, nil, nil
+L7_7 = true
+L8_8 = string
+L8_8 = L8_8.format
+L9_9 = "pid:%u,ProcessStart:%u"
+L8_8 = L8_8(L9_9, L0_0, L1_1)
+L9_9 = pcall
+L2_2, L9_9 = MpCommon.IsFriendlyProcess(L8_8)
+L7_7 = L9_9
+if L7_7 == true and L2_2 == false then
+  L9_9 = mp
+  L9_9 = L9_9.GetProcessCommandLine
+  L9_9 = L9_9(L8_8)
+  mp.set_mpattribute(string.format("MpInternal_researchdata=VSSUntrustedCaller=%s", L9_9))
+  TrackPidAndTechnique("VSSAMSI", "T1490", "inhibit_system_recovery")
+  return mp.INFECTED
+end
+L9_9 = 0
+while L9_9 <= 5 do
+  L7_7, L4_4 = pcall(mp.GetParentProcInfo, L0_0)
+  if L7_7 ~= true or L4_4 == nil then
+    break
+  end
+  L5_5 = L4_4.ppid
+  if L5_5 == nil then
+    break
+  end
+  L6_6 = L4_4.image_path
+  if L6_6 == nil then
+    break
+  end
+  L6_6 = string.lower(L6_6)
+  L7_7, L3_3 = pcall(mp.IsKnownFriendlyFile(L6_6, true, false))
+  if L7_7 == true and L3_3 == false then
+    mp.set_mpattribute(string.format("MpInternal_researchdata=VSSUntrustedParent=%s", L6_6))
     TrackPidAndTechnique("VSSAMSI", "T1490", "inhibit_system_recovery")
     return mp.INFECTED
   end
-  local l_0_10 = 0
-  while 1 do
-    if l_0_10 <= 5 then
-      l_0_7 = pcall(mp.GetParentProcInfo, l_0_0)
-    end
-    if l_0_7 == true then
-      if l_0_4 == nil then
-        break
-      end
-      l_0_5 = l_0_4.ppid
-    end
-    if l_0_5 == nil then
-      break
-    end
-    l_0_6 = l_0_4.image_path
-    if l_0_6 == nil then
-      break
-    end
-    l_0_6 = (string.lower)(l_0_6)
-    l_0_7 = pcall((mp.IsKnownFriendlyFile)(l_0_6, true, false))
-    if l_0_7 == true and l_0_3 == false then
-      (mp.set_mpattribute)((string.format)("MpInternal_researchdata=VSSUntrustedParent=%s", l_0_6))
-      TrackPidAndTechnique("VSSAMSI", "T1490", "inhibit_system_recovery")
-      return mp.INFECTED
-    end
-    l_0_10 = l_0_10 + 1
-  end
-  return mp.CLEAN
+  L9_9 = L9_9 + 1
 end
-
+return mp.CLEAN

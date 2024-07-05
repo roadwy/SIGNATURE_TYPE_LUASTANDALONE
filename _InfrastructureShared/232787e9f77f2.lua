@@ -1,192 +1,361 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/232787e9f77f2 
-
--- params : ...
--- function num : 0
-local l_0_1, l_0_2, l_0_3, l_0_4, l_0_5, l_0_6 = mp.HSTR_WEIGHT, nil, nil, nil, nil, nil
-local l_0_7 = nil
-local l_0_8 = 0
-local l_0_9 = 0
-local l_0_10 = 1
-do
-  if (hstrlog[5]).matched then
-    local l_0_0 = 1
-    l_0_4 = (hstrlog[5]).match_offsets_count
-    l_0_5 = (hstrlog[5]).match_offsets
-    l_0_2 = (hstrlog[5]).VA
-    l_0_8 = 2
-  end
-  -- DECOMPILER ERROR at PC28: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[6]).matched then
-    l_0_4 = (hstrlog[6]).match_offsets_count
-    l_0_5 = (hstrlog[6]).match_offsets
-    l_0_2 = (hstrlog[6]).VA
-    l_0_8 = 1
-  end
-  -- DECOMPILER ERROR at PC44: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[7]).matched then
-    l_0_4 = (hstrlog[7]).match_offsets_count
-    l_0_5 = (hstrlog[7]).match_offsets
-    l_0_2 = (hstrlog[7]).VA
-    l_0_8 = 2
-  end
-  -- DECOMPILER ERROR at PC60: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[8]).matched then
-    l_0_4 = (hstrlog[8]).match_offsets_count
-    l_0_5 = (hstrlog[8]).match_offsets
-    l_0_2 = (hstrlog[8]).VA
-    l_0_8 = 1
-  end
-  -- DECOMPILER ERROR at PC76: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[9]).matched then
-    l_0_4 = (hstrlog[9]).match_offsets_count
-    l_0_5 = (hstrlog[9]).match_offsets
-    l_0_2 = (hstrlog[9]).VA
-    l_0_8 = 3
-  end
-  -- DECOMPILER ERROR at PC92: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[10]).matched then
-    l_0_4 = (hstrlog[10]).match_offsets_count
-    l_0_5 = (hstrlog[10]).match_offsets
-    l_0_2 = (hstrlog[10]).VA
-    l_0_8 = 4
-    l_0_10 = 2
-  end
-  -- DECOMPILER ERROR at PC109: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[11]).matched then
-    l_0_4 = (hstrlog[11]).match_offsets_count
-    l_0_5 = (hstrlog[11]).match_offsets
-    l_0_2 = (hstrlog[11]).VA
-    l_0_8 = 5
-    l_0_10 = 2
-  end
-  -- DECOMPILER ERROR at PC126: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[12]).matched then
-    l_0_6 = (hstrlog[12]).match_offsets_count
-    l_0_7 = (hstrlog[12]).match_offsets
-    l_0_3 = (hstrlog[12]).VA
-    l_0_9 = 2
-  end
-  -- DECOMPILER ERROR at PC142: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[13]).matched then
-    l_0_6 = (hstrlog[13]).match_offsets_count
-    l_0_7 = (hstrlog[13]).match_offsets
-    l_0_3 = (hstrlog[13]).VA
-    l_0_9 = 1
-  end
-  -- DECOMPILER ERROR at PC158: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[14]).matched then
-    l_0_6 = (hstrlog[14]).match_offsets_count
-    l_0_7 = (hstrlog[14]).match_offsets
-    l_0_3 = (hstrlog[14]).VA
-    l_0_9 = 3
-  end
-  -- DECOMPILER ERROR at PC174: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[15]).matched then
-    l_0_6 = (hstrlog[15]).match_offsets_count
-    l_0_7 = (hstrlog[15]).match_offsets
-    l_0_3 = (hstrlog[15]).VA
-    l_0_9 = 2
-  end
-  -- DECOMPILER ERROR at PC190: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[16]).matched then
-    l_0_6 = (hstrlog[16]).match_offsets_count
-    l_0_7 = (hstrlog[16]).match_offsets
-    l_0_3 = (hstrlog[16]).VA
-    l_0_9 = 2
-  end
-  -- DECOMPILER ERROR at PC206: Overwrote pending register: R0 in 'AssignReg'
-
-  if (hstrlog[17]).matched then
-    l_0_6 = (hstrlog[17]).match_offsets_count
-    l_0_7 = (hstrlog[17]).match_offsets
-    l_0_3 = (hstrlog[17]).VA
-    l_0_9 = 4
-  end
-  -- DECOMPILER ERROR at PC223: Overwrote pending register: R0 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC234: Overwrote pending register: R10 in 'AssignReg'
-
-  if (not (hstrlog[18]).matched or l_0_8 ~= 0) and l_0_9 ~= 0 and l_0_10 + 1 <= l_0_4 and 2 + 1 <= l_0_6 then
-    local l_0_11 = nil
-    local l_0_12 = 0
-    local l_0_13 = 0
-    local l_0_14 = nil
-    local l_0_15 = ((string.byte)((pe.mmap_va)(l_0_2, l_0_5[l_0_10 + 1] + 1), l_0_5[1] + 1))
-    -- DECOMPILER ERROR at PC269: Overwrote pending register: R15 in 'AssignReg'
-
-    if l_0_10 > 1 then
-      local l_0_16 = nil
-      if l_0_8 == 2 then
-        l_0_12 = (mp.bitand)(l_0_15 + (string.byte)(l_0_14, l_0_5[l_0_10 + 1] + 1), 255)
-      else
-        if l_0_8 == 1 then
-          l_0_12 = (mp.bitxor)(l_0_15, (string.byte)(l_0_14, l_0_5[l_0_10 + 1] + 1))
-        else
-          if l_0_8 == 3 then
-            l_0_12 = (string.byte)(l_0_14, l_0_5[l_0_10 + 1] + 1) - l_0_15
-          else
-            if l_0_8 == 4 then
-              l_0_12 = (mp.bitxor)((mp.bitand)((string.byte)(l_0_14, l_0_5[l_0_10 + 1] + 1) + l_0_16, 255), l_0_15)
-            else
-              if l_0_8 == 5 then
-                l_0_12 = (mp.bitxor)((string.byte)(l_0_14, l_0_5[l_0_10 + 1] + 1) - l_0_16, l_0_15)
-              end
-            end
-          end
-        end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+L1_1, L2_2, L3_3, L4_4, L5_5, L6_6 = nil, nil, nil, nil, nil, nil
+L7_7 = 0
+L8_8 = 0
+L9_9 = 1
+L10_10 = 1
+L11_11 = hstrlog
+L11_11 = L11_11[5]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 1
+  L11_11 = hstrlog
+  L11_11 = L11_11[5]
+  L3_3 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[5]
+  L4_4 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[5]
+  L1_1 = L11_11.VA
+  L7_7 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[6]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 1
+  L11_11 = hstrlog
+  L11_11 = L11_11[6]
+  L3_3 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[6]
+  L4_4 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[6]
+  L1_1 = L11_11.VA
+  L7_7 = 1
+end
+L11_11 = hstrlog
+L11_11 = L11_11[7]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 1
+  L11_11 = hstrlog
+  L11_11 = L11_11[7]
+  L3_3 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[7]
+  L4_4 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[7]
+  L1_1 = L11_11.VA
+  L7_7 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[8]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 1
+  L11_11 = hstrlog
+  L11_11 = L11_11[8]
+  L3_3 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[8]
+  L4_4 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[8]
+  L1_1 = L11_11.VA
+  L7_7 = 1
+end
+L11_11 = hstrlog
+L11_11 = L11_11[9]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 1
+  L11_11 = hstrlog
+  L11_11 = L11_11[9]
+  L3_3 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[9]
+  L4_4 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[9]
+  L1_1 = L11_11.VA
+  L7_7 = 3
+end
+L11_11 = hstrlog
+L11_11 = L11_11[10]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 1
+  L11_11 = hstrlog
+  L11_11 = L11_11[10]
+  L3_3 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[10]
+  L4_4 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[10]
+  L1_1 = L11_11.VA
+  L7_7 = 4
+  L9_9 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[11]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 1
+  L11_11 = hstrlog
+  L11_11 = L11_11[11]
+  L3_3 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[11]
+  L4_4 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[11]
+  L1_1 = L11_11.VA
+  L7_7 = 5
+  L9_9 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[12]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 2
+  L11_11 = hstrlog
+  L11_11 = L11_11[12]
+  L5_5 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[12]
+  L6_6 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[12]
+  L2_2 = L11_11.VA
+  L8_8 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[13]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 2
+  L11_11 = hstrlog
+  L11_11 = L11_11[13]
+  L5_5 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[13]
+  L6_6 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[13]
+  L2_2 = L11_11.VA
+  L8_8 = 1
+end
+L11_11 = hstrlog
+L11_11 = L11_11[14]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 2
+  L11_11 = hstrlog
+  L11_11 = L11_11[14]
+  L5_5 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[14]
+  L6_6 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[14]
+  L2_2 = L11_11.VA
+  L8_8 = 3
+end
+L11_11 = hstrlog
+L11_11 = L11_11[15]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 2
+  L11_11 = hstrlog
+  L11_11 = L11_11[15]
+  L5_5 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[15]
+  L6_6 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[15]
+  L2_2 = L11_11.VA
+  L8_8 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[16]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 2
+  L11_11 = hstrlog
+  L11_11 = L11_11[16]
+  L5_5 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[16]
+  L6_6 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[16]
+  L2_2 = L11_11.VA
+  L8_8 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[17]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 2
+  L11_11 = hstrlog
+  L11_11 = L11_11[17]
+  L5_5 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[17]
+  L6_6 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[17]
+  L2_2 = L11_11.VA
+  L8_8 = 4
+  L10_10 = 2
+end
+L11_11 = hstrlog
+L11_11 = L11_11[18]
+L11_11 = L11_11.matched
+if L11_11 then
+  L0_0 = L0_0 - 2
+  L11_11 = hstrlog
+  L11_11 = L11_11[18]
+  L5_5 = L11_11.match_offsets_count
+  L11_11 = hstrlog
+  L11_11 = L11_11[18]
+  L6_6 = L11_11.match_offsets
+  L11_11 = hstrlog
+  L11_11 = L11_11[18]
+  L2_2 = L11_11.VA
+  L8_8 = 5
+  L10_10 = 2
+end
+if L7_7 ~= 0 and L8_8 ~= 0 then
+  L11_11 = L9_9 + 1
+  if L3_3 >= L11_11 then
+    L11_11 = L10_10 + 1
+    if L5_5 >= L11_11 then
+      L11_11 = 0
+      L12_12 = 0
+      L13_13 = pe
+      L13_13 = L13_13.mmap_va
+      L14_14 = L1_1
+      L15_15 = L9_9 + 1
+      L15_15 = L4_4[L15_15]
+      L15_15 = L15_15 + 1
+      L13_13 = L13_13(L14_14, L15_15)
+      L14_14 = string
+      L14_14 = L14_14.byte
+      L15_15 = L13_13
+      L16_16 = L4_4[1]
+      L16_16 = L16_16 + 1
+      L14_14 = L14_14(L15_15, L16_16)
+      L15_15 = nil
+      if L9_9 > 1 then
+        L16_16 = string
+        L16_16 = L16_16.byte
+        L17_17 = L13_13
+        L18_18 = L4_4[2]
+        L18_18 = L18_18 + 1
+        L16_16 = L16_16(L17_17, L18_18)
+        L15_15 = L16_16
       end
-      local l_0_17 = nil
-      local l_0_18 = nil
-      local l_0_19 = ((string.byte)((pe.mmap_va)(l_0_3, l_0_7[l_0_11 + 1] + 1), l_0_7[1] + 1))
-      -- DECOMPILER ERROR at PC342: Overwrote pending register: R19 in 'AssignReg'
-
-      if l_0_11 > 1 then
-        do
-          local l_0_20 = nil
-          if l_0_9 == 2 then
-            l_0_13 = (mp.bitand)(l_0_19 + (string.byte)(l_0_18, l_0_7[l_0_11 + 1] + 1), 255)
-          else
-            if l_0_9 == 1 then
-              l_0_13 = (mp.bitxor)(l_0_19, (string.byte)(l_0_18, l_0_7[l_0_11 + 1] + 1))
-            else
-              if l_0_9 == 3 then
-                l_0_13 = (string.byte)(l_0_18, l_0_7[l_0_11 + 1] + 1) - l_0_19
-              else
-                if l_0_9 == 4 then
-                  l_0_13 = (mp.bitxor)((mp.bitand)((string.byte)(l_0_18, l_0_7[l_0_11 + 1] + 1) + l_0_20, 255), l_0_19)
-                else
-                  if l_0_9 == 5 then
-                    l_0_13 = (mp.bitxor)((string.byte)(l_0_18, l_0_7[l_0_11 + 1] + 1) - l_0_20, l_0_19)
-                  end
-                end
-              end
-            end
-          end
-          -- DECOMPILER ERROR at PC397: Overwrote pending register: R0 in 'AssignReg'
-
-          if l_0_12 ~= 77 or l_0_13 ~= 90 or l_0_1 >= 10 then
-            return mp.INFECTED
-          else
-            if l_0_1 >= 4 then
-              (mp.set_mpattribute)("HSTR:Rogue:Win32/Trapwot_Lowfi")
-            end
-          end
-          return mp.CLEAN
-        end
+      L16_16 = string
+      L16_16 = L16_16.byte
+      L17_17 = L13_13
+      L18_18 = L9_9 + 1
+      L18_18 = L4_4[L18_18]
+      L18_18 = L18_18 + 1
+      L16_16 = L16_16(L17_17, L18_18)
+      if L7_7 == 2 then
+        L17_17 = mp
+        L17_17 = L17_17.bitand
+        L18_18 = L14_14 + L16_16
+        L19_19 = 255
+        L17_17 = L17_17(L18_18, L19_19)
+        L11_11 = L17_17
+      elseif L7_7 == 1 then
+        L17_17 = mp
+        L17_17 = L17_17.bitxor
+        L18_18 = L14_14
+        L19_19 = L16_16
+        L17_17 = L17_17(L18_18, L19_19)
+        L11_11 = L17_17
+      elseif L7_7 == 3 then
+        L11_11 = L16_16 - L14_14
+      elseif L7_7 == 4 then
+        L17_17 = mp
+        L17_17 = L17_17.bitxor
+        L18_18 = mp
+        L18_18 = L18_18.bitand
+        L19_19 = L16_16 + L15_15
+        L20_20 = 255
+        L18_18 = L18_18(L19_19, L20_20)
+        L19_19 = L14_14
+        L17_17 = L17_17(L18_18, L19_19)
+        L11_11 = L17_17
+      elseif L7_7 == 5 then
+        L17_17 = mp
+        L17_17 = L17_17.bitxor
+        L18_18 = L16_16 - L15_15
+        L19_19 = L14_14
+        L17_17 = L17_17(L18_18, L19_19)
+        L11_11 = L17_17
+      end
+      L17_17 = pe
+      L17_17 = L17_17.mmap_va
+      L18_18 = L2_2
+      L19_19 = L10_10 + 1
+      L19_19 = L6_6[L19_19]
+      L19_19 = L19_19 + 1
+      L17_17 = L17_17(L18_18, L19_19)
+      L18_18 = string
+      L18_18 = L18_18.byte
+      L19_19 = L17_17
+      L20_20 = L6_6[1]
+      L20_20 = L20_20 + 1
+      L18_18 = L18_18(L19_19, L20_20)
+      L19_19 = nil
+      if L10_10 > 1 then
+        L20_20 = string
+        L20_20 = L20_20.byte
+        L20_20 = L20_20(L17_17, L6_6[2] + 1)
+        L19_19 = L20_20
+      end
+      L20_20 = string
+      L20_20 = L20_20.byte
+      L20_20 = L20_20(L17_17, L6_6[L10_10 + 1] + 1)
+      if L8_8 == 2 then
+        L12_12 = mp.bitand(L18_18 + L20_20, 255)
+      elseif L8_8 == 1 then
+        L12_12 = mp.bitxor(L18_18, L20_20)
+      elseif L8_8 == 3 then
+        L12_12 = L20_20 - L18_18
+      elseif L8_8 == 4 then
+        L12_12 = mp.bitxor(mp.bitand(L20_20 + L19_19, 255), L18_18)
+      elseif L8_8 == 5 then
+        L12_12 = mp.bitxor(L20_20 - L19_19, L18_18)
+      end
+      if L11_11 == 77 and L12_12 == 90 then
+        L0_0 = L0_0 + 3
       end
     end
   end
 end
-
+if L0_0 >= 10 then
+  L11_11 = mp
+  L11_11 = L11_11.INFECTED
+  return L11_11
+elseif L0_0 >= 4 then
+  L11_11 = mp
+  L11_11 = L11_11.set_mpattribute
+  L12_12 = "HSTR:Rogue:Win32/Trapwot_Lowfi"
+  L11_11(L12_12)
+end
+L11_11 = mp
+L11_11 = L11_11.CLEAN
+return L11_11

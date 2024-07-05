@@ -1,19 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/149b3ba77c230 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-for l_0_4 = mp.SIGATTR_LOG_SZ, 1, -1 do
-  local l_0_1 = nil
-  -- DECOMPILER ERROR at PC6: Confused about usage of register: R4 in 'UnsetPending'
-
-  if (sigattr_head[R4_PC6]).matched and ((sigattr_head[R4_PC6]).attribute == 16384 or (sigattr_head[R4_PC6]).attribute == 16385) then
-    l_0_1 = (mp.ContextualExpandEnvironmentVariables)((sigattr_head[R4_PC6]).utf8p1)
-    if l_0_1 ~= nil and (sysio.IsFileExists)(l_0_1) then
-      (mp.ReportLowfi)(l_0_1 .. "\000", 3307547556)
+local L0_0, L1_1, L2_2, L3_3, L4_4
+for L4_4 = L1_1.SIGATTR_LOG_SZ, 1, -1 do
+  if sigattr_head[L4_4].matched and (sigattr_head[L4_4].attribute == 16384 or sigattr_head[L4_4].attribute == 16385) then
+    L0_0 = mp.ContextualExpandEnvironmentVariables(sigattr_head[L4_4].utf8p1)
+    if L0_0 ~= nil and sysio.IsFileExists(L0_0) then
+      mp.ReportLowfi(L0_0 .. "\000", 3307547556)
     end
   end
 end
-return mp.INFECTED
-
+return L1_1

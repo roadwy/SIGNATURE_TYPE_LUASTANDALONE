@@ -1,123 +1,174 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_OutlookOOFile_Includes_GetEmailPaths 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-if not (mp.get_mpattribute)("Lua:DownFromWebMail") then
-  if (l_0_0 == nil or ((string.len)(l_0_0) < 30 or (string.find)(l_0_0, "\\appdata\\local\\microsoft\\windows\\inetcache\\content.outlook\\", 1, true) == nil) and ((string.find)(l_0_0, "\\downloads", 1, true) == nil or not isOutlookProcess())) then
-    return mp.CLEAN
-  end
-  if (string.find)(l_0_0, ":\\recoverybin\\volume-", 1, true) ~= nil then
-    return mp.CLEAN
-  end
-end
-if l_0_1 == nil or (string.len)(l_0_1) < 12 then
-  return mp.CLEAN
-end
-local l_0_2 = l_0_1:sub(-4)
-local l_0_3 = {}
-l_0_3[".xml"] = true
-l_0_3.rels = true
-if l_0_3[l_0_2] == true then
-  return mp.CLEAN
-end
-local l_0_4 = {}
-l_0_4[".xls->"] = "%.xls%->.+"
-l_0_4["xlsx->"] = "%.xlsx%->.+"
-l_0_4[".doc->"] = "%.doc%->.+"
-l_0_4["docx->"] = "%.docx%->.+"
-l_0_4[".rtf->"] = "%.rtf%->.+"
-l_0_4["xlsm->"] = "%.xlsm%->.+"
-l_0_4["xlsb->"] = "%.xlsb%->.+"
-l_0_4["xltx->"] = "%.xltx%->.+"
-l_0_4["xltm->"] = "%.xltm%->.+"
-l_0_4["xlam->"] = "%.xlam%->.+"
-l_0_4[".xla->"] = "%.xla%->.+"
-l_0_4["docm->"] = "%.docm%->.+"
-l_0_4["dotx->"] = "%.dotx%->.+"
-l_0_4["dotm->"] = "%.dotm%->.+"
-l_0_4["pptm->"] = "%.pptm%->.+"
-l_0_4[".pps->"] = "%.pps%->.+"
-l_0_4["ppsx->"] = "%.ppsx%->.+"
-l_0_4[".odt->"] = "%.odt%->.+"
-l_0_4[".xml->"] = "%.xml%->.+"
-for l_0_8,l_0_9 in pairs(l_0_4) do
-  if (string.find)(l_0_1, l_0_8, 1, true) then
-    do
-      do
-        local l_0_10 = (string.match)(l_0_1, l_0_9)
-        if l_0_10 == nil or (string.len)(l_0_10) < 4 then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC153: Unhandled construct in 'MakeBoolean' P1
-
-        if l_0_10:find("/vba", 1, true) and l_0_10:sub(-4) == ".bin" then
-          (mp.set_mpattribute)("LUA:MacroInOutlook")
-          return mp.INFECTED
-        end
-        do break end
-        -- DECOMPILER ERROR at PC178: Unhandled construct in 'MakeBoolean' P1
-
-        if l_0_10:find(">word/", 1, true) and (l_0_10:sub(-4) == ".exe" or l_0_10:sub(-4) == ".scr") then
-          (mp.set_mpattribute)("LUA:ExecInOutlook")
-          return mp.INFECTED
-        end
-        do break end
-        -- DECOMPILER ERROR at PC198: Unhandled construct in 'MakeBoolean' P1
-
-        if l_0_10:find(".jar->", 1, true) and l_0_10:sub(-6) == ".class" then
-          (mp.set_mpattribute)("LUA:JarInOutlook")
-          return mp.INFECTED
-        end
-        do break end
-        -- DECOMPILER ERROR at PC228: Unhandled construct in 'MakeBoolean' P1
-
-        if l_0_10:find(">xl/embeddings/", 1, true) and (l_0_10:sub(-4) == ".bin" or l_0_10:sub(-4) == ".exe" or l_0_10:sub(-4) == ".scr") then
-          (mp.set_mpattribute)("LUA:ExecInOutlook")
-          return mp.INFECTED
-        end
-        do break end
-        -- DECOMPILER ERROR at PC253: Unhandled construct in 'MakeBoolean' P1
-
-        if l_0_10:find(">word/embeddings/ole", 1, true) and (l_0_10:sub(-4) == ".bin" or l_0_10:sub(-4) == ".exe") then
-          (mp.set_mpattribute)("LUA:ExecInOutlook")
-          return mp.INFECTED
-        end
-        do break end
-        -- DECOMPILER ERROR at PC273: Unhandled construct in 'MakeBoolean' P1
-
-        if l_0_10:find("oleobject", 1, true) and l_0_10:sub(-4) == ".bin" then
-          (mp.set_mpattribute)("LUA:OleObjInOutlook")
-          return mp.INFECTED
-        end
-        do break end
-        -- DECOMPILER ERROR at PC305: Unhandled construct in 'MakeBoolean' P1
-
-        -- DECOMPILER ERROR at PC305: Unhandled construct in 'MakeBoolean' P1
-
-        if l_0_10:match(">%(ole stream .%)%->.+", 1, true) and l_0_10:find("->(utf-", 1, true) == nil and l_0_10:sub(-4) ~= ".bin" and l_0_10:sub(-4) == ".lnk" then
-          (mp.set_mpattribute)("LUA:LnkInOleStreamInOutlook")
-          return mp.INFECTED
-        end
-        do break end
-        if l_0_10:sub(-11) == "ole10native" then
-          (mp.set_mpattribute)("LUA:OleNativeInOutlook")
-          return mp.INFECTED
-        end
-        ;
-        (mp.set_mpattribute)("LUA:OleStreamInOutlook")
-        do return mp.INFECTED end
-        do break end
-        -- DECOMPILER ERROR at PC330: LeaveBlock: unexpected jumping out DO_STMT
-
-        -- DECOMPILER ERROR at PC330: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-        -- DECOMPILER ERROR at PC330: LeaveBlock: unexpected jumping out IF_STMT
-
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_FNAME
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_PATH
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L10_10 = L1_1(L2_2, L3_3)
+L1_1 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L1_1(L2_2, L3_3))
+L2_2 = mp
+L2_2 = L2_2.get_mpattribute
+L3_3 = "Lua:DownFromWebMail"
+L2_2 = L2_2(L3_3)
+if not L2_2 then
+  if L0_0 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.len
+    L3_3 = L0_0
+    L2_2 = L2_2(L3_3)
+    if not (L2_2 < 30) then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L3_3 = L0_0
+      L4_4 = "\\appdata\\local\\microsoft\\windows\\inetcache\\content.outlook\\"
+      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+    elseif L2_2 == nil then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L3_3 = L0_0
+      L4_4 = "\\downloads"
+      L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+      if L2_2 ~= nil then
+        L2_2 = isOutlookProcess
+        L2_2 = L2_2()
       end
     end
+  elseif not L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
+  L2_2 = string
+  L2_2 = L2_2.find
+  L3_3 = L0_0
+  L4_4 = ":\\recoverybin\\volume-"
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+  if L2_2 ~= nil then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
 end
-return mp.CLEAN
-
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+elseif L2_2 < 12 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L3_3 = L1_1
+L2_2 = L1_1.sub
+L4_4 = -4
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = {}
+L3_3[".xml"] = true
+L3_3.rels = true
+L4_4 = L3_3[L2_2]
+if L4_4 == true then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = {}
+L4_4[".xls->"] = "%.xls%->.+"
+L4_4["xlsx->"] = "%.xlsx%->.+"
+L4_4[".doc->"] = "%.doc%->.+"
+L4_4["docx->"] = "%.docx%->.+"
+L4_4[".rtf->"] = "%.rtf%->.+"
+L4_4["xlsm->"] = "%.xlsm%->.+"
+L4_4["xlsb->"] = "%.xlsb%->.+"
+L4_4["xltx->"] = "%.xltx%->.+"
+L4_4["xltm->"] = "%.xltm%->.+"
+L4_4["xlam->"] = "%.xlam%->.+"
+L4_4[".xla->"] = "%.xla%->.+"
+L4_4["docm->"] = "%.docm%->.+"
+L4_4["dotx->"] = "%.dotx%->.+"
+L4_4["dotm->"] = "%.dotm%->.+"
+L4_4["pptm->"] = "%.pptm%->.+"
+L4_4[".pps->"] = "%.pps%->.+"
+L4_4["ppsx->"] = "%.ppsx%->.+"
+L4_4[".odt->"] = "%.odt%->.+"
+L4_4[".xml->"] = "%.xml%->.+"
+for L8_8, L9_9 in L5_5(L6_6) do
+  L10_10 = string
+  L10_10 = L10_10.find
+  L10_10 = L10_10(L1_1, L8_8, 1, true)
+  if L10_10 then
+    L10_10 = string
+    L10_10 = L10_10.match
+    L10_10 = L10_10(L1_1, L9_9)
+    if L10_10 == nil or string.len(L10_10) < 4 then
+      return mp.CLEAN
+    end
+    if L10_10:find("/vba", 1, true) then
+      if L10_10:sub(-4) == ".bin" then
+        mp.set_mpattribute("LUA:MacroInOutlook")
+        return mp.INFECTED
+      end
+      break
+    end
+    if L10_10:find(">word/", 1, true) then
+      if L10_10:sub(-4) == ".exe" or L10_10:sub(-4) == ".scr" then
+        mp.set_mpattribute("LUA:ExecInOutlook")
+        return mp.INFECTED
+      end
+      break
+    end
+    if L10_10:find(".jar->", 1, true) then
+      if L10_10:sub(-6) == ".class" then
+        mp.set_mpattribute("LUA:JarInOutlook")
+        return mp.INFECTED
+      end
+      break
+    end
+    if L10_10:find(">xl/embeddings/", 1, true) then
+      if L10_10:sub(-4) == ".bin" or L10_10:sub(-4) == ".exe" or L10_10:sub(-4) == ".scr" then
+        mp.set_mpattribute("LUA:ExecInOutlook")
+        return mp.INFECTED
+      end
+      break
+    end
+    if L10_10:find(">word/embeddings/ole", 1, true) then
+      if L10_10:sub(-4) == ".bin" or L10_10:sub(-4) == ".exe" then
+        mp.set_mpattribute("LUA:ExecInOutlook")
+        return mp.INFECTED
+      end
+      break
+    end
+    if L10_10:find("oleobject", 1, true) then
+      if L10_10:sub(-4) == ".bin" then
+        mp.set_mpattribute("LUA:OleObjInOutlook")
+        return mp.INFECTED
+      end
+      break
+    end
+    if L10_10:match(">%(ole stream .%)%->.+", 1, true) and L10_10:find("->(utf-", 1, true) == nil then
+      if L10_10:sub(-4) ~= ".bin" then
+        if L10_10:sub(-4) == ".lnk" then
+          mp.set_mpattribute("LUA:LnkInOleStreamInOutlook")
+          return mp.INFECTED
+        end
+        break
+      end
+      if L10_10:sub(-11) == "ole10native" then
+        mp.set_mpattribute("LUA:OleNativeInOutlook")
+        return mp.INFECTED
+      end
+      mp.set_mpattribute("LUA:OleStreamInOutlook")
+      return mp.INFECTED
+    end
+    break
+  end
+end
+return L5_5

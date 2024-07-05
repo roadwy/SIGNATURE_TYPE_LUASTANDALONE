@@ -1,84 +1,100 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b393e77b73_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_11 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0, l_0_1, l_0_3, l_0_4, l_0_6 = nil, false
-  l_0_3 = string
-  l_0_3 = l_0_3.lower
-  l_0_4 = this_sigattrlog
-  l_0_4 = l_0_4[1]
-  l_0_4 = l_0_4.utf8p2
-  l_0_3 = l_0_3(l_0_4)
-  l_0_0 = l_0_3
-  local l_0_2, l_0_5, l_0_8, l_0_9, l_0_10 = nil
-end
-do
-  -- DECOMPILER ERROR at PC33: Overwrote pending register: R0 in 'AssignReg'
-
-  if ((this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil and l_0_11 == nil) or (string.lower)((this_sigattrlog[2]).utf8p2) == nil then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15
+L2_2 = false
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L3_3 = L3_3.utf8p2
+  if L3_3 ~= nil then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L0_0 = L3_3.ppid
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[1]
+    L4_4 = L4_4.utf8p2
+    L3_3 = L3_3(L4_4)
+    L1_1 = L3_3
   end
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R0 in 'AssignReg'
-
-  local l_0_7 = nil
-  if l_0_7:find("powershell%.exe$") or l_0_7:find("cmd%.exe$") then
-    local l_0_12, l_0_13 = , (bm.get_process_relationships)()
-    for l_0_17,l_0_18 in ipairs(l_0_13) do
-      local l_0_14 = nil
-      -- DECOMPILER ERROR at PC70: Confused about usage of register: R9 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC75: Confused about usage of register: R9 in 'UnsetPending'
-
-      if IsPidObservedGlobal(l_0_9.ppid) then
-        local l_0_20 = GetTacticsTableForPid(l_0_9.ppid)
-        if l_0_20 ~= nil then
-          for l_0_24,l_0_25 in pairs(l_0_20) do
-            local l_0_21 = GetTechniquesTableForPid(l_0_19.ppid)
-            AddTacticForPid(l_0_11, l_0_25)
-            l_0_12 = true
-          end
-        end
-        do
-          -- DECOMPILER ERROR at PC93: Confused about usage of register: R11 in 'UnsetPending'
-
-          -- DECOMPILER ERROR at PC96: Confused about usage of register: R11 in 'UnsetPending'
-
-          if l_0_21 ~= nil then
-            for l_0_29,l_0_30 in pairs(l_0_21) do
-              local l_0_26 = nil
-              AddTechniqueForPid(l_0_11, l_0_30)
-              l_0_12 = true
-            end
-          end
-          do
-            do
-              TrackPidAndTechniqueBM(l_0_19.ppid, "tt_to_child", "tt_to_child")
-              -- DECOMPILER ERROR at PC111: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC111: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC111: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC111: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
+end
+L3_3 = this_sigattrlog
+L3_3 = L3_3[2]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[2]
+  L3_3 = L3_3.utf8p2
+  if L3_3 ~= nil then
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[2]
+    L0_0 = L3_3.ppid
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[2]
+    L4_4 = L4_4.utf8p2
+    L3_3 = L3_3(L4_4)
+    L1_1 = L3_3
+  end
+end
+if L0_0 == nil or L1_1 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = GetRealPidForScenario
+L4_4 = L0_0
+L3_3 = L3_3(L4_4)
+L0_0 = L3_3
+L4_4 = L1_1
+L3_3 = L1_1.find
+L3_3 = L3_3(L4_4, L5_5)
+if not L3_3 then
+  L4_4 = L1_1
+  L3_3 = L1_1.find
+  L3_3 = L3_3(L4_4, L5_5)
+elseif L3_3 then
+  L3_3 = bm
+  L3_3 = L3_3.get_process_relationships
+  L4_4 = L3_3()
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = IsPidObservedGlobal
+    L11_11 = L9_9.ppid
+    L10_10 = L10_10(L11_11)
+    if L10_10 then
+      L10_10 = GetTacticsTableForPid
+      L11_11 = L9_9.ppid
+      L10_10 = L10_10(L11_11)
+      L11_11 = GetTechniquesTableForPid
+      L11_11 = L11_11(L12_12)
+      if L10_10 ~= nil then
+        for L15_15, _FORV_16_ in L12_12(L13_13) do
+          AddTacticForPid(L0_0, L15_15)
+          L2_2 = true
         end
       end
+      if L11_11 ~= nil then
+        for L15_15, _FORV_16_ in L12_12(L13_13) do
+          AddTechniqueForPid(L0_0, L15_15)
+          L2_2 = true
+        end
+      end
+      L15_15 = "tt_to_child"
+      L12_12(L13_13, L14_14, L15_15)
     end
   end
-  if l_0_12 then
-    l_0_13 = TrackPidAndTechniqueBM
-    l_0_13(l_0_11, "has_inherited_tt", "has_inherited_tt")
-    l_0_13 = mp
-    l_0_13 = l_0_13.INFECTED
-    return l_0_13
-  end
-  l_0_13 = mp
-  l_0_13 = l_0_13.CLEAN
-  return l_0_13
 end
-
+if L2_2 then
+  L3_3 = TrackPidAndTechniqueBM
+  L4_4 = L0_0
+  L3_3(L4_4, L5_5, L6_6)
+  L3_3 = mp
+  L3_3 = L3_3.INFECTED
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

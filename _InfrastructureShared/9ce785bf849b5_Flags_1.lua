@@ -1,49 +1,101 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/9ce785bf849b5_Flags_1 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("Themida_Attr") ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "Themida_Attr"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasexports ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 8 and pehdr.NumberOfSections ~= 7 then
-  return mp.CLEAN
-end
-if (pesecs[pehdr.NumberOfSections - 1]).Characteristics ~= 3758096448 then
-  return mp.CLEAN
-end
-local l_0_0 = ((pehdr.DataDirectory)[1]).RVA
-local l_0_1 = ((pehdr.DataDirectory)[1]).Size
-if (pe.contains_rva)(pehdr.NumberOfSections - 1, l_0_0) ~= true then
-  return mp.CLEAN
-end
-if l_0_1 ~= 91 then
-  return mp.CLEAN
-end
-l_0_0 = (pe.foffset_rva)(l_0_0)
-;
-(mp.readprotection)(false)
-local l_0_2 = (mp.readfile)(l_0_0, l_0_1 + 4)
-local l_0_3 = (mp.readu_u32)(l_0_2, 59)
-if l_0_3 ~= 1819042862 then
-  return mp.CLEAN
-end
-if l_0_2:byte(63) ~= 0 then
-  return mp.CLEAN
-end
-for l_0_7 = 64, 69 do
-  if l_0_2:byte(l_0_7) > 122 then
-    return mp.CLEAN
-  end
-  if l_0_2:byte(l_0_7) < 65 then
-    return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 8 then
+  L0_0 = pehdr
+  L0_0 = L0_0.NumberOfSections
+  if L0_0 ~= 7 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
   end
 end
-return mp.INFECTED
-
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L1_1 = L1_1 - 1
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 3758096448 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.RVA
+L1_1 = pehdr
+L1_1 = L1_1.DataDirectory
+L1_1 = L1_1[1]
+L1_1 = L1_1.Size
+L2_2 = pe
+L2_2 = L2_2.contains_rva
+L3_3 = pehdr
+L3_3 = L3_3.NumberOfSections
+L3_3 = L3_3 - 1
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= true then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+if L1_1 ~= 91 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = pe
+L2_2 = L2_2.foffset_rva
+L3_3 = L0_0
+L2_2 = L2_2(L3_3)
+L0_0 = L2_2
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = L0_0
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 ~= 1819042862 then
+  return L4_4
+end
+if L4_4 ~= 0 then
+  return L4_4
+end
+for L7_7 = 64, 69 do
+  if L2_2:byte(L7_7) > 122 then
+    return mp.CLEAN
+  end
+  if L2_2:byte(L7_7) < 65 then
+    return mp.CLEAN
+  end
+end
+return L4_4

@@ -1,44 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b3ebda6751 
-
--- params : ...
--- function num : 0
-local l_0_0 = (MpCommon.PathToWin32Path)((bm.get_imagepath)())
-if l_0_0 == nil then
+local L0_0, L1_1, L2_2
+L0_0 = MpCommon
+L0_0 = L0_0.PathToWin32Path
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = bm
+L2_2 = L2_2.get_connection_string
+L2_2 = L2_2()
+if L2_2 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (string.lower)(l_0_0)
-if l_0_1 == nil then
+if L2_2 == "" then
   return mp.CLEAN
 end
-local l_0_2 = (bm.get_connection_string)()
-if l_0_2 == nil then
+if tonumber(string.match(L2_2, "DestPort=(%d+);")) < 10050 or tonumber(string.match(L2_2, "DestPort=(%d+);")) > 10063 then
   return mp.CLEAN
 end
-if l_0_2 == "" then
+if L1_1:match("(.+\\)([^\\]+)(%.%l%l%l)$") == nil then
   return mp.CLEAN
 end
-local l_0_3 = tonumber((string.match)(l_0_2, "DestPort=(%d+);"))
-if l_0_3 < 10050 or l_0_3 > 10063 then
+if L1_1:match("(.+\\)([^\\]+)(%.%l%l%l)$") == nil then
   return mp.CLEAN
 end
-local l_0_4, l_0_5, l_0_6 = l_0_1:match("(.+\\)([^\\]+)(%.%l%l%l)$")
-if l_0_4 == nil then
+if L1_1:match("(.+\\)([^\\]+)(%.%l%l%l)$") == nil or L1_1:match("(.+\\)([^\\]+)(%.%l%l%l)$") ~= ".exe" then
   return mp.CLEAN
 end
-if l_0_5 == nil then
-  return mp.CLEAN
-end
-if l_0_6 == nil or l_0_6 ~= ".exe" then
-  return mp.CLEAN
-end
-local l_0_7 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\SYSTEM32\\"))
-local l_0_8 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\SYSWOW64\\"))
-local l_0_9 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%\\"))
--- DECOMPILER ERROR at PC102: Unhandled construct in 'MakeBoolean' P3
-
-if (l_0_7 and l_0_7 == l_0_4) or not l_0_8 or l_0_9 and l_0_9 == l_0_4 then
+if string.lower(MpCommon.ExpandEnvironmentVariables("%WINDIR%\\SYSTEM32\\")) and string.lower(MpCommon.ExpandEnvironmentVariables("%WINDIR%\\SYSTEM32\\")) == L1_1:match("(.+\\)([^\\]+)(%.%l%l%l)$") or string.lower(MpCommon.ExpandEnvironmentVariables("%WINDIR%\\SYSWOW64\\")) and string.lower(MpCommon.ExpandEnvironmentVariables("%WINDIR%\\SYSWOW64\\")) == L1_1:match("(.+\\)([^\\]+)(%.%l%l%l)$") or string.lower(MpCommon.ExpandEnvironmentVariables("%WINDIR%\\")) and string.lower(MpCommon.ExpandEnvironmentVariables("%WINDIR%\\")) == L1_1:match("(.+\\)([^\\]+)(%.%l%l%l)$") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

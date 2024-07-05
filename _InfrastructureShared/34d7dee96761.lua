@@ -1,36 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/34d7dee96761 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == "" or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, ".msc[%s]*$")
+if L2_2 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, "-embedding[%s]*$")
+if L2_2 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.GetParentProcInfo
+L2_2 = L2_2()
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = string
+L3_3 = L3_3.lower
+L3_3 = L3_3(string.match(L2_2.image_path, "\\([^\\]+)$"))
+if L3_3 ~= "svchost.exe" then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.GetProcessCommandLine
+L3_3 = L3_3(L2_2.ppid)
+if L3_3 == "" or L3_3 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if l_0_1 == "" or l_0_1 == nil then
-  return mp.CLEAN
-end
-l_0_1 = (string.lower)(l_0_1)
-if (string.find)(l_0_1, ".msc[%s]*$") ~= nil then
-  return mp.INFECTED
-end
-if (string.find)(l_0_1, "-embedding[%s]*$") == nil then
-  return mp.CLEAN
-end
-local l_0_2 = (mp.GetParentProcInfo)()
-if l_0_2 == nil then
-  return mp.CLEAN
-end
-if (string.lower)((string.match)(l_0_2.image_path, "\\([^\\]+)$")) ~= "svchost.exe" then
-  return mp.CLEAN
-end
-local l_0_3 = (mp.GetProcessCommandLine)(l_0_2.ppid)
-if l_0_3 == "" or l_0_3 == nil then
-  return mp.CLEAN
-end
-if (string.find)((string.lower)(l_0_3), "\\svchost%.exe[%s]+-k[%s]+dcomlaunch[%s]*$") then
+if string.find(string.lower(L3_3), "\\svchost%.exe[%s]+-k[%s]+dcomlaunch[%s]*$") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

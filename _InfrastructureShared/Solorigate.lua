@@ -1,51 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Solorigate 
-
--- params : ...
--- function num : 0
-split_path = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = string.match
-  local l_1_2 = l_1_0
-  do
-    local l_1_3 = "(.-)([^\\]-([^\\%.]+))$"
-    do return l_1_1(l_1_2, l_1_3) end
-    -- DECOMPILER ERROR at PC6: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21
+split_path = L0_0
+if L0_0 == nil then
+  return
 end
-
-if (string.find)((Remediation.Threat).Name, "^Trojan:MSIL/Solorigate.BR!dha") == nil then
-  return 
-end
-for l_0_3,l_0_4 in ipairs((Remediation.Threat).Resources) do
-  if l_0_4.Schema == "file" and l_0_4.Path ~= nil and l_0_4.Path ~= "" then
-    local l_0_5 = (string.lower)(l_0_4.Path)
-    if l_0_5 ~= nil and #l_0_5 > 4 and (string.sub)(l_0_5, -4) == ".dll" then
-      if (string.sub)(l_0_5, 1, 4) == "\\\\?\\" then
-        l_0_5 = (string.sub)(l_0_5, 5)
-      end
-      local l_0_6, l_0_7, l_0_8 = split_path(l_0_5)
-      local l_0_9 = {}
-      -- DECOMPILER ERROR at PC63: No list found for R9 , SetList fails
-
-      -- DECOMPILER ERROR at PC64: Overwrote pending register: R10 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC65: Overwrote pending register: R11 in 'AssignReg'
-
-      for l_0_13,l_0_14 in ("solarwinds.businesslayerhost.exe")("configurationwizard.exe") do
-        local l_0_15 = (sysio.GetProcessFromFileName)(l_0_6 .. l_0_14)
-        for l_0_19,l_0_20 in pairs(l_0_15) do
-          local l_0_21 = (string.format)("pid:%d,ProcessStart:%u", l_0_20.pid, l_0_20.starttime)
-          local l_0_22 = (sysio.IsFileOpenedByProcess)(l_0_21, l_0_5)
-          if ((sysio.GetLastResult)()).Success == true and l_0_22 == true then
-            (sysio.StopService)("OrionModuleEngine")
-            ;
-            (sysio.TerminateProcess)(l_0_21)
+for L3_3, L4_4 in L0_0(L1_1) do
+  L5_5 = L4_4.Schema
+  if L5_5 == "file" then
+    L5_5 = L4_4.Path
+    if L5_5 ~= nil then
+      L5_5 = L4_4.Path
+      if L5_5 ~= "" then
+        L5_5 = string
+        L5_5 = L5_5.lower
+        L6_6 = L4_4.Path
+        L5_5 = L5_5(L6_6)
+        if L5_5 ~= nil then
+          L6_6 = #L5_5
+          if L6_6 > 4 then
+            L6_6 = string
+            L6_6 = L6_6.sub
+            L7_7 = L5_5
+            L8_8 = -4
+            L6_6 = L6_6(L7_7, L8_8)
+            if L6_6 == ".dll" then
+              L6_6 = string
+              L6_6 = L6_6.sub
+              L7_7 = L5_5
+              L8_8 = 1
+              L9_9 = 4
+              L6_6 = L6_6(L7_7, L8_8, L9_9)
+              if L6_6 == "\\\\?\\" then
+                L6_6 = string
+                L6_6 = L6_6.sub
+                L7_7 = L5_5
+                L8_8 = 5
+                L6_6 = L6_6(L7_7, L8_8)
+                L5_5 = L6_6
+              end
+              L6_6 = split_path
+              L7_7 = L5_5
+              L8_8 = L6_6(L7_7)
+              L9_9 = {L10_10, L11_11}
+              for L13_13, L14_14 in L10_10(L11_11) do
+                L15_15 = sysio
+                L15_15 = L15_15.GetProcessFromFileName
+                L15_15 = L15_15(L16_16)
+                for L19_19, L20_20 in L16_16(L17_17) do
+                  L21_21 = string
+                  L21_21 = L21_21.format
+                  L21_21 = L21_21("pid:%d,ProcessStart:%u", L20_20.pid, L20_20.starttime)
+                  if sysio.GetLastResult().Success == true and sysio.IsFileOpenedByProcess(L21_21, L5_5) == true then
+                    sysio.StopService("OrionModuleEngine")
+                    sysio.TerminateProcess(L21_21)
+                  end
+                end
+              end
+            end
           end
         end
       end
     end
   end
 end
-

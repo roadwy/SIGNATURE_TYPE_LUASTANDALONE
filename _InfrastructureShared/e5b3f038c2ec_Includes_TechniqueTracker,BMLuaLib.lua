@@ -1,21 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e5b3f038c2ec_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
-if is_excluded_parent_proc_auto() then
-  return mp.CLEAN
+local L0_0
+L0_0 = is_excluded_parent_proc_auto
+L0_0 = L0_0()
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = GetRealPidForScenario("BM")
-AddResearchData(l_0_0, true)
-if IsTacticObservedForPid(l_0_0, "ntdsexfil") and IsTechniqueObservedForPid(l_0_0, "T1140") then
+L0_0 = GetRealPidForScenario
+L0_0 = L0_0("BM")
+AddResearchData(L0_0, true)
+if IsTacticObservedForPid(L0_0, "ntdsexfil") and IsTechniqueObservedForPid(L0_0, "T1140") then
   return mp.INFECTED
 end
-if IsTechniqueObservedForPid(l_0_0, "T1047") or IsTechniqueObservedForPid(l_0_0, "T1021.006") then
+if IsTechniqueObservedForPid(L0_0, "T1047") or IsTechniqueObservedForPid(L0_0, "T1021.006") then
   return mp.INFECTED
 end
-if IsDetectionThresholdMet(l_0_0) then
+if IsDetectionThresholdMet(L0_0) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

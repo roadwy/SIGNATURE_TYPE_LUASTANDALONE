@@ -1,70 +1,119 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/29db392dbce75 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p2
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L0_0 = L1_1.utf8p2
   else
-  end
-  -- DECOMPILER ERROR at PC25: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[3]).matched or (this_sigattrlog[4]).matched then
-      local l_0_1 = (this_sigattrlog[3]).utf8p2
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L0_0 = L1_1.utf8p2
     else
-    end
-    -- DECOMPILER ERROR at PC43: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if not (this_sigattrlog[5]).matched or (this_sigattrlog[6]).matched then
-        local l_0_2 = (this_sigattrlog[5]).utf8p2
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[5]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L0_0 = L1_1.utf8p2
       else
-      end
-      -- DECOMPILER ERROR at PC61: Overwrote pending register: R0 in 'AssignReg'
-
-      do
-        if not (this_sigattrlog[7]).matched or (this_sigattrlog[8]).matched then
-          local l_0_3 = (this_sigattrlog[7]).utf8p2
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[6]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L0_0 = L1_1.utf8p2
         else
-        end
-        -- DECOMPILER ERROR at PC79: Overwrote pending register: R0 in 'AssignReg'
-
-        do
-          if not (this_sigattrlog[9]).matched or (this_sigattrlog[10]).matched then
-            local l_0_4, l_0_5, l_0_6, l_0_7, l_0_8, l_0_15 = (this_sigattrlog[9]).utf8p2
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[7]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[7]
+            L0_0 = L1_1.utf8p2
           else
-          end
-          -- DECOMPILER ERROR at PC93: Confused about usage of register: R0 in 'UnsetPending'
-
-          -- DECOMPILER ERROR at PC99: Confused about usage of register: R0 in 'UnsetPending'
-
-          if (not (this_sigattrlog[11]).matched or (this_sigattrlog[11]).utf8p2 ~= nil) and (string.len)((this_sigattrlog[11]).utf8p2) > 3 then
-            local l_0_9 = nil
-            if (mp.GetExecutablesFromCommandLine)((this_sigattrlog[11]).utf8p2) ~= nil then
-              for l_0_13,l_0_14 in ipairs((mp.GetExecutablesFromCommandLine)((this_sigattrlog[11]).utf8p2)) do
-                local l_0_10 = nil
-                -- DECOMPILER ERROR at PC109: Confused about usage of register: R6 in 'UnsetPending'
-
-                R6_PC109 = (mp.ContextualExpandEnvironmentVariables)(R6_PC109)
-                ;
-                (bm.add_related_file)(R6_PC109)
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[8]
+            L1_1 = L1_1.matched
+            if L1_1 then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[8]
+              L0_0 = L1_1.utf8p2
+            else
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[9]
+              L1_1 = L1_1.matched
+              if L1_1 then
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[9]
+                L0_0 = L1_1.utf8p2
+              else
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[10]
+                L1_1 = L1_1.matched
+                if L1_1 then
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[10]
+                  L0_0 = L1_1.utf8p2
+                else
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[11]
+                  L1_1 = L1_1.matched
+                  if L1_1 then
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[11]
+                    L0_0 = L1_1.utf8p2
+                  end
+                end
               end
             end
-          end
-          do
-            local l_0_16 = (string.lower)((bm.get_imagepath)())
-            if (string.find)(l_0_16, "\\cscript.exe", 1, true) or (string.find)(l_0_16, "\\wscript.exe", 1, true) then
-              return mp.INFECTED
-            end
-            return mp.CLEAN
           end
         end
       end
     end
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L1_1 = L1_1(L2_2)
+  if L1_1 > 3 then
+    L1_1 = mp
+    L1_1 = L1_1.GetExecutablesFromCommandLine
+    L1_1 = L1_1(L2_2)
+    if L1_1 ~= nil then
+      for L5_5, L6_6 in L2_2(L3_3) do
+        L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+        bm.add_related_file(L6_6)
+      end
+    end
+  end
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L6_6 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L2_2())
+L5_5 = 1
+L6_6 = true
+if not L2_2 then
+  L5_5 = 1
+  L6_6 = true
+elseif L2_2 then
+  return L2_2
+end
+return L2_2

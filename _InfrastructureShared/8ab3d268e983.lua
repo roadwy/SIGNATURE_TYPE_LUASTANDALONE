@@ -1,19 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8ab3d268e983 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[3]).matched then
-    local l_0_0 = nil
-    -- DECOMPILER ERROR at PC16: Overwrote pending register: R1 in 'AssignReg'
-
-    if nil == ".cmd" then
-      return mp.INFECTED
-    end
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L0_0 = L2_2.utf8p1
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(string.sub(L0_0, -4))
+  L1_1 = L2_2
+  if L1_1 == ".cmd" then
+    L2_2 = mp
+    L2_2 = L2_2.INFECTED
+    return L2_2
   end
-  return mp.CLEAN
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

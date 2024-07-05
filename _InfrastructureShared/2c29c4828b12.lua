@@ -1,35 +1,53 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2c29c4828b12 
-
--- params : ...
--- function num : 0
-if (string.find)((string.lower)((mp.getfilename)()), ".htaccess") ~= nil then
-  local l_0_0 = (mp.GetBruteMatchData)()
-  local l_0_1 = 256
-  local l_0_2 = ""
-  if l_0_0.is_header then
-    l_0_2 = (tostring(headerpage)):sub(l_0_0.match_offset, l_0_0.match_offset + l_0_1)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = string
+L0_0 = L0_0.find
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.getfilename
+L8_8 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2())
+L2_2 = ".htaccess"
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= nil then
+  L0_0 = mp
+  L0_0 = L0_0.GetBruteMatchData
+  L0_0 = L0_0()
+  L1_1 = 256
+  L2_2 = ""
+  L3_3 = L0_0.is_header
+  if L3_3 then
+    L3_3 = tostring
+    L3_3 = L3_3(L4_4)
+    L3_3 = L3_3.sub
+    L3_3 = L3_3(L4_4, L5_5, L6_6)
+    L2_2 = L3_3
   else
-    l_0_2 = (tostring(footerpage)):sub(l_0_0.match_offset, l_0_0.match_offset + l_0_1)
+    L3_3 = tostring
+    L3_3 = L3_3(L4_4)
+    L3_3 = L3_3.sub
+    L3_3 = L3_3(L4_4, L5_5, L6_6)
+    L2_2 = L3_3
   end
-  l_0_2 = (string.lower)(l_0_2)
-  local l_0_3 = {}
-  -- DECOMPILER ERROR at PC50: No list found for R3 , SetList fails
-
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC52: Overwrote pending register: R5 in 'AssignReg'
-
-  for l_0_7,l_0_8 in ("x-httpd-php .jpg")("x-httpd-php .jpeg") do
-    if (string.find)(l_0_2, l_0_8, 1, true) then
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(L4_4)
+  L2_2 = L3_3
+  L3_3 = {
+    L4_4,
+    L5_5,
+    L6_6,
+    L7_7,
+    L8_8
+  }
+  L7_7 = "x-httpd-php .gif"
+  L8_8 = "x-httpd-php .htaccess"
+  for L7_7, L8_8 in L4_4(L5_5) do
+    if string.find(L2_2, L8_8, 1, true) then
       return mp.INFECTED
     end
   end
 end
-do
-  -- DECOMPILER ERROR at PC70: Overwrote pending register: R0 in 'AssignReg'
-
-  do return l_0_0 end
-  -- WARNING: undefined locals caused missing assignments!
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,10 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2017818cbc3bc 
-
--- params : ...
--- function num : 0
-if peattributes.x86_image == true and peattributes.line_numbers_stripped == true and peattributes.locals_symbols_stripped == true and peattributes.no_security == true and peattributes.headerchecksum0 == true and peattributes.hasappendeddata == true and peattributes.isexe == true and peattributes.no_debug == true and peattributes.no_relocs == true and peattributes.no_comruntime == true and peattributes.no_boundimport == true then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.x86_image
+if L0_0 == true then
+  L0_0 = peattributes
+  L0_0 = L0_0.line_numbers_stripped
+  if L0_0 == true then
+    L0_0 = peattributes
+    L0_0 = L0_0.locals_symbols_stripped
+    if L0_0 == true then
+      L0_0 = peattributes
+      L0_0 = L0_0.no_security
+      if L0_0 == true then
+        L0_0 = peattributes
+        L0_0 = L0_0.headerchecksum0
+        if L0_0 == true then
+          L0_0 = peattributes
+          L0_0 = L0_0.hasappendeddata
+          if L0_0 == true then
+            L0_0 = peattributes
+            L0_0 = L0_0.isexe
+            if L0_0 == true then
+              L0_0 = peattributes
+              L0_0 = L0_0.no_debug
+              if L0_0 == true then
+                L0_0 = peattributes
+                L0_0 = L0_0.no_relocs
+                if L0_0 == true then
+                  L0_0 = peattributes
+                  L0_0 = L0_0.no_comruntime
+                  if L0_0 == true then
+                    L0_0 = peattributes
+                    L0_0 = L0_0.no_boundimport
+                    if L0_0 == true then
+                      L0_0 = mp
+                      L0_0 = L0_0.INFECTED
+                      return L0_0
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,28 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5678f89ee816 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections ~= 5 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not peattributes.x86_image then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.x86_image
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).SizeOfRawData < 483328 or (pesecs[1]).SizeOfRawData > 495616 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.SizeOfRawData
+if not (L0_0 < 483328) then
+  L0_0 = pesecs
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.SizeOfRawData
+elseif L0_0 > 495616 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[2]).SizeOfRawData > 8192 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 > 8192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[3]).SizeOfRawData ~= 12288 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[3]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 ~= 12288 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[4]).SizeOfRawData ~= 4096 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[4]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 ~= 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[5]).SizeOfRawData < 1146880 or (pesecs[5]).SizeOfRawData > 1196032 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[5]
+L0_0 = L0_0.SizeOfRawData
+if not (L0_0 < 1146880) then
+  L0_0 = pesecs
+  L0_0 = L0_0[5]
+  L0_0 = L0_0.SizeOfRawData
+elseif L0_0 > 1196032 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

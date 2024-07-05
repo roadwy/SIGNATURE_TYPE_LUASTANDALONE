@@ -1,29 +1,56 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ShellterLuaInfra 
-
--- params : ...
--- function num : 0
-check_expensive_loop = function(l_1_0, l_1_1, l_1_2)
-  -- function num : 0_0
-  if not l_1_0 or not l_1_1 or not l_1_2 then
+local L1_0
+function L1_0(A0_1, A1_2, A2_3)
+  local L3_4, L4_5, L5_6, L6_7, L7_8
+  if not A0_1 or not A1_2 or not A2_3 then
+    L3_4 = nil
+    return L3_4
+  end
+  L3_4 = pe
+  L3_4 = L3_4.vm_search
+  L4_5 = A0_1
+  L5_6 = A0_1 + A1_2
+  L6_7 = "\226"
+  L7_8 = nil
+  L3_4 = L3_4(L4_5, L5_6, L6_7, L7_8, pe.VM_SEARCH_FOP)
+  if L3_4 == 4294967295 then
+    L4_5 = nil
+    return L4_5
+  end
+  L4_5 = mp
+  L4_5 = L4_5.bsplit
+  L5_6 = mp
+  L5_6 = L5_6.readu_u16
+  L6_7 = pe
+  L6_7 = L6_7.mmap_va
+  L7_8 = L3_4
+  L6_7 = L6_7(L7_8, 2)
+  L7_8 = 1
+  L5_6 = L5_6(L6_7, L7_8)
+  L6_7 = 8
+  L5_6 = L4_5(L5_6, L6_7)
+  L6_7 = mp
+  L6_7 = L6_7.bsplit
+  L7_8 = mp
+  L7_8 = L7_8.bitnot
+  L7_8 = L7_8(L5_6)
+  L6_7 = L6_7(L7_8, 8)
+  L6_7 = L3_4 - L6_7
+  L6_7 = L6_7 - 4
+  L7_8 = pe
+  L7_8 = L7_8.vm_search
+  L7_8 = L7_8(L6_7, L6_7 + 5, "\185", nil, pe.VM_SEARCH_FOP)
+  L6_7 = L7_8
+  if L6_7 == 4294967295 then
+    L7_8 = nil
+    return L7_8
+  end
+  L7_8 = pe
+  L7_8 = L7_8.mmap_va
+  L7_8 = L7_8(L6_7 + 1, 4)
+  L7_8 = mp.readu_u32(L7_8, 1)
+  if A2_3 >= L7_8 then
     return nil
   end
-  local l_1_3 = (pe.vm_search)(l_1_0, l_1_0 + l_1_1, "\226", nil, pe.VM_SEARCH_FOP)
-  if l_1_3 == 4294967295 then
-    return nil
-  end
-  local l_1_4, l_1_5 = (mp.bsplit)((mp.readu_u16)((pe.mmap_va)(l_1_3, 2), 1), 8)
-  local l_1_6 = l_1_3 - (mp.bsplit)((mp.bitnot)(l_1_5), 8) - 4
-  l_1_6 = (pe.vm_search)(l_1_6, l_1_6 + 5, "\185", nil, pe.VM_SEARCH_FOP)
-  if l_1_6 == 4294967295 then
-    return nil
-  end
-  local l_1_7 = (pe.mmap_va)(l_1_6 + 1, 4)
-  l_1_7 = (mp.readu_u32)(l_1_7, 1)
-  if l_1_7 <= l_1_2 then
-    return nil
-  end
-  return l_1_3
+  return L3_4
 end
-
-
+check_expensive_loop = L1_0

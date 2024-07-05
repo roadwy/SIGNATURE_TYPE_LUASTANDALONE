@@ -1,14 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/83b3e4f2c9ca 
-
--- params : ...
--- function num : 0
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = (mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[1]).utf8p2)
-    ;
-    (bm.add_related_file)(l_0_0)
+local L0_0
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = mp
+    L0_0 = L0_0.ContextualExpandEnvironmentVariables
+    L0_0 = L0_0(this_sigattrlog[1].utf8p2)
+    bm.add_related_file(L0_0)
   end
-  return mp.INFECTED
 end
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

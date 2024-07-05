@@ -1,16 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/209534ce8d77 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr + 21, 35)
-do
-  if l_0_0 ~= nil then
-    local l_0_1 = (string.find)(l_0_0, "u", 1, true)
-    if l_0_1 ~= nil then
-      (pe.mmap_patch_va)(pevars.sigaddr + 21 + l_0_1 - 1, "êê")
-    end
-  end
-  return mp.INFECTED
+local L0_0
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L0_0 = L0_0(pevars.sigaddr + 21, 35)
+if L0_0 ~= nil and string.find(L0_0, "u", 1, true) ~= nil then
+  pe.mmap_patch_va(pevars.sigaddr + 21 + string.find(L0_0, "u", 1, true) - 1, "\144\144")
 end
-
+return mp.INFECTED

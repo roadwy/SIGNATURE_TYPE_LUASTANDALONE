@@ -1,62 +1,88 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c9b34cd1368d 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[9]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[9]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[10]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[11]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L1_1 = L1_1(L2_2)
+      L0_0 = L1_1
+    else
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
   end
-  -- DECOMPILER ERROR at PC37: Overwrote pending register: R0 in 'AssignReg'
-
-  if not (this_sigattrlog[10]).matched or (this_sigattrlog[11]).matched then
-    local l_0_1, l_0_2, l_0_3, l_0_4, l_0_5, l_0_6, l_0_7, l_0_8 = (string.lower)((this_sigattrlog[10]).utf8p2)
-  else
-    do
-      do return mp.CLEAN end
-      -- DECOMPILER ERROR at PC42: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC46: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC55: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC64: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC73: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC82: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC91: Confused about usage of register: R0 in 'UnsetPending'
-
-      if l_0_1 ~= nil then
-        if (string.find)(l_0_1, "\\windows\\temp\\nessus", 1, true) or (string.find)(l_0_1, "\\windows\\temp\\fstmp\\", 1, true) or (string.find)(l_0_1, "\\windows\\ccm", 1, true) or (string.find)(l_0_1, "netstat", 1, true) or (string.find)(l_0_1, "netsh", 1, true) or (string.find)(l_0_1, "\\temp\\honeywell\\", 1, true) then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC103: Confused about usage of register: R0 in 'UnsetPending'
-
-        local l_0_9 = nil
-        if (mp.GetExecutablesFromCommandLine)(l_0_1) ~= nil then
-          for l_0_13,l_0_14 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_1)) do
-            local l_0_10 = nil
-            -- DECOMPILER ERROR at PC113: Confused about usage of register: R6 in 'UnsetPending'
-
-            -- DECOMPILER ERROR at PC126: Confused about usage of register: R6 in 'UnsetPending'
-
-            -- DECOMPILER ERROR at PC132: Confused about usage of register: R6 in 'UnsetPending'
-
-            if (mp.IsKnownFriendlyFile)((mp.ContextualExpandEnvironmentVariables)(l_0_7), true, false) == false and (sysio.IsFileExists)((mp.ContextualExpandEnvironmentVariables)(l_0_7)) then
-              (mp.ReportLowfi)((mp.ContextualExpandEnvironmentVariables)(l_0_7), 2850103465)
-            end
+end
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L5_5 = true
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L5_5 = true
+      L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L5_5 = true
+        L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+        if not L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L5_5 = true
+          L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L5_5 = true
+            L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
           end
         end
       end
-      do
-        return mp.INFECTED
+    end
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  if L1_1 ~= nil then
+    for L5_5, L6_6 in L2_2(L3_3) do
+      L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+      if mp.IsKnownFriendlyFile(L6_6, true, false) == false and sysio.IsFileExists(L6_6) then
+        mp.ReportLowfi(L6_6, 2850103465)
       end
     end
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

@@ -1,24 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3b89ba0d3dcd 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.mmap_va)(pevars.sigaddr + 13, 4)
-if (string.find)(l_0_0, "­‹\240", 1, true) ~= nil then
-  local l_0_1 = (string.find)(l_0_0, "\1396", 1, true)
-  if l_0_1 ~= nil then
-    local l_0_2 = 44 + 1 + 2
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.mmap_va
+L1_1 = pevars
+L1_1 = L1_1.sigaddr
+L1_1 = L1_1 + 13
+L0_0 = L0_0(L1_1, 4)
+L1_1 = string
+L1_1 = L1_1.find
+L1_1 = L1_1(L0_0, "\173\139\240", 1, true)
+if L1_1 ~= nil then
+else
+  L1_1 = string.find(L0_0, "\1396", 1, true)
+  if L1_1 ~= nil then
   else
-    do
-      do
-        do return mp.LOWFI end
-        -- DECOMPILER ERROR at PC38: Confused about usage of register: R2 in 'UnsetPending'
-
-        ;
-        (pe.mmap_patch_va)(pevars.sigaddr + l_0_2, ")öë ")
-        return mp.CLEAN
-      end
-    end
+    return mp.LOWFI
   end
 end
-
+pe.mmap_patch_va(pevars.sigaddr + (44 + 1 + 2), ")\246\235 ")
+return mp.CLEAN

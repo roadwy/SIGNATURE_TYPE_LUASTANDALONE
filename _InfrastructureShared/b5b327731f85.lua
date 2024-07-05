@@ -1,49 +1,112 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b5b327731f85 
-
--- params : ...
--- function num : 0
-local l_0_0 = nil
-local l_0_1 = nil
-local l_0_2 = (bm.get_current_process_startup_info)()
-if l_0_2 == nil or (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())) == nil or (string.find)((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())), "\\gameguard\\gamemon64.des", -24, true) or (string.find)((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())), "\\gameguard\\gamemon.des", -22, true) then
-  return mp.CLEAN
-end
-local l_0_3, l_0_4 = , (bm.get_process_relationships)()
-if (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())) ~= nil then
-  for l_0_8,l_0_9 in ipairs(R6_PC44) do
-    local l_0_5 = nil
-    -- DECOMPILER ERROR at PC46: Confused about usage of register: R9 in 'UnsetPending'
-
-    if R9_PC46.image_path ~= nil and R9_PC46.reason == bm.RELATIONSHIP_INJECTION and ((string.find)((string.lower)(R9_PC46.image_path), "\\gameguard\\gamemon64.des", -24, true) or (string.find)((string.lower)(R9_PC46.image_path), "\\gameguard\\gamemon.des", -22, true)) then
-      return mp.CLEAN
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = MpCommon
+L3_3 = L3_3.PathToWin32Path
+L4_4 = bm
+L4_4 = L4_4.get_imagepath
+L10_10 = L4_4()
+L10_10 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L4_4())
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L4_4()))
+if L1_1 ~= nil and L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+  if not L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.find
+    L4_4 = L2_2
+    L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
   end
+elseif L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-do
-  if l_0_4 ~= nil then
-    for l_0_14,l_0_15 in ipairs(l_0_4) do
-      local l_0_11 = nil
-      -- DECOMPILER ERROR at PC87: Confused about usage of register: R9 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC90: Confused about usage of register: R9 in 'UnsetPending'
-
-      if l_0_10.image_path ~= nil and l_0_10.reason == bm.RELATIONSHIP_INJECTION then
-        l_0_1 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-        if (string.find)(l_0_1, "\\cnext\\radeonsoftware.exe", -25, true) or (string.find)(l_0_1, "\\steam\\steam.exe", -16, true) or (string.find)(l_0_1, "\\tychon\\tychoncoreservice.exe", -29, true) or (string.find)(l_0_1, "\\system32\\userinit.exe", -22, true) or (string.find)(l_0_1, "\\vagrant\\bin\\vagrant.exe", -24, true) or (string.find)(l_0_1, "\\gameguard\\gamemon64.des", -24, true) or (string.find)(l_0_1, "\\gameguard\\gamemon.des", -22, true) then
+L3_3 = bm
+L3_3 = L3_3.get_process_relationships
+L4_4 = L3_3()
+if L4_4 ~= nil then
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = L9_9.image_path
+    if L10_10 ~= nil then
+      L10_10 = L9_9.reason
+      if L10_10 == bm.RELATIONSHIP_INJECTION then
+        L10_10 = string
+        L10_10 = L10_10.lower
+        L10_10 = L10_10(L9_9.image_path)
+        if string.find(L10_10, "\\gameguard\\gamemon64.des", -24, true) or string.find(L10_10, "\\gameguard\\gamemon.des", -22, true) then
           return mp.CLEAN
         end
       end
     end
   end
-  do
-    if (sysio.IsFileExists)(l_0_1) and not (mp.IsKnownFriendlyFile)(l_0_1, true, false) then
-      (bm.add_related_file)(l_0_1)
+end
+if L3_3 ~= nil then
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = L9_9.image_path
+    if L10_10 ~= nil then
+      L10_10 = L9_9.reason
+      if L10_10 == bm.RELATIONSHIP_INJECTION then
+        L10_10 = string
+        L10_10 = L10_10.lower
+        L10_10 = L10_10(MpCommon.PathToWin32Path(bm.get_imagepath()))
+        L0_0 = L10_10
+        L10_10 = string
+        L10_10 = L10_10.find
+        L10_10 = L10_10(L0_0, "\\cnext\\radeonsoftware.exe", -25, true)
+        if not L10_10 then
+          L10_10 = string
+          L10_10 = L10_10.find
+          L10_10 = L10_10(L0_0, "\\steam\\steam.exe", -16, true)
+          if not L10_10 then
+            L10_10 = string
+            L10_10 = L10_10.find
+            L10_10 = L10_10(L0_0, "\\tychon\\tychoncoreservice.exe", -29, true)
+            if not L10_10 then
+              L10_10 = string
+              L10_10 = L10_10.find
+              L10_10 = L10_10(L0_0, "\\system32\\userinit.exe", -22, true)
+              if not L10_10 then
+                L10_10 = string
+                L10_10 = L10_10.find
+                L10_10 = L10_10(L0_0, "\\vagrant\\bin\\vagrant.exe", -24, true)
+                if not L10_10 then
+                  L10_10 = string
+                  L10_10 = L10_10.find
+                  L10_10 = L10_10(L0_0, "\\gameguard\\gamemon64.des", -24, true)
+                  if not L10_10 then
+                    L10_10 = string
+                    L10_10 = L10_10.find
+                    L10_10 = L10_10(L0_0, "\\gameguard\\gamemon.des", -22, true)
+                  end
+                end
+              end
+            end
+          end
+        elseif L10_10 then
+          L10_10 = mp
+          L10_10 = L10_10.CLEAN
+          return L10_10
+        end
+      end
     end
-    if (sysio.IsFileExists)(l_0_3) and not (mp.IsKnownFriendlyFile)(l_0_3, true, false) then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
   end
 end
-
+if L5_5 then
+  L8_8 = false
+  if not L5_5 then
+    L5_5(L6_6)
+  end
+end
+if L5_5 then
+  L8_8 = false
+  if not L5_5 then
+    return L5_5
+  end
+end
+return L5_5

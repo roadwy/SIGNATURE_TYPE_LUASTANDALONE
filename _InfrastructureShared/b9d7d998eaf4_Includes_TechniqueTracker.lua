@@ -1,27 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b9d7d998eaf4_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2, l_0_3 = nil
-if pcall(mp.GetParentProcInfo) and mp.GetParentProcInfo ~= nil then
-  l_0_2 = (mp.GetParentProcInfo).ppid
-  l_0_3 = (mp.GetParentProcInfo).image_path
-  local l_0_4 = nil
-  local l_0_5 = nil
-  local l_0_6 = nil
-  if ({["net.exe"] = true, ["gc_service.exe"] = true})[((string.lower)(l_0_3)):match("([^\\]+)$")] then
+local L0_0, L1_1
+if pcall(mp.GetParentProcInfo) and pcall(mp.GetParentProcInfo) ~= nil then
+  L0_0 = pcall(mp.GetParentProcInfo).ppid
+  L1_1 = pcall(mp.GetParentProcInfo).image_path
+  if ({
+    ["net.exe"] = true,
+    ["gc_service.exe"] = true
+  })[string.lower(L1_1):match("([^\\]+)$")] then
     return mp.CLEAN
   end
 end
-do
-  if l_0_2 ~= nil and l_0_3 ~= nil then
-    TrackPidAndTechnique(l_0_2, "T1069", "permission_groups_discovery")
-    if IsDetectionThresholdMet("CMDHSTR") then
-      return mp.LOWFI
-    end
+if L0_0 ~= nil and L1_1 ~= nil then
+  TrackPidAndTechnique(L0_0, "T1069", "permission_groups_discovery")
+  if IsDetectionThresholdMet("CMDHSTR") then
+    return mp.LOWFI
   end
-  return mp.LOWFI
 end
-
+return mp.LOWFI

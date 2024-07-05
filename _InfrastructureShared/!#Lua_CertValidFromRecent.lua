@@ -1,147 +1,165 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_CertValidFromRecent 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetCertificateInfo)()
-if l_0_0 == nil or #l_0_0 == 0 then
-  if (string.find)((mp.getfilename)(), "->") == nil then
-    (mp.set_mpattribute)("Lua:TopLevelUnsigned")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+elseif L1_1 == 0 then
+  if L1_1 == nil then
+    L1_1(L2_2)
   end
-  return mp.CLEAN
+  return L1_1
 end
-for l_0_4,l_0_5 in ipairs(l_0_0) do
-  if l_0_5.AuthenticodeContentType ~= "PE" then
-    return mp.CLEAN
+for L4_4, L5_5 in L1_1(L2_2) do
+  L6_6 = L5_5.AuthenticodeContentType
+  if L6_6 ~= "PE" then
+    L6_6 = mp
+    L6_6 = L6_6.CLEAN
+    return L6_6
   end
-  local l_0_6 = l_0_5.Certificates
-  if l_0_6 ~= nil then
-    for l_0_10,l_0_11 in ipairs(l_0_6) do
-      local l_0_12 = "20160501"
-      local l_0_13 = l_0_11.ValidFrom
-      if l_0_13 ~= nil then
-        local l_0_14 = l_0_13.Year
-        if (string.len)(l_0_13.Month) < 2 then
-          l_0_14 = l_0_14 .. "0"
+  L6_6 = L5_5.Certificates
+  if L6_6 ~= nil then
+    for L10_10, L11_11 in L7_7(L8_8) do
+      L12_12 = "20160501"
+      L13_13 = L11_11.ValidFrom
+      if L13_13 ~= nil then
+        L14_14 = L13_13.Year
+        L15_15 = string
+        L15_15 = L15_15.len
+        L16_16 = L13_13.Month
+        L15_15 = L15_15(L16_16)
+        if L15_15 < 2 then
+          L15_15 = L14_14
+          L16_16 = "0"
+          L14_14 = L15_15 .. L16_16
         end
-        l_0_14 = l_0_14 .. l_0_13.Month
-        if (string.len)(l_0_13.Day) < 2 then
-          l_0_14 = l_0_14 .. "0"
+        L15_15 = L14_14
+        L16_16 = L13_13.Month
+        L14_14 = L15_15 .. L16_16
+        L15_15 = string
+        L15_15 = L15_15.len
+        L16_16 = L13_13.Day
+        L15_15 = L15_15(L16_16)
+        if L15_15 < 2 then
+          L15_15 = L14_14
+          L16_16 = "0"
+          L14_14 = L15_15 .. L16_16
         end
-        l_0_14 = l_0_14 .. l_0_13.Day
-        if l_0_12 < l_0_14 then
-          local l_0_15 = false
-          local l_0_16 = l_0_11.Issuer
-          if l_0_16 ~= nil and l_0_16.Organization ~= nil and (mp.utf16to8)(l_0_16.Organization) == "Microsoft Corporation" then
-            l_0_15 = true
+        L15_15 = L14_14
+        L16_16 = L13_13.Day
+        L14_14 = L15_15 .. L16_16
+        if L12_12 < L14_14 then
+          L15_15 = false
+          L16_16 = L11_11.Issuer
+          if L16_16 ~= nil then
+            L17_17 = L16_16.Organization
+            if L17_17 ~= nil then
+              L17_17 = mp
+              L17_17 = L17_17.utf16to8
+              L18_18 = L16_16.Organization
+              L17_17 = L17_17(L18_18)
+              if L17_17 == "Microsoft Corporation" then
+                L15_15 = true
+              end
+            end
           end
-          if not l_0_15 then
-            (mp.set_mpattribute)("Lua:CertValidFromRecent")
-            local l_0_17 = l_0_11.Subject
-            do
-              do
-                if l_0_17 ~= nil and l_0_17.Country ~= nil and (string.len)(l_0_17.Country) < 20 then
-                  local l_0_18 = (mp.utf16to8)(l_0_17.Country)
-                  if l_0_18 ~= nil then
-                    (mp.set_mpattribute)("Lua:CertValidFromRecentCountry" .. l_0_18)
-                  end
-                end
-                do return mp.CLEAN end
-                local l_0_19 = l_0_11.ValidTo
-                if l_0_19 ~= nil and l_0_13 ~= nil then
-                  local l_0_20 = l_0_19.Year
-                  if (string.len)(l_0_19.Month) < 2 then
-                    l_0_20 = l_0_20 .. "0"
-                  end
-                  l_0_20 = l_0_20 .. l_0_19.Month
-                  if (string.len)(l_0_19.Day) < 2 then
-                    l_0_20 = l_0_20 .. "0"
-                  end
-                  l_0_20 = l_0_20 .. l_0_19.Day
-                  if l_0_20 < l_0_12 then
-                    local l_0_21 = false
-                    local l_0_22 = false
-                    local l_0_23 = l_0_11.Issuer
-                    if l_0_23 ~= nil then
-                      if l_0_23.Organization ~= nil and (mp.utf16to8)(l_0_23.Organization) == "Microsoft Corporation" then
-                        l_0_21 = true
-                      end
-                      if l_0_23.CommonName ~= nil and (mp.utf16to8)(l_0_23.CommonName) == "Unknown issuer" then
-                        l_0_22 = true
-                      end
-                    end
-                    local l_0_24 = false
-                    local l_0_25 = l_0_11.Subject
-                    do
-                      do
-                        if l_0_25 ~= nil and l_0_25.Organization ~= nil then
-                          local l_0_26 = {}
-                          l_0_26["Microsoft Corporation"] = true
-                          l_0_26["ROBLOX Corporation"] = true
-                          l_0_26["Adobe Systems Incorporated"] = true
-                          l_0_26["Dell USA L.P."] = true
-                          l_0_26["DigiCert Inc"] = true
-                          l_0_26.DigiCert = true
-                          l_0_26["VeriSign, Inc."] = true
-                          l_0_26["VeriSign Trust Network"] = true
-                          l_0_26["COMODO CA Limited"] = true
-                          l_0_26["Thawte Consulting (Pty) Ltd."] = true
-                          l_0_26["Symantec Corporation"] = true
-                          l_0_26["WIZVERA CO., LTD"] = true
-                          l_0_26["NCH Software"] = true
-                          l_0_26["win.rar GmbH"] = true
-                          l_0_26.Interezen = true
-                          l_0_26["Interezen Co.,Ltd"] = true
-                          l_0_26["Interezen Co,.Ltd"] = true
-                          l_0_26["Shenzhen Wondershare Information Technology Co., Ltd."] = true
-                          l_0_26["Reloaded Games, Inc"] = true
-                          if l_0_26[(mp.utf16to8)(l_0_25.Organization)] then
-                            l_0_24 = true
-                          end
-                        end
-                        if not l_0_21 and not l_0_24 and not l_0_22 then
-                          (mp.set_mpattribute)("Lua:CertValidToOld")
-                          return mp.CLEAN
-                        end
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out DO_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out DO_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out DO_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                        -- DECOMPILER ERROR at PC224: LeaveBlock: unexpected jumping out IF_STMT
-
-                      end
-                    end
+          if not L15_15 then
+            L17_17 = mp
+            L17_17 = L17_17.set_mpattribute
+            L18_18 = "Lua:CertValidFromRecent"
+            L17_17(L18_18)
+            L17_17 = L11_11.Subject
+            if L17_17 ~= nil then
+              L18_18 = L17_17.Country
+              if L18_18 ~= nil then
+                L18_18 = string
+                L18_18 = L18_18.len
+                L18_18 = L18_18(L17_17.Country)
+                if L18_18 < 20 then
+                  L18_18 = mp
+                  L18_18 = L18_18.utf16to8
+                  L18_18 = L18_18(L17_17.Country)
+                  if L18_18 ~= nil then
+                    mp.set_mpattribute("Lua:CertValidFromRecentCountry" .. L18_18)
                   end
                 end
               end
             end
+            L18_18 = mp
+            L18_18 = L18_18.CLEAN
+            return L18_18
+          end
+        end
+      end
+      L14_14 = L11_11.ValidTo
+      if L14_14 ~= nil and L13_13 ~= nil then
+        L15_15 = L14_14.Year
+        L16_16 = string
+        L16_16 = L16_16.len
+        L17_17 = L14_14.Month
+        L16_16 = L16_16(L17_17)
+        if L16_16 < 2 then
+          L16_16 = L15_15
+          L17_17 = "0"
+          L15_15 = L16_16 .. L17_17
+        end
+        L16_16 = L15_15
+        L17_17 = L14_14.Month
+        L15_15 = L16_16 .. L17_17
+        L16_16 = string
+        L16_16 = L16_16.len
+        L17_17 = L14_14.Day
+        L16_16 = L16_16(L17_17)
+        if L16_16 < 2 then
+          L16_16 = L15_15
+          L17_17 = "0"
+          L15_15 = L16_16 .. L17_17
+        end
+        L16_16 = L15_15
+        L17_17 = L14_14.Day
+        L15_15 = L16_16 .. L17_17
+        if L12_12 > L15_15 then
+          L16_16 = false
+          L17_17 = false
+          L18_18 = L11_11.Issuer
+          if L18_18 ~= nil then
+            if L18_18.Organization ~= nil and mp.utf16to8(L18_18.Organization) == "Microsoft Corporation" then
+              L16_16 = true
+            end
+            if L18_18.CommonName ~= nil and mp.utf16to8(L18_18.CommonName) == "Unknown issuer" then
+              L17_17 = true
+            end
+          end
+          if L11_11.Subject ~= nil and L11_11.Subject.Organization ~= nil then
+            if ({
+              ["Microsoft Corporation"] = true,
+              ["ROBLOX Corporation"] = true,
+              ["Adobe Systems Incorporated"] = true,
+              ["Dell USA L.P."] = true,
+              ["DigiCert Inc"] = true,
+              ["DigiCert"] = true,
+              ["VeriSign, Inc."] = true,
+              ["VeriSign Trust Network"] = true,
+              ["COMODO CA Limited"] = true,
+              ["Thawte Consulting (Pty) Ltd."] = true,
+              ["Symantec Corporation"] = true,
+              ["WIZVERA CO., LTD"] = true,
+              ["NCH Software"] = true,
+              ["win.rar GmbH"] = true,
+              ["Interezen"] = true,
+              ["Interezen Co.,Ltd"] = true,
+              ["Interezen Co,.Ltd"] = true,
+              ["Shenzhen Wondershare Information Technology Co., Ltd."] = true,
+              ["Reloaded Games, Inc"] = true
+            })[mp.utf16to8(L11_11.Subject.Organization)] then
+            end
+          end
+          if not L16_16 and not true and not L17_17 then
+            mp.set_mpattribute("Lua:CertValidToOld")
+            return mp.CLEAN
           end
         end
       end
     end
   end
 end
-do return mp.CLEAN end
--- DECOMPILER ERROR at PC231: Confused about usage of register R1 for local variables in 'ReleaseLocals'
-
-
+return L1_1

@@ -1,91 +1,76 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Suweezy 
-
--- params : ...
--- function num : 0
-Infrastructure_ScanSuweezy = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = false
-  local l_1_2 = nil
-  local l_1_3 = (sysio.RegOpenKey)(l_1_0)
-  if l_1_3 then
-    local l_1_4 = (sysio.RegEnumValues)(l_1_3)
-    for l_1_8,l_1_9 in pairs(l_1_4) do
-      local l_1_10 = (string.lower)(l_1_9)
-      if l_1_10:find("^.:\\users\\ms.default\\") or l_1_10:find("^.:\\documents and settings\\ms.default\\") or l_1_10:find("^.:\\users\\msuser.default\\") or l_1_10:find("^.:\\documents and settings\\msuser.default\\") or l_1_10:find("^.:\\users\\soeasyhelper\\") or l_1_10:find("^.:\\users\\undp\\") or l_1_10:find("^.:\\documents and settings\\undp\\") or l_1_10:find("^.:\\program files\\undp\\") or l_1_10:find("^.:\\program files (x86)\\undp\\") or l_1_10:find("^.:\\users\\udpdp\\") or l_1_10:find("^.:\\documents and settings\\udpdp\\") or l_1_10:find("^.:\\program files\\udpdp\\") or l_1_10:find("^.:\\program files (x86)\\udpdp\\") or l_1_10:find("^.:\\program files\\ms.default\\") or l_1_10:find("^.:\\program files\\msuser.default\\") or l_1_10:find("^.:\\program files (x86)\\ms.default\\") or l_1_10:find("^.:\\program files (x86)\\msuser.default\\") then
-        (MpDetection.ReportResource)("regkeyvalue", l_1_0 .. "\\\\" .. l_1_9, 805306490, false)
+local L0_0, L1_1
+function L0_0(A0_2)
+  local L1_3, L2_4, L3_5, L4_6, L5_7, L6_8, L7_9, L8_10, L9_11, L10_12
+  L1_3 = false
+  L2_4 = nil
+  L3_5 = sysio
+  L3_5 = L3_5.RegOpenKey
+  L4_6 = A0_2
+  L3_5 = L3_5(L4_6)
+  if L3_5 then
+    L4_6 = sysio
+    L4_6 = L4_6.RegEnumValues
+    L4_6 = L4_6(L5_7)
+    for L8_10, L9_11 in L5_7(L6_8) do
+      L10_12 = string
+      L10_12 = L10_12.lower
+      L10_12 = L10_12(L9_11)
+      if L10_12:find("^.:\\users\\ms.default\\") or L10_12:find("^.:\\documents and settings\\ms.default\\") or L10_12:find("^.:\\users\\msuser.default\\") or L10_12:find("^.:\\documents and settings\\msuser.default\\") or L10_12:find("^.:\\users\\soeasyhelper\\") or L10_12:find("^.:\\users\\undp\\") or L10_12:find("^.:\\documents and settings\\undp\\") or L10_12:find("^.:\\program files\\undp\\") or L10_12:find("^.:\\program files (x86)\\undp\\") or L10_12:find("^.:\\users\\udpdp\\") or L10_12:find("^.:\\documents and settings\\udpdp\\") or L10_12:find("^.:\\program files\\udpdp\\") or L10_12:find("^.:\\program files (x86)\\udpdp\\") or L10_12:find("^.:\\program files\\ms.default\\") or L10_12:find("^.:\\program files\\msuser.default\\") or L10_12:find("^.:\\program files (x86)\\ms.default\\") or L10_12:find("^.:\\program files (x86)\\msuser.default\\") then
+        MpDetection.ReportResource("regkeyvalue", A0_2 .. "\\\\" .. L9_11, 805306490, false)
       end
-      if (string.len)(l_1_9) > 1 then
-        (MpDetection.ScanResource)("regkeyvalue://" .. l_1_0 .. "\\\\" .. l_1_9)
+      if string.len(L9_11) > 1 then
+        MpDetection.ScanResource("regkeyvalue://" .. A0_2 .. "\\\\" .. L9_11)
       end
-      if not l_1_1 and (string.sub)(l_1_10, -1) == "\\" and (string.sub)(l_1_10, -2) ~= ":\\" then
-        l_1_1 = true
-        l_1_2 = l_1_9
+      if not L1_3 and string.sub(L10_12, -1) == "\\" and string.sub(L10_12, -2) ~= ":\\" then
+        L1_3 = true
+        L2_4 = L9_11
       end
     end
-    if l_1_1 then
-      for l_1_14,l_1_15 in pairs(l_1_4) do
-        local l_1_16 = (string.lower)(l_1_15)
-        if l_1_16 == (string.lower)((string.sub)(l_1_2, 1, 1)) .. ":\\" then
-          do
-            do
-              (MpDetection.ReportResource)("regkeyvalue", l_1_0 .. "\\\\" .. l_1_2, 805306490, false)
-              do break end
-              -- DECOMPILER ERROR at PC183: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC183: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC183: LeaveBlock: unexpected jumping out IF_STMT
-
-            end
-          end
+    if L1_3 then
+      for L8_10, L9_11 in L5_7(L6_8) do
+        L10_12 = string
+        L10_12 = L10_12.lower
+        L10_12 = L10_12(L9_11)
+        if L10_12 == string.lower(string.sub(L2_4, 1, 1)) .. ":\\" then
+          MpDetection.ReportResource("regkeyvalue", A0_2 .. "\\\\" .. L2_4, 805306490, false)
+          break
         end
       end
     end
   end
 end
-
-SuweezyReportExclusionLatents = function(l_2_0)
-  -- function num : 0_1
-  local l_2_1 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\Paths"
-  local l_2_2 = (sysio.RegOpenKey)(l_2_1)
-  if l_2_2 then
-    local l_2_3 = (sysio.RegEnumValues)(l_2_2)
-    for l_2_7,l_2_8 in pairs(l_2_3) do
-      if (string.sub)(l_2_8, -1) == "\\" then
-        (MpDetection.ReportResource)("regkeyvalue", l_2_1 .. "\\\\" .. l_2_8, l_2_0, false)
+Infrastructure_ScanSuweezy = L0_0
+function L0_0(A0_13)
+  local L1_14, L2_15, L3_16, L4_17, L5_18, L6_19, L7_20, L8_21, L9_22, L10_23
+  L1_14 = "HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Exclusions\\Paths"
+  L2_15 = sysio
+  L2_15 = L2_15.RegOpenKey
+  L3_16 = L1_14
+  L2_15 = L2_15(L3_16)
+  if L2_15 then
+    L3_16 = sysio
+    L3_16 = L3_16.RegEnumValues
+    L3_16 = L3_16(L4_17)
+    for L7_20, L8_21 in L4_17(L5_18) do
+      L9_22 = string
+      L9_22 = L9_22.sub
+      L10_23 = L8_21
+      L9_22 = L9_22(L10_23, -1)
+      if L9_22 == "\\" then
+        L9_22 = MpDetection
+        L9_22 = L9_22.ReportResource
+        L10_23 = "regkeyvalue"
+        L9_22(L10_23, L1_14 .. "\\\\" .. L8_21, A0_13, false)
       end
     end
   end
-  do
-    l_2_3 = "HKLM\\SOFTWARE\\Microsoft\\Microsoft Antimalware\\Exclusions\\Paths"
-    local l_2_9 = nil
-    l_2_9 = sysio
-    l_2_9 = l_2_9.RegOpenKey
-    l_2_9 = l_2_9(l_2_3)
-    local l_2_10 = nil
-    if l_2_9 then
-      l_2_10 = sysio
-      l_2_10 = l_2_10.RegEnumValues
-      l_2_10 = l_2_10(l_2_9)
-      local l_2_11 = nil
-      l_2_11 = pairs
-      l_2_11 = l_2_11(l_2_10)
-      for l_2_15,l_2_16 in l_2_11 do
-        local l_2_16 = nil
-        l_2_16 = string
-        l_2_16 = l_2_16.sub
-        l_2_16 = l_2_16(l_2_15, -1)
-        if l_2_16 == "\\" then
-          l_2_16 = MpDetection
-          l_2_16 = l_2_16.ReportResource
-          l_2_16("regkeyvalue", l_2_3 .. "\\\\" .. l_2_15, l_2_0, false)
-        end
+  L3_16 = "HKLM\\SOFTWARE\\Microsoft\\Microsoft Antimalware\\Exclusions\\Paths"
+  if L4_17 then
+    for L9_22, L10_23 in L6_19(L7_20) do
+      if string.sub(L10_23, -1) == "\\" then
+        MpDetection.ReportResource("regkeyvalue", L3_16 .. "\\\\" .. L10_23, A0_13, false)
       end
-      -- DECOMPILER ERROR at PC68: Confused about usage of register R6 for local variables in 'ReleaseLocals'
-
     end
   end
 end
-
-
+SuweezyReportExclusionLatents = L0_0

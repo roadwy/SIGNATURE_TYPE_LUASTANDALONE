@@ -1,30 +1,442 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/76078306b56a0_Flags_1 
-
--- params : ...
--- function num : 0
-do
-  if ((((((hstrlog[2]).matched and not (hstrlog[3]).matched) or (hstrlog[4]).matched) and not (hstrlog[5]).matched) or (hstrlog[6]).matched) and not (hstrlog[7]).matched) or (hstrlog[8]).matched then
-    local l_0_0 = 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1
-  end
-  do
-    if ((((((((((((((((((((((((((((hstrlog[44]).matched and not (hstrlog[45]).matched) or (hstrlog[46]).matched) and not (hstrlog[47]).matched) or (hstrlog[48]).matched) and not (hstrlog[49]).matched) or (hstrlog[50]).matched) and not (hstrlog[51]).matched) or (hstrlog[52]).matched) and not (hstrlog[53]).matched) or (hstrlog[54]).matched) and not (hstrlog[55]).matched) or (hstrlog[56]).matched) and not (hstrlog[57]).matched) or (hstrlog[58]).matched) and not (hstrlog[59]).matched) or (hstrlog[60]).matched) and not (hstrlog[61]).matched) or (hstrlog[62]).matched) and not (hstrlog[63]).matched) or (hstrlog[64]).matched) and not (hstrlog[65]).matched) or (hstrlog[66]).matched) and not (hstrlog[67]).matched) or (hstrlog[68]).matched) and not (hstrlog[69]).matched) or (hstrlog[70]).matched) and not (hstrlog[71]).matched) or (hstrlog[72]).matched then
-      local l_0_1 = nil
-    end
-    -- DECOMPILER ERROR at PC435: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC443: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC447: Unhandled construct in 'MakeBoolean' P3
-
-    -- DECOMPILER ERROR at PC447: Unhandled construct in 'MakeBoolean' P3
-
-    -- DECOMPILER ERROR at PC447: Unhandled construct in 'MakeBoolean' P3
-
-    if ((((((((((((((((((((((((((((((((((((hstrlog[9]).matched and not (hstrlog[10]).matched) or (hstrlog[11]).matched) and not (hstrlog[12]).matched) or (hstrlog[13]).matched) and not (hstrlog[14]).matched) or (hstrlog[15]).matched) and not (hstrlog[16]).matched) or (hstrlog[17]).matched) and not (hstrlog[18]).matched) or (hstrlog[19]).matched) and not (hstrlog[20]).matched) or (hstrlog[21]).matched) and not (hstrlog[22]).matched) or (hstrlog[23]).matched) and not (hstrlog[24]).matched) or (hstrlog[25]).matched) and not (hstrlog[26]).matched) or (hstrlog[27]).matched) and not (hstrlog[28]).matched) or (hstrlog[29]).matched) and not (hstrlog[30]).matched) or (hstrlog[31]).matched) and not (hstrlog[32]).matched) or (hstrlog[33]).matched) and not (hstrlog[34]).matched) or (hstrlog[35]).matched) and not (hstrlog[36]).matched) or (hstrlog[37]).matched) and not (hstrlog[38]).matched) or (hstrlog[39]).matched) and not (hstrlog[40]).matched) or (hstrlog[41]).matched) and not (hstrlog[42]).matched) or (hstrlog[43]).matched) and (hstrlog[1]).matched) or l_0_1 ~= 7 or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 27 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[6]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[7]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[8]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+L2_2 = hstrlog
+L2_2 = L2_2[44]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[45]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[46]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[47]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[48]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[49]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[50]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[51]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[52]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[53]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[54]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[55]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[56]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[57]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[58]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[59]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[60]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[61]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[62]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[63]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[64]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[65]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[66]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[67]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[68]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[69]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[70]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[71]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[72]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = 0
+L3_3 = hstrlog
+L3_3 = L3_3[9]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[10]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[11]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[12]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[13]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[14]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[15]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[16]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[17]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[18]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[19]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[20]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[21]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[22]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[23]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[24]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[25]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[26]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[27]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[28]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[29]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[30]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[31]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[32]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = 0
+L4_4 = hstrlog
+L4_4 = L4_4[33]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[34]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[35]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[36]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[37]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[38]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[39]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[40]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[41]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[42]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[43]
+L4_4 = L4_4.matched
+if L4_4 then
+  L3_3 = L3_3 + 1
+end
+L4_4 = hstrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 or L0_0 == 7 and L1_1 >= 5 or L2_2 >= 24 or L3_3 >= 4 or L1_1 >= 27 then
+  L4_4 = mp
+  L4_4 = L4_4.INFECTED
+  return L4_4
+end
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

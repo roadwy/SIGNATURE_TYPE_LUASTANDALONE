@@ -1,15 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b319b521ba 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  local l_0_7 = (string.lower)((string.match)(l_0_6.image_path, "\\([^\\]+)$"))
-  if (string.find)(l_0_7, "tomcat", 1, true) then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_process_relationships
+L1_1 = L0_0()
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = string
+  L7_7 = L7_7.lower
+  L7_7 = L7_7(string.match(L6_6.image_path, "\\([^\\]+)$"))
+  if string.find(L7_7, "tomcat", 1, true) then
     return mp.INFECTED
   end
-  do return mp.CLEAN end
+  return mp.CLEAN
 end
-return mp.CLEAN
-
+return L2_2

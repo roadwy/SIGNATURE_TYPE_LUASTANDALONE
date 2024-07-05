@@ -1,28 +1,80 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b352737b61_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 ~= nil and l_0_0.ppid ~= nil and l_0_0.command_line ~= nil then
-  local l_0_1 = l_0_0.command_line
-  local l_0_2 = (string.lower)(l_0_1)
-  if l_0_2:find("powershell", 1, true) or (l_0_2.find)("pwsh", 1, true) then
-    if l_0_2:find("microsoft.skypeapp", 1, true) or l_0_2:find("final result:", 1, true) then
-      return mp.CLEAN
-    end
-    if l_0_2:find("windows\\ccm", 1, true) or l_0_2:find("\\sysvol\\", 1, true) or l_0_2:find("\\netlogon\\", 1, true) then
-      return mp.CLEAN
-    end
-    if l_0_2:match("%s+[%-/]en?c?o?d?e?d?c?o?m?m?a?n?d?%s+") then
-      local l_0_3 = GetTacticsTableForPid(l_0_0.ppid)
-      if ((((((((not l_0_3.obfuscation_b64 or l_0_3.intent_cred_enum_amsi) and not l_0_3.intent_schtask_amsi) or l_0_3.intent_schtask_script) and not l_0_3.posh_remote_exec) or l_0_3.posh_webaccess) and not l_0_3.posh_apiexec) or l_0_3.amsi_bypass) and not l_0_3.amsitampering) or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2 > 2 then
-        return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.ppid
+  if L1_1 ~= nil then
+    L1_1 = L0_0.command_line
+    if L1_1 ~= nil then
+      L1_1 = L0_0.command_line
+      L2_2 = string
+      L2_2 = L2_2.lower
+      L3_3 = L1_1
+      L2_2 = L2_2(L3_3)
+      L3_3 = L2_2.find
+      L3_3 = L3_3(L2_2, "powershell", 1, true)
+      if not L3_3 then
+        L3_3 = L2_2.find
+        L3_3 = L3_3("pwsh", 1, true)
+      elseif L3_3 then
+        L3_3 = L2_2.find
+        L3_3 = L3_3(L2_2, "microsoft.skypeapp", 1, true)
+        if not L3_3 then
+          L3_3 = L2_2.find
+          L3_3 = L3_3(L2_2, "final result:", 1, true)
+        elseif L3_3 then
+          L3_3 = mp
+          L3_3 = L3_3.CLEAN
+          return L3_3
+        end
+        L3_3 = L2_2.find
+        L3_3 = L3_3(L2_2, "windows\\ccm", 1, true)
+        if not L3_3 then
+          L3_3 = L2_2.find
+          L3_3 = L3_3(L2_2, "\\sysvol\\", 1, true)
+          if not L3_3 then
+            L3_3 = L2_2.find
+            L3_3 = L3_3(L2_2, "\\netlogon\\", 1, true)
+          end
+        elseif L3_3 then
+          L3_3 = mp
+          L3_3 = L3_3.CLEAN
+          return L3_3
+        end
+        L3_3 = L2_2.match
+        L3_3 = L3_3(L2_2, "%s+[%-/]en?c?o?d?e?d?c?o?m?m?a?n?d?%s+")
+        if L3_3 then
+          L3_3 = GetTacticsTableForPid
+          L3_3 = L3_3(L0_0.ppid)
+          if L3_3 ~= nil and type(L3_3) == "table" then
+            if L3_3.obfuscation_b64 then
+            end
+            if L3_3.intent_cred_enum_amsi then
+            end
+            if L3_3.intent_schtask_amsi then
+            end
+            if L3_3.intent_schtask_script then
+            end
+            if L3_3.posh_remote_exec then
+            end
+            if L3_3.posh_webaccess then
+            end
+            if L3_3.posh_apiexec then
+            end
+            if L3_3.amsi_bypass then
+            end
+            if L3_3.amsitampering then
+            end
+            if 2 < 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2 then
+              return mp.INFECTED
+            end
+          end
+        end
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,78 +1,124 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/77b398da442f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil and (string.len)(l_0_0) >= 15 then
-  local l_0_1 = {}
-  l_0_1["services.exe"] = true
-  l_0_1["msmpeng.exe"] = true
-  l_0_1["trustedinstaller.exe"] = true
-  l_0_1["tiworker.exe"] = true
-  l_0_1["poqexec.exe"] = true
-  l_0_1["svchost.exe"] = true
-  l_0_1["mbamservice.exe"] = true
-  l_0_1["core.exe"] = true
-  l_0_1["instup.exe"] = true
-  l_0_1["tguard.exe"] = true
-  l_0_1["nortonsecurity.exe"] = true
-  l_0_1["mfehidin.exe"] = true
-  l_0_1["mfeamcin.exe"] = true
-  l_0_1["avp.exe"] = true
-  l_0_1["v3medic.exe"] = true
-  l_0_1["vpninstaller.exe"] = true
-  l_0_1["waappagent.exe"] = true
-  l_0_1["handle64.exe"] = true
-  l_0_1["procexp64.exe"] = true
-  l_0_1["qhactivedefense.exe"] = true
-  l_0_1["qhsafetray.exe"] = true
-  l_0_1["computerztray.exe"] = true
-  l_0_1["avira.servicehost.exe"] = true
-  l_0_1["zhudongfangyu.exe"] = true
-  l_0_1["360tray.exe"] = true
-  l_0_1["qqpctray.exe"] = true
-  l_0_1["qqpcrtp.exe"] = true
-  l_0_1["kxecore.exe"] = true
-  l_0_1["kxetray.exe"] = true
-  l_0_1["fabrichost.exe"] = true
-  local l_0_2 = l_0_0:match("\\([^\\]+)$")
-  if l_0_2 ~= nil then
-    l_0_2 = (string.lower)(l_0_2)
-    if l_0_1[l_0_2] then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  if L1_1 >= 15 then
+    L1_1 = {}
+    L1_1["services.exe"] = true
+    L1_1["msmpeng.exe"] = true
+    L1_1["trustedinstaller.exe"] = true
+    L1_1["tiworker.exe"] = true
+    L1_1["poqexec.exe"] = true
+    L1_1["svchost.exe"] = true
+    L1_1["mbamservice.exe"] = true
+    L1_1["core.exe"] = true
+    L1_1["instup.exe"] = true
+    L1_1["tguard.exe"] = true
+    L1_1["nortonsecurity.exe"] = true
+    L1_1["mfehidin.exe"] = true
+    L1_1["mfeamcin.exe"] = true
+    L1_1["avp.exe"] = true
+    L1_1["v3medic.exe"] = true
+    L1_1["vpninstaller.exe"] = true
+    L1_1["waappagent.exe"] = true
+    L1_1["handle64.exe"] = true
+    L1_1["procexp64.exe"] = true
+    L1_1["qhactivedefense.exe"] = true
+    L1_1["qhsafetray.exe"] = true
+    L1_1["computerztray.exe"] = true
+    L1_1["avira.servicehost.exe"] = true
+    L1_1["zhudongfangyu.exe"] = true
+    L1_1["360tray.exe"] = true
+    L1_1["qqpctray.exe"] = true
+    L1_1["qqpcrtp.exe"] = true
+    L1_1["kxecore.exe"] = true
+    L1_1["kxetray.exe"] = true
+    L1_1["fabrichost.exe"] = true
+    L2_2 = L0_0.match
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 ~= nil then
+      L2_2 = L3_3
+      if L3_3 then
+        return L3_3
+      end
     end
   end
 end
-do
-  local l_0_3 = nil
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    l_0_3 = (string.lower)((this_sigattrlog[1]).utf8p2)
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L1_1 = L2_2
   end
-  if l_0_3:find("\\windowsazure\\.-\\waappagent.exe") then
-    return mp.CLEAN
+end
+L2_2 = L1_1.find
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+else
+  L2_2 = L1_1.find
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   else
-    if l_0_3:find("\\windowsazure.-\\windowsazurenetagent.exe") then
-      return mp.CLEAN
+    L2_2 = L1_1.find
+    L2_2 = L2_2(L3_3, L4_4)
+    if L2_2 then
+      L2_2 = mp
+      L2_2 = L2_2.CLEAN
+      return L2_2
     else
-      if l_0_3:find("system32\\drivers\\mbamswissarmy.sys") then
-        return mp.CLEAN
+      L2_2 = L1_1.find
+      L2_2 = L2_2(L3_3, L4_4)
+      if L2_2 then
+        L2_2 = mp
+        L2_2 = L2_2.CLEAN
+        return L2_2
       else
-        if l_0_3:find("symantec shared\\eengine\\eraserutildrv11821.sys") then
-          return mp.CLEAN
+        L2_2 = L1_1.find
+        L2_2 = L2_2(L3_3, L4_4)
+        if L2_2 then
+          L2_2 = mp
+          L2_2 = L2_2.CLEAN
+          return L2_2
         else
-          if l_0_3:find("system32\\drivers\\kbasemgr.sys") then
-            return mp.CLEAN
+          L2_2 = L1_1.find
+          L2_2 = L2_2(L3_3, L4_4)
+          if L2_2 then
+            L2_2 = mp
+            L2_2 = L2_2.CLEAN
+            return L2_2
           else
-            if l_0_3:find("system32\\drivers\\kbasesrv.sys") then
-              return mp.CLEAN
+            L2_2 = L1_1.find
+            L2_2 = L2_2(L3_3, L4_4)
+            if L2_2 then
+              L2_2 = mp
+              L2_2 = L2_2.CLEAN
+              return L2_2
             else
-              if l_0_3:find("system32\\drivers\\kisknl.sys") then
-                return mp.CLEAN
-              else
-                if l_0_3:find("system32\\drivers\\kavbootc64_ev.sys") then
-                  return mp.CLEAN
-                end
+              L2_2 = L1_1.find
+              L2_2 = L2_2(L3_3, L4_4)
+              if L2_2 then
+                L2_2 = mp
+                L2_2 = L2_2.CLEAN
+                return L2_2
               end
             end
           end
@@ -80,19 +126,18 @@ do
       end
     end
   end
-  if l_0_3 ~= nil then
-    local l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_3)
-    for l_0_8,l_0_9 in ipairs(l_0_4) do
-      l_0_9 = (mp.ContextualExpandEnvironmentVariables)(l_0_9)
-      if (sysio.IsFileExists)(l_0_9) then
-        (bm.add_related_file)(l_0_9)
-      end
+end
+if L1_1 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
     end
   end
-  do
-    l_0_4 = mp
-    l_0_4 = l_0_4.INFECTED
-    return l_0_4
-  end
 end
-
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

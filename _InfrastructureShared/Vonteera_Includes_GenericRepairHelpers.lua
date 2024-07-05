@@ -1,157 +1,296 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Vonteera_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
--- DECOMPILER ERROR at PC3: No list found for R0 , SetList fails
-
--- DECOMPILER ERROR at PC4: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC5: Overwrote pending register: R2 in 'AssignReg'
-
-;
-("{934B156A-3D17-3981-B78A-5C138F423AD6}")("{437B9306-2FDE-4054-A3C9-6B49507C12D0}")
-local l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\Main")
-do
-  if l_0_1 ~= nil then
-    local l_0_2 = (sysio.GetRegValueAsString)(l_0_1, "Start Page")
-    if l_0_2 ~= nil then
-      (sysio.DeleteRegValue)(l_0_1, "Start Page")
-    end
-  end
-  l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\SearchScopes")
-  if l_0_1 ~= nil then
-    local l_0_3 = (sysio.GetRegValueAsString)(l_0_1, "DefaultScope")
-    if l_0_3 ~= nil then
-      local l_0_4 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\SearchScopes\\" .. l_0_3)
-      if l_0_4 ~= nil then
-        (sysio.DeleteRegKey)(l_0_4, nil)
-      end
-      ;
-      (sysio.DeleteRegValue)(l_0_1, "DefaultScope")
-    end
-  end
-  do
-    l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\Infodelivery\\Restrictions")
-    if l_0_1 ~= nil then
-      local l_0_5 = (sysio.GetRegValueAsString)(l_0_1, "NoChangeDefaultSearchProvider")
-      if l_0_5 ~= nil then
-        (sysio.DeleteRegValue)(l_0_1, "NoChangeDefaultSearchProvider")
-      end
-      local l_0_6 = (sysio.GetRegValueAsString)(l_0_1, "UsePolicySearchProvidersOnly")
-      if l_0_6 ~= nil then
-        (sysio.DeleteRegValue)(l_0_1, "UsePolicySearchProvidersOnly")
-      end
-    end
-    do
-      l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Google\\Chrome")
-      if l_0_1 ~= nil then
-        local l_0_7 = (sysio.GetRegValueAsString)(l_0_1, "DefaultSearchProviderEnabled")
-        if l_0_7 ~= nil then
-          (sysio.DeleteRegValue)(l_0_1, "DefaultSearchProviderEnabled")
-        end
-        local l_0_8 = (sysio.GetRegValueAsString)(l_0_1, "DefaultSearchProviderKeyword")
-        if l_0_8 ~= nil then
-          (sysio.DeleteRegValue)(l_0_1, "DefaultSearchProviderKeyword")
-        end
-        local l_0_9 = (sysio.GetRegValueAsString)(l_0_1, "DefaultSearchProviderName")
-        if l_0_9 ~= nil then
-          (sysio.DeleteRegValue)(l_0_1, "DefaultSearchProviderName")
-        end
-        local l_0_10 = (sysio.GetRegValueAsString)(l_0_1, "DefaultSearchProviderSearchURL")
-        if l_0_10 ~= nil then
-          (sysio.DeleteRegValue)(l_0_1, "DefaultSearchProviderSearchURL")
-        end
-      end
-      do
-        l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Google\\Chrome\\Recommended")
-        if l_0_1 ~= nil then
-          local l_0_11 = (sysio.GetRegValueAsString)(l_0_1, "HomepageIsNewTabPage")
-          if l_0_11 ~= nil then
-            (sysio.DeleteRegValue)(l_0_1, "HomepageIsNewTabPage")
-          end
-          local l_0_12 = (sysio.GetRegValueAsString)(l_0_1, "RestoreOnStartup")
-          if l_0_12 ~= nil then
-            (sysio.DeleteRegValue)(l_0_1, "RestoreOnStartup")
-          end
-          local l_0_13 = (sysio.GetRegValueAsString)(l_0_1, "ShowHomeButton")
-          if l_0_13 ~= nil then
-            (sysio.DeleteRegValue)(l_0_1, "ShowHomeButton")
-          end
-          local l_0_14 = (sysio.GetRegValueAsString)(l_0_1, "HomepageLocation")
-          if l_0_14 ~= nil then
-            (sysio.DeleteRegValue)(l_0_1, "HomepageLocation")
-          end
-        end
-        do
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Google\\Chrome\\ExtensionInstallForcelist")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Google\\Chrome\\RestoreOnStartupURLs")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Chromium\\ExtensionInstallForcelist")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\181E2AE5727DE60F52EF26D90BC6919481601793")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\2FA3FB2570A7A859026C59A1C723E7EF9F9AF13D")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\4B953F30F1DE4DFEF894B136DAA155CEAFC243A0")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\65AFAA515036C38C9EC28248C453FB0F6B1E7094")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\8138B44330354E413DC52AF1DBFCA8BA1C0F6C0A")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\82F19360B15655A94E875A5B5F7844E2932FC2A6")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\883224FAB9D5BC431563A00AF10A79AA78087584")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\89B89723B7106A1926036B1469D2497B85841849")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\AB7E760DA2485EA9EF5A6EEE7647748D4BA6B947")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\B1E5407220D2E41A2045A5B183AE83F54E3C9643")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\BD22822F42C0B3F61AA0F30360EFB2A15068893B")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\C1437F2BC6F11F4806EAD857982457BF7828CE15")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-          l_0_1 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\D37F61D57CB0481F3D77EDAC7DE72196C4314E2C")
-          if l_0_1 ~= nil then
-            (sysio.DeleteRegKey)(l_0_1, nil)
-          end
-        end
-      end
-    end
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = {L1_1, L2_2}
+L1_1 = "{934B156A-3D17-3981-B78A-5C138F423AD6}"
+L2_2 = "{437B9306-2FDE-4054-A3C9-6B49507C12D0}"
+L1_1 = Infrastructure_IE_DisableExtensions
+L2_2 = L0_0
+L1_1(L2_2)
+L1_1 = sysio
+L1_1 = L1_1.RegOpenKey
+L2_2 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\Main"
+L1_1 = L1_1(L2_2)
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.GetRegValueAsString
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, "Start Page")
+  if L2_2 ~= nil then
+    L3_3 = sysio
+    L3_3 = L3_3.DeleteRegValue
+    L3_3(L1_1, "Start Page")
   end
 end
-
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\SearchScopes"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.GetRegValueAsString
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, "DefaultScope")
+  if L2_2 ~= nil then
+    L3_3 = sysio
+    L3_3 = L3_3.RegOpenKey
+    L3_3 = L3_3("HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\SearchScopes\\" .. L2_2)
+    if L3_3 ~= nil then
+      sysio.DeleteRegKey(L3_3, nil)
+    end
+    sysio.DeleteRegValue(L1_1, "DefaultScope")
+  end
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\Internet Explorer\\Infodelivery\\Restrictions"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.GetRegValueAsString
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, "NoChangeDefaultSearchProvider")
+  if L2_2 ~= nil then
+    L3_3 = sysio
+    L3_3 = L3_3.DeleteRegValue
+    L3_3(L1_1, "NoChangeDefaultSearchProvider")
+  end
+  L3_3 = sysio
+  L3_3 = L3_3.GetRegValueAsString
+  L3_3 = L3_3(L1_1, "UsePolicySearchProvidersOnly")
+  if L3_3 ~= nil then
+    sysio.DeleteRegValue(L1_1, "UsePolicySearchProvidersOnly")
+  end
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Google\\Chrome"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.GetRegValueAsString
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, "DefaultSearchProviderEnabled")
+  if L2_2 ~= nil then
+    L3_3 = sysio
+    L3_3 = L3_3.DeleteRegValue
+    L3_3(L1_1, "DefaultSearchProviderEnabled")
+  end
+  L3_3 = sysio
+  L3_3 = L3_3.GetRegValueAsString
+  L3_3 = L3_3(L1_1, "DefaultSearchProviderKeyword")
+  if L3_3 ~= nil then
+    sysio.DeleteRegValue(L1_1, "DefaultSearchProviderKeyword")
+  end
+  if sysio.GetRegValueAsString(L1_1, "DefaultSearchProviderName") ~= nil then
+    sysio.DeleteRegValue(L1_1, "DefaultSearchProviderName")
+  end
+  if sysio.GetRegValueAsString(L1_1, "DefaultSearchProviderSearchURL") ~= nil then
+    sysio.DeleteRegValue(L1_1, "DefaultSearchProviderSearchURL")
+  end
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Google\\Chrome\\Recommended"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.GetRegValueAsString
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, "HomepageIsNewTabPage")
+  if L2_2 ~= nil then
+    L3_3 = sysio
+    L3_3 = L3_3.DeleteRegValue
+    L3_3(L1_1, "HomepageIsNewTabPage")
+  end
+  L3_3 = sysio
+  L3_3 = L3_3.GetRegValueAsString
+  L3_3 = L3_3(L1_1, "RestoreOnStartup")
+  if L3_3 ~= nil then
+    sysio.DeleteRegValue(L1_1, "RestoreOnStartup")
+  end
+  if sysio.GetRegValueAsString(L1_1, "ShowHomeButton") ~= nil then
+    sysio.DeleteRegValue(L1_1, "ShowHomeButton")
+  end
+  if sysio.GetRegValueAsString(L1_1, "HomepageLocation") ~= nil then
+    sysio.DeleteRegValue(L1_1, "HomepageLocation")
+  end
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Google\\Chrome\\ExtensionInstallForcelist"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Google\\Chrome\\RestoreOnStartupURLs"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Chromium\\ExtensionInstallForcelist"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\181E2AE5727DE60F52EF26D90BC6919481601793"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\2FA3FB2570A7A859026C59A1C723E7EF9F9AF13D"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\4B953F30F1DE4DFEF894B136DAA155CEAFC243A0"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\65AFAA515036C38C9EC28248C453FB0F6B1E7094"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\8138B44330354E413DC52AF1DBFCA8BA1C0F6C0A"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\82F19360B15655A94E875A5B5F7844E2932FC2A6"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\883224FAB9D5BC431563A00AF10A79AA78087584"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\89B89723B7106A1926036B1469D2497B85841849"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\AB7E760DA2485EA9EF5A6EEE7647748D4BA6B947"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\B1E5407220D2E41A2045A5B183AE83F54E3C9643"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\BD22822F42C0B3F61AA0F30360EFB2A15068893B"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\C1437F2BC6F11F4806EAD857982457BF7828CE15"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end
+L2_2 = sysio
+L2_2 = L2_2.RegOpenKey
+L3_3 = "HKLM\\SOFTWARE\\Policies\\Microsoft\\SystemCertificates\\Disallowed\\Certificates\\D37F61D57CB0481F3D77EDAC7DE72196C4314E2C"
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+if L1_1 ~= nil then
+  L2_2 = sysio
+  L2_2 = L2_2.DeleteRegKey
+  L3_3 = L1_1
+  L2_2(L3_3, nil)
+end

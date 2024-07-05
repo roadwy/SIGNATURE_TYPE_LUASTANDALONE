@@ -1,13 +1,35 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/13e78ea4c11cc 
-
--- params : ...
--- function num : 0
-if (hstrlog[2]).hitcount == 0 and (hstrlog[3]).hitcount == 0 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[3]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-if (hstrlog[4]).hitcount == 0 and (hstrlog[5]).hitcount == 0 and (hstrlog[6]).hitcount == 0 then
-  return mp.CLEAN
+L0_0 = hstrlog
+L0_0 = L0_0[4]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[5]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[6]
+    L0_0 = L0_0.hitcount
+    if L0_0 == 0 then
+      L0_0 = mp
+      L0_0 = L0_0.CLEAN
+      return L0_0
+    end
+  end
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

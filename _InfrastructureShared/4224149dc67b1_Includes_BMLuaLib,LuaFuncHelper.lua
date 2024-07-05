@@ -1,169 +1,376 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4224149dc67b1_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-if (versioning.GetTestMode)() ~= 65000 and (MpCommon.IsSampled)(1000, true, true, true) == false then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = versioning
+L0_0 = L0_0.GetTestMode
+L0_0 = L0_0()
+if L0_0 ~= 65000 then
+  L0_0 = MpCommon
+  L0_0 = L0_0.IsSampled
+  L1_1 = 1000
+  L2_2 = true
+  L3_3 = true
+  L4_4 = true
+  L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4)
+  if L0_0 == false then
+    L0_0 = mp
+    L0_0 = L0_0.CLEAN
+    return L0_0
+  end
 end
-local l_0_0, l_0_1 = nil, nil
-if (this_sigattrlog[5]).matched then
-  l_0_0 = (this_sigattrlog[5]).utf8p1
-  l_0_1 = 3
+L0_0, L1_1 = nil, nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[5]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[5]
+  L0_0 = L2_2.utf8p1
+  L1_1 = 3
 else
-  if (this_sigattrlog[6]).matched then
-    l_0_0 = (this_sigattrlog[6]).utf8p1
-    l_0_1 = 4
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[6]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[6]
+    L0_0 = L2_2.utf8p1
+    L1_1 = 4
   else
-    if (this_sigattrlog[7]).matched then
-      l_0_0 = (this_sigattrlog[7]).utf8p1
-      l_0_1 = 7
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[7]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[7]
+      L0_0 = L2_2.utf8p1
+      L1_1 = 7
     else
-      if (this_sigattrlog[8]).matched then
-        l_0_0 = (this_sigattrlog[8]).utf8p1
-        l_0_1 = 8
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[8]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[8]
+        L0_0 = L2_2.utf8p1
+        L1_1 = 8
       else
-        if (this_sigattrlog[9]).matched then
-          l_0_0 = (this_sigattrlog[9]).utf8p1
-          l_0_1 = 9
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[9]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[9]
+          L0_0 = L2_2.utf8p1
+          L1_1 = 9
         else
-          if (this_sigattrlog[10]).matched then
-            l_0_0 = (this_sigattrlog[10]).utf8p1
-            l_0_1 = 10
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[10]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[10]
+            L0_0 = L2_2.utf8p1
+            L1_1 = 10
           else
-            if (this_sigattrlog[11]).matched then
-              l_0_0 = (this_sigattrlog[11]).utf8p1
-              l_0_1 = 11
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[11]
+            L2_2 = L2_2.matched
+            if L2_2 then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[11]
+              L0_0 = L2_2.utf8p1
+              L1_1 = 11
             else
-              if (this_sigattrlog[12]).matched then
-                l_0_0 = (this_sigattrlog[12]).utf8p1
-                l_0_1 = 13
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[12]
+              L2_2 = L2_2.matched
+              if L2_2 then
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[12]
+                L0_0 = L2_2.utf8p1
+                L1_1 = 13
               else
-                if (this_sigattrlog[13]).matched then
-                  l_0_0 = (this_sigattrlog[13]).utf8p1
-                  l_0_1 = 14
+                L2_2 = this_sigattrlog
+                L2_2 = L2_2[13]
+                L2_2 = L2_2.matched
+                if L2_2 then
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[13]
+                  L0_0 = L2_2.utf8p1
+                  L1_1 = 14
                 else
-                  if (this_sigattrlog[14]).matched then
-                    l_0_0 = (this_sigattrlog[14]).utf8p1
-                    l_0_1 = 19
+                  L2_2 = this_sigattrlog
+                  L2_2 = L2_2[14]
+                  L2_2 = L2_2.matched
+                  if L2_2 then
+                    L2_2 = this_sigattrlog
+                    L2_2 = L2_2[14]
+                    L0_0 = L2_2.utf8p1
+                    L1_1 = 19
                   else
-                    if (this_sigattrlog[15]).matched then
-                      l_0_0 = (this_sigattrlog[15]).utf8p1
-                      l_0_1 = 20
+                    L2_2 = this_sigattrlog
+                    L2_2 = L2_2[15]
+                    L2_2 = L2_2.matched
+                    if L2_2 then
+                      L2_2 = this_sigattrlog
+                      L2_2 = L2_2[15]
+                      L0_0 = L2_2.utf8p1
+                      L1_1 = 20
                     else
-                      if (this_sigattrlog[16]).matched then
-                        l_0_0 = (this_sigattrlog[16]).utf8p1
-                        l_0_1 = 21
+                      L2_2 = this_sigattrlog
+                      L2_2 = L2_2[16]
+                      L2_2 = L2_2.matched
+                      if L2_2 then
+                        L2_2 = this_sigattrlog
+                        L2_2 = L2_2[16]
+                        L0_0 = L2_2.utf8p1
+                        L1_1 = 21
                       else
-                        if (this_sigattrlog[17]).matched then
-                          l_0_0 = (this_sigattrlog[17]).utf8p1
-                          l_0_1 = 22
+                        L2_2 = this_sigattrlog
+                        L2_2 = L2_2[17]
+                        L2_2 = L2_2.matched
+                        if L2_2 then
+                          L2_2 = this_sigattrlog
+                          L2_2 = L2_2[17]
+                          L0_0 = L2_2.utf8p1
+                          L1_1 = 22
                         else
-                          if (this_sigattrlog[18]).matched then
-                            l_0_0 = (this_sigattrlog[18]).utf8p1
-                            l_0_1 = 23
+                          L2_2 = this_sigattrlog
+                          L2_2 = L2_2[18]
+                          L2_2 = L2_2.matched
+                          if L2_2 then
+                            L2_2 = this_sigattrlog
+                            L2_2 = L2_2[18]
+                            L0_0 = L2_2.utf8p1
+                            L1_1 = 23
                           else
-                            if (this_sigattrlog[19]).matched then
-                              l_0_0 = (this_sigattrlog[19]).utf8p1
-                              l_0_1 = 26
+                            L2_2 = this_sigattrlog
+                            L2_2 = L2_2[19]
+                            L2_2 = L2_2.matched
+                            if L2_2 then
+                              L2_2 = this_sigattrlog
+                              L2_2 = L2_2[19]
+                              L0_0 = L2_2.utf8p1
+                              L1_1 = 26
                             else
-                              if (this_sigattrlog[20]).matched then
-                                l_0_0 = (this_sigattrlog[20]).utf8p1
-                                l_0_1 = 27
+                              L2_2 = this_sigattrlog
+                              L2_2 = L2_2[20]
+                              L2_2 = L2_2.matched
+                              if L2_2 then
+                                L2_2 = this_sigattrlog
+                                L2_2 = L2_2[20]
+                                L0_0 = L2_2.utf8p1
+                                L1_1 = 27
                               else
-                                if (this_sigattrlog[21]).matched then
-                                  l_0_0 = (this_sigattrlog[21]).utf8p1
-                                  l_0_1 = 30
+                                L2_2 = this_sigattrlog
+                                L2_2 = L2_2[21]
+                                L2_2 = L2_2.matched
+                                if L2_2 then
+                                  L2_2 = this_sigattrlog
+                                  L2_2 = L2_2[21]
+                                  L0_0 = L2_2.utf8p1
+                                  L1_1 = 30
                                 else
-                                  if (this_sigattrlog[22]).matched then
-                                    l_0_0 = (this_sigattrlog[22]).utf8p1
-                                    l_0_1 = 31
+                                  L2_2 = this_sigattrlog
+                                  L2_2 = L2_2[22]
+                                  L2_2 = L2_2.matched
+                                  if L2_2 then
+                                    L2_2 = this_sigattrlog
+                                    L2_2 = L2_2[22]
+                                    L0_0 = L2_2.utf8p1
+                                    L1_1 = 31
                                   else
-                                    if (this_sigattrlog[23]).matched then
-                                      l_0_0 = (this_sigattrlog[23]).utf8p1
-                                      l_0_1 = 32
+                                    L2_2 = this_sigattrlog
+                                    L2_2 = L2_2[23]
+                                    L2_2 = L2_2.matched
+                                    if L2_2 then
+                                      L2_2 = this_sigattrlog
+                                      L2_2 = L2_2[23]
+                                      L0_0 = L2_2.utf8p1
+                                      L1_1 = 32
                                     else
-                                      if (this_sigattrlog[24]).matched then
-                                        l_0_0 = (this_sigattrlog[24]).utf8p1
-                                        l_0_1 = 34
+                                      L2_2 = this_sigattrlog
+                                      L2_2 = L2_2[24]
+                                      L2_2 = L2_2.matched
+                                      if L2_2 then
+                                        L2_2 = this_sigattrlog
+                                        L2_2 = L2_2[24]
+                                        L0_0 = L2_2.utf8p1
+                                        L1_1 = 34
                                       else
-                                        if (this_sigattrlog[25]).matched then
-                                          l_0_0 = (this_sigattrlog[25]).utf8p1
-                                          l_0_1 = 38
+                                        L2_2 = this_sigattrlog
+                                        L2_2 = L2_2[25]
+                                        L2_2 = L2_2.matched
+                                        if L2_2 then
+                                          L2_2 = this_sigattrlog
+                                          L2_2 = L2_2[25]
+                                          L0_0 = L2_2.utf8p1
+                                          L1_1 = 38
                                         else
-                                          if (this_sigattrlog[26]).matched then
-                                            l_0_0 = (this_sigattrlog[26]).utf8p1
-                                            l_0_1 = 40
+                                          L2_2 = this_sigattrlog
+                                          L2_2 = L2_2[26]
+                                          L2_2 = L2_2.matched
+                                          if L2_2 then
+                                            L2_2 = this_sigattrlog
+                                            L2_2 = L2_2[26]
+                                            L0_0 = L2_2.utf8p1
+                                            L1_1 = 40
                                           else
-                                            if (this_sigattrlog[27]).matched then
-                                              l_0_0 = (this_sigattrlog[27]).utf8p1
-                                              l_0_1 = 56
+                                            L2_2 = this_sigattrlog
+                                            L2_2 = L2_2[27]
+                                            L2_2 = L2_2.matched
+                                            if L2_2 then
+                                              L2_2 = this_sigattrlog
+                                              L2_2 = L2_2[27]
+                                              L0_0 = L2_2.utf8p1
+                                              L1_1 = 56
                                             else
-                                              if (this_sigattrlog[28]).matched then
-                                                l_0_0 = (this_sigattrlog[28]).utf8p1
-                                                l_0_1 = 57
+                                              L2_2 = this_sigattrlog
+                                              L2_2 = L2_2[28]
+                                              L2_2 = L2_2.matched
+                                              if L2_2 then
+                                                L2_2 = this_sigattrlog
+                                                L2_2 = L2_2[28]
+                                                L0_0 = L2_2.utf8p1
+                                                L1_1 = 57
                                               else
-                                                if (this_sigattrlog[29]).matched then
-                                                  l_0_0 = (this_sigattrlog[29]).utf8p1
-                                                  l_0_1 = 58
+                                                L2_2 = this_sigattrlog
+                                                L2_2 = L2_2[29]
+                                                L2_2 = L2_2.matched
+                                                if L2_2 then
+                                                  L2_2 = this_sigattrlog
+                                                  L2_2 = L2_2[29]
+                                                  L0_0 = L2_2.utf8p1
+                                                  L1_1 = 58
                                                 else
-                                                  if (this_sigattrlog[30]).matched then
-                                                    l_0_0 = (this_sigattrlog[30]).utf8p1
-                                                    l_0_1 = 99
+                                                  L2_2 = this_sigattrlog
+                                                  L2_2 = L2_2[30]
+                                                  L2_2 = L2_2.matched
+                                                  if L2_2 then
+                                                    L2_2 = this_sigattrlog
+                                                    L2_2 = L2_2[30]
+                                                    L0_0 = L2_2.utf8p1
+                                                    L1_1 = 99
                                                   else
-                                                    if (this_sigattrlog[31]).matched then
-                                                      l_0_0 = (this_sigattrlog[31]).utf8p1
-                                                      l_0_1 = 100
+                                                    L2_2 = this_sigattrlog
+                                                    L2_2 = L2_2[31]
+                                                    L2_2 = L2_2.matched
+                                                    if L2_2 then
+                                                      L2_2 = this_sigattrlog
+                                                      L2_2 = L2_2[31]
+                                                      L0_0 = L2_2.utf8p1
+                                                      L1_1 = 100
                                                     else
-                                                      if (this_sigattrlog[32]).matched then
-                                                        l_0_0 = (this_sigattrlog[32]).utf8p1
-                                                        l_0_1 = 101
+                                                      L2_2 = this_sigattrlog
+                                                      L2_2 = L2_2[32]
+                                                      L2_2 = L2_2.matched
+                                                      if L2_2 then
+                                                        L2_2 = this_sigattrlog
+                                                        L2_2 = L2_2[32]
+                                                        L0_0 = L2_2.utf8p1
+                                                        L1_1 = 101
                                                       else
-                                                        if (this_sigattrlog[33]).matched then
-                                                          l_0_0 = (this_sigattrlog[33]).utf8p1
-                                                          l_0_1 = 102
+                                                        L2_2 = this_sigattrlog
+                                                        L2_2 = L2_2[33]
+                                                        L2_2 = L2_2.matched
+                                                        if L2_2 then
+                                                          L2_2 = this_sigattrlog
+                                                          L2_2 = L2_2[33]
+                                                          L0_0 = L2_2.utf8p1
+                                                          L1_1 = 102
                                                         else
-                                                          if (this_sigattrlog[34]).matched then
-                                                            l_0_0 = (this_sigattrlog[34]).utf8p1
-                                                            l_0_1 = 103
+                                                          L2_2 = this_sigattrlog
+                                                          L2_2 = L2_2[34]
+                                                          L2_2 = L2_2.matched
+                                                          if L2_2 then
+                                                            L2_2 = this_sigattrlog
+                                                            L2_2 = L2_2[34]
+                                                            L0_0 = L2_2.utf8p1
+                                                            L1_1 = 103
                                                           else
-                                                            if (this_sigattrlog[35]).matched then
-                                                              l_0_0 = (this_sigattrlog[35]).utf8p1
-                                                              l_0_1 = 104
+                                                            L2_2 = this_sigattrlog
+                                                            L2_2 = L2_2[35]
+                                                            L2_2 = L2_2.matched
+                                                            if L2_2 then
+                                                              L2_2 = this_sigattrlog
+                                                              L2_2 = L2_2[35]
+                                                              L0_0 = L2_2.utf8p1
+                                                              L1_1 = 104
                                                             else
-                                                              if (this_sigattrlog[36]).matched then
-                                                                l_0_0 = (this_sigattrlog[36]).utf8p1
-                                                                l_0_1 = 105
+                                                              L2_2 = this_sigattrlog
+                                                              L2_2 = L2_2[36]
+                                                              L2_2 = L2_2.matched
+                                                              if L2_2 then
+                                                                L2_2 = this_sigattrlog
+                                                                L2_2 = L2_2[36]
+                                                                L0_0 = L2_2.utf8p1
+                                                                L1_1 = 105
                                                               else
-                                                                if (this_sigattrlog[37]).matched then
-                                                                  l_0_0 = (this_sigattrlog[37]).utf8p1
-                                                                  l_0_1 = 106
+                                                                L2_2 = this_sigattrlog
+                                                                L2_2 = L2_2[37]
+                                                                L2_2 = L2_2.matched
+                                                                if L2_2 then
+                                                                  L2_2 = this_sigattrlog
+                                                                  L2_2 = L2_2[37]
+                                                                  L0_0 = L2_2.utf8p1
+                                                                  L1_1 = 106
                                                                 else
-                                                                  if (this_sigattrlog[38]).matched then
-                                                                    l_0_0 = (this_sigattrlog[38]).utf8p1
-                                                                    l_0_1 = 107
+                                                                  L2_2 = this_sigattrlog
+                                                                  L2_2 = L2_2[38]
+                                                                  L2_2 = L2_2.matched
+                                                                  if L2_2 then
+                                                                    L2_2 = this_sigattrlog
+                                                                    L2_2 = L2_2[38]
+                                                                    L0_0 = L2_2.utf8p1
+                                                                    L1_1 = 107
                                                                   else
-                                                                    if (this_sigattrlog[39]).matched then
-                                                                      l_0_0 = (this_sigattrlog[39]).utf8p1
-                                                                      l_0_1 = 108
+                                                                    L2_2 = this_sigattrlog
+                                                                    L2_2 = L2_2[39]
+                                                                    L2_2 = L2_2.matched
+                                                                    if L2_2 then
+                                                                      L2_2 = this_sigattrlog
+                                                                      L2_2 = L2_2[39]
+                                                                      L0_0 = L2_2.utf8p1
+                                                                      L1_1 = 108
                                                                     else
-                                                                      if (this_sigattrlog[40]).matched then
-                                                                        l_0_0 = (this_sigattrlog[40]).utf8p1
-                                                                        l_0_1 = 109
+                                                                      L2_2 = this_sigattrlog
+                                                                      L2_2 = L2_2[40]
+                                                                      L2_2 = L2_2.matched
+                                                                      if L2_2 then
+                                                                        L2_2 = this_sigattrlog
+                                                                        L2_2 = L2_2[40]
+                                                                        L0_0 = L2_2.utf8p1
+                                                                        L1_1 = 109
                                                                       else
-                                                                        if (this_sigattrlog[41]).matched then
-                                                                          l_0_0 = (this_sigattrlog[41]).utf8p1
-                                                                          l_0_1 = 253
+                                                                        L2_2 = this_sigattrlog
+                                                                        L2_2 = L2_2[41]
+                                                                        L2_2 = L2_2.matched
+                                                                        if L2_2 then
+                                                                          L2_2 = this_sigattrlog
+                                                                          L2_2 = L2_2[41]
+                                                                          L0_0 = L2_2.utf8p1
+                                                                          L1_1 = 253
                                                                         else
-                                                                          if (this_sigattrlog[42]).matched then
-                                                                            l_0_0 = (this_sigattrlog[42]).utf8p1
-                                                                            l_0_1 = 254
+                                                                          L2_2 = this_sigattrlog
+                                                                          L2_2 = L2_2[42]
+                                                                          L2_2 = L2_2.matched
+                                                                          if L2_2 then
+                                                                            L2_2 = this_sigattrlog
+                                                                            L2_2 = L2_2[42]
+                                                                            L0_0 = L2_2.utf8p1
+                                                                            L1_1 = 254
                                                                           else
-                                                                            if (this_sigattrlog[43]).matched then
-                                                                              l_0_0 = (this_sigattrlog[43]).utf8p1
-                                                                              l_0_1 = 259
+                                                                            L2_2 = this_sigattrlog
+                                                                            L2_2 = L2_2[43]
+                                                                            L2_2 = L2_2.matched
+                                                                            if L2_2 then
+                                                                              L2_2 = this_sigattrlog
+                                                                              L2_2 = L2_2[43]
+                                                                              L0_0 = L2_2.utf8p1
+                                                                              L1_1 = 259
                                                                             else
-                                                                              return mp.CLEAN
+                                                                              L2_2 = mp
+                                                                              L2_2 = L2_2.CLEAN
+                                                                              return L2_2
                                                                             end
                                                                           end
                                                                         end
@@ -203,26 +410,34 @@ else
     end
   end
 end
-local l_0_2 = lastIndexOf(l_0_0, ".", #l_0_0 - 7)
-local l_0_3 = (string.lower)((string.sub)(l_0_0, l_0_2 + 1))
-if not l_0_3 then
+L2_2 = lastIndexOf
+L3_3 = L0_0
+L4_4 = "."
+L2_2 = L2_2(L3_3, L4_4, #L0_0 - 7)
+L3_3 = string
+L3_3 = L3_3.lower
+L4_4 = string
+L4_4 = L4_4.sub
+L4_4 = L4_4(L0_0, L2_2 + 1)
+L3_3 = L3_3(L4_4, L4_4(L0_0, L2_2 + 1))
+if not L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = L3_3
+L4_4 = L4_4 .. "_" .. L1_1
+L0_0 = string.lower(L0_0)
+if not L0_0 then
   return mp.CLEAN
 end
-local l_0_4 = l_0_3 .. "_" .. l_0_1
-l_0_0 = (string.lower)(l_0_0)
-if not l_0_0 then
+if mp.CheckUrl(L0_0) == 1 and mp.CheckUrl(L0_0) == 1 then
   return mp.CLEAN
 end
-local l_0_5, l_0_6 = (mp.CheckUrl)(l_0_0)
-if l_0_5 == 1 and l_0_6 == 1 then
-  return mp.CLEAN
+if not MpCommon.QueryPersistContextNoPath("deprecatedDnsRecordType", L4_4) then
+  MpCommon.AppendPersistContextNoPath("deprecatedDnsRecordType", L4_4, 3600)
 end
-local l_0_7 = (MpCommon.QueryPersistContextNoPath)("deprecatedDnsRecordType", l_0_4)
-if not l_0_7 then
-  (MpCommon.AppendPersistContextNoPath)("deprecatedDnsRecordType", l_0_4, 3600)
-end
-if (MpCommon.GetPersistContextCountNoPath)("deprecatedDnsRecordType") > 5 then
+if 5 < MpCommon.GetPersistContextCountNoPath("deprecatedDnsRecordType") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

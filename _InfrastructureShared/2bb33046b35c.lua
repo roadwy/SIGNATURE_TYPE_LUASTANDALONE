@@ -1,18 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2bb33046b35c 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = (this_sigattrlog[1]).utf8p2
-  if l_0_0 ~= nil and (string.len)(l_0_0) > 8 then
-    local l_0_1 = (string.lower)(l_0_0)
-    if (string.find)(l_0_1, "cpassword", 1, true) and (string.find)(l_0_1, "\\\\", 1, true) and ((string.find)(l_0_1, "/i", 1, true) or (string.find)(l_0_1, "-i", 1, true)) and (string.find)(l_0_1, "policies", 1, true) then
-      return mp.INFECTED
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L1_1 = string
+    L1_1 = L1_1.len
+    L1_1 = L1_1(L0_0)
+    if L1_1 > 8 then
+      L1_1 = string
+      L1_1 = L1_1.lower
+      L1_1 = L1_1(L0_0)
+      if string.find(L1_1, "cpassword", 1, true) and string.find(L1_1, "\\\\", 1, true) and (string.find(L1_1, "/i", 1, true) or string.find(L1_1, "-i", 1, true)) and string.find(L1_1, "policies", 1, true) then
+        return mp.INFECTED
+      end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

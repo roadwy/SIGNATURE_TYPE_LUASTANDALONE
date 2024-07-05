@@ -1,32 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ConversionToBinary_fastBase2Dec 
-
--- params : ...
--- function num : 0
-fastBase2Dec = function(l_1_0, l_1_1, l_1_2)
-  -- function num : 0_0
-  if l_1_2 > 36 or l_1_2 < 2 then
-    return nil
+local L1_0
+function L1_0(A0_1, A1_2, A2_3)
+  local L3_4, L4_5, L5_6
+  if A2_3 > 36 or A2_3 < 2 then
+    L3_4 = nil
+    return L3_4
   end
-  local l_1_3 = {}
-  local l_1_4 = string.char
-  local l_1_5 = {}
-  l_1_5.__index = function(l_2_0, l_2_1)
-    -- function num : 0_0_0 , upvalues : l_1_4, l_1_2
-    local l_2_2 = l_1_4(tonumber(l_2_1, l_1_2))
-    rawset(l_2_0, l_2_1, l_2_2)
-    return l_2_2
+  L3_4 = {}
+  L4_5 = string
+  L4_5 = L4_5.char
+  L5_6 = {}
+  function L5_6.__index(A0_7, A1_8)
+    local L2_9
+    L2_9 = _UPVALUE0_
+    L2_9 = L2_9(tonumber(A1_8, _UPVALUE1_))
+    rawset(A0_7, A1_8, L2_9)
+    return L2_9
   end
-
-  setmetatable(l_1_3, l_1_5)
-  local l_1_6, l_1_7 = (l_1_0:upper()):gsub, l_1_0:upper()
-  local l_1_8 = l_1_1
-  do
-    local l_1_9 = l_1_3
-    do return l_1_6(l_1_7, l_1_8, l_1_9) end
-    -- DECOMPILER ERROR at PC25: Confused about usage of register R7 for local variables in 'ReleaseLocals'
-
-  end
+  setmetatable(L3_4, L5_6)
+  return A0_1:upper():gsub(A1_2, L3_4)
 end
-
-
+fastBase2Dec = L1_0

@@ -1,44 +1,104 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LUA_PowershellDropsNewPE.A_Includes_PHelpers_ObMp 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE and (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) == true then
-  local l_0_0, l_0_1 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-  if l_0_1 ~= nil and l_0_1:sub(-4) == ".exe" and ((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)):lower() == "powershell.exe" then
-    if l_0_0:find("\\appdata\\", 1, true) ~= nil then
-      (mp.set_mpattribute)("LUA:PowershellDropsNewPEInAppDataPath.A")
-    end
-    if IsChainNPath(l_0_0) == false then
-      if (MpCommon.QueryPersistContextNoPath)("CLF_AM", "OfcUsrTruDocRec") then
-        (mp.set_mpattribute)("Lua:OfcUsrTruDocRecPsNewPeDrop")
-      end
-      local l_0_2 = false
-      if (MpCommon.QueryPersistContextNoPath)("CLF_AM", "CLF_AM_EC") then
-        (mp.set_mpattribute)("Lua:EmailClientChainPsNewPeDrop")
-        l_0_2 = true
-      end
-      if (MpCommon.QueryPersistContextNoPath)("CLF_AM", "CLF_AM_WM") then
-        (mp.set_mpattribute)("Lua:WebMailChainPsNewPeDrop")
-        l_0_2 = true
-      end
-      if l_0_2 then
-        local l_0_3 = (MpCommon.GetPersistContextNoPath)("CLF_IC")
-        for l_0_7,l_0_8 in ipairs(l_0_3) do
-          (mp.ReportLowfi)(l_0_8, 1933116662)
-        end
-      end
-      do
-        do
-          l_0_3 = mp
-          l_0_3 = l_0_3.INFECTED
-          do return l_0_3 end
-          l_0_0 = mp
-          l_0_0 = l_0_0.CLEAN
-          return l_0_0
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_NEWLYCREATEDHINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 == true then
+    L0_0 = mp
+    L0_0 = L0_0.getfilename
+    L1_1 = mp
+    L1_1 = L1_1.bitor
+    L2_2 = mp
+    L2_2 = L2_2.bitor
+    L3_3 = mp
+    L3_3 = L3_3.FILEPATH_QUERY_FNAME
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = mp
+    L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+    L8_8 = L1_1(L2_2, L3_3)
+    L1_1 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L1_1(L2_2, L3_3))
+    if L1_1 ~= nil then
+      L3_3 = L1_1
+      L2_2 = L1_1.sub
+      L2_2 = L2_2(L3_3, L4_4)
+      if ".exe" == L2_2 then
+        L2_2 = mp
+        L2_2 = L2_2.get_contextdata
+        L3_3 = mp
+        L3_3 = L3_3.CONTEXT_DATA_PROCESSNAME
+        L2_2 = L2_2(L3_3)
+        L3_3 = L2_2
+        L2_2 = L2_2.lower
+        L2_2 = L2_2(L3_3)
+        if "powershell.exe" == L2_2 then
+          L3_3 = L0_0
+          L2_2 = L0_0.find
+          L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+          if nil ~= L2_2 then
+            L2_2 = mp
+            L2_2 = L2_2.set_mpattribute
+            L3_3 = "LUA:PowershellDropsNewPEInAppDataPath.A"
+            L2_2(L3_3)
+          end
+          L2_2 = IsChainNPath
+          L3_3 = L0_0
+          L2_2 = L2_2(L3_3)
+          if false == L2_2 then
+            L2_2 = MpCommon
+            L2_2 = L2_2.QueryPersistContextNoPath
+            L3_3 = "CLF_AM"
+            L2_2 = L2_2(L3_3, L4_4)
+            if L2_2 then
+              L2_2 = mp
+              L2_2 = L2_2.set_mpattribute
+              L3_3 = "Lua:OfcUsrTruDocRecPsNewPeDrop"
+              L2_2(L3_3)
+            end
+            L2_2 = false
+            L3_3 = MpCommon
+            L3_3 = L3_3.QueryPersistContextNoPath
+            L3_3 = L3_3(L4_4, L5_5)
+            if L3_3 then
+              L3_3 = mp
+              L3_3 = L3_3.set_mpattribute
+              L3_3(L4_4)
+              L2_2 = true
+            end
+            L3_3 = MpCommon
+            L3_3 = L3_3.QueryPersistContextNoPath
+            L3_3 = L3_3(L4_4, L5_5)
+            if L3_3 then
+              L3_3 = mp
+              L3_3 = L3_3.set_mpattribute
+              L3_3(L4_4)
+              L2_2 = true
+            end
+            if L2_2 then
+              L3_3 = MpCommon
+              L3_3 = L3_3.GetPersistContextNoPath
+              L3_3 = L3_3(L4_4)
+              for L7_7, L8_8 in L4_4(L5_5) do
+                mp.ReportLowfi(L8_8, 1933116662)
+              end
+            end
+            L3_3 = mp
+            L3_3 = L3_3.INFECTED
+            return L3_3
+          end
         end
       end
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

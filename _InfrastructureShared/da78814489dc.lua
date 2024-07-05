@@ -1,18 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/da78814489dc 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattribute)("pea_no_exports") and not (mp.get_mpattribute)("pea_no_tls") and (mp.getfilesize)() >= 888832 and (mp.getfilesize)() < 913408 then
-    local l_0_0 = (mp.GetCertificateInfo)()
-    for l_0_4,l_0_5 in pairs(l_0_0) do
-      if l_0_5.Signers ~= nil then
-        return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("pea_no_exports")
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.get_mpattribute
+  L0_0 = L0_0("pea_no_tls")
+  if not L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.getfilesize
+    L0_0 = L0_0()
+    if L0_0 >= 888832 then
+      L0_0 = mp
+      L0_0 = L0_0.getfilesize
+      L0_0 = L0_0()
+      if L0_0 < 913408 then
+        L0_0 = mp
+        L0_0 = L0_0.GetCertificateInfo
+        L0_0 = L0_0()
+        for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+          if _FORV_5_.Signers ~= nil then
+            return mp.CLEAN
+          end
+        end
+        return mp.INFECTED
       end
     end
-    return mp.INFECTED
   end
-  return mp.CLEAN
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

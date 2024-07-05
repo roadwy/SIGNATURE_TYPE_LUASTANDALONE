@@ -1,25 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Dalexis 
-
--- params : ...
--- function num : 0
-RemoveDalexisBaseFile = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = (sysio.GetProcessFromFileName)(l_1_0)
-  for l_1_5,l_1_6 in pairs(l_1_1) do
-    local l_1_7 = (string.lower)((sysio.GetFileNameFromProcess)((string.format)("pid:%d,ProcessStart:%u", l_1_6.pid, l_1_6.starttime)))
-    if (string.sub)(l_1_7, -4) == ".scr" then
-      (sysio.DeleteFile)(l_1_7)
+local L0_0
+function L0_0(A0_1)
+  local L1_2, L2_3, L3_4, L4_5, L5_6, L6_7, L7_8
+  L1_2 = sysio
+  L1_2 = L1_2.GetProcessFromFileName
+  L1_2 = L1_2(L2_3)
+  for L5_6, L6_7 in L2_3(L3_4) do
+    L7_8 = string
+    L7_8 = L7_8.lower
+    L7_8 = L7_8(sysio.GetFileNameFromProcess(string.format("pid:%d,ProcessStart:%u", L6_7.pid, L6_7.starttime)))
+    if string.sub(L7_8, -4) == ".scr" then
+      sysio.DeleteFile(L7_8)
     end
   end
 end
-
-local l_0_0 = Remediation.Threat
-if l_0_0.Active and (string.match)(l_0_0.Name, "TrojanDownloader:Win32/Dalexis") then
-  for l_0_4,l_0_5 in pairs(l_0_0.Resources) do
-    if l_0_5.Schema == "process" then
-      RemoveDalexisBaseFile(l_0_5.Path)
+RemoveDalexisBaseFile = L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+if L0_0.Active and string.match(L0_0.Name, "TrojanDownloader:Win32/Dalexis") then
+  for _FORV_4_, _FORV_5_ in pairs(L0_0.Resources) do
+    if _FORV_5_.Schema == "process" then
+      RemoveDalexisBaseFile(_FORV_5_.Path)
     end
   end
 end
-

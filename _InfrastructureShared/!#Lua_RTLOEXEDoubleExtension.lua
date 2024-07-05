@@ -1,37 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_RTLOEXEDoubleExtension 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0:len() < 9 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L4_4 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L1_1(L2_2, L3_3))
+L2_2 = L0_0
+L1_1 = L0_0.len
+L1_1 = L1_1(L2_2)
+if L1_1 < 9 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.sub)(l_0_0, -4)
-local l_0_2 = {}
-l_0_2[".exe"] = ""
-l_0_2[".scr"] = ""
-if not l_0_2[l_0_1] then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.sub
+L2_2 = L0_0
+L3_3 = -4
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = {}
+L2_2[".exe"] = ""
+L2_2[".scr"] = ""
+L3_3 = L2_2[L1_1]
+if not L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = {}
-l_0_3[".®cod"] = ""
-l_0_3[".®slx"] = ""
-l_0_3[".®tpp"] = ""
-l_0_3[".®fdp"] = ""
-l_0_3[".®gpj"] = ""
-l_0_3[".®fig"] = ""
-l_0_3[".®gnp"] = ""
-l_0_3[".®cip"] = ""
-l_0_3[".®txt"] = ""
-l_0_3[".\1743pm"] = ""
-l_0_3["®xcod"] = ""
-l_0_3["®xlsx"] = ""
-l_0_3["®xslx"] = ""
-l_0_3["®xtpp"] = ""
-local l_0_4 = (string.sub)(l_0_0, -9)
-if l_0_3[(string.sub)(l_0_4, 1, 5)] then
-  (mp.set_mpattribute)("Lua:RTLOEXEDoubleExtension")
+L3_3 = {}
+L3_3[".\174cod"] = ""
+L3_3[".\174slx"] = ""
+L3_3[".\174tpp"] = ""
+L3_3[".\174fdp"] = ""
+L3_3[".\174gpj"] = ""
+L3_3[".\174fig"] = ""
+L3_3[".\174gnp"] = ""
+L3_3[".\174cip"] = ""
+L3_3[".\174txt"] = ""
+L3_3[".\1743pm"] = ""
+L3_3["\174xcod"] = ""
+L3_3["\174xlsx"] = ""
+L3_3["\174xslx"] = ""
+L3_3["\174xtpp"] = ""
+L4_4 = string
+L4_4 = L4_4.sub
+L4_4 = L4_4(L0_0, -9)
+if L3_3[string.sub(L4_4, 1, 5)] then
+  mp.set_mpattribute("Lua:RTLOEXEDoubleExtension")
 end
 return mp.CLEAN
-

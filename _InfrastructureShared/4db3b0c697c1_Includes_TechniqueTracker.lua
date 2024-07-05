@@ -1,21 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4db3b0c697c1_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-if IsLegacyOrgMachine() or IsTechniqueObservedForPid("BM", "ttexclusion") or IsTacticObservedForPid("BM", "ttexclusion") or IsTacticObservedForPid("BM", "ttexclusion_cln") then
+local L0_0
+L0_0 = IsLegacyOrgMachine
+L0_0 = L0_0()
+if not L0_0 then
+  L0_0 = IsTechniqueObservedForPid
+  L0_0 = L0_0("BM", "ttexclusion")
+  if not L0_0 then
+    L0_0 = IsTacticObservedForPid
+    L0_0 = L0_0("BM", "ttexclusion")
+    if not L0_0 then
+      L0_0 = IsTacticObservedForPid
+      L0_0 = L0_0("BM", "ttexclusion_cln")
+    end
+  end
+elseif L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = nil
+if this_sigattrlog[2].matched and this_sigattrlog[2].utf8p2 ~= nil then
+  L0_0 = this_sigattrlog[2].utf8p2
+end
+if L0_0 == nil then
   return mp.CLEAN
 end
-local l_0_0 = nil
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-  l_0_0 = (this_sigattrlog[2]).utf8p2
-end
-if l_0_0 == nil then
-  return mp.CLEAN
-end
-if (string.len)(l_0_0) >= 700 then
+if string.len(L0_0) >= 700 then
   AddResearchData("BM", true)
   return mp.INFECTED
 end
 return mp.CLEAN
-

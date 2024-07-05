@@ -1,23 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/53b308442aa8_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).ppid ~= nil then
-  local l_0_0 = nil
-  l_0_0 = GetRealPidForScenario(l_0_0)
-  if IsPidObservedGlobal(l_0_0) then
-    local l_0_1, l_0_2 = (bm.get_process_relationships)()
-    for l_0_6,l_0_7 in ipairs(l_0_2) do
-      TrackPidAndTechniqueBM(l_0_7.ppid, "iis_exch_childproc", "iis_exch_childproc", 28800)
+local L0_0, L1_1, L2_2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.ppid
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.ppid
+    L1_1 = GetRealPidForScenario
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
+    L1_1 = IsPidObservedGlobal
+    L2_2 = L0_0
+    L1_1 = L1_1(L2_2)
+    if L1_1 then
+      L1_1 = bm
+      L1_1 = L1_1.get_process_relationships
+      L2_2 = L1_1()
+      for _FORV_6_, _FORV_7_ in ipairs(L2_2) do
+        TrackPidAndTechniqueBM(_FORV_7_.ppid, "iis_exch_childproc", "iis_exch_childproc", 28800)
+      end
     end
   end
 end
-do
-  l_0_1 = mp
-  l_0_1 = l_0_1.CLEAN
-  return l_0_1
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

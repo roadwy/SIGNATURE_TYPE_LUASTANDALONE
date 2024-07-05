@@ -1,21 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db3b844852b_Includes_LuaFuncHelper,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (this_sigattrlog[2]).utf8p2
-if (string.find)(l_0_0, ".sh", 1, true) then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = this_sigattrlog
+L0_0 = L0_0[2]
+L0_0 = L0_0.utf8p2
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L3_3 = ".sh"
+L4_4 = 1
+L1_1 = L1_1(L2_2, L3_3, L4_4, true)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
 end
-local l_0_1 = 3000000
-if l_0_1 < (bm.GetSignatureMatchDuration)() then
-  return mp.CLEAN
+L1_1 = 3000000
+L2_2 = bm
+L2_2 = L2_2.GetSignatureMatchDuration
+L2_2 = L2_2()
+if L1_1 < L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (this_sigattrlog[1]).utf8p1
-local l_0_3 = split(l_0_2, "/")
-local l_0_4 = l_0_3[#l_0_3]
-if (string.find)(l_0_0, l_0_4, 1, true) then
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.utf8p1
+L3_3 = split
+L4_4 = L2_2
+L3_3 = L3_3(L4_4, "/")
+L4_4 = #L3_3
+L4_4 = L3_3[L4_4]
+if string.find(L0_0, L4_4, 1, true) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

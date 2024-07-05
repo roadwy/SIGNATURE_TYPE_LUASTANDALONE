@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/517803bf61e8 
-
--- params : ...
--- function num : 0
-if (mp.shr32)(pehdr.TimeDateStamp, 22) and (mp.shl32)(pehdr.TimeDateStamp, 22) == 0 then
-  (mp.changedetectionname)(805306369)
+if mp.shr32(pehdr.TimeDateStamp, 22) and mp.shl32(pehdr.TimeDateStamp, 22) == 0 then
+  mp.changedetectionname(805306369)
 end
 return mp.INFECTED
-

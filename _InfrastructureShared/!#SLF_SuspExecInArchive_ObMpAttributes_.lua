@@ -1,88 +1,152 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_SuspExecInArchive_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 4194304 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 4194304 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_PATH), mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_1 == nil or (string.len)(l_0_1) < 25 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.bitor
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_FNAME
+L5_5 = mp
+L5_5 = L5_5.FILEPATH_QUERY_PATH
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+L15_15 = L2_2(L3_3, L4_4)
+L2_2 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L2_2(L3_3, L4_4))
+if L1_1 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.len
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4)
+elseif L3_3 < 25 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if l_0_2 == nil or (string.len)(l_0_2) < 15 then
-  return mp.CLEAN
+if L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.len
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4)
+elseif L3_3 < 15 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = l_0_2:sub(-4)
-local l_0_4 = l_0_2:sub(-3)
-local l_0_5 = {}
-l_0_5[".jse"] = true
-l_0_5[".vbs"] = true
-l_0_5[".wsf"] = true
-l_0_5[".vbe"] = true
-l_0_5[".hta"] = true
-l_0_5[".mht"] = true
-l_0_5[".bat"] = true
-l_0_5[".ps1"] = true
-l_0_5[".cmd"] = true
-l_0_5[".url"] = true
-l_0_5[".jar"] = true
-l_0_5[".lnk"] = true
-l_0_5[".exe"] = true
-l_0_5[".scr"] = true
-l_0_5[".pif"] = true
-l_0_5[".docx"] = true
-l_0_5[".xlsx"] = true
-l_0_5[".doc"] = true
-l_0_5[".xls"] = true
-l_0_5[".rtf"] = true
-l_0_5.docm = true
-l_0_5.xlsm = true
-l_0_5.ppam = true
-l_0_5.pptm = true
-l_0_5.ppsm = true
-l_0_5.potm = true
-l_0_5[".js"] = true
-if l_0_5[l_0_3] == true or l_0_5[l_0_4] == true then
-  local l_0_6 = {}
-  l_0_6[".zip)->"] = "%.zip%)%->.+"
-  l_0_6[".rar)->"] = "%.rar%)%->.+"
-  l_0_6[".7z)->"] = "%.7z%)%->.+"
-  l_0_6[".iso)->"] = "%.iso%)%->.+"
-  l_0_6[".arj)->"] = "%.arj%)%->.+"
-  l_0_6[".gz)->"] = "%.gz%)%->.+"
-  l_0_6[".ace)->"] = "%.ace%)%->.+"
-  l_0_6[".z)->"] = "%.z%)%->.+"
-  l_0_6[".xz)->"] = "%.xz%)%->.+"
-  l_0_6[".bz)->"] = "%.bz%)%->.+"
-  l_0_6[".rev)->"] = "%.rev%)%->.+"
-  l_0_6[".r00)->"] = "%.r00%)%->.+"
-  for l_0_10,l_0_11 in pairs(l_0_6) do
-    if (string.find)(l_0_2, l_0_10, 1, true) then
-      local l_0_12 = (string.match)(l_0_2, l_0_11)
-      if l_0_12 == nil or l_0_12:len() < 12 then
-        return mp.CLEAN
+L4_4 = L2_2
+L3_3 = L2_2.sub
+L5_5 = -4
+L3_3 = L3_3(L4_4, L5_5)
+L5_5 = L2_2
+L4_4 = L2_2.sub
+L6_6 = -3
+L4_4 = L4_4(L5_5, L6_6)
+L5_5 = {}
+L5_5[".jse"] = true
+L5_5[".vbs"] = true
+L5_5[".wsf"] = true
+L5_5[".vbe"] = true
+L5_5[".hta"] = true
+L5_5[".mht"] = true
+L5_5[".bat"] = true
+L5_5[".ps1"] = true
+L5_5[".cmd"] = true
+L5_5[".url"] = true
+L5_5[".jar"] = true
+L5_5[".lnk"] = true
+L5_5[".exe"] = true
+L5_5[".scr"] = true
+L5_5[".pif"] = true
+L5_5[".docx"] = true
+L5_5[".xlsx"] = true
+L5_5[".doc"] = true
+L5_5[".xls"] = true
+L5_5[".rtf"] = true
+L5_5.docm = true
+L5_5.xlsm = true
+L5_5.ppam = true
+L5_5.pptm = true
+L5_5.ppsm = true
+L5_5.potm = true
+L5_5[".js"] = true
+L6_6 = L5_5[L3_3]
+if L6_6 ~= true then
+  L6_6 = L5_5[L4_4]
+elseif L6_6 == true then
+  L6_6 = {}
+  L6_6[".zip)->"] = "%.zip%)%->.+"
+  L6_6[".rar)->"] = "%.rar%)%->.+"
+  L6_6[".7z)->"] = "%.7z%)%->.+"
+  L6_6[".iso)->"] = "%.iso%)%->.+"
+  L6_6[".arj)->"] = "%.arj%)%->.+"
+  L6_6[".gz)->"] = "%.gz%)%->.+"
+  L6_6[".ace)->"] = "%.ace%)%->.+"
+  L6_6[".z)->"] = "%.z%)%->.+"
+  L6_6[".xz)->"] = "%.xz%)%->.+"
+  L6_6[".bz)->"] = "%.bz%)%->.+"
+  L6_6[".rev)->"] = "%.rev%)%->.+"
+  L6_6[".r00)->"] = "%.r00%)%->.+"
+  for L10_10, L11_11 in L7_7(L8_8) do
+    L12_12 = string
+    L12_12 = L12_12.find
+    L13_13 = L2_2
+    L14_14 = L10_10
+    L15_15 = 1
+    L12_12 = L12_12(L13_13, L14_14, L15_15, true)
+    if L12_12 then
+      L12_12 = string
+      L12_12 = L12_12.match
+      L13_13 = L2_2
+      L14_14 = L11_11
+      L12_12 = L12_12(L13_13, L14_14)
+      if L12_12 ~= nil then
+        L14_14 = L12_12
+        L13_13 = L12_12.len
+        L13_13 = L13_13(L14_14)
+      elseif L13_13 < 12 then
+        L13_13 = mp
+        L13_13 = L13_13.CLEAN
+        return L13_13
       end
-      local l_0_13 = l_0_10:len() + 1
-      if l_0_12:len() <= l_0_13 + 5 then
-        return mp.CLEAN
+      L14_14 = L10_10
+      L13_13 = L10_10.len
+      L13_13 = L13_13(L14_14)
+      L13_13 = L13_13 + 1
+      L14_14 = L13_13 + 5
+      L15_15 = L12_12.len
+      L15_15 = L15_15(L12_12)
+      if L14_14 >= L15_15 then
+        L14_14 = mp
+        L14_14 = L14_14.CLEAN
+        return L14_14
       end
-      local l_0_14 = (string.sub)(l_0_12, l_0_13, -5)
-      if l_0_14 == nil then
-        return mp.CLEAN
+      L14_14 = string
+      L14_14 = L14_14.sub
+      L15_15 = L12_12
+      L14_14 = L14_14(L15_15, L13_13, -5)
+      if L14_14 == nil then
+        L15_15 = mp
+        L15_15 = L15_15.CLEAN
+        return L15_15
       end
-      local l_0_15 = l_0_14 .. l_0_10
-      if (string.find)(l_0_2, l_0_15, 1, true) == nil then
+      L15_15 = L14_14
+      L15_15 = L15_15 .. L10_10
+      if string.find(L2_2, L15_15, 1, true) == nil then
         return mp.CLEAN
       end
       return mp.INFECTED
     end
   end
 end
-do
-  l_0_6 = mp
-  l_0_6 = l_0_6.CLEAN
-  return l_0_6
-end
-
+L6_6 = mp
+L6_6 = L6_6.CLEAN
+return L6_6

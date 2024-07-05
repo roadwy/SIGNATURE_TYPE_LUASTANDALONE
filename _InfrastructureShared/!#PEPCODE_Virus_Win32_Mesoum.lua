@@ -1,25 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Virus_Win32_Mesoum 
-
--- params : ...
--- function num : 0
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 4 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 4 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).VirtualSize <= 12288 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.VirtualSize
+if L0_0 <= 12288 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[1]).VirtualSize >= 81920 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.VirtualSize
+if L0_0 >= 81920 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)((pesecs[1]).VirtualSize + (pesecs[1]).PointerToRawData, 4)
-if (mp.readu_u32)(l_0_0, 1) == 0 then
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L0_0 = L0_0(pesecs[1].VirtualSize + pesecs[1].PointerToRawData, 4)
+if mp.readu_u32(L0_0, 1) == 0 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

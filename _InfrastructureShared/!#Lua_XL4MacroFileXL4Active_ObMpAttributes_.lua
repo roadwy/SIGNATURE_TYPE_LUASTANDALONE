@@ -1,104 +1,119 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_XL4MacroFileXL4Active_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = ""
-if (mp.get_mpattribute)("//SCRIPT:ContentTypeMacroSheet") then
-  l_0_0 = "OXML"
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = ""
+L1_1 = mp
+L1_1 = L1_1.get_mpattribute
+L2_2 = "//SCRIPT:ContentTypeMacroSheet"
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L0_0 = "OXML"
 else
-  if (mp.get_mpattribute)("AGGR:XlsHasMacroSheet") then
-    l_0_0 = "OLE"
+  L1_1 = mp
+  L1_1 = L1_1.get_mpattribute
+  L2_2 = "AGGR:XlsHasMacroSheet"
+  L1_1 = L1_1(L2_2)
+  if L1_1 then
+    L0_0 = "OLE"
   else
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+end
+L1_1 = "Lua:XL4"
+L2_2 = L0_0
+L1_1 = L1_1 .. L2_2
+L2_2 = mp
+L2_2 = L2_2.set_mpattribute
+L3_3 = "//Lua:XL4MacroFile"
+L2_2(L3_3)
+L2_2 = ""
+L3_3 = sysio
+L3_3 = L3_3.RegOpenKey
+L4_4 = "HKCU\\Software\\Microsoft\\Office\\16.0\\Excel"
+L3_3 = L3_3(L4_4)
+if L3_3 ~= nil then
+  L2_2 = "16.0"
+else
+  L4_4 = sysio
+  L4_4 = L4_4.RegOpenKey
+  L5_5 = "HKCU\\Software\\Microsoft\\Office\\15.0\\Excel"
+  L4_4 = L4_4(L5_5)
+  L3_3 = L4_4
+  if L3_3 ~= nil then
+    L2_2 = "15.0"
+  else
+    L4_4 = sysio
+    L4_4 = L4_4.RegOpenKey
+    L5_5 = "HKCU\\Software\\Microsoft\\Office\\14.0\\Excel"
+    L4_4 = L4_4(L5_5)
+    L3_3 = L4_4
+    if L3_3 ~= nil then
+      L2_2 = "14.0"
+    else
+      L4_4 = mp
+      L4_4 = L4_4.set_mpattribute
+      L5_5 = L1_1
+      L5_5 = L5_5 .. "MacroDisabled.Z"
+      L4_4(L5_5)
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
+    end
+  end
+end
+L4_4 = sysio
+L4_4 = L4_4.RegOpenKey
+L5_5 = "HKCU\\Software\\Microsoft\\Office\\"
+L5_5 = L5_5 .. L2_2 .. "\\Excel\\Security"
+L4_4 = L4_4(L5_5)
+if L4_4 ~= nil then
+  if L2_2 == "16.0" then
+    L5_5 = sysio
+    L5_5 = L5_5.GetRegValueAsDword
+    L5_5 = L5_5(L4_4, "XL4MacroWarningFollowVBA")
+    if L5_5 == 0 then
+      mp.set_mpattribute(L1_1 .. "MacroDisabled.A")
+      return mp.CLEAN
+    end
+    if sysio.GetRegValueAsDword(L4_4, "XL4MacroOff") == 1 then
+      mp.set_mpattribute(L1_1 .. "MacroDisabled.D")
+      return mp.CLEAN
+    end
+  end
+  L5_5 = sysio
+  L5_5 = L5_5.GetRegValueAsDword
+  L5_5 = L5_5(L4_4, "VBAWarnings")
+  if L5_5 == 3 then
+    mp.set_mpattribute(L1_1 .. "MacroDisabled.B")
+    return mp.CLEAN
+  end
+  if L5_5 == 4 then
+    mp.set_mpattribute(L1_1 .. "MacroDisabled.C")
     return mp.CLEAN
   end
 end
-local l_0_1 = "Lua:XL4" .. l_0_0
-;
-(mp.set_mpattribute)("//Lua:XL4MacroFile")
-local l_0_2 = ""
-if (sysio.RegOpenKey)("HKCU\\Software\\Microsoft\\Office\\16.0\\Excel") ~= nil then
-  l_0_2 = "16.0"
-else
-  if (sysio.RegOpenKey)("HKCU\\Software\\Microsoft\\Office\\15.0\\Excel") ~= nil then
-    l_0_2 = "15.0"
-  else
-    local l_0_3, l_0_4 = (sysio.RegOpenKey)("HKCU\\Software\\Microsoft\\Office\\14.0\\Excel")
-    if l_0_3 ~= nil then
-      l_0_2 = "14.0"
-    else
-      l_0_4 = mp
-      l_0_4 = l_0_4.set_mpattribute
-      l_0_4(l_0_1 .. "MacroDisabled.Z")
-      l_0_4 = mp
-      l_0_4 = l_0_4.CLEAN
-      return l_0_4
+L5_5 = sysio
+L5_5 = L5_5.RegOpenKey
+L5_5 = L5_5("HKCU\\Software\\Policies\\Microsoft\\office\\" .. L2_2 .. "\\excel\\security")
+if L5_5 ~= nil then
+  if L2_2 == "16.0" then
+    if sysio.GetRegValueAsDword(L5_5, "XL4MacroWarningFollowVBA") == 0 then
+      mp.set_mpattribute(L1_1 .. "MacroDisabled.E")
+      return mp.CLEAN
+    end
+    if sysio.GetRegValueAsDword(L5_5, "XL4MacroOff") == 1 then
+      mp.set_mpattribute(L1_1 .. "MacroDisabled.H")
+      return mp.CLEAN
     end
   end
-end
-do
-  local l_0_5 = nil
-  if (sysio.RegOpenKey)("HKCU\\Software\\Microsoft\\Office\\" .. l_0_2 .. "\\Excel\\Security") ~= nil then
-    if l_0_2 == "16.0" then
-      local l_0_6 = nil
-      if (sysio.GetRegValueAsDword)((sysio.RegOpenKey)("HKCU\\Software\\Microsoft\\Office\\" .. l_0_2 .. "\\Excel\\Security"), "XL4MacroWarningFollowVBA") == 0 then
-        (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.A")
-        return mp.CLEAN
-      end
-      local l_0_7 = nil
-      if (sysio.GetRegValueAsDword)(l_0_6, "XL4MacroOff") == 1 then
-        (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.D")
-        return mp.CLEAN
-      end
-    end
-    do
-      -- DECOMPILER ERROR at PC108: Confused about usage of register: R4 in 'UnsetPending'
-
-      do
-        local l_0_8 = nil
-        if (sysio.GetRegValueAsDword)(l_0_6, "VBAWarnings") == 3 then
-          (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.B")
-          return mp.CLEAN
-        end
-        if (sysio.GetRegValueAsDword)(l_0_6, "VBAWarnings") == 4 then
-          (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.C")
-          return mp.CLEAN
-        end
-        local l_0_9 = nil
-        if (sysio.RegOpenKey)("HKCU\\Software\\Policies\\Microsoft\\office\\" .. l_0_2 .. "\\excel\\security") ~= nil then
-          if l_0_2 == "16.0" then
-            local l_0_10 = nil
-            if (sysio.GetRegValueAsDword)((sysio.RegOpenKey)("HKCU\\Software\\Policies\\Microsoft\\office\\" .. l_0_2 .. "\\excel\\security"), "XL4MacroWarningFollowVBA") == 0 then
-              (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.E")
-              return mp.CLEAN
-            end
-            local l_0_11 = nil
-            if (sysio.GetRegValueAsDword)(l_0_10, "XL4MacroOff") == 1 then
-              (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.H")
-              return mp.CLEAN
-            end
-          end
-          do
-            -- DECOMPILER ERROR at PC178: Confused about usage of register: R5 in 'UnsetPending'
-
-            do
-              local l_0_12 = nil
-              if (sysio.GetRegValueAsDword)(l_0_10, "VBAWarnings") == 3 then
-                (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.F")
-                return mp.CLEAN
-              end
-              if (sysio.GetRegValueAsDword)(l_0_10, "VBAWarnings") == 4 then
-                (mp.set_mpattribute)(l_0_1 .. "MacroDisabled.G")
-                return mp.CLEAN
-              end
-              ;
-              (mp.set_mpattribute)(l_0_1 .. "MacroEnabled.A")
-              return mp.INFECTED
-            end
-          end
-        end
-      end
-    end
+  if sysio.GetRegValueAsDword(L5_5, "VBAWarnings") == 3 then
+    mp.set_mpattribute(L1_1 .. "MacroDisabled.F")
+    return mp.CLEAN
+  end
+  if sysio.GetRegValueAsDword(L5_5, "VBAWarnings") == 4 then
+    mp.set_mpattribute(L1_1 .. "MacroDisabled.G")
+    return mp.CLEAN
   end
 end
-
+mp.set_mpattribute(L1_1 .. "MacroEnabled.A")
+return mp.INFECTED

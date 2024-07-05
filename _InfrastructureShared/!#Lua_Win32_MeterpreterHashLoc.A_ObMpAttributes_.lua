@@ -1,25 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Win32_MeterpreterHashLoc.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections ~= 3 then
-  return mp.CLEAN
+local L0_0
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.getfilesize)() < 2048 or (mp.getfilesize)() > 20480 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if not (L0_0 < 2048) then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+elseif L0_0 > 20480 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)((pesecs[3]).PointerToRawData, 32)
-do
-  if l_0_0:match("^%x+$") then
-    local l_0_1 = (string.gsub)(l_0_0, "%x", "")
-    if l_0_0 == 32 then
-      return mp.INFECTED
-    end
-  end
-  local l_0_2 = mp.CLEAN
-  return l_0_2
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L0_0 = L0_0(pesecs[3].PointerToRawData, 32)
+if L0_0:match("^%x+$") and string.gsub(L0_0, "%x", "") == 32 then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

@@ -1,43 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ConversionToBinary_fastDec2BinWithKey 
-
--- params : ...
--- function num : 0
-local l_0_0 = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  local l_1_2 = {}
-  l_1_2.__index = function()
-    -- function num : 0_0_0 , upvalues : l_1_1
-    return l_1_1
+local L0_0
+function L0_0(A0_1, A1_2)
+  local L2_3
+  L2_3 = {}
+  function L2_3.__index()
+    local L0_4, L1_5
+    L0_4 = _UPVALUE0_
+    return L0_4
   end
-
-  setmetatable(l_1_0, l_1_2)
+  setmetatable(A0_1, L2_3)
 end
-
-fastDec2BinWithKey = function(l_2_0, l_2_1, l_2_2, l_2_3)
-  -- function num : 0_1 , upvalues : l_0_0
-  local l_2_4 = {}
-  local l_2_5 = string.char
-  for l_2_9 = 0, 255 do
-    local l_2_18 = tostring
-    l_2_18 = l_2_18(l_2_3(l_2_2, l_2_9))
-    local l_2_10, l_2_15 = nil
-    l_2_10 = l_2_5
-    l_2_15 = l_2_9
-    local l_2_17 = nil
-    l_2_10 = l_2_10(l_2_15)
-    local l_2_16 = nil
-    l_2_4[l_2_18] = l_2_10
+function fastDec2BinWithKey(A0_6, A1_7, A2_8, A3_9)
+  local L4_10, L5_11, L6_12, L7_13, L8_14, L9_15
+  L4_10 = {}
+  L5_11 = string
+  L5_11 = L5_11.char
+  for L9_15 = 0, 255 do
+    L4_10[tostring(A3_9(A2_8, L9_15))] = L5_11(L9_15)
   end
-  l_0_0(l_2_4, " ")
-  local l_2_11, l_2_12 = l_2_0:gsub, l_2_0
-  local l_2_13 = l_2_1
-  do
-    local l_2_14 = l_2_4
-    do return l_2_11(l_2_12, l_2_13, l_2_14) end
-    -- DECOMPILER ERROR at PC27: Confused about usage of register R7 for local variables in 'ReleaseLocals'
-
-  end
+  L6_12(L7_13, L8_14)
+  L9_15 = L4_10
+  return L6_12(L7_13, L8_14, L9_15)
 end
-
-

@@ -1,26 +1,132 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4dd78d8990fd0_Flags_1 
-
--- params : ...
--- function num : 0
-do
-  if not (hstrlog[1]).matched or (hstrlog[2]).matched then
-    local l_0_0 = 0 + 1 + 1
-  end
-  do
-    if ((((((((((((hstrlog[8]).matched and not (hstrlog[9]).matched) or (hstrlog[10]).matched) and not (hstrlog[11]).matched) or (hstrlog[12]).matched) and not (hstrlog[13]).matched) or (hstrlog[14]).matched) and not (hstrlog[15]).matched) or (hstrlog[16]).matched) and not (hstrlog[17]).matched) or (hstrlog[18]).matched) and not (hstrlog[19]).matched) or (hstrlog[20]).matched then
-      local l_0_1 = nil
-    end
-    -- DECOMPILER ERROR at PC123: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC129: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC133: Unhandled construct in 'MakeBoolean' P3
-
-    if ((((((hstrlog[3]).matched and not (hstrlog[4]).matched) or (hstrlog[5]).matched) and not (hstrlog[6]).matched) or (hstrlog[7]).matched) and l_0_1 >= 1) or 0 + 1 + 1 + 1 + 1 + 1 >= 1 and 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 >= 3 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+L2_2 = hstrlog
+L2_2 = L2_2[8]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[9]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[10]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[11]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[12]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[13]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[14]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[15]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[16]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[17]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[18]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[19]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = hstrlog
+L2_2 = L2_2[20]
+L2_2 = L2_2.matched
+if L2_2 then
+  L1_1 = L1_1 + 1
+end
+L2_2 = 0
+L3_3 = hstrlog
+L3_3 = L3_3[3]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[4]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[5]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[6]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+L3_3 = hstrlog
+L3_3 = L3_3[7]
+L3_3 = L3_3.matched
+if L3_3 then
+  L2_2 = L2_2 + 1
+end
+if L0_0 >= 1 or L1_1 >= 8 or L2_2 >= 1 and L1_1 >= 3 then
+  L3_3 = mp
+  L3_3 = L3_3.INFECTED
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

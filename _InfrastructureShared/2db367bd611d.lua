@@ -1,26 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2db367bd611d 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-    local l_0_0, l_0_1 = nil, nil
+local L0_0, L1_1, L2_2, L3_3
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p1
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p1
   end
-  -- DECOMPILER ERROR at PC15: Confused about usage of register: R0 in 'UnsetPending'
-
-  local l_0_2 = nil
-  local l_0_3 = R1_PC23
-  local l_0_4 = ((bm.get_imagepath)())
-  -- DECOMPILER ERROR at PC31: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC39: Confused about usage of register: R3 in 'UnsetPending'
-
-  if (l_0_4 == nil or nil ~= nil) and l_0_3 ~= nil and (string.lower)(nil) == (string.lower)(l_0_3) then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
 end
-
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L0_0
+L3_3 = L2_2(L3_3, "(.-)([^\\]-)$")
+L1_1 = L3_3
+_ = L2_2
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L2_2 = L2_2()
+L3_3 = nil
+if L2_2 ~= nil then
+  _, L3_3 = string.match(L2_2, "(.-)([^\\]-)$")
+end
+if L3_3 ~= nil and L1_1 ~= nil and string.lower(L3_3) == string.lower(L1_1) then
+  return mp.INFECTED
+end
+return mp.CLEAN

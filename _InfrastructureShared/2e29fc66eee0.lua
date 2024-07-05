@@ -1,25 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2e29fc66eee0 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC3: Overwrote pending register: R0 in 'AssignReg'
-
-local l_0_0 = nil
-if l_0_0 == nil then
+local L0_0, L1_1, L2_2
+L0_0 = tostring(headerpage)
+if L0_0 == nil then
   return mp.CLEAN
 end
--- DECOMPILER ERROR at PC14: Overwrote pending register: R1 in 'AssignReg'
-
-local l_0_1 = nil
-if l_0_1 == nil then
+L1_1 = string.match(L0_0, "%/Command%/Base64%/(.*)\"?'?}")
+if L1_1 == nil then
   return mp.CLEAN
 end
--- DECOMPILER ERROR at PC24: Overwrote pending register: R2 in 'AssignReg'
-
-local l_0_2 = nil
-if l_0_2 ~= nil and ((string.find)(l_0_2, "wget", 1, true) or (string.find)(l_0_2, "powershell", 1, true) or (string.find)(l_0_2, "python", 1, true)) then
+L2_2 = MpCommon.Base64Decode(L1_1)
+if L2_2 ~= nil and (string.find(L2_2, "wget", 1, true) or string.find(L2_2, "powershell", 1, true) or string.find(L2_2, "python", 1, true)) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

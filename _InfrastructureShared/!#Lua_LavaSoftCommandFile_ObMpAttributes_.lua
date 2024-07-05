@@ -1,10 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_LavaSoftCommandFile_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (string.len)((mp.getfilename)()) == 15 then
-  return mp.INFECTED
+local L0_0
+L0_0 = string
+L0_0 = L0_0.len
+L0_0 = L0_0(mp.getfilename())
+if L0_0 == 15 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

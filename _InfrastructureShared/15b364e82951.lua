@@ -1,21 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b364e82951 
-
--- params : ...
--- function num : 0
-if (mp.IsKnownFriendlyFile)((MpCommon.PathToWin32Path)((bm.get_imagepath)()), true, true) == true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_0, l_0_1 = (bm.get_process_relationships)()
-for l_0_5,l_0_6 in ipairs(l_0_1) do
-  local l_0_7 = (MpCommon.GetProcessElevationAndIntegrityLevel)(l_0_6.ppid)
-  if l_0_6.reason == bm.RELATIONSHIP_INJECTION and l_0_7.IntegrityLevel == MpCommon.SECURITY_MANDATORY_SYSTEM_RID and (string.find)((string.lower)(l_0_6.image_path), "\\windows\\", 1, true) then
-    local l_0_8 = (string.lower)((bm.get_imagepath)())
-    if (string.find)((string.lower)(l_0_8), "\\program files\\", 1, true) or (string.find)((string.lower)(l_0_8), "\\program files (x86)\\", 1, true) or (string.find)((string.lower)(l_0_8), "\\steamapps\\common\\", 1, true) or (string.find)((string.lower)(l_0_8), "\\games\\", 1, true) then
-      return mp.CLEAN
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.IsKnownFriendlyFile
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+for L7_7, L8_8 in L4_4(L5_5) do
+  L9_9 = MpCommon
+  L9_9 = L9_9.GetProcessElevationAndIntegrityLevel
+  L10_10 = L8_8.ppid
+  L9_9 = L9_9(L10_10)
+  L10_10 = L8_8.reason
+  if L10_10 == bm.RELATIONSHIP_INJECTION then
+    L10_10 = L9_9.IntegrityLevel
+    if L10_10 == MpCommon.SECURITY_MANDATORY_SYSTEM_RID then
+      L10_10 = string
+      L10_10 = L10_10.find
+      L10_10 = L10_10(string.lower(L8_8.image_path), "\\windows\\", 1, true)
+      if L10_10 then
+        L10_10 = string
+        L10_10 = L10_10.lower
+        L10_10 = L10_10(bm.get_imagepath())
+        if string.find(string.lower(L10_10), "\\program files\\", 1, true) or string.find(string.lower(L10_10), "\\program files (x86)\\", 1, true) or string.find(string.lower(L10_10), "\\steamapps\\common\\", 1, true) or string.find(string.lower(L10_10), "\\games\\", 1, true) then
+          return mp.CLEAN
+        end
+        return mp.INFECTED
+      end
     end
-    return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L4_4

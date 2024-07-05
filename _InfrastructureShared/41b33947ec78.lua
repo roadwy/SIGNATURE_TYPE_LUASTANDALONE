@@ -1,25 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b33947ec78 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_0, l_0_1 = nil
-  end
-  -- DECOMPILER ERROR at PC8: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    local l_0_2 = nil
-    local l_0_3 = (string.lower)((mp.ContextualExpandEnvironmentVariables)("%userprofile%"))
-    if (string.find)((string.lower)(l_0_2), l_0_3 .. "\\[^\\]+$") and (string.find)(l_0_2, "\\%l%l%l+%.exe$") then
-      return mp.INFECTED
-    end
-  end
-  do
-    return mp.CLEAN
+local L0_0, L1_1, L2_2
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L0_0 = L1_1.utf8p1
+end
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.ContextualExpandEnvironmentVariables
+  L2_2 = L2_2("%userprofile%")
+  L1_1 = L1_1(L2_2, L2_2("%userprofile%"))
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(L0_0)
+  if string.find(L2_2, L1_1 .. "\\[^\\]+$") and string.find(L0_0, "\\%l%l%l+%.exe$") then
+    return mp.INFECTED
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

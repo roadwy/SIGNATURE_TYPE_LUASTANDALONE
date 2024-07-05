@@ -1,31 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Trojan_Win32_Gatak.EG!dha 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN or l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  if peattributes.no_security == false then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L0_0 == L1_1 then
+  L1_1 = peattributes
+  L1_1 = L1_1.no_security
+  if L1_1 == false then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_1 = (mp.getfilesize)()
-  if l_0_1 < 200000 then
-    return mp.CLEAN
+  L1_1 = mp
+  L1_1 = L1_1.getfilesize
+  L1_1 = L1_1()
+  if L1_1 < 200000 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  if l_0_1 > 900000 then
-    return mp.CLEAN
+  if L1_1 > 900000 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = (string.lower)((mp.getfilename)())
-  local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  if (string.find)(l_0_3, "\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\startup", 1, true) ~= nil and (string.find)(l_0_2, "\\%d+%.exe$") ~= nil then
-    local l_0_4 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-    if #l_0_4 < 12 or #l_0_4 > 16 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = mp
+  L3_3 = L3_3.getfilename
+  L3_3 = L3_3()
+  L2_2 = L2_2(L3_3, L3_3())
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+  if string.find(L3_3, "\\appdata\\roaming\\microsoft\\windows\\start menu\\programs\\startup", 1, true) ~= nil and string.find(L2_2, "\\%d+%.exe$") ~= nil then
+    if #string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) < 12 or #string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)) > 16 then
       return mp.CLEAN
     end
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

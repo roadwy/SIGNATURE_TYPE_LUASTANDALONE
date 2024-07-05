@@ -1,45 +1,61 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/39b3af471b8d 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC6: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L0_0 = L1_1[1]
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L0_0 = L1_1[2]
   else
-  end
-  if (this_sigattrlog[2]).matched then
-    do return mp.CLEAN end
-    local l_0_3 = nil
-    if not (this_sigattrlog[2]).utf8p2 then
-      return mp.CLEAN
-    end
-    -- DECOMPILER ERROR at PC27: Confused about usage of register: R1 in 'UnsetPending'
-
-    local l_0_4 = nil
-    if not (string.match)((string.lower)((this_sigattrlog[2]).utf8p2), "[/-]e:([%a]+)") then
-      return mp.CLEAN
-    end
-    local l_0_5 = nil
-    local l_0_6 = nil
-    if not ({jscript = ".js", javascript = ".js", vbscript = ".vbs", vbs = ".vbs"})[l_0_5] then
-      return mp.CLEAN
-    end
-    local l_0_7 = nil
-    for l_0_11,l_0_12 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_4)) do
-      local l_0_8 = nil
-      -- DECOMPILER ERROR at PC61: Confused about usage of register: R10 in 'UnsetPending'
-
-      if (string.match)(R10_PC61, "(%.[^%.]+)$") ~= l_0_7 then
-        local l_0_14 = nil
-        if (string.lower)((string.match)(l_0_13, "([^\\]+)$")) ~= "wscript.exe" and (string.lower)((string.match)(l_0_13, "([^\\]+)$")) ~= "cscript.exe" and not (((string.lower)((string.match)(l_0_13, "([^\\]+)$"))).find)("capainstaller", 1, true) and (sysio.IsFileExists)(l_0_13) and not (mp.IsKnownFriendlyFile)(l_0_13, false, false) then
-          (mp.ReportLowfi)(l_0_13, 4091252919)
-        end
-      end
-    end
-    return mp.CLEAN
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+L1_1 = L0_0.utf8p2
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "[/-]e:([%a]+)"
+L2_2 = L2_2(L3_3, L4_4)
+if not L2_2 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = {}
+L3_3.jscript = ".js"
+L3_3.javascript = ".js"
+L3_3.vbscript = ".vbs"
+L3_3.vbs = ".vbs"
+L4_4 = L3_3[L2_2]
+if not L4_4 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
+end
+L5_5 = mp
+L5_5 = L5_5.GetExecutablesFromCommandLine
+L5_5 = L5_5(L6_6)
+for L9_9, L10_10 in L6_6(L7_7) do
+  if string.match(L10_10, "(%.[^%.]+)$") ~= L4_4 and string.lower(string.match(L10_10, "([^\\]+)$")) ~= "wscript.exe" and string.lower(string.match(L10_10, "([^\\]+)$")) ~= "cscript.exe" and not string.lower(string.match(L10_10, "([^\\]+)$")).find("capainstaller", 1, true) and sysio.IsFileExists(L10_10) and not mp.IsKnownFriendlyFile(L10_10, false, false) then
+    mp.ReportLowfi(L10_10, 4091252919)
+  end
+end
+return L6_6

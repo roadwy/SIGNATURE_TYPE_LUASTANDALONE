@@ -1,10 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8b78be8da99d_Flags_1 
-
--- params : ...
--- function num : 0
-if peattributes.isexe and peattributes.is_delphi and (pesecs[8]).Name == ".rsrc" and (pesecs[8]).SizeOfRawData >= 3145728 then
-  return mp.SUSPICIOUS
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.is_delphi
+  if L0_0 then
+    L0_0 = pesecs
+    L0_0 = L0_0[8]
+    L0_0 = L0_0.Name
+    if L0_0 == ".rsrc" then
+      L0_0 = pesecs
+      L0_0 = L0_0[8]
+      L0_0 = L0_0.SizeOfRawData
+      if L0_0 >= 3145728 then
+        L0_0 = mp
+        L0_0 = L0_0.SUSPICIOUS
+        return L0_0
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

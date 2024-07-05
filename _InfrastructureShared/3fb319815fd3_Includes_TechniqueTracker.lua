@@ -1,33 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3fb319815fd3_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = nil
-  else
-  end
-  -- DECOMPILER ERROR at PC28: Confused about usage of register: R0 in 'UnsetPending'
-
-  if not (this_sigattrlog[2]).matched or (mp.GetExecutablesFromCommandLine)((this_sigattrlog[2]).utf8p2) ~= nil then
-    for l_0_7,l_0_8 in ipairs((mp.GetExecutablesFromCommandLine)((this_sigattrlog[2]).utf8p2)) do
-      local l_0_4 = nil
-      -- DECOMPILER ERROR at PC33: Confused about usage of register: R5 in 'UnsetPending'
-
-      if (string.find)(R5_PC33, ".json", -5, true) or (string.find)(R5_PC33, ".yaml", -5, true) or (string.find)(R5_PC33, ".xml", -4, true) or (string.find)(R5_PC33, ".jpg", -4, true) or (string.find)(R5_PC33, ".gz", -3, true) or (string.find)(R5_PC33, "/etc/", 1, true) or (string.find)(R5_PC33, "/boot/grub/", 1, true) or (string.find)(R5_PC33, "/dev/shm/", 1, true) or (string.find)(R5_PC33, "/var/run/", 1, true) then
-        if (sysio.IsFileExists)(R5_PC33) then
-          (bm.add_related_file)(R5_PC33)
-        end
-        TrackPidAndTechniqueBM("BM", "T1222", "DefenseEvasion")
-        return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+if L1_1 then
+  L0_0 = L1_1
+elseif L1_1 then
+  L0_0 = L1_1
+end
+if L0_0 ~= nil then
+  for L4_4, L5_5 in L1_1(L2_2) do
+    if string.find(L5_5, ".json", -5, true) or string.find(L5_5, ".yaml", -5, true) or string.find(L5_5, ".xml", -4, true) or string.find(L5_5, ".jpg", -4, true) or string.find(L5_5, ".gz", -3, true) or string.find(L5_5, "/etc/", 1, true) or string.find(L5_5, "/boot/grub/", 1, true) or string.find(L5_5, "/dev/shm/", 1, true) or string.find(L5_5, "/var/run/", 1, true) then
+      if sysio.IsFileExists(L5_5) then
+        bm.add_related_file(L5_5)
       end
+      TrackPidAndTechniqueBM("BM", "T1222", "DefenseEvasion")
+      return mp.INFECTED
     end
   end
-  do
-    return mp.CLEAN
-  end
 end
-
+return L1_1

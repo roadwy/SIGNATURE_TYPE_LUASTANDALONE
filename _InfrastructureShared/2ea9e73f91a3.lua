@@ -1,22 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2ea9e73f91a3 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0.cert = "unk"
-local l_0_1 = (nri.GetRawSSLCertificate)()
-if l_0_1 then
-  l_0_1 = (MpCommon.Base64Encode)(l_0_1)
-  if l_0_1 then
-    local l_0_2 = {}
-    l_0_2.cert = l_0_1
-    l_0_0 = l_0_2
+local L0_0, L1_1
+L0_0 = {}
+L0_0.cert = "unk"
+L1_1 = nri
+L1_1 = L1_1.GetRawSSLCertificate
+L1_1 = L1_1()
+if L1_1 then
+  L1_1 = MpCommon.Base64Encode(L1_1)
+  if L1_1 then
+    L0_0 = {cert = L1_1}
   end
 end
-do
-  ;
-  (nri.AddTelemetry)(nri.Telemetry_HOSTNAME, l_0_0)
-  return mp.INFECTED
-end
-
+nri.AddTelemetry(nri.Telemetry_HOSTNAME, L0_0)
+return mp.INFECTED

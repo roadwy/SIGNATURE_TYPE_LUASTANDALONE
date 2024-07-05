@@ -1,36 +1,73 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/75b344f83d89_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-local l_0_1 = (bm.get_current_process_startup_info)()
-local l_0_2 = ((string.lower)(l_0_1.command_line))
-local l_0_3 = nil
-if l_0_2 and (string.find)(l_0_2, "svchost.exe", 1, true) ~= nil and ((string.find)(l_0_2, "-k netsvcs", 1, true) ~= nil or (string.find)(l_0_2, "-p schedule", 1, true) ~= nil) then
-  l_0_3 = 1
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L6_6 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L1_1())
+L1_1 = bm
+L1_1 = L1_1.get_current_process_startup_info
+L1_1 = L1_1()
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1.command_line
+L2_2 = L2_2(L3_3)
+L3_3 = nil
+if L2_2 then
+  L4_4 = string
+  L4_4 = L4_4.find
+  L5_5 = L2_2
+  L6_6 = "svchost.exe"
+  L4_4 = L4_4(L5_5, L6_6, 1, true)
+  if L4_4 ~= nil then
+    L4_4 = string
+    L4_4 = L4_4.find
+    L5_5 = L2_2
+    L6_6 = "-k netsvcs"
+    L4_4 = L4_4(L5_5, L6_6, 1, true)
+    if L4_4 == nil then
+      L4_4 = string
+      L4_4 = L4_4.find
+      L5_5 = L2_2
+      L6_6 = "-p schedule"
+      L4_4 = L4_4(L5_5, L6_6, 1, true)
+    elseif L4_4 ~= nil then
+      L3_3 = 1
+    end
+  end
 end
-if l_0_0 and ((string.find)(l_0_0, "taskeng.exe", 1, true) or (string.find)(l_0_0, "taskhostw.exe", 1, true)) then
-  l_0_3 = 1
+if L0_0 then
+  L4_4 = string
+  L4_4 = L4_4.find
+  L5_5 = L0_0
+  L6_6 = "taskeng.exe"
+  L4_4 = L4_4(L5_5, L6_6, 1, true)
+  if not L4_4 then
+    L4_4 = string
+    L4_4 = L4_4.find
+    L5_5 = L0_0
+    L6_6 = "taskhostw.exe"
+    L4_4 = L4_4(L5_5, L6_6, 1, true)
+  elseif L4_4 then
+    L3_3 = 1
+  end
 end
-if l_0_3 then
-  local l_0_4, l_0_5 = (bm.get_process_relationships)()
-  local l_0_6 = nil
-  for l_0_10,l_0_11 in ipairs(l_0_5) do
-    local l_0_12 = (mp.bitand)(l_0_11.reason_ex, 1)
-    if l_0_12 == 1 and ((string.find)((string.lower)(l_0_11.image_path), "\\cmd.exe", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\powershell.exe", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\wscript.exe", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\cscript.exe", 1, true) or (string.find)((string.lower)(l_0_11.image_path), "\\mshta.exe", 1, true)) then
-      l_0_6 = l_0_11.ppid
-      if not IsPidExcluded(l_0_6) then
-        TrackPidAndTechniqueBM(l_0_6, "T1059", "commandscriptschdtask")
-        TrackPidAndTechniqueBM(l_0_6, "T1053.005", "schtask_target")
+if L3_3 then
+  L4_4 = bm
+  L4_4 = L4_4.get_process_relationships
+  L5_5 = L4_4()
+  L6_6 = nil
+  for _FORV_10_, _FORV_11_ in ipairs(L5_5) do
+    if mp.bitand(_FORV_11_.reason_ex, 1) == 1 and (string.find(string.lower(_FORV_11_.image_path), "\\cmd.exe", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\powershell.exe", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\wscript.exe", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\cscript.exe", 1, true) or string.find(string.lower(_FORV_11_.image_path), "\\mshta.exe", 1, true)) then
+      L6_6 = _FORV_11_.ppid
+      if not IsPidExcluded(L6_6) then
+        TrackPidAndTechniqueBM(L6_6, "T1059", "commandscriptschdtask")
+        TrackPidAndTechniqueBM(L6_6, "T1053.005", "schtask_target")
         return mp.INFECTED
       end
     end
   end
 end
-do
-  l_0_4 = mp
-  l_0_4 = l_0_4.CLEAN
-  return l_0_4
-end
-
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

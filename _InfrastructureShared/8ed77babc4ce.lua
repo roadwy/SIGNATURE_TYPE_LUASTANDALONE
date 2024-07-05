@@ -1,27 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8ed77babc4ce 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if l_0_1 == "" or l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == "" or L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = ""
-if (string.sub)(l_0_1, -1) == "\"" then
-  l_0_2 = (string.match)(l_0_1, " (\"[^\"]+\")[%s]*$")
+L2_2 = ""
+if string.sub(L1_1, -1) == "\"" then
+  L2_2 = string.match(L1_1, " (\"[^\"]+\")[%s]*$")
 else
-  l_0_2 = (string.match)(l_0_1, " (%S+)[%s]*$")
+  L2_2 = string.match(L1_1, " (%S+)[%s]*$")
 end
-if l_0_2 == "" or l_0_2 == nil then
+if L2_2 == "" or L2_2 == nil then
   return mp.CLEAN
 end
-if not (MpCommon.QueryPersistContext)(l_0_2, "DroppedByBitsadmin") then
-  (MpCommon.AppendPersistContext)(l_0_2, "DroppedByBitsadmin", 0)
+if not MpCommon.QueryPersistContext(L2_2, "DroppedByBitsadmin") then
+  MpCommon.AppendPersistContext(L2_2, "DroppedByBitsadmin", 0)
 end
 return mp.INFECTED
-

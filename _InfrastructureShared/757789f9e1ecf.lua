@@ -1,38 +1,347 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/757789f9e1ecf 
-
--- params : ...
--- function num : 0
-do
-  if not (hstrlog[1]).matched and not (hstrlog[2]).matched and not (hstrlog[3]).matched and not (hstrlog[4]).matched then
-    local l_0_0 = (hstrlog[5]).matched
-  end
-  do
-    if not (hstrlog[12]).matched and not (hstrlog[13]).matched and not (hstrlog[14]).matched and not (hstrlog[15]).matched and not (hstrlog[16]).matched and not (hstrlog[17]).matched and not (hstrlog[18]).matched and not (hstrlog[19]).matched and not (hstrlog[20]).matched and not (hstrlog[21]).matched then
-      local l_0_1 = nil
-    end
-    do
-      if not (hstrlog[6]).matched and not (hstrlog[7]).matched and not (hstrlog[8]).matched and not (hstrlog[9]).matched and not (hstrlog[10]).matched then
-        local l_0_2 = nil
-      end
-      do
-        if not (hstrlog[23]).matched and not (hstrlog[24]).matched and not (hstrlog[25]).matched and not (hstrlog[26]).matched and not (hstrlog[27]).matched and not (hstrlog[28]).matched and not (hstrlog[29]).matched and not (hstrlog[30]).matched and not (hstrlog[31]).matched and not (hstrlog[32]).matched and not (hstrlog[33]).matched and not (hstrlog[34]).matched and not (hstrlog[35]).matched and not (hstrlog[36]).matched and not (hstrlog[37]).matched and not (hstrlog[38]).matched and not (hstrlog[39]).matched and not (hstrlog[40]).matched and not (hstrlog[41]).matched and not (hstrlog[42]).matched and not (hstrlog[43]).matched and not (hstrlog[44]).matched and not (hstrlog[45]).matched and not (hstrlog[46]).matched and not (hstrlog[47]).matched then
-          local l_0_3 = nil
-        end
-        -- DECOMPILER ERROR at PC303: Confused about usage of register: R0 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC308: Unhandled construct in 'MakeBoolean' P3
-
-        -- DECOMPILER ERROR at PC308: Unhandled construct in 'MakeBoolean' P3
-
-        -- DECOMPILER ERROR at PC344: Confused about usage of register: R3 in 'UnsetPending'
-
-        if (hstrlog[48]).matched and (((not (hstrlog[49]).matched and not (hstrlog[50]).matched and not (hstrlog[51]).matched and not (hstrlog[52]).matched and not (hstrlog[53]).matched and not (hstrlog[54]).matched and not (hstrlog[55]).matched and not (hstrlog[56]).matched and not (hstrlog[57]).matched and not (hstrlog[58]).matched and (hstrlog[60]).matched) or l_0_3) and 1 or 0) + ((hstrlog[11]).matched and 1 or 0) + ((hstrlog[48]).matched and 1 or 0) + ((hstrlog[59]).matched and 1 or 0) + ((hstrlog[22]).matched and 1 or 0) + ((hstrlog[63]).matched and 1 or 0) >= 3 then
-          return mp.INFECTED
-        end
-        return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if not L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if not L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if not L0_0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[4]
+      L0_0 = L0_0.matched
+      if not L0_0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[5]
+        L0_0 = L0_0.matched
       end
     end
   end
 end
-
+L1_1 = hstrlog
+L1_1 = L1_1[12]
+L1_1 = L1_1.matched
+if not L1_1 then
+  L1_1 = hstrlog
+  L1_1 = L1_1[13]
+  L1_1 = L1_1.matched
+  if not L1_1 then
+    L1_1 = hstrlog
+    L1_1 = L1_1[14]
+    L1_1 = L1_1.matched
+    if not L1_1 then
+      L1_1 = hstrlog
+      L1_1 = L1_1[15]
+      L1_1 = L1_1.matched
+      if not L1_1 then
+        L1_1 = hstrlog
+        L1_1 = L1_1[16]
+        L1_1 = L1_1.matched
+        if not L1_1 then
+          L1_1 = hstrlog
+          L1_1 = L1_1[17]
+          L1_1 = L1_1.matched
+          if not L1_1 then
+            L1_1 = hstrlog
+            L1_1 = L1_1[18]
+            L1_1 = L1_1.matched
+            if not L1_1 then
+              L1_1 = hstrlog
+              L1_1 = L1_1[19]
+              L1_1 = L1_1.matched
+              if not L1_1 then
+                L1_1 = hstrlog
+                L1_1 = L1_1[20]
+                L1_1 = L1_1.matched
+                if not L1_1 then
+                  L1_1 = hstrlog
+                  L1_1 = L1_1[21]
+                  L1_1 = L1_1.matched
+                  if not L1_1 then
+                    L1_1 = hstrlog
+                    L1_1 = L1_1[22]
+                    L1_1 = L1_1.matched
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+L2_2 = hstrlog
+L2_2 = L2_2[6]
+L2_2 = L2_2.matched
+if not L2_2 then
+  L2_2 = hstrlog
+  L2_2 = L2_2[7]
+  L2_2 = L2_2.matched
+  if not L2_2 then
+    L2_2 = hstrlog
+    L2_2 = L2_2[8]
+    L2_2 = L2_2.matched
+    if not L2_2 then
+      L2_2 = hstrlog
+      L2_2 = L2_2[9]
+      L2_2 = L2_2.matched
+      if not L2_2 then
+        L2_2 = hstrlog
+        L2_2 = L2_2[10]
+        L2_2 = L2_2.matched
+        if not L2_2 then
+          L2_2 = hstrlog
+          L2_2 = L2_2[11]
+          L2_2 = L2_2.matched
+        end
+      end
+    end
+  end
+end
+L3_3 = hstrlog
+L3_3 = L3_3[23]
+L3_3 = L3_3.matched
+if not L3_3 then
+  L3_3 = hstrlog
+  L3_3 = L3_3[24]
+  L3_3 = L3_3.matched
+  if not L3_3 then
+    L3_3 = hstrlog
+    L3_3 = L3_3[25]
+    L3_3 = L3_3.matched
+    if not L3_3 then
+      L3_3 = hstrlog
+      L3_3 = L3_3[26]
+      L3_3 = L3_3.matched
+      if not L3_3 then
+        L3_3 = hstrlog
+        L3_3 = L3_3[27]
+        L3_3 = L3_3.matched
+        if not L3_3 then
+          L3_3 = hstrlog
+          L3_3 = L3_3[28]
+          L3_3 = L3_3.matched
+          if not L3_3 then
+            L3_3 = hstrlog
+            L3_3 = L3_3[29]
+            L3_3 = L3_3.matched
+            if not L3_3 then
+              L3_3 = hstrlog
+              L3_3 = L3_3[30]
+              L3_3 = L3_3.matched
+              if not L3_3 then
+                L3_3 = hstrlog
+                L3_3 = L3_3[31]
+                L3_3 = L3_3.matched
+                if not L3_3 then
+                  L3_3 = hstrlog
+                  L3_3 = L3_3[32]
+                  L3_3 = L3_3.matched
+                  if not L3_3 then
+                    L3_3 = hstrlog
+                    L3_3 = L3_3[33]
+                    L3_3 = L3_3.matched
+                    if not L3_3 then
+                      L3_3 = hstrlog
+                      L3_3 = L3_3[34]
+                      L3_3 = L3_3.matched
+                      if not L3_3 then
+                        L3_3 = hstrlog
+                        L3_3 = L3_3[35]
+                        L3_3 = L3_3.matched
+                        if not L3_3 then
+                          L3_3 = hstrlog
+                          L3_3 = L3_3[36]
+                          L3_3 = L3_3.matched
+                          if not L3_3 then
+                            L3_3 = hstrlog
+                            L3_3 = L3_3[37]
+                            L3_3 = L3_3.matched
+                            if not L3_3 then
+                              L3_3 = hstrlog
+                              L3_3 = L3_3[38]
+                              L3_3 = L3_3.matched
+                              if not L3_3 then
+                                L3_3 = hstrlog
+                                L3_3 = L3_3[39]
+                                L3_3 = L3_3.matched
+                                if not L3_3 then
+                                  L3_3 = hstrlog
+                                  L3_3 = L3_3[40]
+                                  L3_3 = L3_3.matched
+                                  if not L3_3 then
+                                    L3_3 = hstrlog
+                                    L3_3 = L3_3[41]
+                                    L3_3 = L3_3.matched
+                                    if not L3_3 then
+                                      L3_3 = hstrlog
+                                      L3_3 = L3_3[42]
+                                      L3_3 = L3_3.matched
+                                      if not L3_3 then
+                                        L3_3 = hstrlog
+                                        L3_3 = L3_3[43]
+                                        L3_3 = L3_3.matched
+                                        if not L3_3 then
+                                          L3_3 = hstrlog
+                                          L3_3 = L3_3[44]
+                                          L3_3 = L3_3.matched
+                                          if not L3_3 then
+                                            L3_3 = hstrlog
+                                            L3_3 = L3_3[45]
+                                            L3_3 = L3_3.matched
+                                            if not L3_3 then
+                                              L3_3 = hstrlog
+                                              L3_3 = L3_3[46]
+                                              L3_3 = L3_3.matched
+                                              if not L3_3 then
+                                                L3_3 = hstrlog
+                                                L3_3 = L3_3[47]
+                                                L3_3 = L3_3.matched
+                                                if not L3_3 then
+                                                  L3_3 = hstrlog
+                                                  L3_3 = L3_3[48]
+                                                  L3_3 = L3_3.matched
+                                                end
+                                              end
+                                            end
+                                          end
+                                        end
+                                      end
+                                    end
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+L4_4 = hstrlog
+L4_4 = L4_4[49]
+L4_4 = L4_4.matched
+if not L4_4 then
+  L4_4 = hstrlog
+  L4_4 = L4_4[50]
+  L4_4 = L4_4.matched
+  if not L4_4 then
+    L4_4 = hstrlog
+    L4_4 = L4_4[51]
+    L4_4 = L4_4.matched
+    if not L4_4 then
+      L4_4 = hstrlog
+      L4_4 = L4_4[52]
+      L4_4 = L4_4.matched
+      if not L4_4 then
+        L4_4 = hstrlog
+        L4_4 = L4_4[53]
+        L4_4 = L4_4.matched
+        if not L4_4 then
+          L4_4 = hstrlog
+          L4_4 = L4_4[54]
+          L4_4 = L4_4.matched
+          if not L4_4 then
+            L4_4 = hstrlog
+            L4_4 = L4_4[55]
+            L4_4 = L4_4.matched
+            if not L4_4 then
+              L4_4 = hstrlog
+              L4_4 = L4_4[56]
+              L4_4 = L4_4.matched
+              if not L4_4 then
+                L4_4 = hstrlog
+                L4_4 = L4_4[57]
+                L4_4 = L4_4.matched
+                if not L4_4 then
+                  L4_4 = hstrlog
+                  L4_4 = L4_4[58]
+                  L4_4 = L4_4.matched
+                  if not L4_4 then
+                    L4_4 = hstrlog
+                    L4_4 = L4_4[59]
+                    L4_4 = L4_4.matched
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+end
+L5_5 = hstrlog
+L5_5 = L5_5[60]
+L5_5 = L5_5.matched
+if not L5_5 then
+  L5_5 = hstrlog
+  L5_5 = L5_5[61]
+  L5_5 = L5_5.matched
+  if not L5_5 then
+    L5_5 = hstrlog
+    L5_5 = L5_5[62]
+    L5_5 = L5_5.matched
+    if not L5_5 then
+      L5_5 = hstrlog
+      L5_5 = L5_5[63]
+      L5_5 = L5_5.matched
+    end
+  end
+end
+if L0_0 then
+  L6_6 = 1
+else
+  L6_6 = L6_6 or 0
+end
+if L2_2 then
+  L7_7 = 1
+else
+  L7_7 = L7_7 or 0
+end
+L6_6 = L6_6 + L7_7
+if L3_3 then
+  L7_7 = 1
+else
+  L7_7 = L7_7 or 0
+end
+L6_6 = L6_6 + L7_7
+if L4_4 then
+  L7_7 = 1
+else
+  L7_7 = L7_7 or 0
+end
+L6_6 = L6_6 + L7_7
+if L1_1 then
+  L7_7 = 1
+else
+  L7_7 = L7_7 or 0
+end
+L6_6 = L6_6 + L7_7
+if L5_5 then
+  L7_7 = 1
+else
+  L7_7 = L7_7 or 0
+end
+L6_6 = L6_6 + L7_7
+if L3_3 and L6_6 >= 3 then
+  L7_7 = mp
+  L7_7 = L7_7.INFECTED
+  return L7_7
+end
+L7_7 = mp
+L7_7 = L7_7.CLEAN
+return L7_7

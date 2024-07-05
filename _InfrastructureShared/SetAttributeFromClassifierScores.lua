@@ -1,15 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/SetAttributeFromClassifierScores 
-
--- params : ...
--- function num : 0
-SetAttributeFromClassifierScores = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  for l_1_5,l_1_6 in pairs(l_1_1) do
-    if l_1_6 <= l_1_0 then
-      (mp.set_mpattribute)(l_1_5)
+local L1_0
+function L1_0(A0_1, A1_2)
+  local L2_3, L3_4, L4_5, L5_6
+  for L5_6, _FORV_6_ in L2_3(L3_4) do
+    if _FORV_6_ <= A0_1 then
+      mp.set_mpattribute(L5_6)
     end
   end
 end
-
-
+SetAttributeFromClassifierScores = L1_0

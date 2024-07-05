@@ -1,70 +1,132 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_SignedVBEVBSFile_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = "none"
-if (mp.readu_u32)(headerpage, 1) == 1585332259 then
-  l_0_0 = "VBE"
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = "none"
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 1
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == 1585332259 then
+  L0_0 = "VBE"
 else
-  if ((mp.readu_u32)(headerpage, 1) == 1667594309 and (mp.readu_u32)(headerpage, 5) == 677737589) or (mp.get_mpattribute)("TARG:VBSWithExecute") then
-    l_0_0 = "VBSExecute"
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L2_2 = headerpage
+  L3_3 = 1
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 == 1667594309 then
+    L1_1 = mp
+    L1_1 = L1_1.readu_u32
+    L2_2 = headerpage
+    L3_3 = 5
+    L1_1 = L1_1(L2_2, L3_3)
   else
-    if (mp.get_mpattribute)("TARG:VBSWithConsecutiveV") then
-      l_0_0 = "VBSConsecutiveV"
+    if L1_1 ~= 677737589 then
+      L1_1 = mp
+      L1_1 = L1_1.get_mpattribute
+      L2_2 = "TARG:VBSWithExecute"
+      L1_1 = L1_1(L2_2)
+  end
+  else
+    if L1_1 then
+      L0_0 = "VBSExecute"
+  end
+  else
+    L1_1 = mp
+    L1_1 = L1_1.get_mpattribute
+    L2_2 = "TARG:VBSWithConsecutiveV"
+    L1_1 = L1_1(L2_2)
+    if L1_1 then
+      L0_0 = "VBSConsecutiveV"
     else
-      if (mp.get_mpattribute)("RPF:AnyFileHasIOAVURL") then
-        local l_0_1 = (string.lower)((mp.getfilename)())
-        if (string.sub)(l_0_1, -4) == ".vbs" then
-          l_0_0 = "VBSWithURL"
+      L1_1 = mp
+      L1_1 = L1_1.get_mpattribute
+      L2_2 = "RPF:AnyFileHasIOAVURL"
+      L1_1 = L1_1(L2_2)
+      if L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.lower
+        L2_2 = mp
+        L2_2 = L2_2.getfilename
+        L4_4 = L2_2()
+        L1_1 = L1_1(L2_2, L3_3, L4_4, L2_2())
+        L2_2 = string
+        L2_2 = L2_2.sub
+        L3_3 = L1_1
+        L4_4 = -4
+        L2_2 = L2_2(L3_3, L4_4)
+        if L2_2 == ".vbs" then
+          L0_0 = "VBSWithURL"
         end
       end
     end
   end
 end
-do
-  local l_0_2 = (mp.getfilesize)()
-  if l_0_2 < 12288 then
-    return mp.CLEAN
-  end
-  ;
-  (mp.readprotection)(false)
-  local l_0_3 = (mp.readfile)(l_0_2 - 12288, 12288)
-  local l_0_4 = l_0_3:find("\'\' SIG \'\' Begin signature block", 1, true)
-  if l_0_4 == nil then
-    return mp.CLEAN
-  end
-  if l_0_0 == "VBE" then
-    (mp.set_mpattribute)("Lua:SignedVBEFile")
-  else
-    if l_0_0 == "VBSExecute" then
-      (mp.set_mpattribute)("Lua:SignedVBSFileWitExecute")
-    else
-      if l_0_0 == "VBSConsecutiveV" then
-        (mp.set_mpattribute)("Lua:SignedVBSFileWithVBSConsecutiveV")
-      else
-        if l_0_0 == "VBSWithURL" then
-          (mp.set_mpattribute)("Lua:SignedVBSFileWithURL")
-        end
-      end
-    end
-  end
-  ;
-  (mp.UfsSetMetadataBool)("Lua:SignedVBEVBSFile", true)
-  if (string.sub)(l_0_0, 1, 3) == "VBS" then
-    local l_0_5 = (mp.get_parent_filehandle)()
-    local l_0_6, l_0_7 = pcall(mp.get_filesize_by_handle, l_0_5)
-    if l_0_6 == false then
-      (mp.UfsSetMetadataBool)("Lua:SignedVBEVBSTopFile", true)
-    end
-  end
-  do
-    l_0_4 = l_0_4 + 31
-    l_0_3 = l_0_3:sub(l_0_4)
-    l_0_3 = l_0_3:gsub("\'\' SIG \'\' ", "")
-    ;
-    (mp.vfo_add_buffer)(l_0_3, "[ScriptSigBlock]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-    return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.getfilesize
+L1_1 = L1_1()
+if L1_1 < 12288 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L3_3 = false
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = L1_1 - 12288
+L4_4 = 12288
+L2_2 = L2_2(L3_3, L4_4)
+L4_4 = L2_2
+L3_3 = L2_2.find
+L3_3 = L3_3(L4_4, "'' SIG '' Begin signature block", 1, true)
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+if L0_0 == "VBE" then
+  L4_4 = mp
+  L4_4 = L4_4.set_mpattribute
+  L4_4("Lua:SignedVBEFile")
+elseif L0_0 == "VBSExecute" then
+  L4_4 = mp
+  L4_4 = L4_4.set_mpattribute
+  L4_4("Lua:SignedVBSFileWitExecute")
+elseif L0_0 == "VBSConsecutiveV" then
+  L4_4 = mp
+  L4_4 = L4_4.set_mpattribute
+  L4_4("Lua:SignedVBSFileWithVBSConsecutiveV")
+elseif L0_0 == "VBSWithURL" then
+  L4_4 = mp
+  L4_4 = L4_4.set_mpattribute
+  L4_4("Lua:SignedVBSFileWithURL")
+end
+L4_4 = mp
+L4_4 = L4_4.UfsSetMetadataBool
+L4_4("Lua:SignedVBEVBSFile", true)
+L4_4 = string
+L4_4 = L4_4.sub
+L4_4 = L4_4(L0_0, 1, 3)
+if L4_4 == "VBS" then
+  L4_4 = mp
+  L4_4 = L4_4.get_parent_filehandle
+  L4_4 = L4_4()
+  if pcall(mp.get_filesize_by_handle, L4_4) == false then
+    mp.UfsSetMetadataBool("Lua:SignedVBEVBSTopFile", true)
   end
 end
-
+L3_3 = L3_3 + 31
+L4_4 = L2_2.sub
+L4_4 = L4_4(L2_2, L3_3)
+L2_2 = L4_4
+L4_4 = L2_2.gsub
+L4_4 = L4_4(L2_2, "'' SIG '' ", "")
+L2_2 = L4_4
+L4_4 = mp
+L4_4 = L4_4.vfo_add_buffer
+L4_4(L2_2, "[ScriptSigBlock]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

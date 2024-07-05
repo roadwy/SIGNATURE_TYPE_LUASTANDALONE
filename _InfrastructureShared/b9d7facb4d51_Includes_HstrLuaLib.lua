@@ -1,26 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/b9d7facb4d51_Includes_HstrLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.GetProcessCommandLine)(l_0_0))
-local l_0_2 = {}
--- DECOMPILER ERROR at PC22: No list found for R2 , SetList fails
-
-local l_0_3 = false
--- DECOMPILER ERROR at PC24: Overwrote pending register: R4 in 'AssignReg'
-
--- DECOMPILER ERROR at PC25: Overwrote pending register: R5 in 'AssignReg'
-
-for l_0_7,l_0_8 in ("(?:set|add)-mppreference\\s+-exclusionextension\\s*[\'\"]?dll[\'\"]?")("(?:set|add)-mppreference\\s+-exclusionprocess\\s+\\.?(?:exe|dll|regsvr32|rundll32|powershell|iexplore|explorer|msiexec)(?:.exe|\\s*|\\*)?") do
-  l_0_3 = (MpCommon.StringRegExpSearch)(l_0_8, l_0_1)
-  if l_0_3 then
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.GetProcessCommandLine
+L3_3 = L0_0
+L8_8 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L2_2(L3_3))
+L2_2 = {
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6
+}
+L3_3 = "(?:set|add)-mppreference\\s+-exclusionextension\\s+\\*\\.?(?:exe|dll)\\s"
+L3_3 = false
+for L7_7, L8_8 in L4_4(L5_5) do
+  L3_3, L7_7 = MpCommon.StringRegExpSearch(L8_8, L1_1)
+  if L3_3 then
     return mp.LOWFI
   end
 end
-return mp.CLEAN
-
+return L4_4

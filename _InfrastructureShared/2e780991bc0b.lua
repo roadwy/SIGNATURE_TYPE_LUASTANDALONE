@@ -1,28 +1,51 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2e780991bc0b 
-
--- params : ...
--- function num : 0
-local l_0_0 = pehdr.AddressOfEntryPoint + pehdr.ImageBase
-local l_0_1, l_0_2 = nil, nil
-if (hstrlog[1]).matched then
-  l_0_1 = 7
-  l_0_2 = (hstrlog[1]).VA
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = pehdr
+L0_0 = L0_0.AddressOfEntryPoint
+L1_1 = pehdr
+L1_1 = L1_1.ImageBase
+L0_0 = L0_0 + L1_1
+L1_1, L2_2 = nil, nil
+L3_3 = hstrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L1_1 = 7
+  L3_3 = hstrlog
+  L3_3 = L3_3[1]
+  L2_2 = L3_3.VA
 end
-if (hstrlog[2]).matched then
-  l_0_1 = 7
-  l_0_2 = (hstrlog[2]).VA
+L3_3 = hstrlog
+L3_3 = L3_3[2]
+L3_3 = L3_3.matched
+if L3_3 then
+  L1_1 = 7
+  L3_3 = hstrlog
+  L3_3 = L3_3[2]
+  L2_2 = L3_3.VA
 end
-if (hstrlog[3]).matched then
-  l_0_1 = 6
-  l_0_2 = (hstrlog[3]).VA
+L3_3 = hstrlog
+L3_3 = L3_3[3]
+L3_3 = L3_3.matched
+if L3_3 then
+  L1_1 = 6
+  L3_3 = hstrlog
+  L3_3 = L3_3[3]
+  L2_2 = L3_3.VA
 end
-local l_0_3 = (pe.mmap_va)(l_0_2, 15)
-local l_0_4 = (mp.readu_u32)(l_0_3, l_0_1)
-local l_0_5 = l_0_2 + l_0_1 + 3 + l_0_4
-l_0_5 = (mp.bitand)(l_0_5, 4294967295)
-if l_0_5 == l_0_0 then
+L3_3 = pe
+L3_3 = L3_3.mmap_va
+L4_4 = L2_2
+L5_5 = 15
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = mp
+L4_4 = L4_4.readu_u32
+L5_5 = L3_3
+L4_4 = L4_4(L5_5, L1_1)
+L5_5 = L2_2 + L1_1
+L5_5 = L5_5 + 3
+L5_5 = L5_5 + L4_4
+L5_5 = mp.bitand(L5_5, 4294967295)
+if L5_5 == L0_0 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

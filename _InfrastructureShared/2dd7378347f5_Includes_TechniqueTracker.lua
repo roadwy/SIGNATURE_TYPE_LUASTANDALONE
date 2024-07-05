@@ -1,23 +1,18 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2dd7378347f5_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetParentProcInfo)()
-if l_0_1 == nil or l_0_1.ppid == nil then
+if mp.GetParentProcInfo() == nil or mp.GetParentProcInfo().ppid == nil then
   return mp.CLEAN
 end
-TrackPidAndTechnique(l_0_0, "T1003", "shadowcopy_access")
-if IsDetectionThresholdMet(l_0_0) or IsDetectionThresholdMet(l_0_1.ppid) then
+TrackPidAndTechnique(L0_0, "T1003", "shadowcopy_access")
+if IsDetectionThresholdMet(L0_0) or IsDetectionThresholdMet(mp.GetParentProcInfo().ppid) then
   return mp.INFECTED
 end
-local l_0_2 = GetTacticsTableForPid(l_0_1.ppid)
-if l_0_2.winrshost_childproc or l_0_2.wsmprovhost_childproc or l_0_2.wmi_childproc or l_0_2.remotedropexe_childproc or l_0_2.python_childproc or l_0_2.rundll32_childproc or l_0_2.wscript_childproc or l_0_2.cscript_childproc or l_0_2.mshta_childproc or l_0_2.webshell_childproc or l_0_2.exec_remotedroppedscript_a then
+if GetTacticsTableForPid(mp.GetParentProcInfo().ppid).winrshost_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wsmprovhost_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wmi_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).remotedropexe_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).python_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).rundll32_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wscript_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).cscript_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).mshta_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).webshell_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).exec_remotedroppedscript_a then
   return mp.INFECTED
 end
 return mp.LOWFI
-

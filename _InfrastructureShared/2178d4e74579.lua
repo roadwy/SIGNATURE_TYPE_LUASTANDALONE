@@ -1,10 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2178d4e74579 
-
--- params : ...
--- function num : 0
-if peattributes.ismsil and peattributes.has_msilresources and (hstrlog[2]).hitcount > 300 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.ismsil
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.has_msilresources
+  if L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.hitcount
+    if L0_0 > 300 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

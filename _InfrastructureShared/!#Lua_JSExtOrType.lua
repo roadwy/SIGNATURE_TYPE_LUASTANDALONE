@@ -1,36 +1,56 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_JSExtOrType 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1 = (string.lower)((mp.getfilename)())
-if (string.sub)(l_0_1, -3) == ".js" then
-  l_0_0 = true
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = false
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.getfilename
+L7_7 = L2_2()
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2())
+L2_2 = string
+L2_2 = L2_2.sub
+L3_3 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == ".js" then
+  L0_0 = true
 end
-local l_0_2 = (string.sub)(l_0_1, -4)
-if l_0_2 == ".jse" then
-  l_0_0 = true
+L3_3 = string
+L3_3 = L3_3.sub
+L3_3 = L3_3(L4_4, L5_5)
+L2_2 = L3_3
+if L2_2 == ".jse" then
+  L0_0 = true
 end
-if (mp.get_mpattribute)("Nscript:Type_js") then
-  l_0_0 = true
+L3_3 = mp
+L3_3 = L3_3.get_mpattribute
+L3_3 = L3_3(L4_4)
+if L3_3 then
+  L0_0 = true
 end
-if l_0_0 == false then
-  return mp.CLEAN
+if L0_0 == false then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-if (mp.getfilesize)() <= 86 then
-  return mp.CLEAN
+L3_3 = mp
+L3_3 = L3_3.getfilesize
+L3_3 = L3_3()
+if L3_3 <= 86 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-;
-(mp.readprotection)(false)
-local l_0_3 = (mp.readfile)(0, 32)
-for l_0_7 = 0, 32 do
-  if (string.byte)(l_0_3, l_0_7) == 60 or (string.byte)(l_0_3, l_0_7) == 37 or (string.byte)(l_0_3, l_0_7) == 91 or (string.byte)(l_0_3, l_0_7) == 92 or (string.byte)(l_0_3, l_0_7) == 38 or (string.byte)(l_0_3, l_0_7) == 60 or (string.byte)(l_0_3, l_0_7) == 35 or (string.byte)(l_0_3, l_0_7) == 125 then
+L3_3 = mp
+L3_3 = L3_3.readprotection
+L3_3(L4_4)
+L3_3 = mp
+L3_3 = L3_3.readfile
+L3_3 = L3_3(L4_4, L5_5)
+for L7_7 = 0, 32 do
+  if string.byte(L3_3, L7_7) == 60 or string.byte(L3_3, L7_7) == 37 or string.byte(L3_3, L7_7) == 91 or string.byte(L3_3, L7_7) == 92 or string.byte(L3_3, L7_7) == 38 or string.byte(L3_3, L7_7) == 60 or string.byte(L3_3, L7_7) == 35 or string.byte(L3_3, L7_7) == 125 then
     return mp.CLEAN
   end
-  if (string.byte)(l_0_3, l_0_7) ~= 32 and (string.byte)(l_0_3, l_0_7) ~= 13 and (string.byte)(l_0_3, l_0_7) ~= 10 and (string.byte)(l_0_3, l_0_7) ~= 9 then
+  if string.byte(L3_3, L7_7) ~= 32 and string.byte(L3_3, L7_7) ~= 13 and string.byte(L3_3, L7_7) ~= 10 and string.byte(L3_3, L7_7) ~= 9 then
     return mp.INFECTED
   end
 end
-return mp.INFECTED
-
+return L4_4

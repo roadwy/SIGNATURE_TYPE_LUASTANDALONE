@@ -1,67 +1,115 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Win32_Gamania 
-
--- params : ...
--- function num : 0
-if peattributes.epscn_writable ~= true then
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.epscn_writable
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.hasboundimports
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.hasstandardentry
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.epinfirstsect
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.epscn_islast
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 <= 2 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 >= 80 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.Size
+if L0_0 <= 192 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.Size
+if L0_0 >= 224 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L0_0 = L0_0(pe.foffset_rva(pehdr.DataDirectory[1].RVA), 32)
+if mp.readu_u32(L0_0, 1) ~= 0 then
   return mp.CLEAN
 end
-if peattributes.hasboundimports == true then
+if mp.readu_u32(L0_0, 5) ~= 0 then
   return mp.CLEAN
 end
-if peattributes.isdll ~= true then
+if mp.readu_u32(L0_0, 9) ~= 0 then
   return mp.CLEAN
 end
-if peattributes.hasexports ~= true then
+if 0 >= mp.readu_u32(L0_0, 13) then
   return mp.CLEAN
 end
-if peattributes.hasstandardentry == true then
+if mp.readu_u32(L0_0, 17) ~= 1 then
   return mp.CLEAN
 end
-if peattributes.epinfirstsect == true then
+if mp.readu_u32(L0_0, 21) ~= 6 then
   return mp.CLEAN
 end
-if peattributes.epscn_islast == true then
+if mp.readu_u32(L0_0, 25) ~= 6 then
   return mp.CLEAN
 end
-if pehdr.NumberOfSections <= 2 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[2]).Size >= 80 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[1]).Size <= 192 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[1]).Size >= 224 then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)((pe.foffset_rva)(((pehdr.DataDirectory)[1]).RVA), 32)
-if (mp.readu_u32)(l_0_0, 1) ~= 0 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 5) ~= 0 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 9) ~= 0 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 13) <= 0 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 17) ~= 1 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 21) ~= 6 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 25) ~= 6 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 29) <= 0 then
+if 0 >= mp.readu_u32(L0_0, 29) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

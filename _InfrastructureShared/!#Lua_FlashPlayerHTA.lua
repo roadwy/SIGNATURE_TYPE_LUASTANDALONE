@@ -1,13 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_FlashPlayerHTA 
-
--- params : ...
--- function num : 0
-if (string.len)((mp.getfilename)()) < 15 then
-  return mp.CLEAN
+local L0_0
+L0_0 = string
+L0_0 = L0_0.len
+L0_0 = L0_0(mp.getfilename())
+if L0_0 < 15 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (string.lower)((string.sub)((mp.getfilename)(), -15)) == "flashplayer.hta" then
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(string.sub(mp.getfilename(), -15))
+if L0_0 == "flashplayer.hta" then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,16 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/25b35af215b8 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1, l_0_2 = ((bm.get_connection_string)()):find("DestIp=(.-;)")
-if l_0_2 == nil then
+local L0_0, L1_1, L2_2
+L0_0 = bm
+L0_0 = L0_0.get_connection_string
+L0_0 = L0_0()
+L1_1 = L0_0
+L0_0 = L0_0.find
+L2_2 = "DestIp=(.-;)"
+L2_2 = L0_0(L1_1, L2_2)
+if L2_2 == nil then
   return mp.CLEAN
 end
-l_0_2 = ";" .. l_0_2
-local l_0_3 = ";91.200.85.81;109.95.210.101;"
-if l_0_3:find(l_0_2, 1, true) then
+L2_2 = ";" .. L2_2
+if (";91.200.85.81;109.95.210.101;"):find(L2_2, 1, true) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

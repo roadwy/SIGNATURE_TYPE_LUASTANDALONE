@@ -1,14 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Wpbbin.A 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("Lua:Wpbbin.A!cert") then
-  return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L0_0 = L0_0("Lua:Wpbbin.A!cert")
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (string.lower)((mp.getfilename)())
-if l_0_0:len() < 28 or (string.sub)(l_0_0, -28) ~= "\\windows\\system32\\wpbbin.exe" then
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(mp.getfilename())
+if L0_0:len() < 28 or string.sub(L0_0, -28) ~= "\\windows\\system32\\wpbbin.exe" then
   return mp.CLEAN
 end
 return mp.INFECTED
-

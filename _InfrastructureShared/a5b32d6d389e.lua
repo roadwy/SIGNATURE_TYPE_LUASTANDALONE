@@ -1,63 +1,98 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a5b32d6d389e 
-
--- params : ...
--- function num : 0
-if not (this_sigattrlog[1]).matched or not (this_sigattrlog[2]).matched or not (this_sigattrlog[3]).matched or not (this_sigattrlog[4]).matched or not (this_sigattrlog[5]).matched or not (this_sigattrlog[6]).matched or not (this_sigattrlog[7]).matched or (this_sigattrlog[8]).matched == false then
+local L0_0
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = this_sigattrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.matched
+    if L0_0 then
+      L0_0 = this_sigattrlog
+      L0_0 = L0_0[4]
+      L0_0 = L0_0.matched
+      if L0_0 then
+        L0_0 = this_sigattrlog
+        L0_0 = L0_0[5]
+        L0_0 = L0_0.matched
+        if L0_0 then
+          L0_0 = this_sigattrlog
+          L0_0 = L0_0[6]
+          L0_0 = L0_0.matched
+          if L0_0 then
+            L0_0 = this_sigattrlog
+            L0_0 = L0_0[7]
+            L0_0 = L0_0.matched
+            if L0_0 then
+              L0_0 = this_sigattrlog
+              L0_0 = L0_0[8]
+              L0_0 = L0_0.matched
+            end
+          end
+        end
+      end
+    end
+  end
+end
+if L0_0 == false then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = ""
+if this_sigattrlog[1].utf8p1 == nil then
   return mp.CLEAN
 end
-local l_0_0 = ""
-if (this_sigattrlog[1]).utf8p1 == nil then
+L0_0 = string.match(string.lower(this_sigattrlog[1].utf8p1), "(.+)\\")
+if L0_0 == nil or L0_0 == "" then
   return mp.CLEAN
 end
-l_0_0 = (string.match)((string.lower)((this_sigattrlog[1]).utf8p1), "(.+)\\")
-if l_0_0 == nil or l_0_0 == "" then
+if this_sigattrlog[2].utf8p1 == nil then
   return mp.CLEAN
 end
-if (this_sigattrlog[2]).utf8p1 == nil then
+if L0_0 ~= string.match(string.lower(this_sigattrlog[2].utf8p1), "(.+)\\") then
   return mp.CLEAN
 end
-if l_0_0 ~= (string.match)((string.lower)((this_sigattrlog[2]).utf8p1), "(.+)\\") then
+if this_sigattrlog[3].utf8p1 == nil then
   return mp.CLEAN
 end
-if (this_sigattrlog[3]).utf8p1 == nil then
+if L0_0 ~= string.match(string.lower(this_sigattrlog[3].utf8p1), "(.+)\\") then
   return mp.CLEAN
 end
-if l_0_0 ~= (string.match)((string.lower)((this_sigattrlog[3]).utf8p1), "(.+)\\") then
+if this_sigattrlog[4].utf8p1 == nil then
   return mp.CLEAN
 end
-if (this_sigattrlog[4]).utf8p1 == nil then
+if L0_0 ~= string.match(string.lower(this_sigattrlog[4].utf8p1), "(.+)\\") then
   return mp.CLEAN
 end
-if l_0_0 ~= (string.match)((string.lower)((this_sigattrlog[4]).utf8p1), "(.+)\\") then
+if this_sigattrlog[5].utf8p1 == nil then
   return mp.CLEAN
 end
-if (this_sigattrlog[5]).utf8p1 == nil then
+if L0_0 ~= string.match(string.lower(this_sigattrlog[5].utf8p1), "(.+)\\") then
   return mp.CLEAN
 end
-if l_0_0 ~= (string.match)((string.lower)((this_sigattrlog[5]).utf8p1), "(.+)\\") then
+if this_sigattrlog[6].utf8p1 == nil then
   return mp.CLEAN
 end
-if (this_sigattrlog[6]).utf8p1 == nil then
+if L0_0 ~= string.match(string.lower(this_sigattrlog[6].utf8p1), "(.+)\\") then
   return mp.CLEAN
 end
-if l_0_0 ~= (string.match)((string.lower)((this_sigattrlog[6]).utf8p1), "(.+)\\") then
+if this_sigattrlog[7].utf8p1 == nil then
   return mp.CLEAN
 end
-if (this_sigattrlog[7]).utf8p1 == nil then
+if L0_0 ~= string.match(string.lower(this_sigattrlog[7].utf8p1), "(.+)\\") then
   return mp.CLEAN
 end
-if l_0_0 ~= (string.match)((string.lower)((this_sigattrlog[7]).utf8p1), "(.+)\\") then
+if this_sigattrlog[8].utf8p1 == nil then
   return mp.CLEAN
 end
-if (this_sigattrlog[8]).utf8p1 == nil then
+if L0_0 ~= string.match(string.lower(this_sigattrlog[8].utf8p1), "(.+)\\") then
   return mp.CLEAN
 end
-if l_0_0 ~= (string.match)((string.lower)((this_sigattrlog[8]).utf8p1), "(.+)\\") then
-  return mp.CLEAN
-end
-if not (MpCommon.QueryPersistContext)((bm.get_imagepath)(), "RunsDestructiveCMDsParentBlock") then
+if not MpCommon.QueryPersistContext(bm.get_imagepath(), "RunsDestructiveCMDsParentBlock") then
   return mp.CLEAN
 end
 return mp.INFECTED
-

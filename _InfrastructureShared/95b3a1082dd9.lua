@@ -1,62 +1,147 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/95b3a1082dd9 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2 = nil
-if (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())) == nil or (string.find)((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())), "\\msexchangehmworker.exe", -23, true) or (string.find)((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())), "\\gameguard\\gamemon64.des", -24, true) or (string.find)((string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())), "\\gameguard\\gamemon.des", -22, true) then
-  return mp.CLEAN
-end
-local l_0_3, l_0_4 = nil
-if (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)())) ~= nil then
-  for l_0_8,l_0_9 in ipairs(R6_PC48) do
-    local l_0_5, l_0_6 = (bm.get_process_relationships)()
-    -- DECOMPILER ERROR at PC50: Confused about usage of register: R9 in 'UnsetPending'
-
-    if R9_PC50.image_path ~= nil and (R9_PC50.reason == bm.RELATIONSHIP_INJECTION or R9_PC50.reason == bm.RELATIONSHIP_CREATED) then
-      if (string.find)((string.lower)(R9_PC50.image_path), "\\gameguard\\gamemon64.des", -24, true) or (string.find)((string.lower)(R9_PC50.image_path), "\\system32\\mrt.exe", -17, true) or (string.find)((string.lower)(R9_PC50.image_path), "\\asep_inv.exe", -13, true) or (string.find)((string.lower)(R9_PC50.image_path), "\\mpsigstub.exe", -14, true) or (string.find)((string.lower)(R9_PC50.image_path), "\\gameguard\\gamemon.des", -22, true) then
-        return mp.CLEAN
-      end
-      if (string.find)((string.lower)(R9_PC50.image_path), "\\nslookup.exe", -13, true) then
-        l_0_3 = R9_PC50.ppid
-      end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = MpCommon
+L3_3 = L3_3.PathToWin32Path
+L4_4 = bm
+L4_4 = L4_4.get_imagepath
+L10_10 = L4_4()
+L10_10 = L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L4_4())
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L3_3(L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L4_4()))
+if L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.find
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+  if not L3_3 then
+    L3_3 = string
+    L3_3 = L3_3.find
+    L4_4 = L2_2
+    L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
+    if not L3_3 then
+      L3_3 = string
+      L3_3 = L3_3.find
+      L4_4 = L2_2
+      L3_3 = L3_3(L4_4, L5_5, L6_6, L7_7)
     end
   end
+elseif L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-do
-  -- DECOMPILER ERROR at PC127: Confused about usage of register: R3 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC130: Confused about usage of register: R3 in 'UnsetPending'
-
-  if l_0_5 ~= nil then
-    for l_0_14,l_0_15 in ipairs(l_0_5) do
-      local l_0_11, l_0_12 = nil
-      -- DECOMPILER ERROR at PC133: Confused about usage of register: R9 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC140: Confused about usage of register: R9 in 'UnsetPending'
-
-      if R9_PC50.image_path ~= nil then
-        l_0_2 = (string.lower)((MpCommon.PathToWin32Path)(R9_PC50.image_path))
-        if (string.find)(l_0_2, "\\mcafee\\systemcore\\mfehcs.exe", -29, true) or (string.find)(l_0_2, "(x86)\\pharossystems\\printscout\\ctskmstr.exe", -43, true) or (string.find)(l_0_2, "(x86)\\hp\\printscout\\ctskmstr.exe", -32, true) or (string.find)(l_0_2, "\\mcafee\\endpoint security\\threat prevention\\mfetp.exe", -53, true) or (string.find)(l_0_2, "\\anti-malware\\mbamservice.exe", -29, true) or (string.find)(l_0_2, "\\cnext\\radeonsoftware.exe", -25, true) or (string.find)(l_0_2, "(x86)\\panda security\\wac\\psanhost.exe", -37, true) or (string.find)(l_0_2, "(x86)\\cloudvolumes\\agent\\svservice.exe", -38, true) or (string.find)(l_0_2, "\\gameguard\\gamemon64.des", -24, true) or (string.find)(l_0_2, "\\gameguard\\gamemon.des", -22, true) or (string.find)(l_0_2, "(x86)\\f-secure\\server security\\", 1, true) then
+L3_3 = bm
+L3_3 = L3_3.get_process_relationships
+L4_4 = L3_3()
+if L4_4 ~= nil then
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = L9_9.image_path
+    if L10_10 ~= nil then
+      L10_10 = L9_9.reason
+      if L10_10 ~= bm.RELATIONSHIP_INJECTION then
+        L10_10 = L9_9.reason
+      elseif L10_10 == bm.RELATIONSHIP_CREATED then
+        L10_10 = string
+        L10_10 = L10_10.lower
+        L10_10 = L10_10(L9_9.image_path)
+        if string.find(L10_10, "\\gameguard\\gamemon64.des", -24, true) or string.find(L10_10, "\\system32\\mrt.exe", -17, true) or string.find(L10_10, "\\asep_inv.exe", -13, true) or string.find(L10_10, "\\mpsigstub.exe", -14, true) or string.find(L10_10, "\\gameguard\\gamemon.des", -22, true) then
           return mp.CLEAN
         end
-      end
-      if (sysio.IsFileExists)(l_0_2) and not (mp.IsKnownFriendlyFile)(l_0_2, true, false) then
-        (bm.add_related_file)(l_0_2)
+        if string.find(L10_10, "\\nslookup.exe", -13, true) then
+          L1_1 = L9_9.ppid
+        end
       end
     end
-  end
-  do
-    if (sysio.IsFileExists)(l_0_4) and not (mp.IsKnownFriendlyFile)(l_0_4, true, false) and l_0_3 ~= nil then
-      (bm.request_SMS)(l_0_3, "h+")
-      ;
-      (bm.add_action)("SmsAsyncScanEvent", 1)
-      ;
-      (bm.add_related_file)(l_0_4)
-      return mp.INFECTED
-    end
-    return mp.CLEAN
   end
 end
-
+if L3_3 ~= nil then
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = L9_9.image_path
+    if L10_10 ~= nil then
+      L10_10 = string
+      L10_10 = L10_10.lower
+      L10_10 = L10_10(MpCommon.PathToWin32Path(L9_9.image_path))
+      L0_0 = L10_10
+      L10_10 = string
+      L10_10 = L10_10.find
+      L10_10 = L10_10(L0_0, "\\mcafee\\systemcore\\mfehcs.exe", -29, true)
+      if not L10_10 then
+        L10_10 = string
+        L10_10 = L10_10.find
+        L10_10 = L10_10(L0_0, "(x86)\\pharossystems\\printscout\\ctskmstr.exe", -43, true)
+        if not L10_10 then
+          L10_10 = string
+          L10_10 = L10_10.find
+          L10_10 = L10_10(L0_0, "(x86)\\hp\\printscout\\ctskmstr.exe", -32, true)
+          if not L10_10 then
+            L10_10 = string
+            L10_10 = L10_10.find
+            L10_10 = L10_10(L0_0, "\\mcafee\\endpoint security\\threat prevention\\mfetp.exe", -53, true)
+            if not L10_10 then
+              L10_10 = string
+              L10_10 = L10_10.find
+              L10_10 = L10_10(L0_0, "\\anti-malware\\mbamservice.exe", -29, true)
+              if not L10_10 then
+                L10_10 = string
+                L10_10 = L10_10.find
+                L10_10 = L10_10(L0_0, "\\cnext\\radeonsoftware.exe", -25, true)
+                if not L10_10 then
+                  L10_10 = string
+                  L10_10 = L10_10.find
+                  L10_10 = L10_10(L0_0, "(x86)\\panda security\\wac\\psanhost.exe", -37, true)
+                  if not L10_10 then
+                    L10_10 = string
+                    L10_10 = L10_10.find
+                    L10_10 = L10_10(L0_0, "(x86)\\cloudvolumes\\agent\\svservice.exe", -38, true)
+                    if not L10_10 then
+                      L10_10 = string
+                      L10_10 = L10_10.find
+                      L10_10 = L10_10(L0_0, "\\gameguard\\gamemon64.des", -24, true)
+                      if not L10_10 then
+                        L10_10 = string
+                        L10_10 = L10_10.find
+                        L10_10 = L10_10(L0_0, "\\gameguard\\gamemon.des", -22, true)
+                        if not L10_10 then
+                          L10_10 = string
+                          L10_10 = L10_10.find
+                          L10_10 = L10_10(L0_0, "(x86)\\f-secure\\server security\\", 1, true)
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      elseif L10_10 then
+        L10_10 = mp
+        L10_10 = L10_10.CLEAN
+        return L10_10
+      end
+    end
+    L10_10 = sysio
+    L10_10 = L10_10.IsFileExists
+    L10_10 = L10_10(L0_0)
+    if L10_10 then
+      L10_10 = mp
+      L10_10 = L10_10.IsKnownFriendlyFile
+      L10_10 = L10_10(L0_0, true, false)
+      if not L10_10 then
+        L10_10 = bm
+        L10_10 = L10_10.add_related_file
+        L10_10(L0_0)
+      end
+    end
+  end
+end
+if L5_5 then
+  L8_8 = false
+  if not L5_5 and L1_1 ~= nil then
+    L5_5(L6_6, L7_7)
+    L5_5(L6_6, L7_7)
+    L5_5(L6_6)
+    return L5_5
+  end
+end
+return L5_5

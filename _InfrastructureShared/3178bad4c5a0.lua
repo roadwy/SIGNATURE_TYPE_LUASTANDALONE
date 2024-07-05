@@ -1,13 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3178bad4c5a0 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 <= 2097152 then
+if mp.getfilesize() <= 2097152 then
   return mp.INFECTED
 end
-;
-(mp.set_mpattribute)("ALF:Trojan:Win32/GenMal.A")
+mp.set_mpattribute("ALF:Trojan:Win32/GenMal.A")
 return mp.CLEAN
-

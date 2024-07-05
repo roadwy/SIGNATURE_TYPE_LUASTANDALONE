@@ -1,27 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6178446115b3 
-
--- params : ...
--- function num : 0
-local l_0_0 = -1
-if (pesecs[3]).Name == ".data" then
-  l_0_0 = 3
+local L0_0, L1_1, L2_2
+L0_0 = -1
+L1_1 = pesecs
+L1_1 = L1_1[3]
+L1_1 = L1_1.Name
+if L1_1 == ".data" then
+  L0_0 = 3
 end
-if (pesecs[2]).Name == ".data" then
-  l_0_0 = 2
+L1_1 = pesecs
+L1_1 = L1_1[2]
+L1_1 = L1_1.Name
+if L1_1 == ".data" then
+  L0_0 = 2
 end
-if l_0_0 == -1 then
-  return mp.CLEAN
+if L0_0 == -1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (pesecs[l_0_0]).SizeOfRawData > 4096 then
-  local l_0_1 = pehdr.ImageBase + (pesecs[l_0_0]).VirtualAddress + 16
-  local l_0_2 = (pe.mmap_va)(l_0_1, 16)
-  if (string.byte)(l_0_2, 1) == 77 and (string.byte)(l_0_2, 2) == 90 then
+L1_1 = pesecs
+L1_1 = L1_1[L0_0]
+L1_1 = L1_1.SizeOfRawData
+if L1_1 > 4096 then
+  L1_1 = pehdr
+  L1_1 = L1_1.ImageBase
+  L2_2 = pesecs
+  L2_2 = L2_2[L0_0]
+  L2_2 = L2_2.VirtualAddress
+  L1_1 = L1_1 + L2_2
+  L1_1 = L1_1 + 16
+  L2_2 = pe
+  L2_2 = L2_2.mmap_va
+  L2_2 = L2_2(L1_1, 16)
+  if string.byte(L2_2, 1) == 77 and string.byte(L2_2, 2) == 90 then
     return mp.INFECTED
   end
   return mp.CLEAN
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

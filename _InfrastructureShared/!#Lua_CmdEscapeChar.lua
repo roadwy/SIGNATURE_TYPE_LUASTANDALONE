@@ -1,22 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_CmdEscapeChar 
-
--- params : ...
--- function num : 0
-if not (mp.get_mpattribute)("PACKED_WITH:[CMDEmbedded]") then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "PACKED_WITH:[CMDEmbedded]"
+L0_0 = L0_0(L1_1)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 1048576 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 1048576 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-if (string.find)(l_0_1, "%^") then
-  l_0_1 = (string.gsub)(l_0_1, "%^", "")
-  ;
-  (mp.vfo_add_buffer)(l_0_1, "[CmdEscapeChar]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L1_1(false)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L1_1 = L1_1(0, L0_0)
+if string.find(L1_1, "%^") then
+  L1_1 = string.gsub(L1_1, "%^", "")
+  mp.vfo_add_buffer(L1_1, "[CmdEscapeChar]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 end
 return mp.CLEAN
-

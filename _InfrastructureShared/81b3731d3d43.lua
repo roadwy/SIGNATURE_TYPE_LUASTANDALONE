@@ -1,11 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/81b3731d3d43 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if (string.sub)(l_0_0, -12) == "\\outlook.exe" or (string.sub)(l_0_0, -8) == "\\olk.exe" or (string.sub)(l_0_0, -10) == "\\lsass.exe" or (string.sub)(l_0_0, -12) == "\\winword.exe" or (string.sub)(l_0_0, -10) == "\\excel.exe" or (string.sub)(l_0_0, -13) == "\\powerpnt.exe" or (string.sub)(l_0_0, -13) == "\\msaccess.exe" or (string.sub)(l_0_0, -12) == "\\onenote.exe" or (string.sub)(l_0_0, -10) == "\\visio.exe" or (string.sub)(l_0_0, -11) == "\\groove.exe" or (string.sub)(l_0_0, -13) == "\\onenotem.exe" or (string.sub)(l_0_0, -13) == "\\onedrive.exe" or (string.sub)(l_0_0, -9) == "\\lync.exe" or (string.sub)(l_0_0, -11) == "\\ucmapi.exe" or (string.sub)(l_0_0, -10) == "\\skype.exe" or (string.sub)(l_0_0, -10) == "\\teams.exe" or (string.sub)(l_0_0, -12) == "\\msteams.exe" or (string.sub)(l_0_0, -40) == "\\incidentmanagement.client.applaunch.exe" or (string.sub)(l_0_0, -17) == "\\osfinstaller.exe" or (string.sub)(l_0_0, -19) == "\\officehubwin32.exe" or (string.sub)(l_0_0, -17) == "\\lynchtmlconv.exe" or (string.sub)(l_0_0, -30) == "\\microsoft.skyperoomsystem.exe" then
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(bm.get_imagepath())
+if string.sub(L0_0, -12) == "\\outlook.exe" or string.sub(L0_0, -8) == "\\olk.exe" or string.sub(L0_0, -10) == "\\lsass.exe" or string.sub(L0_0, -12) == "\\winword.exe" or string.sub(L0_0, -10) == "\\excel.exe" or string.sub(L0_0, -13) == "\\powerpnt.exe" or string.sub(L0_0, -13) == "\\msaccess.exe" or string.sub(L0_0, -12) == "\\onenote.exe" or string.sub(L0_0, -10) == "\\visio.exe" or string.sub(L0_0, -11) == "\\groove.exe" or string.sub(L0_0, -13) == "\\onenotem.exe" or string.sub(L0_0, -13) == "\\onedrive.exe" or string.sub(L0_0, -9) == "\\lync.exe" or string.sub(L0_0, -11) == "\\ucmapi.exe" or string.sub(L0_0, -10) == "\\skype.exe" or string.sub(L0_0, -10) == "\\teams.exe" or string.sub(L0_0, -12) == "\\msteams.exe" or string.sub(L0_0, -40) == "\\incidentmanagement.client.applaunch.exe" or string.sub(L0_0, -17) == "\\osfinstaller.exe" or string.sub(L0_0, -19) == "\\officehubwin32.exe" or string.sub(L0_0, -17) == "\\lynchtmlconv.exe" or string.sub(L0_0, -30) == "\\microsoft.skyperoomsystem.exe" then
   return mp.CLEAN
 end
 return mp.INFECTED
-

@@ -1,34 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_Trojan_Win32_ExtraTame.B!dha_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if mp.HEADERPAGE_SZ < 4096 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if L0_0 < 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if mp.FOOTERPAGE_SZ < 4096 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.FOOTERPAGE_SZ
+if L0_0 < 4096 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.readu_u32)(headerpage, 1) == 0 or (mp.readu_u32)(footerpage, mp.FOOTERPAGE_SZ - 4) == 0 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.readu_u32
+  L1_1 = footerpage
+  L2_2 = mp
+  L2_2 = L2_2.FOOTERPAGE_SZ
+  L2_2 = L2_2 - 4
+  L0_0 = L0_0(L1_1, L2_2)
+elseif L0_0 == 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = 10
-local l_0_1 = 8
-local l_0_2 = (mp.readheader)(0, l_0_1)
-local l_0_3 = (mp.readfooter)(mp.FOOTERPAGE_SZ - l_0_0, l_0_0)
-local l_0_4 = 0
-local l_0_5 = 0
-local l_0_6 = ""
-for l_0_10 = 1, l_0_1 do
-  l_0_5 = (string.byte)(l_0_2, l_0_10)
-  for l_0_14 = 1, l_0_0 do
-    l_0_4 = (mp.bitand)((string.byte)(l_0_3, l_0_14) + (l_0_10 - 1) * (l_0_14 - 1), 255)
-    l_0_5 = (mp.bitxor)(l_0_5, l_0_4)
+L0_0 = 10
+L1_1 = 8
+L2_2 = mp
+L2_2 = L2_2.readheader
+L3_3 = 0
+L4_4 = L1_1
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.readfooter
+L4_4 = mp
+L4_4 = L4_4.FOOTERPAGE_SZ
+L4_4 = L4_4 - L0_0
+L5_5 = L0_0
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = 0
+L5_5 = 0
+L6_6 = ""
+for L10_10 = 1, L1_1 do
+  L5_5 = L11_11
+  for L14_14 = 1, L0_0 do
+    L4_4 = mp.bitand(string.byte(L3_3, L14_14) + (L10_10 - 1) * (L14_14 - 1), 255)
+    L5_5 = mp.bitxor(L5_5, L4_4)
   end
-  l_0_6 = l_0_6 .. (string.char)(l_0_5)
+  L6_6 = L11_11 .. L12_12
 end
-if (mp.readu_u32)(l_0_6, 1) == (mp.getfilesize)() - 14 and (mp.readu_u32)(l_0_6, 5) == 9460301 then
-  return mp.INFECTED
+if L7_7 == L8_8 then
+  if L7_7 == 9460301 then
+    return L7_7
+  end
 end
-return mp.CLEAN
-
+return L7_7

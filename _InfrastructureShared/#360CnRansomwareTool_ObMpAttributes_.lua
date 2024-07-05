@@ -1,31 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/#360CnRansomwareTool_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0["360.cn"] = true
-local l_0_1 = {}
-l_0_1["ramengine.dll"] = true
-local l_0_2 = (pe.get_versioninfo)()
-if l_0_2 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = {}
+L0_0["360.cn"] = true
+L1_1 = {}
+L1_1["ramengine.dll"] = true
+L2_2 = pe
+L2_2 = L2_2.get_versioninfo
+L2_2 = L2_2()
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = l_0_2.CompanyName
-local l_0_4 = l_0_2.OriginalFilename
-if l_0_3 then
-  l_0_3 = (string.lower)(l_0_3)
+L3_3 = L2_2.CompanyName
+L4_4 = L2_2.OriginalFilename
+if L3_3 then
+  L3_3 = string.lower(L3_3)
 else
-  l_0_3 = ""
+  L3_3 = ""
 end
-if l_0_4 then
-  l_0_4 = (string.lower)(l_0_4)
+if L4_4 then
+  L4_4 = string.lower(L4_4)
 else
-  l_0_4 = ""
+  L4_4 = ""
 end
-if l_0_0[l_0_3] and l_0_1[l_0_4] then
-  (mp.set_mpattribute)("LUA:360CnRansomwareTool")
+if L0_0[L3_3] and L1_1[L4_4] then
+  mp.set_mpattribute("LUA:360CnRansomwareTool")
   return mp.INFECTED
 end
 return mp.CLEAN
-

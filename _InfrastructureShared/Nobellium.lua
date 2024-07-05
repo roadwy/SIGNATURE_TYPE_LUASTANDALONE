@@ -1,11 +1,5 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Nobellium 
-
--- params : ...
--- function num : 0
-Infrastructure_ScanADFSPath = function()
-  -- function num : 0_0
-  (MpDetection.ScanResource)("specialfolder://norecursive:file:%Windir%\\ADFS\\")
+local L1_0
+function L1_0()
+  MpDetection.ScanResource("specialfolder://norecursive:file:%Windir%\\ADFS\\")
 end
-
-
+Infrastructure_ScanADFSPath = L1_0

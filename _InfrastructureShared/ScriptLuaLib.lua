@@ -1,158 +1,153 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ScriptLuaLib 
-
--- params : ...
--- function num : 0
-Infrastructure_CryptoSearcher = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = (mp.getfilesize)()
-  if l_1_1 > 250000 then
-    return false
+local L0_0, L1_1
+function L0_0(A0_2)
+  local L1_3, L2_4, L3_5, L4_6, L5_7, L6_8, L7_9, L8_10, L9_11, L10_12, L11_13, L12_14, L13_15, L14_16, L15_17, L16_18, L17_19, L18_20, L19_21, L20_22, L21_23, L22_24, L23_25, L24_26, L25_27
+  L1_3 = mp
+  L1_3 = L1_3.getfilesize
+  L1_3 = L1_3()
+  if L1_3 > 250000 then
+    L2_4 = false
+    return L2_4
   end
-  local l_1_2 = l_1_0 - 8192
-  do
-    if 0 < l_1_2 then
-      local l_1_3 = l_1_2
-    end
-    -- DECOMPILER ERROR at PC12: Confused about usage of register: R3 in 'UnsetPending'
-
-    local l_1_4 = nil
-    local l_1_5 = l_1_1 - l_1_3
-    -- DECOMPILER ERROR at PC16: Overwrote pending register: R5 in 'AssignReg'
-
-    if l_1_5 < 16384 then
-      (mp.readprotection)(false)
-      local l_1_6 = nil
-      local l_1_7 = (mp.readfile)(l_1_4, 16384)
-      local l_1_8 = -1
-      local l_1_9 = -1
-      local l_1_10 = {["\'"] = true, ["\""] = true, [">"] = true, ["<"] = true, [" "] = true, ["\t"] = true}
-      local l_1_11 = {}
-      local l_1_12 = "MpInternal_researchdata="
-      local l_1_13 = (string.gmatch)(l_1_7, "([%\"%\'%>%. ])([013baADLm]%w+)(%W)")
-      for l_1_17,l_1_18,l_1_19 in l_1_13 do
-        local l_1_14 = false
-        local l_1_21 = ""
-        local l_1_22 = ""
-        if l_1_10[l_1_18] == true and l_1_10[l_1_20] == true then
-          local l_1_23 = ""
-          if (string.len)(l_1_19) > 25 and l_1_11[l_1_19] == nil then
-            l_1_11[l_1_19] = 1
-            local l_1_24 = nil
-            local l_1_25 = l_1_19:sub(1, 1)
-            local l_1_26 = l_1_19:sub(1, 2)
-            local l_1_27 = l_1_19:sub(1, 3)
-            local l_1_28 = l_1_19:sub(1, 4)
-          end
-          do
-            -- DECOMPILER ERROR at PC103: Overwrote pending register: R20 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC104: Overwrote pending register: R21 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC105: Overwrote pending register: R22 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC113: Overwrote pending register: R21 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC114: Overwrote pending register: R22 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC122: Overwrote pending register: R21 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC123: Overwrote pending register: R22 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC135: Overwrote pending register: R20 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC136: Overwrote pending register: R21 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC137: Overwrote pending register: R22 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC149: Overwrote pending register: R20 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC150: Overwrote pending register: R21 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC151: Overwrote pending register: R22 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC166: Overwrote pending register: R20 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC167: Overwrote pending register: R21 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC168: Overwrote pending register: R22 in 'AssignReg'
-
-            -- DECOMPILER ERROR at PC175: Unhandled construct in 'MakeBoolean' P3
-
-            -- DECOMPILER ERROR at PC175: Unhandled construct in 'MakeBoolean' P3
-
-            -- DECOMPILER ERROR at PC175: Unhandled construct in 'MakeBoolean' P3
-
-            -- DECOMPILER ERROR at PC175: Unhandled construct in 'MakeBoolean' P3
-
-            -- DECOMPILER ERROR at PC175: Unhandled construct in 'MakeBoolean' P3
-
-            -- DECOMPILER ERROR at PC175: Unhandled construct in 'MakeBoolean' P3
-
-            -- DECOMPILER ERROR at PC175: Unhandled construct in 'MakeBoolean' P3
-
-            if ((((l_1_25 ~= "1" and l_1_25 ~= "3" and l_1_27 ~= "bc1") or l_1_26 == "0x") and l_1_7:find("send SHIB", 1, true) ~= nil and l_1_7:find("send BNB", 1, true) == nil) or l_1_25 == "L" or l_1_25 == "M" or l_1_28 ~= "ltc1" or l_1_24 <= 25 or l_1_24 >= 36 or l_1_27 == "Ae2" or l_1_19:sub(1, 5) == "addr1" or l_1_19:sub(1, 5) ~= "DdzFF" or l_1_24 <= 25 or l_1_24 >= 200 or l_1_21 ~= "") and l_1_22 ~= "" and l_1_23 ~= "" then
-              l_1_14 = true
-              if l_1_12 == "MpInternal_researchdata=" then
-                l_1_12 = l_1_12 .. l_1_22 .. "=" .. l_1_21
-              else
-                l_1_12 = l_1_12 .. "," .. l_1_22 .. "=" .. l_1_21
+  L2_4 = A0_2 - 8192
+  L3_5 = 0
+  if L2_4 > L3_5 then
+    L3_5 = L2_4
+  end
+  L4_6 = L1_3 - L3_5
+  L5_7 = 16384
+  if L4_6 < 16384 then
+    L5_7 = L4_6
+  end
+  L6_8 = mp
+  L6_8 = L6_8.readprotection
+  L7_9 = false
+  L6_8(L7_9)
+  L6_8 = mp
+  L6_8 = L6_8.readfile
+  L7_9 = L3_5
+  L8_10 = L5_7
+  L6_8 = L6_8(L7_9, L8_10)
+  L7_9 = -1
+  L8_10 = -1
+  L9_11 = {}
+  L9_11["'"] = true
+  L9_11["\""] = true
+  L9_11[">"] = true
+  L9_11["<"] = true
+  L9_11[" "] = true
+  L9_11["\t"] = true
+  L10_12 = {}
+  L11_13 = "MpInternal_researchdata="
+  L12_14 = string
+  L12_14 = L12_14.gmatch
+  L13_15 = L6_8
+  L12_14 = L12_14(L13_15, L14_16)
+  L13_15 = false
+  for L17_19, L18_20, L19_21 in L12_14, nil, nil do
+    L20_22 = ""
+    L21_23 = ""
+    L22_24 = ""
+    L23_25 = L9_11[L17_19]
+    if L23_25 == true then
+      L23_25 = L9_11[L19_21]
+      if L23_25 == true then
+        L23_25 = string
+        L23_25 = L23_25.len
+        L24_26 = L18_20
+        L23_25 = L23_25(L24_26)
+        if L23_25 > 25 then
+          L24_26 = L10_12[L18_20]
+          if L24_26 == nil then
+            L10_12[L18_20] = 1
+            L25_27 = L18_20
+            L24_26 = L18_20.sub
+            L24_26 = L24_26(L25_27, 1, 1)
+            L25_27 = L18_20.sub
+            L25_27 = L25_27(L18_20, 1, 2)
+            if (L24_26 == "1" or L24_26 == "3" or L18_20:sub(1, 3) == "bc1") and L23_25 > 25 and L23_25 < 79 then
+              L20_22 = L18_20
+              L21_23 = "btc"
+              L22_24 = "00000001"
+            elseif L25_27 == "0x" and L23_25 == 42 then
+              L20_22 = L18_20
+              L21_23 = "eth"
+              L22_24 = "00000002"
+              if L6_8:find("send SHIB", 1, true) ~= nil then
+                L21_23 = "shib"
+                L22_24 = "00000006"
               end
-              if l_1_8 < 0 and l_1_9 < 0 then
-                local l_1_29 = nil
-                if (string.find)(l_1_7, l_1_21, 1, true) ~= nil then
-                  l_1_8 = l_1_4 + (string.find)(l_1_7, l_1_21, 1, true) - 1
-                  l_1_9 = l_1_6 - (string.find)(l_1_7, l_1_21, 1, true) + 1
-                end
+              if L6_8:find("send BNB", 1, true) ~= nil then
+                L21_23 = "bnb"
+                L22_24 = "00000007"
               end
+            elseif (L24_26 == "L" or L24_26 == "M" or L18_20:sub(1, 4) == "ltc1") and L23_25 > 25 and L23_25 < 36 then
+              L20_22 = L18_20
+              L21_23 = "ltc"
+              L22_24 = "00000003"
+            elseif (L18_20:sub(1, 3) == "Ae2" or L18_20:sub(1, 5) == "addr1" or L18_20:sub(1, 5) == "DdzFF") and L23_25 > 25 and L23_25 < 200 then
+              L20_22 = L18_20
+              L21_23 = "ada"
+              L22_24 = "00000004"
+            elseif L24_26 == "D" and L23_25 > 25 and L23_25 < 36 and string.match(L25_27, "D[0-1A-Z]") ~= nil then
+              L20_22 = L18_20
+              L21_23 = "doge"
+              L22_24 = "00000005"
             end
-            do
-              -- DECOMPILER ERROR at PC207: LeaveBlock: unexpected jumping out DO_STMT
-
-              -- DECOMPILER ERROR at PC207: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-              -- DECOMPILER ERROR at PC207: LeaveBlock: unexpected jumping out IF_STMT
-
+          end
+        end
+        if L20_22 ~= "" and L21_23 ~= "" and L22_24 ~= "" then
+          L13_15 = true
+          if L11_13 == "MpInternal_researchdata=" then
+            L24_26 = L11_13
+            L25_27 = L21_23
+            L11_13 = L24_26 .. L25_27 .. "=" .. L20_22
+          else
+            L24_26 = L11_13
+            L25_27 = ","
+            L11_13 = L24_26 .. L25_27 .. L21_23 .. "=" .. L20_22
+          end
+          if L7_9 < 0 and L8_10 < 0 then
+            L24_26 = string
+            L24_26 = L24_26.find
+            L25_27 = L6_8
+            L25_27 = L24_26(L25_27, L20_22, 1, true)
+            if L24_26 ~= nil then
+              L7_9 = L3_5 + L24_26 - 1
+              L8_10 = L5_7 - L24_26 + 1
             end
           end
         end
       end
-      -- DECOMPILER ERROR at PC209: Confused about usage of register: R13 in 'UnsetPending'
-
-      if l_1_14 == false then
-        return false
-      else
-        ;
-        (mp.set_mpattribute)(l_1_12)
-        if l_1_8 > -1 and l_1_9 > 0 then
-          (mp.vfo_add_filechunk)(l_1_8, l_1_9, "[CryptoSearcher]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-        end
-      end
-      return true
     end
   end
-end
-
-LoadMatchedDataInBuffer = function()
-  -- function num : 0_1
-  local l_2_0 = nil
-  local l_2_1 = nil
-  if ((mp.GetBruteMatchData)()).is_header then
-    l_2_1 = (tostring(headerpage)):sub(((mp.GetBruteMatchData)()).match_offset, ((mp.GetBruteMatchData)()).match_offset + mp.HEADERPAGE_SZ)
+  if L13_15 == false then
+    return L14_16
   else
-    l_2_1 = (tostring(footerpage)):sub(((mp.GetBruteMatchData)()).match_offset, ((mp.GetBruteMatchData)()).match_offset + mp.FOOTERPAGE_SZ)
+    L14_16(L15_17)
+    if L7_9 > -1 and L8_10 > 0 then
+      L17_19 = "[CryptoSearcher]"
+      L18_20 = mp
+      L18_20 = L18_20.ADD_VFO_TAKE_ACTION_ON_DAD
+      L14_16(L15_17, L16_18, L17_19, L18_20)
+    end
   end
-  l_2_1 = (string.lower)(l_2_1)
-  return l_2_1
+  return L14_16
 end
-
-GetPatternOccurenceCount = function(l_3_0, l_3_1)
-  -- function num : 0_2
-  local l_3_2 = 0
-  for l_3_6 in (string.gmatch)(l_3_0, l_3_1) do
-    l_3_2 = l_3_2 + 1
+Infrastructure_CryptoSearcher = L0_0
+function L0_0()
+  local L0_28
+  if mp.GetBruteMatchData().is_header then
+    L0_28 = tostring(headerpage):sub(mp.GetBruteMatchData().match_offset, mp.GetBruteMatchData().match_offset + mp.HEADERPAGE_SZ)
+  else
+    L0_28 = tostring(footerpage):sub(mp.GetBruteMatchData().match_offset, mp.GetBruteMatchData().match_offset + mp.FOOTERPAGE_SZ)
   end
-  return l_3_2
+  L0_28 = string.lower(L0_28)
+  return L0_28
 end
-
-
+LoadMatchedDataInBuffer = L0_0
+function L0_0(A0_29, A1_30)
+  for _FORV_6_ in string.gmatch(A0_29, A1_30) do
+  end
+  return 0 + 1
+end
+GetPatternOccurenceCount = L0_0

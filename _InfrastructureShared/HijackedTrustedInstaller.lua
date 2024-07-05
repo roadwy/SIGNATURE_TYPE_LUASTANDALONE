@@ -1,13 +1,13 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/HijackedTrustedInstaller 
-
--- params : ...
--- function num : 0
-if not (Remediation.Threat).Active then
-  return 
+local L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Active
+if not L0_0 then
+  return
 end
-local l_0_0 = (sysio.RegOpenKey)("hklm\\system\\currentcontrolset\\services\\trustedinstaller")
-if l_0_0 then
-  (sysio.SetRegValueAsStringExpand)(l_0_0, "ImagePath", "%SystemRoot%\\servicing\\TrustedInstaller.exe")
+L0_0 = sysio
+L0_0 = L0_0.RegOpenKey
+L0_0 = L0_0("hklm\\system\\currentcontrolset\\services\\trustedinstaller")
+if L0_0 then
+  sysio.SetRegValueAsStringExpand(L0_0, "ImagePath", "%SystemRoot%\\servicing\\TrustedInstaller.exe")
 end
-

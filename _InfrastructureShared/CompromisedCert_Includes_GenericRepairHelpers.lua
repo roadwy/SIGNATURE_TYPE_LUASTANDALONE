@@ -1,23 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/CompromisedCert_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-(MpDetection.ScanResource)("rootcert://")
-;
-(MpDetection.ScanResource)("rootcertuser://")
-local l_0_0 = (MpDetection.GetCurrentThreat)()
-if (string.find)(l_0_0.Name, "Program:Win32/CompromisedCert.C", 1, true) then
-  local l_0_1 = (MpCommon.ExpandEnvironmentVariables)("%ProgramFiles%")
-  if l_0_1 then
-    local l_0_2 = l_0_1 .. " (x86)\\Dell"
-    local l_0_3 = l_0_1 .. "\\Dell"
-    if (sysio.IsFolderExists)(l_0_2) then
-      (MpDetection.ScanResource)("folder://" .. l_0_2)
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = MpDetection
+L0_0 = L0_0.ScanResource
+L1_1 = "rootcert://"
+L0_0(L1_1)
+L0_0 = MpDetection
+L0_0 = L0_0.ScanResource
+L1_1 = "rootcertuser://"
+L0_0(L1_1)
+L0_0 = MpDetection
+L0_0 = L0_0.GetCurrentThreat
+L0_0 = L0_0()
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0.Name
+L3_3 = "Program:Win32/CompromisedCert.C"
+L1_1 = L1_1(L2_2, L3_3, 1, true)
+if L1_1 then
+  L1_1 = MpCommon
+  L1_1 = L1_1.ExpandEnvironmentVariables
+  L2_2 = "%ProgramFiles%"
+  L1_1 = L1_1(L2_2)
+  if L1_1 then
+    L2_2 = L1_1
+    L3_3 = " (x86)\\Dell"
+    L2_2 = L2_2 .. L3_3
+    L3_3 = L1_1
+    L3_3 = L3_3 .. "\\Dell"
+    if sysio.IsFolderExists(L2_2) then
+      MpDetection.ScanResource("folder://" .. L2_2)
     end
-    if (sysio.IsFolderExists)(l_0_3) then
-      (MpDetection.ScanResource)("folder://" .. l_0_3)
+    if sysio.IsFolderExists(L3_3) then
+      MpDetection.ScanResource("folder://" .. L3_3)
     end
   end
 end
-

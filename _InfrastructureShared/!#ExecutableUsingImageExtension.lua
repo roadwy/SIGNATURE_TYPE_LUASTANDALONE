@@ -1,31 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ExecutableUsingImageExtension 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-local l_0_1, l_0_2 = l_0_0:find("%.%w+$")
-if l_0_1 == nil then
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+L2_2 = L0_0
+L1_1 = L0_0.find
+L2_2 = L1_1(L2_2, "%.%w+$")
+if nil == L1_1 then
   return mp.CLEAN
 end
-local l_0_3 = l_0_0:sub(l_0_1 + 1, l_0_2)
-local l_0_4 = false
-if l_0_3 == "jpg" or l_0_3 == "jpeg" or l_0_3 == "gif" or l_0_3 == "png" or l_0_3 == "bmp" or l_0_3 == "tiff" or l_0_3 == "tif" or l_0_3 == "pnm" or l_0_3 == "ppm" or l_0_3 == "pgm" or l_0_3 == "pbm" then
-  l_0_4 = true
-end
-if l_0_4 == false then
+if true == false then
   return mp.CLEAN
 end
-local l_0_5 = l_0_0:sub(1, l_0_1 - 1)
-local l_0_6 = false
-if l_0_5 == "run32" or l_0_5 == "run64" or l_0_5 == "x32" or l_0_5 == "x64" or l_0_5 == "ms32" or l_0_5 == "ms64" then
-  l_0_6 = true
-end
-if l_0_6 then
-  (mp.set_mpattribute)("Lua:ExecutableUsingImageExtension!dha")
+if true then
+  mp.set_mpattribute("Lua:ExecutableUsingImageExtension!dha")
 else
-  ;
-  (mp.set_mpattribute)("Lua:ExecutableUsingImageExtension")
+  mp.set_mpattribute("Lua:ExecutableUsingImageExtension")
 end
 return mp.CLEAN
-

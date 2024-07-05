@@ -1,30 +1,53 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3a78e397f998 
-
--- params : ...
--- function num : 0
-if (hstrlog[1]).matched then
-  local l_0_0 = (hstrlog[1]).VA + 14
-  local l_0_1 = (pe.mmap_va)(l_0_0, 4)
-  local l_0_2 = (mp.readu_u32)(l_0_1, 1)
-  local l_0_3 = (pe.mmap_va)(l_0_2, 16)
-  if (string.sub)(l_0_3, 1, 3) == "cmd" then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.VA
+  L0_0 = L0_0 + 14
+  L1_1 = pe
+  L1_1 = L1_1.mmap_va
+  L2_2 = L0_0
+  L3_3 = 4
+  L1_1 = L1_1(L2_2, L3_3)
+  L2_2 = mp
+  L2_2 = L2_2.readu_u32
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3, 1)
+  L3_3 = pe
+  L3_3 = L3_3.mmap_va
+  L3_3 = L3_3(L2_2, 16)
+  if string.sub(L3_3, 1, 3) == "cmd" then
     return mp.INFECTED
   end
 else
-  do
-    if (hstrlog[2]).matched then
-      local l_0_4 = (hstrlog[2]).VA + 9
-      local l_0_5 = (pe.mmap_va)(l_0_4, 4)
-      local l_0_6 = (mp.readu_u32)(l_0_5, 1)
-      local l_0_7 = (pe.mmap_va)(l_0_6, 16)
-      if (string.sub)(l_0_7, 1, 7) == "[Shift]" then
-        return mp.INFECTED
-      end
-    end
-    do
-      return mp.CLEAN
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.VA
+    L0_0 = L0_0 + 9
+    L1_1 = pe
+    L1_1 = L1_1.mmap_va
+    L2_2 = L0_0
+    L3_3 = 4
+    L1_1 = L1_1(L2_2, L3_3)
+    L2_2 = mp
+    L2_2 = L2_2.readu_u32
+    L3_3 = L1_1
+    L2_2 = L2_2(L3_3, 1)
+    L3_3 = pe
+    L3_3 = L3_3.mmap_va
+    L3_3 = L3_3(L2_2, 16)
+    if string.sub(L3_3, 1, 7) == "[Shift]" then
+      return mp.INFECTED
     end
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

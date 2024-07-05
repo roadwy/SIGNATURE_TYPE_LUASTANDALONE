@@ -1,110 +1,128 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Crilock 
-
--- params : ...
--- function num : 0
-CompareRegValueAndRemove = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  local l_1_2 = ((sysio.RegOpenKey)(l_1_0))
-  local l_1_3 = nil
-  if l_1_2 then
-    local l_1_4 = (sysio.RegEnumValues)(l_1_2)
-    for l_1_8,l_1_9 in pairs(l_1_4) do
-      if l_1_9 then
-        l_1_3 = (sysio.GetRegValueAsString)(l_1_2, l_1_9)
-        if l_1_3 then
-          l_1_3 = (string.lower)(l_1_3)
-          if (string.find)(l_1_3, l_1_1, 1, true) then
-            (sysio.DeleteRegValue)(l_1_2, l_1_9)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23
+function L0_0(A0_24, A1_25)
+  local L2_26, L3_27, L4_28, L5_29, L6_30, L7_31, L8_32, L9_33
+  L2_26 = sysio
+  L2_26 = L2_26.RegOpenKey
+  L3_27 = A0_24
+  L2_26 = L2_26(L3_27)
+  L3_27 = nil
+  if L2_26 then
+    L4_28 = sysio
+    L4_28 = L4_28.RegEnumValues
+    L4_28 = L4_28(L5_29)
+    for L8_32, L9_33 in L5_29(L6_30) do
+      if L9_33 then
+        L3_27 = sysio.GetRegValueAsString(L2_26, L9_33)
+        if L3_27 then
+          L3_27 = string.lower(L3_27)
+          if string.find(L3_27, A1_25, 1, true) then
+            sysio.DeleteRegValue(L2_26, L9_33)
             return true
           end
         end
       end
     end
   end
-  do
-    l_1_4 = false
-    return l_1_4
-  end
+  L4_28 = false
+  return L4_28
 end
-
-if (Remediation.Threat).Active then
-  local l_0_0, l_0_1 = nil, nil
-  l_0_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")
-  if l_0_0 then
-    l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "cryptolocker")
-    if l_0_1 ~= nil then
-      (sysio.DeleteRegValue)(l_0_0, "cryptolocker")
+CompareRegValueAndRemove = L0_0
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Active
+if L0_0 then
+  L0_0, L1_1 = nil, nil
+  L2_2 = sysio
+  L2_2 = L2_2.RegOpenKey
+  L2_2 = L2_2(L3_3)
+  L0_0 = L2_2
+  if L0_0 then
+    L2_2 = sysio
+    L2_2 = L2_2.GetRegValueAsString
+    L2_2 = L2_2(L3_3, L4_4)
+    L1_1 = L2_2
+    if L1_1 ~= nil then
+      L2_2 = sysio
+      L2_2 = L2_2.DeleteRegValue
+      L2_2(L3_3, L4_4)
     end
   end
-  l_0_0 = (sysio.RegOpenKey)("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce")
-  if l_0_0 then
-    l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "*cryptolocker")
-    if l_0_1 ~= nil then
-      (sysio.DeleteRegValue)(l_0_0, "*cryptolocker")
+  L2_2 = sysio
+  L2_2 = L2_2.RegOpenKey
+  L2_2 = L2_2(L3_3)
+  L0_0 = L2_2
+  if L0_0 then
+    L2_2 = sysio
+    L2_2 = L2_2.GetRegValueAsString
+    L2_2 = L2_2(L3_3, L4_4)
+    L1_1 = L2_2
+    if L1_1 ~= nil then
+      L2_2 = sysio
+      L2_2 = L2_2.DeleteRegValue
+      L2_2(L3_3, L4_4)
     end
   end
-  local l_0_2 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run")
-  for l_0_6,l_0_7 in pairs(l_0_2) do
-    l_0_0 = (sysio.RegOpenKey)(l_0_7)
-    if l_0_0 then
-      l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "cryptolocker")
-      if l_0_1 ~= nil then
-        (sysio.DeleteRegValue)(l_0_0, "cryptolocker")
+  L2_2 = sysio
+  L2_2 = L2_2.RegExpandUserKey
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L8_8 = sysio
+    L8_8 = L8_8.RegOpenKey
+    L8_8 = L8_8(L9_9)
+    L0_0 = L8_8
+    if L0_0 then
+      L8_8 = sysio
+      L8_8 = L8_8.GetRegValueAsString
+      L8_8 = L8_8(L9_9, L10_10)
+      L1_1 = L8_8
+      if L1_1 ~= nil then
+        L8_8 = sysio
+        L8_8 = L8_8.DeleteRegValue
+        L8_8(L9_9, L10_10)
       end
     end
   end
-  local l_0_8 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce")
-  for l_0_12,l_0_13 in pairs(l_0_8) do
-    l_0_0 = (sysio.RegOpenKey)(l_0_13)
-    if l_0_0 then
-      l_0_1 = (sysio.GetRegValueAsString)(l_0_0, "*cryptolocker")
-      if l_0_1 ~= nil then
-        (sysio.DeleteRegValue)(l_0_0, "*cryptolocker")
+  for L7_7, L8_8 in L4_4(L5_5) do
+    L0_0 = L9_9
+    if L0_0 then
+      L1_1 = L9_9
+      if L1_1 ~= nil then
+        L9_9(L10_10, L11_11)
       end
     end
   end
-  local l_0_14 = "HKCU\\SOFTWARE\\BIT TORRENT APPLICATION\\CONFIGURATION"
-  local l_0_15 = ((sysio.RegExpandUserKey)(l_0_14))
-  local l_0_16, l_0_17, l_0_18 = nil, nil, nil
-  for l_0_22,l_0_23 in pairs(l_0_15) do
-    l_0_16 = (sysio.RegOpenKey)(l_0_23)
-    if l_0_16 then
-      l_0_18 = (sysio.RegEnumValues)(l_0_16)
-      for l_0_27,l_0_28 in pairs(l_0_18) do
-        if l_0_28 then
-          l_0_17 = (sysio.GetRegValueAsString)(l_0_16, l_0_28)
-          if l_0_17 then
-            l_0_17 = (string.lower)(l_0_17)
-            if l_0_17 ~= nil and (string.find)(l_0_17, ".exe", 1, true) and ((string.find)(l_0_17, "\\windows\\", 1, true) or (string.find)(l_0_17, "\\programdata\\", 1, true)) then
-              if not CompareRegValueAndRemove("HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", l_0_17) then
-                for l_0_32,l_0_33 in pairs(l_0_2) do
-                  if CompareRegValueAndRemove(l_0_33, l_0_17) then
-                    break
+  L7_7, L8_8 = nil, nil
+  for L12_12, L13_13 in L9_9(L10_10) do
+    if L6_6 then
+      L8_8 = L14_14
+      for L17_17, L18_18 in L14_14(L15_15) do
+        if L18_18 then
+          L7_7 = L19_19
+          if L7_7 then
+            L7_7 = L19_19
+            if L7_7 ~= nil then
+              L22_22 = 1
+              L23_23 = true
+              if L19_19 then
+                L22_22 = 1
+                L23_23 = true
+                if not L19_19 then
+                  L22_22 = 1
+                  L23_23 = true
+                end
+                if L19_19 then
+                  if not L19_19 then
+                    for L22_22, L23_23 in L19_19(L20_20) do
+                      if CompareRegValueAndRemove(L23_23, L7_7) then
+                        break
+                      end
+                    end
+                  end
+                  if L19_19 then
+                    L19_19(L20_20, L21_21)
                   end
                 end
-              end
-              do
-                do
-                  if (sysio.IsFileExists)(l_0_17) then
-                    (MpCommon.ReportLowfi)(l_0_17, 1189452850)
-                  end
-                  do break end
-                  -- DECOMPILER ERROR at PC209: LeaveBlock: unexpected jumping out DO_STMT
-
-                  -- DECOMPILER ERROR at PC209: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC209: LeaveBlock: unexpected jumping out IF_STMT
-
-                  -- DECOMPILER ERROR at PC209: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC209: LeaveBlock: unexpected jumping out IF_STMT
-
-                  -- DECOMPILER ERROR at PC209: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC209: LeaveBlock: unexpected jumping out IF_STMT
-
-                end
+                break
               end
             end
           end
@@ -113,4 +131,3 @@ if (Remediation.Threat).Active then
     end
   end
 end
-

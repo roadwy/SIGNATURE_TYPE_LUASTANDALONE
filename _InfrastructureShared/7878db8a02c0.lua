@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7878db8a02c0 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("HSTR:Exception:Mimikatz.A") then
+if mp.get_mpattribute("HSTR:Exception:Mimikatz.A") then
   return mp.CLEAN
 end
 return mp.INFECTED
-

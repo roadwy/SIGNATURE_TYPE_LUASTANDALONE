@@ -1,40 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/67b3529c57d9_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_3 = nil
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2 = false
-  end
-  if not contains(l_0_3, "process.*call.*create", false) then
-    return mp.CLEAN
-  end
-  local l_0_4, l_0_5, l_0_6, l_0_7 = , (string.find)(l_0_3, "/node%s*:([^%s]+).-call create [\'\"]([^\r\n]+)[\'\"]")
-  if not false then
-    return mp.CLEAN
-  end
-  local l_0_8 = nil
-  if contains(l_0_8, {"BTS FIX Gateway", "besclient", "epr.bat", "ADSelfService Plus"}) then
-    return mp.CLEAN
-  end
-  if contains(l_0_8, "cmd.*/c", false) then
-    local l_0_9 = nil
-    local l_0_10 = contains
-    local l_0_11 = l_0_8
-    l_0_10 = l_0_10(l_0_11, {" regsvr32", " rundll32", " wscript", " cscript", " mshta", " bitsadmin"})
-    if l_0_10 then
-      l_0_4 = true
-    end
-  end
-  do
-    if l_0_4 then
-      (bm.add_related_string)("WMICRemoteNode", tostring(l_0_7), bm.RelatedStringBMReport)
-      add_parents()
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = false
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L2_2 = L2_2.utf8p2
+    L3_3 = L2_2
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L0_0 = L2_2
   end
 end
-
+L2_2 = contains
+L3_3 = L0_0
+L4_4 = "process.*call.*create"
+L5_5 = false
+L2_2 = L2_2(L3_3, L4_4, L5_5)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L0_0
+L4_4 = "/node%s*:([^%s]+).-call create ['\"]([^\r\n]+)['\"]"
+L5_5 = L2_2(L3_3, L4_4)
+if not L5_5 then
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
+end
+L6_6 = {
+  "BTS FIX Gateway",
+  "besclient",
+  "epr.bat",
+  "ADSelfService Plus"
+}
+if contains(L5_5, L6_6) then
+  return mp.CLEAN
+end
+if contains(L5_5, "cmd.*/c", false) and contains(L5_5, {
+  " regsvr32",
+  " rundll32",
+  " wscript",
+  " cscript",
+  " mshta",
+  " bitsadmin"
+}) then
+  L1_1 = true
+end
+if L1_1 then
+  bm.add_related_string("WMICRemoteNode", tostring(L4_4), bm.RelatedStringBMReport)
+  add_parents()
+  return mp.INFECTED
+end
+return mp.CLEAN

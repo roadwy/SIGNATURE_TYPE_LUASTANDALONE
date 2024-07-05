@@ -1,41 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/55b38ffbac05 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  end
-  local l_0_1, l_0_2 = , nil
-  -- DECOMPILER ERROR at PC29: Overwrote pending register: R2 in 'AssignReg'
-
-  if not (this_sigattrlog[1]).matched or (this_sigattrlog[3]).matched then
-    local l_0_3 = nil
-    -- DECOMPILER ERROR at PC38: Overwrote pending register: R3 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC43: Confused about usage of register: R3 in 'UnsetPending'
-
-    if ((this_sigattrlog[3]).matched and nil == nil) or not (string.find)(nil, "\\inetcache\\content.mso", 1, true) then
-      return mp.CLEAN
-    end
-    do
-      if l_0_2 < l_0_3 and l_0_3 - l_0_2 <= 30000000 then
-        local l_0_4 = nil
-        for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_1)) do
-          local l_0_5 = nil
-          -- DECOMPILER ERROR at PC68: Confused about usage of register: R9 in 'UnsetPending'
-
-          R9_PC68 = (mp.ContextualExpandEnvironmentVariables)(R9_PC68)
-          ;
-          (bm.add_threat_file)(R9_PC68)
-        end
-        return mp.INFECTED
-      end
-      return mp.CLEAN
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
 end
-
+L1_1, L2_2 = nil, nil
+L3_3 = this_sigattrlog
+L3_3 = L3_3[1]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L1_1 = L3_3.timestamp
+end
+L3_3 = this_sigattrlog
+L3_3 = L3_3[3]
+L3_3 = L3_3.matched
+if L3_3 then
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[3]
+  L2_2 = L3_3.timestamp
+end
+L3_3 = nil
+L4_4 = this_sigattrlog
+L4_4 = L4_4[3]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[3]
+  L3_3 = L4_4.utf8p1
+end
+if L3_3 ~= nil then
+  L4_4 = string
+  L4_4 = L4_4.find
+  L8_8 = true
+  L4_4 = L4_4(L5_5, L6_6, L7_7, L8_8)
+elseif not L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+if L1_1 < L2_2 then
+  L4_4 = L2_2 - L1_1
+  if L4_4 <= 30000000 then
+    L4_4 = mp
+    L4_4 = L4_4.GetExecutablesFromCommandLine
+    L4_4 = L4_4(L5_5)
+    for L8_8, L9_9 in L5_5(L6_6) do
+      L9_9 = mp.ContextualExpandEnvironmentVariables(L9_9)
+      bm.add_threat_file(L9_9)
+    end
+    return L5_5
+  end
+end
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

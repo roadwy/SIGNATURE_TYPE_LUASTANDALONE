@@ -1,30 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4dd736a2b277 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if not l_0_0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if not L0_0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if not l_0_1 or #l_0_1 <= 18 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L2_2 = #L1_1
+elseif L2_2 <= 18 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_1 = (string.lower)(l_0_1)
-local l_0_2 = (string.match)(l_0_1, "%-p \"?([%d]+)\"? %-r \"?([%d]+)\"?")
-if not l_0_2 then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.match
+L3_3 = L1_1
+L4_4 = "%-p \"?([%d]+)\"? %-r \"?([%d]+)\"?"
+L3_3 = L2_2(L3_3, L4_4)
+if not L2_2 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-do
-  local l_0_3 = l_0_1 or 999
-  l_0_2 = tonumber(l_0_2)
-  -- DECOMPILER ERROR at PC43: Confused about usage of register: R3 in 'UnsetPending'
-
-  local l_0_4 = tonumber(l_0_3)
-  local l_0_5 = (mp.GetPPidFromPid)(l_0_2)
-  ;
-  (MpCommon.SetTaintedProcess)(l_0_5, l_0_4)
-  return mp.INFECTED
-end
-
+L3_3 = L3_3 or 999
+L4_4 = tonumber
+L4_4 = L4_4(L2_2)
+L2_2 = L4_4
+L4_4 = tonumber
+L4_4 = L4_4(L3_3)
+L3_3 = L4_4
+L4_4 = mp
+L4_4 = L4_4.GetPPidFromPid
+L4_4 = L4_4(L2_2)
+MpCommon.SetTaintedProcess(L4_4, L3_3)
+return mp.INFECTED

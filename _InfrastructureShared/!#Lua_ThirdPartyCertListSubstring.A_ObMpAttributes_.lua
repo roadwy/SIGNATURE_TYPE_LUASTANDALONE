@@ -1,32 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ThirdPartyCertListSubstring.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetCertificateInfo)()
-if l_0_0 == nil or type(l_0_0) ~= "table" or #l_0_0 == 0 then
-  return mp.CLEAN
-end
-local l_0_1 = {}
-l_0_1.mcafee = "mcafee"
-for l_0_5,l_0_6 in ipairs(l_0_0) do
-  if l_0_6.AuthenticodeContentType == nil or l_0_6.AuthenticodeContentType ~= "PE" then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = type
+  L1_1 = L1_1(L2_2)
+  if L1_1 == "table" then
+    L1_1 = #L0_0
   end
-  local l_0_7 = l_0_6.Certificates
-  if l_0_7 ~= nil and type(l_0_7) == "table" then
-    for l_0_11,l_0_12 in pairs(l_0_6.Certificates) do
-      local l_0_13 = l_0_12.Subject
-      if l_0_13 ~= nil and type(l_0_12) == "table" then
-        local l_0_14 = l_0_13.Organization
-        if l_0_14 ~= nil and type(l_0_14) == "string" then
-          local l_0_15 = (string.lower)((mp.utf16to8)(l_0_14))
-          for l_0_19,l_0_20 in pairs(l_0_1) do
-            if (string.find)(l_0_15, l_0_19, 1, true) ~= nil then
-              local l_0_21 = "Lua:ThirdPartyCertListSubstring.A!" .. l_0_20
-              ;
-              (mp.set_mpattribute)(l_0_21)
-              return mp.INFECTED
+elseif L1_1 == 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = {}
+L1_1.mcafee = "mcafee"
+for L5_5, L6_6 in L2_2(L3_3) do
+  L7_7 = L6_6.AuthenticodeContentType
+  if L7_7 ~= nil then
+    L7_7 = L6_6.AuthenticodeContentType
+  elseif L7_7 ~= "PE" then
+    L7_7 = mp
+    L7_7 = L7_7.CLEAN
+    return L7_7
+  end
+  L7_7 = L6_6.Certificates
+  if L7_7 ~= nil then
+    if L8_8 == "table" then
+      for L11_11, L12_12 in L8_8(L9_9) do
+        L13_13 = L12_12.Subject
+        if L13_13 ~= nil then
+          L14_14 = type
+          L15_15 = L12_12
+          L14_14 = L14_14(L15_15)
+          if L14_14 == "table" then
+            L14_14 = L13_13.Organization
+            if L14_14 ~= nil then
+              L15_15 = type
+              L15_15 = L15_15(L16_16)
+              if L15_15 == "string" then
+                L15_15 = string
+                L15_15 = L15_15.lower
+                L21_21 = L16_16(L17_17)
+                L15_15 = L15_15(L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L16_16(L17_17))
+                for L19_19, L20_20 in L16_16(L17_17) do
+                  L21_21 = string
+                  L21_21 = L21_21.find
+                  L21_21 = L21_21(L15_15, L19_19, 1, true)
+                  if L21_21 ~= nil then
+                    L21_21 = "Lua:ThirdPartyCertListSubstring.A!"
+                    L21_21 = L21_21 .. L20_20
+                    mp.set_mpattribute(L21_21)
+                    return mp.INFECTED
+                  end
+                end
+              end
             end
           end
         end
@@ -34,7 +62,4 @@ for l_0_5,l_0_6 in ipairs(l_0_0) do
     end
   end
 end
-do return mp.CLEAN end
--- DECOMPILER ERROR at PC98: Confused about usage of register R5 for local variables in 'ReleaseLocals'
-
-
+return L2_2

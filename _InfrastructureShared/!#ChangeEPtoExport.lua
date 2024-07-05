@@ -1,103 +1,230 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ChangeEPtoExport 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections < pevars.epsec then
+local L0_0
+L0_0 = pevars
+L0_0 = L0_0.epsec
+if L0_0 > pehdr.NumberOfSections then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pesecs
+L0_0 = L0_0[pevars.epsec]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 > 26112 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pesecs
+L0_0 = L0_0[pevars.epsec]
+L0_0 = L0_0.SizeOfRawData
+if L0_0 < 20480 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 2019914798 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pesecs
+L0_0 = L0_0[1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 1610612768 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pesecs
+L0_0 = L0_0[pehdr.NumberOfSections]
+L0_0 = L0_0.NameDW
+if L0_0 ~= 1818587694 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[13]
+L0_0 = L0_0.Size
+if L0_0 < 232 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[13]
+L0_0 = L0_0.Size
+if L0_0 > 248 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[2]
+L0_0 = L0_0.Size
+if L0_0 ~= 40 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 5 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.headerchecksum0
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.hasstandardentry
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.lastscn_falign
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.no_decription
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = peattributes
+L0_0 = L0_0.no_tls
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.ImageBase
+if L0_0 ~= 268435456 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.Win32VersionValue
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.MajorOperatingSystemVersion
+if L0_0 ~= 4 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.MinorOperatingSystemVersion
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.LoaderFlags
+if L0_0 ~= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[3]
+L0_0 = L0_0.Size
+if L0_0 <= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[11]
+L0_0 = L0_0.RVA
+if L0_0 <= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[11]
+L0_0 = L0_0.Size
+if L0_0 ~= 64 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[6]
+L0_0 = L0_0.RVA
+if L0_0 <= 0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[6]
+L0_0 = L0_0.Size
+if L0_0 < 1600 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.readprotection
+L0_0(false)
+L0_0 = mp
+L0_0 = L0_0.readfile
+L0_0 = L0_0(pe.foffset_rva(pehdr.DataDirectory[1].RVA), 32)
+if 1 > mp.readu_u32(L0_0, 21) then
   return mp.CLEAN
 end
-if (pesecs[pevars.epsec]).SizeOfRawData > 26112 then
+if 2 < mp.readu_u32(L0_0, 21) then
   return mp.CLEAN
 end
-if (pesecs[pevars.epsec]).SizeOfRawData < 20480 then
+if 2 < mp.readu_u32(L0_0, 25) then
   return mp.CLEAN
 end
-if (pesecs[1]).NameDW ~= 2019914798 then
-  return mp.CLEAN
-end
-if (pesecs[1]).Characteristics ~= 1610612768 then
-  return mp.CLEAN
-end
-if (pesecs[pehdr.NumberOfSections]).NameDW ~= 1818587694 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[13]).Size < 232 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[13]).Size > 248 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[2]).Size ~= 40 then
-  return mp.CLEAN
-end
-if pehdr.NumberOfSections ~= 5 then
-  return mp.CLEAN
-end
-if peattributes.headerchecksum0 ~= true then
-  return mp.CLEAN
-end
-if peattributes.isdll ~= true then
-  return mp.CLEAN
-end
-if peattributes.hasexports ~= true then
-  return mp.CLEAN
-end
-if peattributes.hasstandardentry ~= true then
-  return mp.CLEAN
-end
-if peattributes.lastscn_falign ~= true then
-  return mp.CLEAN
-end
-if peattributes.no_decription ~= true then
-  return mp.CLEAN
-end
-if peattributes.no_tls ~= true then
-  return mp.CLEAN
-end
-if pehdr.ImageBase ~= 268435456 then
-  return mp.CLEAN
-end
-if pehdr.Win32VersionValue ~= 0 then
-  return mp.CLEAN
-end
-if pehdr.MajorOperatingSystemVersion ~= 4 then
-  return mp.CLEAN
-end
-if pehdr.MinorOperatingSystemVersion ~= 0 then
-  return mp.CLEAN
-end
-if pehdr.LoaderFlags ~= 0 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[3]).Size <= 0 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[11]).RVA <= 0 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[11]).Size ~= 64 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[6]).RVA <= 0 then
-  return mp.CLEAN
-end
-if ((pehdr.DataDirectory)[6]).Size < 1600 then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-local l_0_0 = (mp.readfile)((pe.foffset_rva)(((pehdr.DataDirectory)[1]).RVA), 32)
-if (mp.readu_u32)(l_0_0, 21) < 1 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 21) > 2 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 25) > 2 then
-  return mp.CLEAN
-end
-if (mp.readu_u32)(l_0_0, 25) < 1 then
+if 1 > mp.readu_u32(L0_0, 25) then
   return mp.CLEAN
 end
 return mp.INFECTED
-

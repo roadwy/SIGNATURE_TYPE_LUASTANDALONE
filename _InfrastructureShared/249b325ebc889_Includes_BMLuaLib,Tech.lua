@@ -1,100 +1,182 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/249b325ebc889_Includes_BMLuaLib,Tech 
-
--- params : ...
--- function num : 0
-local l_0_0 = mp.SIGATTR_LOG_SZ
-local l_0_1 = {}
-local l_0_2 = ((bm.get_imagepath)()):lower()
-if l_0_2 ~= nil and IsExcludedByImagePath(l_0_2) then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18
+L0_0 = mp
+L0_0 = L0_0.SIGATTR_LOG_SZ
+L1_1 = {}
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L2_2 = L2_2()
+L3_3 = L2_2
+L2_2 = L2_2.lower
+L2_2 = L2_2(L3_3)
+if L2_2 ~= nil then
+  L3_3 = IsExcludedByImagePath
+  L3_3 = L3_3(L4_4)
+  if L3_3 then
+    L3_3 = mp
+    L3_3 = L3_3.CLEAN
+    return L3_3
+  end
 end
--- DECOMPILER ERROR at PC25: Overwrote pending register: R3 in 'AssignReg'
-
-if (bm.get_current_process_startup_info)() ~= nil then
-  do
-    local l_0_3, l_0_4, l_0_10 = ((bm.get_current_process_startup_info)()).ppid
-    -- DECOMPILER ERROR at PC27: Confused about usage of register: R3 in 'UnsetPending'
-
-    if isParentPackageManager(l_0_3, true) then
-      return mp.CLEAN
-    end
-    for l_0_8 = 1, l_0_0 do
-      local l_0_5 = nil
-      -- DECOMPILER ERROR at PC40: Confused about usage of register: R7 in 'UnsetPending'
-
-      if (sigattr_tail[R7_PC40]).attribute == 16385 then
-        l_0_1[(mp.crc32)(0, ((sigattr_tail[R7_PC40]).utf8p1):lower(), 1, #((sigattr_tail[R7_PC40]).utf8p1):lower())] = 1
-      end
-    end
-    local l_0_11 = nil
-    local l_0_12 = {}
-    for l_0_16 = 1, l_0_0 do
-      local l_0_13 = {}
-      if (sigattr_tail[(mp.crc32)(0, ((sigattr_tail[R7_PC40]).utf8p1):lower(), 1, #((sigattr_tail[R7_PC40]).utf8p1):lower())]).attribute == 16386 then
-        local l_0_18 = ((sigattr_tail[(mp.crc32)(0, ((sigattr_tail[R7_PC40]).utf8p1):lower(), 1, #((sigattr_tail[R7_PC40]).utf8p1):lower())]).utf8p2):lower()
-        local l_0_19 = ((sigattr_tail[l_0_17]).utf8p1):lower()
-        local l_0_20 = (mp.crc32)(0, l_0_18, 1, #l_0_18)
-        if (l_0_1[(mp.crc32)(0, l_0_19, 1, #l_0_19)] ~= nil or l_0_1[l_0_20] ~= nil) and l_0_13[l_0_20] == nil then
-          local l_0_21 = nil
-          if l_0_18:match("%.[^/%.]+$") ~= nil and (mp.GetExtensionClass)(l_0_18:match("%.[^/%.]+$")) ~= 3 and #l_0_18 < #l_0_19 and l_0_19:find(l_0_18, 1, true) == 1 and l_0_19:byte(#l_0_18 + 1) ~= 58 then
-            l_0_13[l_0_20] = 1
-            local l_0_22 = nil
-            if l_0_19:match("%.[^/%.]+$") ~= nil and (mp.GetExtensionClass)(l_0_19:match("%.[^/%.]+$")) ~= 4 and IsExcludedByImagePathFileExtension(l_0_2, l_0_19:match("%.[^/%.]+$")) == false and IsExcludedByImagePathFileExtensionRegEx(l_0_2, l_0_19:match("%.[^/%.]+$")) == false and IsExcludedByImagePathFileExtensionSuffix(l_0_2, l_0_19:match("%.[^/%.]+$")) == false and IsExtensionDatePattern(l_0_19:match("%.[^/%.]+$")) == false then
-              local l_0_23 = nil
-              if l_0_12[(string.sub)(l_0_19, #l_0_18 + 1)] ~= nil then
-                (table.insert)(l_0_12[(string.sub)(l_0_19, #l_0_18 + 1)], l_0_17)
-                if #l_0_12[(string.sub)(l_0_19, #l_0_18 + 1)] >= 10 then
-                  (bm.add_related_string)("ransom_extension", (string.sub)(l_0_19, #l_0_18 + 1), bm.RelatedStringBMReport)
-                  local l_0_24 = nil
-                  local l_0_25 = "genj_linux_ransom_meta"
-                  AppendToRollingQueue(l_0_25, "cur_image_path", l_0_2)
-                  AppendToRollingQueue(l_0_25, "proc_info", l_0_11)
-                  AppendToRollingQueue(l_0_25, "appended_ext", l_0_24)
-                  for l_0_29,l_0_30 in pairs(l_0_12[l_0_24]) do
-                    local l_0_26 = {}
-                    -- DECOMPILER ERROR at PC214: Confused about usage of register: R23 in 'UnsetPending'
-
-                    ;
-                    (bm.add_related_file)((sigattr_tail[R23_PC214]).utf8p1)
-                    ;
-                    (table.insert)(l_0_26, (sigattr_tail[R23_PC214]).utf8p1)
-                  end
-                  -- DECOMPILER ERROR at PC231: Confused about usage of register: R18 in 'UnsetPending'
-
-                  AppendToRollingQueue(l_0_25, "renamed_file_path", (table.concat)(l_0_26, ","))
-                  addRelatedProcess()
-                  reportRelatedBmHits()
-                  TrackPidAndTechniqueBM("BM", "T1486", "Impact_FileEncryption")
-                  return mp.INFECTED
-                end
-              else
-                do
-                  do
-                    local l_0_31 = nil
-                    l_0_12[l_0_31] = {l_0_17}
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out DO_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_ELSE_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                    -- DECOMPILER ERROR at PC252: LeaveBlock: unexpected jumping out IF_STMT
-
+L3_3 = bm
+L3_3 = L3_3.get_current_process_startup_info
+L3_3 = L3_3()
+if L3_3 ~= nil then
+  L3_3 = L3_3.ppid
+else
+  L3_3 = "-1"
+end
+if L4_4 then
+  return L4_4
+end
+for L7_7 = 1, L0_0 do
+  if L8_8 == 16385 then
+    L9_9 = L8_8
+    L9_9 = mp
+    L9_9 = L9_9.crc32
+    L10_10 = 0
+    L11_11 = L8_8
+    L12_12 = 1
+    L13_13 = #L8_8
+    L9_9 = L9_9(L10_10, L11_11, L12_12, L13_13)
+    L1_1[L9_9] = 1
+  end
+end
+for L9_9 = 1, L0_0 do
+  L10_10 = sigattr_tail
+  L10_10 = L10_10[L9_9]
+  L10_10 = L10_10.attribute
+  if L10_10 == 16386 then
+    L10_10 = sigattr_tail
+    L10_10 = L10_10[L9_9]
+    L10_10 = L10_10.utf8p2
+    L11_11 = L10_10
+    L10_10 = L10_10.lower
+    L10_10 = L10_10(L11_11)
+    L11_11 = sigattr_tail
+    L11_11 = L11_11[L9_9]
+    L11_11 = L11_11.utf8p1
+    L12_12 = L11_11
+    L11_11 = L11_11.lower
+    L11_11 = L11_11(L12_12)
+    L12_12 = mp
+    L12_12 = L12_12.crc32
+    L13_13 = 0
+    L14_14 = L10_10
+    L15_15 = 1
+    L16_16 = #L10_10
+    L12_12 = L12_12(L13_13, L14_14, L15_15, L16_16)
+    L13_13 = mp
+    L13_13 = L13_13.crc32
+    L14_14 = 0
+    L15_15 = L11_11
+    L16_16 = 1
+    L17_17 = #L11_11
+    L13_13 = L13_13(L14_14, L15_15, L16_16, L17_17)
+    L14_14 = L1_1[L13_13]
+    if L14_14 == nil then
+      L14_14 = L1_1[L12_12]
+    elseif L14_14 ~= nil then
+      L14_14 = L5_5[L12_12]
+      if L14_14 == nil then
+        L15_15 = L10_10
+        L14_14 = L10_10.match
+        L16_16 = "%.[^/%.]+$"
+        L14_14 = L14_14(L15_15, L16_16)
+        if L14_14 ~= nil then
+          L15_15 = mp
+          L15_15 = L15_15.GetExtensionClass
+          L16_16 = L14_14
+          L15_15 = L15_15(L16_16)
+          if L15_15 ~= 3 then
+            L15_15 = #L10_10
+            L16_16 = #L11_11
+            if L15_15 < L16_16 then
+              L16_16 = L11_11
+              L15_15 = L11_11.find
+              L17_17 = L10_10
+              L18_18 = 1
+              L15_15 = L15_15(L16_16, L17_17, L18_18, true)
+              if L15_15 == 1 then
+                L16_16 = L11_11
+                L15_15 = L11_11.byte
+                L17_17 = #L10_10
+                L17_17 = L17_17 + 1
+                L15_15 = L15_15(L16_16, L17_17)
+                if L15_15 ~= 58 then
+                  L5_5[L12_12] = 1
+                  L16_16 = L11_11
+                  L15_15 = L11_11.match
+                  L17_17 = "%.[^/%.]+$"
+                  L15_15 = L15_15(L16_16, L17_17)
+                  if L15_15 ~= nil then
+                    L16_16 = mp
+                    L16_16 = L16_16.GetExtensionClass
+                    L17_17 = L15_15
+                    L16_16 = L16_16(L17_17)
+                    if L16_16 ~= 4 then
+                      L16_16 = IsExcludedByImagePathFileExtension
+                      L17_17 = L2_2
+                      L18_18 = L15_15
+                      L16_16 = L16_16(L17_17, L18_18)
+                      if L16_16 == false then
+                        L16_16 = IsExcludedByImagePathFileExtensionRegEx
+                        L17_17 = L2_2
+                        L18_18 = L15_15
+                        L16_16 = L16_16(L17_17, L18_18)
+                        if L16_16 == false then
+                          L16_16 = IsExcludedByImagePathFileExtensionSuffix
+                          L17_17 = L2_2
+                          L18_18 = L15_15
+                          L16_16 = L16_16(L17_17, L18_18)
+                          if L16_16 == false then
+                            L16_16 = IsExtensionDatePattern
+                            L17_17 = L15_15
+                            L16_16 = L16_16(L17_17)
+                            if L16_16 == false then
+                              L16_16 = string
+                              L16_16 = L16_16.sub
+                              L17_17 = L11_11
+                              L18_18 = #L10_10
+                              L18_18 = L18_18 + 1
+                              L16_16 = L16_16(L17_17, L18_18)
+                              L17_17 = L4_4[L16_16]
+                              if L17_17 ~= nil then
+                                L17_17 = table
+                                L17_17 = L17_17.insert
+                                L18_18 = L4_4[L16_16]
+                                L17_17(L18_18, L9_9)
+                                L17_17 = L4_4[L16_16]
+                                L17_17 = #L17_17
+                                if L17_17 >= 10 then
+                                  L17_17 = bm
+                                  L17_17 = L17_17.add_related_string
+                                  L18_18 = "ransom_extension"
+                                  L17_17(L18_18, L16_16, bm.RelatedStringBMReport)
+                                  L17_17 = "genj_linux_ransom_meta"
+                                  L18_18 = {}
+                                  AppendToRollingQueue(L17_17, "cur_image_path", L2_2)
+                                  AppendToRollingQueue(L17_17, "proc_info", L3_3)
+                                  AppendToRollingQueue(L17_17, "appended_ext", L16_16)
+                                  for _FORV_22_, _FORV_23_ in pairs(L4_4[L16_16]) do
+                                    bm.add_related_file(sigattr_tail[_FORV_23_].utf8p1)
+                                    table.insert(L18_18, sigattr_tail[_FORV_23_].utf8p1)
+                                  end
+                                  AppendToRollingQueue(L17_17, "renamed_file_path", table.concat(L18_18, ","))
+                                  addRelatedProcess()
+                                  reportRelatedBmHits()
+                                  TrackPidAndTechniqueBM("BM", "T1486", "Impact_FileEncryption")
+                                  return mp.INFECTED
+                                end
+                              else
+                                L17_17 = {L18_18}
+                                L18_18 = L9_9
+                                L4_4[L16_16] = L17_17
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
                   end
                 end
               end
@@ -103,7 +185,6 @@ if (bm.get_current_process_startup_info)() ~= nil then
         end
       end
     end
-    return mp.CLEAN
   end
 end
-
+return L6_6

@@ -1,41 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c141703e9379_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((nri.GetURI)())
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = nri
+L1_1 = L1_1.GetURI
+L6_6 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L1_1())
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-do
-  local l_0_1 = {}
-  -- DECOMPILER ERROR at PC21: No list found for R1 , SetList fails
-
-  -- DECOMPILER ERROR at PC22: Overwrote pending register: R2 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC23: Overwrote pending register: R3 in 'AssignReg'
-
-  for l_0_5,l_0_6 in (".jpeg")(".bin") do
-    -- DECOMPILER ERROR at PC26: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC27: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC28: Overwrote pending register: R9 in 'AssignReg'
-
-    if (".dll")(".bat", ".xlsm") then
-      local l_0_7 = reportHeaders
-      local l_0_8 = {}
-      -- DECOMPILER ERROR at PC35: Overwrote pending register: R10 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC36: No list found for R8 , SetList fails
-
-      l_0_7(l_0_8)
-      -- DECOMPILER ERROR at PC39: Overwrote pending register: R7 in 'AssignReg'
-
-      return l_0_7
-    end
+L1_1 = {
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  ".dll",
+  ".bat",
+  ".xlsm",
+  ".bmp"
+}
+L5_5 = ".mkv"
+L6_6 = ".exe"
+for L5_5, L6_6 in L2_2(L3_3) do
+  if StringEndsWith(L0_0, L6_6) then
+    reportHeaders({"Host", "User-Agent"})
+    return mp.INFECTED
   end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+return L2_2

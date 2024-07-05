@@ -1,27 +1,75 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3a78a45e1329_Flags_1 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT >= 3 then
-  return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 >= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.INFECTED
+  return L0_0
 end
-if peattributes.isdll == true and peattributes.hasexports == true and ((pehdr.DataDirectory)[1]).Size ~= 0 then
-  local l_0_0 = ((pehdr.DataDirectory)[1]).RVA
-  ;
-  (mp.readprotection)(false)
-  local l_0_1 = (mp.readfile)((pe.foffset_rva)(l_0_0), 36)
-  if (mp.readu_u32)(l_0_1, 21) == 1 and (mp.readu_u32)(l_0_1, 25) == 1 then
-    local l_0_2 = (mp.readu_u32)(l_0_1, 33)
-    l_0_1 = (pe.mmap_rva)(l_0_2, 4)
-    local l_0_3 = (mp.readu_u32)(l_0_1, 1)
-    local l_0_4 = (pe.mmap_rva)(l_0_3, 12)
-    if (string.sub)(l_0_4, 1, 12) == "ServiceMain\000" then
-      return mp.INFECTED
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 == true then
+  L0_0 = peattributes
+  L0_0 = L0_0.hasexports
+  if L0_0 == true then
+    L0_0 = pehdr
+    L0_0 = L0_0.DataDirectory
+    L0_0 = L0_0[1]
+    L0_0 = L0_0.Size
+    if L0_0 ~= 0 then
+      L0_0 = pehdr
+      L0_0 = L0_0.DataDirectory
+      L0_0 = L0_0[1]
+      L0_0 = L0_0.RVA
+      L1_1 = mp
+      L1_1 = L1_1.readprotection
+      L2_2 = false
+      L1_1(L2_2)
+      L1_1 = mp
+      L1_1 = L1_1.readfile
+      L2_2 = pe
+      L2_2 = L2_2.foffset_rva
+      L3_3 = L0_0
+      L2_2 = L2_2(L3_3)
+      L3_3 = 36
+      L1_1 = L1_1(L2_2, L3_3)
+      L2_2 = mp
+      L2_2 = L2_2.readu_u32
+      L3_3 = L1_1
+      L4_4 = 21
+      L2_2 = L2_2(L3_3, L4_4)
+      if L2_2 == 1 then
+        L2_2 = mp
+        L2_2 = L2_2.readu_u32
+        L3_3 = L1_1
+        L4_4 = 25
+        L2_2 = L2_2(L3_3, L4_4)
+        if L2_2 == 1 then
+          L2_2 = mp
+          L2_2 = L2_2.readu_u32
+          L3_3 = L1_1
+          L4_4 = 33
+          L2_2 = L2_2(L3_3, L4_4)
+          L3_3 = pe
+          L3_3 = L3_3.mmap_rva
+          L4_4 = L2_2
+          L3_3 = L3_3(L4_4, 4)
+          L1_1 = L3_3
+          L3_3 = mp
+          L3_3 = L3_3.readu_u32
+          L4_4 = L1_1
+          L3_3 = L3_3(L4_4, 1)
+          L4_4 = pe
+          L4_4 = L4_4.mmap_rva
+          L4_4 = L4_4(L3_3, 12)
+          if string.sub(L4_4, 1, 12) == "ServiceMain\000" then
+            return mp.INFECTED
+          end
+        end
+      end
     end
   end
 end
-do
-  return mp.LOWFI
-end
-
+L0_0 = mp
+L0_0 = L0_0.LOWFI
+return L0_0

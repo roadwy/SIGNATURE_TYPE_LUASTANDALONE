@@ -1,33 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e5b39d7419a4 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0.integrity_level <= MpCommon.SECURITY_MANDATORY_MEDIUM_RID then
-  local l_0_1 = (MpCommon.GetProcessElevationAndIntegrityLevel)(l_0_0.ppid)
-  if l_0_0.integrity_level < l_0_1.IntegrityLevel then
-    local l_0_2 = nil
-    for l_0_6 = 1, mp.SIGATTR_LOG_SZ do
-      if (sigattr_tail[l_0_6]).matched and (sigattr_tail[l_0_6]).attribute == 16393 then
-        l_0_2 = (sigattr_tail[l_0_6]).utf8p2
-        if l_0_2 ~= nil then
-          local l_0_7 = (mp.GetExecutablesFromCommandLine)(l_0_2)
-          for l_0_11,l_0_12 in ipairs(l_0_7) do
-            l_0_12 = (mp.ContextualExpandEnvironmentVariables)(l_0_12)
-            if (sysio.IsFileExists)(l_0_12) then
-              (bm.add_related_file)(l_0_12)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = L0_0.integrity_level
+L2_2 = MpCommon
+L2_2 = L2_2.SECURITY_MANDATORY_MEDIUM_RID
+if L1_1 <= L2_2 then
+  L1_1 = MpCommon
+  L1_1 = L1_1.GetProcessElevationAndIntegrityLevel
+  L2_2 = L0_0.ppid
+  L1_1 = L1_1(L2_2)
+  L2_2 = L1_1.IntegrityLevel
+  if L2_2 > L3_3 then
+    L2_2 = nil
+    for L6_6 = 1, L4_4.SIGATTR_LOG_SZ do
+      L7_7 = sigattr_tail
+      L7_7 = L7_7[L6_6]
+      L7_7 = L7_7.matched
+      if L7_7 then
+        L7_7 = sigattr_tail
+        L7_7 = L7_7[L6_6]
+        L7_7 = L7_7.attribute
+        if L7_7 == 16393 then
+          L7_7 = sigattr_tail
+          L7_7 = L7_7[L6_6]
+          L2_2 = L7_7.utf8p2
+          if L2_2 ~= nil then
+            L7_7 = mp
+            L7_7 = L7_7.GetExecutablesFromCommandLine
+            L7_7 = L7_7(L8_8)
+            for L11_11, L12_12 in L8_8(L9_9) do
+              L12_12 = mp.ContextualExpandEnvironmentVariables(L12_12)
+              if sysio.IsFileExists(L12_12) then
+                bm.add_related_file(L12_12)
+              end
             end
           end
         end
       end
     end
-    do return mp.INFECTED end
-    -- DECOMPILER ERROR at PC66: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
+    return L3_3
   end
 end
-l_0_1 = mp
-l_0_1 = l_0_1.CLEAN
-return l_0_1
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

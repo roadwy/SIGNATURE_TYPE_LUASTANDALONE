@@ -1,71 +1,116 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Sasquor_Includes_Suweezy,GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-local l_0_0 = 805306494
-SuweezyReportExclusionLatents(l_0_0)
-local l_0_1, l_0_2 = nil, nil
-local l_0_3 = (MpDetection.GetCurrentThreat)()
-for l_0_7,l_0_8 in pairs(l_0_3.Resources) do
-  if l_0_8.Schema == "file" and (crypto.bitand)(l_0_8.Type, MpCommon.MPRESOURCE_TYPE_CONCRETE) == MpCommon.MPRESOURCE_TYPE_CONCRETE then
-    local l_0_9, l_0_10, l_0_11, l_0_12 = Infrastructure_SplitThreatPath(l_0_8.Path)
-    if l_0_12 == "dll" or l_0_12 == "exe" then
-      Infrastructure_DetectionReportFolder(l_0_0, l_0_8.Path, true)
-      if (string.sub)((string.lower)(l_0_8.Path), -18) == "qqbrowserframe.dll" then
-        l_0_1 = l_0_8.Path
-      end
-      if (string.sub)((string.lower)(l_0_8.Path), -10) == "update.dll" then
-        l_0_2 = l_0_8.Path
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L0_0 = 805306494
+L1_1 = SuweezyReportExclusionLatents
+L2_2 = L0_0
+L1_1(L2_2)
+L1_1, L2_2 = nil, nil
+L3_3 = MpDetection
+L3_3 = L3_3.GetCurrentThreat
+L3_3 = L3_3()
+for L7_7, L8_8 in L4_4(L5_5) do
+  L9_9 = L8_8.Schema
+  if L9_9 == "file" then
+    L9_9 = crypto
+    L9_9 = L9_9.bitand
+    L10_10 = L8_8.Type
+    L9_9 = L9_9(L10_10, MpCommon.MPRESOURCE_TYPE_CONCRETE)
+    L10_10 = MpCommon
+    L10_10 = L10_10.MPRESOURCE_TYPE_CONCRETE
+    if L9_9 == L10_10 then
+      L9_9 = Infrastructure_SplitThreatPath
+      L10_10 = L8_8.Path
+      L10_10 = L9_9(L10_10)
+      if L9_9(L10_10) == "dll" or L9_9(L10_10) == "exe" then
+        Infrastructure_DetectionReportFolder(L0_0, L8_8.Path, true)
+        if string.sub(string.lower(L8_8.Path), -18) == "qqbrowserframe.dll" then
+          L1_1 = L8_8.Path
+        end
+        if string.sub(string.lower(L8_8.Path), -10) == "update.dll" then
+          L2_2 = L8_8.Path
+        end
       end
     end
   end
 end
-do
-  if l_0_1 ~= nil then
-    local l_0_13, l_0_14, l_0_15, l_0_16 = Infrastructure_SplitThreatPath(l_0_1)
-    if (sysio.IsFileExists)(l_0_13 .. "\\QQBrowser.exe") then
-      (MpDetection.ReportResource)("file", l_0_13 .. "\\QQBrowser.exe", l_0_0, false)
-    end
+if L1_1 ~= nil then
+  L8_8 = sysio
+  L8_8 = L8_8.IsFileExists
+  L9_9 = L4_4
+  L10_10 = "\\QQBrowser.exe"
+  L9_9 = L9_9 .. L10_10
+  L8_8 = L8_8(L9_9)
+  if L8_8 then
+    L8_8 = MpDetection
+    L8_8 = L8_8.ReportResource
+    L9_9 = "file"
+    L10_10 = L4_4
+    L10_10 = L10_10 .. "\\QQBrowser.exe"
+    L8_8(L9_9, L10_10, L0_0, false)
   end
-  do
-    if l_0_2 ~= nil then
-      local l_0_17, l_0_18, l_0_19, l_0_20 = Infrastructure_SplitThreatPath(l_0_2)
-      if (sysio.IsFileExists)(l_0_17 .. "\\BaofengUpdate_U.exe") then
-        (MpDetection.ReportResource)("file", l_0_17 .. "\\BaofengUpdate_U.exe", l_0_0, false)
-      end
+end
+if L2_2 ~= nil then
+  L8_8 = sysio
+  L8_8 = L8_8.IsFileExists
+  L9_9 = L4_4
+  L10_10 = "\\BaofengUpdate_U.exe"
+  L9_9 = L9_9 .. L10_10
+  L8_8 = L8_8(L9_9)
+  if L8_8 then
+    L8_8 = MpDetection
+    L8_8 = L8_8.ReportResource
+    L9_9 = "file"
+    L10_10 = L4_4
+    L10_10 = L10_10 .. "\\BaofengUpdate_U.exe"
+    L8_8(L9_9, L10_10, L0_0, false)
+  end
+end
+if L4_4 ~= nil then
+  for L8_8, L9_9 in L5_5(L6_6) do
+    L10_10 = L9_9
+    L10_10 = L10_10 .. "\\SNARER\\Snarer.dll"
+    if sysio.IsFileExists(L10_10) then
+      Infrastructure_DetectionReportFolder(L0_0, L10_10, true)
     end
-    local l_0_21 = (sysio.ExpandFilePath)("%LOCALAPPDATA%", true)
-    if l_0_21 ~= nil then
-      for l_0_25,l_0_26 in pairs(l_0_21) do
-        local l_0_27 = l_0_26 .. "\\SNARER\\Snarer.dll"
-        if (sysio.IsFileExists)(l_0_27) then
-          Infrastructure_DetectionReportFolder(l_0_0, l_0_27, true)
-        end
-        l_0_27 = l_0_26 .. "\\NPASRE\\Snare.dll"
-        if (sysio.IsFileExists)(l_0_27) then
-          Infrastructure_DetectionReportFolder(l_0_0, l_0_27, true)
-        end
-      end
-    end
-    do
-      Infrastructure_ReportRegistryKey(l_0_0, "HKLM\\SYSTEM\\CurrentControlSet\\Services\\SNARER")
-      Infrastructure_ReportRegistryValue(l_0_0, "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SvcHost", "SNARER")
-      Infrastructure_ReportRegistryKey(l_0_0, "HKLM\\SYSTEM\\CurrentControlSet\\Services\\NPASRE")
-      Infrastructure_ReportRegistryValue(l_0_0, "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SvcHost", "NPASRE")
-      local l_0_28 = (MpCommon.ExpandEnvironmentVariables)("%ProgramFiles%")
-      if (sysio.IsFileExists)(l_0_28 .. "\\MIO\\MIO.exe") then
-        Infrastructure_DetectionReportFolder(l_0_0, l_0_28 .. "\\MIO\\MIO.exe", true)
-      end
-      local l_0_29 = (MpCommon.ExpandEnvironmentVariables)("%ProgramFiles(x86)%")
-      if (sysio.IsFileExists)(l_0_29 .. "\\MIO\\MIO.exe") then
-        Infrastructure_DetectionReportFolder(l_0_0, l_0_29 .. "\\MIO\\MIO.exe", true)
-      end
-      Infrastructure_ReportImageFileDebugger(l_0_0, "GoogleUpdate.exe")
-      Infrastructure_ReportImageFileDebugger(l_0_0, "GoogleUpdaterService.exe")
-      Infrastructure_ReportSoftwareRegistryByKey(l_0_0, "WinArcher")
-      Infrastructure_ReportSoftwareRegistryByKey(l_0_0, "ourluckysitesSoftware")
+    L10_10 = L9_9 .. "\\NPASRE\\Snare.dll"
+    if sysio.IsFileExists(L10_10) then
+      Infrastructure_DetectionReportFolder(L0_0, L10_10, true)
     end
   end
 end
-
+L5_5(L6_6, L7_7)
+L8_8 = "SNARER"
+L5_5(L6_6, L7_7, L8_8)
+L5_5(L6_6, L7_7)
+L8_8 = "NPASRE"
+L5_5(L6_6, L7_7, L8_8)
+L8_8 = "\\MIO\\MIO.exe"
+if L6_6 then
+  L8_8 = L5_5
+  L9_9 = "\\MIO\\MIO.exe"
+  L8_8 = L8_8 .. L9_9
+  L9_9 = true
+  L6_6(L7_7, L8_8, L9_9)
+end
+L8_8 = L6_6
+L9_9 = "\\MIO\\MIO.exe"
+L8_8 = L8_8 .. L9_9
+if L7_7 then
+  L8_8 = L0_0
+  L9_9 = L6_6
+  L10_10 = "\\MIO\\MIO.exe"
+  L9_9 = L9_9 .. L10_10
+  L10_10 = true
+  L7_7(L8_8, L9_9, L10_10)
+end
+L8_8 = L0_0
+L9_9 = "GoogleUpdate.exe"
+L7_7(L8_8, L9_9)
+L8_8 = L0_0
+L9_9 = "GoogleUpdaterService.exe"
+L7_7(L8_8, L9_9)
+L8_8 = L0_0
+L9_9 = "WinArcher"
+L7_7(L8_8, L9_9)
+L8_8 = L0_0
+L9_9 = "ourluckysitesSoftware"
+L7_7(L8_8, L9_9)

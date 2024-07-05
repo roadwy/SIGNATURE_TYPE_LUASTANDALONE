@@ -1,119 +1,101 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6241c4dddad3_Includes_BMLuaLib,LuaFuncHelper 
-
--- params : ...
--- function num : 0
-local l_0_0 = function()
-  -- function num : 0_0
-  local l_1_0 = reportHeaders
-  local l_1_1 = {}
-  -- DECOMPILER ERROR at PC4: No list found for R1 , SetList fails
-
-  l_1_0(l_1_1)
-  -- DECOMPILER ERROR at PC7: Overwrote pending register: R0 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC8: Overwrote pending register: R0 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC10: Overwrote pending register: R1 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC11: Overwrote pending register: R1 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC12: Overwrote pending register: R2 in 'AssignReg'
-
-  local l_1_2 = ("Host")[2]
-  -- DECOMPILER ERROR at PC14: Overwrote pending register: R3 in 'AssignReg'
-
-  local l_1_3 = ("User-Agent")[3]
-  local l_1_4 = (nri.GetURI)()
-  if not l_1_2.utf8p1 or not l_1_2.utf8p2 or not l_1_3.utf8p1 then
-    (mp.changedetectionname)(805306718)
-    return mp.INFECTED
+local L0_0
+function L0_0()
+  local L0_1, L1_2, L2_3, L3_4, L4_5, L5_6, L6_7, L7_8, L8_9, L9_10, L10_11, L11_12, L12_13, L13_14, L14_15, L15_16, L16_17, L17_18, L18_19, L19_20, L20_21, L21_22, L22_23, L23_24
+  L0_1 = reportHeaders
+  L1_2 = {L2_3, L3_4}
+  L2_3 = "Host"
+  L3_4 = "User-Agent"
+  L0_1(L1_2)
+  L0_1 = this_sigattrlog
+  L0_1 = L0_1[1]
+  L0_1 = L0_1.utf8p1
+  L1_2 = this_sigattrlog
+  L1_2 = L1_2[1]
+  L1_2 = L1_2.np2
+  L2_3 = this_sigattrlog
+  L2_3 = L2_3[2]
+  L3_4 = this_sigattrlog
+  L3_4 = L3_4[3]
+  L4_5 = nri
+  L4_5 = L4_5.GetURI
+  L4_5 = L4_5()
+  L5_6 = L2_3.utf8p1
+  if L5_6 then
+    L5_6 = L2_3.utf8p2
+    L5_6 = L5_6 and L3_4.utf8p1
+  elseif not L5_6 then
+    L5_6 = mp
+    L5_6 = L5_6.changedetectionname
+    L6_7 = 805306718
+    L5_6(L6_7)
+    L5_6 = mp
+    L5_6 = L5_6.INFECTED
+    return L5_6
   end
-  local l_1_5 = {}
-  l_1_5.SIG_CONTEXT = (string.format)("NP:%s:%d", l_1_2.utf8p1, l_1_2.np2)
-  l_1_5.CONTENT_SOURCE = "NP"
-  l_1_5.PROCESS_PATH = l_1_3.utf8p1
-  l_1_5.C2 = "true"
-  local l_1_6 = l_1_0 .. ":" .. l_1_1
-  local l_1_7 = mp.GetUrlReputation
-  local l_1_8 = {}
-  -- DECOMPILER ERROR at PC56: No list found for R8 , SetList fails
-
-  -- DECOMPILER ERROR at PC57: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC62: Overwrote pending register: R8 in 'AssignReg'
-
-  if not l_1_7 then
-    l_1_8(805306719)
-    -- DECOMPILER ERROR at PC65: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC66: Overwrote pending register: R8 in 'AssignReg'
-
-    return l_1_8
+  L5_6 = {}
+  L6_7 = string
+  L6_7 = L6_7.format
+  L7_8 = "NP:%s:%d"
+  L8_9 = L2_3.utf8p1
+  L9_10 = L2_3.np2
+  L6_7 = L6_7(L7_8, L8_9, L9_10)
+  L5_6.SIG_CONTEXT = L6_7
+  L5_6.CONTENT_SOURCE = "NP"
+  L6_7 = L3_4.utf8p1
+  L5_6.PROCESS_PATH = L6_7
+  L5_6.C2 = "true"
+  L6_7 = L0_1
+  L7_8 = ":"
+  L8_9 = L1_2
+  L6_7 = L6_7 .. L7_8 .. L8_9
+  L7_8 = mp
+  L7_8 = L7_8.GetUrlReputation
+  L8_9 = {L9_10, L10_11}
+  L9_10 = L6_7
+  L9_10 = L5_6
+  L7_8 = L7_8(L8_9, L9_10)
+  if not L7_8 then
+    L8_9 = mp
+    L8_9 = L8_9.changedetectionname
+    L9_10 = 805306719
+    L8_9(L9_10)
+    L8_9 = mp
+    L8_9 = L8_9.INFECTED
+    return L8_9
   else
-    local l_1_9 = l_1_7.urls
-    -- DECOMPILER ERROR at PC78: Overwrote pending register: R10 in 'AssignReg'
-
-    for l_1_13,l_1_14 in l_1_4(l_1_9) do
-      if l_1_14.determination == 2 then
-        local l_1_15 = l_1_14.urlresponsecontext
-        if l_1_15 then
-          local l_1_16 = ""
-          for l_1_20,l_1_21 in ipairs(l_1_15) do
-            local l_1_22 = l_1_21.key
-            local l_1_23 = l_1_21.value
-            if l_1_22 == "MaceFamily" then
-              do
-                do
-                  l_1_16 = (string.lower)(l_1_23)
-                  do break end
-                  -- DECOMPILER ERROR at PC103: LeaveBlock: unexpected jumping out DO_STMT
-
-                  -- DECOMPILER ERROR at PC103: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                  -- DECOMPILER ERROR at PC103: LeaveBlock: unexpected jumping out IF_STMT
-
-                end
-              end
+    L8_9 = {}
+    L8_9.emotet = 805306695
+    L8_9.trickbot = 805306697
+    L8_9.dridex = 805306705
+    L8_9.cobaltstrike = 805306707
+    L8_9.qakbot = 805306709
+    L8_9.zloader = 805306711
+    L8_9.icedid = 805306713
+    L9_10 = L7_8.urls
+    for L13_14, L14_15 in L10_11(L11_12) do
+      L15_16 = L14_15.determination
+      if L15_16 == 2 then
+        L15_16 = L14_15.urlresponsecontext
+        if L15_16 then
+          L16_17 = ""
+          for L20_21, L21_22 in L17_18(L18_19) do
+            L22_23 = L21_22.key
+            L23_24 = L21_22.value
+            if L22_23 == "MaceFamily" then
+              L16_17 = string.lower(L23_24)
+              break
             end
           end
-          if l_1_16 ~= "" then
-            do
-              do
-                if l_1_14.confidence ~= 99 then
-                  local l_1_24, l_1_25 = l_1_8[l_1_16] - 1
-                end
-                -- DECOMPILER ERROR at PC114: Confused about usage of register: R17 in 'UnsetPending'
-
-                ;
-                (mp.changedetectionname)(l_1_24)
-                do return mp.INFECTED end
-                -- DECOMPILER ERROR at PC119: LeaveBlock: unexpected jumping out DO_STMT
-
-                -- DECOMPILER ERROR at PC119: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC119: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC119: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC119: LeaveBlock: unexpected jumping out IF_STMT
-
-                -- DECOMPILER ERROR at PC119: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-                -- DECOMPILER ERROR at PC119: LeaveBlock: unexpected jumping out IF_STMT
-
-              end
-            end
+          if L16_17 ~= "" then
+            L18_19(L19_20)
+            return L18_19
           end
         end
       end
     end
   end
 end
-
-local l_0_1, l_0_2 = pcallEx("adjustDetectionName", l_0_0)
-if not l_0_1 then
+if not pcallEx("adjustDetectionName", L0_0) then
   reportPcallEx()
 end
 return mp.INFECTED
-

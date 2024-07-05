@@ -1,36 +1,79 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Worm_VBS_Jenxcus.NullSpace!Lowfi_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 30000000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 30000000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = tostring(headerpage)
-local l_0_2, l_0_3, l_0_4 = (string.find)(l_0_1, "\n.\n.\n.\n.\n.\n.\n.\n.\n.\n")
-for l_0_8 = 1, 100 do
-  -- DECOMPILER ERROR at PC28: Overwrote pending register: R8 in 'AssignReg'
+L1_1 = tostring
+L2_2 = headerpage
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = [[
 
+.
+.
+.
+.
+.
+.
+.
+.
+.
+]]
+L4_4 = L2_2(L3_3, L4_4)
+for L8_8 = 1, 100 do
+  L9_9 = string
+  L9_9 = L9_9.find
+  L9_9 = L9_9(L1_1, [[
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+]], L3_3)
+  L3_3 = L9_9(L1_1, [[
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+]], L3_3)
 end
-;
-(mp.readprotection)(false)
-local l_0_9 = (mp.readfile)(l_0_0 / 10, 50000)
-if l_0_9 == nil then
-  return mp.CLEAN
+L5_5(L6_6)
+if L5_5 == nil then
+  return L6_6
 end
--- DECOMPILER ERROR at PC44: Overwrote pending register: R3 in 'AssignReg'
+L3_3 = 1
+for L9_9 = 1, 1000 do
+  L9_9, L3_3, L9_9 = string.find(L5_5, [[
 
--- DECOMPILER ERROR at PC47: Overwrote pending register: R8 in 'AssignReg'
-
-for l_0_13 = 1, 1000, l_0_8 do
-  -- DECOMPILER ERROR at PC56: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC57: Overwrote pending register: R9 in 'AssignReg'
-
+.
+.
+.
+.
+.
+.
+.
+.
+.
+]], L3_3)
 end
-if l_0_3 > 10000 then
-  return mp.LOWFI
+if L3_3 > 10000 then
+  return L6_6
 end
-return mp.CLEAN
-
+return L6_6

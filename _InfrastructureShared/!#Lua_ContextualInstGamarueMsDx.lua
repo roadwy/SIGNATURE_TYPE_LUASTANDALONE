@@ -1,36 +1,104 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ContextualInstGamarueMsDx 
-
--- params : ...
--- function num : 0
-if not peattributes.isexe then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  if l_0_1 ~= "msiexec.exe" then
-    return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_FILENAME
+  L7_7 = L2_2(L3_3)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L2_2(L3_3))
+  if L1_1 ~= "msiexec.exe" then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  local l_0_2 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-  if l_0_2:sub(-17) == "\\windows\\system32" then
-    local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-    local l_0_4 = (string.lower)(l_0_3)
-    if #l_0_4 < 9 or #l_0_4 > 16 then
-      return mp.CLEAN
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = mp
+  L3_3 = L3_3.get_contextdata
+  L4_4 = mp
+  L4_4 = L4_4.CONTEXT_DATA_FILEPATH
+  L7_7 = L3_3(L4_4)
+  L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6, L7_7, L3_3(L4_4))
+  L4_4 = L2_2
+  L3_3 = L2_2.sub
+  L5_5 = -17
+  L3_3 = L3_3(L4_4, L5_5)
+  if L3_3 == "\\windows\\system32" then
+    L3_3 = mp
+    L3_3 = L3_3.get_contextdata
+    L4_4 = mp
+    L4_4 = L4_4.CONTEXT_DATA_PROCESSNAME
+    L3_3 = L3_3(L4_4)
+    L4_4 = string
+    L4_4 = L4_4.lower
+    L5_5 = L3_3
+    L4_4 = L4_4(L5_5)
+    L5_5 = #L4_4
+    if not (L5_5 < 9) then
+      L5_5 = #L4_4
+    elseif L5_5 > 16 then
+      L5_5 = mp
+      L5_5 = L5_5.CLEAN
+      return L5_5
     end
-    if l_0_4:match("^ms%l%l%l+%.exe$") ~= nil or l_0_4:match("^dx%l%l%l+%.exe$") ~= nil then
-      local l_0_5 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSDEVICEPATH)
-      local l_0_6 = (string.lower)(l_0_5)
-      if l_0_6:sub(-10) == "\\all users" or l_0_6:sub(-12) == "\\programdata" or l_0_6:sub(-17) == "\\application data" or l_0_6:sub(-16) == "\\appdata\\roaming" then
-        local l_0_7 = (MpCommon.PathToWin32Path)(l_0_5) .. "\\" .. l_0_4
-        ;
-        (mp.ReportLowfi)(l_0_7, 1366157334)
+    L6_6 = L4_4
+    L5_5 = L4_4.match
+    L7_7 = "^ms%l%l%l+%.exe$"
+    L5_5 = L5_5(L6_6, L7_7)
+    if L5_5 == nil then
+      L6_6 = L4_4
+      L5_5 = L4_4.match
+      L7_7 = "^dx%l%l%l+%.exe$"
+      L5_5 = L5_5(L6_6, L7_7)
+    elseif L5_5 ~= nil then
+      L5_5 = mp
+      L5_5 = L5_5.get_contextdata
+      L6_6 = mp
+      L6_6 = L6_6.CONTEXT_DATA_PROCESSDEVICEPATH
+      L5_5 = L5_5(L6_6)
+      L6_6 = string
+      L6_6 = L6_6.lower
+      L7_7 = L5_5
+      L6_6 = L6_6(L7_7)
+      L7_7 = L6_6.sub
+      L7_7 = L7_7(L6_6, -10)
+      if L7_7 ~= "\\all users" then
+        L7_7 = L6_6.sub
+        L7_7 = L7_7(L6_6, -12)
+        if L7_7 ~= "\\programdata" then
+          L7_7 = L6_6.sub
+          L7_7 = L7_7(L6_6, -17)
+          if L7_7 ~= "\\application data" then
+            L7_7 = L6_6.sub
+            L7_7 = L7_7(L6_6, -16)
+          end
+        end
+      elseif L7_7 == "\\appdata\\roaming" then
+        L7_7 = MpCommon
+        L7_7 = L7_7.PathToWin32Path
+        L7_7 = L7_7(L5_5)
+        L7_7 = L7_7 .. "\\" .. L4_4
+        mp.ReportLowfi(L7_7, 1366157334)
       end
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

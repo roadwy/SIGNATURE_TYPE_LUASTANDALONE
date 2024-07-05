@@ -1,49 +1,131 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#ALF_LuaHighRiskJSinZipWebVector.A_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-local l_0_1 = {}
-l_0_1["iexplore.exe"] = ""
-l_0_1["browser_broker.exe"] = ""
-l_0_1["firefox.exe"] = ""
-l_0_1["chrome.exe"] = ""
-l_0_1["msedge.exe"] = ""
-l_0_1["opera.exe"] = ""
-l_0_1["safari.exe"] = ""
-l_0_1["microsoftedge.exe"] = ""
-l_0_1["microsoftedgecp.exe"] = ""
-local l_0_2 = false
-local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_1[l_0_3] and l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  l_0_2 = true
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = nil
+L2_2 = "iexplore.exe|browser_broker.exe|firefox.exe|chrome.exe|msedge.exe|opera.exe|safari.exe|microsoftedge.exe|microsoftedgecp.exe"
+L3_3 = nil
+L4_4 = mp
+L4_4 = L4_4.SCANREASON_ONMODIFIEDHANDLECLOSE
+if L0_0 ~= L4_4 then
+  L4_4 = mp
+  L4_4 = L4_4.SCANREASON_UNKNOWN
 else
-  if (mp.get_contextdata)(mp.CONTEXT_DATA_HAS_MOTW_ADS) == true and l_0_0 == mp.SCANREASON_ONOPEN then
-    local l_0_4 = (mp.GetMOTWZone)()
-    if l_0_4 == 3 or l_0_4 == 4 then
-      l_0_2 = true
+  if L0_0 == L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.get_contextdata
+    L5_5 = mp
+    L5_5 = L5_5.CONTEXT_DATA_PROCESSNAME
+    L4_4 = L4_4(L5_5)
+    if L4_4 then
+      L5_5 = string
+      L5_5 = L5_5.lower
+      L6_6 = L4_4
+      L5_5 = L5_5(L6_6)
+      L4_4 = L5_5
+      L5_5 = string
+      L5_5 = L5_5.find
+      L6_6 = L2_2
+      L7_7 = L4_4
+      L5_5 = L5_5(L6_6, L7_7)
+      L1_1 = L5_5
+    else
+      L5_5 = mp
+      L5_5 = L5_5.IOAVGetProcessPath
+      L5_5 = L5_5()
+      if L5_5 then
+        L7_7 = L5_5
+        L6_6 = L5_5.match
+        L6_6 = L6_6(L7_7, "([^\\]+)$")
+        L7_7 = string
+        L7_7 = L7_7.find
+        L7_7 = L7_7(L2_2, string.lower(L6_6))
+        L1_1 = L7_7
+        L7_7 = mp
+        L7_7 = L7_7.IOAVGetDownloadUrl
+        L7_7 = L7_7()
+        L3_3 = L7_7
+      end
+    end
+end
+else
+  L4_4 = mp
+  L4_4 = L4_4.get_contextdata
+  L5_5 = mp
+  L5_5 = L5_5.CONTEXT_DATA_HAS_MOTW_ADS
+  L4_4 = L4_4(L5_5)
+  if L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.GetMOTWZone
+    L4_4 = L4_4()
+    L1_1 = L4_4 == 3 or L4_4 == 4
+    if L1_1 then
+      L5_5 = mp
+      L5_5 = L5_5.GetMOTWHostUrl
+      L5_5 = L5_5()
+      L3_3 = L5_5
     end
   end
 end
-do
-  local l_0_5 = (MpCommon.PathToWin32Path)((mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)))
-  local l_0_6 = (mp.getfilename)((mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)))
-  if l_0_5 == nil then
-    return mp.CLEAN
+if not L1_1 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+if not L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = {}
+L4_4.SIG_CONTEXT = "SINGLE_SCRIPT"
+L4_4.TAG = "INTERFLOW"
+L5_5 = SafeGetUrlReputation
+L6_6 = {L7_7}
+L7_7 = L3_3
+L7_7 = L4_4
+L5_5 = L5_5(L6_6, L7_7, false, 2000)
+if L5_5 then
+  L6_6 = L5_5.urls
+  L6_6 = L6_6[L3_3]
+  if L6_6 then
+    L6_6 = L5_5.urls
+    L6_6 = L6_6[L3_3]
+    L6_6 = L6_6.determination
+    if L6_6 == 1 then
+      L6_6 = mp
+      L6_6 = L6_6.CLEAN
+      return L6_6
+    end
   end
-  -- DECOMPILER ERROR at PC112: Unhandled construct in 'MakeBoolean' P3
-
-  if (#l_0_5 >= 17 and l_0_5:sub(2, 17) == ":\\program files\\") or #l_0_5 < 23 or #l_0_5 >= 11 and l_0_5:sub(2, 11) == ":\\windows\\" then
-    return mp.CLEAN
-  end
-  if l_0_6 and l_0_5 and l_0_2 then
-    (mp.set_mpattribute)("MpDisableCaching")
-    ;
-    (MpCommon.AppendPersistContext)(l_0_5, "Lua:LuaHighRiskJSinZipWebVector.A", 0)
-    AppendToRollingQueue("LuaHighRiskJSinZipWebVector", l_0_6, l_0_5)
-    return mp.INFECTED
-  end
+end
+L6_6 = mp
+L6_6 = L6_6.getfilename
+L7_7 = mp
+L7_7 = L7_7.bitor
+L7_7 = L7_7(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)
+L6_6 = L6_6(L7_7, L7_7(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if L6_6 == nil then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7 = mp
+L7_7 = L7_7.getfilename
+L7_7 = L7_7(mp.bitor(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+if L7_7 == nil then
   return mp.CLEAN
 end
-
+L7_7 = string.lower(MpCommon.PathToWin32Path(L7_7))
+if L7_7 == nil then
+  return mp.CLEAN
+end
+if L7_7:find("^:\\program files\\", 2) or L7_7:find("^:\\program files %(x86%)\\", 2) or L7_7:find("^:\\windows\\", 2) or L7_7:find("^:\\voyagerbackups\\", 2) or L7_7:find("^:\\backup hta-prod-ta\\", 2) or L7_7:find("^:programdata\\hp\\rs\\data\\backup\\") then
+  return mp.CLEAN
+end
+mp.set_mpattribute("MpDisableCaching")
+MpCommon.AppendPersistContext(L7_7, "Lua:LuaHighRiskJSinZipWebVector.A", 0)
+AppendToRollingQueue("LuaHighRiskJSinZipWebVector", L6_6, L7_7)
+return mp.INFECTED

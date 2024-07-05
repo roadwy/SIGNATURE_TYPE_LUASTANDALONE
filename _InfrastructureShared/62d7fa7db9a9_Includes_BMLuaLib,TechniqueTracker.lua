@@ -1,45 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/62d7fa7db9a9_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = ((mp.GetProcessCommandLine)(l_0_0)):lower()
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = L1_1
+L1_1 = L1_1.lower
+L1_1 = L1_1(L2_2)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2, l_0_3 = (string.gsub)(l_0_1, "%^", "")
-if l_0_3 < 5 then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.gsub
+L3_3 = L1_1
+L4_4 = "%^"
+L5_5 = ""
+L3_3 = L2_2(L3_3, L4_4, L5_5)
+if L3_3 < 5 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-l_0_2 = (string.gsub)(l_0_2, " ", "")
-local l_0_4 = {}
--- DECOMPILER ERROR at PC40: No list found for R4 , SetList fails
-
--- DECOMPILER ERROR at PC41: Overwrote pending register: R5 in 'AssignReg'
-
--- DECOMPILER ERROR at PC42: Overwrote pending register: R6 in 'AssignReg'
-
-if not ("startmshtahttp://")("cmd/cmshtahttp://", l_0_4) then
-  return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.gsub
+L5_5 = L2_2
+L4_4 = L4_4(L5_5, " ", "")
+L2_2 = L4_4
+L4_4 = {
+  L5_5,
+  "cmd/cmshtahttp://"
+}
+L5_5 = "startmshtahttp://"
+L5_5 = contains
+L5_5 = L5_5(L2_2, L4_4)
+if not L5_5 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-do
-  local l_0_5 = {}
-  -- DECOMPILER ERROR at PC55: No list found for R5 , SetList fails
-
-  -- DECOMPILER ERROR at PC56: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC57: Overwrote pending register: R7 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC58: Overwrote pending register: R8 in 'AssignReg'
-
-  if ("winword.exe")("excel.exe", "powerpnt.exe") then
-    return mp.INFECTED
-  end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
+L5_5 = {
+  "winword.exe",
+  "excel.exe",
+  "powerpnt.exe",
+  "mspub.exe"
+}
+if IsProcNameInParentProcessTree("cmdhstr", L5_5) then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

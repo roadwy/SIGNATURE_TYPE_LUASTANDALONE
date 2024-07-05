@@ -1,15 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/51b3ca00a541 
-
--- params : ...
--- function num : 0
-for l_0_3 = mp.SIGATTR_LOG_SZ, 1, -1 do
-  if (sigattr_head[l_0_3]).matched and (sigattr_head[l_0_3]).attribute == 16384 then
-    local l_0_4 = (mp.ContextualExpandEnvironmentVariables)((sigattr_head[l_0_3]).utf8p1)
-    if l_0_4 ~= nil and (sysio.IsFileExists)(l_0_4) then
-      (mp.ReportLowfi)(l_0_4, 1501004956)
+local L0_0, L1_1, L2_2, L3_3, L4_4
+for L3_3 = L0_0.SIGATTR_LOG_SZ, 1, -1 do
+  L4_4 = sigattr_head
+  L4_4 = L4_4[L3_3]
+  L4_4 = L4_4.matched
+  if L4_4 then
+    L4_4 = sigattr_head
+    L4_4 = L4_4[L3_3]
+    L4_4 = L4_4.attribute
+    if L4_4 == 16384 then
+      L4_4 = mp
+      L4_4 = L4_4.ContextualExpandEnvironmentVariables
+      L4_4 = L4_4(sigattr_head[L3_3].utf8p1)
+      if L4_4 ~= nil and sysio.IsFileExists(L4_4) then
+        mp.ReportLowfi(L4_4, 1501004956)
+      end
     end
   end
 end
-return mp.INFECTED
-
+return L0_0

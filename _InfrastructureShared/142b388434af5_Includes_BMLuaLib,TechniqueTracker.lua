@@ -1,19 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/142b388434af5_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-if IsTacticObservedGlobal("credentialdumping_concrete") then
-  local l_0_0 = (bm.get_current_process_startup_info)()
-  local l_0_1 = l_0_0.command_line
-  if l_0_1 ~= nil then
-    bm_AddRelatedFileFromCommandLine(l_0_1)
+local L0_0, L1_1
+L0_0 = IsTacticObservedGlobal
+L1_1 = "credentialdumping_concrete"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = bm
+  L0_0 = L0_0.get_current_process_startup_info
+  L0_0 = L0_0()
+  L1_1 = L0_0.command_line
+  if L1_1 ~= nil then
+    bm_AddRelatedFileFromCommandLine(L1_1)
   end
   sms_untrusted_process()
   add_parents()
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

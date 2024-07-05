@@ -1,64 +1,61 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a1d7df53a77f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (mp.GetProcessCommandLine)(l_0_0)
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.GetProcessCommandLine
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2, l_0_3 = (string.find)(l_0_1, "d0027073-ea64-42ca-8293-241186e9011f", 1, true)
-if l_0_2 == nil or l_0_3 == nil then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.find
+L3_3 = L1_1
+L4_4 = "d0027073-ea64-42ca-8293-241186e9011f"
+L5_5 = 1
+L6_6 = true
+L3_3 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 == nil or L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (string.sub)(l_0_1, l_0_3 + 1, -1)
-local l_0_5 = ""
-local l_0_6 = 0
-local l_0_7 = 1
-for l_0_11 in (string.gmatch)(l_0_4, "%S+") do
-  if l_0_7 == 1 then
-    l_0_5 = l_0_11
-  else
-    if l_0_7 == 2 then
-      l_0_6 = tonumber(l_0_11)
-    end
+L4_4 = string
+L4_4 = L4_4.sub
+L5_5 = L1_1
+L6_6 = L3_3 + 1
+L7_7 = -1
+L4_4 = L4_4(L5_5, L6_6, L7_7)
+L5_5 = ""
+L6_6 = 0
+L7_7 = 1
+for L11_11 in L8_8(L9_9, L10_10) do
+  if L7_7 == 1 then
+    L5_5 = L11_11
+  elseif L7_7 == 2 then
+    L6_6 = tonumber(L11_11)
   end
-  l_0_7 = l_0_7 + 1
+  L7_7 = L7_7 + 1
 end
-if l_0_7 < 3 then
-  return mp.CLEAN
+if L7_7 < 3 then
+  return L8_8
 end
-local l_0_12 = {}
--- DECOMPILER ERROR at PC83: No list found for R8 , SetList fails
-
--- DECOMPILER ERROR at PC86: Overwrote pending register: R9 in 'AssignReg'
-
--- DECOMPILER ERROR at PC88: Overwrote pending register: R10 in 'AssignReg'
-
-if l_0_6 == 536870912 then
-  ((mp.SMS_SCAN_ONCE).SMSAsyncScan)(mp.SMS_SCAN_LOW)
-  return mp.CLEAN
+if L6_6 == 536870912 then
+  L9_9(L10_10)
+  return L9_9
 end
-for l_0_16,l_0_17 in ipairs(l_0_12) do
-  -- DECOMPILER ERROR at PC99: Overwrote pending register: R14 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC101: Overwrote pending register: R15 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC102: Overwrote pending register: R16 in 'AssignReg'
-
-  if l_0_17 == l_0_6 then
-    ((mp.SMS_SCAN_LOW_ADV).RequestSmsOnProcess)(mp.SMS_SCAN_MED_ADV, mp.SMS_SCAN_HIGH_ADV)
+for _FORV_12_, _FORV_13_ in L9_9(L10_10) do
+  if _FORV_13_ == L6_6 then
+    MpCommon.RequestSmsOnProcess(L5_5, L6_6)
     break
   end
 end
-do
-  do
-    do return mp.CLEAN end
-    -- WARNING: undefined locals caused missing assignments!
-  end
-end
-
+return L9_9

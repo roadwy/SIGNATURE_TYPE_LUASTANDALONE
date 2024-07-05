@@ -1,52 +1,143 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_CeeInject_MyAppChecking_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() > 512000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 512000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.headerchecksum0 ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.headerchecksum0
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = pesecs[3]
-if (pesecs[2]).SizeOfRawData > 8192 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[3]
+L1_1 = pesecs
+L1_1 = L1_1[2]
+L1_1 = L1_1.SizeOfRawData
+if L1_1 > 8192 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (l_0_0.Name):sub(2) ~= "data" and l_0_0.SizeOfRawData == 4096 and l_0_0.VirtualSize <= 8192 and l_0_0.VirtualAddress >= 20480 and l_0_0.VirtualAddress <= 36864 then
-  return mp.CLEAN
+L1_1 = L0_0.Name
+L2_2 = L1_1
+L1_1 = L1_1.sub
+L3_3 = 2
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= "data" then
+  L1_1 = L0_0.SizeOfRawData
+  if L1_1 == 4096 then
+    L1_1 = L0_0.VirtualSize
+    if L1_1 <= 8192 then
+      L1_1 = L0_0.VirtualAddress
+      if L1_1 >= 20480 then
+        L1_1 = L0_0.VirtualAddress
+        if L1_1 <= 36864 then
+          L1_1 = mp
+          L1_1 = L1_1.CLEAN
+          return L1_1
+        end
+      end
+    end
+  end
 end
-local l_0_1 = pe.query_import
-if l_0_1(pe.IMPORT_STATIC, 4288984855) == 0 then
-  return mp.CLEAN
+L1_1 = pe
+L1_1 = L1_1.query_import
+L2_2 = L1_1
+L3_3 = pe
+L3_3 = L3_3.IMPORT_STATIC
+L2_2 = L2_2(L3_3, 4288984855)
+if 0 == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1(pe.IMPORT_STATIC, 3419395426) == 0 and l_0_1(pe.IMPORT_STATIC, 1058758707) == 0 then
-  return mp.CLEAN
+L2_2 = L1_1
+L3_3 = pe
+L3_3 = L3_3.IMPORT_STATIC
+L2_2 = L2_2(L3_3, 3419395426)
+if 0 == L2_2 then
+  L2_2 = L1_1
+  L3_3 = pe
+  L3_3 = L3_3.IMPORT_STATIC
+  L2_2 = L2_2(L3_3, 1058758707)
+  if 0 == L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
+  end
 end
-if l_0_1(pe.IMPORT_STATIC, 1881577768) == 0 then
-  return mp.CLEAN
+L2_2 = L1_1
+L3_3 = pe
+L3_3 = L3_3.IMPORT_STATIC
+L2_2 = L2_2(L3_3, 1881577768)
+if 0 == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1(pe.IMPORT_STATIC, 2560256095) == 0 then
-  return mp.CLEAN
+L2_2 = L1_1
+L3_3 = pe
+L3_3 = L3_3.IMPORT_STATIC
+L2_2 = L2_2(L3_3, 2560256095)
+if 0 == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1(pe.IMPORT_STATIC, 1256947212) == 0 then
-  return mp.CLEAN
+L2_2 = L1_1
+L3_3 = pe
+L3_3 = L3_3.IMPORT_STATIC
+L2_2 = L2_2(L3_3, 1256947212)
+if 0 == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1(pe.IMPORT_STATIC, 453198482) == 0 then
-  return mp.CLEAN
+L2_2 = L1_1
+L3_3 = pe
+L3_3 = L3_3.IMPORT_STATIC
+L2_2 = L2_2(L3_3, 453198482)
+if 0 == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1(pe.IMPORT_STATIC, 133826329) == 0 then
-  return mp.CLEAN
+L2_2 = L1_1
+L3_3 = pe
+L3_3 = L3_3.IMPORT_STATIC
+L2_2 = L2_2(L3_3, 133826329)
+if 0 == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (pesecs[3]).VirtualAddress + pehdr.ImageBase
-if (pe.vm_search)(l_0_2, l_0_2 + 2048, "\000r\000b\000\000\000\000\144\000", nil, pe.VM_SEARCH_BM) == 4294967295 then
-  return mp.CLEAN
+L2_2 = pesecs
+L2_2 = L2_2[3]
+L2_2 = L2_2.VirtualAddress
+L3_3 = pehdr
+L3_3 = L3_3.ImageBase
+L2_2 = L2_2 + L3_3
+L3_3 = pe
+L3_3 = L3_3.vm_search
+L3_3 = L3_3(L2_2, L2_2 + 2048, "\000r\000b\000\000\000\000\144\000", nil, pe.VM_SEARCH_BM)
+if 4294967295 == L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-;
-(mp.readprotection)(false)
-local l_0_3 = (mp.readfile)((mp.bitand)(l_0_0.PointerToRawData + 2048, 4294967040), 2048)
-if (mp.crc32)(-1, l_0_3, 1, 0) ~= 236406113 then
+L3_3 = mp
+L3_3 = L3_3.readprotection
+L3_3(false)
+L3_3 = mp
+L3_3 = L3_3.readfile
+L3_3 = L3_3(mp.bitand(L0_0.PointerToRawData + 2048, 4294967040), 2048)
+if mp.crc32(-1, L3_3, 1, 0) ~= 236406113 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

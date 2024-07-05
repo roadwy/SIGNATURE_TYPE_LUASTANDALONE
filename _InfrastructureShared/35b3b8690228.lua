@@ -1,51 +1,92 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b3b8690228 
-
--- params : ...
--- function num : 0
-local l_0_0, l_0_1 = nil, nil
-local l_0_2 = nil
-local l_0_3 = nil
-do
-  if ((bm.get_imagepath)()) ~= nil then
-    local l_0_4 = nil
-    if ({["rpcnetp.exe"] = true, ["rpcnet.exe"] = true, ["services.exe"] = true, ["msmpeng.exe"] = true})[((string.lower)((string.sub)(l_0_4, -30))):match("\\system32\\([^\\]+%.exe)$")] then
-      return mp.CLEAN
-    end
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L2_2 = bm
+L2_2 = L2_2.get_imagepath
+L2_2 = L2_2()
+L3_3 = nil
+if L2_2 ~= nil then
+  L4_4 = {}
+  L4_4["rpcnetp.exe"] = true
+  L4_4["rpcnet.exe"] = true
+  L4_4["services.exe"] = true
+  L4_4["msmpeng.exe"] = true
+  L8_8 = -30
+  L9_9 = L6_6(L7_7, L8_8)
+  if L6_6 then
+    return L6_6
   end
-  -- DECOMPILER ERROR at PC53: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC60: Overwrote pending register: R0 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC69: Overwrote pending register: R1 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC74: Overwrote pending register: R1 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC89: Unhandled construct in 'MakeBoolean' P3
-
-  if (((this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil and not (this_sigattrlog[1]).matched) or l_0_2 ~= nil) and l_0_3 ~= nil then
-    if l_0_3:match("\\windows\\system32") or l_0_3:match("\\windows\\syswow64") then
-      return mp.CLEAN
+end
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L4_4 = L4_4.utf8p1
+  if L4_4 ~= nil then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[1]
+    L0_0 = L4_4.utf8p1
+  end
+end
+L4_4 = this_sigattrlog
+L4_4 = L4_4[1]
+L4_4 = L4_4.matched
+if L4_4 then
+  L4_4 = this_sigattrlog
+  L4_4 = L4_4[1]
+  L4_4 = L4_4.utf8p2
+  if L4_4 ~= nil then
+    L4_4 = this_sigattrlog
+    L4_4 = L4_4[1]
+    L3_3 = L4_4.utf8p2
+  end
+end
+if L0_0 ~= nil then
+  L4_4 = string
+  L4_4 = L4_4.lower
+  L4_4 = L4_4(L5_5)
+  L0_0 = L4_4
+  L4_4 = L0_0.match
+  L4_4 = L4_4(L5_5, L6_6)
+  L1_1 = L4_4
+  L4_4 = MpCommon
+  L4_4 = L4_4.PathToWin32Path
+  L4_4 = L4_4(L5_5)
+  L1_1 = L4_4
+  L4_4 = mp
+  L4_4 = L4_4.ContextualExpandEnvironmentVariables
+  L4_4 = L4_4(L5_5)
+  L1_1 = L4_4
+  if L1_1 ~= nil then
+    L4_4 = L1_1.match
+    L4_4 = L4_4(L5_5, L6_6)
+    if not L4_4 then
+      L4_4 = L1_1.match
+      L4_4 = L4_4(L5_5, L6_6)
     else
-      -- DECOMPILER ERROR at PC95: Confused about usage of register: R3 in 'UnsetPending'
-
-      if nil ~= nil then
-        local l_0_5 = nil
-        for l_0_9,l_0_10 in ipairs((mp.GetExecutablesFromCommandLine)(nil)) do
-          local l_0_6, l_0_7 = nil
-          -- DECOMPILER ERROR at PC103: Confused about usage of register: R9 in 'UnsetPending'
-
-          R9_PC103 = (mp.ContextualExpandEnvironmentVariables)(R9_PC103)
-          if (sysio.IsFileExists)(R9_PC103) == true then
-            (bm.add_related_file)(R9_PC103)
+      if L4_4 then
+        L4_4 = mp
+        L4_4 = L4_4.CLEAN
+        return L4_4
+    end
+    else
+      if L3_3 ~= nil then
+        L4_4 = mp
+        L4_4 = L4_4.GetExecutablesFromCommandLine
+        L4_4 = L4_4(L5_5)
+        for L8_8, L9_9 in L5_5(L6_6) do
+          L9_9 = mp.ContextualExpandEnvironmentVariables(L9_9)
+          if sysio.IsFileExists(L9_9) == true then
+            bm.add_related_file(L9_9)
           end
         end
       end
-      do
-        do return mp.INFECTED end
-        return mp.CLEAN
-      end
+      L4_4 = mp
+      L4_4 = L4_4.INFECTED
+      return L4_4
     end
   end
 end
-
+L4_4 = mp
+L4_4 = L4_4.CLEAN
+return L4_4

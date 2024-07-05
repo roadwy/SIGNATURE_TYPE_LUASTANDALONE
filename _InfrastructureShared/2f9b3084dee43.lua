@@ -1,63 +1,101 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2f9b3084dee43 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(this_sigattrlog[2].utf8p2)
+  L0_0 = L2_2
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(this_sigattrlog[3].utf8p2)
+    L0_0 = L2_2
   else
-  end
-  -- DECOMPILER ERROR at PC37: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if not (this_sigattrlog[3]).matched or (this_sigattrlog[4]).matched then
-      local l_0_1 = (string.lower)((this_sigattrlog[3]).utf8p2)
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[4]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.lower
+      L2_2 = L2_2(this_sigattrlog[4].utf8p2)
+      L0_0 = L2_2
     else
-    end
-    -- DECOMPILER ERROR at PC63: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if not (this_sigattrlog[5]).matched or (this_sigattrlog[6]).matched then
-        local l_0_2, l_0_3, l_0_4, l_0_5 = (string.lower)((this_sigattrlog[5]).utf8p2), nil
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[5]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = string
+        L2_2 = L2_2.lower
+        L2_2 = L2_2(this_sigattrlog[5].utf8p2)
+        L0_0 = L2_2
       else
-      end
-      if (this_sigattrlog[7]).matched then
-        local l_0_6 = (string.lower)((this_sigattrlog[7]).utf8p2)
-        -- DECOMPILER ERROR at PC91: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC99: Confused about usage of register: R1 in 'UnsetPending'
-
-        -- DECOMPILER ERROR at PC108: Confused about usage of register: R1 in 'UnsetPending'
-
-        if l_0_6 and (string.lower)((this_sigattrlog[1]).utf8p1) and (string.find)(l_0_6, (string.lower)((this_sigattrlog[1]).utf8p1), 1, true) then
-          if (string.find)((string.lower)((this_sigattrlog[1]).utf8p1), "\\appdata\\", 1, true) then
-            local l_0_7, l_0_9, l_0_10 = , (string.match)((string.lower)((this_sigattrlog[1]).utf8p1), "(.+\\)([^\\]+)$")
-            if l_0_9 then
-              if (string.sub)(l_0_9, -27) == "\\appdata\\roaming\\microsoft\\" then
-                return mp.INFECTED
-              else
-                if (string.sub)(l_0_9, -35) == "\\appdata\\roaming\\microsoft\\windows\\" then
-                  return mp.INFECTED
-                end
-              end
-            end
-          else
-            do
-              do
-                local l_0_8 = nil
-                if (string.find)(l_0_8, ":\\programdata\\", 1, true) and (string.match)(l_0_8, "(.+\\)([^\\]+)$") and (string.sub)((string.match)(l_0_8, "(.+\\)([^\\]+)$"), -24) == ":\\programdata\\microsoft\\" then
-                  return mp.INFECTED
-                end
-                return mp.CLEAN
-              end
-            end
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[6]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = string
+          L2_2 = L2_2.lower
+          L2_2 = L2_2(this_sigattrlog[6].utf8p2)
+          L0_0 = L2_2
+        else
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[7]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = string
+            L2_2 = L2_2.lower
+            L2_2 = L2_2(this_sigattrlog[7].utf8p2)
+            L0_0 = L2_2
           end
         end
       end
     end
   end
 end
-
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(this_sigattrlog[1].utf8p1)
+L1_1 = L2_2
+if L0_0 and L1_1 then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L2_2 = L2_2(L0_0, L1_1, 1, true)
+  if L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L2_2 = L2_2(L1_1, "\\appdata\\", 1, true)
+    if L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.match
+      L2_2 = L2_2(L1_1, "(.+\\)([^\\]+)$")
+      if L2_2 then
+        if string.sub(L2_2, -27) == "\\appdata\\roaming\\microsoft\\" then
+          return mp.INFECTED
+        elseif string.sub(L2_2, -35) == "\\appdata\\roaming\\microsoft\\windows\\" then
+          return mp.INFECTED
+        end
+      end
+    else
+      L2_2 = string
+      L2_2 = L2_2.find
+      L2_2 = L2_2(L1_1, ":\\programdata\\", 1, true)
+      if L2_2 then
+        L2_2 = string
+        L2_2 = L2_2.match
+        L2_2 = L2_2(L1_1, "(.+\\)([^\\]+)$")
+        if L2_2 and string.sub(L2_2, -24) == ":\\programdata\\microsoft\\" then
+          return mp.INFECTED
+        end
+      end
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

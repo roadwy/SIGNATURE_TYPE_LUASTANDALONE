@@ -1,74 +1,90 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c1b3304dceac 
-
--- params : ...
--- function num : 0
-random = function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = 214013 * l_1_0 + 2531011
-  local l_1_2 = (mp.bitand)((mp.shr32)(l_1_1, 16), 32767)
-  return l_1_2, l_1_1
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+function L0_0(A0_7)
+  local L1_8, L2_9, L3_10
+  L1_8 = 214013 * A0_7
+  L1_8 = L1_8 + 2531011
+  L2_9 = mp
+  L2_9 = L2_9.bitand
+  L3_10 = mp
+  L3_10 = L3_10.shr32
+  L3_10 = L3_10(L1_8, 16)
+  L2_9 = L2_9(L3_10, 32767)
+  L3_10 = L2_9
+  return L3_10, L1_8
 end
-
-guid = function(l_2_0)
-  -- function num : 0_1
-  local l_2_1, l_2_2, l_2_3, l_2_4, l_2_5, l_2_6, l_2_7, l_2_8 = nil, nil, nil, nil, nil, nil, nil, nil
-  local l_2_9 = nil
-  -- DECOMPILER ERROR at PC14: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC19: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC34: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC41: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC46: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R9 in 'AssignReg'
-
-  local l_2_10 = random(R9_PC7)
-  local l_2_11 = random(R9_PC7)
-  local l_2_12 = (mp.bitor)((mp.bitand)(random(R9_PC7), 4095), 16384)
-  local l_2_13 = random(R9_PC7) % 16383 + 32768
-  local l_2_14 = random(R9_PC7)
-  local l_2_15 = random(R9_PC7)
-  local l_2_16 = random(R9_PC7)
-  local l_2_17 = R9_PC7
-  local l_2_18 = string.format
-  local l_2_19 = "{%0.4X%0.4X-%0.4X-%0.4X-%0.4X-%0.4X%0.4X%0.4X}"
-  do return l_2_18(l_2_19, l_2_9, l_2_10, l_2_11, l_2_12, l_2_13, l_2_14, l_2_15, l_2_16) end
-  -- DECOMPILER ERROR at PC66: Confused about usage of register R11 for local variables in 'ReleaseLocals'
-
+random = L0_0
+function L0_0(A0_11)
+  local L1_12, L2_13, L3_14, L4_15, L5_16, L6_17, L7_18, L8_19, L9_20
+  L9_20 = A0_11
+  L1_12, L9_20 = random(L9_20)
+  L2_13, L9_20 = random(L9_20)
+  L3_14, L9_20 = random(L9_20)
+  L4_15, L9_20 = random(L9_20)
+  L4_15 = mp.bitor(mp.bitand(L4_15, 4095), 16384)
+  L5_16, L9_20 = random(L9_20)
+  L5_16 = L5_16 % 16383 + 32768
+  L6_17, L9_20 = random(L9_20)
+  L7_18, L9_20 = random(L9_20)
+  L8_19, L9_20 = random(L9_20)
+  return string.format("{%0.4X%0.4X-%0.4X-%0.4X-%0.4X-%0.4X%0.4X%0.4X}", L1_12, L2_13, L3_14, L4_15, L5_16, L6_17, L7_18, L8_19)
 end
-
-local l_0_0 = (mp.ContextualExpandEnvironmentVariables)("%temp%")
-local l_0_1 = (sysio.GetFileFsVolumeInformation)(l_0_0)
-local l_0_2 = l_0_1.VolumeSerialNumber
-local l_0_3 = guid(l_0_2)
-local l_0_4 = (this_sigattrlog[2]).wp1
-if (this_sigattrlog[3]).matched then
-  l_0_4 = (this_sigattrlog[3]).wp1
+guid = L0_0
+L0_0 = mp
+L0_0 = L0_0.ContextualExpandEnvironmentVariables
+L1_1 = "%temp%"
+L0_0 = L0_0(L1_1)
+L1_1 = sysio
+L1_1 = L1_1.GetFileFsVolumeInformation
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L2_2 = L1_1.VolumeSerialNumber
+L3_3 = guid
+L4_4 = L2_2
+L3_3 = L3_3(L4_4)
+L4_4 = this_sigattrlog
+L4_4 = L4_4[2]
+L4_4 = L4_4.wp1
+L5_5 = this_sigattrlog
+L5_5 = L5_5[3]
+L5_5 = L5_5.matched
+if L5_5 then
+  L5_5 = this_sigattrlog
+  L5_5 = L5_5[3]
+  L4_4 = L5_5.wp1
 end
-l_0_4 = (mp.utf16to8)(l_0_4)
-if (string.find)((string.lower)(l_0_4), (string.lower)(l_0_3), 1, true) == nil then
-  return mp.CLEAN
+L5_5 = mp
+L5_5 = L5_5.utf16to8
+L6_6 = L4_4
+L5_5 = L5_5(L6_6)
+L4_4 = L5_5
+L5_5 = string
+L5_5 = L5_5.find
+L6_6 = string
+L6_6 = L6_6.lower
+L6_6 = L6_6(L4_4)
+L5_5 = L5_5(L6_6, string.lower(L3_3), 1, true)
+if L5_5 == nil then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_5 = (this_sigattrlog[1]).utf8p1
-local l_0_6 = (string.lower)((this_sigattrlog[1]).utf8p2)
-local l_0_7 = (mp.GetExecutablesFromCommandLine)(l_0_6)
-if #l_0_7 == 1 then
-  (mp.ReportLowfi)(l_0_5, 1553292636)
+L5_5 = this_sigattrlog
+L5_5 = L5_5[1]
+L5_5 = L5_5.utf8p1
+L6_6 = string
+L6_6 = L6_6.lower
+L6_6 = L6_6(this_sigattrlog[1].utf8p2)
+if #mp.GetExecutablesFromCommandLine(L6_6) == 1 then
+  mp.ReportLowfi(L5_5, 1553292636)
   return mp.INFECTED
 end
-for l_0_11 = 2, #l_0_7 do
-  if (sysio.IsFileExists)(l_0_7[l_0_11]) then
-    if (string.match)(l_0_7[l_0_11], "\\(Application Data|ProgramData)\\[0-9a-z]+\\[.0-9a-z]+$") ~= nil then
-      (mp.ReportLowfi)(l_0_7[l_0_11], 954960809)
+for _FORV_11_ = 2, #mp.GetExecutablesFromCommandLine(L6_6) do
+  if sysio.IsFileExists(mp.GetExecutablesFromCommandLine(L6_6)[_FORV_11_]) then
+    if string.match(mp.GetExecutablesFromCommandLine(L6_6)[_FORV_11_], "\\(Application Data|ProgramData)\\[0-9a-z]+\\[.0-9a-z]+$") ~= nil then
+      mp.ReportLowfi(mp.GetExecutablesFromCommandLine(L6_6)[_FORV_11_], 954960809)
     else
-      ;
-      (mp.ReportLowfi)(l_0_7[l_0_11], 3621865083)
+      mp.ReportLowfi(mp.GetExecutablesFromCommandLine(L6_6)[_FORV_11_], 3621865083)
     end
   end
 end
-return mp.INFECTED
-
+return _FOR_.INFECTED

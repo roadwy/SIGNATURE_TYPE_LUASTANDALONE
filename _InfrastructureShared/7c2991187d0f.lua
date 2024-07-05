@@ -1,41 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7c2991187d0f 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 10000 or l_0_0 > 100000 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 10000 or L0_0 > 100000 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = tostring(footerpage)
-l_0_1 = (string.lower)(l_0_1)
-local l_0_2 = l_0_1:match("createelement%((.-)%)\r\n")
-if l_0_2 == nil then
-  return mp.CLEAN
+L1_1 = tostring
+L2_2 = footerpage
+L1_1 = L1_1(L2_2)
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L1_1 = L2_2
+L3_3 = L1_1
+L2_2 = L1_1.match
+L4_4 = "createelement%((.-)%)\r\n"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = {}
--- DECOMPILER ERROR at PC33: No list found for R3 , SetList fails
-
--- DECOMPILER ERROR at PC34: Overwrote pending register: R4 in 'AssignReg'
-
-local l_0_4 = "b"
-local l_0_5 = {}
--- DECOMPILER ERROR at PC36: Overwrote pending register: R6 in 'AssignReg'
-
-local l_0_6 = "s"
--- DECOMPILER ERROR at PC37: Overwrote pending register: R7 in 'AssignReg'
-
--- DECOMPILER ERROR at PC39: Overwrote pending register: R8 in 'AssignReg'
-
--- DECOMPILER ERROR at PC40: Overwrote pending register: R9 in 'AssignReg'
-
-for l_0_10,l_0_11 in (("e").gmatch)("6", "4") do
-  local l_0_12 = l_0_4(l_0_10, l_0_11)
-  l_0_5[l_0_6] = (string.char)(l_0_12)
-  if l_0_5[l_0_6] ~= l_0_3[l_0_6] then
+L3_3 = {
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7,
+  L8_8,
+  L9_9
+}
+L4_4 = "b"
+L5_5 = "a"
+L6_6 = "s"
+function L4_4(A0_13, A1_14)
+  return A0_13 + A1_14
+end
+L5_5 = {}
+L6_6 = 1
+for L10_10, L11_11 in L7_7(L8_8, L9_9) do
+  L12_12 = L4_4
+  L12_12 = L12_12(L10_10, L11_11)
+  L5_5[L6_6] = string.char(L12_12)
+  if L5_5[L6_6] ~= L3_3[L6_6] then
     return mp.CLEAN
   end
-  l_0_6 = l_0_6 + 1
+  L6_6 = L6_6 + 1
 end
-return mp.INFECTED
-
+return L7_7

@@ -1,10 +1,12 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5578cfcb3ca9_Flags_1 
-
--- params : ...
--- function num : 0
-if (((hstrlog[1]).matched and not (hstrlog[2]).matched) or (mp.getfilesize)() < 300000) and 0 + 1 + 1 >= 1 then
+local L0_0
+L0_0 = 0
+if hstrlog[1].matched then
+  L0_0 = L0_0 + 1
+end
+if hstrlog[2].matched then
+  L0_0 = L0_0 + 1
+end
+if mp.getfilesize() < 300000 and L0_0 >= 1 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

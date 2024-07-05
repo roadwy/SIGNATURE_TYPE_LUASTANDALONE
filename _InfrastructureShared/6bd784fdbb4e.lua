@@ -1,27 +1,26 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/6bd784fdbb4e 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-;
-(table.insert)(l_0_0, "https://thiscannotpossiblywork.local/")
-local l_0_1 = {}
-l_0_1.isLocal = "false"
-l_0_1.certutil = "true"
-l_0_1.E2ETestScenario = "true"
-local l_0_2 = (mp.GetUrlReputation)(l_0_0, l_0_1)
-if l_0_2 ~= nil then
-  local l_0_3 = l_0_2.urls
-  for l_0_7,l_0_8 in ipairs(l_0_3) do
-    if l_0_8.determination == 2 and l_0_8.confidence > 60 then
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = {}
+L1_1 = table
+L1_1 = L1_1.insert
+L2_2 = L0_0
+L3_3 = "https://thiscannotpossiblywork.local/"
+L1_1(L2_2, L3_3)
+L1_1 = {}
+L1_1.isLocal = "false"
+L1_1.certutil = "true"
+L1_1.E2ETestScenario = "true"
+L2_2 = mp
+L2_2 = L2_2.GetUrlReputation
+L3_3 = L0_0
+L2_2 = L2_2(L3_3, L1_1)
+if L2_2 ~= nil then
+  L3_3 = L2_2.urls
+  for _FORV_7_, _FORV_8_ in ipairs(L3_3) do
+    if _FORV_8_.determination == 2 and _FORV_8_.confidence > 60 then
       return mp.INFECTED
     end
   end
 end
-do
-  l_0_3 = mp
-  l_0_3 = l_0_3.CLEAN
-  return l_0_3
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

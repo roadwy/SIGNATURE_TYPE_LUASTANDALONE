@@ -1,45 +1,95 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Miuref_DLL_Appdata_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.hasexports ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.hasexports
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections ~= 6 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 6 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[pehdr.NumberOfSections - 1]).Characteristics ~= 3758096448 then
-  return mp.CLEAN
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L1_1 = L1_1 - 1
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.Characteristics
+if L0_0 ~= 3758096448 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = ((pehdr.DataDirectory)[1]).RVA
-local l_0_1 = ((pehdr.DataDirectory)[2]).Size
-if (mp.getfilesize)() > 1324032 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[1]
+L0_0 = L0_0.RVA
+L1_1 = pehdr
+L1_1 = L1_1.DataDirectory
+L1_1 = L1_1[2]
+L1_1 = L1_1.Size
+L2_2 = mp
+L2_2 = L2_2.getfilesize
+L2_2 = L2_2()
+if L2_2 > 1324032 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (mp.getfilesize)() < 1142784 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.getfilesize
+L2_2 = L2_2()
+if L2_2 < 1142784 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (pe.contains_rva)(5, l_0_0) ~= true then
-  return mp.CLEAN
+L2_2 = pe
+L2_2 = L2_2.contains_rva
+L3_3 = 5
+L2_2 = L2_2(L3_3, L0_0)
+if L2_2 ~= true then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_1 ~= 149 then
-  return mp.CLEAN
+if L1_1 ~= 149 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-do
-  if l_0_2 == mp.SCANREASON_ONOPEN or l_0_2 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-    local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-    if l_0_3 == nil then
-      return mp.CLEAN
-    end
-    if (string.match)(l_0_3, "\\appdata\\local\\%w+$") or (string.match)(l_0_3, "\\local settings\\application data\\%w+$") then
-      (mp.set_mpattribute)("Lua:Miuref_DLL_Appdata")
-    end
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_SCANREASON
+L2_2 = L2_2(L3_3)
+L3_3 = mp
+L3_3 = L3_3.SCANREASON_ONOPEN
+if L2_2 ~= L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.SCANREASON_ONMODIFIEDHANDLECLOSE
+elseif L2_2 == L3_3 then
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+  if L3_3 == nil then
+    return mp.CLEAN
   end
-  return mp.CLEAN
+  if string.match(L3_3, "\\appdata\\local\\%w+$") or string.match(L3_3, "\\local settings\\application data\\%w+$") then
+    mp.set_mpattribute("Lua:Miuref_DLL_Appdata")
+  end
 end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

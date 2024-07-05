@@ -1,41 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Pitou 
-
--- params : ...
--- function num : 0
-ScanStorageDeviceStack = function()
-  -- function num : 0_0
-  local l_1_0 = (Kernel.GetDiskDevicePathAsString)()
-  if l_1_0 == nil then
-    return nil
+local L1_0
+function L1_0()
+  local L0_1, L1_2, L2_3, L3_4, L4_5, L5_6, L6_7, L7_8, L8_9, L9_10, L10_11, L11_12, L12_13, L13_14
+  L0_1 = Kernel
+  L0_1 = L0_1.GetDiskDevicePathAsString
+  L0_1 = L0_1()
+  if L0_1 == nil then
+    L1_2 = nil
+    return L1_2
   end
-  l_1_0 = (string.lower)(l_1_0)
-  local l_1_1 = nil
-  if l_1_0 then
-    for l_1_5,l_1_6 in pairs((Kernel.GetDeviceList)()) do
-      if (string.lower)(l_1_6.ObjectPath) == l_1_0 then
-        local l_1_7 = (l_1_6.ParseDeviceChain)()
-        for l_1_11 in pairs(l_1_7) do
-          local l_1_12 = (l_1_11.GetDriverObject)()
-          local l_1_13 = (l_1_12.GetIrpAddress)("IRP_MJ_INTERNAL_DEVICE_CONTROL")
-          if l_1_13 == nil then
+  L1_2 = string
+  L1_2 = L1_2.lower
+  L1_2 = L1_2(L2_3)
+  L0_1 = L1_2
+  L1_2 = nil
+  if L0_1 then
+    L13_14 = L3_4()
+    for L5_6, L6_7 in L2_3(L3_4, L4_5, L5_6, L6_7, L7_8, L8_9, L9_10, L10_11, L11_12, L12_13, L13_14, L3_4()) do
+      L7_8 = string
+      L7_8 = L7_8.lower
+      L7_8 = L7_8(L8_9)
+      if L7_8 == L0_1 then
+        L7_8 = L6_7.ParseDeviceChain
+        L7_8 = L7_8()
+        for L11_12 in L8_9(L9_10) do
+          L12_13 = L11_12.GetDriverObject
+          L12_13 = L12_13()
+          L13_14 = L12_13.GetIrpAddress
+          L13_14 = L13_14("IRP_MJ_INTERNAL_DEVICE_CONTROL")
+          if L13_14 == nil then
             return nil
           end
-          l_1_1 = (Kernel.RkPattScan)(l_1_13)
-          if l_1_1 and (string.find)(l_1_1.DetectionName, "/Pitou", 1, true) then
-            return l_1_1
+          L1_2 = Kernel.RkPattScan(L13_14)
+          if L1_2 and string.find(L1_2.DetectionName, "/Pitou", 1, true) then
+            return L1_2
           else
-            l_1_1 = nil
+            L1_2 = nil
           end
         end
       end
     end
   end
-  do
-    do return nil end
-    -- DECOMPILER ERROR at PC67: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
+  return L2_3
 end
-
-
+ScanStorageDeviceStack = L1_0

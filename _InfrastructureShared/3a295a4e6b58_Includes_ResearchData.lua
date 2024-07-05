@@ -1,21 +1,38 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3a295a4e6b58_Includes_ResearchData 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetBruteMatchData)()
-if l_0_0.match_offset == 0 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.GetBruteMatchData
+L0_0 = L0_0()
+L1_1 = L0_0.match_offset
+if L1_1 == 0 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = l_0_0.match_offset
-local l_0_2 = 78
-if l_0_0.is_footer then
-  local l_0_3 = ((mp.readfooter)(l_0_1, l_0_2)):lower()
-  local l_0_4 = (MpCommon.Base64Encode)(l_0_3)
-  set_research_data("PDID:C:B", l_0_4, false)
+L1_1 = L0_0.match_offset
+L2_2 = 78
+L3_3 = mp
+L3_3 = L3_3.FOOTERPAGE_SZ
+L4_4 = L1_1 + L2_2
+if L3_3 < L4_4 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = L0_0.is_footer
+if L3_3 then
+  L3_3 = mp
+  L3_3 = L3_3.readfooter
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4, L2_2)
+  L4_4 = L3_3
+  L3_3 = L3_3.lower
+  L3_3 = L3_3(L4_4)
+  L4_4 = MpCommon
+  L4_4 = L4_4.Base64Encode
+  L4_4 = L4_4(L3_3)
+  set_research_data("PDID:C:B", L4_4, false)
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

@@ -1,33 +1,55 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b374adb1e0 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  l_0_0 = (string.lower)(l_0_0)
-  if (string.sub)(l_0_0, -10) == "chrome.exe" or (string.sub)(l_0_0, -11) == "firefox.exe" or (string.sub)(l_0_0, -12) == "iexplore.exe" then
-    local l_0_1 = nil
-    for l_0_5 = 1, mp.SIGATTR_LOG_SZ do
-      if (sigattr_tail[l_0_5]).matched and (sigattr_tail[l_0_5]).attribute == 16393 then
-        l_0_1 = (sigattr_tail[l_0_5]).utf8p2
-        if l_0_1 ~= nil then
-          local l_0_6 = (mp.GetExecutablesFromCommandLine)(l_0_1)
-          for l_0_10,l_0_11 in ipairs(l_0_6) do
-            l_0_11 = (mp.ContextualExpandEnvironmentVariables)(l_0_11)
-            if (sysio.IsFileExists)(l_0_11) then
-              (bm.add_related_file)(l_0_11)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+  L1_1 = string
+  L1_1 = L1_1.sub
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 ~= "chrome.exe" then
+    L1_1 = string
+    L1_1 = L1_1.sub
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 ~= "firefox.exe" then
+      L1_1 = string
+      L1_1 = L1_1.sub
+      L1_1 = L1_1(L2_2, L3_3)
+    end
+  elseif L1_1 == "iexplore.exe" then
+    L1_1 = nil
+    for L5_5 = 1, L3_3.SIGATTR_LOG_SZ do
+      L6_6 = sigattr_tail
+      L6_6 = L6_6[L5_5]
+      L6_6 = L6_6.matched
+      if L6_6 then
+        L6_6 = sigattr_tail
+        L6_6 = L6_6[L5_5]
+        L6_6 = L6_6.attribute
+        if L6_6 == 16393 then
+          L6_6 = sigattr_tail
+          L6_6 = L6_6[L5_5]
+          L1_1 = L6_6.utf8p2
+          if L1_1 ~= nil then
+            L6_6 = mp
+            L6_6 = L6_6.GetExecutablesFromCommandLine
+            L6_6 = L6_6(L7_7)
+            for L10_10, L11_11 in L7_7(L8_8) do
+              L11_11 = mp.ContextualExpandEnvironmentVariables(L11_11)
+              if sysio.IsFileExists(L11_11) then
+                bm.add_related_file(L11_11)
+              end
             end
           end
         end
       end
     end
-    do return mp.INFECTED end
-    -- DECOMPILER ERROR at PC81: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
+    return L2_2
   end
 end
-l_0_1 = mp
-l_0_1 = l_0_1.CLEAN
-return l_0_1
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

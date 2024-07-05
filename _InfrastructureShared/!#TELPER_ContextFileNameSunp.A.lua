@@ -1,15 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TELPER_ContextFileNameSunp.A 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.getfilename)())
-local l_0_1, l_0_2 = l_0_0:match("(.+\\)([^\\]+)$")
-if l_0_2 == nil or l_0_1 == nil then
+local L0_0, L1_1
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L1_1 = L1_1()
+L0_0 = L0_0(L1_1, L1_1())
+L1_1 = L0_0.match
+L1_1 = L1_1(L0_0, "(.+\\)([^\\]+)$")
+if L1_1(L0_0, "(.+\\)([^\\]+)$") == nil or L1_1 == nil then
   return mp.CLEAN
 end
-if l_0_2 == "z.tmp" and l_0_1:len() > 10 and ((string.sub)(l_0_1, -10) == "\\temp\\low\\" or (string.sub)(l_0_1, -6) == "\\temp\\") then
+if L1_1(L0_0, "(.+\\)([^\\]+)$") == "z.tmp" and L1_1:len() > 10 and (string.sub(L1_1, -10) == "\\temp\\low\\" or string.sub(L1_1, -6) == "\\temp\\") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

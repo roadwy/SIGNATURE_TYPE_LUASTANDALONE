@@ -1,33 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/69b37e102c80 
-
--- params : ...
--- function num : 0
-local l_0_4 = nil
-if (this_sigattrlog[1]).matched then
-  local l_0_0, l_0_1, l_0_2, l_0_3 = "|.js|jse|vbs|vbe|wsf|wsh"
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L1_1 = "|.js|jse|vbs|vbe|wsf|wsh"
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L0_0 = L2_2.utf8p2
 else
-  do
-    -- DECOMPILER ERROR at PC17: Overwrote pending register: R0 in 'AssignReg'
-
-    if not (this_sigattrlog[2]).matched or l_0_4 ~= nil then
-      local l_0_5 = nil
-      if #(mp.GetExecutablesFromCommandLine)(l_0_4) > 1 then
-        local l_0_6 = nil
-        local l_0_7 = nil
-        if (string.find)(l_0_5, (string.sub)((string.lower)(((mp.GetExecutablesFromCommandLine)(l_0_4))[2]), -3), 1, true) then
-          l_0_7 = (mp.ContextualExpandEnvironmentVariables)(l_0_7)
-          if (sysio.IsFileExists)(l_0_7) then
-            (bm.add_related_file)(l_0_7)
-            ;
-            (mp.ReportLowfi)(l_0_7, 2419017217)
-          end
-        end
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L0_0 = L2_2.utf8p2
+  end
+end
+if L0_0 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L3_3 = L0_0
+  L2_2 = L2_2(L3_3)
+  L3_3 = #L2_2
+  if L3_3 > 1 then
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L4_4 = L2_2[2]
+    L3_3 = L3_3(L4_4)
+    L4_4 = string
+    L4_4 = L4_4.sub
+    L4_4 = L4_4(L3_3, -3)
+    if string.find(L1_1, L4_4, 1, true) then
+      L3_3 = mp.ContextualExpandEnvironmentVariables(L3_3)
+      if sysio.IsFileExists(L3_3) then
+        bm.add_related_file(L3_3)
+        mp.ReportLowfi(L3_3, 2419017217)
       end
-    end
-    do
-      return mp.INFECTED
     end
   end
 end
-
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

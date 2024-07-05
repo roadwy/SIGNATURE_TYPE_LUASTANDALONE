@@ -1,26 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/12e78d0c3708e_Flags_1 
-
--- params : ...
--- function num : 0
-do
-  if ((not (hstrlog[2]).matched or (hstrlog[3]).matched) and not (hstrlog[4]).matched) or (hstrlog[5]).matched then
-    local l_0_0 = 0 + 1 + 1 + 1 + 1
-  end
-  do
-    if ((hstrlog[6]).matched and not (hstrlog[7]).matched) or (hstrlog[8]).matched then
-      local l_0_1 = nil
-    end
-    -- DECOMPILER ERROR at PC49: Confused about usage of register: R0 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC58: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC62: Unhandled construct in 'MakeBoolean' P3
-
-    if (l_0_1 == 4 and (hstrlog[1]).matched) or 0 + 1 + 1 + 1 == 3 then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0, L1_1
+L0_0 = 0
+L1_1 = hstrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
 end
-
+L1_1 = hstrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = hstrlog
+L1_1 = L1_1[5]
+L1_1 = L1_1.matched
+if L1_1 then
+  L0_0 = L0_0 + 1
+end
+L1_1 = 0
+if hstrlog[6].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[7].matched then
+  L1_1 = L1_1 + 1
+end
+if hstrlog[8].matched then
+  L1_1 = L1_1 + 1
+end
+if mp.getfilesize() < 5000000 and (L0_0 == 4 and (hstrlog[1].matched or L1_1 >= 1) or L1_1 == 3) then
+  return mp.INFECTED
+end
+return mp.CLEAN

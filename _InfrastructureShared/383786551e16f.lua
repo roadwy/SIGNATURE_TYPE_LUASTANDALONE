@@ -1,60 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/383786551e16f 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() <= 102400 then
-  local l_0_1 = 0
-  local l_0_2 = 0
-  do
-    do
-      if (hstrlog[1]).matched or (hstrlog[2]).matched or (hstrlog[3]).matched or (hstrlog[4]).matched or (hstrlog[5]).matched or (hstrlog[6]).matched or (hstrlog[7]).matched or (hstrlog[8]).matched or (hstrlog[9]).matched then
-        local l_0_0 = 0
-        l_0_0 = 1
-      end
-      -- DECOMPILER ERROR at PC75: Overwrote pending register: R0 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC101: Overwrote pending register: R0 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC127: Overwrote pending register: R0 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC133: Overwrote pending register: R0 in 'AssignReg'
-
-      -- DECOMPILER ERROR at PC134: Confused about usage of register: R2 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC143: Unhandled construct in 'MakeBoolean' P3
-
-      -- DECOMPILER ERROR at PC143: Unhandled construct in 'MakeBoolean' P3
-
-      -- DECOMPILER ERROR at PC143: Unhandled construct in 'MakeBoolean' P3
-
-      -- DECOMPILER ERROR at PC143: Unhandled construct in 'MakeBoolean' P3
-
-      -- DECOMPILER ERROR at PC143: Unhandled construct in 'MakeBoolean' P3
-
-      -- DECOMPILER ERROR at PC143: Unhandled construct in 'MakeBoolean' P3
-
-      if (((((((not (hstrlog[10]).matched and not (hstrlog[11]).matched and not (hstrlog[12]).matched and not (hstrlog[13]).matched) or not (hstrlog[14]).matched) and not (hstrlog[18]).matched) or not (hstrlog[19]).matched) and not (hstrlog[23]).matched) or (hstrlog[24]).matched) and l_0_1 >= 3) or l_0_0 + 1 >= 2 then
-        if l_0_2 then
-          return mp.INFECTED
-        end
-        if (mp.get_mpattribute)("SIGATTR:Trojan:Win32/Figyek.A") then
-          return mp.SUSPICIOUS
-        end
-      end
-      -- DECOMPILER ERROR at PC158: Confused about usage of register: R2 in 'UnsetPending'
-
-      if (mp.getfilesize)() == 77824 or l_0_0 + 1 == 1 then
-        (mp.set_mpattribute)("HSTR:Trojan:Win32/Figyek.A.1")
-        return mp.CLEAN
-      end
-      -- DECOMPILER ERROR at PC167: Overwrote pending register: R0 in 'AssignReg'
-
-      if l_0_1.HSTR_WEIGHT >= 3 then
-        (mp.set_mpattribute)("HSTR:Trojan:Win32/Figyek.A.2")
-      end
-      return mp.CLEAN
+if mp.getfilesize() <= 102400 then
+  if hstrlog[1].matched or hstrlog[2].matched or hstrlog[3].matched or hstrlog[4].matched or hstrlog[5].matched or hstrlog[6].matched or hstrlog[7].matched or hstrlog[8].matched or hstrlog[9].matched then
+  end
+  if hstrlog[10].matched or hstrlog[11].matched or hstrlog[12].matched or hstrlog[13].matched then
+  end
+  if hstrlog[14].matched or hstrlog[15].matched or hstrlog[16].matched or hstrlog[17].matched or hstrlog[18].matched then
+  end
+  if hstrlog[19].matched or hstrlog[20].matched or hstrlog[21].matched or hstrlog[22].matched or hstrlog[23].matched then
+  end
+  if hstrlog[24].matched then
+  end
+  if 0 + 1 + 1 + 1 + 1 + 1 >= 3 or 1 + 1 >= 2 then
+    if 0 then
+      return mp.INFECTED
+    end
+    if mp.get_mpattribute("SIGATTR:Trojan:Win32/Figyek.A") then
+      return mp.SUSPICIOUS
     end
   end
+  if mp.getfilesize() == 77824 or 1 + 1 == 1 then
+    mp.set_mpattribute("HSTR:Trojan:Win32/Figyek.A.1")
+    return mp.CLEAN
+  end
 end
-
+if 3 <= mp.HSTR_WEIGHT then
+  mp.set_mpattribute("HSTR:Trojan:Win32/Figyek.A.2")
+end
+return mp.CLEAN

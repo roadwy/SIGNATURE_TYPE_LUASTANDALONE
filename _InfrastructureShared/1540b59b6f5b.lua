@@ -1,20 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1540b59b6f5b 
-
--- params : ...
--- function num : 0
-if not peattributes.isdll then
-  return mp.CLEAN
+local L0_0
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.GetCertificateInfo)()
-for l_0_4,l_0_5 in pairs(l_0_0) do
-  if l_0_5.Signers ~= nil then
+L0_0 = mp
+L0_0 = L0_0.GetCertificateInfo
+L0_0 = L0_0()
+for _FORV_4_, _FORV_5_ in pairs(L0_0) do
+  if _FORV_5_.Signers ~= nil then
     return mp.CLEAN
   end
 end
-local l_0_6 = (mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)
-if (string.find)(l_0_6:lower(), "microsoft.net\\framework.-\\v[0-9.].+\\temporary asp.net files\\") or (string.find)(l_0_6:lower(), "microsoft\\exchange server\\v[0-9].+\\clientaccess\\owa\\bin") or (string.find)(l_0_6:lower(), "microsoft\\exchange server\\v[0-9].+\\frontend\\httpproxy\\owa\\bin") then
+if string.find(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH):lower(), "microsoft.net\\framework.-\\v[0-9.].+\\temporary asp.net files\\") or string.find(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH):lower(), "microsoft\\exchange server\\v[0-9].+\\clientaccess\\owa\\bin") or string.find(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH):lower(), "microsoft\\exchange server\\v[0-9].+\\frontend\\httpproxy\\owa\\bin") then
   return mp.INFECTED
 end
 return mp.CLEAN
-

@@ -1,15 +1,7 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/CFABootProtState 
-
--- params : ...
--- function num : 0
-Infrastructure_ScanCFABootProtState = function()
-  -- function num : 0_0
-  (MpCommon.SetGlobalMpAttribute)("CFABootProtStateScan")
-  ;
-  (MpDetection.ScanResource)("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Diagnostics\\\\MpPayloadStatus")
-  ;
-  (MpCommon.DeleteGlobalMpAttribute)("CFABootProtStateScan")
+local L1_0
+function L1_0()
+  MpCommon.SetGlobalMpAttribute("CFABootProtStateScan")
+  MpDetection.ScanResource("regkeyvalue://HKLM\\SOFTWARE\\Microsoft\\Windows Defender\\Diagnostics\\\\MpPayloadStatus")
+  MpCommon.DeleteGlobalMpAttribute("CFABootProtStateScan")
 end
-
-
+Infrastructure_ScanCFABootProtState = L1_0

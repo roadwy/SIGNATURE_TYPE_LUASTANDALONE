@@ -1,23 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/45b30bbfa382_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-do
-  if l_0_0 and ((string.find)(l_0_0, "\\program files", 1, true) or (string.find)(l_0_0, "\\windows", 1, true)) then
-    local l_0_1 = (MpCommon.QueryPersistContext)(l_0_0, "NewPECreatedNoCert")
-    if l_0_1 then
-      TrackPidAndTechniqueBM("BM", "T1095", "command_control_b")
-      return mp.INFECTED
-    end
-    return mp.CLEAN
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(MpCommon.PathToWin32Path(bm.get_imagepath()))
+if L0_0 and (string.find(L0_0, "\\program files", 1, true) or string.find(L0_0, "\\windows", 1, true)) then
+  if MpCommon.QueryPersistContext(L0_0, "NewPECreatedNoCert") then
+    TrackPidAndTechniqueBM("BM", "T1095", "command_control_b")
+    return mp.INFECTED
   end
-  local l_0_2 = (MpCommon.QueryPersistContext)(l_0_0, "ExecutedPENoCert")
-  if not l_0_2 then
-    return mp.CLEAN
-  end
-  TrackPidAndTechniqueBM("BM", "T1095", "command_control_b")
-  return mp.INFECTED
+  return mp.CLEAN
 end
-
+if not MpCommon.QueryPersistContext(L0_0, "ExecutedPENoCert") then
+  return mp.CLEAN
+end
+TrackPidAndTechniqueBM("BM", "T1095", "command_control_b")
+return mp.INFECTED

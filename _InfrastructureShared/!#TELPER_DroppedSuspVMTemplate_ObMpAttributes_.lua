@@ -1,23 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TELPER_DroppedSuspVMTemplate_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_SCANREASON)
+if L0_0 ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if not (mp.get_contextdata)(mp.CONTEXT_DATA_NEWLYCREATEDHINT) then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L0_0 = L0_0(mp.CONTEXT_DATA_NEWLYCREATEDHINT)
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (string.lower)((string.sub)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME), -3)) ~= ".vm" then
-  return mp.CLEAN
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(string.sub(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME), -3))
+if L0_0 ~= ".vm" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (string.find)((string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH)), "atlassian\\confluence\\extra\\widgetconnector\\templates", 1, true) then
-  return mp.CLEAN
+L0_0 = string
+L0_0 = L0_0.find
+L0_0 = L0_0(string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH)), "atlassian\\confluence\\extra\\widgetconnector\\templates", 1, true)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilename)()
-if not (MpCommon.QueryPersistContext)(l_0_0, "DroppedSuspVMTemplate") then
-  (MpCommon.AppendPersistContext)(l_0_0, "DroppedSuspVMTemplate", 0)
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+if not MpCommon.QueryPersistContext(L0_0, "DroppedSuspVMTemplate") then
+  MpCommon.AppendPersistContext(L0_0, "DroppedSuspVMTemplate", 0)
 end
 return mp.CLEAN
-

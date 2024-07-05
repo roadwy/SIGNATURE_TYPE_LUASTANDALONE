@@ -1,10 +1,59 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/387813848807 
-
--- params : ...
--- function num : 0
-if peattributes.isdll and epcode[1] == 106 and epcode[2] == 16 and epcode[3] == 104 and epcode[4] == 0 and epcode[5] == 2 and epcode[6] == 0 and epcode[7] == 0 and epcode[8] == 104 and epcode[9] == 44 and epcode[10] == 250 and epcode[11] == 250 and epcode[12] == 255 then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 then
+  L0_0 = epcode
+  L0_0 = L0_0[1]
+  if L0_0 == 106 then
+    L0_0 = epcode
+    L0_0 = L0_0[2]
+    if L0_0 == 16 then
+      L0_0 = epcode
+      L0_0 = L0_0[3]
+      if L0_0 == 104 then
+        L0_0 = epcode
+        L0_0 = L0_0[4]
+        if L0_0 == 0 then
+          L0_0 = epcode
+          L0_0 = L0_0[5]
+          if L0_0 == 2 then
+            L0_0 = epcode
+            L0_0 = L0_0[6]
+            if L0_0 == 0 then
+              L0_0 = epcode
+              L0_0 = L0_0[7]
+              if L0_0 == 0 then
+                L0_0 = epcode
+                L0_0 = L0_0[8]
+                if L0_0 == 104 then
+                  L0_0 = epcode
+                  L0_0 = L0_0[9]
+                  if L0_0 == 44 then
+                    L0_0 = epcode
+                    L0_0 = L0_0[10]
+                    if L0_0 == 250 then
+                      L0_0 = epcode
+                      L0_0 = L0_0[11]
+                      if L0_0 == 250 then
+                        L0_0 = epcode
+                        L0_0 = L0_0[12]
+                        if L0_0 == 255 then
+                          L0_0 = mp
+                          L0_0 = L0_0.INFECTED
+                          return L0_0
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

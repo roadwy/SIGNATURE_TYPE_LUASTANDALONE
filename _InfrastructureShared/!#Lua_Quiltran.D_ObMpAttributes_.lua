@@ -1,32 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Quiltran.D_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.bitor
+L2_2 = mp
+L2_2 = L2_2.FILEPATH_QUERY_FNAME
+L3_3 = mp
+L3_3 = L3_3.FILEPATH_QUERY_LOWERCASE
+L3_3 = L1_1(L2_2, L3_3)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L1_1(L2_2, L3_3))
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-if l_0_1 == nil then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_PROCESSNAME
+L3_3 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L2_2(L3_3))
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(mp.set_mpattribute)("MpDisableCaching")
-local l_0_2 = {}
-;
-(table.insert)(l_0_2, l_0_0)
-;
-(MpCommon.SetPersistContextNoPath)("Lua:MSIL/Quiltran.D", l_0_2, 0)
-if l_0_0 ~= l_0_1 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.set_mpattribute
+L3_3 = "MpDisableCaching"
+L2_2(L3_3)
+L2_2 = {}
+L3_3 = table
+L3_3 = L3_3.insert
+L3_3(L2_2, L0_0)
+L3_3 = MpCommon
+L3_3 = L3_3.SetPersistContextNoPath
+L3_3("Lua:MSIL/Quiltran.D", L2_2, 0)
+if L0_0 ~= L1_1 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESS_PPID)
-if l_0_3 ~= nil then
-  (MpCommon.RequestSmsOnProcess)(l_0_3, MpCommon.SMS_SCAN_MED)
+L3_3 = mp
+L3_3 = L3_3.get_contextdata
+L3_3 = L3_3(mp.CONTEXT_DATA_PROCESS_PPID)
+if L3_3 ~= nil then
+  MpCommon.RequestSmsOnProcess(L3_3, MpCommon.SMS_SCAN_MED)
 end
 return mp.INFECTED
-

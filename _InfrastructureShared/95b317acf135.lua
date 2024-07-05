@@ -1,27 +1,37 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/95b317acf135 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 ~= nil and l_0_0.ppid ~= nil then
-  (bm.request_SMS)(l_0_0.ppid, "M")
-end
-do
-  if (this_sigattrlog[3]).matched == true then
-    local l_0_1 = (this_sigattrlog[3]).ppid
-    if l_0_1 ~= nil then
-      (bm.request_SMS)(l_0_1, "M")
-    end
-  end
-  do
-    if (this_sigattrlog[4]).matched == true then
-      local l_0_2 = (this_sigattrlog[4]).ppid
-      if l_0_2 ~= nil then
-        (bm.request_SMS)(l_0_2, "M")
-      end
-    end
-    return mp.INFECTED
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.ppid
+  if L1_1 ~= nil then
+    L1_1 = bm
+    L1_1 = L1_1.request_SMS
+    L1_1(L0_0.ppid, "M")
   end
 end
-
+L1_1 = this_sigattrlog
+L1_1 = L1_1[3]
+L1_1 = L1_1.matched
+if L1_1 == true then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.ppid
+  if L1_1 ~= nil then
+    bm.request_SMS(L1_1, "M")
+  end
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[4]
+L1_1 = L1_1.matched
+if L1_1 == true then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.ppid
+  if L1_1 ~= nil then
+    bm.request_SMS(L1_1, "M")
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

@@ -1,43 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d378aecc3db1 
-
--- params : ...
--- function num : 0
-if not peattributes.ismsil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = peattributes
+L0_0 = L0_0.ismsil
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 16777216 then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 16777216 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = nil
-if (hstrlog[3]).matched then
-  l_0_1 = (hstrlog[3]).VA
+L1_1 = nil
+L2_2 = hstrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = hstrlog
+  L2_2 = L2_2[3]
+  L1_1 = L2_2.VA
 else
-  if (hstrlog[4]).matched then
-    l_0_1 = (hstrlog[4]).VA
+  L2_2 = hstrlog
+  L2_2 = L2_2[4]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = hstrlog
+    L2_2 = L2_2[4]
+    L1_1 = L2_2.VA
   else
-    return mp.CLEAN
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
 end
-if not (pe.contains_va)(1, l_0_1) then
-  return mp.CLEAN
+L2_2 = pe
+L2_2 = L2_2.contains_va
+L2_2 = L2_2(L3_3, L4_4)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-;
-(mp.readprotection)(false)
-local l_0_2 = (mp.readfile)((pesecs[1]).PointerToRawData, (pesecs[1]).SizeOfRawData)
-if #l_0_2 < 4096 and #l_0_2 > 16777216 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L2_2(L3_3)
+L2_2 = mp
+L2_2 = L2_2.readfile
+L2_2 = L2_2(L3_3, L4_4)
+if L3_3 < 4096 then
+  if L3_3 > 16777216 then
+    return L3_3
+  end
 end
-for l_0_6 in (string.gmatch)(l_0_2, "zsrvvgEAAA[%w+/]+=?=?") do
-  if #l_0_6 > 4096 then
-    (mp.set_mpattribute)("//MpBase64DecodeLongLines")
-    ;
-    (mp.vfo_add_buffer)(l_0_6, "[Obfuscator.AO]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+for L6_6 in L3_3(L4_4, L5_5) do
+  if #L6_6 > 4096 then
+    mp.set_mpattribute("//MpBase64DecodeLongLines")
+    mp.vfo_add_buffer(L6_6, "[Obfuscator.AO]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
     break
   end
 end
-do
-  return mp.INFECTED
-end
-
+return L3_3

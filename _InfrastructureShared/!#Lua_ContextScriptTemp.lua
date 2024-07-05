@@ -1,33 +1,13 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ContextScriptTemp 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  local l_0_1 = ((string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME)))
-  local l_0_2 = nil
-  if l_0_1:find("^rad.....%.tmp%.exe") == 1 then
-    l_0_2 = "exe"
+if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+  if string.lower(mp.get_contextdata(mp.CONTEXT_DATA_FILENAME)):find("^rad.....%.tmp%.exe") == 1 then
   else
-    if l_0_1:find("^rad.....%.tmp%.dll") == 1 then
-      l_0_2 = "dll"
-    end
   end
-  if l_0_2 ~= nil then
-    local l_0_3 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-    if l_0_3 == "wscript.exe" or l_0_3 == "cscript.exe" then
-      if l_0_2 == "exe" then
-        (mp.set_mpattribute)("Lua:ContextScriptTempExe.A")
-      else
-        if l_0_2 == "dll" then
-          (mp.set_mpattribute)("Lua:ContextScriptTempDll.A")
-        end
-      end
+  if "dll" ~= nil and (string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) == "wscript.exe" or string.lower(mp.get_contextdata(mp.CONTEXT_DATA_PROCESSNAME)) == "cscript.exe") then
+    if "dll" == "exe" then
+      mp.set_mpattribute("Lua:ContextScriptTempExe.A")
+    elseif "dll" == "dll" then
+      mp.set_mpattribute("Lua:ContextScriptTempDll.A")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

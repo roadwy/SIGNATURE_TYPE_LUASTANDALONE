@@ -1,37 +1,49 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_OpenAfterDroppedRemotely_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L1_1 = mp
+L1_1 = L1_1.FILEPATH_QUERY_LOWERCASE
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0:sub(1, 8) == "\\device\\" then
-  l_0_0 = (MpCommon.PathToWin32Path)(l_0_0)
+L1_1 = L0_0.sub
+L1_1 = L1_1(L0_0, 1, 8)
+if L1_1 == "\\device\\" then
+  L1_1 = MpCommon
+  L1_1 = L1_1.PathToWin32Path
+  L1_1 = L1_1(L0_0)
+  L0_0 = L1_1
 end
-if l_0_0 == nil then
-  return mp.CLEAN
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-l_0_0 = (string.lower)(l_0_0)
-if IsKeyInRollingQueue("DroppedByPossibleRemotelyCreatedProc", l_0_0) then
-  local l_0_1 = (mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME)
-  if l_0_1 == nil then
+L1_1 = string
+L1_1 = L1_1.lower
+L1_1 = L1_1(L0_0)
+L0_0 = L1_1
+L1_1 = IsKeyInRollingQueue
+L1_1 = L1_1("DroppedByPossibleRemotelyCreatedProc", L0_0, true)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L1_1 = L1_1(mp.CONTEXT_DATA_PROCESSNAME)
+  if L1_1 == nil then
     return mp.CLEAN
   end
-  l_0_1 = (string.lower)(l_0_1)
-  ;
-  (mp.set_mpattribute)("Lua:Context/OpenAfterDroppedRemotely!" .. l_0_1)
-  local l_0_2 = "cscript.exe|wscript.exe|mshta.exe|cmd.exe|powershell.exe|pwsh.exe|console.exe|bash.exe|dllhost.exe|rundll32.exe|regsvr32.exe|wmiprvse.exe|svchost.exe|wsmprovhost.exe|"
-  if l_0_2:find(l_0_1) then
-    (mp.set_mpattribute)("Lua:Context/OpenAfterDroppedRemotely!lolbin")
-    ;
-    (mp.set_mpattribute)("Lua:Context/OpenAfterDroppedRemotely!" .. l_0_1)
+  L1_1 = string.lower(L1_1)
+  mp.set_mpattribute("Lua:Context/OpenAfterDroppedRemotely!" .. L1_1)
+  if ("cscript.exe|wscript.exe|mshta.exe|cmd.exe|powershell.exe|pwsh.exe|console.exe|bash.exe|dllhost.exe|rundll32.exe|regsvr32.exe|wmiprvse.exe|svchost.exe|wsmprovhost.exe|"):find(L1_1) then
+    mp.set_mpattribute("Lua:Context/OpenAfterDroppedRemotely!lolbin")
+    mp.set_mpattribute("Lua:Context/OpenAfterDroppedRemotely!" .. L1_1)
   end
   TrackPidAndTechnique("RTP", "T1570", "exec_remotedroppedscript_b")
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

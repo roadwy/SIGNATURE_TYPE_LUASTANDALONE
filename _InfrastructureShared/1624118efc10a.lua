@@ -1,22 +1,46 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1624118efc10a 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() < 300000 or (mp.getfilesize)() > 600000 then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if not (L0_0 < 300000) then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+elseif L0_0 > 600000 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (this_sigattrlog[3]).matched and (this_sigattrlog[4]).matched then
-  local l_0_0 = (string.lower)((this_sigattrlog[3]).p1)
-  if (string.sub)(l_0_0, -4) == ".dll" then
-    return mp.CLEAN
+L0_0 = this_sigattrlog
+L0_0 = L0_0[3]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[4]
+  L0_0 = L0_0.matched
+  if L0_0 then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.p1
+    L0_0 = L0_0(L1_1)
+    L1_1 = string
+    L1_1 = L1_1.sub
+    L1_1 = L1_1(L0_0, -4)
+    if L1_1 == ".dll" then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
+    end
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(this_sigattrlog[4].p1)
+    if string.find(L1_1, L0_0) ~= nil then
+      return mp.INFECTED
+    end
   end
-  local l_0_1 = (string.lower)((this_sigattrlog[4]).p1)
-  if (string.find)(l_0_1, l_0_0) ~= nil then
-    return mp.INFECTED
-  end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

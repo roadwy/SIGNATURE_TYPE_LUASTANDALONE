@@ -1,22 +1,24 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PowerShell_GrabCriticalFiles.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-do
-  if ((((mp.get_mpattribute)("SCRIPT:StringCredentialSubstring") and not (mp.get_mpattribute)("SCRIPT:StringFileExtensionOffice")) or (mp.get_mpattribute)("SCRIPT:StringFileExtensionArchive")) and not (mp.get_mpattribute)("SCRIPT:StringFileExtensionImage")) or (mp.get_mpattribute)("SCRIPT:StringFileExtensionAdobe") then
-    local l_0_0, l_0_1 = 0 + 1 + 1 + 1 + 1 + 1
-  end
-  -- DECOMPILER ERROR at PC36: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 == 5 then
-    return mp.INFECTED
-  end
-  -- DECOMPILER ERROR at PC41: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 >= 2 then
-    (mp.set_mpattribute)("Lua:PowerShell/GrabCriticalFiles.B")
-  end
-  return mp.CLEAN
+local L0_0
+L0_0 = 0
+if mp.get_mpattribute("SCRIPT:StringCredentialSubstring") then
+  L0_0 = L0_0 + 1
 end
-
+if mp.get_mpattribute("SCRIPT:StringFileExtensionOffice") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:StringFileExtensionArchive") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:StringFileExtensionImage") then
+  L0_0 = L0_0 + 1
+end
+if mp.get_mpattribute("SCRIPT:StringFileExtensionAdobe") then
+  L0_0 = L0_0 + 1
+end
+if L0_0 == 5 then
+  return mp.INFECTED
+end
+if L0_0 >= 2 then
+  mp.set_mpattribute("Lua:PowerShell/GrabCriticalFiles.B")
+end
+return mp.CLEAN

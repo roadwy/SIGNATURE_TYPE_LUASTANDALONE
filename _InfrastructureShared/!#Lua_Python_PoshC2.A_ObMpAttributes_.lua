@@ -1,25 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Python_PoshC2.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 122880 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 122880 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = nil
-if l_0_0 <= mp.HEADERPAGE_SZ then
-  l_0_1 = tostring(headerpage)
+L1_1 = nil
+L2_2 = mp
+L2_2 = L2_2.HEADERPAGE_SZ
+if L0_0 <= L2_2 then
+  L2_2 = tostring
+  L2_2 = L2_2(headerpage)
+  L1_1 = L2_2
 else
-  ;
-  (mp.readprotection)(false)
-  l_0_1 = tostring((mp.readfile)(0, l_0_0))
+  L2_2 = mp
+  L2_2 = L2_2.readprotection
+  L2_2(false)
+  L2_2 = tostring
+  L2_2 = L2_2(mp.readfile(0, L0_0))
+  L1_1 = L2_2
 end
-local l_0_2 = (string.match)(l_0_1, "base64.b64decode%(\'([%w%+/]+=-)\'%)")
-if l_0_2 == nil or (string.len)(l_0_2) < 128 then
+L2_2 = string
+L2_2 = L2_2.match
+L2_2 = L2_2(L1_1, "base64.b64decode%('([%w%+/]+=-)'%)")
+if L2_2 == nil or string.len(L2_2) < 128 then
   return mp.CLEAN
 end
-;
-(mp.vfo_add_buffer)(l_0_2, "[PythonBase64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+mp.vfo_add_buffer(L2_2, "[PythonBase64]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 return mp.INFECTED
-

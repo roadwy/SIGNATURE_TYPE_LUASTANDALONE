@@ -1,64 +1,135 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/128b3e63913eb_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_4 = nil
-if not (MpCommon.GetPersistContextNoPath)("lnkarg_sb") then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = MpCommon
+L1_1 = L1_1.GetPersistContextNoPath
+L2_2 = "lnkarg_sb"
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 then
-  l_0_4 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  local l_0_0 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = this_sigattrlog
+    L3_3 = L3_3[1]
+    L3_3 = L3_3.utf8p2
+    L2_2 = L2_2(L3_3)
+    L0_0 = L2_2
+  end
 else
-  do
-    if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 then
-      l_0_4 = (string.lower)((this_sigattrlog[2]).utf8p2)
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.lower
+      L3_3 = this_sigattrlog
+      L3_3 = L3_3[2]
+      L3_3 = L3_3.utf8p2
+      L2_2 = L2_2(L3_3)
+      L0_0 = L2_2
+    end
+  else
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p2
+      if L2_2 then
+        L2_2 = string
+        L2_2 = L2_2.lower
+        L3_3 = this_sigattrlog
+        L3_3 = L3_3[3]
+        L3_3 = L3_3.utf8p2
+        L2_2 = L2_2(L3_3)
+        L0_0 = L2_2
+      end
     else
-      if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 then
-        l_0_4 = (string.lower)((this_sigattrlog[3]).utf8p2)
-        local l_0_1 = nil
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L2_2 = L2_2.matched
+      if L2_2 then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[4]
+        L2_2 = L2_2.utf8p2
+        if L2_2 then
+          L2_2 = string
+          L2_2 = L2_2.lower
+          L3_3 = this_sigattrlog
+          L3_3 = L3_3[4]
+          L3_3 = L3_3.utf8p2
+          L2_2 = L2_2(L3_3)
+          L0_0 = L2_2
+        end
       else
-        do
-          if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 then
-            l_0_4 = (string.lower)((this_sigattrlog[4]).utf8p2)
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[5]
+        L2_2 = L2_2.matched
+        if L2_2 then
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[5]
+          L2_2 = L2_2.utf8p2
+          if L2_2 then
+            L2_2 = string
+            L2_2 = L2_2.lower
+            L3_3 = this_sigattrlog
+            L3_3 = L3_3[5]
+            L3_3 = L3_3.utf8p2
+            L2_2 = L2_2(L3_3)
+            L0_0 = L2_2
+          end
+        else
+          L2_2 = this_sigattrlog
+          L2_2 = L2_2[6]
+          L2_2 = L2_2.matched
+          if L2_2 then
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[6]
+            L2_2 = L2_2.utf8p2
+            if L2_2 then
+              L2_2 = string
+              L2_2 = L2_2.lower
+              L3_3 = this_sigattrlog
+              L3_3 = L3_3[6]
+              L3_3 = L3_3.utf8p2
+              L2_2 = L2_2(L3_3)
+              L0_0 = L2_2
+            end
           else
-            if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).utf8p2 then
-              l_0_4 = (string.lower)((this_sigattrlog[5]).utf8p2)
-              local l_0_2 = nil
-            else
-              do
-                if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 then
-                  l_0_4 = (string.lower)((this_sigattrlog[6]).utf8p2)
-                else
-                  if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).utf8p2 then
-                    l_0_4 = (string.lower)((this_sigattrlog[7]).utf8p2)
-                    local l_0_3 = nil
-                  else
-                    do
-                      do return mp.CLEAN end
-                      local l_0_5, l_0_6 = , (bm.get_process_relationships)()
-                      for l_0_10,l_0_11 in ipairs(l_0_6) do
-                        local l_0_7 = nil
-                        -- DECOMPILER ERROR at PC146: Confused about usage of register: R8 in 'UnsetPending'
-
-                        if not contains(R8_PC146.image_path, "explorer.exe") then
-                          return mp.CLEAN
-                        end
-                      end
-                      for l_0_15,l_0_16 in ipairs(l_0_5) do
-                        local l_0_12 = nil
-                        -- DECOMPILER ERROR at PC162: Confused about usage of register: R8 in 'UnsetPending'
-
-                        if contains(l_0_4, R8_PC146) then
-                          return mp.INFECTED
-                        end
-                      end
-                      return mp.CLEAN
-                    end
-                  end
-                end
+            L2_2 = this_sigattrlog
+            L2_2 = L2_2[7]
+            L2_2 = L2_2.matched
+            if L2_2 then
+              L2_2 = this_sigattrlog
+              L2_2 = L2_2[7]
+              L2_2 = L2_2.utf8p2
+              if L2_2 then
+                L2_2 = string
+                L2_2 = L2_2.lower
+                L3_3 = this_sigattrlog
+                L3_3 = L3_3[7]
+                L3_3 = L3_3.utf8p2
+                L2_2 = L2_2(L3_3)
+                L0_0 = L2_2
               end
+            else
+              L2_2 = mp
+              L2_2 = L2_2.CLEAN
+              return L2_2
             end
           end
         end
@@ -66,4 +137,17 @@ else
     end
   end
 end
-
+L2_2 = bm
+L2_2 = L2_2.get_process_relationships
+L3_3 = L2_2()
+for L7_7, L8_8 in L4_4(L5_5) do
+  if not contains(L8_8.image_path, "explorer.exe") then
+    return mp.CLEAN
+  end
+end
+for L7_7, L8_8 in L4_4(L5_5) do
+  if contains(L0_0, L8_8) then
+    return mp.INFECTED
+  end
+end
+return L4_4

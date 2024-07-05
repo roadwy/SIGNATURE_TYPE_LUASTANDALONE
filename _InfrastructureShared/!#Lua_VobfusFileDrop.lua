@@ -1,22 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VobfusFileDrop 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN then
-  local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-  local l_0_2 = (string.len)(l_0_1) - 4
-  if (string.sub)(l_0_1, -4) == ".exe" and l_0_2 >= 5 and l_0_2 <= 7 then
-    local l_0_3 = (string.sub)(l_0_1, 1, l_0_2)
-    local l_0_4 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-    local l_0_5 = (string.reverse)((string.sub)(l_0_4, -l_0_2))
-    if l_0_3 == l_0_5 and (mp.get_contextdata)(mp.CONTEXT_DATA_FILE_ATTRIBUTES) == 7 then
-      (mp.set_mpattribute)("Lua:VobfusFileDrop")
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = mp
+  L2_2 = L2_2.get_contextdata
+  L3_3 = mp
+  L3_3 = L3_3.CONTEXT_DATA_FILENAME
+  L4_4 = L2_2(L3_3)
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L2_2(L3_3))
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+  L2_2 = L2_2 - 4
+  L3_3 = string
+  L3_3 = L3_3.sub
+  L4_4 = L1_1
+  L3_3 = L3_3(L4_4, -4)
+  if L3_3 == ".exe" and L2_2 >= 5 and L2_2 <= 7 then
+    L3_3 = string
+    L3_3 = L3_3.sub
+    L4_4 = L1_1
+    L3_3 = L3_3(L4_4, 1, L2_2)
+    L4_4 = string
+    L4_4 = L4_4.lower
+    L4_4 = L4_4(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
+    if L3_3 == string.reverse(string.sub(L4_4, -L2_2)) and mp.get_contextdata(mp.CONTEXT_DATA_FILE_ATTRIBUTES) == 7 then
+      mp.set_mpattribute("Lua:VobfusFileDrop")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,10 +1,22 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b78489a50a0 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections == 3 and peattributes.epinfirstsect and (pesecs[pehdr.NumberOfSections]).Name == ".rsrc" then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 == 3 then
+  L0_0 = peattributes
+  L0_0 = L0_0.epinfirstsect
+  if L0_0 then
+    L0_0 = pesecs
+    L1_1 = pehdr
+    L1_1 = L1_1.NumberOfSections
+    L0_0 = L0_0[L1_1]
+    L0_0 = L0_0.Name
+    if L0_0 == ".rsrc" then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

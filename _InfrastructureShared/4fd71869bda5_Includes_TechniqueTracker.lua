@@ -1,27 +1,21 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4fd71869bda5_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
   return mp.CLEAN
 end
-local l_0_1 = (mp.GetParentProcInfo)()
-if l_0_1 == nil or l_0_1.ppid == nil or l_0_1.image_path == nil then
+if mp.GetParentProcInfo() == nil or mp.GetParentProcInfo().ppid == nil or mp.GetParentProcInfo().image_path == nil then
   return mp.CLEAN
 end
-local l_0_2 = (string.lower)(l_0_1.image_path)
-if l_0_2:find("ltsvc.exe$") then
+if string.lower(mp.GetParentProcInfo().image_path):find("ltsvc.exe$") then
   return mp.CLEAN
 end
-TrackPidAndTechnique(l_0_0, "T1490", "shadowcopy_delete")
-if IsDetectionThresholdMet(l_0_0) or IsDetectionThresholdMet(l_0_1.ppid) then
+TrackPidAndTechnique(L0_0, "T1490", "shadowcopy_delete")
+if IsDetectionThresholdMet(L0_0) or IsDetectionThresholdMet(mp.GetParentProcInfo().ppid) then
   return mp.INFECTED
 end
-local l_0_3 = GetTacticsTableForPid(l_0_1.ppid)
-if l_0_3.winrshost_childproc or l_0_3.wsmprovhost_childproc or l_0_3.wmi_childproc or l_0_3.remotedropexe_childproc or l_0_3.python_childproc or l_0_3.rundll32_childproc or l_0_3.wscript_childproc or l_0_3.cscript_childproc or l_0_3.mshta_childproc or l_0_3.webshell_childproc or l_0_3.exec_remotedroppedscript_a or l_0_3.folderguard_blk or l_0_3.folderguard_folder_blk then
+if GetTacticsTableForPid(mp.GetParentProcInfo().ppid).winrshost_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wsmprovhost_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wmi_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).remotedropexe_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).python_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).rundll32_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).wscript_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).cscript_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).mshta_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).webshell_childproc or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).exec_remotedroppedscript_a or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).folderguard_blk or GetTacticsTableForPid(mp.GetParentProcInfo().ppid).folderguard_folder_blk then
   return mp.INFECTED
 end
 return mp.LOWFI
-

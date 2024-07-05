@@ -1,74 +1,150 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/278b3323c7b33_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[4]).matched or (this_sigattrlog[4]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-      local l_0_1 = (this_sigattrlog[4]).utf8p2
-    else
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[4]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[4]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L0_0 = L1_1.utf8p2
     end
-    -- DECOMPILER ERROR at PC68: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[5]).matched) and (this_sigattrlog[5]).utf8p2 ~= nil then
-        local l_0_2 = (this_sigattrlog[2]).utf8p2
-      else
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
       end
-      -- DECOMPILER ERROR at PC96: Overwrote pending register: R0 in 'AssignReg'
-
-      do
-        if (not (this_sigattrlog[6]).matched or (this_sigattrlog[6]).utf8p2 == nil or (this_sigattrlog[8]).matched) and (this_sigattrlog[8]).utf8p2 ~= nil then
-          local l_0_3 = (this_sigattrlog[6]).utf8p2
-        else
+    else
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[2]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[2]
+          L0_0 = L1_1.utf8p2
         end
-        -- DECOMPILER ERROR at PC124: Overwrote pending register: R0 in 'AssignReg'
-
-        do
-          if (not (this_sigattrlog[7]).matched or (this_sigattrlog[7]).utf8p2 == nil or (this_sigattrlog[9]).matched) and (this_sigattrlog[9]).utf8p2 ~= nil then
-            local l_0_4 = (this_sigattrlog[7]).utf8p2
-          else
+      else
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.utf8p2
+          if L1_1 ~= nil then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[5]
+            L0_0 = L1_1.utf8p2
           end
-          -- DECOMPILER ERROR at PC152: Overwrote pending register: R0 in 'AssignReg'
-
-          do
-            if (not (this_sigattrlog[10]).matched or (this_sigattrlog[10]).utf8p2 == nil or (this_sigattrlog[11]).matched) and (this_sigattrlog[11]).utf8p2 ~= nil then
-              local l_0_5, l_0_6, l_0_7, l_0_14 = (this_sigattrlog[10]).utf8p2
+        else
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[6]
+            L1_1 = L1_1.utf8p2
+            if L1_1 ~= nil then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[6]
+              L0_0 = L1_1.utf8p2
             end
-            -- DECOMPILER ERROR at PC153: Confused about usage of register: R0 in 'UnsetPending'
-
-            if l_0_5 == nil then
-              return mp.CLEAN
-            end
-            -- DECOMPILER ERROR at PC158: Confused about usage of register: R0 in 'UnsetPending'
-
-            -- DECOMPILER ERROR at PC162: Confused about usage of register: R0 in 'UnsetPending'
-
-            if l_0_5 ~= nil then
-              local l_0_8 = nil
-              for l_0_12,l_0_13 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_5)) do
-                local l_0_9 = nil
-                -- DECOMPILER ERROR at PC170: Confused about usage of register: R6 in 'UnsetPending'
-
-                R6_PC170 = (mp.ContextualExpandEnvironmentVariables)(R6_PC170)
-                if (sysio.IsFileExists)(R6_PC170) then
-                  (bm.add_related_file)(R6_PC170)
-                  return mp.INFECTED
+          else
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[8]
+            L1_1 = L1_1.matched
+            if L1_1 then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[8]
+              L1_1 = L1_1.utf8p2
+              if L1_1 ~= nil then
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[8]
+                L0_0 = L1_1.utf8p2
+              end
+            else
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[7]
+              L1_1 = L1_1.matched
+              if L1_1 then
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[7]
+                L1_1 = L1_1.utf8p2
+                if L1_1 ~= nil then
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[7]
+                  L0_0 = L1_1.utf8p2
+                end
+              else
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[9]
+                L1_1 = L1_1.matched
+                if L1_1 then
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[9]
+                  L1_1 = L1_1.utf8p2
+                  if L1_1 ~= nil then
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[9]
+                    L0_0 = L1_1.utf8p2
+                  end
+                else
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[10]
+                  L1_1 = L1_1.matched
+                  if L1_1 then
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[10]
+                    L1_1 = L1_1.utf8p2
+                    if L1_1 ~= nil then
+                      L1_1 = this_sigattrlog
+                      L1_1 = L1_1[10]
+                      L0_0 = L1_1.utf8p2
+                    end
+                  else
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[11]
+                    L1_1 = L1_1.matched
+                    if L1_1 then
+                      L1_1 = this_sigattrlog
+                      L1_1 = L1_1[11]
+                      L1_1 = L1_1.utf8p2
+                      if L1_1 ~= nil then
+                        L1_1 = this_sigattrlog
+                        L1_1 = L1_1[11]
+                        L0_0 = L1_1.utf8p2
+                      end
+                    end
+                  end
                 end
               end
-            end
-            do
-              add_parents()
-              return mp.CLEAN
             end
           end
         end
@@ -76,4 +152,25 @@ do
     end
   end
 end
-
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L6_6 = mp.ContextualExpandEnvironmentVariables(L6_6)
+    if sysio.IsFileExists(L6_6) then
+      bm.add_related_file(L6_6)
+      return mp.INFECTED
+    end
+  end
+end
+L1_1 = add_parents
+L1_1()
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

@@ -1,25 +1,89 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b33b3296e5 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p1)
-  local l_0_1 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  l_0_1 = (string.gsub)(l_0_1, " ", "")
-  l_0_1 = (string.gsub)(l_0_1, "\"", "")
-  if l_0_0 ~= l_0_1 then
-    return mp.CLEAN
+local L0_0, L1_1
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p1
+    L0_0 = L0_0(L1_1)
+    L1_1 = string
+    L1_1 = L1_1.lower
+    L1_1 = L1_1(this_sigattrlog[1].utf8p2)
+    L1_1 = string.gsub(L1_1, " ", "")
+    L1_1 = string.gsub(L1_1, "\"", "")
+    if L0_0 ~= L1_1 then
+      return mp.CLEAN
+    end
   end
 end
-do
-  if (mp.IsKnownFriendlyFile)((MpCommon.PathToWin32Path)((bm.get_imagepath)()), true, true) == true then
-    return mp.CLEAN
-  end
-  local l_0_2 = (string.lower)((bm.get_imagepath)())
-  if l_0_2 and ((string.find)(l_0_2, "\\program files", 1, true) or (string.find)(l_0_2, "\\windows\\", 1, true) or (string.find)(l_0_2, "\\atx", 1, true) or (string.find)(l_0_2, "pdv\\", 1, true) or (string.find)(l_0_2, "\\pdv", 1, true) or (string.find)(l_0_2, "caixa", 1, true) or (string.find)(l_0_2, "\\frente", 1, true) or (string.find)(l_0_2, "\\setuphost", 1, true)) then
-    return mp.CLEAN
-  end
-  return mp.INFECTED
+L0_0 = mp
+L0_0 = L0_0.IsKnownFriendlyFile
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L1_1 = L1_1(bm.get_imagepath())
+L0_0 = L0_0(L1_1, true, true)
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+L0_0 = L0_0(L1_1, L1_1())
+if L0_0 then
+  L1_1 = string
+  L1_1 = L1_1.find
+  L1_1 = L1_1(L0_0, "\\program files", 1, true)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L1_1 = L1_1(L0_0, "\\windows\\", 1, true)
+    if not L1_1 then
+      L1_1 = string
+      L1_1 = L1_1.find
+      L1_1 = L1_1(L0_0, "\\atx", 1, true)
+      if not L1_1 then
+        L1_1 = string
+        L1_1 = L1_1.find
+        L1_1 = L1_1(L0_0, "pdv\\", 1, true)
+        if not L1_1 then
+          L1_1 = string
+          L1_1 = L1_1.find
+          L1_1 = L1_1(L0_0, "\\pdv", 1, true)
+          if not L1_1 then
+            L1_1 = string
+            L1_1 = L1_1.find
+            L1_1 = L1_1(L0_0, "caixa", 1, true)
+            if not L1_1 then
+              L1_1 = string
+              L1_1 = L1_1.find
+              L1_1 = L1_1(L0_0, "\\frente", 1, true)
+              if not L1_1 then
+                L1_1 = string
+                L1_1 = L1_1.find
+                L1_1 = L1_1(L0_0, "\\setuphost", 1, true)
+              end
+            end
+          end
+        end
+      end
+    end
+  elseif L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

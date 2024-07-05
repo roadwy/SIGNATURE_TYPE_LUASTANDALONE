@@ -1,35 +1,64 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/8dd72a1efac9_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetParentProcInfo)()
-if l_0_0 ~= nil then
-  if IsPidExcluded(l_0_0.ppid) then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.GetParentProcInfo
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = IsPidExcluded
+  L2_2 = L0_0.ppid
+  L1_1 = L1_1(L2_2)
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_1 = (string.lower)(l_0_0.image_path)
-  local l_0_2 = l_0_1:match("([^\\]+)$")
-  local l_0_3 = {}
-  l_0_3["net.exe"] = true
-  if l_0_3[l_0_2] then
-    return mp.CLEAN
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L2_2 = L0_0.image_path
+  L1_1 = L1_1(L2_2)
+  L3_3 = L1_1
+  L2_2 = L1_1.match
+  L4_4 = "([^\\]+)$"
+  L2_2 = L2_2(L3_3, L4_4)
+  L3_3 = {}
+  L3_3["net.exe"] = true
+  L3_3["wazuh-agent.exe"] = true
+  L4_4 = L3_3[L2_2]
+  if L4_4 then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
   end
-  if l_0_2 == "powershell.exe" then
-    local l_0_4 = (mp.GetProcessCommandLine)(l_0_0.ppid)
-    if l_0_4 ~= nil then
-      l_0_4 = (string.lower)(l_0_4)
-      if l_0_4:find("\\microsoft\\windows defender advanced threat protection\\datacollection\\", 1, true) then
+  if L2_2 == "powershell.exe" then
+    L4_4 = mp
+    L4_4 = L4_4.GetProcessCommandLine
+    L4_4 = L4_4(L0_0.ppid)
+    if L4_4 ~= nil then
+      L4_4 = string.lower(L4_4)
+      if L4_4:find("\\microsoft\\windows defender advanced threat protection\\datacollection\\", 1, true) then
+        return mp.CLEAN
+      end
+      if L4_4:find("windows\\imecache\\healthscripts", 1, true) then
+        return mp.CLEAN
+      end
+      if L4_4:find("\\\\ossec-agent\\\\", 1, true) then
         return mp.CLEAN
       end
     end
   end
 end
-do
-  TrackPidAndTechnique("CMDHSTR", "T1033", "user_discovery")
-  if IsDetectionThresholdMet("CMDHSTR") then
-    return mp.INFECTED
-  end
-  return mp.LOWFI
+L1_1 = TrackPidAndTechnique
+L2_2 = "CMDHSTR"
+L3_3 = "T1033"
+L4_4 = "user_discovery"
+L1_1(L2_2, L3_3, L4_4)
+L1_1 = IsDetectionThresholdMet
+L2_2 = "CMDHSTR"
+L1_1 = L1_1(L2_2)
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.INFECTED
+  return L1_1
 end
-
+L1_1 = mp
+L1_1 = L1_1.LOWFI
+return L1_1

@@ -1,55 +1,98 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/VBSAutorun 
-
--- params : ...
--- function num : 0
-local l_0_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion")
-for l_0_4,l_0_5 in pairs(l_0_0) do
-  local l_0_6 = l_0_5 .. "\\Run"
-  local l_0_7 = (sysio.RegOpenKey)(l_0_6)
-  if l_0_7 then
-    local l_0_8 = (sysio.RegEnumValues)(l_0_7)
-    for l_0_12,l_0_13 in pairs(l_0_8) do
-      local l_0_14 = (sysio.GetRegValueAsString)(l_0_7, l_0_13)
-      if l_0_14 ~= nil and ((string.match)((string.lower)(l_0_14), "^wscript%.exe.+temp.+%.vb[es]\"$") or (string.match)((string.lower)(l_0_14), "^wscript%.exe.+data.+%.vb[es]\"$")) then
-        local l_0_15, l_0_16, l_0_17, l_0_18 = (string.find)(l_0_14, "\"([cC]%:\\.*\\(.+%.[vV][bB][eEsS]))\"")
-        if (sysio.IsFileExists)(l_0_17) then
-          (Remediation.BtrDeleteFile)(l_0_17)
-        end
-        local l_0_19 = 0
-        local l_0_20 = l_0_5 .. "\\Explorer\\Shell Folders"
-        local l_0_21 = (sysio.RegOpenKey)(l_0_20)
-        if l_0_21 then
-          local l_0_22 = (sysio.GetRegValueAsString)(l_0_21, "Startup")
-          if (sysio.IsFolderExists)(l_0_22) then
-            local l_0_23 = l_0_22 .. "\\" .. l_0_18
-            if (sysio.IsFileExists)(l_0_23) then
-              l_0_19 = 1
-              ;
-              (Remediation.BtrDeleteFile)(l_0_23)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17, L18_18, L19_19, L20_20, L21_21, L22_22, L23_23
+L0_0 = sysio
+L0_0 = L0_0.RegExpandUserKey
+L0_0 = L0_0(L1_1)
+for L4_4, L5_5 in L1_1(L2_2) do
+  L6_6 = L5_5
+  L7_7 = "\\Run"
+  L6_6 = L6_6 .. L7_7
+  L7_7 = sysio
+  L7_7 = L7_7.RegOpenKey
+  L8_8 = L6_6
+  L7_7 = L7_7(L8_8)
+  if L7_7 then
+    L8_8 = sysio
+    L8_8 = L8_8.RegEnumValues
+    L8_8 = L8_8(L9_9)
+    for L12_12, L13_13 in L9_9(L10_10) do
+      L14_14 = sysio
+      L14_14 = L14_14.GetRegValueAsString
+      L15_15 = L7_7
+      L16_16 = L13_13
+      L14_14 = L14_14(L15_15, L16_16)
+      if L14_14 ~= nil then
+        L15_15 = string
+        L15_15 = L15_15.match
+        L16_16 = string
+        L16_16 = L16_16.lower
+        L17_17 = L14_14
+        L16_16 = L16_16(L17_17)
+        L17_17 = "^wscript%.exe.+temp.+%.vb[es]\"$"
+        L15_15 = L15_15(L16_16, L17_17)
+        if not L15_15 then
+          L15_15 = string
+          L15_15 = L15_15.match
+          L16_16 = string
+          L16_16 = L16_16.lower
+          L17_17 = L14_14
+          L16_16 = L16_16(L17_17)
+          L17_17 = "^wscript%.exe.+data.+%.vb[es]\"$"
+          L15_15 = L15_15(L16_16, L17_17)
+        elseif L15_15 then
+          L15_15 = string
+          L15_15 = L15_15.find
+          L16_16 = L14_14
+          L17_17 = "\"([cC]%:\\.*\\(.+%.[vV][bB][eEsS]))\""
+          L18_18 = L15_15(L16_16, L17_17)
+          L19_19 = sysio
+          L19_19 = L19_19.IsFileExists
+          L20_20 = L17_17
+          L19_19 = L19_19(L20_20)
+          if L19_19 then
+            L19_19 = Remediation
+            L19_19 = L19_19.BtrDeleteFile
+            L20_20 = L17_17
+            L19_19(L20_20)
+          end
+          L19_19 = 0
+          L20_20 = L5_5
+          L21_21 = "\\Explorer\\Shell Folders"
+          L20_20 = L20_20 .. L21_21
+          L21_21 = sysio
+          L21_21 = L21_21.RegOpenKey
+          L22_22 = L20_20
+          L21_21 = L21_21(L22_22)
+          if L21_21 then
+            L22_22 = sysio
+            L22_22 = L22_22.GetRegValueAsString
+            L23_23 = L21_21
+            L22_22 = L22_22(L23_23, "Startup")
+            L23_23 = sysio
+            L23_23 = L23_23.IsFolderExists
+            L23_23 = L23_23(L22_22)
+            if L23_23 then
+              L23_23 = L22_22
+              L23_23 = L23_23 .. "\\" .. L18_18
+              if sysio.IsFileExists(L23_23) then
+                L19_19 = 1
+                Remediation.BtrDeleteFile(L23_23)
+              end
             end
           end
-        end
-        do
-          if l_0_19 == 1 then
-            (sysio.DeleteRegValue)(l_0_7, l_0_13)
-            local l_0_24 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\\\" .. l_0_13
-            ;
-            (Remediation.BtrDeleteRegValue)(l_0_24)
-          end
-          do
-            -- DECOMPILER ERROR at PC117: LeaveBlock: unexpected jumping out DO_STMT
-
-            -- DECOMPILER ERROR at PC117: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-            -- DECOMPILER ERROR at PC117: LeaveBlock: unexpected jumping out IF_STMT
-
+          if L19_19 == 1 then
+            L22_22 = sysio
+            L22_22 = L22_22.DeleteRegValue
+            L23_23 = L7_7
+            L22_22(L23_23, L13_13)
+            L22_22 = "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\\\"
+            L23_23 = L13_13
+            L22_22 = L22_22 .. L23_23
+            L23_23 = Remediation
+            L23_23 = L23_23.BtrDeleteRegValue
+            L23_23(L22_22)
           end
         end
       end
     end
   end
 end
--- DECOMPILER ERROR at PC121: Confused about usage of register R3 for local variables in 'ReleaseLocals'
-
-

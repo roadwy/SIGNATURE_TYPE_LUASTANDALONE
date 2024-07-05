@@ -1,26 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_LeviathonOBMiss.A_ObMpAttributes_x 
-
--- params : ...
--- function num : 0
-if (mp.GetResmgrBasePlugin)() ~= "Regkeyvalue" then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetResmgrBasePlugin
+L0_0 = L0_0()
+if L0_0 ~= "Regkeyvalue" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-if l_0_0 == nil then
-  return mp.CLEAN
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILEPATH
+L2_2 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L1_1(L2_2))
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (string.find)(l_0_0, "hklm\\software\\microsoft\\windows advanced threat protection", 1, true) ~= nil then
-  local l_0_1 = nil
-  local l_0_2 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Microsoft\\Windows Advanced Threat Protection")
-  if l_0_2 then
-    l_0_1 = (sysio.GetRegValueAsString)(l_0_2, "OnboardedInfo")
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, "hklm\\software\\microsoft\\windows advanced threat protection", 1, true)
+if L1_1 ~= nil then
+  L1_1 = nil
+  L2_2 = sysio
+  L2_2 = L2_2.RegOpenKey
+  L2_2 = L2_2("HKLM\\SOFTWARE\\Microsoft\\Windows Advanced Threat Protection")
+  if L2_2 then
+    L1_1 = sysio.GetRegValueAsString(L2_2, "OnboardedInfo")
   end
-  if l_0_1 == nil or #l_0_1 < 10 or (string.find)(l_0_1, "orgId", 1, true) == false then
+  if L1_1 == nil or #L1_1 < 10 or string.find(L1_1, "orgId", 1, true) == false then
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

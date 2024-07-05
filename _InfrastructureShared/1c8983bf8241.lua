@@ -1,125 +1,138 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c8983bf8241 
-
--- params : ...
--- function num : 0
-is_leap_year = function(l_1_0)
-  -- function num : 0_0
-  if l_1_0 / 4 * 4 == l_1_0 then
-    return true
+local L0_0, L1_1, L2_2, L3_3, L4_4
+function L0_0(A0_5)
+  local L1_6
+  L1_6 = A0_5 / 4
+  L1_6 = L1_6 * 4
+  if L1_6 == A0_5 then
+    L1_6 = true
+    return L1_6
   end
-  return false
+  L1_6 = false
+  return L1_6
 end
-
-timestamp_to_date = function(l_2_0)
-  -- function num : 0_1
-  local l_2_1 = 1970
-  local l_2_2 = 86400
-  local l_2_3 = 365 * l_2_2
-  local l_2_4 = 0
-  local l_2_5 = false
-  while l_2_4 < l_2_0 do
-    l_2_5 = is_leap_year(l_2_1)
-    if l_2_5 then
-      l_2_4 = l_2_4 + l_2_3 + l_2_2
+is_leap_year = L0_0
+function L0_0(A0_7)
+  local L1_8, L2_9, L3_10, L4_11, L5_12, L6_13, L7_14, L8_15, L9_16, L10_17
+  L1_8 = 1970
+  L2_9 = 86400
+  L3_10 = 365 * L2_9
+  L4_11 = 0
+  L5_12 = false
+  while A0_7 > L4_11 do
+    L6_13 = is_leap_year
+    L7_14 = L1_8
+    L6_13 = L6_13(L7_14)
+    L5_12 = L6_13
+    if L5_12 then
+      L6_13 = L4_11 + L3_10
+      L4_11 = L6_13 + L2_9
     else
-      l_2_4 = l_2_4 + l_2_3
+      L4_11 = L4_11 + L3_10
     end
-    l_2_1 = l_2_1 + 1
+    L1_8 = L1_8 + 1
   end
-  l_2_1 = l_2_1 - 1
-  if l_2_5 then
-    l_2_4 = l_2_4 - (l_2_3 + l_2_2)
+  L1_8 = L1_8 - 1
+  if L5_12 then
+    L6_13 = L3_10 + L2_9
+    L4_11 = L4_11 - L6_13
   else
-    l_2_4 = l_2_4 - l_2_3
+    L4_11 = L4_11 - L3_10
   end
-  l_2_0 = l_2_0 - (l_2_4)
-  local l_2_6 = {}
-  -- DECOMPILER ERROR at PC40: No list found for R6 , SetList fails
-
-  local l_2_7 = {}
-  -- DECOMPILER ERROR at PC42: Overwrote pending register: R8 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC43: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC44: Overwrote pending register: R10 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC45: Overwrote pending register: R11 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC46: Overwrote pending register: R12 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC47: Overwrote pending register: R13 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC48: Overwrote pending register: R14 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC49: Overwrote pending register: R15 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC50: Overwrote pending register: R16 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R17 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC52: Overwrote pending register: R18 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC54: No list found for R7 , SetList fails
-
-  -- DECOMPILER ERROR at PC55: Overwrote pending register: R8 in 'AssignReg'
-
-  local l_2_8 = 59
-  -- DECOMPILER ERROR at PC56: Overwrote pending register: R9 in 'AssignReg'
-
-  local l_2_9 = 90
-  -- DECOMPILER ERROR at PC57: Overwrote pending register: R10 in 'AssignReg'
-
-  local l_2_10 = 120
-  -- DECOMPILER ERROR at PC58: Overwrote pending register: R11 in 'AssignReg'
-
-  local l_2_11 = 151
-  -- DECOMPILER ERROR at PC61: Overwrote pending register: R12 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC62: Overwrote pending register: R13 in 'AssignReg'
-
-  if l_2_5 then
-    for l_2_15,l_2_16 in (181)(212) do
-      -- DECOMPILER ERROR at PC68: Overwrote pending register: R17 in 'AssignReg'
-
-      if l_2_8 <= l_2_16 then
+  A0_7 = A0_7 - L4_11
+  L6_13 = {
+    L7_14,
+    L8_15,
+    L9_16,
+    L10_17,
+    151,
+    181,
+    212,
+    243,
+    273,
+    304,
+    334,
+    365
+  }
+  L7_14 = 30
+  L8_15 = 59
+  L9_16 = 90
+  L10_17 = 120
+  L7_14 = {
+    L8_15,
+    L9_16,
+    L10_17,
+    119,
+    150,
+    180,
+    211,
+    242,
+    272,
+    303,
+    333,
+    364
+  }
+  L8_15 = 30
+  L9_16 = 58
+  L10_17 = 89
+  L8_15 = A0_7 / L2_9
+  L9_16 = 1
+  L10_17 = 1
+  if L5_12 then
+    for _FORV_15_, _FORV_16_ in pairs(L6_13) do
+      if _FORV_16_ >= L8_15 then
+        L9_16 = _FORV_15_
+        L10_17 = L8_15 - 0 + 1
         break
       end
     end
   else
-    do
-      for l_2_20,l_2_21 in pairs(l_2_7) do
-        -- DECOMPILER ERROR at PC81: Overwrote pending register: R9 in 'AssignReg'
-
-        -- DECOMPILER ERROR at PC83: Overwrote pending register: R10 in 'AssignReg'
-
-        if l_2_8 <= l_2_21 then
-          break
-        end
-        -- DECOMPILER ERROR at PC85: Overwrote pending register: R11 in 'AssignReg'
-
-      end
-      do
-        do
-          do return l_2_1, l_2_9, l_2_10 end
-          -- WARNING: undefined locals caused missing assignments!
-        end
+    for _FORV_15_, _FORV_16_ in pairs(L7_14) do
+      if _FORV_16_ >= L8_15 then
+        L9_16 = _FORV_15_
+        L10_17 = L8_15 - (_FORV_16_ + 1) + 1
+        break
       end
     end
   end
+  return L1_8, L9_16, L10_17
 end
-
-local l_0_0 = (mp.readu_u32)((pe.mmap_va)((mp.readu_u32)((pe.mmap_va)(pevars.sigaddr + 9, 4), 1), 4), 1)
-local l_0_1 = (pe.get_api_id)(l_0_0)
-if l_0_1 ~= 1269389306 then
-  return mp.CLEAN
+timestamp_to_date = L0_0
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = mp
+L2_2 = L2_2.readu_u32
+L3_3 = pe
+L3_3 = L3_3.mmap_va
+L4_4 = pevars
+L4_4 = L4_4.sigaddr
+L4_4 = L4_4 + 9
+L3_3 = L3_3(L4_4, 4)
+L4_4 = 1
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = 4
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = pe
+L1_1 = L1_1.get_api_id
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+if L1_1 ~= 1269389306 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = pehdr.TimeDateStamp
-if l_0_2 == 0 then
-  return mp.CLEAN
+L2_2 = pehdr
+L2_2 = L2_2.TimeDateStamp
+if L2_2 == 0 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3, l_0_4, l_0_5 = timestamp_to_date(l_0_2)
-;
-(pe.mmap_patch_va)(pevars.sigaddr + 17, "\184" .. (string.char)(l_0_4) .. "\000")
+L3_3 = timestamp_to_date
+L4_4 = L2_2
+L4_4 = L3_3(L4_4)
+pe.mmap_patch_va(pevars.sigaddr + 17, "\184" .. string.char(L4_4) .. "\000")
 return mp.INFECTED
-

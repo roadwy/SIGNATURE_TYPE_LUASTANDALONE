@@ -1,206 +1,764 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Drivers_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if not peattributes.isdriver then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = peattributes
+L0_0 = L0_0.isdriver
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.no_security == true then
-  (mp.set_mpattribute)("BM_ESRP:Lua:UnsignedDriver")
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.no_security
+if L0_0 == true then
+  L0_0 = mp
+  L0_0 = L0_0.set_mpattribute
+  L1_1 = "BM_ESRP:Lua:UnsignedDriver"
+  L0_0(L1_1)
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (pe.get_versioninfo)()
-if l_0_0 == nil then
-  (mp.set_mpattribute)("BM_ESRP:Lua:UnversionedSignedDriver")
-  return mp.CLEAN
+L0_0 = pe
+L0_0 = L0_0.get_versioninfo
+L0_0 = L0_0()
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.set_mpattribute
+  L2_2 = "BM_ESRP:Lua:UnversionedSignedDriver"
+  L1_1(L2_2)
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0.OriginalFilename == nil then
-  return mp.CLEAN
+L1_1 = L0_0.OriginalFilename
+if L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = ((l_0_0.OriginalFilename):lower()):match("(.+)%.")
-local l_0_2 = (string.sub)((mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE)), 0, -5)
-if (string.find)(l_0_2, l_0_1, 1, true) == nil then
-  (mp.set_mpattribute)("BM_ESRP:Lua:RenamedSignedDriver")
-else
-  ;
-  (mp.set_mpattribute)("BM_ESRP:Lua:VersionedSignedDriver")
+L1_1 = L0_0.OriginalFilename
+L2_2 = L1_1
+L1_1 = L1_1.lower
+L1_1 = L1_1(L2_2)
+L2_2 = L1_1
+L1_1 = L1_1.match
+L3_3 = "(.+)%."
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == nil then
+  L2_2 = L0_0.OriginalFilename
+  L3_3 = L2_2
+  L2_2 = L2_2.lower
+  L2_2 = L2_2(L3_3)
+  L1_1 = L2_2
 end
-local l_0_3 = {}
-l_0_3.aiwsys = "Aiwsys"
-l_0_3.bandai = "Bandai"
-l_0_3.capcom = "Capcom"
-l_0_3.cpuz = "Cpuz"
-l_0_3.elbycdio = "Elbycdio"
-l_0_3.goad = "Goad"
-l_0_3.initdrv = "Initdrv"
-l_0_3.jtaxdfgznc = "Jtaxdfgznc"
-l_0_3.kmclass_x64 = "Kmclass_x64"
-l_0_3.libnicm = "Libnicm"
-l_0_3.nicm = "Nicm"
-l_0_3.nscm = "Nscm"
-l_0_3.rwdrv = "Rwdrv"
-l_0_3.termdd = "Termdd"
-l_0_3.tlsdrivegtw = "Tlsdrivegtw"
-l_0_3.vboxdrv = "Vboxdrv"
-l_0_3.xueman3 = "Xueman3"
-l_0_3.HwOs2Ec = "HwOs2Ec"
-l_0_3.phymem = "Phymem"
-l_0_3.asrdrv = "AsrDrv"
-l_0_3.atillk64 = "AtiLlk"
-l_0_3.bs_hwmio64_w10 = "BS_HWMIO64_W10"
-l_0_3.bs_i2cio = "BS_I2c64"
-l_0_3.bsmi = "BSMIx64"
-l_0_3.ucorew64 = "Ucorew64"
-l_0_3.ucoresys = "Ucoresys"
-l_0_3.amifldrv64 = "amifldrv64"
-l_0_3.glckio2 = "GLCKIO2"
-l_0_3.gvcidrv = "GVCIDrv"
-l_0_3.gdrv = "GDrv"
-l_0_3.gvcidrv64 = "GVCIDrv64"
-l_0_3.segwindrv = "segwindrv"
-l_0_3.segwindrvx64 = "segwindrvx64"
-l_0_3.msio64 = "MSIO64"
-l_0_3.ntiolib_x64 = "NTIOLib_X64"
-l_0_3.ntiolib = "NTIOLib"
-l_0_3.nbiolib_x64 = "NBIOLib_X64"
-l_0_3.nbiolib = "NBIOLib"
-l_0_3.winring0x64 = "WinRing0x64"
-l_0_3.winring0 = "WinRing0"
-l_0_3.modapi = "MODAPI"
-l_0_3.nvflash = "NvFlash"
-l_0_3.rtkio64 = "rtkio64"
-l_0_3.rtkio86 = "rtkio86"
-l_0_3.rtkiow8x86 = "rtkiow8x86"
-l_0_3.rtkiow8x64 = "rtkiow8x64"
-l_0_3.rtkiow10x86 = "rtkiow10x86"
-l_0_3.rtkiow10x64 = "rtkiow10x64"
-l_0_3.speedfan = "speedfan"
-l_0_3.sfdrvx32 = "speedfan"
-l_0_3.sfdrvx64 = "speedfan"
-l_0_3.kevp64 = "powertool"
-l_0_3.amdryzenmasterdriver = "amdryzenmaster"
-if l_0_3[l_0_1] ~= nil then
-  (mp.set_mpattribute)("BM_ESRP:Lua:" .. l_0_3[l_0_1])
+L2_2 = false
+L3_3 = mp
+L3_3 = L3_3.getfilename
+L3_3 = L3_3(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if L3_3 ~= nil then
+  L3_3 = string.sub(L3_3, 0, -5)
+  if L3_3 ~= nil and string.find(L3_3, L1_1, 1, true) == nil then
+    mp.set_mpattribute("BM_ESRP:Lua:RenamedSignedDriver")
+    L2_2 = true
+  end
 end
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-  return mp.CLEAN
+if L2_2 == false then
+  mp.set_mpattribute("BM_ESRP:Lua:VersionedSignedDriver")
 end
-local l_0_4 = (pe.get_fixedversioninfo)()
-local l_0_5 = l_0_4.FileVersion
-if l_0_5 ~= nil then
-  local l_0_6 = {}
-  local l_0_7 = {}
-  -- DECOMPILER ERROR at PC161: No list found for R7 , SetList fails
-
-  -- DECOMPILER ERROR at PC164: Overwrote pending register: R8 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC165: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC166: Overwrote pending register: R10 in 'AssignReg'
-
-  l_0_6.elbycdio, l_0_7 = l_0_7, {"cpuz_asr_driver", 0, 2.814749769728e+14}
-  l_0_6.libnicm, l_0_7 = l_0_7, {"libnicm_asr_driver", 0, 8.444292258857e+14}
-  l_0_6.mtcbsv64, l_0_7 = l_0_7, {"mtcbsv64_asr_driver", 0, 5.9109831008584e+15}
-  l_0_6.nicm, l_0_7 = l_0_7, {"nicm_asr_driver", 0, 8.444292258857e+14}
-  l_0_6.nscm, l_0_7 = l_0_7, {"nscm_asr_driver", 0, 8.444292258857e+14}
-  l_0_6.sandra, l_0_7 = l_0_7, {"sandra_asr_driver", 0, 2.8148013067141e+15}
-  l_0_6.rtkio64, l_0_7 = l_0_7, {"rtkio64_asr_driver", 0, 0}
-  l_0_6.rtkiow10x64, l_0_7 = l_0_7, {"rtkiow10x64_asr_driver", 0, 0}
-  l_0_6.rtkiow8x64, l_0_7 = l_0_7, {"rtkiow8x64_asr_driver", 0, 0}
-  l_0_6.bsmi, l_0_7 = l_0_7, {"bsmi_asr_driver", 0, 2.8147497671066e+14}
-  l_0_6.bs_hwmio64_w10, l_0_7 = l_0_7, {"bs_hwmio64_asr_driver", 0, 2.8147498854648e+15}
-  l_0_6.bs_i2cio, l_0_7 = l_0_7, {"biostar_io_asr_driver", 0, 2.8147927167795e+14}
-  l_0_6.ntiolib, l_0_7 = l_0_7, {"ntiolib_asr_driver", 0, 2.8147497671066e+14}
-  l_0_6.nchgbios2x64, l_0_7 = l_0_7, {"nchgbios2x64_asr_driver", 0, 1.1259084970394e+15}
-  l_0_6.segwindrvx64, l_0_7 = l_0_7, {"segwindrvx64_asr_driver", 0, 2.8147497671524e+16}
-  l_0_6.gdrv, l_0_7 = l_0_7, {"gdrv_asr_driver", 0, 0}
-  l_0_6["kernel-bridge"], l_0_7 = l_0_7, {"kernelbridge_asr_driver", 0, 0}
-  l_0_6.rwdrv, l_0_7 = l_0_7, {"rwdrv_asr_driver", 0, 0}
-  l_0_6.speedfan, l_0_7 = l_0_7, {"speedfan_asr_driver", 0, 0}
-  l_0_6.sfdrvx32, l_0_7 = l_0_7, {"speedfan_asr_driver", 0, 0}
-  l_0_6.sfdrvx64, l_0_7 = l_0_7, {"speedfan_asr_driver", 0, 0}
-  l_0_6.kevp64, l_0_7 = l_0_7, {"powertoolx64_asr_driver", 0, 0}
-  l_0_6.amdryzenmasterdriver, l_0_7 = l_0_7, {"amdryzenmaster_asr_driver", 0, 2.8149645154714e+14}
-  l_0_6.viragt, l_0_7 = l_0_7, {"viragt_asr_driver", 0, 2.8181857409434e+14}
-  l_0_6.viragt64, l_0_7 = l_0_7, {"viragt64_asr_driver", 0, 2.8147497671067e+14}
-  l_0_6.kprocesshacker, l_0_7 = l_0_7, {"processhacker_asr_driver", 0, 0}
-  l_0_6.physmem, l_0_7 = l_0_7, {"physicalmem_asr_driver", 0, 0}
-  l_0_6.phymem, l_0_7 = l_0_7, {"phymem_asr_driver", 0, 0}
-  l_0_6.amp, l_0_7 = l_0_7, {"sm_amp_asr_driver", 0, 0}
-  l_0_6.iqvw64, l_0_7 = l_0_7, {"iqvw64_asr_driver", 2.8148786161255e+14, 2.8148786161255e+14}
-  l_0_6.winring0, l_0_7 = l_0_7, {"winring0_asr_driver", 0, 0}
-  l_0_6.hpportiox64, l_0_7 = l_0_7, {"hpportiox64_asr_driver", 0, 0}
-  l_0_6.lha, l_0_7 = l_0_7, {"lha_asr_driver", 0, 0}
-  l_0_6.gmer64, l_0_7 = l_0_7, {"gmer_asr_driver", 0, 0}
-  l_0_6.pchunter, l_0_7 = l_0_7, {"pchunter_asr_driver", 0, 0}
-  l_0_6.tvichw64, l_0_7 = l_0_7, {"tvicp_asr_driver", 0, 0}
-  l_0_6.tvicport, l_0_7 = l_0_7, {"tvicf_asr_driver", 0, 0}
-  l_0_6.ssport, l_0_7 = l_0_7, {"ssport_asr_driver", 2.8147497671066e+14, 2.8147497671066e+14}
-  l_0_6.vmdrv, l_0_7 = l_0_7, {"vmdrv_asr_driver", 0, 0}
-  l_0_6.aswarpot, l_0_7 = l_0_7, {"aswarpot_asr_driver", 0, 5.9109959857603e+15}
-  l_0_6.bs_rcio64, l_0_7 = l_0_7, {"bs_rcio64_asr_driver", 0, 0}
-  l_0_6.atszio, l_0_7 = l_0_7, {"atszio_asr_driver", 0, 8590000135}
-  l_0_6.lgcoretemp, l_0_7 = l_0_7, {"lgcoretemp_asr_driver", 0, 2.8147497671066e+14}
-  l_0_6.sandbox, l_0_7 = l_0_7, {"agsandbox_asr_driver", 0, 0}
-  l_0_6.amdpowerprofiler, l_0_7 = l_0_7, {"amdpowerprofiler_asr_driver", 1.6888498602639e+15, 1.6888541552312e+15}
-  l_0_6.aswsnx, l_0_7 = l_0_7, {"aswsnx_asr_driver", 0, 4.7850831940157e+15}
-  l_0_6.asrdrv, l_0_7 = l_0_7, {"asrdrv_asr_driver", 0, 0}
-  l_0_6.hwos2ec, l_0_7 = l_0_7, {"hwos2ec_asr_driver", 0, 2.8147497671066e+14}
-  l_0_6.bs_def64, l_0_7 = l_0_7, {"bsdef64_asr_driver", 0, 0}
-  l_0_6.lenovodiagnosticsdriver, l_0_7 = l_0_7, {"lenovodiag_asr_driver", 0, 2.3058430092137e+18}
-  l_0_6.superbmc, l_0_7 = l_0_7, {"superbmc_asr_driver", 0, 5.6294995342131e+14}
-  l_0_6.procexp, l_0_7 = l_0_7, {"procexp_asr_driver", 0, 0}
-  l_0_6.iobitunlocker, l_0_7 = l_0_7, {"iobitunlocker_asr_driver", 0, 0}
-  l_0_6.agent64, l_0_7 = l_0_7, {"agent64_asr_driver", 0, 0}
-  l_0_6.nvflash, l_0_7 = l_0_7, {"nvflash_asr_driver", 0, 2.8151363141632e+14}
-  l_0_6.inpoutx64, l_0_7 = l_0_7, {"inpoutx64_asr_driver", 0, 0}
-  l_0_6.alsysio, l_0_7 = l_0_7, {"alsysio_asr_driver", 0, 0}
-  l_0_6.atillk64, l_0_7 = l_0_7, {"atillk64_asr_driver", 0, 0}
-  l_0_6.hw, l_0_7 = l_0_7, {"hw_asr_driver", 0, 1.4073748835533e+15}
-  l_0_6.wiseunlo, l_0_7 = l_0_7, {"wiseunlo_asr_driver", 0, 0}
-  l_0_6.klmd, l_0_7 = l_0_7, {"klmd_asr_driver", 0, 0}
-  l_0_6.tmel, l_0_7 = l_0_7, {"tmel_asr_driver", 0, 0}
-  l_0_6.lv561v64, l_0_7 = l_0_7, {"lv561v64_asr_driver", 0, 0}
-  l_0_6.symelam, l_0_7 = l_0_7, {"symelam_asr_driver", 0, 5.6296713329058e+14}
-  l_0_7 = "hwrwdrv"
-  local l_0_8 = {}
-  -- DECOMPILER ERROR at PC552: No list found for R8 , SetList fails
-
-  -- DECOMPILER ERROR at PC556: Overwrote pending register: R9 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC557: Overwrote pending register: R10 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC558: Overwrote pending register: R11 in 'AssignReg'
-
-  l_0_6[l_0_7], l_0_8 = l_0_8, {"hwrwdrv_asr_driver", 0, 0}
-  -- DECOMPILER ERROR at PC561: Overwrote pending register: R7 in 'AssignReg'
-
-  l_0_6[l_0_7], l_0_8 = l_0_8, {"otipcibus64_asr_driver", 0, 0}
-  -- DECOMPILER ERROR at PC568: Overwrote pending register: R7 in 'AssignReg'
-
-  l_0_6[l_0_7], l_0_8 = l_0_8, {"asrsetupdrv_asr_driver", 0, 0}
-  -- DECOMPILER ERROR at PC575: Overwrote pending register: R7 in 'AssignReg'
-
-  l_0_6[l_0_7], l_0_8 = l_0_8, {"hwring0_asr_driver", 0, 0}
-  -- DECOMPILER ERROR at PC582: Overwrote pending register: R7 in 'AssignReg'
-
-  l_0_6[l_0_7], l_0_8 = l_0_8, {"dghwmonitor_asr_driver", 0, 0}
-  -- DECOMPILER ERROR at PC589: Overwrote pending register: R7 in 'AssignReg'
-
-  l_0_8 = nil
-  if l_0_7 ~= l_0_8 then
-    l_0_8 = 2
-    l_0_8 = l_0_7[l_0_8]
-    local l_0_9 = l_0_7[3]
-    if (l_0_8 <= l_0_5 and l_0_5 <= l_0_9) or l_0_8 == 0 and l_0_9 == 0 then
-      (mp.set_mpattribute)("BM_ESRP:Lua:" .. l_0_7[1])
-      ;
-      (mp.set_mpattribute)("BM_ESRP:Lua:VulnerableAsrDriverMatched")
+if ({
+  aiwsys = "Aiwsys",
+  bandai = "Bandai",
+  capcom = "Capcom",
+  cpuz = "Cpuz",
+  elbycdio = "Elbycdio",
+  goad = "Goad",
+  initdrv = "Initdrv",
+  jtaxdfgznc = "Jtaxdfgznc",
+  kmclass_x64 = "Kmclass_x64",
+  libnicm = "Libnicm",
+  nicm = "Nicm",
+  nscm = "Nscm",
+  rwdrv = "Rwdrv",
+  termdd = "Termdd",
+  tlsdrivegtw = "Tlsdrivegtw",
+  vboxdrv = "Vboxdrv",
+  xueman3 = "Xueman3",
+  HwOs2Ec = "HwOs2Ec",
+  phymem = "Phymem",
+  asrdrv = "AsrDrv",
+  atillk64 = "AtiLlk",
+  bs_hwmio64_w10 = "BS_HWMIO64_W10",
+  bs_i2cio = "BS_I2c64",
+  bsmi = "BSMIx64",
+  ucorew64 = "Ucorew64",
+  ucoresys = "Ucoresys",
+  amifldrv64 = "amifldrv64",
+  glckio2 = "GLCKIO2",
+  gvcidrv = "GVCIDrv",
+  gdrv = "GDrv",
+  gvcidrv64 = "GVCIDrv64",
+  segwindrv = "segwindrv",
+  segwindrvx64 = "segwindrvx64",
+  msio64 = "MSIO64",
+  ntiolib_x64 = "NTIOLib_X64",
+  ntiolib = "NTIOLib",
+  nbiolib_x64 = "NBIOLib_X64",
+  nbiolib = "NBIOLib",
+  winring0x64 = "WinRing0x64",
+  winring0 = "WinRing0",
+  modapi = "MODAPI",
+  nvflash = "NvFlash",
+  rtkio64 = "rtkio64",
+  rtkio86 = "rtkio86",
+  rtkiow8x86 = "rtkiow8x86",
+  rtkiow8x64 = "rtkiow8x64",
+  rtkiow10x86 = "rtkiow10x86",
+  rtkiow10x64 = "rtkiow10x64",
+  speedfan = "speedfan",
+  sfdrvx32 = "speedfan",
+  sfdrvx64 = "speedfan",
+  kevp64 = "powertool",
+  amdryzenmasterdriver = "amdryzenmaster"
+})[L1_1] ~= nil then
+  mp.set_mpattribute("BM_ESRP:Lua:" .. ({
+    aiwsys = "Aiwsys",
+    bandai = "Bandai",
+    capcom = "Capcom",
+    cpuz = "Cpuz",
+    elbycdio = "Elbycdio",
+    goad = "Goad",
+    initdrv = "Initdrv",
+    jtaxdfgznc = "Jtaxdfgznc",
+    kmclass_x64 = "Kmclass_x64",
+    libnicm = "Libnicm",
+    nicm = "Nicm",
+    nscm = "Nscm",
+    rwdrv = "Rwdrv",
+    termdd = "Termdd",
+    tlsdrivegtw = "Tlsdrivegtw",
+    vboxdrv = "Vboxdrv",
+    xueman3 = "Xueman3",
+    HwOs2Ec = "HwOs2Ec",
+    phymem = "Phymem",
+    asrdrv = "AsrDrv",
+    atillk64 = "AtiLlk",
+    bs_hwmio64_w10 = "BS_HWMIO64_W10",
+    bs_i2cio = "BS_I2c64",
+    bsmi = "BSMIx64",
+    ucorew64 = "Ucorew64",
+    ucoresys = "Ucoresys",
+    amifldrv64 = "amifldrv64",
+    glckio2 = "GLCKIO2",
+    gvcidrv = "GVCIDrv",
+    gdrv = "GDrv",
+    gvcidrv64 = "GVCIDrv64",
+    segwindrv = "segwindrv",
+    segwindrvx64 = "segwindrvx64",
+    msio64 = "MSIO64",
+    ntiolib_x64 = "NTIOLib_X64",
+    ntiolib = "NTIOLib",
+    nbiolib_x64 = "NBIOLib_X64",
+    nbiolib = "NBIOLib",
+    winring0x64 = "WinRing0x64",
+    winring0 = "WinRing0",
+    modapi = "MODAPI",
+    nvflash = "NvFlash",
+    rtkio64 = "rtkio64",
+    rtkio86 = "rtkio86",
+    rtkiow8x86 = "rtkiow8x86",
+    rtkiow8x64 = "rtkiow8x64",
+    rtkiow10x86 = "rtkiow10x86",
+    rtkiow10x64 = "rtkiow10x64",
+    speedfan = "speedfan",
+    sfdrvx32 = "speedfan",
+    sfdrvx64 = "speedfan",
+    kevp64 = "powertool",
+    amdryzenmasterdriver = "amdryzenmaster"
+  })[L1_1])
+end
+if pe.get_fixedversioninfo().FileVersion ~= nil then
+  ({}).cpuz = {
+    "cpuz_asr_driver",
+    0,
+    281474976972803
+  }
+  ;({}).elbycdio = {
+    "elby_asr_driver",
+    0,
+    1688849860460546
+  }
+  ;({}).libnicm = {
+    "libnicm_asr_driver",
+    0,
+    844429225820160
+  }
+  ;({}).mtcbsv64 = {
+    "mtcbsv64_asr_driver",
+    0,
+    5910983100858368
+  }
+  ;({}).nicm = {
+    "nicm_asr_driver",
+    0,
+    844429225820160
+  }
+  ;({}).nscm = {
+    "nscm_asr_driver",
+    0,
+    844429225820160
+  }
+  ;({}).sandra = {
+    "sandra_asr_driver",
+    0,
+    2814801306714112
+  }
+  ;({}).rtkio64 = {
+    "rtkio64_asr_driver",
+    0,
+    0
+  }
+  ;({}).rtkiow10x64 = {
+    "rtkiow10x64_asr_driver",
+    0,
+    0
+  }
+  ;({}).rtkiow8x64 = {
+    "rtkiow8x64_asr_driver",
+    0,
+    0
+  }
+  ;({}).bsmi = {
+    "bsmi_asr_driver",
+    0,
+    281474976710659
+  }
+  ;({}).bs_hwmio64_w10 = {
+    "bs_hwmio64_asr_driver",
+    0,
+    2814749885515776
+  }
+  ;({}).bs_i2cio = {
+    "biostar_io_asr_driver",
+    0,
+    281479271677952
+  }
+  ;({}).ntiolib = {
+    "ntiolib_asr_driver",
+    0,
+    281474976710656
+  }
+  ;({}).nchgbios2x64 = {
+    "nchgbios2x64_asr_driver",
+    0,
+    1125908497039360
+  }
+  ;({}).segwindrvx64 = {
+    "segwindrvx64_asr_driver",
+    0,
+    28147497671524352
+  }
+  ;({}).gdrv = {
+    "gdrv_asr_driver",
+    0,
+    0
+  }
+  ;({})["kernel-bridge"] = {
+    "kernelbridge_asr_driver",
+    0,
+    0
+  }
+  ;({}).rwdrv = {
+    "rwdrv_asr_driver",
+    0,
+    0
+  }
+  ;({}).speedfan = {
+    "speedfan_asr_driver",
+    0,
+    0
+  }
+  ;({}).sfdrvx32 = {
+    "speedfan_asr_driver",
+    0,
+    0
+  }
+  ;({}).sfdrvx64 = {
+    "speedfan_asr_driver",
+    0,
+    0
+  }
+  ;({}).kevp64 = {
+    "powertoolx64_asr_driver",
+    0,
+    0
+  }
+  ;({}).amdryzenmasterdriver = {
+    "amdryzenmaster_asr_driver",
+    0,
+    281496451547136
+  }
+  ;({}).viragt = {
+    "viragt_asr_driver",
+    0,
+    281818574094336
+  }
+  ;({}).viragt64 = {
+    "viragt64_asr_driver",
+    0,
+    281474976710679
+  }
+  ;({}).kprocesshacker = {
+    "processhacker_asr_driver",
+    0,
+    0
+  }
+  ;({}).physmem = {
+    "physicalmem_asr_driver",
+    0,
+    0
+  }
+  ;({}).phymem = {
+    "phymem_asr_driver",
+    0,
+    0
+  }
+  ;({}).amp = {
+    "sm_amp_asr_driver",
+    0,
+    0
+  }
+  ;({}).iqvw64 = {
+    "iqvw64_asr_driver",
+    0,
+    281492156579861
+  }
+  ;({}).winring0 = {
+    "winring0_asr_driver",
+    0,
+    0
+  }
+  ;({}).hpportiox64 = {
+    "hpportiox64_asr_driver",
+    0,
+    0
+  }
+  ;({}).lha = {
+    "lha_asr_driver",
+    0,
+    0
+  }
+  ;({}).gmer64 = {
+    "gmer_asr_driver",
+    0,
+    0
+  }
+  ;({}).pchunter = {
+    "pchunter_asr_driver",
+    0,
+    0
+  }
+  ;({}).tvichw64 = {
+    "tvicp_asr_driver",
+    0,
+    0
+  }
+  ;({}).tvicport = {
+    "tvicf_asr_driver",
+    0,
+    0
+  }
+  ;({}).ssport = {
+    "ssport_asr_driver",
+    281474976710656,
+    281474976710656
+  }
+  ;({}).vmdrv = {
+    "vmdrv_asr_driver",
+    0,
+    0
+  }
+  ;({}).aswarpot = {
+    "aswarpot_asr_driver",
+    0,
+    5910995985760255
+  }
+  ;({}).bs_rcio64 = {
+    "bs_rcio64_asr_driver",
+    0,
+    0
+  }
+  ;({}).atszio = {
+    "atszio_asr_driver",
+    0,
+    8590000135
+  }
+  ;({}).lgcoretemp = {
+    "lgcoretemp_asr_driver",
+    0,
+    281474976710657
+  }
+  ;({}).sandbox = {
+    "agsandbox_asr_driver",
+    0,
+    0
+  }
+  ;({}).amdpowerprofiler = {
+    "amdpowerprofiler_asr_driver",
+    1688849860263936,
+    1688854155231232
+  }
+  ;({}).aswsnx = {
+    "aswsnx_asr_driver",
+    0,
+    4785083194015744
+  }
+  ;({}).asrdrv = {
+    "asrdrv_asr_driver",
+    0,
+    0
+  }
+  ;({}).hwos2ec = {
+    "hwos2ec_asr_driver",
+    0,
+    281474976710657
+  }
+  ;({}).bs_def64 = {
+    "bsdef64_asr_driver",
+    0,
+    0
+  }
+  ;({}).lenovodiagnosticsdriver = {
+    "lenovodiag_asr_driver",
+    0,
+    562949953421311
+  }
+  ;({}).superbmc = {
+    "superbmc_asr_driver",
+    0,
+    562949953421312
+  }
+  ;({}).procexp = {
+    "procexp_asr_driver",
+    0,
+    4785074604081151
+  }
+  ;({}).iobitunlocker = {
+    "iobitunlocker_asr_driver",
+    0,
+    0
+  }
+  ;({}).agent64 = {
+    "agent64_asr_driver",
+    0,
+    0
+  }
+  ;({}).nvflash = {
+    "nvflash_asr_driver",
+    0,
+    281513631416320
+  }
+  ;({}).inpoutx64 = {
+    "inpoutx64_asr_driver",
+    0,
+    0
+  }
+  ;({}).alsysio = {
+    "alsysio_asr_driver",
+    0,
+    562949954011136
+  }
+  ;({}).atillk64 = {
+    "atillk64_asr_driver",
+    0,
+    0
+  }
+  ;({}).hw = {
+    "hw_asr_driver",
+    0,
+    0
+  }
+  ;({}).wiseunlo = {
+    "wiseunlo_asr_driver",
+    0,
+    0
+  }
+  ;({}).klmd = {
+    "klmd_asr_driver",
+    0,
+    563005787996170
+  }
+  ;({}).tmel = {
+    "tmel_asr_driver",
+    0,
+    0
+  }
+  ;({}).lv561v64 = {
+    "lv561v64_asr_driver",
+    0,
+    0
+  }
+  ;({}).symelam = {
+    "symelam_asr_driver",
+    0,
+    562967133290579
+  }
+  ;({}).hwrwdrv = {
+    "hwrwdrv_asr_driver",
+    0,
+    0
+  }
+  ;({}).monitor = {
+    "monitor_asr_driver",
+    0,
+    281483566645259
+  }
+  ;({}).otipcibus64 = {
+    "otipcibus64_asr_driver",
+    0,
+    0
+  }
+  ;({}).asrsetupdrv103 = {
+    "asrsetupdrv_asr_driver",
+    0,
+    0
+  }
+  ;({}).hardwarering0 = {
+    "hwring0_asr_driver",
+    0,
+    0
+  }
+  ;({}).mydrivers = {
+    "dghwmonitor_asr_driver",
+    0,
+    0
+  }
+  ;({}).driver7 = {
+    "ectool_asr_driver",
+    0,
+    0
+  }
+  ;({}).iuforcedelete = {
+    "iuforcedelete_asr_driver",
+    0,
+    0
+  }
+  ;({}).aswelam = {
+    "avgelam_asr_driver",
+    0,
+    6192475283718143
+  }
+  ;({}).avgelam = {
+    "avgelam_asr_driver",
+    0,
+    6192475283718143
+  }
+  ;({}).eelam = {
+    "eelam_asr_driver",
+    0,
+    2814749768155136
+  }
+  ;({}).rzpnk = {
+    "rzpnk_asr_driver",
+    0,
+    0
+  }
+  ;({}).hwinfo64a = {
+    "hwinfo_asr_driver",
+    0,
+    2253251512631296
+  }
+  ;({}).hwinfo64i = {
+    "hwinfo_asr_driver",
+    0,
+    2253251512631296
+  }
+  ;({}).eio = {
+    "eio_asr_driver",
+    0,
+    0
+  }
+  ;({}).bsmem64_w10 = {
+    "bsmiw10_asr_driver",
+    0,
+    0
+  }
+  ;({}).aswsp = {
+    "aswsp_asr_driver",
+    0,
+    5629533893951488
+  }
+  ;({}).ctiio64 = {
+    "ctiio64_asr_driver",
+    0,
+    281479273185685
+  }
+  ;({}).msio64 = {
+    "msio64_asr_driver",
+    0,
+    281487863120277
+  }
+  ;({}).msio32 = {
+    "msio32_asr_driver",
+    0,
+    281487863120277
+  }
+  ;({}).pcdsrvc = {
+    "pcdsrvc_asr_driver",
+    0,
+    1688862745165823
+  }
+  ;({})["corsair ll access"] = {
+    "corsairllaccess_asr_driver",
+    0,
+    281474978283519
+  }
+  ;({}).openlibsys = {
+    "openlibsys_asr_driver",
+    0,
+    0
+  }
+  ;({}).sysdrv3s = {
+    "sysdrv3s_asr_driver",
+    0,
+    844450699935744
+  }
+  ;({}).iomem = {
+    "iomem_asr_driver",
+    562958543355904,
+    562962838323200
+  }
+  ;({}).etdsupp = {
+    "etdsupport_asr_driver",
+    0,
+    0
+  }
+  ;({}).athr = {
+    "qcamain10x64_asr_driver",
+    3377699720527872,
+    3377699720528698
+  }
+  ;({}).truesight = {
+    "truesight_asr_driver",
+    0,
+    844429225099264
+  }
+  ;({}).nvoclock = {
+    "nvoclock_asr_driver",
+    0,
+    0
+  }
+  ;({}).ashitio_drv = {
+    "ashitio_asr_driver",
+    0,
+    7599824371187714
+  }
+  ;({}).iomap = {
+    "iomap_asr_driver",
+    0,
+    0
+  }
+  ;({}).atlaccess = {
+    "atlaccess_asr_driver",
+    0,
+    0
+  }
+  ;({}).computerz = {
+    "computerz_asr_driver",
+    0,
+    0
+  }
+  ;({}).vdbsv64 = {
+    "vdbsv64_asr_driver",
+    0,
+    0
+  }
+  ;({}).cp2x72c = {
+    "cp2x72c_asr_driver",
+    0,
+    0
+  }
+  ;({}).wirwadrv = {
+    "wirwadrv_asr_driver",
+    0,
+    0
+  }
+  ;({}).cg6kwin2k = {
+    "cg6kwin2k_asr_driver",
+    0,
+    0
+  }
+  ;({}).gdrv3 = {
+    "gdrv3_asr_driver",
+    0,
+    281479271677959
+  }
+  ;({}).sbiosio64 = {
+    "sbiosio64_asr_driver",
+    0,
+    0
+  }
+  ;({}).ngiodriver = {
+    "ngiodriver_asr_driver",
+    0,
+    0
+  }
+  ;({}).stdcdrv64 = {
+    "stdcdrv64_asr_driver",
+    0,
+    0
+  }
+  ;({}).stdcdrvws64 = {
+    "stdcdrvws64_asr_driver",
+    0,
+    0
+  }
+  ;({}).rtif = {
+    "rtif_asr_driver",
+    0,
+    0
+  }
+  ;({}).fpcie2com = {
+    "fpcie2com_asr_driver",
+    0,
+    0
+  }
+  ;({}).rtport = {
+    "rtport_asr_driver",
+    0,
+    0
+  }
+  ;({}).pdfwkrnl = {
+    "pdfwkrnl_asr_driver",
+    0,
+    0
+  }
+  ;({}).avalueio = {
+    "avalueio_asr_driver",
+    0,
+    0
+  }
+  ;({}).hwdetectng = {
+    "hwdetectng_asr_driver",
+    0,
+    0
+  }
+  ;({}).appid = {
+    "appid_asr_driver",
+    0,
+    0
+  }
+  ;({}).windbg = {
+    "windbg_asr_driver",
+    0,
+    0
+  }
+  if ({})[L1_1] ~= nil and (pe.get_fixedversioninfo().FileVersion >= ({})[L1_1][2] and pe.get_fixedversioninfo().FileVersion <= ({})[L1_1][3] or ({})[L1_1][2] == 0 and ({})[L1_1][3] == 0) then
+    if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+      mp.set_mpattribute("BM_ESRP:Lua:" .. ({})[L1_1][1])
+      mp.set_mpattribute("BM_ESRP:Lua:VulnerableAsrDriverMatched")
+    else
+      mp.set_mpattribute("BM_ESRP:Lua:VulnerableAsrNotOnClose")
+      mp.set_mpattribute("VulnDrv:Lua:" .. ({})[L1_1][1])
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

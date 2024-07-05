@@ -1,106 +1,186 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/c2b35190ffe4 
-
--- params : ...
--- function num : 0
-getFirstChildPpid = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  if l_1_0 == nil then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+function L0_0(A0_13, A1_14)
+  local L2_15, L3_16, L4_17, L5_18
+  if A0_13 == nil then
+    L2_15 = nil
+    return L2_15
+  end
+  L2_15 = true
+  L3_16 = 0
+  if A1_14 == nil then
+    L4_17 = string
+    L4_17 = L4_17.len
+    L5_18 = A1_14
+    L4_17 = L4_17(L5_18)
+  elseif L4_17 > 0 then
+    L2_15 = false
+    L4_17 = string
+    L4_17 = L4_17.len
+    L5_18 = A1_14
+    L4_17 = L4_17(L5_18)
+    L3_16 = L4_17
+  end
+  L4_17 = bm
+  L4_17 = L4_17.get_process_relationships
+  L5_18 = A0_13
+  L5_18 = L4_17(L5_18)
+  if L5_18 == nil or #L5_18 < 1 or #L5_18 > 4 then
     return nil
   end
-  local l_1_2 = true
-  local l_1_3 = 0
-  if l_1_1 ~= nil or (string.len)(l_1_1) > 0 then
-    l_1_2 = false
-    l_1_3 = (string.len)(l_1_1)
-  end
-  local l_1_4, l_1_5 = (bm.get_process_relationships)(l_1_0)
-  if l_1_5 == nil or #l_1_5 < 1 or #l_1_5 > 4 then
-    return nil
-  end
-  local l_1_6 = nil
-  for l_1_10,l_1_11 in ipairs(l_1_5) do
-    if (mp.bitand)(l_1_11.reason_ex, 1) == 1 and (l_1_2 == true or l_1_3 >= (string.len)(l_1_11.image_path) or (string.sub)(l_1_11.image_path, -l_1_3) == l_1_1) then
-      l_1_6 = l_1_11.ppid
+  for _FORV_10_, _FORV_11_ in ipairs(L5_18) do
+    if mp.bitand(_FORV_11_.reason_ex, 1) == 1 and (L2_15 == true or L3_16 < string.len(_FORV_11_.image_path) and string.sub(_FORV_11_.image_path, -L3_16) == A1_14) then
       break
     end
   end
-  do
-    return l_1_6
-  end
+  return _FORV_11_.ppid
 end
-
-local l_0_0, l_0_1 = nil, nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_0 = (this_sigattrlog[1]).ppid
-  l_0_1 = (this_sigattrlog[1]).utf8p2
+getFirstChildPpid = L0_0
+L0_0, L1_1 = nil, nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.ppid
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L1_1 = L2_2.utf8p2
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_0 = (this_sigattrlog[2]).ppid
-    l_0_1 = (this_sigattrlog[2]).utf8p2
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.ppid
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L1_1 = L2_2.utf8p2
+    end
   else
-    if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-      l_0_0 = (this_sigattrlog[3]).ppid
-      l_0_1 = (this_sigattrlog[3]).utf8p2
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.matched
+    if L2_2 then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[3]
+      L2_2 = L2_2.utf8p2
+      if L2_2 ~= nil then
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L0_0 = L2_2.ppid
+        L2_2 = this_sigattrlog
+        L2_2 = L2_2[3]
+        L1_1 = L2_2.utf8p2
+      end
     end
   end
 end
-if l_0_0 == nil then
-  return mp.CLEAN
+if L0_0 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = getFirstChildPpid(l_0_0, "\\cmd.exe")
-if l_0_2 == nil then
-  return mp.CLEAN
+L2_2 = getFirstChildPpid
+L3_3 = L0_0
+L4_4 = "\\cmd.exe"
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = getFirstChildPpid(l_0_2, "\\powershell.exe")
-if l_0_3 == nil then
-  return mp.CLEAN
+L3_3 = getFirstChildPpid
+L4_4 = L2_2
+L5_5 = "\\powershell.exe"
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-if (this_sigattrlog[6]).matched == false then
-  return mp.CLEAN
+L4_4 = this_sigattrlog
+L4_4 = L4_4[6]
+L4_4 = L4_4.matched
+if L4_4 == false then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (this_sigattrlog[6]).ppid
-if l_0_3 ~= l_0_4 then
-  return mp.CLEAN
+L4_4 = this_sigattrlog
+L4_4 = L4_4[6]
+L4_4 = L4_4.ppid
+if L3_3 ~= L4_4 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-;
-(bm.add_threat_process)(l_0_2)
-;
-(bm.add_threat_process)(l_0_4)
-local l_0_5 = (this_sigattrlog[6]).utf8p1
-if (sysio.IsFileExists)(l_0_5) and (mp.IsKnownFriendlyFile)(l_0_5, true, false) == false then
-  (bm.add_threat_file)(l_0_5)
-end
-local l_0_6 = (mp.GetExecutablesFromCommandLine)(l_0_1)
-local l_0_7 = {}
-l_0_7[".xls"] = true
-l_0_7[".doc"] = true
-l_0_7[".ppt"] = true
-l_0_7[".pps"] = true
-l_0_7.docx = true
-l_0_7.pptx = true
-l_0_7.ppsx = true
-l_0_7.xlsx = true
-l_0_7[".rtf"] = true
-l_0_7[".xml"] = true
-l_0_7.dotx = true
-l_0_7.dotm = true
-l_0_7[".odt"] = true
-l_0_7.xlsb = true
-l_0_7.xltx = true
-l_0_7.xltm = true
-l_0_7.xlam = true
-l_0_7[".xla"] = true
-l_0_7.docm = true
-l_0_7.xlsm = true
-l_0_7.pptm = true
-for l_0_11,l_0_12 in ipairs(l_0_6) do
-  if (string.len)(l_0_12) > 4 and (sysio.IsFileExists)(l_0_12) then
-    local l_0_13 = (string.sub)(l_0_12, -4)
-    if l_0_7[l_0_13] and (mp.IsKnownFriendlyFile)(l_0_12, true, false) == false then
-      (bm.add_threat_file)(l_0_12)
-    end
+L5_5 = bm
+L5_5 = L5_5.add_threat_process
+L6_6 = L2_2
+L5_5(L6_6)
+L5_5 = bm
+L5_5 = L5_5.add_threat_process
+L6_6 = L4_4
+L5_5(L6_6)
+L5_5 = this_sigattrlog
+L5_5 = L5_5[6]
+L5_5 = L5_5.utf8p1
+L6_6 = sysio
+L6_6 = L6_6.IsFileExists
+L7_7 = L5_5
+L6_6 = L6_6(L7_7)
+if L6_6 then
+  L6_6 = mp
+  L6_6 = L6_6.IsKnownFriendlyFile
+  L7_7 = L5_5
+  L6_6 = L6_6(L7_7, L8_8, L9_9)
+  if L6_6 == false then
+    L6_6 = bm
+    L6_6 = L6_6.add_threat_file
+    L7_7 = L5_5
+    L6_6(L7_7)
   end
 end
-return mp.INFECTED
-
+L6_6 = mp
+L6_6 = L6_6.GetExecutablesFromCommandLine
+L7_7 = L1_1
+L6_6 = L6_6(L7_7)
+L7_7 = {}
+L7_7[".xls"] = true
+L7_7[".doc"] = true
+L7_7[".ppt"] = true
+L7_7[".pps"] = true
+L7_7.docx = true
+L7_7.pptx = true
+L7_7.ppsx = true
+L7_7.xlsx = true
+L7_7[".rtf"] = true
+L7_7[".xml"] = true
+L7_7.dotx = true
+L7_7.dotm = true
+L7_7[".odt"] = true
+L7_7.xlsb = true
+L7_7.xltx = true
+L7_7.xltm = true
+L7_7.xlam = true
+L7_7[".xla"] = true
+L7_7.docm = true
+L7_7.xlsm = true
+L7_7.pptm = true
+for L11_11, L12_12 in L8_8(L9_9) do
+  if string.len(L12_12) > 4 and sysio.IsFileExists(L12_12) and L7_7[string.sub(L12_12, -4)] and mp.IsKnownFriendlyFile(L12_12, true, false) == false then
+    bm.add_threat_file(L12_12)
+  end
+end
+return L8_8

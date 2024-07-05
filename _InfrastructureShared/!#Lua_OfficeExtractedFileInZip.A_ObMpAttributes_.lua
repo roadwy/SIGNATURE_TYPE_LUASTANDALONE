@@ -1,64 +1,127 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_OfficeExtractedFileInZip.A_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-if l_0_0 == nil or (string.len)(l_0_0) < 22 or (string.find)(l_0_0, "\\appdata\\local\\temp\\", 1, true) == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L2_2 = mp
+L2_2 = L2_2.CONTEXT_DATA_FILEPATH
+L11_11 = L1_1(L2_2)
+L0_0 = L0_0(L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L1_1(L2_2))
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L2_2 = L0_0
+  L1_1 = L1_1(L2_2)
+  if not (L1_1 < 22) then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = L0_0
+    L3_3 = "\\appdata\\local\\temp\\"
+    L4_4 = 1
+    L5_5 = true
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  end
+elseif L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_FILENAME))
-if l_0_1 == nil or (string.len)(l_0_1) < 5 then
-  return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_FILENAME
+L11_11 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L2_2(L3_3))
+if L1_1 ~= nil then
+  L2_2 = string
+  L2_2 = L2_2.len
+  L3_3 = L1_1
+  L2_2 = L2_2(L3_3)
+elseif L2_2 < 5 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (string.sub)(l_0_1, -4)
-if l_0_2 == nil or (string.len)(l_0_2) < 4 then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.sub
+L3_3 = L1_1
+L4_4 = -4
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.len
+  L4_4 = L2_2
+  L3_3 = L3_3(L4_4)
+elseif L3_3 < 4 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = {}
-l_0_3[".xls"] = "excel"
-l_0_3.xlsx = "excel"
-l_0_3.xlsm = "excel"
-l_0_3.xlsb = "excel"
-l_0_3.xltx = "excel"
-l_0_3.xltm = "excel"
-l_0_3[".xlt"] = "excel"
-l_0_3.xlam = "excel"
-l_0_3[".xla"] = "excel"
-l_0_3[".doc"] = "word"
-l_0_3.docx = "word"
-l_0_3.docm = "word"
-l_0_3.dotx = "word"
-l_0_3.dotm = "word"
-l_0_3[".rtf"] = "word"
-l_0_3[".ppt"] = "powerpoint"
-l_0_3.pptm = "powerpoint"
-l_0_3[".pps"] = "powerpoint"
-l_0_3.pptx = "powerpoint"
-l_0_3.ppsx = "powerpoint"
-l_0_3[".odt"] = "odt"
-l_0_3[".xml"] = "xml"
-if l_0_3[l_0_2] == nil then
-  return mp.CLEAN
+L3_3 = {}
+L3_3[".xls"] = "excel"
+L3_3.xlsx = "excel"
+L3_3.xlsm = "excel"
+L3_3.xlsb = "excel"
+L3_3.xltx = "excel"
+L3_3.xltm = "excel"
+L3_3[".xlt"] = "excel"
+L3_3.xlam = "excel"
+L3_3[".xla"] = "excel"
+L3_3[".doc"] = "word"
+L3_3.docx = "word"
+L3_3.docm = "word"
+L3_3.dotx = "word"
+L3_3.dotm = "word"
+L3_3[".rtf"] = "word"
+L3_3[".ppt"] = "powerpoint"
+L3_3.pptm = "powerpoint"
+L3_3[".pps"] = "powerpoint"
+L3_3.pptx = "powerpoint"
+L3_3.ppsx = "powerpoint"
+L3_3[".odt"] = "odt"
+L3_3[".xml"] = "xml"
+L4_4 = L3_3[L2_2]
+if L4_4 == nil then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (string.match)(l_0_0, "\\appdata\\local\\temp\\(.+)")
-if l_0_4 == nil or (string.len)(l_0_4) < 4 then
-  return mp.CLEAN
+L4_4 = string
+L4_4 = L4_4.match
+L5_5 = L0_0
+L6_6 = "\\appdata\\local\\temp\\(.+)"
+L4_4 = L4_4(L5_5, L6_6)
+if L4_4 ~= nil then
+  L5_5 = string
+  L5_5 = L5_5.len
+  L6_6 = L4_4
+  L5_5 = L5_5(L6_6)
+elseif L5_5 < 4 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-if (string.find)(l_0_4, "\\", 1, true) ~= nil then
-  return mp.CLEAN
+L5_5 = string
+L5_5 = L5_5.find
+L6_6 = L4_4
+L5_5 = L5_5(L6_6, L7_7, L8_8, L9_9)
+if L5_5 ~= nil then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_5 = {}
-l_0_5.zip = "temp%x_.+%.zip"
-l_0_5.rar = "rar$.+"
-l_0_5["7zip"] = "7z.+"
-l_0_5.wzip = "wz.+"
-local l_0_6 = l_0_3[l_0_2]
-for l_0_10,l_0_11 in pairs(l_0_5) do
-  if (string.match)(l_0_4, l_0_11) ~= nil then
-    (mp.set_mpattribute)("Lua:OfficeExtractedFileInZip.A!" .. l_0_10 .. "_" .. l_0_6)
+L5_5 = {}
+L5_5.zip = "temp%x_.+%.zip"
+L5_5.rar = "rar$.+"
+L5_5["7zip"] = "7z.+"
+L5_5.wzip = "wz.+"
+L6_6 = L3_3[L2_2]
+for L10_10, L11_11 in L7_7(L8_8) do
+  if string.match(L4_4, L11_11) ~= nil then
+    mp.set_mpattribute("Lua:OfficeExtractedFileInZip.A!" .. L10_10 .. "_" .. L6_6)
     return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+return L7_7

@@ -1,44 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/79788b8aaac3 
-
--- params : ...
--- function num : 0
-if not peattributes.isdll then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = nil
-local l_0_1 = 0
-;
-(mp.readprotection)(false)
-if (hstrlog[1]).matched then
-  l_0_0 = (pe.mmap_va)((hstrlog[1]).VA, 80)
-  l_0_1 = (string.find)(l_0_0, "\185....\190.....-ó¥")
-  if l_0_1 == nil then
-    return mp.CLEAN
+L0_0 = nil
+L1_1 = 0
+L2_2 = mp
+L2_2 = L2_2.readprotection
+L2_2(false)
+L2_2 = hstrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = pe
+  L2_2 = L2_2.mmap_va
+  L2_2 = L2_2(hstrlog[1].VA, 80)
+  L0_0 = L2_2
+  L2_2 = string
+  L2_2 = L2_2.find
+  L2_2 = L2_2(L0_0, "\185....\190.....-\243\165")
+  L1_1 = L2_2
+  if L1_1 == nil then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  l_0_1 = (mp.readu_u32)(l_0_0, l_0_1 + 6)
+  L2_2 = mp
+  L2_2 = L2_2.readu_u32
+  L2_2 = L2_2(L0_0, L1_1 + 6)
+  L1_1 = L2_2
 else
-  if (hstrlog[2]).matched then
-    l_0_1 = (hstrlog[2]).VA
-    local l_0_2 = (pe.foffset_va)(l_0_1)
-    l_0_0 = (mp.readfile)(l_0_2, 80)
-    l_0_1 = (string.find)(l_0_0, "‰E.h....h....‹E")
-    if l_0_1 == nil then
+  L2_2 = hstrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = hstrlog
+    L2_2 = L2_2[2]
+    L1_1 = L2_2.VA
+    L2_2 = pe
+    L2_2 = L2_2.foffset_va
+    L2_2 = L2_2(L1_1)
+    L0_0 = mp.readfile(L2_2, 80)
+    L1_1 = string.find(L0_0, "\137E.h....h....\139E")
+    if L1_1 == nil then
       return mp.CLEAN
     end
-    l_0_1 = (mp.readu_u32)(l_0_0, l_0_1 + 9)
+    L1_1 = mp.readu_u32(L0_0, L1_1 + 9)
   end
 end
-do
-  if l_0_1 == pehdr.AddressOfEntryPoint + pehdr.ImageBase then
-    return mp.CLEAN
-  end
-  local l_0_3 = (mp.readfile)(0, (mp.getfilesize)())
-  local l_0_4 = (mp.readu_u32)(l_0_3, 61)
-  ;
-  (mp.writeu_u32)(l_0_3, l_0_4 + 40 + 1, l_0_1 - pehdr.ImageBase)
-  ;
-  (mp.vfo_add_buffer)(l_0_3, "[VmAllocCall]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-  return mp.INFECTED
+L2_2 = pehdr
+L2_2 = L2_2.AddressOfEntryPoint
+L2_2 = L2_2 + pehdr.ImageBase
+if L1_1 == L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-
+L2_2 = mp
+L2_2 = L2_2.readfile
+L2_2 = L2_2(0, mp.getfilesize())
+mp.writeu_u32(L2_2, mp.readu_u32(L2_2, 61) + 40 + 1, L1_1 - pehdr.ImageBase)
+mp.vfo_add_buffer(L2_2, "[VmAllocCall]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+return mp.INFECTED

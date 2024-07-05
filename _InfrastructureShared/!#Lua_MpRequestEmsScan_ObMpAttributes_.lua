@@ -1,23 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_MpRequestEmsScan_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-do
-  if (mp.get_mpattributevalue)("MpRequestEmsScanTrigger") == 0 then
-    local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN or not (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) or 5000
-  end
-  local l_0_1 = nil
-  do
-    local l_0_2 = ((MpCommon.PathToWin32Path)((mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)))):lower()
-    ;
-    (table.insert)({}, l_0_1 .. "_" .. l_0_2)
-    -- DECOMPILER ERROR at PC52: Confused about usage of register: R2 in 'UnsetPending'
-
-    ;
-    (MpCommon.SetPersistContextNoPath)("Lua:MpRequestEmsScan", {}, 3)
-    do return mp.INFECTED end
-    return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.get_contextdata
+  L1_1 = mp
+  L1_1 = L1_1.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    L0_0 = mp
+    L0_0 = L0_0.get_mpattributevalue
+    L1_1 = "MpRequestEmsScanTrigger"
+    L0_0 = L0_0(L1_1)
+    if L0_0 == 0 then
+      L0_0 = 5000
+    end
+    L1_1 = mp
+    L1_1 = L1_1.getfilename
+    L2_2 = mp
+    L2_2 = L2_2.bitor
+    L2_2 = L2_2(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE)
+    L1_1 = L1_1(L2_2, L2_2(mp.FILEPATH_QUERY_FULL, mp.FILEPATH_QUERY_LOWERCASE))
+    L2_2 = MpCommon
+    L2_2 = L2_2.PathToWin32Path
+    L2_2 = L2_2(L1_1)
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L2_2)
+    L1_1 = L2_2
+    L2_2 = {}
+    table.insert(L2_2, L0_0 .. "_" .. L1_1)
+    MpCommon.SetPersistContextNoPath("Lua:MpRequestEmsScan", L2_2, 3)
+    return mp.INFECTED
   end
 end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

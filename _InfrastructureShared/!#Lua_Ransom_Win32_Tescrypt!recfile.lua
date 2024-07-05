@@ -1,34 +1,34 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Ransom_Win32_Tescrypt!recfile 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 250 or l_0_0 > 512 then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 250 or L0_0 > 512 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L1_1 = L1_1()
+if ".txt" ~= string.sub(L1_1, -4) then
   return mp.CLEAN
 end
-local l_0_1 = (mp.getfilename)()
-if (string.sub)(l_0_1, -4) ~= ".txt" then
+if 49 ~= headerpage[1] and 51 ~= headerpage[1] then
   return mp.CLEAN
 end
-local l_0_2 = headerpage[1]
-if l_0_2 ~= 49 and l_0_2 ~= 51 then
+if 13 ~= headerpage[35] and 10 ~= headerpage[36] then
   return mp.CLEAN
 end
-if headerpage[35] ~= 13 and headerpage[36] ~= 10 then
-  return mp.CLEAN
-end
-if l_0_1:find("recover_file", 1, true) ~= nil then
+if nil ~= L1_1:find("recover_file", 1, true) then
   return mp.INFECTED
 end
-if l_0_1:find("recovery_file", 1, true) ~= nil then
+if nil ~= L1_1:find("recovery_file", 1, true) then
   return mp.INFECTED
 end
-if l_0_1:find("restore_file", 1, true) ~= nil then
+if nil ~= L1_1:find("restore_file", 1, true) then
   return mp.INFECTED
 end
-if l_0_1:find("how_recover", 1, true) ~= nil then
+if nil ~= L1_1:find("how_recover", 1, true) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

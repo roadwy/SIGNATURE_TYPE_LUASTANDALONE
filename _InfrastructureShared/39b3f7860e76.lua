@@ -1,45 +1,31 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/39b3f7860e76 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = nil
-  else
-  end
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_2 = (string.lower)((this_sigattrlog[2]).utf8p2)
-    if (string.len)(l_0_2) < 100 then
-      return mp.CLEAN
-    end
-    if (string.find)(l_0_2, "%.ps1") then
-      return mp.CLEAN
-    end
-    if not (string.find)(l_0_2, "{%d%d?}{%d%d?}") then
-      return mp.CLEAN
-    end
-    l_0_2 = (string.gsub)(l_0_2, " ", "")
-    local l_0_3 = 0
-    for l_0_7 in (string.gmatch)(l_0_2, "[\"\']%-f[\"\']") do
-      l_0_3 = l_0_3 + 1
-    end
-    if l_0_3 < 2 then
-      return mp.CLEAN
-    end
-    local l_0_8 = 0
-    for l_0_12 in (string.gmatch)(l_0_2, "{%d%d?}{%d%d?}") do
-      l_0_8 = l_0_8 + 1
-    end
-    if l_0_8 < 2 then
-      return mp.CLEAN
-    end
-    if (l_0_3 > 3 and l_0_8 > 3) or l_0_3 >= 2 and l_0_8 >= 2 and (string.find)(l_0_2, "`", 1, true) then
-      return mp.INFECTED
-    end
-    return mp.CLEAN
-  end
+local L0_0
+if this_sigattrlog[1].matched and this_sigattrlog[1].utf8p2 ~= nil then
+  L0_0 = this_sigattrlog[1].utf8p2
+elseif this_sigattrlog[2].matched and this_sigattrlog[2].utf8p2 ~= nil then
+  L0_0 = this_sigattrlog[2].utf8p2
 end
-
+L0_0 = string.lower(L0_0)
+if string.len(L0_0) < 100 then
+  return mp.CLEAN
+end
+if string.find(L0_0, "%.ps1") then
+  return mp.CLEAN
+end
+if not string.find(L0_0, "{%d%d?}{%d%d?}") then
+  return mp.CLEAN
+end
+L0_0 = string.gsub(L0_0, " ", "")
+for _FORV_5_ in string.gmatch(L0_0, "[\"']%-f[\"']") do
+end
+if 2 > 0 + 1 then
+  return mp.CLEAN
+end
+for _FORV_6_ in string.gmatch(L0_0, "{%d%d?}{%d%d?}") do
+end
+if 2 > 0 + 1 then
+  return mp.CLEAN
+end
+if 0 + 1 > 3 and 0 + 1 > 3 or 2 <= 0 + 1 and 2 <= 0 + 1 and string.find(L0_0, "`", 1, true) then
+  return mp.INFECTED
+end
+return mp.CLEAN

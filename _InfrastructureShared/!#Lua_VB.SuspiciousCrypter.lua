@@ -1,112 +1,151 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VB.SuspiciousCrypter 
-
--- params : ...
--- function num : 0
-if epcode[1] ~= 104 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12, L13_13, L14_14, L15_15, L16_16, L17_17
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 ~= 104 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = pehdr.ImageBase
-if l_0_0 ~= 4194304 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.ImageBase
+if L0_0 ~= 4194304 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readu_u32)(epcode, 2)
-if l_0_1 < l_0_0 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = epcode
+L3_3 = 2
+L1_1 = L1_1(L2_2, L3_3)
+if L0_0 > L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = (mp.readfile)(l_0_1 - l_0_0, 52)
-if (mp.readu_u32)(l_0_2, 1) ~= 557138518 then
-  return mp.CLEAN
+L2_2 = mp
+L2_2 = L2_2.readfile
+L3_3 = L1_1 - L0_0
+L4_4 = 52
+L2_2 = L2_2(L3_3, L4_4)
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = L2_2
+L5_5 = 1
+L3_3 = L3_3(L4_4, L5_5)
+if L3_3 ~= 557138518 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = (mp.readu_u32)(l_0_2, 45)
-local l_0_4 = (mp.readu_u32)(l_0_2, 49)
-if l_0_4 < l_0_0 then
-  return mp.CLEAN
+L3_3 = mp
+L3_3 = L3_3.readu_u32
+L4_4 = L2_2
+L5_5 = 45
+L3_3 = L3_3(L4_4, L5_5)
+L4_4 = mp
+L4_4 = L4_4.readu_u32
+L5_5 = L2_2
+L6_6 = 49
+L4_4 = L4_4(L5_5, L6_6)
+if L0_0 > L4_4 then
+  L5_5 = mp
+  L5_5 = L5_5.CLEAN
+  return L5_5
 end
-local l_0_5 = (mp.readfile)(l_0_4 - l_0_0, 8)
-if (mp.readu_u32)(l_0_5, 1) ~= 500 then
-  return mp.CLEAN
+L5_5 = mp
+L5_5 = L5_5.readfile
+L6_6 = L4_4 - L0_0
+L7_7 = 8
+L5_5 = L5_5(L6_6, L7_7)
+L6_6 = mp
+L6_6 = L6_6.readu_u32
+L7_7 = L5_5
+L8_8 = 1
+L6_6 = L6_6(L7_7, L8_8)
+if L6_6 ~= 500 then
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
 end
-local l_0_6 = (mp.readu_u32)(l_0_5, 5)
-if l_0_6 < l_0_0 then
-  return mp.CLEAN
+L6_6 = mp
+L6_6 = L6_6.readu_u32
+L7_7 = L5_5
+L8_8 = 5
+L6_6 = L6_6(L7_7, L8_8)
+if L0_0 > L6_6 then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
 end
-local l_0_7 = (mp.readfile)(l_0_6 - l_0_0, 68)
-local l_0_8 = (mp.readu_u16)(l_0_7, 43)
-local l_0_9 = 0
-local l_0_10 = (mp.readu_u32)(l_0_7, 49)
-if l_0_10 < l_0_0 then
-  return mp.CLEAN
+L7_7 = mp
+L7_7 = L7_7.readfile
+L8_8 = L6_6 - L0_0
+L9_9 = 68
+L7_7 = L7_7(L8_8, L9_9)
+L8_8 = mp
+L8_8 = L8_8.readu_u16
+L9_9 = L7_7
+L10_10 = 43
+L8_8 = L8_8(L9_9, L10_10)
+L9_9 = 0
+L10_10 = mp
+L10_10 = L10_10.readu_u32
+L11_11 = L7_7
+L12_12 = 49
+L10_10 = L10_10(L11_11, L12_12)
+if L0_0 > L10_10 then
+  L11_11 = mp
+  L11_11 = L11_11.CLEAN
+  return L11_11
 end
-local l_0_13 = 50
-do
-  if l_0_8 <= l_0_13 then
-    local l_0_11, l_0_12 = false
+L11_11 = 50
+L12_12 = false
+if L8_8 <= L11_11 then
+  L11_11 = L8_8 - 1
+end
+for L16_16 = 0, L11_11 do
+  L17_17 = mp
+  L17_17 = L17_17.readfile
+  L17_17 = L17_17(L10_10 - L0_0 + L16_16 * 48, 32)
+  if mp.readu_u32(L17_17, 29) == 0 and not L12_12 then
+    mp.set_mpattribute("Lua:VB.ObjectWithNoMethods")
+    L12_12 = true
   end
-  for l_0_17 = 0, l_0_13 do
-    local l_0_14 = nil
-    -- DECOMPILER ERROR at PC116: Confused about usage of register: R16 in 'UnsetPending'
-
-    local l_0_19 = nil
-    if (mp.readu_u32)((mp.readfile)(l_0_10 - l_0_0 + R16_PC116 * 48, 32), 29) == 0 and not l_0_14 then
-      (mp.set_mpattribute)("Lua:VB.ObjectWithNoMethods")
-      l_0_14 = true
-    end
-    l_0_9 = l_0_9 + (mp.readu_u32)((mp.readfile)(l_0_10 - l_0_0 + R16_PC116 * 48, 32), 29)
-  end
-  local l_0_20 = nil
-  if l_0_3 - l_0_1 > 393216 then
-    (mp.set_mpattribute)("Lua:VB.SubMainDistanceGT_0x60000")
-  end
-  ;
-  (mp.set_mpattribute)("Lua:VB.TotalMethods:" .. tostring(l_0_9))
-  ;
-  (mp.set_mpattribute)("Lua:VB.TotalObjects:" .. tostring(l_0_8))
-  if l_0_9 >= 25 and l_0_9 <= 35 and (l_0_8 == 2 or l_0_8 == 3) and l_0_3 == 0 then
-    (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.A")
-  else
-    if l_0_9 >= 45 and l_0_9 <= 68 and (l_0_8 == 2 or l_0_8 == 3) and l_0_3 == 0 then
-      (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.B")
-    else
-      -- DECOMPILER ERROR at PC197: Confused about usage of register: R13 in 'UnsetPending'
-
-      if l_0_9 >= 38 and l_0_9 <= 68 and l_0_8 >= 2 and l_0_8 <= 5 and l_0_3 - l_0_1 > 393216 then
-        (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.C")
-      else
-        -- DECOMPILER ERROR at PC210: Confused about usage of register: R13 in 'UnsetPending'
-
-        if l_0_9 == 0 and l_0_8 >= 5 and l_0_8 <= 8 and l_0_3 - l_0_1 > 393216 then
-          (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.D")
-        else
-          if l_0_9 == 23 and l_0_8 == 2 and l_0_3 == 0 then
-            (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.E")
-          else
-            -- DECOMPILER ERROR at PC234: Confused about usage of register: R13 in 'UnsetPending'
-
-            if l_0_9 == 0 and (l_0_8 == 3 or l_0_8 == 4) and l_0_3 - l_0_1 > 413696 then
-              (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.F")
-            else
-              -- DECOMPILER ERROR at PC247: Confused about usage of register: R13 in 'UnsetPending'
-
-              if l_0_9 == 0 and l_0_8 >= 9 and l_0_8 <= 12 and l_0_3 - l_0_1 > 393216 then
-                (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.G")
-              else
-                if l_0_9 == 0 and l_0_8 >= 24 then
-                  (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.H")
-                else
-                  if l_0_9 == 147 and l_0_8 == 14 then
-                    (mp.set_mpattribute)("Lua:VB.SuspiciousCrypter.I")
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-  end
-  return mp.CLEAN
+  L9_9 = L9_9 + mp.readu_u32(L17_17, 29)
 end
-
+if L13_13 > 393216 then
+  L14_14(L15_15)
+end
+L16_16 = tostring
+L17_17 = L9_9
+L16_16 = L16_16(L17_17)
+L14_14(L15_15)
+L16_16 = tostring
+L17_17 = L8_8
+L16_16 = L16_16(L17_17)
+L14_14(L15_15)
+if L9_9 >= 25 and L9_9 <= 35 and (L8_8 == 2 or L8_8 == 3) and L3_3 == 0 then
+  L14_14(L15_15)
+elseif L9_9 >= 45 and L9_9 <= 68 and (L8_8 == 2 or L8_8 == 3) and L3_3 == 0 then
+  L14_14(L15_15)
+elseif L9_9 >= 38 and L9_9 <= 68 and L8_8 >= 2 and L8_8 <= 5 and L13_13 > 393216 then
+  L14_14(L15_15)
+elseif L9_9 == 0 and L8_8 >= 5 and L8_8 <= 8 and L13_13 > 393216 then
+  L14_14(L15_15)
+elseif L9_9 == 23 and L8_8 == 2 and L3_3 == 0 then
+  L14_14(L15_15)
+elseif L9_9 == 0 and (L8_8 == 3 or L8_8 == 4) and L13_13 > 413696 then
+  L14_14(L15_15)
+elseif L9_9 == 0 and L8_8 >= 9 and L8_8 <= 12 and L13_13 > 393216 then
+  L14_14(L15_15)
+elseif L9_9 == 0 and L8_8 >= 24 then
+  L14_14(L15_15)
+elseif L9_9 == 147 and L8_8 == 14 then
+  L14_14(L15_15)
+end
+return L14_14

@@ -1,69 +1,569 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#VirTool_Win32_CeeInject.gen!KK_Includes_ConversionToB 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 4096 or l_0_0 > 5242880 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 4096 or L0_0 > 5242880 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if peattributes.packersigmatched == true then
-  return mp.CLEAN
+L1_1 = peattributes
+L1_1 = L1_1.packersigmatched
+if L1_1 == true then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if peattributes.dropped == true then
-  return mp.CLEAN
+L1_1 = peattributes
+L1_1 = L1_1.dropped
+if L1_1 == true then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if pehdr.NumberOfSections < 3 then
-  return mp.CLEAN
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+if L1_1 < 3 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if pehdr.Subsystem ~= 2 and pehdr.Subsystem ~= 3 then
-  return mp.CLEAN
-end
-if not (mp.get_mpattribute)("MpInternalParanoid") and not (mp.get_mpattribute)("HSTR:VirTool:Win32/CeeInject.gen!KK_enc") and not (string.find)((string.lower)((mp.getfilename)()), ".pse$") then
-  if not (mp.get_mpattribute)("VirTool:Win32/CeeInject.gen!KK_enc") and not (mp.get_mpattribute)("Zbot:CeeInject.gen!KK_enc") then
-    return mp.CLEAN
+L1_1 = pehdr
+L1_1 = L1_1.Subsystem
+if L1_1 ~= 2 then
+  L1_1 = pehdr
+  L1_1 = L1_1.Subsystem
+  if L1_1 ~= 3 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if (((((((((((((((((((((((peattributes.suspicious_dosheader and not peattributes.suspicious_falign) or peattributes.suspicious_heap_geometry) and not peattributes.suspicious_heap_size) or peattributes.suspicious_image_size) and not peattributes.suspicious_image_version) or peattributes.suspicious_imagebase) and not peattributes.suspicious_linker_version) or peattributes.suspicious_ntheader) and not peattributes.suspicious_number_of_dirs) or peattributes.suspicious_os_version) and not peattributes.suspicious_rebase) or peattributes.suspicious_section_characteristics) and not peattributes.suspicious_section_fsize) or peattributes.suspicious_section_name) and not peattributes.suspicious_section_offset) or peattributes.suspicious_section_rva) and not peattributes.suspicious_section_vsize) or peattributes.suspicious_stack_geometry) and not peattributes.suspicious_stack_size) or peattributes.suspicious_subsystem) and not peattributes.suspicious_subsystem_version) or peattributes.suspicious_timestamp) and not peattributes.suspicious_valign) or 0 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 < 3 then
-    if (pesecs[1]).NameDW ~= 2019914798 and (pesecs[1]).NameDW ~= 2019915566 and (pesecs[1]).NameDW ~= 2019914896 and (pesecs[1]).NameDW ~= 2019914753 and (pesecs[1]).NameDW ~= 2019914795 and (pesecs[1]).NameDW ~= 2013361198 and (pesecs[1]).NameDW ~= 2019885358 and (pesecs[1]).NameDW ~= 23426094 and (pesecs[1]).Characteristics ~= 1610612768 and (pesecs[1]).Characteristics ~= 3758096416 and (pesecs[1]).Characteristics ~= 1610612737 and (pesecs[1]).Characteristics ~= 1610612880 and (pesecs[1]).Characteristics ~= 1610743840 and (pesecs[1]).Characteristics ~= 1342177312 and (pesecs[1]).Characteristics ~= 1610612739 and (pesecs[1]).Characteristics ~= 2415919136 and (pesecs[1]).Characteristics ~= 1879048224 and (pesecs[1]).Characteristics ~= 1879085088 and (pesecs[1]).Characteristics ~= 1879048240 and (pesecs[1]).Characteristics ~= 1879048480 and (pesecs[1]).Characteristics ~= 1610612741 and (pesecs[1]).Characteristics ~= 1610618400 and (pesecs[1]).Characteristics ~= 1610612896 and (pesecs[1]).Characteristics ~= 1073741888 and (pesecs[1]).Characteristics ~= 1342177344 and (pesecs[1]).Characteristics ~= 3841982496 and (pesecs[1]).Characteristics ~= 1073741856 and (pesecs[1]).Characteristics ~= 1610612800 then
-      return mp.CLEAN
+end
+L1_1 = mp
+L1_1 = L1_1.get_mpattribute
+L2_2 = "MpInternalParanoid"
+L1_1 = L1_1(L2_2)
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_mpattribute
+  L2_2 = "HSTR:VirTool:Win32/CeeInject.gen!KK_enc"
+  L1_1 = L1_1(L2_2)
+  if not L1_1 then
+    L1_1 = string
+    L1_1 = L1_1.find
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L3_3 = mp
+    L3_3 = L3_3.getfilename
+    L4_4 = L3_3()
+    L2_2 = L2_2(L3_3, L4_4, L3_3())
+    L3_3 = ".pse$"
+    L1_1 = L1_1(L2_2, L3_3)
+    if not L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.get_mpattribute
+      L2_2 = "VirTool:Win32/CeeInject.gen!KK_enc"
+      L1_1 = L1_1(L2_2)
+      if not L1_1 then
+        L1_1 = mp
+        L1_1 = L1_1.get_mpattribute
+        L2_2 = "Zbot:CeeInject.gen!KK_enc"
+        L1_1 = L1_1(L2_2)
+        if not L1_1 then
+          L1_1 = mp
+          L1_1 = L1_1.CLEAN
+          return L1_1
+        end
+      end
+      L1_1 = 0
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_dosheader
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_falign
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_heap_geometry
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_heap_size
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_image_size
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_image_version
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_imagebase
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_linker_version
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_ntheader
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_number_of_dirs
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_os_version
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_rebase
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_section_characteristics
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_section_fsize
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_section_name
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_section_offset
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_section_rva
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_section_vsize
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_stack_geometry
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_stack_size
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_subsystem
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_subsystem_version
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_timestamp
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      L2_2 = peattributes
+      L2_2 = L2_2.suspicious_valign
+      if L2_2 then
+        L1_1 = L1_1 + 1
+      end
+      if L1_1 < 3 then
+        L2_2 = pesecs
+        L2_2 = L2_2[1]
+        L2_2 = L2_2.NameDW
+        if L2_2 ~= 2019914798 then
+          L2_2 = pesecs
+          L2_2 = L2_2[1]
+          L2_2 = L2_2.NameDW
+          if L2_2 ~= 2019915566 then
+            L2_2 = pesecs
+            L2_2 = L2_2[1]
+            L2_2 = L2_2.NameDW
+            if L2_2 ~= 2019914896 then
+              L2_2 = pesecs
+              L2_2 = L2_2[1]
+              L2_2 = L2_2.NameDW
+              if L2_2 ~= 2019914753 then
+                L2_2 = pesecs
+                L2_2 = L2_2[1]
+                L2_2 = L2_2.NameDW
+                if L2_2 ~= 2019914795 then
+                  L2_2 = pesecs
+                  L2_2 = L2_2[1]
+                  L2_2 = L2_2.NameDW
+                  if L2_2 ~= 2013361198 then
+                    L2_2 = pesecs
+                    L2_2 = L2_2[1]
+                    L2_2 = L2_2.NameDW
+                    if L2_2 ~= 2019885358 then
+                      L2_2 = pesecs
+                      L2_2 = L2_2[1]
+                      L2_2 = L2_2.NameDW
+                      if L2_2 ~= 23426094 then
+                        L2_2 = pesecs
+                        L2_2 = L2_2[1]
+                        L2_2 = L2_2.Characteristics
+                        if L2_2 ~= 1610612768 then
+                          L2_2 = pesecs
+                          L2_2 = L2_2[1]
+                          L2_2 = L2_2.Characteristics
+                          if L2_2 ~= 3758096416 then
+                            L2_2 = pesecs
+                            L2_2 = L2_2[1]
+                            L2_2 = L2_2.Characteristics
+                            if L2_2 ~= 1610612737 then
+                              L2_2 = pesecs
+                              L2_2 = L2_2[1]
+                              L2_2 = L2_2.Characteristics
+                              if L2_2 ~= 1610612880 then
+                                L2_2 = pesecs
+                                L2_2 = L2_2[1]
+                                L2_2 = L2_2.Characteristics
+                                if L2_2 ~= 1610743840 then
+                                  L2_2 = pesecs
+                                  L2_2 = L2_2[1]
+                                  L2_2 = L2_2.Characteristics
+                                  if L2_2 ~= 1342177312 then
+                                    L2_2 = pesecs
+                                    L2_2 = L2_2[1]
+                                    L2_2 = L2_2.Characteristics
+                                    if L2_2 ~= 1610612739 then
+                                      L2_2 = pesecs
+                                      L2_2 = L2_2[1]
+                                      L2_2 = L2_2.Characteristics
+                                      if L2_2 ~= 2415919136 then
+                                        L2_2 = pesecs
+                                        L2_2 = L2_2[1]
+                                        L2_2 = L2_2.Characteristics
+                                        if L2_2 ~= 1879048224 then
+                                          L2_2 = pesecs
+                                          L2_2 = L2_2[1]
+                                          L2_2 = L2_2.Characteristics
+                                          if L2_2 ~= 1879085088 then
+                                            L2_2 = pesecs
+                                            L2_2 = L2_2[1]
+                                            L2_2 = L2_2.Characteristics
+                                            if L2_2 ~= 1879048240 then
+                                              L2_2 = pesecs
+                                              L2_2 = L2_2[1]
+                                              L2_2 = L2_2.Characteristics
+                                              if L2_2 ~= 1879048480 then
+                                                L2_2 = pesecs
+                                                L2_2 = L2_2[1]
+                                                L2_2 = L2_2.Characteristics
+                                                if L2_2 ~= 1610612741 then
+                                                  L2_2 = pesecs
+                                                  L2_2 = L2_2[1]
+                                                  L2_2 = L2_2.Characteristics
+                                                  if L2_2 ~= 1610618400 then
+                                                    L2_2 = pesecs
+                                                    L2_2 = L2_2[1]
+                                                    L2_2 = L2_2.Characteristics
+                                                    if L2_2 ~= 1610612896 then
+                                                      L2_2 = pesecs
+                                                      L2_2 = L2_2[1]
+                                                      L2_2 = L2_2.Characteristics
+                                                      if L2_2 ~= 1073741888 then
+                                                        L2_2 = pesecs
+                                                        L2_2 = L2_2[1]
+                                                        L2_2 = L2_2.Characteristics
+                                                        if L2_2 ~= 1342177344 then
+                                                          L2_2 = pesecs
+                                                          L2_2 = L2_2[1]
+                                                          L2_2 = L2_2.Characteristics
+                                                          if L2_2 ~= 3841982496 then
+                                                            L2_2 = pesecs
+                                                            L2_2 = L2_2[1]
+                                                            L2_2 = L2_2.Characteristics
+                                                            if L2_2 ~= 1073741856 then
+                                                              L2_2 = pesecs
+                                                              L2_2 = L2_2[1]
+                                                              L2_2 = L2_2.Characteristics
+                                                              if L2_2 ~= 1610612800 then
+                                                                L2_2 = mp
+                                                                L2_2 = L2_2.CLEAN
+                                                                return L2_2
+                                                              end
+                                                            end
+                                                          end
+                                                        end
+                                                      end
+                                                    end
+                                                  end
+                                                end
+                                              end
+                                            end
+                                          end
+                                        end
+                                      end
+                                    end
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+        L2_2 = pesecs
+        L2_2 = L2_2[2]
+        L2_2 = L2_2.NameDW
+        if L2_2 ~= 1633972782 then
+          L2_2 = pesecs
+          L2_2 = L2_2[2]
+          L2_2 = L2_2.NameDW
+          if L2_2 ~= 1633972737 then
+            L2_2 = pesecs
+            L2_2 = L2_2[2]
+            L2_2 = L2_2.NameDW
+            if L2_2 ~= 1414677294 then
+              L2_2 = pesecs
+              L2_2 = L2_2[2]
+              L2_2 = L2_2.NameDW
+              if L2_2 ~= 1633970478 then
+                L2_2 = pesecs
+                L2_2 = L2_2[2]
+                L2_2 = L2_2.NameDW
+                if L2_2 ~= 1920168494 then
+                  L2_2 = pesecs
+                  L2_2 = L2_2[2]
+                  L2_2 = L2_2.NameDW
+                  if L2_2 ~= 1627419182 then
+                    L2_2 = pesecs
+                    L2_2 = L2_2[2]
+                    L2_2 = L2_2.NameDW
+                    if L2_2 ~= 1633972737 then
+                      L2_2 = pesecs
+                      L2_2 = L2_2[2]
+                      L2_2 = L2_2.NameDW
+                      if L2_2 ~= 1633972739 then
+                        L2_2 = pesecs
+                        L2_2 = L2_2[2]
+                        L2_2 = L2_2.Characteristics
+                        if L2_2 ~= 1073741888 then
+                          L2_2 = pesecs
+                          L2_2 = L2_2[2]
+                          L2_2 = L2_2.Characteristics
+                          if L2_2 ~= 16777280 then
+                            L2_2 = pesecs
+                            L2_2 = L2_2[2]
+                            L2_2 = L2_2.Characteristics
+                            if L2_2 ~= 3221225536 then
+                              L2_2 = pesecs
+                              L2_2 = L2_2[2]
+                              L2_2 = L2_2.Characteristics
+                              if L2_2 ~= 3221291072 then
+                                L2_2 = pesecs
+                                L2_2 = L2_2[2]
+                                L2_2 = L2_2.Characteristics
+                                if L2_2 ~= 3758096416 then
+                                  L2_2 = pesecs
+                                  L2_2 = L2_2[2]
+                                  L2_2 = L2_2.Characteristics
+                                  if L2_2 ~= 1073741827 then
+                                    L2_2 = pesecs
+                                    L2_2 = L2_2[2]
+                                    L2_2 = L2_2.Characteristics
+                                    if L2_2 ~= 1073807424 then
+                                      L2_2 = pesecs
+                                      L2_2 = L2_2[2]
+                                      L2_2 = L2_2.Characteristics
+                                      if L2_2 ~= 1073741825 then
+                                        L2_2 = pesecs
+                                        L2_2 = L2_2[2]
+                                        L2_2 = L2_2.Characteristics
+                                        if L2_2 ~= 2868904000 then
+                                          L2_2 = pesecs
+                                          L2_2 = L2_2[2]
+                                          L2_2 = L2_2.Characteristics
+                                          if L2_2 ~= 2868904256 then
+                                            L2_2 = pesecs
+                                            L2_2 = L2_2[2]
+                                            L2_2 = L2_2.Characteristics
+                                            if L2_2 ~= 3221225473 then
+                                              L2_2 = pesecs
+                                              L2_2 = L2_2[2]
+                                              L2_2 = L2_2.Characteristics
+                                              if L2_2 ~= 2868904193 then
+                                                L2_2 = pesecs
+                                                L2_2 = L2_2[2]
+                                                L2_2 = L2_2.Characteristics
+                                                if L2_2 ~= 1073773120 then
+                                                  L2_2 = pesecs
+                                                  L2_2 = L2_2[2]
+                                                  L2_2 = L2_2.Characteristics
+                                                  if L2_2 ~= 1442840640 then
+                                                    L2_2 = pesecs
+                                                    L2_2 = L2_2[2]
+                                                    L2_2 = L2_2.Characteristics
+                                                    if L2_2 ~= 1073742144 then
+                                                      L2_2 = pesecs
+                                                      L2_2 = L2_2[2]
+                                                      L2_2 = L2_2.Characteristics
+                                                      if L2_2 ~= 1442881600 then
+                                                        L2_2 = pesecs
+                                                        L2_2 = L2_2[2]
+                                                        L2_2 = L2_2.Characteristics
+                                                        if L2_2 ~= 1073807424 then
+                                                          L2_2 = pesecs
+                                                          L2_2 = L2_2[2]
+                                                          L2_2 = L2_2.Characteristics
+                                                          if L2_2 ~= 2147483712 then
+                                                            L2_2 = pesecs
+                                                            L2_2 = L2_2[2]
+                                                            L2_2 = L2_2.Characteristics
+                                                            if L2_2 ~= 3489660992 then
+                                                              L2_2 = pesecs
+                                                              L2_2 = L2_2[2]
+                                                              L2_2 = L2_2.Characteristics
+                                                              if L2_2 ~= 1610612768 then
+                                                                L2_2 = mp
+                                                                L2_2 = L2_2.CLEAN
+                                                                return L2_2
+                                                              end
+                                                            end
+                                                          end
+                                                        end
+                                                      end
+                                                    end
+                                                  end
+                                                end
+                                              end
+                                            end
+                                          end
+                                        end
+                                      end
+                                    end
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
     end
-    if (pesecs[2]).NameDW ~= 1633972782 and (pesecs[2]).NameDW ~= 1633972737 and (pesecs[2]).NameDW ~= 1414677294 and (pesecs[2]).NameDW ~= 1633970478 and (pesecs[2]).NameDW ~= 1920168494 and (pesecs[2]).NameDW ~= 1627419182 and (pesecs[2]).NameDW ~= 1633972737 and (pesecs[2]).NameDW ~= 1633972739 and (pesecs[2]).Characteristics ~= 1073741888 and (pesecs[2]).Characteristics ~= 16777280 and (pesecs[2]).Characteristics ~= 3221225536 and (pesecs[2]).Characteristics ~= 3221291072 and (pesecs[2]).Characteristics ~= 3758096416 and (pesecs[2]).Characteristics ~= 1073741827 and (pesecs[2]).Characteristics ~= 1073807424 and (pesecs[2]).Characteristics ~= 1073741825 and (pesecs[2]).Characteristics ~= 2868904000 and (pesecs[2]).Characteristics ~= 2868904256 and (pesecs[2]).Characteristics ~= 3221225473 and (pesecs[2]).Characteristics ~= 2868904193 and (pesecs[2]).Characteristics ~= 1073773120 and (pesecs[2]).Characteristics ~= 1442840640 and (pesecs[2]).Characteristics ~= 1073742144 and (pesecs[2]).Characteristics ~= 1442881600 and (pesecs[2]).Characteristics ~= 1073807424 and (pesecs[2]).Characteristics ~= 2147483712 and (pesecs[2]).Characteristics ~= 3489660992 and (pesecs[2]).Characteristics ~= 1610612768 then
-      return mp.CLEAN
-    end
   end
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = "MZ\144\000\003\000\000\000\004\000\000\000\255\255\000\000\184\000\000\000\000\000\000\000@\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\192\000\000\000\014\031\186\014\000\180\t\205!\184\001L\205![DYNEXE] A HELPER STUB TO EMULATE WIN32 MALWARES.$-----------------------------------------------------------jirehPE\000\000L\001\001\000\000\000\000\000\000\000\000\000\000\000\000\000\224\000\002\001\v\001\n\n\004\000\000\000\000\000\000\000\000\000\000\000\224\001\000\000\224\001\000\000\228\001\000\000\000\000@\000\001\000\000\000\001\000\000\000\005\000\001\000\000\000\000\000\005\000\001\000\000\000\000\000\224\001P\000\224\001\000\000\000\000\000\000\003\000@\133\000\000\016\000\000\016\000\000\000\000\016\000\000\016\000\000\000\000\000\000\016\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000.xray\000\000\000\000\000P\000\224\001\000\000\000\000P\000\224\001\000\000\000\000\000\000\000\000\000\000\000\000\000\000\224\000\000เร"
-if l_0_0 <= (pesecs[1]).PointerToRawData then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = "MZ\144\000\003\000\000\000\004\000\000\000\255\255\000\000\184\000\000\000\000\000\000\000@\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\192\000\000\000\014\031\186\014\000\180\t\205!\184\001L\205![DYNEXE] A HELPER STUB TO EMULATE WIN32 MALWARES.$-----------------------------------------------------------jirehPE\000\000L\001\001\000\000\000\000\000\000\000\000\000\000\000\000\000\224\000\002\001\v\001\n\n\004\000\000\000\000\000\000\000\000\000\000\000\224\001\000\000\224\001\000\000\228\001\000\000\000\000@\000\001\000\000\000\001\000\000\000\005\000\001\000\000\000\000\000\005\000\001\000\000\000\000\000\224\001P\000\224\001\000\000\000\000\000\000\003\000@\133\000\000\016\000\000\016\000\000\000\000\016\000\000\016\000\000\000\000\000\000\016\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000.xray\000\000\000\000\000P\000\224\001\000\000\000\000P\000\224\001\000\000\000\000\000\000\000\000\000\000\000\000\000\000\224\000\000\224\195"
+L2_2 = pesecs
+L2_2 = L2_2[1]
+L2_2 = L2_2.PointerToRawData
+if L0_0 <= L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-if l_0_0 - (pesecs[1]).PointerToRawData > 5242880 then
-  return mp.CLEAN
+L2_2 = pesecs
+L2_2 = L2_2[1]
+L2_2 = L2_2.PointerToRawData
+L2_2 = L0_0 - L2_2
+if L2_2 > 5242880 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-local l_0_2 = l_0_1 .. (mp.readfile)((pesecs[1]).PointerToRawData, l_0_0 - (pesecs[1]).PointerToRawData)
-if peattributes.packed == true then
-  local l_0_3 = (mp.get_parent_filehandle)()
-  if l_0_3 == nil then
+L2_2 = L1_1
+L3_3 = mp
+L3_3 = L3_3.readfile
+L4_4 = pesecs
+L4_4 = L4_4[1]
+L4_4 = L4_4.PointerToRawData
+L3_3 = L3_3(L4_4, L0_0 - pesecs[1].PointerToRawData)
+L2_2 = L2_2 .. L3_3
+L3_3 = peattributes
+L3_3 = L3_3.packed
+if L3_3 == true then
+  L3_3 = mp
+  L3_3 = L3_3.get_parent_filehandle
+  L3_3 = L3_3()
+  if L3_3 == nil then
+    L4_4 = mp
+    L4_4 = L4_4.CLEAN
+    return L4_4
+  end
+  L4_4 = mp
+  L4_4 = L4_4.get_filesize_by_handle
+  L4_4 = L4_4(L3_3)
+  if L4_4 > 5242880 then
     return mp.CLEAN
   end
-  local l_0_4 = (mp.get_filesize_by_handle)(l_0_3)
-  if l_0_4 > 5242880 then
-    return mp.CLEAN
-  end
-  l_0_2 = l_0_2 .. (mp.readfile_by_handle)(l_0_3, 0, l_0_4)
+  L2_2 = L2_2 .. mp.readfile_by_handle(L3_3, 0, L4_4)
 end
-do
-  if #l_0_2 < 4096 or #l_0_2 > 5242880 then
-    return mp.CLEAN
-  end
-  l_0_2 = l_0_2 .. fastBinaryTransform(l_0_2, "(.).", 0, mp.bitxor)
-  l_0_2 = l_0_2 .. fastBinaryTransform(l_0_2, ".(.)", 0, mp.bitxor)
-  if #l_0_2 < 4096 or #l_0_2 > 5242880 then
-    return mp.CLEAN
-  end
-  ;
-  (mp.vfo_add_buffer)(l_0_2, "[CeeInject_KK_DynExe]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-  return mp.CLEAN
+L3_3 = #L2_2
+if not (L3_3 < 4096) then
+  L3_3 = #L2_2
+elseif L3_3 > 5242880 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-
+L3_3 = L2_2
+L4_4 = fastBinaryTransform
+L4_4 = L4_4(L2_2, "(.).", 0, mp.bitxor)
+L2_2 = L3_3 .. L4_4
+L3_3 = L2_2
+L4_4 = fastBinaryTransform
+L4_4 = L4_4(L2_2, ".(.)", 0, mp.bitxor)
+L2_2 = L3_3 .. L4_4
+L3_3 = #L2_2
+if not (L3_3 < 4096) then
+  L3_3 = #L2_2
+elseif L3_3 > 5242880 then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
+end
+L3_3 = mp
+L3_3 = L3_3.vfo_add_buffer
+L4_4 = L2_2
+L3_3(L4_4, "[CeeInject_KK_DynExe]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L3_3 = mp
+L3_3 = L3_3.CLEAN
+return L3_3

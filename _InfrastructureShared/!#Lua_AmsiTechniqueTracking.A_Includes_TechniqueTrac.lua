@@ -1,34 +1,49 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_AmsiTechniqueTracking.A_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1, l_0_2 = pcall(mp.get_contextdata, mp.CONTEXT_DATA_AMSI_OPERATION_PPID)
-if l_0_1 == nil or l_0_2 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = false
+L1_1 = pcall
+L2_2 = mp
+L2_2 = L2_2.get_contextdata
+L3_3 = mp
+L3_3 = L3_3.CONTEXT_DATA_AMSI_OPERATION_PPID
+L2_2 = L1_1(L2_2, L3_3)
+if L1_1 == nil or L2_2 == nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_3 = "BM_MT"
-local l_0_4 = (mp.enum_mpattributesubstring)(l_0_3)
-if l_0_4 ~= nil and type(l_0_4) == "table" and #l_0_4 > 0 then
-  for l_0_8,l_0_9 in ipairs(l_0_4) do
-    local l_0_10 = (string.sub)(l_0_9, #l_0_3, #l_0_9)
-    if l_0_10 ~= nil and #l_0_10 >= 5 then
-      local l_0_11, l_0_12 = (string.match)(l_0_10, "^([tT][0-9][0-9][0-9][0-9][%.]?[0-9]?[0-9]?[0-9]?):?(.*)")
-      if l_0_11 ~= nil then
-        AddTechniqueForPid(l_0_2, l_0_11)
+L3_3 = "BM_MT"
+L4_4 = mp
+L4_4 = L4_4.enum_mpattributesubstring
+L4_4 = L4_4(L5_5)
+if L4_4 ~= nil then
+  if L5_5 == "table" then
+    if L5_5 > 0 then
+      for L8_8, L9_9 in L5_5(L6_6) do
+        L10_10 = string
+        L10_10 = L10_10.sub
+        L11_11 = L9_9
+        L12_12 = #L3_3
+        L10_10 = L10_10(L11_11, L12_12, #L9_9)
+        if L10_10 ~= nil then
+          L11_11 = #L10_10
+          if L11_11 >= 5 then
+            L11_11 = string
+            L11_11 = L11_11.match
+            L12_12 = L10_10
+            L12_12 = L11_11(L12_12, "^([tT][0-9][0-9][0-9][0-9][%.]?[0-9]?[0-9]?[0-9]?):?(.*)")
+            TrackPidAndTechnique(L2_2, L11_11, L12_12)
+            L0_0 = true
+          end
+        end
       end
-      if l_0_12 ~= nil then
-        AddTacticForPid(l_0_2, l_0_12)
-      end
-      l_0_0 = true
     end
   end
 end
-do
-  if l_0_0 and (mp.get_mpattribute)("Lua:CloudBlockLevelGT5") and #l_0_4 > 3 then
-    (mp.set_mpattribute)("Lua:AmsiTechniqueTracking")
+if L0_0 then
+  if L5_5 then
+    if L5_5 > 3 then
+      L5_5(L6_6)
+    end
   end
-  return mp.CLEAN
 end
-
+return L5_5

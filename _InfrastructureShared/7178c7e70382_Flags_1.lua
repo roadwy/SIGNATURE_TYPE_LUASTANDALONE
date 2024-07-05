@@ -1,43 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/7178c7e70382_Flags_1 
-
--- params : ...
--- function num : 0
-if peattributes.isexe ~= true then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = peattributes
+L0_0 = L0_0.isexe
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (pesecs[pehdr.NumberOfSections]).PointerToRawData + (pesecs[pehdr.NumberOfSections]).SizeOfRawData
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(l_0_0, 19)
-do
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC47: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC48: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC49: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC50: Overwrote pending register: R5 in 'AssignReg'
-
-  for l_0_6 = 82, 97, 117 do
-    -- DECOMPILER ERROR at PC52: Overwrote pending register: R7 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC54: Overwrote pending register: R8 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC55: Overwrote pending register: R9 in 'AssignReg'
-
-    if ((32).byte)(69, 120) ~= l_0_2[l_0_6] then
-      (mp.set_mpattribute)("HSTR:TrojanDropper:Win32/Bindmaener_Lowfi")
-      return mp.CLEAN
-    end
+L0_0 = pesecs
+L1_1 = pehdr
+L1_1 = L1_1.NumberOfSections
+L0_0 = L0_0[L1_1]
+L0_0 = L0_0.PointerToRawData
+L1_1 = pesecs
+L2_2 = pehdr
+L2_2 = L2_2.NumberOfSections
+L1_1 = L1_1[L2_2]
+L1_1 = L1_1.SizeOfRawData
+L0_0 = L0_0 + L1_1
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = {
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  32,
+  69,
+  120,
+  116,
+  114,
+  97,
+  99,
+  116,
+  32,
+  76,
+  97,
+  98,
+  101,
+  108,
+  0
+}
+L6_6 = 109
+for L6_6 = 1, 19 do
+  if string.byte(L1_1, L6_6) ~= L2_2[L6_6] then
+    mp.set_mpattribute("HSTR:TrojanDropper:Win32/Bindmaener_Lowfi")
+    return mp.CLEAN
   end
-  if mp.HSTR_WEIGHT >= 10 then
-    return mp.INFECTED
-  end
-  ;
-  (mp.set_mpattribute)("HSTR:TrojanDropper:Win32/Bindmaener_Lowfi")
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
 end
-
+if L3_3 >= 10 then
+  return L3_3
+end
+L3_3(L4_4)
+return L3_3

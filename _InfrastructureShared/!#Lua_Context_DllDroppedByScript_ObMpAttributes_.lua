@@ -1,32 +1,67 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Context_DllDroppedByScript_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((mp.get_contextdata)(mp.CONTEXT_DATA_PROCESSNAME))
-local l_0_1, l_0_2 = (mp.getfilename)((mp.bitor)((mp.bitor)(mp.FILEPATH_QUERY_PATH, mp.FILEPATH_QUERY_FNAME), mp.FILEPATH_QUERY_LOWERCASE))
-local l_0_3 = ""
-if l_0_0 == "wscript.exe" then
-  if (l_0_2 == "remoteconnection.ocx" or l_0_2 == "scheduleservices.ocx") and (string.find)(l_0_1, "\\windows\\downloaded program files\\", 1, true) then
-    return mp.CLEAN
-  end
-  l_0_3 = "DllDroppedByWscript"
-else
-  if l_0_0 == "cscript.exe" then
-    if (l_0_2 == "clrtablist.dll" or l_0_2 == "clrmachineInfo.dll" or l_0_2 == "certadm.dll" or l_0_2 == "riainrsimport.dll") and (string.find)(l_0_1, "\\windows\\syswow64\\", 1, true) then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_PROCESSNAME
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = L0_0
+L1_1 = L1_1(L2_2)
+L0_0 = L1_1
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = mp
+L2_2 = L2_2.bitor
+L3_3 = mp
+L3_3 = L3_3.bitor
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_PATH
+L3_3 = L3_3(L4_4, mp.FILEPATH_QUERY_FNAME)
+L4_4 = mp
+L4_4 = L4_4.FILEPATH_QUERY_LOWERCASE
+L4_4 = L2_2(L3_3, L4_4)
+L2_2 = L1_1(L2_2, L3_3, L4_4, L2_2(L3_3, L4_4))
+L3_3 = ""
+if L0_0 == "wscript.exe" then
+  if L2_2 == "remoteconnection.ocx" or L2_2 == "scheduleservices.ocx" then
+    L4_4 = string
+    L4_4 = L4_4.find
+    L4_4 = L4_4(L1_1, "\\windows\\downloaded program files\\", 1, true)
+    if L4_4 then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
     end
-    l_0_3 = "DllDroppedByCscript"
-  else
-    return mp.CLEAN
   end
+  L3_3 = "DllDroppedByWscript"
+elseif L0_0 == "cscript.exe" then
+  if L2_2 == "clrtablist.dll" or L2_2 == "clrmachineInfo.dll" or L2_2 == "certadm.dll" or L2_2 == "riainrsimport.dll" then
+    L4_4 = string
+    L4_4 = L4_4.find
+    L4_4 = L4_4(L1_1, "\\windows\\syswow64\\", 1, true)
+    if L4_4 then
+      L4_4 = mp
+      L4_4 = L4_4.CLEAN
+      return L4_4
+    end
+  end
+  L3_3 = "DllDroppedByCscript"
+else
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_4 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-local l_0_5 = (MpCommon.QueryPersistContext)(l_0_4, l_0_3)
-if not l_0_5 then
-  (MpCommon.AppendPersistContext)(l_0_4, l_0_3, 100)
+L4_4 = mp
+L4_4 = L4_4.getfilename
+L4_4 = L4_4(mp.FILEPATH_QUERY_LOWERCASE)
+if not MpCommon.QueryPersistContext(L4_4, L3_3) then
+  MpCommon.AppendPersistContext(L4_4, L3_3, 100)
 end
-;
-(mp.set_mpattribute)("MpDisableCaching")
+mp.set_mpattribute("MpDisableCaching")
 return mp.INFECTED
-

@@ -1,11 +1,16 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_UnknownFileExtension_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = ((mp.getfilename)()):lower()
-if ((l_0_0:match("(%.[^.]+)$") == nil and "") or l_0_0:match("(%.[^.]+)$") ~= "") and (mp.GetExtensionClass)(l_0_0:match("(%.[^.]+)$")) == 0 then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0()
+L1_1 = L0_0
+L0_0 = L0_0.lower
+L0_0 = L0_0(L1_1)
+L1_1 = L0_0.match
+L1_1 = L1_1(L0_0, "(%.[^.]+)$")
+if L1_1 == nil then
+  L1_1 = "" or L1_1
+end
+if L1_1 ~= "" and mp.GetExtensionClass(L1_1) == 0 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

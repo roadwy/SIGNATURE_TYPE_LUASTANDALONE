@@ -1,34 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#b64netrsrc 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 4096 or l_0_0 > 16777216 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 4096 or L0_0 > 16777216 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 1) ~= 3203386062 or (mp.readu_u32)(headerpage, 5) ~= 1 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 == 3203386062 then
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L2_2 = headerpage
+  L1_1 = L1_1(L2_2, L3_3)
+elseif L1_1 ~= 1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.crc32)(-1, headerpage, 13, 145) ~= 1098233996 then
-  return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.crc32
+L2_2 = -1
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+if L1_1 ~= 1098233996 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_2 = 1
-for l_0_6 in (string.gmatch)(l_0_1, "TV[%w+/]+=?=?") do
-  if l_0_2 > 5 then
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = 1
+for L6_6 in L3_3(L4_4, L5_5) do
+  if L2_2 > 5 then
     break
   end
-  if #l_0_6 > 4096 and #l_0_6 < 16777216 then
-    (mp.set_mpattribute)("//MpBase64DecodeLongLines")
-    ;
-    (mp.vfo_add_buffer)(l_0_6, (string.format)("[b64netrsrc-%x]", l_0_2), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
-    l_0_2 = l_0_2 + 1
+  if #L6_6 > 4096 and #L6_6 < 16777216 then
+    mp.set_mpattribute("//MpBase64DecodeLongLines")
+    mp.vfo_add_buffer(L6_6, string.format("[b64netrsrc-%x]", L2_2), mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+    L2_2 = L2_2 + 1
   end
 end
-do
-  return mp.CLEAN
-end
-
+return L3_3

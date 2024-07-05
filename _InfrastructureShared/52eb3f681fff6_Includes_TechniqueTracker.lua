@@ -1,97 +1,66 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/52eb3f681fff6_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_23 = nil
-local l_0_24 = nil
-local l_0_25 = nil
-local l_0_26 = 20
-local l_0_27, l_0_28, l_0_29, l_0_30, l_0_31 = 20, 100, "ScanOrBruteforce_", nil, nil
-if (this_sigattrlog[24]).matched and (this_sigattrlog[24]).ppid ~= nil then
-  local l_0_0, l_0_1, l_0_3 = nil, nil, nil
-  l_0_24 = (this_sigattrlog[24]).utf8p2
-  local l_0_2, l_0_4 = nil
-  l_0_25 = "SSH"
-  local l_0_5 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L3_3 = 20
+L4_4 = 20
+L5_5 = 100
+L6_6 = "ScanOrBruteforce_"
+L7_7, L8_8, L9_9, L10_10 = nil, nil, nil, nil
+if this_sigattrlog[24].matched and this_sigattrlog[24].ppid ~= nil then
+  L0_0 = this_sigattrlog[24].ppid
+  L1_1 = this_sigattrlog[24].utf8p2
+  L2_2 = "SSH"
 end
-do
-  -- DECOMPILER ERROR at PC34: Overwrote pending register: R0 in 'AssignReg'
-
-  if (this_sigattrlog[25]).matched and (this_sigattrlog[25]).ppid ~= nil then
-    l_0_24 = (this_sigattrlog[25]).utf8p2
-    l_0_25 = "Telnet"
-  end
-  -- DECOMPILER ERROR at PC51: Overwrote pending register: R0 in 'AssignReg'
-
-  if (this_sigattrlog[26]).matched and (this_sigattrlog[26]).ppid ~= nil then
-    local l_0_6, l_0_7, l_0_9 = nil
-    l_0_24 = (this_sigattrlog[26]).utf8p2
-    local l_0_8, l_0_10 = nil
-    l_0_25 = "FTP"
-    local l_0_11 = nil
-  end
-  do
-    -- DECOMPILER ERROR at PC68: Overwrote pending register: R0 in 'AssignReg'
-
-    if (this_sigattrlog[27]).matched and (this_sigattrlog[27]).ppid ~= nil then
-      l_0_24 = (this_sigattrlog[27]).utf8p2
-      l_0_25 = "SMB"
-    end
-    -- DECOMPILER ERROR at PC85: Overwrote pending register: R0 in 'AssignReg'
-
-    if (this_sigattrlog[28]).matched and (this_sigattrlog[28]).ppid ~= nil then
-      local l_0_12, l_0_13, l_0_15 = nil
-      l_0_24 = (this_sigattrlog[28]).utf8p2
-      local l_0_14, l_0_16 = nil
-      l_0_25 = "LDAP"
-      local l_0_17 = nil
-    end
-    do
-      -- DECOMPILER ERROR at PC102: Overwrote pending register: R0 in 'AssignReg'
-
-      if (this_sigattrlog[29]).matched and (this_sigattrlog[29]).ppid ~= nil then
-        l_0_24 = (this_sigattrlog[29]).utf8p2
-        l_0_25 = "Kerberos"
-      end
-      -- DECOMPILER ERROR at PC119: Overwrote pending register: R0 in 'AssignReg'
-
-      if (this_sigattrlog[30]).matched and (this_sigattrlog[30]).ppid ~= nil then
-        local l_0_18, l_0_20 = nil
-        l_0_24 = (this_sigattrlog[30]).utf8p2
-        local l_0_19, l_0_21 = nil
-        l_0_25 = "RDP"
-        local l_0_22 = nil
-      end
-      do
-        if l_0_25 == nil or l_0_23 == nil or l_0_24 == nil then
-          return mp.CLEAN
-        end
-        l_0_31 = (string.match)(l_0_24, "DestIp=([^;]*);")
-        if l_0_31 == nil or l_0_31 == "" then
-          return mp.CLEAN
-        end
-        l_0_30 = l_0_29 .. l_0_25
-        if not pcall(MpCommon.RollingQueueCreate, l_0_30, l_0_28, l_0_26) then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC171: Overwrote pending register: R10 in 'AssignReg'
-
-        if not pcall(MpCommon.RollingQueueAppend, l_0_30, l_0_31, "", l_0_26) then
-          return mp.CLEAN
-        end
-        -- DECOMPILER ERROR at PC183: Overwrote pending register: R10 in 'AssignReg'
-
-        if not pcall(MpCommon.RollingQueueCount, l_0_30) then
-          return mp.CLEAN
-        end
-        if l_0_27 < R10_PC190 then
-          TrackPidAndTechnique(l_0_23, "T1110", "CredentialAccess")
-          return mp.INFECTED
-        end
-        return mp.CLEAN
-      end
-    end
-  end
+if this_sigattrlog[25].matched and this_sigattrlog[25].ppid ~= nil then
+  L0_0 = this_sigattrlog[25].ppid
+  L1_1 = this_sigattrlog[25].utf8p2
+  L2_2 = "Telnet"
 end
-
+if this_sigattrlog[26].matched and this_sigattrlog[26].ppid ~= nil then
+  L0_0 = this_sigattrlog[26].ppid
+  L1_1 = this_sigattrlog[26].utf8p2
+  L2_2 = "FTP"
+end
+if this_sigattrlog[27].matched and this_sigattrlog[27].ppid ~= nil then
+  L0_0 = this_sigattrlog[27].ppid
+  L1_1 = this_sigattrlog[27].utf8p2
+  L2_2 = "SMB"
+end
+if this_sigattrlog[28].matched and this_sigattrlog[28].ppid ~= nil then
+  L0_0 = this_sigattrlog[28].ppid
+  L1_1 = this_sigattrlog[28].utf8p2
+  L2_2 = "LDAP"
+end
+if this_sigattrlog[29].matched and this_sigattrlog[29].ppid ~= nil then
+  L0_0 = this_sigattrlog[29].ppid
+  L1_1 = this_sigattrlog[29].utf8p2
+  L2_2 = "Kerberos"
+end
+if this_sigattrlog[30].matched and this_sigattrlog[30].ppid ~= nil then
+  L0_0 = this_sigattrlog[30].ppid
+  L1_1 = this_sigattrlog[30].utf8p2
+  L2_2 = "RDP"
+end
+if L2_2 == nil or L0_0 == nil or L1_1 == nil then
+  return mp.CLEAN
+end
+L8_8 = string.match(L1_1, "DestIp=([^;]*);")
+if L8_8 == nil or L8_8 == "" then
+  return mp.CLEAN
+end
+L7_7 = L6_6 .. L2_2
+L9_9, L10_10 = pcall(MpCommon.RollingQueueCreate, L7_7, L5_5, L3_3)
+if not L9_9 then
+  return mp.CLEAN
+end
+L9_9, L10_10 = pcall(MpCommon.RollingQueueAppend, L7_7, L8_8, "", L3_3)
+if not L9_9 then
+  return mp.CLEAN
+end
+L9_9, L10_10 = pcall(MpCommon.RollingQueueCount, L7_7)
+if not L9_9 then
+  return mp.CLEAN
+end
+if L4_4 < L10_10 then
+  TrackPidAndTechniqueBM(L0_0, "T1110", "CredentialAccess")
+  return mp.INFECTED
+end
+return mp.CLEAN

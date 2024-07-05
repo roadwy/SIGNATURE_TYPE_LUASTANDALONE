@@ -1,13 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/129524cdf3ca 
-
--- params : ...
--- function num : 0
-local l_0_0 = (pe.get_regval)(pe.REG_EBP) - 328
-local l_0_1 = (pe.mmap_va)(l_0_0, 4)
-local l_0_2 = (mp.readu_u32)(l_0_1, 1)
-if l_0_2 ~= 268675836 then
-  (mp.set_mpattribute)("PEBMPAT:AntiEmuCheckConstantMemAdd")
+local L0_0, L1_1
+L0_0 = pe
+L0_0 = L0_0.get_regval
+L1_1 = pe
+L1_1 = L1_1.REG_EBP
+L0_0 = L0_0(L1_1)
+L0_0 = L0_0 - 328
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L1_1 = L1_1(L0_0, 4)
+if mp.readu_u32(L1_1, 1) ~= 268675836 then
+  mp.set_mpattribute("PEBMPAT:AntiEmuCheckConstantMemAdd")
 end
 return mp.CLEAN
-

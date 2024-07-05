@@ -1,64 +1,100 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a1b3d7af1384 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC40: Overwrote pending register: R0 in 'AssignReg'
-
-  do
-    if (not (this_sigattrlog[2]).matched or (this_sigattrlog[2]).utf8p2 == nil or (this_sigattrlog[3]).matched) and (this_sigattrlog[3]).utf8p2 ~= nil then
-      local l_0_1 = (this_sigattrlog[2]).utf8p2
-    else
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
     end
-    -- DECOMPILER ERROR at PC68: Overwrote pending register: R0 in 'AssignReg'
-
-    do
-      if (not (this_sigattrlog[4]).matched or (this_sigattrlog[4]).utf8p2 == nil or (this_sigattrlog[5]).matched) and (this_sigattrlog[5]).utf8p2 ~= nil then
-        local l_0_2, l_0_3, l_0_10 = (this_sigattrlog[4]).utf8p2
+  else
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
       end
-      -- DECOMPILER ERROR at PC69: Confused about usage of register: R0 in 'UnsetPending'
-
-      -- DECOMPILER ERROR at PC73: Confused about usage of register: R0 in 'UnsetPending'
-
-      if l_0_2 ~= nil then
-        local l_0_4 = nil
-        for l_0_8,l_0_9 in ipairs((mp.GetExecutablesFromCommandLine)(l_0_2)) do
-          local l_0_5 = nil
-          -- DECOMPILER ERROR at PC81: Confused about usage of register: R6 in 'UnsetPending'
-
-          if (sysio.IsFileExists)(R6_PC81) then
-            (bm.add_related_file)(R6_PC81)
+    else
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[4]
+          L0_0 = L1_1.utf8p2
+        end
+      else
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.utf8p2
+          if L1_1 ~= nil then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[5]
+            L0_0 = L1_1.utf8p2
           end
-        end
-      end
-      do
-        local l_0_11 = nil
-        if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).utf8p2 ~= nil then
-          l_0_11 = (this_sigattrlog[7]).utf8p2
-        end
-        if l_0_11 ~= nil then
-          local l_0_12 = (mp.GetExecutablesFromCommandLine)(l_0_11)
-          for l_0_16,l_0_17 in ipairs(l_0_12) do
-            l_0_17 = (mp.ContextualExpandEnvironmentVariables)(l_0_17)
-            if (sysio.IsFileExists)(l_0_17) then
-              (bm.add_related_file)(l_0_17)
-            end
-          end
-        end
-        do
-          l_0_12 = mp
-          l_0_12 = l_0_12.INFECTED
-          return l_0_12
         end
       end
     end
   end
 end
-
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    L7_7 = sysio
+    L7_7 = L7_7.IsFileExists
+    L7_7 = L7_7(L6_6)
+    if L7_7 then
+      L7_7 = bm
+      L7_7 = L7_7.add_related_file
+      L7_7(L6_6)
+    end
+  end
+end
+L1_1 = nil
+if L2_2 then
+  if L2_2 ~= nil then
+    L1_1 = L2_2.utf8p2
+  end
+end
+if L1_1 ~= nil then
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+return L2_2

@@ -1,29 +1,42 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/41b3f6716c07 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).wp1 ~= nil then
-    local l_0_0, l_0_1, l_0_2 = nil
-  else
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.wp1
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.utf8p1
   end
-  if not (this_sigattrlog[3]).matched or (this_sigattrlog[3]).wp1 == nil or (this_sigattrlog[1]).matched then
-    local l_0_3 = (this_sigattrlog[3]).utf8p1
-    -- DECOMPILER ERROR at PC41: Confused about usage of register: R1 in 'UnsetPending'
-
-    if (this_sigattrlog[1]).utf8p1 ~= nil and l_0_3 ~= nil then
-      local l_0_4 = nil
-      local l_0_5 = (string.match)((this_sigattrlog[1]).utf8p1, "(.*\\)")
-      if (string.match)(l_0_3, "(.*\\)") ~= nil and (string.match)(l_0_3, "(.*\\)") == l_0_5 then
-        return mp.INFECTED
-      end
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.wp1
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L0_0 = L1_1.utf8p1
     end
   end
-  do
-    return mp.CLEAN
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p1
+  if L1_1 ~= nil and L0_0 ~= nil and string.match(L0_0, "(.*\\)") ~= nil and string.match(L0_0, "(.*\\)") == string.match(L1_1, "(.*\\)") then
+    return mp.INFECTED
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

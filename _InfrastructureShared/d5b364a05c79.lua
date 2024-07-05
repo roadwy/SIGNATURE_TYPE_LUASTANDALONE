@@ -1,71 +1,127 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d5b364a05c79 
-
--- params : ...
--- function num : 0
-if (mp.get_sigattr_event_count)(16384) > 50 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = mp
+L0_0 = L0_0.get_sigattr_event_count
+L1_1 = 16384
+L0_0 = L0_0(L1_1)
+if L0_0 > 50 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  l_0_0 = (this_sigattrlog[1]).utf8p2
+L0_0 = nil
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
+  end
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    l_0_0 = (this_sigattrlog[2]).utf8p2
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
+    end
   else
-    if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-      l_0_0 = (this_sigattrlog[3]).utf8p2
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L1_1 = L1_1.utf8p2
+      if L1_1 ~= nil then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[3]
+        L0_0 = L1_1.utf8p2
+      end
     else
-      if (this_sigattrlog[4]).matched and (this_sigattrlog[4]).utf8p2 ~= nil then
-        l_0_0 = (this_sigattrlog[4]).utf8p2
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L1_1 = L1_1.utf8p2
+        if L1_1 ~= nil then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[4]
+          L0_0 = L1_1.utf8p2
+        end
       else
-        if (this_sigattrlog[5]).matched and (this_sigattrlog[5]).utf8p2 ~= nil then
-          l_0_0 = (this_sigattrlog[5]).utf8p2
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L1_1 = L1_1.utf8p2
+          if L1_1 ~= nil then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[5]
+            L0_0 = L1_1.utf8p2
+          end
         else
-          if (this_sigattrlog[6]).matched and (this_sigattrlog[6]).utf8p2 ~= nil then
-            l_0_0 = (this_sigattrlog[6]).utf8p2
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[6]
+            L1_1 = L1_1.utf8p2
+            if L1_1 ~= nil then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[6]
+              L0_0 = L1_1.utf8p2
+            end
           end
         end
       end
     end
   end
 end
-local l_0_1 = 0
-if l_0_0 ~= nil then
-  local l_0_2 = (mp.GetExecutablesFromCommandLine)(l_0_0)
-  for l_0_6,l_0_7 in ipairs(l_0_2) do
-    l_0_7 = (mp.ContextualExpandEnvironmentVariables)(l_0_7)
-    if (sysio.IsFileExists)(l_0_7) == true then
-      local l_0_8 = {}
-      l_0_8[".exe"] = true
-      local l_0_9 = (string.sub)(l_0_7, -4)
-      local l_0_10 = {}
-      l_0_10["cmd.exe"] = true
-      l_0_10["powershell.exe"] = true
-      l_0_10["pwsh.exe"] = true
-      l_0_10["cscript.exe"] = true
-      l_0_10["wscript.exe"] = true
-      l_0_10["mshta.exe"] = true
-      if l_0_9 ~= nil and l_0_8[l_0_9] == true then
-        local l_0_11 = (string.lower)(l_0_7:match("\\([^\\]+)$"))
-        if l_0_10[l_0_11] ~= true then
-          (bm.add_related_file)(l_0_7)
-          ;
-          (bm.add_threat_file)(l_0_7)
-          l_0_1 = 1
-        end
+L1_1 = 0
+if L0_0 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    if sysio.IsFileExists(L7_7) == true then
+      if string.sub(L7_7, -4) ~= nil and ({
+        [".exe"] = true
+      })[string.sub(L7_7, -4)] == true and ({
+        ["cmd.exe"] = true,
+        ["powershell.exe"] = true,
+        ["pwsh.exe"] = true,
+        ["cscript.exe"] = true,
+        ["wscript.exe"] = true,
+        ["mshta.exe"] = true
+      })[string.lower((L7_7:match("\\([^\\]+)$")))] ~= true then
+        bm.add_related_file(L7_7)
+        bm.add_threat_file(L7_7)
+        L1_1 = 1
       end
     end
   end
 end
-do
-  if l_0_1 == 1 then
-    l_0_2 = mp
-    l_0_2 = l_0_2.INFECTED
-    return l_0_2
-  end
-  l_0_2 = mp
-  l_0_2 = l_0_2.CLEAN
-  return l_0_2
+if L1_1 == 1 then
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

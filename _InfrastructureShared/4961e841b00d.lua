@@ -1,10 +1,23 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4961e841b00d 
-
--- params : ...
--- function num : 0
-if mp.HSTR_WEIGHT == 2 and (pesecs[2]).PointerToRawData == 2701144064 and pehdr.SizeOfImage < (pesecs[2]).PointerToRawData then
-  return mp.INFECTED
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.HSTR_WEIGHT
+if L0_0 == 2 then
+  L0_0 = pesecs
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.PointerToRawData
+  if L0_0 == 2701144064 then
+    L0_0 = pesecs
+    L0_0 = L0_0[2]
+    L0_0 = L0_0.PointerToRawData
+    L1_1 = pehdr
+    L1_1 = L1_1.SizeOfImage
+    if L0_0 > L1_1 then
+      L0_0 = mp
+      L0_0 = L0_0.INFECTED
+      return L0_0
+    end
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

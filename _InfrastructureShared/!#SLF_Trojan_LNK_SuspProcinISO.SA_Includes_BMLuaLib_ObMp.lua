@@ -1,28 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_Trojan_LNK_SuspProcinISO.SA_Includes_BMLuaLib_ObMp 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetLnkInfo)()
-local l_0_1 = l_0_0.Arguments
-if isnull(l_0_1) then
-  l_0_1 = l_0_0.RelativePath
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.GetLnkInfo
+L0_0 = L0_0()
+L1_1 = L0_0.Arguments
+L2_2 = isnull
+L2_2 = L2_2(L1_1)
+if L2_2 then
+  L1_1 = L0_0.RelativePath
 end
-l_0_1 = l_0_1:lower()
-do
-  local l_0_2 = {}
-  -- DECOMPILER ERROR at PC25: No list found for R2 , SetList fails
-
-  -- DECOMPILER ERROR at PC26: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC27: Overwrote pending register: R4 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC28: Overwrote pending register: R5 in 'AssignReg'
-
-  if ("odbcconf")("rundll32", "regsvr32") then
-    return mp.INFECTED
-  end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
+L2_2 = L1_1.lower
+L2_2 = L2_2(L1_1)
+L1_1 = L2_2
+L2_2 = {
+  "odbcconf",
+  "rundll32",
+  "regsvr32",
+  "powershell",
+  "calc",
+  "wscript",
+  "cscript",
+  "mshta",
+  ".cmd",
+  ".bat",
+  "..\\.."
+}
+if contains(L1_1, L2_2) then
+  return mp.INFECTED
 end
-
+return mp.CLEAN

@@ -1,27 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/15b3633e64cb_Includes_TechniqueTracker 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-if l_0_0 == nil or l_0_0.ppid == nil then
+local L0_0, L1_1
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = L0_0.ppid
+elseif L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
+end
+L1_1 = {}
+L1_1["explorer.exe"] = true
+L1_1["winword.exe"] = true
+L1_1["excel.exe"] = true
+L1_1["outlook.exe"] = true
+L1_1["msedge.exe"] = true
+L1_1["chrome.exe"] = true
+L1_1["firefox.exe"] = true
+L1_1["winrar.exe"] = true
+L1_1["winzip.exe"] = true
+L1_1["7zfm.exe"] = true
+L1_1["olk.exe"] = true
+if checkParentProcessNameFromListByPPID(L0_0.ppid, L1_1) ~= true then
   return mp.CLEAN
 end
-local l_0_1 = {}
-l_0_1["explorer.exe"] = true
-l_0_1["winword.exe"] = true
-l_0_1["excel.exe"] = true
-l_0_1["outlook.exe"] = true
-l_0_1["msedge.exe"] = true
-l_0_1["chrome.exe"] = true
-l_0_1["firefox.exe"] = true
-l_0_1["winrar.exe"] = true
-l_0_1["winzip.exe"] = true
-l_0_1["7zfm.exe"] = true
-l_0_1["olk.exe"] = true
-if checkParentProcessNameFromListByPPID(l_0_0.ppid, l_0_1) ~= true then
-  return mp.CLEAN
-end
-AddResearchData(l_0_0.ppid, true)
+AddResearchData(L0_0.ppid, true)
 return mp.INFECTED
-

@@ -1,51 +1,57 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/62b35116f284 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_imagepath)()
-if l_0_0 ~= nil then
-  local l_0_1 = {}
-  l_0_1["tentacle.exe"] = true
-  l_0_1["javaw.exe"] = true
-  l_0_1["java.exe"] = true
-  l_0_1["ruby.exe"] = true
-  l_0_1["actifio-install.exe"] = true
-  l_0_1["actifio-install.tmp"] = true
-  l_0_1["installer.exe"] = true
-  l_0_1["monitoringhost.exe"] = true
-  l_0_1["choco.exe"] = true
-  l_0_1["splunkd.exe"] = true
-  l_0_1["qualysagent.exe"] = true
-  l_0_1["agentcore.exe"] = true
-  l_0_1["azurerolelifecycletask.exe"] = true
-  local l_0_2 = l_0_0:match("\\([^\\]+)$")
-  if l_0_2 ~= nil then
-    l_0_2 = (string.lower)(l_0_2)
-    if l_0_1[l_0_2] then
-      return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = bm
+L0_0 = L0_0.get_imagepath
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = {}
+  L1_1["tentacle.exe"] = true
+  L1_1["javaw.exe"] = true
+  L1_1["java.exe"] = true
+  L1_1["ruby.exe"] = true
+  L1_1["actifio-install.exe"] = true
+  L1_1["actifio-install.tmp"] = true
+  L1_1["installer.exe"] = true
+  L1_1["monitoringhost.exe"] = true
+  L1_1["choco.exe"] = true
+  L1_1["splunkd.exe"] = true
+  L1_1["qualysagent.exe"] = true
+  L1_1["agentcore.exe"] = true
+  L1_1["azurerolelifecycletask.exe"] = true
+  L2_2 = L0_0.match
+  L2_2 = L2_2(L3_3, L4_4)
+  if L2_2 ~= nil then
+    L2_2 = L3_3
+    if L3_3 then
+      return L3_3
     end
   end
 end
-do
-  local l_0_3 = nil
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    l_0_3 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  end
-  if l_0_3 ~= nil then
-    local l_0_4 = l_0_3:match("binpath=(.+)")
-    l_0_4 = (mp.GetExecutablesFromCommandLine)(l_0_4)
-    for l_0_8,l_0_9 in ipairs(l_0_4) do
-      l_0_9 = (mp.ContextualExpandEnvironmentVariables)(l_0_9)
-      if (sysio.IsFileExists)(l_0_9) == true then
-        (bm.add_related_file)(l_0_9)
-      end
-    end
-  end
-  do
-    l_0_4 = mp
-    l_0_4 = l_0_4.INFECTED
-    return l_0_4
+L1_1 = nil
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L3_3)
+    L1_1 = L2_2
   end
 end
-
+if L1_1 ~= nil then
+  L2_2 = L1_1.match
+  L2_2 = L2_2(L3_3, L4_4)
+  L2_2 = L3_3
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    if sysio.IsFileExists(L7_7) == true then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

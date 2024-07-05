@@ -1,23 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#_Lua_Win32_Prifou!vbs 
-
--- params : ...
--- function num : 0
-if (mp.get_mpattribute)("ALFPER:Win32/Prifou!vbs") then
-  local l_0_0 = (mp.getfilesize)()
-  if l_0_0 > 24576 then
-    return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.get_mpattribute
+L1_1 = "ALFPER:Win32/Prifou!vbs"
+L0_0 = L0_0(L1_1)
+if L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.getfilesize
+  L0_0 = L0_0()
+  if L0_0 > 24576 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  ;
-  (mp.readprotection)(false)
-  local l_0_1 = (mp.readfile)(0, l_0_0)
-  local l_0_2, l_0_3 = l_0_1:gsub("\'.-\n", "")
-  if l_0_2 and l_0_3 > 100 then
-    (mp.vfo_add_buffer)(l_0_2, "[Prifou!vbs]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+  L1_1 = mp
+  L1_1 = L1_1.readprotection
+  L2_2 = false
+  L1_1(L2_2)
+  L1_1 = mp
+  L1_1 = L1_1.readfile
+  L2_2 = 0
+  L1_1 = L1_1(L2_2, L0_0)
+  L2_2 = L1_1.gsub
+  L2_2 = L2_2(L1_1, "'.-\n", "")
+  if L2_2 and L2_2(L1_1, "'.-\n", "") > 100 then
+    mp.vfo_add_buffer(L2_2, "[Prifou!vbs]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

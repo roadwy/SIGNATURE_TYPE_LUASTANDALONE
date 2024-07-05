@@ -1,19 +1,121 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2cb7824af557c 
-
--- params : ...
--- function num : 0
-if (hstrlog[1]).hitcount == 0 and (hstrlog[2]).hitcount == 0 and (hstrlog[3]).hitcount == 0 and (hstrlog[4]).hitcount == 0 and (hstrlog[5]).hitcount == 0 then
-  return mp.LOWFI
+local L0_0, L1_1
+L0_0 = hstrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[2]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[3]
+    L0_0 = L0_0.hitcount
+    if L0_0 == 0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[4]
+      L0_0 = L0_0.hitcount
+      if L0_0 == 0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[5]
+        L0_0 = L0_0.hitcount
+        if L0_0 == 0 then
+          L0_0 = mp
+          L0_0 = L0_0.LOWFI
+          return L0_0
+        end
+      end
+    end
+  end
 end
-if (hstrlog[6]).hitcount == 0 and (hstrlog[7]).hitcount == 0 and (hstrlog[8]).hitcount == 0 and (hstrlog[9]).hitcount == 0 and (hstrlog[10]).hitcount == 0 then
-  return mp.LOWFI
+L0_0 = hstrlog
+L0_0 = L0_0[6]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[7]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[8]
+    L0_0 = L0_0.hitcount
+    if L0_0 == 0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[9]
+      L0_0 = L0_0.hitcount
+      if L0_0 == 0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[10]
+        L0_0 = L0_0.hitcount
+        if L0_0 == 0 then
+          L0_0 = mp
+          L0_0 = L0_0.LOWFI
+          return L0_0
+        end
+      end
+    end
+  end
 end
-if (hstrlog[11]).hitcount == 0 and (hstrlog[12]).hitcount == 0 and (hstrlog[13]).hitcount == 0 and (hstrlog[14]).hitcount == 0 and (hstrlog[15]).hitcount == 0 and (hstrlog[16]).hitcount == 0 then
-  return mp.LOWFI
+L0_0 = hstrlog
+L0_0 = L0_0[11]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[12]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[13]
+    L0_0 = L0_0.hitcount
+    if L0_0 == 0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[14]
+      L0_0 = L0_0.hitcount
+      if L0_0 == 0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[15]
+        L0_0 = L0_0.hitcount
+        if L0_0 == 0 then
+          L0_0 = hstrlog
+          L0_0 = L0_0[16]
+          L0_0 = L0_0.hitcount
+          if L0_0 == 0 then
+            L0_0 = mp
+            L0_0 = L0_0.LOWFI
+            return L0_0
+          end
+        end
+      end
+    end
+  end
 end
-if (hstrlog[17]).hitcount == 0 and (hstrlog[18]).hitcount == 0 and (hstrlog[19]).hitcount == 0 and (hstrlog[20]).hitcount == 0 and (hstrlog[21]).hitcount == 0 then
-  return mp.LOWFI
+L0_0 = hstrlog
+L0_0 = L0_0[17]
+L0_0 = L0_0.hitcount
+if L0_0 == 0 then
+  L0_0 = hstrlog
+  L0_0 = L0_0[18]
+  L0_0 = L0_0.hitcount
+  if L0_0 == 0 then
+    L0_0 = hstrlog
+    L0_0 = L0_0[19]
+    L0_0 = L0_0.hitcount
+    if L0_0 == 0 then
+      L0_0 = hstrlog
+      L0_0 = L0_0[20]
+      L0_0 = L0_0.hitcount
+      if L0_0 == 0 then
+        L0_0 = hstrlog
+        L0_0 = L0_0[21]
+        L0_0 = L0_0.hitcount
+        if L0_0 == 0 then
+          L0_0 = mp
+          L0_0 = L0_0.LOWFI
+          return L0_0
+        end
+      end
+    end
+  end
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

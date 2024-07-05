@@ -1,33 +1,47 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/144b3f482dbc1_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_2 = nil
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1 = (this_sigattrlog[1]).utf8p2, nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[1]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[1]
+    L0_0 = L2_2.utf8p2
   end
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_3 = (this_sigattrlog[2]).utf8p2
-    local l_0_4, l_0_5 = , {"python.exe", "agentexecutor.exe"}
-    for l_0_9,l_0_10 in ipairs((bm.get_process_relationships)()) do
-      local l_0_6, l_0_7 = nil
-      -- DECOMPILER ERROR at PC38: Confused about usage of register: R9 in 'UnsetPending'
-
-      if R9_PC38.image_path ~= nil and (mp.bitand)(R9_PC38.reason_ex, 1) == 1 and contains(R9_PC38.image_path, l_0_5) then
-        return mp.CLEAN
-      end
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[2]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[2]
+      L0_0 = L2_2.utf8p2
     end
-    if contains(l_0_3, "%-[eE][ncodemaNCODEMA]*%s+", false) then
-      l_0_4 = NormalizeCmdline("powershell", l_0_3)
-      if l_0_4 ~= nil then
-        (bm.add_related_string)("proc_cmdline", l_0_4, bm.RelatedStringBMReport)
-        return mp.INFECTED
-      end
-    end
+  end
+end
+L2_2 = {L3_3, L4_4}
+L3_3 = "python.exe"
+L4_4 = "agentexecutor.exe"
+L3_3 = bm
+L3_3 = L3_3.get_process_relationships
+L4_4 = L3_3()
+for _FORV_8_, _FORV_9_ in L5_5(L6_6) do
+  if _FORV_9_.image_path ~= nil and mp.bitand(_FORV_9_.reason_ex, 1) == 1 and contains(_FORV_9_.image_path, L2_2) then
     return mp.CLEAN
   end
 end
-
+if L5_5 then
+  L1_1 = L5_5
+  if L1_1 ~= nil then
+    L5_5(L6_6, L1_1, bm.RelatedStringBMReport)
+    return L5_5
+  end
+end
+return L5_5

@@ -1,50 +1,93 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84b37a04592e_Includes_BMLuaLib,PePa 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
-l_0_0["httpd.exe"] = true
-l_0_0["tomcat.exe"] = true
-l_0_0["nginx.exe"] = true
-local l_0_1, l_0_2 = nil, nil
-if (this_sigattrlog[1]).matched then
-  l_0_1 = (string.lower)((this_sigattrlog[1]).utf8p1)
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10
+L2_2 = this_sigattrlog
+L2_2 = L2_2[1]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[1]
+  L3_3 = L3_3.utf8p1
+  L2_2 = L2_2(L3_3)
+  L0_0 = L2_2
 end
-if (this_sigattrlog[2]).matched then
-  l_0_1 = (string.lower)((this_sigattrlog[2]).utf8p1)
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[2]
+  L3_3 = L3_3.utf8p1
+  L2_2 = L2_2(L3_3)
+  L0_0 = L2_2
 end
-if (this_sigattrlog[3]).matched then
-  l_0_1 = (string.lower)((this_sigattrlog[3]).utf8p1)
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = string
+  L2_2 = L2_2.lower
+  L3_3 = this_sigattrlog
+  L3_3 = L3_3[3]
+  L3_3 = L3_3.utf8p1
+  L2_2 = L2_2(L3_3)
+  L0_0 = L2_2
 end
-if l_0_1 == nil then
-  return mp.CLEAN
+if L0_0 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_2 = l_0_1:match("(%w+%.exe)$")
-local l_0_3 = GetRollingQueueKeyValue("app_version_" .. l_0_2, l_0_1)
-if l_0_3 ~= nil then
-  return mp.CLEAN
+L3_3 = L0_0
+L2_2 = L0_0.match
+L4_4 = "(%w+%.exe)$"
+L2_2 = L2_2(L3_3, L4_4)
+L1_1 = L2_2
+L2_2 = GetRollingQueueKeyValue
+L3_3 = "app_version_"
+L4_4 = L1_1
+L3_3 = L3_3 .. L4_4
+L4_4 = L0_0
+L2_2 = L2_2(L3_3, L4_4)
+if L2_2 ~= nil then
+  L3_3 = mp
+  L3_3 = L3_3.CLEAN
+  return L3_3
 end
-local l_0_4, l_0_5, l_0_6 = Get_file_version(l_0_1)
-if not l_0_0[(string.lower)(l_0_6)] then
-  return mp.CLEAN
+L3_3 = sysio
+L3_3 = L3_3.GetPEFixedVersionInfo
+L4_4 = L0_0
+L3_3 = L3_3(L4_4)
+if not L3_3 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
 end
-local l_0_7 = "app_version_" .. l_0_6
-local l_0_8 = 31536000
-local l_0_9 = 50
-if l_0_4 ~= nil then
-  local l_0_10 = Version_to_str(l_0_4)
-  AppendToRollingQueue(l_0_7, l_0_1, l_0_10, l_0_8, l_0_9)
-  ;
-  (bm.add_related_string)("AppVersionFixed", l_0_10, bm.RelatedStringBMReport)
-else
-  do
-    if l_0_5 ~= nil then
-      AppendToRollingQueue(l_0_7, l_0_1, l_0_5, l_0_8, l_0_9)
-    end
-    ;
-    (bm.add_related_string)("AppVersionStr", l_0_5, bm.RelatedStringBMReport)
-    return mp.INFECTED
-  end
+L4_4 = L3_3.FileVersion
+L5_5 = sysio
+L5_5 = L5_5.GetPEVersionInfo
+L6_6 = L0_0
+L5_5 = L5_5(L6_6)
+if not L5_5 then
+  L6_6 = mp
+  L6_6 = L6_6.CLEAN
+  return L6_6
 end
-
+L6_6 = L5_5.OriginalFilename
+if L4_4 == 0 or not L6_6 then
+  L7_7 = mp
+  L7_7 = L7_7.CLEAN
+  return L7_7
+end
+L7_7 = "app_version_"
+L8_8 = L6_6
+L7_7 = L7_7 .. L8_8
+L8_8 = 31536000
+L9_9 = 50
+L10_10 = Version_to_str
+L10_10 = L10_10(L4_4)
+AppendToRollingQueue(L7_7, L0_0, L10_10, L8_8, L9_9)
+bm.add_related_string("AppVersionFixed", L10_10, bm.RelatedStringBMReport)
+return mp.INFECTED

@@ -1,25 +1,102 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Wysotot 
-
--- params : ...
--- function num : 0
-local l_0_0 = (sysio.RegOpenKey)("HKLM\\SOFTWARE\\Clients\\StartMenuInternet\\IEXPLORE.EXE\\shell\\open\\command")
-if l_0_0 ~= nil then
-  local l_0_1 = (sysio.GetRegValueAsString)(l_0_0, nil)
-  if l_0_1 ~= nil and ((string.find)((string.lower)(l_0_1), "v9%.com") or (string.find)((string.lower)(l_0_1), "22find%.com") or (string.find)((string.lower)(l_0_1), "22apple%.com") or (string.find)((string.lower)(l_0_1), "qvo6%.com") or (string.find)((string.lower)(l_0_1), "portaldosites%.com") or (string.find)((string.lower)(l_0_1), "onmylike%.com") or (string.find)((string.lower)(l_0_1), "laban%.vn") or (string.find)((string.lower)(l_0_1), "delta-homes%.com")) then
-    if (string.sub)(l_0_1, 1, 1) == "\"" then
-      local l_0_2, l_0_3 = (string.find)((string.lower)(l_0_1), "iexplore.exe\"")
-      if l_0_2 then
-        (sysio.SetRegValueAsString)(l_0_0, nil, (string.sub)(l_0_1, 2, l_0_3 - 1))
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = sysio
+L0_0 = L0_0.RegOpenKey
+L1_1 = "HKLM\\SOFTWARE\\Clients\\StartMenuInternet\\IEXPLORE.EXE\\shell\\open\\command"
+L0_0 = L0_0(L1_1)
+if L0_0 ~= nil then
+  L1_1 = sysio
+  L1_1 = L1_1.GetRegValueAsString
+  L2_2 = L0_0
+  L3_3 = nil
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 ~= nil then
+    L2_2 = string
+    L2_2 = L2_2.find
+    L3_3 = string
+    L3_3 = L3_3.lower
+    L3_3 = L3_3(L1_1)
+    L2_2 = L2_2(L3_3, "v9%.com")
+    if not L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.find
+      L3_3 = string
+      L3_3 = L3_3.lower
+      L3_3 = L3_3(L1_1)
+      L2_2 = L2_2(L3_3, "22find%.com")
+      if not L2_2 then
+        L2_2 = string
+        L2_2 = L2_2.find
+        L3_3 = string
+        L3_3 = L3_3.lower
+        L3_3 = L3_3(L1_1)
+        L2_2 = L2_2(L3_3, "22apple%.com")
+        if not L2_2 then
+          L2_2 = string
+          L2_2 = L2_2.find
+          L3_3 = string
+          L3_3 = L3_3.lower
+          L3_3 = L3_3(L1_1)
+          L2_2 = L2_2(L3_3, "qvo6%.com")
+          if not L2_2 then
+            L2_2 = string
+            L2_2 = L2_2.find
+            L3_3 = string
+            L3_3 = L3_3.lower
+            L3_3 = L3_3(L1_1)
+            L2_2 = L2_2(L3_3, "portaldosites%.com")
+            if not L2_2 then
+              L2_2 = string
+              L2_2 = L2_2.find
+              L3_3 = string
+              L3_3 = L3_3.lower
+              L3_3 = L3_3(L1_1)
+              L2_2 = L2_2(L3_3, "onmylike%.com")
+              if not L2_2 then
+                L2_2 = string
+                L2_2 = L2_2.find
+                L3_3 = string
+                L3_3 = L3_3.lower
+                L3_3 = L3_3(L1_1)
+                L2_2 = L2_2(L3_3, "laban%.vn")
+                if not L2_2 then
+                  L2_2 = string
+                  L2_2 = L2_2.find
+                  L3_3 = string
+                  L3_3 = L3_3.lower
+                  L3_3 = L3_3(L1_1)
+                  L2_2 = L2_2(L3_3, "delta-homes%.com")
+                end
+              end
+            end
+          end
+        end
       end
-    else
-      do
-        local l_0_4, l_0_5 = (string.find)((string.lower)(l_0_1), "iexplore.exe")
-        if l_0_4 then
-          (sysio.SetRegValueAsString)(l_0_0, nil, (string.sub)(l_0_1, 1, l_0_5))
+    elseif L2_2 then
+      L2_2 = string
+      L2_2 = L2_2.sub
+      L3_3 = L1_1
+      L2_2 = L2_2(L3_3, 1, 1)
+      if L2_2 == "\"" then
+        L2_2 = string
+        L2_2 = L2_2.find
+        L3_3 = string
+        L3_3 = L3_3.lower
+        L3_3 = L3_3(L1_1)
+        L3_3 = L2_2(L3_3, "iexplore.exe\"")
+        if L2_2 then
+          sysio.SetRegValueAsString(L0_0, nil, string.sub(L1_1, 2, L3_3 - 1))
+        end
+      else
+        L2_2 = string
+        L2_2 = L2_2.find
+        L3_3 = string
+        L3_3 = L3_3.lower
+        L3_3 = L3_3(L1_1)
+        L3_3 = L2_2(L3_3, "iexplore.exe")
+        if L2_2 then
+          sysio.SetRegValueAsString(L0_0, nil, string.sub(L1_1, 1, L3_3))
         end
       end
     end
   end
 end
-

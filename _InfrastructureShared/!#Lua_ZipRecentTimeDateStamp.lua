@@ -1,58 +1,89 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_ZipRecentTimeDateStamp 
-
--- params : ...
--- function num : 0
-if mp.HEADERPAGE_SZ < 128 or mp.FOOTERPAGE_SZ < 22 then
+local L0_0, L1_1, L2_2, L3_3, L4_4
+L0_0 = mp
+L0_0 = L0_0.HEADERPAGE_SZ
+if not (L0_0 < 128) then
+  L0_0 = mp
+  L0_0 = L0_0.FOOTERPAGE_SZ
+elseif L0_0 < 22 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.readu_u32
+L1_1 = headerpage
+L2_2 = 1
+L0_0 = L0_0(L1_1, L2_2)
+if L0_0 ~= 67324752 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
+end
+L0_0 = mp
+L0_0 = L0_0.readu_u16
+L1_1 = headerpage
+L2_2 = 11
+L0_0 = L0_0(L1_1, L2_2)
+L1_1 = mp
+L1_1 = L1_1.readu_u16
+L2_2 = headerpage
+L3_3 = 13
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = pcall
+L3_3 = MpCommon
+L3_3 = L3_3.DosTimeToFileTime
+L4_4 = L0_0
+L3_3 = L2_2(L3_3, L4_4, L1_1)
+if not L2_2 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+if L3_3 == 0 then
+  L4_4 = mp
+  L4_4 = L4_4.CLEAN
+  return L4_4
+end
+L4_4 = MpCommon
+L4_4 = L4_4.GetCurrentTimeT
+L4_4 = L4_4()
+if not pcall(MpCommon.TimeTToFileTime, L4_4) then
   return mp.CLEAN
 end
-if (mp.readu_u32)(headerpage, 1) ~= 67324752 then
+if pcall(MpCommon.TimeTToFileTime, L4_4) == nil then
   return mp.CLEAN
 end
-local l_0_0 = (mp.readu_u16)(headerpage, 11)
-local l_0_1 = (mp.readu_u16)(headerpage, 13)
-local l_0_2 = (MpCommon.DosTimeToFileTime)(l_0_0, l_0_1)
-if l_0_2 == 0 then
+if L3_3 == nil then
   return mp.CLEAN
 end
-local l_0_3 = (MpCommon.TimeTToFileTime)((MpCommon.GetCurrentTimeT)())
-if l_0_2 < l_0_3 then
-  local l_0_4 = 864000000000
-  local l_0_5 = l_0_3 - l_0_2
-  if l_0_5 <= 5 * l_0_4 then
-    if (mp.get_mpattribute)("SCPT:JarFile") then
-      (mp.set_mpattribute)("//Lua:JarTimeStampLastFiveDays")
+if L3_3 < pcall(MpCommon.TimeTToFileTime, L4_4) then
+  if pcall(MpCommon.TimeTToFileTime, L4_4) - L3_3 <= 5 * 864000000000 then
+    if mp.get_mpattribute("SCPT:JarFile") then
+      mp.set_mpattribute("//Lua:JarTimeStampLastFiveDays")
     else
-      ;
-      (mp.set_mpattribute)("//Lua:ZipTimeStampLastFiveDays")
+      mp.set_mpattribute("//Lua:ZipTimeStampLastFiveDays")
     end
   end
-  if l_0_5 <= 10 * l_0_4 then
-    if (mp.get_mpattribute)("SCPT:JarFile") then
-      (mp.set_mpattribute)("//Lua:JarTimeStampLastTenDays")
+  if pcall(MpCommon.TimeTToFileTime, L4_4) - L3_3 <= 10 * 864000000000 then
+    if mp.get_mpattribute("SCPT:JarFile") then
+      mp.set_mpattribute("//Lua:JarTimeStampLastTenDays")
     else
-      ;
-      (mp.set_mpattribute)("//Lua:ZipTimeStampLastTenDays")
+      mp.set_mpattribute("//Lua:ZipTimeStampLastTenDays")
     end
   end
-  if l_0_5 <= 30 * l_0_4 then
-    if (mp.get_mpattribute)("SCPT:JarFile") then
-      (mp.set_mpattribute)("//Lua:JarTimeStampLastThirtyDays")
+  if pcall(MpCommon.TimeTToFileTime, L4_4) - L3_3 <= 30 * 864000000000 then
+    if mp.get_mpattribute("SCPT:JarFile") then
+      mp.set_mpattribute("//Lua:JarTimeStampLastThirtyDays")
     else
-      ;
-      (mp.set_mpattribute)("//Lua:ZipTimeStampLastThirtyDays")
+      mp.set_mpattribute("//Lua:ZipTimeStampLastThirtyDays")
     end
   end
-  if l_0_5 <= 365 * l_0_4 then
-    if (mp.get_mpattribute)("SCPT:JarFile") then
-      (mp.set_mpattribute)("//Lua:JarTimeStampLastYear")
+  if pcall(MpCommon.TimeTToFileTime, L4_4) - L3_3 <= 365 * 864000000000 then
+    if mp.get_mpattribute("SCPT:JarFile") then
+      mp.set_mpattribute("//Lua:JarTimeStampLastYear")
     else
-      ;
-      (mp.set_mpattribute)("//Lua:ZipTimeStampLastYear")
+      mp.set_mpattribute("//Lua:ZipTimeStampLastYear")
     end
   end
 end
-do
-  return mp.CLEAN
-end
-
+return mp.CLEAN

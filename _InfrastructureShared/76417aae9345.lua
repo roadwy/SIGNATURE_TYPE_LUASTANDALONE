@@ -1,17 +1,10 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/76417aae9345 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() > 25360 or peattributes.ismsil ~= true then
+if mp.getfilesize() > 25360 or peattributes.ismsil ~= true then
   return mp.CLEAN
 end
-local l_0_0 = ((pe.get_versioninfo)()).FileDescription
-if l_0_0 == nil then
+if pe.get_versioninfo().FileDescription == nil then
   return mp.CLEAN
 end
-if l_0_0 == "vshost64-clr3" or l_0_0 == "vshost64-clr2" or l_0_0 == "vshost32-clr3" or l_0_0 == "vshost32-clr2" or l_0_0 == ".NET Framework" or l_0_0 == "XML Protector" or l_0_0 == "Microsoft" then
+if pe.get_versioninfo().FileDescription == "vshost64-clr3" or pe.get_versioninfo().FileDescription == "vshost64-clr2" or pe.get_versioninfo().FileDescription == "vshost32-clr3" or pe.get_versioninfo().FileDescription == "vshost32-clr2" or pe.get_versioninfo().FileDescription == ".NET Framework" or pe.get_versioninfo().FileDescription == "XML Protector" or pe.get_versioninfo().FileDescription == "Microsoft" then
   return mp.INFECTED
 end
 return mp.LOWFI
-

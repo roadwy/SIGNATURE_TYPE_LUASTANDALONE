@@ -1,26 +1,32 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/32b32a4f8fce_Includes_TechniqueTracker,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((MpCommon.PathToWin32Path)((bm.get_imagepath)()))
-if not contains(l_0_0, (mp.ContextualExpandEnvironmentVariables)("%systemdrive%")) then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = MpCommon
+L1_1 = L1_1.PathToWin32Path
+L1_1 = L1_1(bm.get_imagepath())
+L0_0 = L0_0(L1_1, L1_1(bm.get_imagepath()))
+L1_1 = contains
+L1_1 = L1_1(L0_0, MpCommon.ExpandEnvironmentVariables("%systemdrive%"))
+if not L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-do
-  local l_0_1 = {}
-  -- DECOMPILER ERROR at PC30: No list found for R1 , SetList fails
-
-  -- DECOMPILER ERROR at PC31: Overwrote pending register: R2 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC32: Overwrote pending register: R3 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC33: Overwrote pending register: R4 in 'AssignReg'
-
-  if (":\\programData\\rclone.exe")(":\\perflogs\\", ":\\windows\\help\\") then
-    return mp.INFECTED
-  end
-  do return mp.CLEAN end
-  -- WARNING: undefined locals caused missing assignments!
+L1_1 = {
+  ":\\programData\\rclone.exe",
+  ":\\perflogs\\",
+  ":\\windows\\help\\",
+  ":\\windows\\debug\\",
+  ":\\windows\\tapi\\",
+  ":\\windows\\temp\\",
+  ":\\wmpub\\",
+  ":\\intel\\",
+  "\\music\\"
+}
+if contains(L0_0, L1_1) then
+  reportSessionInformationInclusive()
+  add_parents()
+  reportTimingData()
+  return mp.INFECTED
 end
-
+return mp.CLEAN

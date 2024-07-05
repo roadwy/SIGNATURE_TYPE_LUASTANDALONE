@@ -1,41 +1,88 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/d6b379bf5bcc_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_4 = nil
-do
-  if (this_sigattrlog[3]).matched and (this_sigattrlog[3]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2, l_0_3 = ((this_sigattrlog[3]).utf8p2):lower(), nil
-  else
+local L0_0, L1_1, L2_2
+L2_2 = this_sigattrlog
+L2_2 = L2_2[3]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.utf8p2
+  if L2_2 ~= nil then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.utf8p2
+    L2_2 = L2_2.lower
+    L2_2 = L2_2(L2_2)
+    L0_0 = L2_2
   end
-  if not (this_sigattrlog[4]).matched or (this_sigattrlog[4]).utf8p2 == nil or not ((this_sigattrlog[4]).utf8p2):lower() then
-    return mp.CLEAN
-  end
-  local l_0_5 = nil
-  local l_0_6 = nil
-  local l_0_7 = contains
-  l_0_7 = l_0_7(l_0_5, {".dll", ".ocx", ".cpl", ".xla", ".xlam", ".xll", ".vsto", ".olb", "--no-sandbox", "zebra_default.dat", "program files", "sogoutsf.ime", ".ax", ".wll", "setupinfobjectinstallaction", "openas_rundll", ".pdf", "shellexec_rundll", "\\windows\\installer\\", ".wcx", ".wsc"})
-  if l_0_7 then
-    l_0_7 = mp
-    l_0_7 = l_0_7.CLEAN
-    return l_0_7
-  end
-  if not contains(l_0_5, l_0_7, false) then
-    return mp.CLEAN
-  end
-  if l_0_5 ~= nil then
-    (bm.add_related_string)("proc_cmdline", l_0_5, bm.RelatedStringBMReport)
-  end
-  l_0_6 = extractDllForRegproc(l_0_5)
-  if l_0_6 then
-    l_0_6 = (mp.ContextualExpandEnvironmentVariables)(l_0_6)
-    -- DECOMPILER ERROR at PC128: Confused about usage of register: R3 in 'UnsetPending'
-
-    if (sysio.IsFileExists)(l_0_6) and ((sysio.GetLastResult)()).Success and (sysio.GetFileLastWriteTime)(l_0_6) ~= 0 and ((MpCommon.GetCurrentTimeT)() < (sysio.GetFileLastWriteTime)(l_0_6) / 10000000 - 11644473600 or (MpCommon.GetCurrentTimeT)() - ((sysio.GetFileLastWriteTime)(l_0_6) / 10000000 - 11644473600) > 3600) then
-      (bm.add_related_file)(l_0_6)
+else
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[4]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[4]
+    L2_2 = L2_2.utf8p2
+    if L2_2 ~= nil then
+      L2_2 = this_sigattrlog
+      L2_2 = L2_2[4]
+      L2_2 = L2_2.utf8p2
+      L2_2 = L2_2.lower
+      L2_2 = L2_2(L2_2)
+      L0_0 = L2_2
     end
   end
-  return mp.INFECTED
 end
-
+if not L0_0 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = contains
+L2_2 = L2_2(L0_0, {
+  ".dll",
+  ".ocx",
+  ".cpl",
+  ".xla",
+  ".xlam",
+  ".xll",
+  ".vsto",
+  ".olb",
+  "--no-sandbox",
+  "zebra_default.dat",
+  "program files",
+  "sogoutsf.ime",
+  ".ax",
+  ".wll",
+  "setupinfobjectinstallaction",
+  "openas_rundll",
+  ".pdf",
+  "shellexec_rundll",
+  "\\windows\\installer\\",
+  ".wcx",
+  ".wsc",
+  ".exe",
+  "printui"
+})
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+L2_2 = {
+  "regsvr32.*%:?%.?%.?\\",
+  "rundll32.*\\.*"
+}
+if not contains(L0_0, L2_2, false) then
+  return mp.CLEAN
+end
+if L0_0 ~= nil then
+  bm.add_related_string("proc_cmdline", L0_0, bm.RelatedStringBMReport)
+end
+L1_1 = extractDllForRegproc(L0_0)
+if L1_1 then
+  L1_1 = mp.ContextualExpandEnvironmentVariables(L1_1)
+  if sysio.IsFileExists(L1_1) and sysio.GetLastResult().Success and sysio.GetFileLastWriteTime(L1_1) ~= 0 and (sysio.GetFileLastWriteTime(L1_1) / 10000000 - 11644473600 > MpCommon.GetCurrentTimeT() or MpCommon.GetCurrentTimeT() - (sysio.GetFileLastWriteTime(L1_1) / 10000000 - 11644473600) > 3600) then
+    bm.add_related_file(L1_1)
+  end
+end
+return mp.INFECTED

@@ -1,27 +1,25 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3d89c327516f 
-
--- params : ...
--- function num : 0
-local l_0_0 = 20
-local l_0_1 = (pe.mmap_va)(pevars.sigaddr + l_0_0, 256)
-local l_0_2 = (string.find)(l_0_1, "t", 1, true)
-if l_0_2 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = 20
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = pevars
+L2_2 = L2_2.sigaddr
+L2_2 = L2_2 + L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.find
+L6_6 = true
+L2_2 = L2_2(L3_3, L4_4, L5_5, L6_6)
+if L2_2 == nil then
+  return L3_3
 end
-l_0_0 = l_0_0 + l_0_2 - 1
-;
-(pe.mmap_patch_va)(pevars.sigaddr + (l_0_0), "\235")
-l_0_1 = (pe.mmap_va)(pevars.sigaddr, l_0_0)
-for l_0_6 = 1, l_0_0 do
-  local l_0_7 = (string.find)(l_0_1, "`\185....ó¤a", l_0_6, true)
-  if not l_0_7 then
+L0_0 = L3_3 - 1
+L3_3(L4_4, L5_5)
+L1_1 = L3_3
+for L6_6 = 1, L0_0 do
+  if not string.find(L1_1, "`\185....\243\164a", L6_6, true) then
     break
   end
-  ;
-  (pe.mmap_patch_va)(pevars.sigaddr + l_0_7 - 1, "\144")
+  pe.mmap_patch_va(pevars.sigaddr + string.find(L1_1, "`\185....\243\164a", L6_6, true) - 1, "\144\144\144\144\144\144\144\144\144")
 end
-do
-  return mp.INFECTED
-end
-
+return L3_3

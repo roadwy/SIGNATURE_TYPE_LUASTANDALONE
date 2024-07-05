@@ -1,35 +1,41 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/1c4b325628ee3 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC6: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched then
-    local l_0_0 = nil
+local L0_0, L1_1
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L0_0 = L1_1[1]
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L0_0 = L1_1[2]
   else
-  end
-  -- DECOMPILER ERROR at PC22: Overwrote pending register: R0 in 'AssignReg'
-
-  if not (this_sigattrlog[2]).matched or (this_sigattrlog[3]).matched then
-    local l_0_1 = this_sigattrlog[2]
-  else
-    do
-      do return mp.CLEAN end
-      local l_0_2 = nil
-      if not (mp.ContextualExpandEnvironmentVariables)("%WINDIR%") then
-        return mp.CLEAN
-      end
-      local l_0_3 = nil
-      if not (sysio.GetFileFsVolumeInformation)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%")) then
-        return mp.CLEAN
-      end
-      if (l_0_2.utf8p1):sub(-8) == (string.format)("%x", ((sysio.GetFileFsVolumeInformation)((mp.ContextualExpandEnvironmentVariables)("%WINDIR%"))).VolumeSerialNumber) then
-        return mp.INFECTED
-      end
-      return mp.CLEAN
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L0_0 = L1_1[3]
+    else
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     end
   end
 end
-
+L1_1 = MpCommon
+L1_1 = L1_1.ExpandEnvironmentVariables
+L1_1 = L1_1("%WINDIR%")
+if not L1_1 then
+  return mp.CLEAN
+end
+if not sysio.GetFileFsVolumeInformation(L1_1) then
+  return mp.CLEAN
+end
+if L0_0.utf8p1:sub(-8) == string.format("%x", sysio.GetFileFsVolumeInformation(L1_1).VolumeSerialNumber) then
+  return mp.INFECTED
+end
+return mp.CLEAN

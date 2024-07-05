@@ -1,10 +1,17 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3a786a51a5a1_Flags_1 
-
--- params : ...
--- function num : 0
-if (pesecs[2]).Name == ".text1" and (pesecs[5]).VirtualSize > 65536 then
-  return mp.SUSPICIOUS
+local L0_0, L1_1
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.Name
+if L0_0 == ".text1" then
+  L0_0 = pesecs
+  L0_0 = L0_0[5]
+  L0_0 = L0_0.VirtualSize
+  if L0_0 > 65536 then
+    L0_0 = mp
+    L0_0 = L0_0.SUSPICIOUS
+    return L0_0
+  end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

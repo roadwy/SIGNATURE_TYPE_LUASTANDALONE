@@ -1,10 +1,4 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/99b35a58db0a_Includes_BMLuaLib,TechniqueTracker 
-
--- params : ...
--- function num : 0
-if ((reportSessionInformation()).Session).ClientProtocolType == 2 then
+if reportSessionInformation().Session.ClientProtocolType == 2 then
   return mp.INFECTED
 end
 return mp.CLEAN
-

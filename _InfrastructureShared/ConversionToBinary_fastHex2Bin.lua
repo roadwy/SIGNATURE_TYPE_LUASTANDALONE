@@ -1,29 +1,15 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/ConversionToBinary_fastHex2Bin 
-
--- params : ...
--- function num : 0
-fastHex2Bin = function(l_1_0, l_1_1)
-  -- function num : 0_0
-  local l_1_2 = {}
-  local l_1_3 = string.char
-  local l_1_4 = string.format
-  for l_1_8 = 0, 255 do
-    local l_1_9, l_1_14 = l_1_4("%02X", l_1_8)
-    l_1_14 = l_1_3
-    local l_1_16 = l_1_8
-    l_1_14 = l_1_14(l_1_16)
-    local l_1_15 = nil
-    l_1_2[l_1_9] = l_1_14
+local L1_0
+function L1_0(A0_1, A1_2)
+  local L2_3, L3_4, L4_5, L5_6, L6_7, L7_8, L8_9
+  L2_3 = {}
+  L3_4 = string
+  L3_4 = L3_4.char
+  L4_5 = string
+  L4_5 = L4_5.format
+  for L8_9 = 0, 255 do
+    L2_3[L4_5("%02X", L8_9)] = L3_4(L8_9)
   end
-  local l_1_10, l_1_11 = (l_1_0:upper()):gsub, l_1_0:upper()
-  local l_1_12 = l_1_1
-  do
-    local l_1_13 = l_1_2
-    do return l_1_10(l_1_11, l_1_12, l_1_13) end
-    -- DECOMPILER ERROR at PC25: Confused about usage of register R6 for local variables in 'ReleaseLocals'
-
-  end
+  L8_9 = L2_3
+  return L5_6(L6_7, L7_8, L8_9)
 end
-
-
+fastHex2Bin = L1_0

@@ -1,37 +1,123 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/90785138256a 
-
--- params : ...
--- function num : 0
-if peattributes.epinfirstsect and peattributes.entrybyte55 and not peattributes.epscn_eqsizes and (pesecs[pehdr.NumberOfSections]).Name == ".rsrc" then
-  if pehdr.NumberOfSections == 8 then
-    if pehdr.SizeOfImage >= 196608 and pehdr.SizeOfImage <= 327680 then
-      return mp.INFECTED
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.epinfirstsect
+if L0_0 then
+  L0_0 = peattributes
+  L0_0 = L0_0.entrybyte55
+  if L0_0 then
+    L0_0 = peattributes
+    L0_0 = L0_0.epscn_eqsizes
+    if not L0_0 then
+      L0_0 = pesecs
+      L1_1 = pehdr
+      L1_1 = L1_1.NumberOfSections
+      L0_0 = L0_0[L1_1]
+      L0_0 = L0_0.Name
+      if L0_0 == ".rsrc" then
+        L0_0 = pehdr
+        L0_0 = L0_0.NumberOfSections
+        if L0_0 == 8 then
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 196608 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 327680 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 1310720 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 1769472 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+        end
+        L0_0 = pehdr
+        L0_0 = L0_0.NumberOfSections
+        if L0_0 == 6 then
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 1048576 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 1310720 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 131072 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 167936 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 217088 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 282624 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 466944 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 557056 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 749568 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 946176 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+        end
+        L0_0 = pehdr
+        L0_0 = L0_0.NumberOfSections
+        if L0_0 == 7 then
+          L0_0 = pehdr
+          L0_0 = L0_0.SizeOfImage
+          if L0_0 >= 217088 then
+            L0_0 = pehdr
+            L0_0 = L0_0.SizeOfImage
+            if L0_0 <= 589824 then
+              L0_0 = mp
+              L0_0 = L0_0.INFECTED
+              return L0_0
+            end
+          end
+        end
+      end
     end
-    if pehdr.SizeOfImage >= 1310720 and pehdr.SizeOfImage <= 1769472 then
-      return mp.INFECTED
-    end
-  end
-  if pehdr.NumberOfSections == 6 then
-    if pehdr.SizeOfImage >= 1048576 and pehdr.SizeOfImage <= 1310720 then
-      return mp.INFECTED
-    end
-    if pehdr.SizeOfImage >= 131072 and pehdr.SizeOfImage <= 167936 then
-      return mp.INFECTED
-    end
-    if pehdr.SizeOfImage >= 217088 and pehdr.SizeOfImage <= 282624 then
-      return mp.INFECTED
-    end
-    if pehdr.SizeOfImage >= 466944 and pehdr.SizeOfImage <= 557056 then
-      return mp.INFECTED
-    end
-    if pehdr.SizeOfImage >= 749568 and pehdr.SizeOfImage <= 946176 then
-      return mp.INFECTED
-    end
-  end
-  if pehdr.NumberOfSections == 7 and pehdr.SizeOfImage >= 217088 and pehdr.SizeOfImage <= 589824 then
-    return mp.INFECTED
   end
 end
-return mp.CLEAN
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

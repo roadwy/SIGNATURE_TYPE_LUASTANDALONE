@@ -1,324 +1,848 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/84db389889ae8 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched then
-  local l_0_0 = nil
-  if (this_sigattrlog[2]).matched then
-    l_0_0 = (this_sigattrlog[2]).utf8p2
+local L0_0, L1_1, L2_2
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = nil
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L0_0 = L1_1.utf8p2
   else
-    if (this_sigattrlog[3]).matched then
-      l_0_0 = (this_sigattrlog[3]).utf8p2
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[3]
+    L1_1 = L1_1.matched
+    if L1_1 then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[3]
+      L0_0 = L1_1.utf8p2
     else
-      if (this_sigattrlog[4]).matched then
-        l_0_0 = (this_sigattrlog[4]).utf8p2
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[4]
+      L1_1 = L1_1.matched
+      if L1_1 then
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[4]
+        L0_0 = L1_1.utf8p2
       else
-        if (this_sigattrlog[5]).matched then
-          l_0_0 = (this_sigattrlog[5]).utf8p2
+        L1_1 = this_sigattrlog
+        L1_1 = L1_1[5]
+        L1_1 = L1_1.matched
+        if L1_1 then
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[5]
+          L0_0 = L1_1.utf8p2
         else
-          if (this_sigattrlog[6]).matched then
-            l_0_0 = (this_sigattrlog[6]).utf8p2
+          L1_1 = this_sigattrlog
+          L1_1 = L1_1[6]
+          L1_1 = L1_1.matched
+          if L1_1 then
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[6]
+            L0_0 = L1_1.utf8p2
           else
-            if (this_sigattrlog[7]).matched then
-              l_0_0 = (this_sigattrlog[7]).utf8p2
+            L1_1 = this_sigattrlog
+            L1_1 = L1_1[7]
+            L1_1 = L1_1.matched
+            if L1_1 then
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[7]
+              L0_0 = L1_1.utf8p2
             else
-              if (this_sigattrlog[8]).matched then
-                l_0_0 = (this_sigattrlog[8]).utf8p2
+              L1_1 = this_sigattrlog
+              L1_1 = L1_1[8]
+              L1_1 = L1_1.matched
+              if L1_1 then
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[8]
+                L0_0 = L1_1.utf8p2
               else
-                if (this_sigattrlog[9]).matched then
-                  l_0_0 = (this_sigattrlog[9]).utf8p2
+                L1_1 = this_sigattrlog
+                L1_1 = L1_1[9]
+                L1_1 = L1_1.matched
+                if L1_1 then
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[9]
+                  L0_0 = L1_1.utf8p2
                 else
-                  if (this_sigattrlog[10]).matched then
-                    l_0_0 = (this_sigattrlog[10]).utf8p2
+                  L1_1 = this_sigattrlog
+                  L1_1 = L1_1[10]
+                  L1_1 = L1_1.matched
+                  if L1_1 then
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[10]
+                    L0_0 = L1_1.utf8p2
                   else
-                    if (this_sigattrlog[11]).matched then
-                      l_0_0 = (this_sigattrlog[11]).utf8p2
+                    L1_1 = this_sigattrlog
+                    L1_1 = L1_1[11]
+                    L1_1 = L1_1.matched
+                    if L1_1 then
+                      L1_1 = this_sigattrlog
+                      L1_1 = L1_1[11]
+                      L0_0 = L1_1.utf8p2
                     else
-                      if (this_sigattrlog[12]).matched then
-                        l_0_0 = (this_sigattrlog[12]).utf8p2
+                      L1_1 = this_sigattrlog
+                      L1_1 = L1_1[12]
+                      L1_1 = L1_1.matched
+                      if L1_1 then
+                        L1_1 = this_sigattrlog
+                        L1_1 = L1_1[12]
+                        L0_0 = L1_1.utf8p2
                       else
-                        if (this_sigattrlog[13]).matched then
-                          l_0_0 = (this_sigattrlog[13]).utf8p2
+                        L1_1 = this_sigattrlog
+                        L1_1 = L1_1[13]
+                        L1_1 = L1_1.matched
+                        if L1_1 then
+                          L1_1 = this_sigattrlog
+                          L1_1 = L1_1[13]
+                          L0_0 = L1_1.utf8p2
                         else
-                          if (this_sigattrlog[14]).matched then
-                            l_0_0 = (this_sigattrlog[14]).utf8p2
+                          L1_1 = this_sigattrlog
+                          L1_1 = L1_1[14]
+                          L1_1 = L1_1.matched
+                          if L1_1 then
+                            L1_1 = this_sigattrlog
+                            L1_1 = L1_1[14]
+                            L0_0 = L1_1.utf8p2
                           else
-                            if (this_sigattrlog[15]).matched then
-                              l_0_0 = (this_sigattrlog[15]).utf8p2
+                            L1_1 = this_sigattrlog
+                            L1_1 = L1_1[15]
+                            L1_1 = L1_1.matched
+                            if L1_1 then
+                              L1_1 = this_sigattrlog
+                              L1_1 = L1_1[15]
+                              L0_0 = L1_1.utf8p2
                             else
-                              if (this_sigattrlog[16]).matched then
-                                l_0_0 = (this_sigattrlog[16]).utf8p2
+                              L1_1 = this_sigattrlog
+                              L1_1 = L1_1[16]
+                              L1_1 = L1_1.matched
+                              if L1_1 then
+                                L1_1 = this_sigattrlog
+                                L1_1 = L1_1[16]
+                                L0_0 = L1_1.utf8p2
                               else
-                                if (this_sigattrlog[17]).matched then
-                                  l_0_0 = (this_sigattrlog[17]).utf8p2
+                                L1_1 = this_sigattrlog
+                                L1_1 = L1_1[17]
+                                L1_1 = L1_1.matched
+                                if L1_1 then
+                                  L1_1 = this_sigattrlog
+                                  L1_1 = L1_1[17]
+                                  L0_0 = L1_1.utf8p2
                                 else
-                                  if (this_sigattrlog[18]).matched then
-                                    l_0_0 = (this_sigattrlog[18]).utf8p2
+                                  L1_1 = this_sigattrlog
+                                  L1_1 = L1_1[18]
+                                  L1_1 = L1_1.matched
+                                  if L1_1 then
+                                    L1_1 = this_sigattrlog
+                                    L1_1 = L1_1[18]
+                                    L0_0 = L1_1.utf8p2
                                   else
-                                    if (this_sigattrlog[19]).matched then
-                                      l_0_0 = (this_sigattrlog[19]).utf8p2
+                                    L1_1 = this_sigattrlog
+                                    L1_1 = L1_1[19]
+                                    L1_1 = L1_1.matched
+                                    if L1_1 then
+                                      L1_1 = this_sigattrlog
+                                      L1_1 = L1_1[19]
+                                      L0_0 = L1_1.utf8p2
                                     else
-                                      if (this_sigattrlog[20]).matched then
-                                        l_0_0 = (this_sigattrlog[20]).utf8p2
+                                      L1_1 = this_sigattrlog
+                                      L1_1 = L1_1[20]
+                                      L1_1 = L1_1.matched
+                                      if L1_1 then
+                                        L1_1 = this_sigattrlog
+                                        L1_1 = L1_1[20]
+                                        L0_0 = L1_1.utf8p2
                                       else
-                                        if (this_sigattrlog[21]).matched then
-                                          l_0_0 = (this_sigattrlog[21]).utf8p2
+                                        L1_1 = this_sigattrlog
+                                        L1_1 = L1_1[21]
+                                        L1_1 = L1_1.matched
+                                        if L1_1 then
+                                          L1_1 = this_sigattrlog
+                                          L1_1 = L1_1[21]
+                                          L0_0 = L1_1.utf8p2
                                         else
-                                          if (this_sigattrlog[22]).matched then
-                                            l_0_0 = (this_sigattrlog[22]).utf8p2
+                                          L1_1 = this_sigattrlog
+                                          L1_1 = L1_1[22]
+                                          L1_1 = L1_1.matched
+                                          if L1_1 then
+                                            L1_1 = this_sigattrlog
+                                            L1_1 = L1_1[22]
+                                            L0_0 = L1_1.utf8p2
                                           else
-                                            if (this_sigattrlog[23]).matched then
-                                              l_0_0 = (this_sigattrlog[23]).utf8p2
+                                            L1_1 = this_sigattrlog
+                                            L1_1 = L1_1[23]
+                                            L1_1 = L1_1.matched
+                                            if L1_1 then
+                                              L1_1 = this_sigattrlog
+                                              L1_1 = L1_1[23]
+                                              L0_0 = L1_1.utf8p2
                                             else
-                                              if (this_sigattrlog[24]).matched then
-                                                l_0_0 = (this_sigattrlog[24]).utf8p2
+                                              L1_1 = this_sigattrlog
+                                              L1_1 = L1_1[24]
+                                              L1_1 = L1_1.matched
+                                              if L1_1 then
+                                                L1_1 = this_sigattrlog
+                                                L1_1 = L1_1[24]
+                                                L0_0 = L1_1.utf8p2
                                               else
-                                                if (this_sigattrlog[25]).matched then
-                                                  l_0_0 = (this_sigattrlog[25]).utf8p2
+                                                L1_1 = this_sigattrlog
+                                                L1_1 = L1_1[25]
+                                                L1_1 = L1_1.matched
+                                                if L1_1 then
+                                                  L1_1 = this_sigattrlog
+                                                  L1_1 = L1_1[25]
+                                                  L0_0 = L1_1.utf8p2
                                                 else
-                                                  if (this_sigattrlog[26]).matched then
-                                                    l_0_0 = (this_sigattrlog[26]).utf8p2
+                                                  L1_1 = this_sigattrlog
+                                                  L1_1 = L1_1[26]
+                                                  L1_1 = L1_1.matched
+                                                  if L1_1 then
+                                                    L1_1 = this_sigattrlog
+                                                    L1_1 = L1_1[26]
+                                                    L0_0 = L1_1.utf8p2
                                                   else
-                                                    if (this_sigattrlog[27]).matched then
-                                                      l_0_0 = (this_sigattrlog[27]).utf8p2
+                                                    L1_1 = this_sigattrlog
+                                                    L1_1 = L1_1[27]
+                                                    L1_1 = L1_1.matched
+                                                    if L1_1 then
+                                                      L1_1 = this_sigattrlog
+                                                      L1_1 = L1_1[27]
+                                                      L0_0 = L1_1.utf8p2
                                                     else
-                                                      if (this_sigattrlog[28]).matched then
-                                                        l_0_0 = (this_sigattrlog[28]).utf8p2
+                                                      L1_1 = this_sigattrlog
+                                                      L1_1 = L1_1[28]
+                                                      L1_1 = L1_1.matched
+                                                      if L1_1 then
+                                                        L1_1 = this_sigattrlog
+                                                        L1_1 = L1_1[28]
+                                                        L0_0 = L1_1.utf8p2
                                                       else
-                                                        if (this_sigattrlog[29]).matched then
-                                                          l_0_0 = (this_sigattrlog[29]).utf8p2
+                                                        L1_1 = this_sigattrlog
+                                                        L1_1 = L1_1[29]
+                                                        L1_1 = L1_1.matched
+                                                        if L1_1 then
+                                                          L1_1 = this_sigattrlog
+                                                          L1_1 = L1_1[29]
+                                                          L0_0 = L1_1.utf8p2
                                                         else
-                                                          if (this_sigattrlog[30]).matched then
-                                                            l_0_0 = (this_sigattrlog[30]).utf8p2
+                                                          L1_1 = this_sigattrlog
+                                                          L1_1 = L1_1[30]
+                                                          L1_1 = L1_1.matched
+                                                          if L1_1 then
+                                                            L1_1 = this_sigattrlog
+                                                            L1_1 = L1_1[30]
+                                                            L0_0 = L1_1.utf8p2
                                                           else
-                                                            if (this_sigattrlog[31]).matched then
-                                                              l_0_0 = (this_sigattrlog[31]).utf8p2
+                                                            L1_1 = this_sigattrlog
+                                                            L1_1 = L1_1[31]
+                                                            L1_1 = L1_1.matched
+                                                            if L1_1 then
+                                                              L1_1 = this_sigattrlog
+                                                              L1_1 = L1_1[31]
+                                                              L0_0 = L1_1.utf8p2
                                                             else
-                                                              if (this_sigattrlog[32]).matched then
-                                                                l_0_0 = (this_sigattrlog[32]).utf8p2
+                                                              L1_1 = this_sigattrlog
+                                                              L1_1 = L1_1[32]
+                                                              L1_1 = L1_1.matched
+                                                              if L1_1 then
+                                                                L1_1 = this_sigattrlog
+                                                                L1_1 = L1_1[32]
+                                                                L0_0 = L1_1.utf8p2
                                                               else
-                                                                if (this_sigattrlog[33]).matched then
-                                                                  l_0_0 = (this_sigattrlog[33]).utf8p2
+                                                                L1_1 = this_sigattrlog
+                                                                L1_1 = L1_1[33]
+                                                                L1_1 = L1_1.matched
+                                                                if L1_1 then
+                                                                  L1_1 = this_sigattrlog
+                                                                  L1_1 = L1_1[33]
+                                                                  L0_0 = L1_1.utf8p2
                                                                 else
-                                                                  if (this_sigattrlog[34]).matched then
-                                                                    l_0_0 = (this_sigattrlog[34]).utf8p2
+                                                                  L1_1 = this_sigattrlog
+                                                                  L1_1 = L1_1[34]
+                                                                  L1_1 = L1_1.matched
+                                                                  if L1_1 then
+                                                                    L1_1 = this_sigattrlog
+                                                                    L1_1 = L1_1[34]
+                                                                    L0_0 = L1_1.utf8p2
                                                                   else
-                                                                    if (this_sigattrlog[35]).matched then
-                                                                      l_0_0 = (this_sigattrlog[35]).utf8p2
+                                                                    L1_1 = this_sigattrlog
+                                                                    L1_1 = L1_1[35]
+                                                                    L1_1 = L1_1.matched
+                                                                    if L1_1 then
+                                                                      L1_1 = this_sigattrlog
+                                                                      L1_1 = L1_1[35]
+                                                                      L0_0 = L1_1.utf8p2
                                                                     else
-                                                                      if (this_sigattrlog[36]).matched then
-                                                                        l_0_0 = (this_sigattrlog[36]).utf8p2
+                                                                      L1_1 = this_sigattrlog
+                                                                      L1_1 = L1_1[36]
+                                                                      L1_1 = L1_1.matched
+                                                                      if L1_1 then
+                                                                        L1_1 = this_sigattrlog
+                                                                        L1_1 = L1_1[36]
+                                                                        L0_0 = L1_1.utf8p2
                                                                       else
-                                                                        if (this_sigattrlog[37]).matched then
-                                                                          l_0_0 = (this_sigattrlog[37]).utf8p2
+                                                                        L1_1 = this_sigattrlog
+                                                                        L1_1 = L1_1[37]
+                                                                        L1_1 = L1_1.matched
+                                                                        if L1_1 then
+                                                                          L1_1 = this_sigattrlog
+                                                                          L1_1 = L1_1[37]
+                                                                          L0_0 = L1_1.utf8p2
                                                                         else
-                                                                          if (this_sigattrlog[38]).matched then
-                                                                            l_0_0 = (this_sigattrlog[38]).utf8p2
+                                                                          L1_1 = this_sigattrlog
+                                                                          L1_1 = L1_1[38]
+                                                                          L1_1 = L1_1.matched
+                                                                          if L1_1 then
+                                                                            L1_1 = this_sigattrlog
+                                                                            L1_1 = L1_1[38]
+                                                                            L0_0 = L1_1.utf8p2
                                                                           else
-                                                                            if (this_sigattrlog[39]).matched then
-                                                                              l_0_0 = (this_sigattrlog[39]).utf8p2
+                                                                            L1_1 = this_sigattrlog
+                                                                            L1_1 = L1_1[39]
+                                                                            L1_1 = L1_1.matched
+                                                                            if L1_1 then
+                                                                              L1_1 = this_sigattrlog
+                                                                              L1_1 = L1_1[39]
+                                                                              L0_0 = L1_1.utf8p2
                                                                             else
-                                                                              if (this_sigattrlog[40]).matched then
-                                                                                l_0_0 = (this_sigattrlog[40]).utf8p2
+                                                                              L1_1 = this_sigattrlog
+                                                                              L1_1 = L1_1[40]
+                                                                              L1_1 = L1_1.matched
+                                                                              if L1_1 then
+                                                                                L1_1 = this_sigattrlog
+                                                                                L1_1 = L1_1[40]
+                                                                                L0_0 = L1_1.utf8p2
                                                                               else
-                                                                                if (this_sigattrlog[41]).matched then
-                                                                                  l_0_0 = (this_sigattrlog[41]).utf8p2
+                                                                                L1_1 = this_sigattrlog
+                                                                                L1_1 = L1_1[41]
+                                                                                L1_1 = L1_1.matched
+                                                                                if L1_1 then
+                                                                                  L1_1 = this_sigattrlog
+                                                                                  L1_1 = L1_1[41]
+                                                                                  L0_0 = L1_1.utf8p2
                                                                                 else
-                                                                                  if (this_sigattrlog[42]).matched then
-                                                                                    l_0_0 = (this_sigattrlog[42]).utf8p2
+                                                                                  L1_1 = this_sigattrlog
+                                                                                  L1_1 = L1_1[42]
+                                                                                  L1_1 = L1_1.matched
+                                                                                  if L1_1 then
+                                                                                    L1_1 = this_sigattrlog
+                                                                                    L1_1 = L1_1[42]
+                                                                                    L0_0 = L1_1.utf8p2
                                                                                   else
-                                                                                    if (this_sigattrlog[43]).matched then
-                                                                                      l_0_0 = (this_sigattrlog[43]).utf8p2
+                                                                                    L1_1 = this_sigattrlog
+                                                                                    L1_1 = L1_1[43]
+                                                                                    L1_1 = L1_1.matched
+                                                                                    if L1_1 then
+                                                                                      L1_1 = this_sigattrlog
+                                                                                      L1_1 = L1_1[43]
+                                                                                      L0_0 = L1_1.utf8p2
                                                                                     else
-                                                                                      if (this_sigattrlog[44]).matched then
-                                                                                        l_0_0 = (this_sigattrlog[44]).utf8p2
+                                                                                      L1_1 = this_sigattrlog
+                                                                                      L1_1 = L1_1[44]
+                                                                                      L1_1 = L1_1.matched
+                                                                                      if L1_1 then
+                                                                                        L1_1 = this_sigattrlog
+                                                                                        L1_1 = L1_1[44]
+                                                                                        L0_0 = L1_1.utf8p2
                                                                                       else
-                                                                                        if (this_sigattrlog[45]).matched then
-                                                                                          l_0_0 = (this_sigattrlog[45]).utf8p2
+                                                                                        L1_1 = this_sigattrlog
+                                                                                        L1_1 = L1_1[45]
+                                                                                        L1_1 = L1_1.matched
+                                                                                        if L1_1 then
+                                                                                          L1_1 = this_sigattrlog
+                                                                                          L1_1 = L1_1[45]
+                                                                                          L0_0 = L1_1.utf8p2
                                                                                         else
-                                                                                          if (this_sigattrlog[46]).matched then
-                                                                                            l_0_0 = (this_sigattrlog[46]).utf8p2
+                                                                                          L1_1 = this_sigattrlog
+                                                                                          L1_1 = L1_1[46]
+                                                                                          L1_1 = L1_1.matched
+                                                                                          if L1_1 then
+                                                                                            L1_1 = this_sigattrlog
+                                                                                            L1_1 = L1_1[46]
+                                                                                            L0_0 = L1_1.utf8p2
                                                                                           else
-                                                                                            if (this_sigattrlog[47]).matched then
-                                                                                              l_0_0 = (this_sigattrlog[47]).utf8p2
+                                                                                            L1_1 = this_sigattrlog
+                                                                                            L1_1 = L1_1[47]
+                                                                                            L1_1 = L1_1.matched
+                                                                                            if L1_1 then
+                                                                                              L1_1 = this_sigattrlog
+                                                                                              L1_1 = L1_1[47]
+                                                                                              L0_0 = L1_1.utf8p2
                                                                                             else
-                                                                                              if (this_sigattrlog[48]).matched then
-                                                                                                l_0_0 = (this_sigattrlog[48]).utf8p2
+                                                                                              L1_1 = this_sigattrlog
+                                                                                              L1_1 = L1_1[48]
+                                                                                              L1_1 = L1_1.matched
+                                                                                              if L1_1 then
+                                                                                                L1_1 = this_sigattrlog
+                                                                                                L1_1 = L1_1[48]
+                                                                                                L0_0 = L1_1.utf8p2
                                                                                               else
-                                                                                                if (this_sigattrlog[49]).matched then
-                                                                                                  l_0_0 = (this_sigattrlog[49]).utf8p2
+                                                                                                L1_1 = this_sigattrlog
+                                                                                                L1_1 = L1_1[49]
+                                                                                                L1_1 = L1_1.matched
+                                                                                                if L1_1 then
+                                                                                                  L1_1 = this_sigattrlog
+                                                                                                  L1_1 = L1_1[49]
+                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                 else
-                                                                                                  if (this_sigattrlog[50]).matched then
-                                                                                                    l_0_0 = (this_sigattrlog[50]).utf8p2
+                                                                                                  L1_1 = this_sigattrlog
+                                                                                                  L1_1 = L1_1[50]
+                                                                                                  L1_1 = L1_1.matched
+                                                                                                  if L1_1 then
+                                                                                                    L1_1 = this_sigattrlog
+                                                                                                    L1_1 = L1_1[50]
+                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                   else
-                                                                                                    if (this_sigattrlog[51]).matched then
-                                                                                                      l_0_0 = (this_sigattrlog[51]).utf8p2
+                                                                                                    L1_1 = this_sigattrlog
+                                                                                                    L1_1 = L1_1[51]
+                                                                                                    L1_1 = L1_1.matched
+                                                                                                    if L1_1 then
+                                                                                                      L1_1 = this_sigattrlog
+                                                                                                      L1_1 = L1_1[51]
+                                                                                                      L0_0 = L1_1.utf8p2
                                                                                                     else
-                                                                                                      if (this_sigattrlog[52]).matched then
-                                                                                                        l_0_0 = (this_sigattrlog[52]).utf8p2
+                                                                                                      L1_1 = this_sigattrlog
+                                                                                                      L1_1 = L1_1[52]
+                                                                                                      L1_1 = L1_1.matched
+                                                                                                      if L1_1 then
+                                                                                                        L1_1 = this_sigattrlog
+                                                                                                        L1_1 = L1_1[52]
+                                                                                                        L0_0 = L1_1.utf8p2
                                                                                                       else
-                                                                                                        if (this_sigattrlog[53]).matched then
-                                                                                                          l_0_0 = (this_sigattrlog[53]).utf8p2
+                                                                                                        L1_1 = this_sigattrlog
+                                                                                                        L1_1 = L1_1[53]
+                                                                                                        L1_1 = L1_1.matched
+                                                                                                        if L1_1 then
+                                                                                                          L1_1 = this_sigattrlog
+                                                                                                          L1_1 = L1_1[53]
+                                                                                                          L0_0 = L1_1.utf8p2
                                                                                                         else
-                                                                                                          if (this_sigattrlog[54]).matched then
-                                                                                                            l_0_0 = (this_sigattrlog[54]).utf8p2
+                                                                                                          L1_1 = this_sigattrlog
+                                                                                                          L1_1 = L1_1[54]
+                                                                                                          L1_1 = L1_1.matched
+                                                                                                          if L1_1 then
+                                                                                                            L1_1 = this_sigattrlog
+                                                                                                            L1_1 = L1_1[54]
+                                                                                                            L0_0 = L1_1.utf8p2
                                                                                                           else
-                                                                                                            if (this_sigattrlog[55]).matched then
-                                                                                                              l_0_0 = (this_sigattrlog[55]).utf8p2
+                                                                                                            L1_1 = this_sigattrlog
+                                                                                                            L1_1 = L1_1[55]
+                                                                                                            L1_1 = L1_1.matched
+                                                                                                            if L1_1 then
+                                                                                                              L1_1 = this_sigattrlog
+                                                                                                              L1_1 = L1_1[55]
+                                                                                                              L0_0 = L1_1.utf8p2
                                                                                                             else
-                                                                                                              if (this_sigattrlog[56]).matched then
-                                                                                                                l_0_0 = (this_sigattrlog[56]).utf8p2
+                                                                                                              L1_1 = this_sigattrlog
+                                                                                                              L1_1 = L1_1[56]
+                                                                                                              L1_1 = L1_1.matched
+                                                                                                              if L1_1 then
+                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                L1_1 = L1_1[56]
+                                                                                                                L0_0 = L1_1.utf8p2
                                                                                                               else
-                                                                                                                if (this_sigattrlog[57]).matched then
-                                                                                                                  l_0_0 = (this_sigattrlog[57]).utf8p2
+                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                L1_1 = L1_1[57]
+                                                                                                                L1_1 = L1_1.matched
+                                                                                                                if L1_1 then
+                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                  L1_1 = L1_1[57]
+                                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                                 else
-                                                                                                                  if (this_sigattrlog[58]).matched then
-                                                                                                                    l_0_0 = (this_sigattrlog[58]).utf8p2
+                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                  L1_1 = L1_1[58]
+                                                                                                                  L1_1 = L1_1.matched
+                                                                                                                  if L1_1 then
+                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                    L1_1 = L1_1[58]
+                                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                                   else
-                                                                                                                    if (this_sigattrlog[59]).matched then
-                                                                                                                      l_0_0 = (this_sigattrlog[59]).utf8p2
+                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                    L1_1 = L1_1[59]
+                                                                                                                    L1_1 = L1_1.matched
+                                                                                                                    if L1_1 then
+                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                      L1_1 = L1_1[59]
+                                                                                                                      L0_0 = L1_1.utf8p2
                                                                                                                     else
-                                                                                                                      if (this_sigattrlog[60]).matched then
-                                                                                                                        l_0_0 = (this_sigattrlog[60]).utf8p2
+                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                      L1_1 = L1_1[60]
+                                                                                                                      L1_1 = L1_1.matched
+                                                                                                                      if L1_1 then
+                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                        L1_1 = L1_1[60]
+                                                                                                                        L0_0 = L1_1.utf8p2
                                                                                                                       else
-                                                                                                                        if (this_sigattrlog[61]).matched then
-                                                                                                                          l_0_0 = (this_sigattrlog[61]).utf8p2
+                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                        L1_1 = L1_1[61]
+                                                                                                                        L1_1 = L1_1.matched
+                                                                                                                        if L1_1 then
+                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                          L1_1 = L1_1[61]
+                                                                                                                          L0_0 = L1_1.utf8p2
                                                                                                                         else
-                                                                                                                          if (this_sigattrlog[62]).matched then
-                                                                                                                            l_0_0 = (this_sigattrlog[62]).utf8p2
+                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                          L1_1 = L1_1[62]
+                                                                                                                          L1_1 = L1_1.matched
+                                                                                                                          if L1_1 then
+                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                            L1_1 = L1_1[62]
+                                                                                                                            L0_0 = L1_1.utf8p2
                                                                                                                           else
-                                                                                                                            if (this_sigattrlog[63]).matched then
-                                                                                                                              l_0_0 = (this_sigattrlog[63]).utf8p2
+                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                            L1_1 = L1_1[63]
+                                                                                                                            L1_1 = L1_1.matched
+                                                                                                                            if L1_1 then
+                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                              L1_1 = L1_1[63]
+                                                                                                                              L0_0 = L1_1.utf8p2
                                                                                                                             else
-                                                                                                                              if (this_sigattrlog[64]).matched then
-                                                                                                                                l_0_0 = (this_sigattrlog[64]).utf8p2
+                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                              L1_1 = L1_1[64]
+                                                                                                                              L1_1 = L1_1.matched
+                                                                                                                              if L1_1 then
+                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                L1_1 = L1_1[64]
+                                                                                                                                L0_0 = L1_1.utf8p2
                                                                                                                               else
-                                                                                                                                if (this_sigattrlog[65]).matched then
-                                                                                                                                  l_0_0 = (this_sigattrlog[65]).utf8p2
+                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                L1_1 = L1_1[65]
+                                                                                                                                L1_1 = L1_1.matched
+                                                                                                                                if L1_1 then
+                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                  L1_1 = L1_1[65]
+                                                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                                                 else
-                                                                                                                                  if (this_sigattrlog[66]).matched then
-                                                                                                                                    l_0_0 = (this_sigattrlog[66]).utf8p2
+                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                  L1_1 = L1_1[66]
+                                                                                                                                  L1_1 = L1_1.matched
+                                                                                                                                  if L1_1 then
+                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                    L1_1 = L1_1[66]
+                                                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                                                   else
-                                                                                                                                    if (this_sigattrlog[67]).matched then
-                                                                                                                                      l_0_0 = (this_sigattrlog[67]).utf8p2
+                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                    L1_1 = L1_1[67]
+                                                                                                                                    L1_1 = L1_1.matched
+                                                                                                                                    if L1_1 then
+                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                      L1_1 = L1_1[67]
+                                                                                                                                      L0_0 = L1_1.utf8p2
                                                                                                                                     else
-                                                                                                                                      if (this_sigattrlog[68]).matched then
-                                                                                                                                        l_0_0 = (this_sigattrlog[68]).utf8p2
+                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                      L1_1 = L1_1[68]
+                                                                                                                                      L1_1 = L1_1.matched
+                                                                                                                                      if L1_1 then
+                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                        L1_1 = L1_1[68]
+                                                                                                                                        L0_0 = L1_1.utf8p2
                                                                                                                                       else
-                                                                                                                                        if (this_sigattrlog[69]).matched then
-                                                                                                                                          l_0_0 = (this_sigattrlog[69]).utf8p2
+                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                        L1_1 = L1_1[69]
+                                                                                                                                        L1_1 = L1_1.matched
+                                                                                                                                        if L1_1 then
+                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                          L1_1 = L1_1[69]
+                                                                                                                                          L0_0 = L1_1.utf8p2
                                                                                                                                         else
-                                                                                                                                          if (this_sigattrlog[70]).matched then
-                                                                                                                                            l_0_0 = (this_sigattrlog[70]).utf8p2
+                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                          L1_1 = L1_1[70]
+                                                                                                                                          L1_1 = L1_1.matched
+                                                                                                                                          if L1_1 then
+                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                            L1_1 = L1_1[70]
+                                                                                                                                            L0_0 = L1_1.utf8p2
                                                                                                                                           else
-                                                                                                                                            if (this_sigattrlog[71]).matched then
-                                                                                                                                              l_0_0 = (this_sigattrlog[71]).utf8p2
+                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                            L1_1 = L1_1[71]
+                                                                                                                                            L1_1 = L1_1.matched
+                                                                                                                                            if L1_1 then
+                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                              L1_1 = L1_1[71]
+                                                                                                                                              L0_0 = L1_1.utf8p2
                                                                                                                                             else
-                                                                                                                                              if (this_sigattrlog[72]).matched then
-                                                                                                                                                l_0_0 = (this_sigattrlog[72]).utf8p2
+                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                              L1_1 = L1_1[72]
+                                                                                                                                              L1_1 = L1_1.matched
+                                                                                                                                              if L1_1 then
+                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                L1_1 = L1_1[72]
+                                                                                                                                                L0_0 = L1_1.utf8p2
                                                                                                                                               else
-                                                                                                                                                if (this_sigattrlog[73]).matched then
-                                                                                                                                                  l_0_0 = (this_sigattrlog[73]).utf8p2
+                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                L1_1 = L1_1[73]
+                                                                                                                                                L1_1 = L1_1.matched
+                                                                                                                                                if L1_1 then
+                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                  L1_1 = L1_1[73]
+                                                                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                                                                 else
-                                                                                                                                                  if (this_sigattrlog[74]).matched then
-                                                                                                                                                    l_0_0 = (this_sigattrlog[74]).utf8p2
+                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                  L1_1 = L1_1[74]
+                                                                                                                                                  L1_1 = L1_1.matched
+                                                                                                                                                  if L1_1 then
+                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                    L1_1 = L1_1[74]
+                                                                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                                                                   else
-                                                                                                                                                    if (this_sigattrlog[75]).matched then
-                                                                                                                                                      l_0_0 = (this_sigattrlog[75]).utf8p2
+                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                    L1_1 = L1_1[75]
+                                                                                                                                                    L1_1 = L1_1.matched
+                                                                                                                                                    if L1_1 then
+                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                      L1_1 = L1_1[75]
+                                                                                                                                                      L0_0 = L1_1.utf8p2
                                                                                                                                                     else
-                                                                                                                                                      if (this_sigattrlog[76]).matched then
-                                                                                                                                                        l_0_0 = (this_sigattrlog[76]).utf8p2
+                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                      L1_1 = L1_1[76]
+                                                                                                                                                      L1_1 = L1_1.matched
+                                                                                                                                                      if L1_1 then
+                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                        L1_1 = L1_1[76]
+                                                                                                                                                        L0_0 = L1_1.utf8p2
                                                                                                                                                       else
-                                                                                                                                                        if (this_sigattrlog[77]).matched then
-                                                                                                                                                          l_0_0 = (this_sigattrlog[77]).utf8p2
+                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                        L1_1 = L1_1[77]
+                                                                                                                                                        L1_1 = L1_1.matched
+                                                                                                                                                        if L1_1 then
+                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                          L1_1 = L1_1[77]
+                                                                                                                                                          L0_0 = L1_1.utf8p2
                                                                                                                                                         else
-                                                                                                                                                          if (this_sigattrlog[78]).matched then
-                                                                                                                                                            l_0_0 = (this_sigattrlog[78]).utf8p2
+                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                          L1_1 = L1_1[78]
+                                                                                                                                                          L1_1 = L1_1.matched
+                                                                                                                                                          if L1_1 then
+                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                            L1_1 = L1_1[78]
+                                                                                                                                                            L0_0 = L1_1.utf8p2
                                                                                                                                                           else
-                                                                                                                                                            if (this_sigattrlog[79]).matched then
-                                                                                                                                                              l_0_0 = (this_sigattrlog[79]).utf8p2
+                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                            L1_1 = L1_1[79]
+                                                                                                                                                            L1_1 = L1_1.matched
+                                                                                                                                                            if L1_1 then
+                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                              L1_1 = L1_1[79]
+                                                                                                                                                              L0_0 = L1_1.utf8p2
                                                                                                                                                             else
-                                                                                                                                                              if (this_sigattrlog[80]).matched then
-                                                                                                                                                                l_0_0 = (this_sigattrlog[80]).utf8p2
+                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                              L1_1 = L1_1[80]
+                                                                                                                                                              L1_1 = L1_1.matched
+                                                                                                                                                              if L1_1 then
+                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                L1_1 = L1_1[80]
+                                                                                                                                                                L0_0 = L1_1.utf8p2
                                                                                                                                                               else
-                                                                                                                                                                if (this_sigattrlog[81]).matched then
-                                                                                                                                                                  l_0_0 = (this_sigattrlog[81]).utf8p2
+                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                L1_1 = L1_1[81]
+                                                                                                                                                                L1_1 = L1_1.matched
+                                                                                                                                                                if L1_1 then
+                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                  L1_1 = L1_1[81]
+                                                                                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                                                                                 else
-                                                                                                                                                                  if (this_sigattrlog[82]).matched then
-                                                                                                                                                                    l_0_0 = (this_sigattrlog[82]).utf8p2
+                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                  L1_1 = L1_1[82]
+                                                                                                                                                                  L1_1 = L1_1.matched
+                                                                                                                                                                  if L1_1 then
+                                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                                    L1_1 = L1_1[82]
+                                                                                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                                                                                   else
-                                                                                                                                                                    if (this_sigattrlog[83]).matched then
-                                                                                                                                                                      l_0_0 = (this_sigattrlog[83]).utf8p2
+                                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                                    L1_1 = L1_1[83]
+                                                                                                                                                                    L1_1 = L1_1.matched
+                                                                                                                                                                    if L1_1 then
+                                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                                      L1_1 = L1_1[83]
+                                                                                                                                                                      L0_0 = L1_1.utf8p2
                                                                                                                                                                     else
-                                                                                                                                                                      if (this_sigattrlog[84]).matched then
-                                                                                                                                                                        l_0_0 = (this_sigattrlog[84]).utf8p2
+                                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                                      L1_1 = L1_1[84]
+                                                                                                                                                                      L1_1 = L1_1.matched
+                                                                                                                                                                      if L1_1 then
+                                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                                        L1_1 = L1_1[84]
+                                                                                                                                                                        L0_0 = L1_1.utf8p2
                                                                                                                                                                       else
-                                                                                                                                                                        if (this_sigattrlog[85]).matched then
-                                                                                                                                                                          l_0_0 = (this_sigattrlog[85]).utf8p2
+                                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                                        L1_1 = L1_1[85]
+                                                                                                                                                                        L1_1 = L1_1.matched
+                                                                                                                                                                        if L1_1 then
+                                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                                          L1_1 = L1_1[85]
+                                                                                                                                                                          L0_0 = L1_1.utf8p2
                                                                                                                                                                         else
-                                                                                                                                                                          if (this_sigattrlog[86]).matched then
-                                                                                                                                                                            l_0_0 = (this_sigattrlog[86]).utf8p2
+                                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                                          L1_1 = L1_1[86]
+                                                                                                                                                                          L1_1 = L1_1.matched
+                                                                                                                                                                          if L1_1 then
+                                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                                            L1_1 = L1_1[86]
+                                                                                                                                                                            L0_0 = L1_1.utf8p2
                                                                                                                                                                           else
-                                                                                                                                                                            if (this_sigattrlog[87]).matched then
-                                                                                                                                                                              l_0_0 = (this_sigattrlog[87]).utf8p2
+                                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                                            L1_1 = L1_1[87]
+                                                                                                                                                                            L1_1 = L1_1.matched
+                                                                                                                                                                            if L1_1 then
+                                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                                              L1_1 = L1_1[87]
+                                                                                                                                                                              L0_0 = L1_1.utf8p2
                                                                                                                                                                             else
-                                                                                                                                                                              if (this_sigattrlog[88]).matched then
-                                                                                                                                                                                l_0_0 = (this_sigattrlog[88]).utf8p2
+                                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                                              L1_1 = L1_1[88]
+                                                                                                                                                                              L1_1 = L1_1.matched
+                                                                                                                                                                              if L1_1 then
+                                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                                L1_1 = L1_1[88]
+                                                                                                                                                                                L0_0 = L1_1.utf8p2
                                                                                                                                                                               else
-                                                                                                                                                                                if (this_sigattrlog[89]).matched then
-                                                                                                                                                                                  l_0_0 = (this_sigattrlog[89]).utf8p2
+                                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                                L1_1 = L1_1[89]
+                                                                                                                                                                                L1_1 = L1_1.matched
+                                                                                                                                                                                if L1_1 then
+                                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                                  L1_1 = L1_1[89]
+                                                                                                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                                                                                                 else
-                                                                                                                                                                                  if (this_sigattrlog[90]).matched then
-                                                                                                                                                                                    l_0_0 = (this_sigattrlog[90]).utf8p2
+                                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                                  L1_1 = L1_1[90]
+                                                                                                                                                                                  L1_1 = L1_1.matched
+                                                                                                                                                                                  if L1_1 then
+                                                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                                                    L1_1 = L1_1[90]
+                                                                                                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                                                                                                   else
-                                                                                                                                                                                    if (this_sigattrlog[91]).matched then
-                                                                                                                                                                                      l_0_0 = (this_sigattrlog[91]).utf8p2
+                                                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                                                    L1_1 = L1_1[91]
+                                                                                                                                                                                    L1_1 = L1_1.matched
+                                                                                                                                                                                    if L1_1 then
+                                                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                                                      L1_1 = L1_1[91]
+                                                                                                                                                                                      L0_0 = L1_1.utf8p2
                                                                                                                                                                                     else
-                                                                                                                                                                                      if (this_sigattrlog[92]).matched then
-                                                                                                                                                                                        l_0_0 = (this_sigattrlog[92]).utf8p2
+                                                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                                                      L1_1 = L1_1[92]
+                                                                                                                                                                                      L1_1 = L1_1.matched
+                                                                                                                                                                                      if L1_1 then
+                                                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                                                        L1_1 = L1_1[92]
+                                                                                                                                                                                        L0_0 = L1_1.utf8p2
                                                                                                                                                                                       else
-                                                                                                                                                                                        if (this_sigattrlog[93]).matched then
-                                                                                                                                                                                          l_0_0 = (this_sigattrlog[93]).utf8p2
+                                                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                                                        L1_1 = L1_1[93]
+                                                                                                                                                                                        L1_1 = L1_1.matched
+                                                                                                                                                                                        if L1_1 then
+                                                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                                                          L1_1 = L1_1[93]
+                                                                                                                                                                                          L0_0 = L1_1.utf8p2
                                                                                                                                                                                         else
-                                                                                                                                                                                          if (this_sigattrlog[94]).matched then
-                                                                                                                                                                                            l_0_0 = (this_sigattrlog[94]).utf8p2
+                                                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                                                          L1_1 = L1_1[94]
+                                                                                                                                                                                          L1_1 = L1_1.matched
+                                                                                                                                                                                          if L1_1 then
+                                                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                                                            L1_1 = L1_1[94]
+                                                                                                                                                                                            L0_0 = L1_1.utf8p2
                                                                                                                                                                                           else
-                                                                                                                                                                                            if (this_sigattrlog[95]).matched then
-                                                                                                                                                                                              l_0_0 = (this_sigattrlog[95]).utf8p2
+                                                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                                                            L1_1 = L1_1[95]
+                                                                                                                                                                                            L1_1 = L1_1.matched
+                                                                                                                                                                                            if L1_1 then
+                                                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                                                              L1_1 = L1_1[95]
+                                                                                                                                                                                              L0_0 = L1_1.utf8p2
                                                                                                                                                                                             else
-                                                                                                                                                                                              if (this_sigattrlog[96]).matched then
-                                                                                                                                                                                                l_0_0 = (this_sigattrlog[96]).utf8p2
+                                                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                                                              L1_1 = L1_1[96]
+                                                                                                                                                                                              L1_1 = L1_1.matched
+                                                                                                                                                                                              if L1_1 then
+                                                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                                                L1_1 = L1_1[96]
+                                                                                                                                                                                                L0_0 = L1_1.utf8p2
                                                                                                                                                                                               else
-                                                                                                                                                                                                if (this_sigattrlog[97]).matched then
-                                                                                                                                                                                                  l_0_0 = (this_sigattrlog[97]).utf8p2
+                                                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                                                L1_1 = L1_1[97]
+                                                                                                                                                                                                L1_1 = L1_1.matched
+                                                                                                                                                                                                if L1_1 then
+                                                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                                                  L1_1 = L1_1[97]
+                                                                                                                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                                                                                                                 else
-                                                                                                                                                                                                  if (this_sigattrlog[98]).matched then
-                                                                                                                                                                                                    l_0_0 = (this_sigattrlog[98]).utf8p2
+                                                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                                                  L1_1 = L1_1[98]
+                                                                                                                                                                                                  L1_1 = L1_1.matched
+                                                                                                                                                                                                  if L1_1 then
+                                                                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                                                                    L1_1 = L1_1[98]
+                                                                                                                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                                                                                                                   else
-                                                                                                                                                                                                    if (this_sigattrlog[99]).matched then
-                                                                                                                                                                                                      l_0_0 = (this_sigattrlog[99]).utf8p2
+                                                                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                                                                    L1_1 = L1_1[99]
+                                                                                                                                                                                                    L1_1 = L1_1.matched
+                                                                                                                                                                                                    if L1_1 then
+                                                                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                                                                      L1_1 = L1_1[99]
+                                                                                                                                                                                                      L0_0 = L1_1.utf8p2
                                                                                                                                                                                                     else
-                                                                                                                                                                                                      if (this_sigattrlog[100]).matched then
-                                                                                                                                                                                                        l_0_0 = (this_sigattrlog[100]).utf8p2
+                                                                                                                                                                                                      L1_1 = this_sigattrlog
+                                                                                                                                                                                                      L1_1 = L1_1[100]
+                                                                                                                                                                                                      L1_1 = L1_1.matched
+                                                                                                                                                                                                      if L1_1 then
+                                                                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                                                                        L1_1 = L1_1[100]
+                                                                                                                                                                                                        L0_0 = L1_1.utf8p2
                                                                                                                                                                                                       else
-                                                                                                                                                                                                        if (this_sigattrlog[101]).matched then
-                                                                                                                                                                                                          l_0_0 = (this_sigattrlog[101]).utf8p2
+                                                                                                                                                                                                        L1_1 = this_sigattrlog
+                                                                                                                                                                                                        L1_1 = L1_1[101]
+                                                                                                                                                                                                        L1_1 = L1_1.matched
+                                                                                                                                                                                                        if L1_1 then
+                                                                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                                                                          L1_1 = L1_1[101]
+                                                                                                                                                                                                          L0_0 = L1_1.utf8p2
                                                                                                                                                                                                         else
-                                                                                                                                                                                                          if (this_sigattrlog[102]).matched then
-                                                                                                                                                                                                            l_0_0 = (this_sigattrlog[102]).utf8p2
+                                                                                                                                                                                                          L1_1 = this_sigattrlog
+                                                                                                                                                                                                          L1_1 = L1_1[102]
+                                                                                                                                                                                                          L1_1 = L1_1.matched
+                                                                                                                                                                                                          if L1_1 then
+                                                                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                                                                            L1_1 = L1_1[102]
+                                                                                                                                                                                                            L0_0 = L1_1.utf8p2
                                                                                                                                                                                                           else
-                                                                                                                                                                                                            if (this_sigattrlog[103]).matched then
-                                                                                                                                                                                                              l_0_0 = (this_sigattrlog[103]).utf8p2
+                                                                                                                                                                                                            L1_1 = this_sigattrlog
+                                                                                                                                                                                                            L1_1 = L1_1[103]
+                                                                                                                                                                                                            L1_1 = L1_1.matched
+                                                                                                                                                                                                            if L1_1 then
+                                                                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                                                                              L1_1 = L1_1[103]
+                                                                                                                                                                                                              L0_0 = L1_1.utf8p2
                                                                                                                                                                                                             else
-                                                                                                                                                                                                              if (this_sigattrlog[104]).matched then
-                                                                                                                                                                                                                l_0_0 = (this_sigattrlog[104]).utf8p2
+                                                                                                                                                                                                              L1_1 = this_sigattrlog
+                                                                                                                                                                                                              L1_1 = L1_1[104]
+                                                                                                                                                                                                              L1_1 = L1_1.matched
+                                                                                                                                                                                                              if L1_1 then
+                                                                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                                                                L1_1 = L1_1[104]
+                                                                                                                                                                                                                L0_0 = L1_1.utf8p2
                                                                                                                                                                                                               else
-                                                                                                                                                                                                                if (this_sigattrlog[105]).matched then
-                                                                                                                                                                                                                  l_0_0 = (this_sigattrlog[105]).utf8p2
+                                                                                                                                                                                                                L1_1 = this_sigattrlog
+                                                                                                                                                                                                                L1_1 = L1_1[105]
+                                                                                                                                                                                                                L1_1 = L1_1.matched
+                                                                                                                                                                                                                if L1_1 then
+                                                                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                                                                  L1_1 = L1_1[105]
+                                                                                                                                                                                                                  L0_0 = L1_1.utf8p2
                                                                                                                                                                                                                 else
-                                                                                                                                                                                                                  if (this_sigattrlog[106]).matched then
-                                                                                                                                                                                                                    l_0_0 = (this_sigattrlog[106]).utf8p2
+                                                                                                                                                                                                                  L1_1 = this_sigattrlog
+                                                                                                                                                                                                                  L1_1 = L1_1[106]
+                                                                                                                                                                                                                  L1_1 = L1_1.matched
+                                                                                                                                                                                                                  if L1_1 then
+                                                                                                                                                                                                                    L1_1 = this_sigattrlog
+                                                                                                                                                                                                                    L1_1 = L1_1[106]
+                                                                                                                                                                                                                    L0_0 = L1_1.utf8p2
                                                                                                                                                                                                                   end
                                                                                                                                                                                                                 end
                                                                                                                                                                                                               end
@@ -424,18 +948,25 @@ if (this_sigattrlog[1]).matched then
       end
     end
   end
-  if not l_0_0 then
-    return mp.CLEAN
+  if not L0_0 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  local l_0_1 = (this_sigattrlog[1]).utf8p2
-  if not l_0_1 then
-    return mp.CLEAN
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if not L1_1 then
+    L2_2 = mp
+    L2_2 = L2_2.CLEAN
+    return L2_2
   end
-  if l_0_1 == l_0_0 then
-    return mp.INFECTED
+  if L1_1 == L0_0 then
+    L2_2 = mp
+    L2_2 = L2_2.INFECTED
+    return L2_2
   end
 end
-do
-  return mp.CLEAN
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

@@ -1,45 +1,58 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_DroppedByPossibleRemotelyCreatedProc_Includes_TechniqueTrac 
-
--- params : ...
--- function num : 0
-local l_0_0 = GetTacticsTableForPid("RTP")
-if l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = GetTacticsTableForPid
+L1_1 = "RTP"
+L0_0 = L0_0(L1_1)
+if L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = false
-if l_0_0.wmi_childproc then
-  (mp.set_mpattribute)("Lua:DroppedByWmiChildProc")
-  l_0_1 = true
+L1_1 = false
+L2_2 = L0_0.wmi_childproc
+if L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.set_mpattribute
+  L2_2("Lua:DroppedByWmiChildProc")
+  L1_1 = true
 else
-  if l_0_0.wsmprovhost_childproc then
-    (mp.set_mpattribute)("Lua:DroppedByWSMChildProc")
-    l_0_1 = true
+  L2_2 = L0_0.wsmprovhost_childproc
+  if L2_2 then
+    L2_2 = mp
+    L2_2 = L2_2.set_mpattribute
+    L2_2("Lua:DroppedByWSMChildProc")
+    L1_1 = true
   else
-    if l_0_0.winrshost_childproc then
-      (mp.set_mpattribute)("Lua:DroppedByWinrsChildProc")
-      l_0_1 = true
+    L2_2 = L0_0.winrshost_childproc
+    if L2_2 then
+      L2_2 = mp
+      L2_2 = L2_2.set_mpattribute
+      L2_2("Lua:DroppedByWinrsChildProc")
+      L1_1 = true
     else
-      if l_0_0.ExecRemoteDroppedExe then
-        (mp.set_mpattribute)("Lua:DroppedByRemoteDropExeChildProc")
-        l_0_1 = true
+      L2_2 = L0_0.ExecRemoteDroppedExe
+      if L2_2 then
+        L2_2 = mp
+        L2_2 = L2_2.set_mpattribute
+        L2_2("Lua:DroppedByRemoteDropExeChildProc")
+        L1_1 = true
       end
     end
   end
 end
-do
-  if l_0_1 then
-    local l_0_2 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-    if l_0_2 == nil then
-      return mp.CLEAN
-    end
-    if l_0_2:sub(1, 8) == "\\device\\" then
-      l_0_2 = (MpCommon.PathToWin32Path)(l_0_2)
-    end
-    l_0_2 = (string.lower)(l_0_2)
-    AppendToRollingQueue("DroppedByPossibleRemotelyCreatedProc", l_0_2, nil, 5000)
-    return mp.INFECTED
+if L1_1 then
+  L2_2 = mp
+  L2_2 = L2_2.getfilename
+  L2_2 = L2_2(mp.FILEPATH_QUERY_LOWERCASE)
+  if L2_2 == nil then
+    return mp.CLEAN
   end
-  return mp.CLEAN
+  if L2_2:sub(1, 8) == "\\device\\" then
+    L2_2 = MpCommon.PathToWin32Path(L2_2)
+  end
+  L2_2 = string.lower(L2_2)
+  AppendToRollingQueue("DroppedByPossibleRemotelyCreatedProc", L2_2, nil, 5000)
+  return mp.INFECTED
 end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

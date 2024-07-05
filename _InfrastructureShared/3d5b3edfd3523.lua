@@ -1,23 +1,29 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/3d5b3edfd3523 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((bm.get_imagepath)())
-if l_0_0 ~= nil then
-  l_0_0 = (mp.ContextualExpandEnvironmentVariables)(l_0_0)
-  l_0_0 = (string.lower)(l_0_0)
-  local l_0_1 = l_0_0:match("\\([^\\]+)$")
-  local l_0_2 = (string.sub)(l_0_0, 1, (string.len)(l_0_0) - (string.len)(l_0_1) - 1)
-  if l_0_2:find(":\\windows\\system32", 1, true) or l_0_2:find(":\\windows\\syswow64", 1, true) then
+local L0_0, L1_1
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+L0_0 = L0_0(L1_1, L1_1())
+if L0_0 ~= nil then
+  L1_1 = mp
+  L1_1 = L1_1.ContextualExpandEnvironmentVariables
+  L1_1 = L1_1(L0_0)
+  L0_0 = L1_1
+  L1_1 = string
+  L1_1 = L1_1.lower
+  L1_1 = L1_1(L0_0)
+  L0_0 = L1_1
+  L1_1 = L0_0.match
+  L1_1 = L1_1(L0_0, "\\([^\\]+)$")
+  if string.sub(L0_0, 1, string.len(L0_0) - string.len(L1_1) - 1):find(":\\windows\\system32", 1, true) or string.sub(L0_0, 1, string.len(L0_0) - string.len(L1_1) - 1):find(":\\windows\\syswow64", 1, true) then
     return mp.CLEAN
   end
-  if l_0_2:find(":\\windows\\servicing", 1, true) or l_0_2:find(":\\windows\\winsxs", 1, true) then
+  if string.sub(L0_0, 1, string.len(L0_0) - string.len(L1_1) - 1):find(":\\windows\\servicing", 1, true) or string.sub(L0_0, 1, string.len(L0_0) - string.len(L1_1) - 1):find(":\\windows\\winsxs", 1, true) then
     return mp.CLEAN
   end
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

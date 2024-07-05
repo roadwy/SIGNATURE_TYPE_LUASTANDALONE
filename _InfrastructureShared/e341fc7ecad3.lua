@@ -1,34 +1,27 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/e341fc7ecad3 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC2: Confused about usage of register: R0 in 'UnsetPending'
-
-string.tohex = function(l_1_0)
-  -- function num : 0_0
-  return l_1_0:gsub(".", function(l_2_0)
-    -- function num : 0_0_0
-    local l_2_1 = string.format
-    local l_2_2 = "%02X"
-    do
-      local l_2_3, l_2_4 = (string.byte)(l_2_0), .end
-      do return l_2_1(l_2_2, l_2_3, l_2_4) end
-      -- DECOMPILER ERROR at PC9: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-    end
-  end
-)
+local L0_0, L1_1
+L0_0 = string
+function L1_1(A0_2)
+  return (A0_2:gsub(".", function(A0_3)
+    local L2_4
+    L2_4 = string
+    L2_4 = L2_4.format
+    return L2_4("%02X", string.byte(A0_3))
+  end))
 end
-
-local l_0_0 = (nri.GetRawResponseBlob)()
-do
-  if l_0_0 ~= nil and (string.len)(l_0_0) < 4096 then
-    local l_0_1 = {}
-    l_0_1.NRI_ResponseBlob = l_0_0:tohex()
-    ;
-    (nri.AddTelemetry)((mp.bitor)((mp.bitor)(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), l_0_1)
+L0_0.tohex = L1_1
+L0_0 = nri
+L0_0 = L0_0.GetRawResponseBlob
+L0_0 = L0_0()
+if L0_0 ~= nil then
+  L1_1 = string
+  L1_1 = L1_1.len
+  L1_1 = L1_1(L0_0)
+  if L1_1 < 4096 then
+    L1_1 = {}
+    L1_1.NRI_ResponseBlob = L0_0:tohex()
+    nri.AddTelemetry(mp.bitor(mp.bitor(nri.Telemetry_HOSTNAME, nri.Telemetry_PATH), nri.Telemetry_QUERY), L1_1)
   end
-  return mp.INFECTED
 end
-
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

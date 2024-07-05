@@ -1,43 +1,73 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/35b36d0d7f14 
-
--- params : ...
--- function num : 0
-local l_0_0 = false
-local l_0_1 = (bm.get_imagepath)()
-if l_0_1 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = false
+L1_1 = bm
+L1_1 = L1_1.get_imagepath
+L1_1 = L1_1()
+if L1_1 == nil then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 end
-l_0_1 = (string.lower)(l_0_1)
-if (string.sub)(l_0_1, -12) == "explorer.exe" then
-  return mp.CLEAN
+L2_2 = string
+L2_2 = L2_2.lower
+L2_2 = L2_2(L1_1)
+L1_1 = L2_2
+L2_2 = string
+L2_2 = L2_2.sub
+L2_2 = L2_2(L1_1, -12)
+if L2_2 == "explorer.exe" then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
 else
-  if (string.sub)(l_0_1, -10) ~= "cpufix.exe" and (string.sub)(l_0_1, -11) ~= "antiusb.exe" and (string.sub)(l_0_1, -12) ~= "streamer.exe" and (string.sub)(l_0_1, -13) ~= "radnewage.exe" and (string.sub)(l_0_1, -14) ~= "cpuchecker.exe" and (string.sub)(l_0_1, -19) ~= "winddowsupdater.exe" then
-    l_0_0 = true
+  L2_2 = string
+  L2_2 = L2_2.sub
+  L2_2 = L2_2(L1_1, -10)
+  if L2_2 ~= "cpufix.exe" then
+    L2_2 = string
+    L2_2 = L2_2.sub
+    L2_2 = L2_2(L1_1, -11)
+    if L2_2 ~= "antiusb.exe" then
+      L2_2 = string
+      L2_2 = L2_2.sub
+      L2_2 = L2_2(L1_1, -12)
+      if L2_2 ~= "streamer.exe" then
+        L2_2 = string
+        L2_2 = L2_2.sub
+        L2_2 = L2_2(L1_1, -13)
+        if L2_2 ~= "radnewage.exe" then
+          L2_2 = string
+          L2_2 = L2_2.sub
+          L2_2 = L2_2(L1_1, -14)
+          if L2_2 ~= "cpuchecker.exe" then
+            L2_2 = string
+            L2_2 = L2_2.sub
+            L2_2 = L2_2(L1_1, -19)
+            if L2_2 ~= "winddowsupdater.exe" then
+              L0_0 = true
+            end
+          end
+        end
+      end
+    end
   end
 end
-local l_0_2 = nil
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p1 ~= nil then
-  l_0_2 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[1]).utf8p1))
+L2_2 = nil
+if this_sigattrlog[1].matched and this_sigattrlog[1].utf8p1 ~= nil then
+  L2_2 = string.lower(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[1].utf8p1))
+elseif this_sigattrlog[2].matched and this_sigattrlog[2].utf8p1 ~= nil then
+  L2_2 = string.lower(mp.ContextualExpandEnvironmentVariables(this_sigattrlog[2].utf8p1))
 else
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p1 ~= nil then
-    l_0_2 = (string.lower)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[2]).utf8p1))
-  else
-    return mp.CLEAN
-  end
+  return mp.CLEAN
 end
-local l_0_3 = {}
-local l_0_4 = 0
-for l_0_8 in (string.gmatch)(l_0_2, "[^\\]+") do
-  l_0_4 = l_0_4 + 1
-  l_0_3[l_0_4] = l_0_8
+for _FORV_8_ in string.gmatch(L2_2, "[^\\]+") do
+  ({})[0 + 1] = _FORV_8_
 end
-if #l_0_3 >= 2 and (string.len)(l_0_3[#l_0_3]) == (string.len)(l_0_3[#l_0_3 - 1]) + 9 and (string.sub)(l_0_3[#l_0_3], 1, (string.len)(l_0_3[#l_0_3 - 1])) == l_0_3[#l_0_3 - 1] then
-  if l_0_0 == true then
-    (mp.ReportLowfi)(l_0_1, 4187849358)
+if #{} >= 2 and string.len(({})[#{}]) == string.len(({})[#{} - 1]) + 9 and string.sub(({})[#{}], 1, string.len(({})[#{} - 1])) == ({})[#{} - 1] then
+  if L0_0 == true then
+    mp.ReportLowfi(L1_1, 4187849358)
   else
     return mp.INFECTED
   end
 end
 return mp.CLEAN
-

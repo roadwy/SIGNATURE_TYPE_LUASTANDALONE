@@ -1,17 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_PersistContext_RemoteAccessTool_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilename)(mp.FILEPATH_QUERY_LOWERCASE)
-if l_0_0 == nil or #l_0_0 <= 3 then
+local L0_0
+L0_0 = mp
+L0_0 = L0_0.getfilename
+L0_0 = L0_0(mp.FILEPATH_QUERY_LOWERCASE)
+if L0_0 == nil or #L0_0 <= 3 then
   return mp.CLEAN
 end
-if not (MpCommon.QueryPersistContext)(l_0_0, "RemoteAccessTool") then
-  (MpCommon.AppendPersistContext)(l_0_0, "RemoteAccessTool", 0)
+if not MpCommon.QueryPersistContext(L0_0, "RemoteAccessTool") then
+  MpCommon.AppendPersistContext(L0_0, "RemoteAccessTool", 0)
 end
-if not (MpCommon.QueryPersistContext)(l_0_0, "T1219") then
-  (MpCommon.AppendPersistContext)(l_0_0, "T1219", 0)
+if not MpCommon.QueryPersistContext(L0_0, "T1219") then
+  MpCommon.AppendPersistContext(L0_0, "T1219", 0)
 end
 return mp.CLEAN
-

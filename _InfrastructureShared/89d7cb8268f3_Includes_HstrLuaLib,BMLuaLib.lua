@@ -1,51 +1,56 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/89d7cb8268f3_Includes_HstrLuaLib,BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.GetScannedPPID)()
-if l_0_0 == "" or l_0_0 == nil then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.GetScannedPPID
+L0_0 = L0_0()
+if L0_0 == "" or L0_0 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = (string.lower)((mp.GetProcessCommandLine)(l_0_0))
-local l_0_2 = (mp.GetParentProcInfo)()
-if l_0_2 ~= nil then
-  local l_0_3 = (string.lower)(l_0_2.image_path)
-  local l_0_4 = (mp.GetProcessCommandLine)(l_0_2.ppid)
-  local l_0_5 = {}
-  -- DECOMPILER ERROR at PC32: No list found for R5 , SetList fails
-
-  local l_0_6 = {}
-  -- DECOMPILER ERROR at PC35: No list found for R6 , SetList fails
-
-  -- DECOMPILER ERROR at PC36: Overwrote pending register: R7 in 'AssignReg'
-
-  if ("bootstrap5")(l_0_3, l_0_5) then
-    return mp.CLEAN
+L1_1 = string
+L1_1 = L1_1.lower
+L2_2 = mp
+L2_2 = L2_2.GetProcessCommandLine
+L3_3 = L0_0
+L9_9 = L2_2(L3_3)
+L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L2_2(L3_3))
+L2_2 = mp
+L2_2 = L2_2.GetParentProcInfo
+L2_2 = L2_2()
+if L2_2 ~= nil then
+  L3_3 = string
+  L3_3 = L3_3.lower
+  L4_4 = L2_2.image_path
+  L3_3 = L3_3(L4_4)
+  L4_4 = mp
+  L4_4 = L4_4.GetProcessCommandLine
+  L4_4 = L4_4(L5_5)
+  L8_8 = L3_3
+  L9_9 = L5_5
+  if L7_7 then
+    return L7_7
   end
-  if contains(l_0_4, l_0_6) then
-    return mp.CLEAN
+  L8_8 = L4_4
+  L9_9 = L6_6
+  if L7_7 then
+    return L7_7
   end
 end
-do
-  local l_0_7 = {}
-  -- DECOMPILER ERROR at PC58: No list found for R3 , SetList fails
-
-  local l_0_8 = false
-  -- DECOMPILER ERROR at PC60: Overwrote pending register: R5 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC61: Overwrote pending register: R6 in 'AssignReg'
-
-  for l_0_12,l_0_13 in ("(?:set|add)-mppreference\\s+-exclusionpath\\s+[\'\"]c:\\\\[\'\"]\\s*$")("(?:set|add)-mppreference\\s+-exclusionpath\\s+c:\\\\\\s*[,;][\'\"]?\\s*\\w?") do
-    l_0_8 = (MpCommon.StringRegExpSearch)(l_0_13, l_0_1)
-    if l_0_8 then
-      if (versioning.IsSeville)() then
-        return mp.INFECTED
-      else
-        return mp.LOWFI
-      end
+L3_3 = {
+  L4_4,
+  L5_5,
+  L6_6
+}
+L4_4 = "(?:set|add)-mppreference\\s+-exclusionpath\\s+c:\\\\\\s*$"
+L4_4 = false
+for L8_8, L9_9 in L5_5(L6_6) do
+  L4_4, L8_8 = MpCommon.StringRegExpSearch(L9_9, L1_1)
+  if L4_4 then
+    if versioning.IsSeville() then
+      return mp.INFECTED
+    else
+      return mp.LOWFI
     end
   end
-  return mp.CLEAN
 end
-
+return L5_5

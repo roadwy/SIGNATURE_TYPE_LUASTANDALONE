@@ -1,14 +1,30 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/2289baf44a59 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.find)((pe.mmap_va)(pevars.sigaddr, 20), "|", 1, true) - 1
-if (string.find)((pe.mmap_va)(pevars.sigaddr, 80), "t\005", 1, true) == nil then
-  local l_0_1 = (string.find)((pe.mmap_va)(pevars.sigaddr, 80), "u\002", 1, true) - 2 - l_0_0 - 1
-  local l_0_2 = (string.format)("\235%s", (string.char)(l_0_1))
-  ;
-  (pe.mmap_patch_va)(pevars.sigaddr + l_0_0, l_0_2)
-  return mp.INFECTED
+local L0_0, L1_1, L2_2
+L0_0 = string
+L0_0 = L0_0.find
+L1_1 = pe
+L1_1 = L1_1.mmap_va
+L2_2 = pevars
+L2_2 = L2_2.sigaddr
+L1_1 = L1_1(L2_2, 20)
+L2_2 = "|"
+L0_0 = L0_0(L1_1, L2_2, 1, true)
+L0_0 = L0_0 - 1
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = pe
+L2_2 = L2_2.mmap_va
+L2_2 = L2_2(pevars.sigaddr, 80)
+L1_1 = L1_1(L2_2, "t\005", 1, true)
+if L1_1 == nil then
+  L2_2 = string
+  L2_2 = L2_2.find
+  L2_2 = L2_2(pe.mmap_va(pevars.sigaddr, 80), "u\002", 1, true)
+  L1_1 = L2_2 - 2
 end
-
+L2_2 = L1_1 - L0_0
+L1_1 = L2_2 - 1
+L2_2 = string
+L2_2 = L2_2.format
+L2_2 = L2_2("\235%s", string.char(L1_1))
+pe.mmap_patch_va(pevars.sigaddr + L0_0, L2_2)
+return mp.INFECTED

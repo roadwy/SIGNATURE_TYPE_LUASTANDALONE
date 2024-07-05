@@ -1,44 +1,65 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/a4b3574e3b2d_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-if not (this_sigattrlog[1]).matched and not (this_sigattrlog[2]).matched then
-  return mp.CLEAN
-end
--- DECOMPILER ERROR at PC25: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2 = nil
-  else
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if not L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if not L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
-  if (this_sigattrlog[2]).matched and (this_sigattrlog[2]).utf8p2 ~= nil then
-    local l_0_3 = (this_sigattrlog[2]).utf8p2
-    local l_0_4 = {min = 1, max = 5}
-    local l_0_5 = QueryProcContext
-    l_0_5 = l_0_5({"BROWSER"}, l_0_4)
-    if not l_0_5 then
-      l_0_5 = mp
-      l_0_5 = l_0_5.CLEAN
-      return l_0_5
-    end
-    if l_0_3 ~= nil then
-      l_0_5 = mp
-      l_0_5 = l_0_5.GetExecutablesFromCommandLine
-      l_0_5 = l_0_5(l_0_3)
-      for l_0_9,i_2 in ipairs(l_0_5) do
-        i_2 = (mp.ContextualExpandEnvironmentVariables)(i_2)
-        if (sysio.IsFileExists)(i_2) then
-          (bm.add_related_file)(i_2)
-        end
-      end
-    end
-    do
-      l_0_5 = mp
-      l_0_5 = l_0_5.INFECTED
-      return l_0_5
+end
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
+  end
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[2]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[2]
+    L1_1 = L1_1.utf8p2
+    if L1_1 ~= nil then
+      L1_1 = this_sigattrlog
+      L1_1 = L1_1[2]
+      L0_0 = L1_1.utf8p2
     end
   end
 end
-
+L1_1 = {}
+L1_1.min = 1
+L1_1.max = 5
+L2_2 = QueryProcContext
+L2_2 = L2_2(L3_3, L4_4)
+if not L2_2 then
+  L2_2 = mp
+  L2_2 = L2_2.CLEAN
+  return L2_2
+end
+if L0_0 ~= nil then
+  L2_2 = mp
+  L2_2 = L2_2.GetExecutablesFromCommandLine
+  L2_2 = L2_2(L3_3)
+  for L6_6, L7_7 in L3_3(L4_4) do
+    L7_7 = mp.ContextualExpandEnvironmentVariables(L7_7)
+    if sysio.IsFileExists(L7_7) then
+      bm.add_related_file(L7_7)
+    end
+  end
+end
+L2_2 = mp
+L2_2 = L2_2.INFECTED
+return L2_2

@@ -1,17 +1,11 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#LuaJsLT10kb_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (string.lower)((string.sub)((mp.getfilename)(), -3))
-do
-  if l_0_0 == ".js" or l_0_0 == "jse" then
-    local l_0_1 = (mp.getfilesize)()
-    if l_0_1 > 1000 and l_0_1 < 10000 then
-      (mp.set_mpattribute)("//LuaJsLT10kb")
-    end
-    return mp.INFECTED
+local L0_0
+L0_0 = string
+L0_0 = L0_0.lower
+L0_0 = L0_0(string.sub(mp.getfilename(), -3))
+if L0_0 == ".js" or L0_0 == "jse" then
+  if mp.getfilesize() > 1000 and mp.getfilesize() < 10000 then
+    mp.set_mpattribute("//LuaJsLT10kb")
   end
-  return mp.CLEAN
+  return mp.INFECTED
 end
-
+return mp.CLEAN

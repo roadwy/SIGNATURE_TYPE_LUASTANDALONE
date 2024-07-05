@@ -1,116 +1,202 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_Gamarue!lnk_ObMpAttributes_xx 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 < 24 or l_0_0 > 255 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 < 24 or L0_0 > 255 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if (mp.readu_u32)(headerpage, 33) ~= 1554039296 and (mp.readu_u32)(headerpage, 33) ~= 2697077248 and (mp.bitand)((mp.readu_u32)(headerpage, 1), 16777215) ~= 6070466 then
-  return mp.CLEAN
-end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_2 = ((string.lower)(l_0_1))
-local l_0_3, l_0_4, l_0_5 = nil, nil, nil
-while 1 do
-  if l_0_2:find("^%l:\\windows\\system32\\rundll32%.exe%z") then
-    l_0_3 = (string.find)(l_0_1, " \(%l+)(%.%l%l%l),%l+%z")
-    if l_0_3 then
-      break
+L1_1 = mp
+L1_1 = L1_1.readu_u32
+L2_2 = headerpage
+L3_3 = 33
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 ~= 1554039296 then
+  L1_1 = mp
+  L1_1 = L1_1.readu_u32
+  L2_2 = headerpage
+  L3_3 = 33
+  L1_1 = L1_1(L2_2, L3_3)
+  if L1_1 ~= 2697077248 then
+    L1_1 = mp
+    L1_1 = L1_1.bitand
+    L2_2 = mp
+    L2_2 = L2_2.readu_u32
+    L3_3 = headerpage
+    L4_4 = 1
+    L2_2 = L2_2(L3_3, L4_4)
+    L3_3 = 16777215
+    L1_1 = L1_1(L2_2, L3_3)
+    if L1_1 ~= 6070466 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     end
-    -- DECOMPILER ERROR at PC74: Overwrote pending register: R5 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC75: Overwrote pending register: R4 in 'AssignReg'
-
-    l_0_3 = (string.find)(l_0_1, " \(~%$%l+)(%.%l%l%l),%l+%z")
-    if l_0_3 then
-      break
-    end
-    -- DECOMPILER ERROR at PC86: Overwrote pending register: R5 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC87: Overwrote pending register: R4 in 'AssignReg'
-
-    l_0_3 = (string.find)(l_0_1, " \(%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+)(%.%w+),%w+%z")
-    if l_0_3 then
-      break
-    end
-    -- DECOMPILER ERROR at PC98: Overwrote pending register: R5 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC99: Overwrote pending register: R4 in 'AssignReg'
-
-    l_0_3 = (string.find)(l_0_1, " \(%w+)(%.%w+),%w+%z")
-    if l_0_3 then
-      break
-    end
-    -- DECOMPILER ERROR at PC110: Overwrote pending register: R5 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC111: Overwrote pending register: R4 in 'AssignReg'
-
-    l_0_3 = (string.find)(l_0_1, " \({?[%w%s%p]+}?)(%.{?[%w%s%-]+}?)\"?,[%w%p%s]+%z")
-    if l_0_3 then
-      break
-    end
-    do break end
-    -- DECOMPILER ERROR at PC118: LeaveBlock: unexpected jumping out IF_THEN_STMT
-
-    -- DECOMPILER ERROR at PC118: LeaveBlock: unexpected jumping out IF_STMT
-
   end
 end
--- DECOMPILER ERROR at PC125: Overwrote pending register: R5 in 'AssignReg'
-
--- DECOMPILER ERROR at PC126: Overwrote pending register: R4 in 'AssignReg'
-
-l_0_3 = (string.find)(l_0_1, "Â \\(%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+)(%.%w+),%w+%z")
--- DECOMPILER ERROR at PC136: Overwrote pending register: R5 in 'AssignReg'
-
--- DECOMPILER ERROR at PC137: Overwrote pending register: R4 in 'AssignReg'
-
-if not l_0_3 then
-  l_0_3 = (string.find)(l_0_1, " \\\\\\\\\\\\\\\\\\\\\(%p%p%p%p%p-)(%.%d),%w+%z")
-end
-if l_0_3 then
-  local l_0_6 = {}
-  l_0_6[".exe"] = true
-  l_0_6[".dll"] = true
-  l_0_6[".cpl"] = true
-  l_0_6[".ocx"] = true
-  if l_0_6[l_0_5] then
-    return mp.CLEAN
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L3_3 = L0_0
+L1_1 = L1_1(L2_2, L3_3)
+L2_2 = string
+L2_2 = L2_2.lower
+L3_3 = L1_1
+L2_2 = L2_2(L3_3)
+L3_3, L4_4, L5_5 = nil, nil, nil
+L7_7 = L2_2
+L6_6 = L2_2.find
+L8_8 = "^%l:\\windows\\system32\\rundll32%.exe%z"
+L6_6 = L6_6(L7_7, L8_8)
+if L6_6 then
+  while true do
+    L6_6 = string
+    L6_6 = L6_6.find
+    L7_7 = L1_1
+    L8_8 = "\160\\(%l+)(%.%l%l%l),%l+%z"
+    L9_9 = L6_6(L7_7, L8_8)
+    L5_5 = L9_9
+    L4_4 = L8_8
+    _ = L7_7
+    L3_3 = L6_6
+    if L3_3 then
+    else
+      L6_6 = string
+      L6_6 = L6_6.find
+      L7_7 = L1_1
+      L8_8 = "\160\\(~%$%l+)(%.%l%l%l),%l+%z"
+      L9_9 = L6_6(L7_7, L8_8)
+      L5_5 = L9_9
+      L4_4 = L8_8
+      _ = L7_7
+      L3_3 = L6_6
+      if L3_3 then
+      else
+        L6_6 = string
+        L6_6 = L6_6.find
+        L7_7 = L1_1
+        L8_8 = "\160\\(%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+)(%.%w+),%w+%z"
+        L9_9 = L6_6(L7_7, L8_8)
+        L5_5 = L9_9
+        L4_4 = L8_8
+        _ = L7_7
+        L3_3 = L6_6
+        if L3_3 then
+        else
+          L6_6 = string
+          L6_6 = L6_6.find
+          L7_7 = L1_1
+          L8_8 = "\160\\(%w+)(%.%w+),%w+%z"
+          L9_9 = L6_6(L7_7, L8_8)
+          L5_5 = L9_9
+          L4_4 = L8_8
+          _ = L7_7
+          L3_3 = L6_6
+          if L3_3 then
+          else
+            L6_6 = string
+            L6_6 = L6_6.find
+            L7_7 = L1_1
+            L8_8 = "\160\\({?[%w%s%p]+}?)(%.{?[%w%s%-]+}?)\"?,[%w%p%s]+%z"
+            L9_9 = L6_6(L7_7, L8_8)
+            L5_5 = L9_9
+            L4_4 = L8_8
+            _ = L7_7
+            L3_3 = L6_6
+            if L3_3 then
+            else
+              do break end
+              else
+                L6_6 = string
+                L6_6 = L6_6.find
+                L7_7 = L1_1
+                L8_8 = "\194\160\\(%w+%.%w+%.%w+%.%w+%.%w+%.%w+%.%w+)(%.%w+),%w+%z"
+                L9_9 = L6_6(L7_7, L8_8)
+                L5_5 = L9_9
+                L4_4 = L8_8
+                _ = L7_7
+                L3_3 = L6_6
+                if not L3_3 then
+                  L6_6 = string
+                  L6_6 = L6_6.find
+                  L7_7 = L1_1
+                  L8_8 = "\160\\\\\\\\\\\\\\\\\\\\\\(%p%p%p%p%p-)(%.%d),%w+%z"
+                  L9_9 = L6_6(L7_7, L8_8)
+                  L5_5 = L9_9
+                  L4_4 = L8_8
+                  _ = L7_7
+                  L3_3 = L6_6
+                end
+              end
+            end
+          end
+        end
+      end
+    end
   end
-  local l_0_7 = (mp.get_parent_filehandle)()
-  if l_0_7 == nil then
-    return mp.CLEAN
+if L3_3 then
+  L6_6 = {}
+  L6_6[".exe"] = true
+  L6_6[".dll"] = true
+  L6_6[".cpl"] = true
+  L6_6[".ocx"] = true
+  L7_7 = L6_6[L5_5]
+  if L7_7 then
+    L7_7 = mp
+    L7_7 = L7_7.CLEAN
+    return L7_7
   end
-  local l_0_8 = (mp.readfile_by_handle)(l_0_7, 0, 64)
-  if l_0_8 == nil then
-    return mp.CLEAN
+  L7_7 = mp
+  L7_7 = L7_7.get_parent_filehandle
+  L7_7 = L7_7()
+  if L7_7 == nil then
+    L8_8 = mp
+    L8_8 = L8_8.CLEAN
+    return L8_8
   end
-  if (mp.readu_u32)(l_0_8, 1) ~= 76 then
-    return mp.CLEAN
+  L8_8 = mp
+  L8_8 = L8_8.readfile_by_handle
+  L9_9 = L7_7
+  L8_8 = L8_8(L9_9, 0, 64)
+  if L8_8 == nil then
+    L9_9 = mp
+    L9_9 = L9_9.CLEAN
+    return L9_9
   end
-  if (mp.readu_u32)(l_0_8, 57) ~= 7 then
-    return mp.CLEAN
+  L9_9 = mp
+  L9_9 = L9_9.readu_u32
+  L9_9 = L9_9(L8_8, 1)
+  if L9_9 ~= 76 then
+    L9_9 = mp
+    L9_9 = L9_9.CLEAN
+    return L9_9
   end
-  local l_0_9 = nil
-  local l_0_10 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-  if l_0_10 == mp.SCANREASON_ONOPEN or l_0_10 == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
-    l_0_9 = (MpCommon.PathToWin32Path)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
+  L9_9 = mp
+  L9_9 = L9_9.readu_u32
+  L9_9 = L9_9(L8_8, 57)
+  if L9_9 ~= 7 then
+    L9_9 = mp
+    L9_9 = L9_9.CLEAN
+    return L9_9
   end
-  if l_0_9 == nil then
-    l_0_9 = ((mp.getfilename)()):match("(.+)\\[^\\]+$")
+  L9_9 = nil
+  if mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONOPEN or mp.get_contextdata(mp.CONTEXT_DATA_SCANREASON) == mp.SCANREASON_ONMODIFIEDHANDLECLOSE then
+    L9_9 = MpCommon.PathToWin32Path(mp.get_contextdata(mp.CONTEXT_DATA_FILEPATH))
   end
-  if l_0_9 ~= nil then
-    (mp.ReportLowfi)(l_0_9 .. "\\Â \\" .. l_0_4 .. l_0_5, 2406282551)
-    ;
-    (mp.ReportLowfi)(l_0_9 .. "\\Â \\IndexerVolumeGuid", 2012828607)
+  if L9_9 == nil then
+    L9_9 = mp.getfilename():match("(.+)\\[^\\]+$")
+  end
+  if L9_9 ~= nil then
+    mp.ReportLowfi(L9_9 .. "\\\194\160\\" .. L4_4 .. L5_5, 2406282551)
+    mp.ReportLowfi(L9_9 .. "\\\194\160\\IndexerVolumeGuid", 2012828607)
   end
   return mp.INFECTED
 end
-do
-  return mp.CLEAN
-end
-
+L6_6 = mp
+L6_6 = L6_6.CLEAN
+return L6_6

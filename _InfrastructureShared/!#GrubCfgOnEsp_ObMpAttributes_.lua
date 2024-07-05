@@ -1,17 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#GrubCfgOnEsp_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = "MpUefiGrubCheck"
-local l_0_1 = "MpUefiGrubCfg"
-local l_0_2 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-if not l_0_2 or #l_0_2 < 8 then
+local L0_0, L1_1, L2_2
+L0_0 = "MpUefiGrubCheck"
+L1_1 = "MpUefiGrubCfg"
+L2_2 = mp
+L2_2 = L2_2.getfilename
+L2_2 = L2_2(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+if not L2_2 or #L2_2 < 8 then
   return mp.CLEAN
 end
-if l_0_2:sub(-8) == "grub.cfg" then
-  (MpCommon.AppendPersistContextNoPath)(l_0_0, l_0_1, 60)
+if L2_2:sub(-8) == "grub.cfg" then
+  MpCommon.AppendPersistContextNoPath(L0_0, L1_1, 60)
   return mp.INFECTED
 end
 return mp.CLEAN
-

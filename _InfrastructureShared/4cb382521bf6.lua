@@ -1,41 +1,48 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/4cb382521bf6 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-    local l_0_0, l_0_1, l_0_2 = nil
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8
+L1_1 = this_sigattrlog
+L1_1 = L1_1[1]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[1]
+  L1_1 = L1_1.utf8p2
+  if L1_1 ~= nil then
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L0_0 = L1_1.utf8p2
   end
-  -- DECOMPILER ERROR at PC13: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC15: Confused about usage of register: R0 in 'UnsetPending'
-
-  if l_0_0 ~= nil then
-    if l_0_0:find("\\\\.\\pipe\\local\\chrome.nativemessaging", 1, true) then
-      return mp.CLEAN
-    else
-      -- DECOMPILER ERROR at PC26: Confused about usage of register: R0 in 'UnsetPending'
-
-      if l_0_0:find("\\\\.\\pipe\\mpvsocket", 1, true) then
-        return mp.CLEAN
-      end
+end
+if L0_0 ~= nil then
+  L2_2 = L0_0
+  L1_1 = L0_0.find
+  L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
+  else
+    L2_2 = L0_0
+    L1_1 = L0_0.find
+    L1_1 = L1_1(L2_2, L3_3, L4_4, L5_5)
+    if L1_1 then
+      L1_1 = mp
+      L1_1 = L1_1.CLEAN
+      return L1_1
     end
   end
-  local l_0_3, l_0_4 = , (bm.get_process_relationships)()
-  if l_0_4 == nil then
+end
+L1_1 = bm
+L1_1 = L1_1.get_process_relationships
+L2_2 = L1_1()
+if L1_1 == nil then
+  return L3_3
+end
+for L6_6, L7_7 in L3_3(L4_4) do
+  L8_8 = string
+  L8_8 = L8_8.lower
+  L8_8 = L8_8(L7_7.image_path)
+  if string.find(L8_8, "\\svchost.exe", 1, true) or string.find(L8_8, "\\services.exe", 1, true) or string.find(L8_8, "\\clickonceforgooglechrome.exe", 1, true) or string.find(L8_8, "\\evolvecontactagent.exe", 1, true) or string.find(L8_8, "\\chrome.exe", 1, true) then
     return mp.CLEAN
   end
-  for l_0_8,l_0_9 in ipairs(l_0_4) do
-    local l_0_5 = nil
-    -- DECOMPILER ERROR at PC50: Confused about usage of register: R7 in 'UnsetPending'
-
-    if (string.find)((string.lower)(R7_PC50.image_path), "\\svchost.exe", 1, true) or (string.find)((string.lower)(R7_PC50.image_path), "\\services.exe", 1, true) or (string.find)((string.lower)(R7_PC50.image_path), "\\clickonceforgooglechrome.exe", 1, true) or (string.find)((string.lower)(R7_PC50.image_path), "\\evolvecontactagent.exe", 1, true) or (string.find)((string.lower)(R7_PC50.image_path), "\\chrome.exe", 1, true) then
-      return mp.CLEAN
-    end
-  end
-  return mp.INFECTED
 end
-
+return L3_3

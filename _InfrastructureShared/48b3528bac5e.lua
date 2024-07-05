@@ -1,26 +1,39 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/48b3528bac5e 
-
--- params : ...
--- function num : 0
-if (this_sigattrlog[1]).matched and (this_sigattrlog[1]).utf8p2 ~= nil then
-  local l_0_0 = (string.lower)((this_sigattrlog[1]).utf8p2)
-  if (MpCommon.GetPersistContextCountNoPath)("Lua:ExecPatpoopy.A") > 0 then
-    local l_0_1 = (MpCommon.GetPersistContextNoPath)("Lua:ExecPatpoopy.A")
-    if l_0_1 then
-      for l_0_5,l_0_6 in ipairs(l_0_1) do
-        local l_0_7 = (string.match)(l_0_6, "\\([^\\]+)$")
-        if (string.find)(l_0_0, l_0_7, 1, true) then
-          (bm.add_action)("EmsScan", 3000)
-          return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7
+L0_0 = this_sigattrlog
+L0_0 = L0_0[1]
+L0_0 = L0_0.matched
+if L0_0 then
+  L0_0 = this_sigattrlog
+  L0_0 = L0_0[1]
+  L0_0 = L0_0.utf8p2
+  if L0_0 ~= nil then
+    L0_0 = string
+    L0_0 = L0_0.lower
+    L1_1 = this_sigattrlog
+    L1_1 = L1_1[1]
+    L1_1 = L1_1.utf8p2
+    L0_0 = L0_0(L1_1)
+    L1_1 = MpCommon
+    L1_1 = L1_1.GetPersistContextCountNoPath
+    L1_1 = L1_1(L2_2)
+    if L1_1 > 0 then
+      L1_1 = MpCommon
+      L1_1 = L1_1.GetPersistContextNoPath
+      L1_1 = L1_1(L2_2)
+      if L1_1 then
+        for L5_5, L6_6 in L2_2(L3_3) do
+          L7_7 = string
+          L7_7 = L7_7.match
+          L7_7 = L7_7(L6_6, "\\([^\\]+)$")
+          if string.find(L0_0, L7_7, 1, true) then
+            bm.add_action("EmsScan", 3000)
+            return mp.INFECTED
+          end
         end
       end
     end
   end
 end
-do
-  l_0_0 = mp
-  l_0_0 = l_0_0.CLEAN
-  return l_0_0
-end
-
+L0_0 = mp
+L0_0 = L0_0.CLEAN
+return L0_0

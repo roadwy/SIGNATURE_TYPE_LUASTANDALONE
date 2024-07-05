@@ -1,114 +1,132 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_LnkDblExt.JT!ibt_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-if (mp.getfilesize)() > 20480 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 20480 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (string.lower)((mp.getfilename)())
-if (string.find)(l_0_0, "->", 1, true) == nil then
-  return mp.CLEAN
+L0_0 = string
+L0_0 = L0_0.lower
+L1_1 = mp
+L1_1 = L1_1.getfilename
+L2_2 = L1_1()
+L0_0 = L0_0(L1_1, L2_2, L1_1())
+L1_1 = string
+L1_1 = L1_1.find
+L2_2 = L0_0
+L1_1 = L1_1(L2_2, "->", 1, true)
+if L1_1 == nil then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-if l_0_0:len() < 9 then
-  return mp.CLEAN
+L2_2 = L0_0
+L1_1 = L0_0.len
+L1_1 = L1_1(L2_2)
+if L1_1 < 9 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-local l_0_1 = {}
-l_0_1[".doc"] = ""
-l_0_1.docm = ""
-l_0_1.docx = ""
-l_0_1[".dot"] = ""
-l_0_1.dotm = ""
-l_0_1.dotx = ""
-l_0_1[".odt"] = ""
-l_0_1[".rtf"] = ""
-l_0_1[".ods"] = ""
-l_0_1[".xla"] = ""
-l_0_1[".xls"] = ""
-l_0_1.xlam = ""
-l_0_1.xlsb = ""
-l_0_1.xlsm = ""
-l_0_1.xlsx = ""
-l_0_1[".xlt"] = ""
-l_0_1.xltm = ""
-l_0_1.xltx = ""
-l_0_1[".odp"] = ""
-l_0_1[".pot"] = ""
-l_0_1[".potm"] = ""
-l_0_1[".potx"] = ""
-l_0_1[".ppa"] = ""
-l_0_1.ppam = ""
-l_0_1[".pps"] = ""
-l_0_1[".ppsm"] = ""
-l_0_1[".ppsx"] = ""
-l_0_1[".ppt"] = ""
-l_0_1.pptm = ""
-l_0_1.pptx = ""
-l_0_1[".ani"] = ""
-l_0_1[".bmp"] = ""
-l_0_1[".cur"] = ""
-l_0_1[".emf"] = ""
-l_0_1[".gif"] = ""
-l_0_1[".ico"] = ""
-l_0_1.jpeg = ""
-l_0_1[".jpg"] = ""
-l_0_1[".png"] = ""
-l_0_1[".raw"] = ""
-l_0_1[".tif"] = ""
-l_0_1.tiff = ""
-l_0_1[".wmf"] = ""
-l_0_1[".3gp"] = ""
-l_0_1[".aac"] = ""
-l_0_1[".asf"] = ""
-l_0_1[".avi"] = ""
-l_0_1[".fla"] = ""
-l_0_1.flac = ""
-l_0_1[".flv"] = ""
-l_0_1[".m3u"] = ""
-l_0_1[".m4v"] = ""
-l_0_1[".mkv"] = ""
-l_0_1[".mov"] = ""
-l_0_1[".mp3"] = ""
-l_0_1[".mp4"] = ""
-l_0_1[".mpe"] = ""
-l_0_1[".mpeg"] = ""
-l_0_1[".mpg"] = ""
-l_0_1[".ogg"] = ""
-l_0_1[".vma"] = ""
-l_0_1[".wav"] = ""
-l_0_1[".wmv"] = ""
-l_0_1[".cpp"] = ""
-l_0_1[".css"] = ""
-l_0_1[".csv"] = ""
-l_0_1[".eml"] = ""
-l_0_1.gdoc = ""
-l_0_1[".hta"] = ""
-l_0_1[".htm"] = ""
-l_0_1.html = ""
-l_0_1[".mht"] = ""
-l_0_1[".pdf"] = ""
-l_0_1[".php"] = ""
-l_0_1[".ttf"] = ""
-l_0_1[".xml"] = ""
-l_0_1[".cab"] = ""
-l_0_1.gzip = ""
-l_0_1[".iso"] = ""
-l_0_1[".rar"] = ""
-l_0_1[".tar"] = ""
-l_0_1[".vhd"] = ""
-l_0_1["-3ds"] = ""
-l_0_1.acad = ""
-l_0_1[".aws"] = ""
-l_0_1[".dwg"] = ""
-l_0_1[".dxf"] = ""
-l_0_1[".fas"] = ""
-l_0_1[".lsp"] = ""
-l_0_1[".mnl"] = ""
-l_0_1[".plf"] = ""
-l_0_1[".vlx"] = ""
-local l_0_2 = (string.sub)(l_0_0, -8)
-if l_0_1[(string.sub)(l_0_2, 1, 4)] then
-  (mp.set_mpattribute)("Lua:ContextLnkDoubleExtension")
+L1_1 = {}
+L1_1[".doc"] = ""
+L1_1.docm = ""
+L1_1.docx = ""
+L1_1[".dot"] = ""
+L1_1.dotm = ""
+L1_1.dotx = ""
+L1_1[".odt"] = ""
+L1_1[".rtf"] = ""
+L1_1[".ods"] = ""
+L1_1[".xla"] = ""
+L1_1[".xls"] = ""
+L1_1.xlam = ""
+L1_1.xlsb = ""
+L1_1.xlsm = ""
+L1_1.xlsx = ""
+L1_1[".xlt"] = ""
+L1_1.xltm = ""
+L1_1.xltx = ""
+L1_1[".odp"] = ""
+L1_1[".pot"] = ""
+L1_1[".potm"] = ""
+L1_1[".potx"] = ""
+L1_1[".ppa"] = ""
+L1_1.ppam = ""
+L1_1[".pps"] = ""
+L1_1[".ppsm"] = ""
+L1_1[".ppsx"] = ""
+L1_1[".ppt"] = ""
+L1_1.pptm = ""
+L1_1.pptx = ""
+L1_1[".ani"] = ""
+L1_1[".bmp"] = ""
+L1_1[".cur"] = ""
+L1_1[".emf"] = ""
+L1_1[".gif"] = ""
+L1_1[".ico"] = ""
+L1_1.jpeg = ""
+L1_1[".jpg"] = ""
+L1_1[".png"] = ""
+L1_1[".raw"] = ""
+L1_1[".tif"] = ""
+L1_1.tiff = ""
+L1_1[".wmf"] = ""
+L1_1[".3gp"] = ""
+L1_1[".aac"] = ""
+L1_1[".asf"] = ""
+L1_1[".avi"] = ""
+L1_1[".fla"] = ""
+L1_1.flac = ""
+L1_1[".flv"] = ""
+L1_1[".m3u"] = ""
+L1_1[".m4v"] = ""
+L1_1[".mkv"] = ""
+L1_1[".mov"] = ""
+L1_1[".mp3"] = ""
+L1_1[".mp4"] = ""
+L1_1[".mpe"] = ""
+L1_1[".mpeg"] = ""
+L1_1[".mpg"] = ""
+L1_1[".ogg"] = ""
+L1_1[".vma"] = ""
+L1_1[".wav"] = ""
+L1_1[".wmv"] = ""
+L1_1[".cpp"] = ""
+L1_1[".css"] = ""
+L1_1[".csv"] = ""
+L1_1[".eml"] = ""
+L1_1.gdoc = ""
+L1_1[".hta"] = ""
+L1_1[".htm"] = ""
+L1_1.html = ""
+L1_1[".mht"] = ""
+L1_1[".pdf"] = ""
+L1_1[".php"] = ""
+L1_1[".ttf"] = ""
+L1_1[".xml"] = ""
+L1_1[".cab"] = ""
+L1_1.gzip = ""
+L1_1[".iso"] = ""
+L1_1[".rar"] = ""
+L1_1[".tar"] = ""
+L1_1[".vhd"] = ""
+L1_1["-3ds"] = ""
+L1_1.acad = ""
+L1_1[".aws"] = ""
+L1_1[".dwg"] = ""
+L1_1[".dxf"] = ""
+L1_1[".fas"] = ""
+L1_1[".lsp"] = ""
+L1_1[".mnl"] = ""
+L1_1[".plf"] = ""
+L1_1[".vlx"] = ""
+L2_2 = string
+L2_2 = L2_2.sub
+L2_2 = L2_2(L0_0, -8)
+if L1_1[string.sub(L2_2, 1, 4)] then
+  mp.set_mpattribute("Lua:ContextLnkDoubleExtension")
 end
 return mp.CLEAN
-

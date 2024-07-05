@@ -1,18 +1,14 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/5bb39d054fee_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
--- DECOMPILER ERROR at PC4: No list found for R0 , SetList fails
-
-local l_0_1 = {}
--- DECOMPILER ERROR at PC8: Overwrote pending register: R2 in 'AssignReg'
-
--- DECOMPILER ERROR at PC9: Overwrote pending register: R3 in 'AssignReg'
-
-if ("EMAILCLIENT")("WMI", l_0_1) then
+local L0_0, L1_1
+L0_0 = {
+  L1_1,
+  "EMAILCLIENT",
+  "WMI"
+}
+L1_1 = "OFFICE"
+L1_1 = {}
+L1_1.min = 1
+L1_1.max = 5
+if QueryProcContext(L0_0, L1_1) then
   return mp.INFECTED
 end
 return mp.CLEAN
-

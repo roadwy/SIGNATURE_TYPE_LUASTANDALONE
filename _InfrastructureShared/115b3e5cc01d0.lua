@@ -1,19 +1,8 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/115b3e5cc01d0 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC12: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[7]).matched and (this_sigattrlog[7]).wp2 ~= nil then
-    local l_0_0 = nil
-  end
-  -- DECOMPILER ERROR at PC15: Confused about usage of register: R0 in 'UnsetPending'
-
-  if (string.find)(l_0_0, "wheel", 1, true) then
-    return mp.INFECTED
-  end
-  return mp.CLEAN
+local L0_0
+if this_sigattrlog[7].matched and this_sigattrlog[7].wp2 ~= nil then
+  L0_0 = this_sigattrlog[7].utf8p2
 end
-
+if string.find(L0_0, "wheel", 1, true) then
+  return mp.INFECTED
+end
+return mp.CLEAN

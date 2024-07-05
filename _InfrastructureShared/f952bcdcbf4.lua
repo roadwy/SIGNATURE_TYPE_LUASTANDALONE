@@ -1,23 +1,40 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/f952bcdcbf4 
-
--- params : ...
--- function num : 0
-if not (pe.isdynamic_va)((pe.get_regval)(pe.REG_EIP)) then
-  return mp.CLEAN
+local L0_0
+L0_0 = pe
+L0_0 = L0_0.isdynamic_va
+L0_0 = L0_0(pe.get_regval(pe.REG_EIP))
+if not L0_0 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if ((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_IMPORT]).Size > 60 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.DataDirectory
+L0_0 = L0_0[pe.IMAGE_DIRECTORY_ENTRY_IMPORT]
+L0_0 = L0_0.Size
+if L0_0 > 60 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if pehdr.NumberOfSections < 2 then
-  return mp.CLEAN
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 < 2 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (pesecs[2]).VirtualAddress > 12288 then
-  return mp.CLEAN
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.VirtualAddress
+if L0_0 > 12288 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (pe.mmap_rva)(((pehdr.DataDirectory)[pe.IMAGE_DIRECTORY_ENTRY_IMPORT]).RVA + 16, 4)
-if (mp.readu_u32)(l_0_0, 1) == (pesecs[2]).VirtualAddress then
+L0_0 = pe
+L0_0 = L0_0.mmap_rva
+L0_0 = L0_0(pehdr.DataDirectory[pe.IMAGE_DIRECTORY_ENTRY_IMPORT].RVA + 16, 4)
+if mp.readu_u32(L0_0, 1) == pesecs[2].VirtualAddress then
   return mp.LOWFI
 end
 return mp.CLEAN
-

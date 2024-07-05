@@ -1,36 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/23d72c256b70 
-
--- params : ...
--- function num : 0
-local l_0_0 = {}
--- DECOMPILER ERROR at PC8: No list found for R0 , SetList fails
-
--- DECOMPILER ERROR at PC9: Overwrote pending register: R1 in 'AssignReg'
-
--- DECOMPILER ERROR at PC10: Overwrote pending register: R2 in 'AssignReg'
-
-for l_0_4,l_0_5 in ("%LocalAppData%\\Packages\\Microsoft.WindowsStore_8wekyb3d8bbwe\\AC")("%LocalAppData%\\Packages\\Microsoft.WindowsStore_8wekyb3d8bbwe\\LocalCache") do
-  -- DECOMPILER ERROR at PC13: Overwrote pending register: R6 in 'AssignReg'
-
-  -- DECOMPILER ERROR at PC15: Overwrote pending register: R7 in 'AssignReg'
-
-  local l_0_6 = (("%LocalAppData%\\Packages\\Microsoft.StorePurchaseApp_8wekyb3d8bbwe\\LocalCache").ExpandFilePath)("%LocalAppData%\\Packages\\Microsoft.StorePurchaseApp_8wekyb3d8bbwe\\Settings", true)
-  if l_0_6 then
-    for l_0_10,l_0_11 in ipairs(l_0_6) do
-      if l_0_11:sub(5, 5) ~= "%" then
-        local l_0_12 = nil
-        -- DECOMPILER ERROR at PC49: Overwrote pending register: R12 in 'AssignReg'
-
-        if (l_0_11:sub(3, 3) ~= "?" or l_0_12) and l_0_12:sub(2, 10) ~= ":\\windows" and #(sysio.FindFiles)(l_0_12, "mpengine.dll", 9) > 0 then
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6, L7_7, L8_8, L9_9, L10_10, L11_11, L12_12
+L0_0 = {
+  L1_1,
+  L2_2,
+  L3_3,
+  L4_4,
+  L5_5,
+  L6_6,
+  L7_7
+}
+L4_4 = "%LocalAppData%\\Microsoft\\Windows\\INetCache"
+L5_5 = "%LocalAppData%\\Packages\\Microsoft.StorePurchaseApp_8wekyb3d8bbwe\\AC"
+L6_6 = "%LocalAppData%\\Packages\\Microsoft.StorePurchaseApp_8wekyb3d8bbwe\\LocalCache"
+for L4_4, L5_5 in L1_1(L2_2) do
+  L6_6 = sysio
+  L6_6 = L6_6.ExpandFilePath
+  L6_6 = L6_6(L7_7, L8_8)
+  if L6_6 then
+    for L10_10, L11_11 in L7_7(L8_8) do
+      L12_12 = L11_11.sub
+      L12_12 = L12_12(L11_11, 5, 5)
+      if L12_12 ~= "%" then
+        L12_12 = nil
+        if L11_11:sub(3, 3) == "?" then
+          L12_12 = string.lower(L11_11:sub(5))
+        else
+          L12_12 = string.lower(L11_11)
+        end
+        if L12_12 and L12_12:sub(2, 10) ~= ":\\windows" and #sysio.FindFiles(L12_12, "mpengine.dll", 9) > 0 then
           return mp.INFECTED
         end
       end
     end
   end
 end
-do return mp.CLEAN end
--- DECOMPILER ERROR at PC77: Confused about usage of register R1 for local variables in 'ReleaseLocals'
-
--- WARNING: undefined locals caused missing assignments!
-
+return L1_1

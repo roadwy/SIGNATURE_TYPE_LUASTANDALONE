@@ -1,8 +1,2 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/617822a1d309 
-
--- params : ...
--- function num : 0
-(mp.set_mpattribute)("PUA:Block:Downer")
+mp.set_mpattribute("PUA:Block:Downer")
 return mp.INFECTED
-

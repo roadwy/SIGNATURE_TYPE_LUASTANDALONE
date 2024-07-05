@@ -1,11 +1,6 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/52784659c3ee_Flags_1 
-
--- params : ...
--- function num : 0
 if peattributes.isexe and peattributes.packed and pehdr.NumberOfSections > 7 then
   if mp.HSTR_WEIGHT == 3 then
-    if (mp.get_mpattribute)("FOP:Win32/Crybot") then
+    if mp.get_mpattribute("FOP:Win32/Crybot") then
       return mp.INFECTED
     end
     return mp.SUSPICIOUS
@@ -13,4 +8,3 @@ if peattributes.isexe and peattributes.packed and pehdr.NumberOfSections > 7 the
   return mp.INFECTED
 end
 return mp.CLEAN
-

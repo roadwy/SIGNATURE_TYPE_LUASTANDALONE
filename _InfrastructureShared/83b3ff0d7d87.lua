@@ -1,32 +1,33 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/83b3ff0d7d87 
-
--- params : ...
--- function num : 0
--- DECOMPILER ERROR at PC11: Overwrote pending register: R0 in 'AssignReg'
-
-do
-  if (this_sigattrlog[2]).matched then
-    local l_0_0, l_0_1, l_0_2, l_0_3, l_0_4 = nil
-  else
-  end
-  -- DECOMPILER ERROR at PC27: Confused about usage of register: R0 in 'UnsetPending'
-
-  -- DECOMPILER ERROR at PC31: Confused about usage of register: R0 in 'UnsetPending'
-
-  if (not (this_sigattrlog[3]).matched or (mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[3]).utf8p2) ~= nil) and (mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[3]).utf8p2) ~= "" then
-    local l_0_5 = nil
-    for l_0_9,l_0_10 in ipairs((mp.GetExecutablesFromCommandLine)((mp.ContextualExpandEnvironmentVariables)((this_sigattrlog[3]).utf8p2))) do
-      local l_0_6 = nil
-      -- DECOMPILER ERROR at PC37: Confused about usage of register: R6 in 'UnsetPending'
-
-      if R6_PC37 ~= nil and R6_PC37 ~= "" and (sysio.IsFileExists)(R6_PC37) and not (mp.IsKnownFriendlyFile)(R6_PC37, false, false) then
-        (bm.add_related_file)(R6_PC37)
-      end
-    end
-  end
-  do
-    return mp.INFECTED
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L1_1 = this_sigattrlog
+L1_1 = L1_1[2]
+L1_1 = L1_1.matched
+if L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.ContextualExpandEnvironmentVariables
+  L1_1 = L1_1(L2_2)
+  L0_0 = L1_1
+else
+  L1_1 = this_sigattrlog
+  L1_1 = L1_1[3]
+  L1_1 = L1_1.matched
+  if L1_1 then
+    L1_1 = mp
+    L1_1 = L1_1.ContextualExpandEnvironmentVariables
+    L1_1 = L1_1(L2_2)
+    L0_0 = L1_1
   end
 end
-
+if L0_0 ~= nil and L0_0 ~= "" then
+  L1_1 = mp
+  L1_1 = L1_1.GetExecutablesFromCommandLine
+  L1_1 = L1_1(L2_2)
+  for L5_5, L6_6 in L2_2(L3_3) do
+    if L6_6 ~= nil and L6_6 ~= "" and sysio.IsFileExists(L6_6) and not mp.IsKnownFriendlyFile(L6_6, false, false) then
+      bm.add_related_file(L6_6)
+    end
+  end
+end
+L1_1 = mp
+L1_1 = L1_1.INFECTED
+return L1_1

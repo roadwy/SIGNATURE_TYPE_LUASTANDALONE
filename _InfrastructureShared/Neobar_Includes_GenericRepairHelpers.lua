@@ -1,20 +1,20 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/Neobar_Includes_GenericRepairHelpers 
-
--- params : ...
--- function num : 0
-if (Remediation.Threat).Name == "BrowserModifier:Win32/Neobar" then
-  local l_0_0 = (sysio.RegExpandUserKey)("HKCU\\Software\\Policies\\Microsoft\\Internet Explorer\\Infodelivery\\Restrictions")
-  if l_0_0 then
-    for l_0_4,l_0_5 in pairs(l_0_0) do
-      local l_0_6 = (sysio.RegOpenKey)(l_0_5)
-      if l_0_6 ~= nil then
-        (sysio.DeleteRegValue)(l_0_6, "UsePolicySearchProvidersOnly")
+local L0_0, L1_1, L2_2, L3_3, L4_4, L5_5, L6_6
+L0_0 = Remediation
+L0_0 = L0_0.Threat
+L0_0 = L0_0.Name
+if L0_0 == "BrowserModifier:Win32/Neobar" then
+  L0_0 = sysio
+  L0_0 = L0_0.RegExpandUserKey
+  L0_0 = L0_0(L1_1)
+  if L0_0 then
+    for L4_4, L5_5 in L1_1(L2_2) do
+      L6_6 = sysio
+      L6_6 = L6_6.RegOpenKey
+      L6_6 = L6_6(L5_5)
+      if L6_6 ~= nil then
+        sysio.DeleteRegValue(L6_6, "UsePolicySearchProvidersOnly")
       end
     end
   end
-  do
-    Infrastructure_CleanSearchByDisplayName("Gigabase")
-  end
+  L1_1(L2_2)
 end
-

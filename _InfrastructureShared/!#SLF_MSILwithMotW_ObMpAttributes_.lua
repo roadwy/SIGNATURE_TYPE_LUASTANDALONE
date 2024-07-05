@@ -1,23 +1,36 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#SLF_MSILwithMotW_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON)
-if l_0_0 == mp.SCANREASON_ONOPEN and (mp.get_contextdata)(mp.CONTEXT_DATA_HAS_MOTW_ADS) == true then
-  do
-    if (mp.GetMOTWZone)() >= 3 then
-      local l_0_1 = (mp.getfilename)((mp.bitor)(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
-      if (string.sub)(l_0_1, -4) ~= ".msi" then
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 == L1_1 then
+  L1_1 = mp
+  L1_1 = L1_1.get_contextdata
+  L1_1 = L1_1(mp.CONTEXT_DATA_HAS_MOTW_ADS)
+  if L1_1 == true then
+    L1_1 = mp
+    L1_1 = L1_1.GetMOTWZone
+    L1_1 = L1_1()
+    if L1_1 >= 3 then
+      L1_1 = mp
+      L1_1 = L1_1.getfilename
+      L1_1 = L1_1(mp.bitor(mp.FILEPATH_QUERY_FNAME, mp.FILEPATH_QUERY_LOWERCASE))
+      if string.sub(L1_1, -4) ~= ".msi" then
         return mp.CLEAN
       end
-      if (mp.readu_u32)(headerpage, 1) == 3759263696 then
+      if mp.readu_u32(headerpage, 1) == 3759263696 then
         return mp.INFECTED
       end
       return mp.CLEAN
     end
-    do return mp.CLEAN end
-    return mp.CLEAN
+    L1_1 = mp
+    L1_1 = L1_1.CLEAN
+    return L1_1
   end
 end
-
+L1_1 = mp
+L1_1 = L1_1.CLEAN
+return L1_1

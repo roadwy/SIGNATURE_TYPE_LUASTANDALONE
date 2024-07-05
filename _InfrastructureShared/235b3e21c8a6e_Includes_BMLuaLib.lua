@@ -1,20 +1,28 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/235b3e21c8a6e_Includes_BMLuaLib 
-
--- params : ...
--- function num : 0
-local l_0_0 = (bm.get_current_process_startup_info)()
-local l_0_1 = (MpCommon.QuerySessionInformation)(l_0_0.ppid, MpCommon.WTSIsRemoteSession)
-if l_0_1 then
-  local l_0_2 = (MpCommon.QuerySessionInformation)(l_0_0.ppid, MpCommon.WTSUserName)
-  if (MpCommon.QueryPersistContextNoPath)("MpNewRemoteUsers", l_0_2) then
-    local l_0_3 = isTamperProtectionOn(false)
-    ;
-    (bm.add_related_string)("TpState", tostring(l_0_3), bm.RelatedStringBMReport)
+local L0_0, L1_1, L2_2, L3_3
+L0_0 = bm
+L0_0 = L0_0.get_current_process_startup_info
+L0_0 = L0_0()
+L1_1 = MpCommon
+L1_1 = L1_1.QuerySessionInformation
+L2_2 = L0_0.ppid
+L3_3 = MpCommon
+L3_3 = L3_3.WTSIsRemoteSession
+L1_1 = L1_1(L2_2, L3_3)
+if L1_1 then
+  L2_2 = MpCommon
+  L2_2 = L2_2.QuerySessionInformation
+  L3_3 = L0_0.ppid
+  L2_2 = L2_2(L3_3, MpCommon.WTSUserName)
+  L3_3 = MpCommon
+  L3_3 = L3_3.QueryPersistContextNoPath
+  L3_3 = L3_3("MpNewRemoteUsers", L2_2)
+  if L3_3 then
+    L3_3 = isTamperProtectionOn
+    L3_3 = L3_3(false)
+    bm.add_related_string("TpState", tostring(L3_3), bm.RelatedStringBMReport)
     return mp.INFECTED
   end
 end
-do
-  return mp.CLEAN
-end
-
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

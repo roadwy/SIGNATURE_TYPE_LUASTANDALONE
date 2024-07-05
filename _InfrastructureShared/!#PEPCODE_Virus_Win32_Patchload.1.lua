@@ -1,31 +1,60 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#PEPCODE_Virus_Win32_Patchload.1 
-
--- params : ...
--- function num : 0
-if peattributes.isdll ~= true then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = peattributes
+L0_0 = L0_0.isdll
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.epscn_islast ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.epscn_islast
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if peattributes.lastscn_writable ~= true then
-  return mp.CLEAN
+L0_0 = peattributes
+L0_0 = L0_0.lastscn_writable
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[1] ~= 131 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[1]
+if L0_0 ~= 131 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[2] ~= 124 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[2]
+if L0_0 ~= 124 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[3] ~= 36 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[3]
+if L0_0 ~= 36 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[5] ~= 1 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[5]
+if L0_0 ~= 1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if epcode[6] ~= 117 then
-  return mp.CLEAN
+L0_0 = epcode
+L0_0 = L0_0[6]
+if L0_0 ~= 117 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-return mp.INFECTED
-
+L0_0 = mp
+L0_0 = L0_0.INFECTED
+return L0_0

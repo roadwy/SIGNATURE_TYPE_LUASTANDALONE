@@ -1,45 +1,43 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#Lua_VBS_Obfuscator.AB_ObMpAttributes_ 
-
--- params : ...
--- function num : 0
-local l_0_0 = (mp.getfilesize)()
-if l_0_0 > 65536 then
-  return mp.CLEAN
+local L0_0, L1_1, L2_2
+L0_0 = mp
+L0_0 = L0_0.getfilesize
+L0_0 = L0_0()
+if L0_0 > 65536 then
+  L1_1 = mp
+  L1_1 = L1_1.CLEAN
+  return L1_1
 end
-;
-(mp.readprotection)(false)
-local l_0_1 = (mp.readfile)(0, l_0_0)
-local l_0_2, l_0_3 = (string.gsub)(l_0_1, "chr%(&o(%d%d%d)&%)", function(l_1_0)
-  -- function num : 0_0
-  local l_1_1 = string.format
-  local l_1_2 = "\"%c\""
-  do
-    local l_1_3, l_1_4, l_1_5 = tonumber(l_1_0, 8), .end
-    do return l_1_1(l_1_2, l_1_3, l_1_4, l_1_5) end
-    -- DECOMPILER ERROR at PC9: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
-end
-)
-if l_0_2 and l_0_3 > 10 then
-  l_0_2 = (string.gsub)(l_0_2, "chr%(&o(%d%d)&%)", function(l_2_0)
-  -- function num : 0_1
-  local l_2_1 = string.format
-  local l_2_2 = "\"%c\""
-  do
-    local l_2_3, l_2_4, l_2_5 = tonumber(l_2_0, 8), .end
-    do return l_2_1(l_2_2, l_2_3, l_2_4, l_2_5) end
-    -- DECOMPILER ERROR at PC9: Confused about usage of register R2 for local variables in 'ReleaseLocals'
-
-  end
-end
-)
-  l_0_2 = (string.gsub)(l_0_2, "\"&\"(.)\"", "%1")
-  l_0_2 = (string.gsub)(l_0_2, "\"&\"", "")
-  l_0_2 = (string.gsub)(l_0_2, "&\"", "")
-  ;
-  (mp.vfo_add_buffer)(l_0_2, "[Obfuscator.AB]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
+L1_1 = mp
+L1_1 = L1_1.readprotection
+L2_2 = false
+L1_1(L2_2)
+L1_1 = mp
+L1_1 = L1_1.readfile
+L2_2 = 0
+L1_1 = L1_1(L2_2, L0_0)
+L2_2 = string
+L2_2 = L2_2.gsub
+L2_2 = L2_2(L1_1, "chr%(&o(%d%d%d)&%)", function(A0_3)
+  local L2_4
+  L2_4 = string
+  L2_4 = L2_4.format
+  return L2_4("\"%c\"", tonumber(A0_3, 8))
+end)
+if L2_2 and L2_2(L1_1, "chr%(&o(%d%d%d)&%)", function(A0_5)
+  local L2_6
+  L2_6 = string
+  L2_6 = L2_6.format
+  return L2_6("\"%c\"", tonumber(A0_5, 8))
+end) > 10 then
+  L2_2 = string.gsub(L2_2, "chr%(&o(%d%d)&%)", function(A0_7)
+    local L2_8
+    L2_8 = string
+    L2_8 = L2_8.format
+    return L2_8("\"%c\"", tonumber(A0_7, 8))
+  end)
+  L2_2 = string.gsub(L2_2, "\"&\"(.)\"", "%1")
+  L2_2 = string.gsub(L2_2, "\"&\"", "")
+  L2_2 = string.gsub(L2_2, "&\"", "")
+  mp.vfo_add_buffer(L2_2, "[Obfuscator.AB]", mp.ADD_VFO_TAKE_ACTION_ON_DAD)
 end
 return mp.CLEAN
-

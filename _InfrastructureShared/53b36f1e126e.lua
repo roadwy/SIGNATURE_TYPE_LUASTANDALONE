@@ -1,32 +1,45 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/53b36f1e126e 
-
--- params : ...
--- function num : 0
-local l_0_4 = nil
-if (this_sigattrlog[2]).matched then
-  local l_0_0, l_0_1, l_0_2, l_0_3 = "base64_plist_creation"
+local L0_0, L1_1, L2_2
+L1_1 = "base64_plist_creation"
+L2_2 = this_sigattrlog
+L2_2 = L2_2[2]
+L2_2 = L2_2.matched
+if L2_2 then
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[2]
+  L2_2 = L2_2.utf8p1
+  L2_2 = L2_2.match
+  L2_2 = L2_2(L2_2, "([^/]+)$")
+  L0_0 = L2_2
 else
-  do
-    -- DECOMPILER ERROR at PC25: Overwrote pending register: R0 in 'AssignReg'
-
-    -- DECOMPILER ERROR at PC32: Confused about usage of register: R1 in 'UnsetPending'
-
-    -- DECOMPILER ERROR at PC38: Confused about usage of register: R1 in 'UnsetPending'
-
-    if (not (this_sigattrlog[3]).matched or l_0_4 ~= nil) and l_0_4 ~= "" then
-      if (MpCommon.GetPersistContextCountNoPath)(l_0_0) > 0 then
-        (MpCommon.AppendPersistContextNoPath)(l_0_0, l_0_4, 3600)
-      else
-        local l_0_5 = nil
-        ;
-        (MpCommon.SetPersistContextNoPath)(l_0_5, {[1] = l_0_4}, 3600)
-      end
-      do
-        do return mp.INFECTED end
-        return mp.CLEAN
-      end
-    end
+  L2_2 = this_sigattrlog
+  L2_2 = L2_2[3]
+  L2_2 = L2_2.matched
+  if L2_2 then
+    L2_2 = this_sigattrlog
+    L2_2 = L2_2[3]
+    L2_2 = L2_2.utf8p1
+    L2_2 = L2_2.match
+    L2_2 = L2_2(L2_2, "([^/]+)$")
+    L0_0 = L2_2
   end
 end
-
+if L0_0 ~= nil and L0_0 ~= "" then
+  L2_2 = MpCommon
+  L2_2 = L2_2.GetPersistContextCountNoPath
+  L2_2 = L2_2(L1_1)
+  if L2_2 > 0 then
+    L2_2 = MpCommon
+    L2_2 = L2_2.AppendPersistContextNoPath
+    L2_2(L1_1, L0_0, 3600)
+  else
+    L2_2 = {}
+    L2_2[1] = L0_0
+    MpCommon.SetPersistContextNoPath(L1_1, L2_2, 3600)
+  end
+  L2_2 = mp
+  L2_2 = L2_2.INFECTED
+  return L2_2
+end
+L2_2 = mp
+L2_2 = L2_2.CLEAN
+return L2_2

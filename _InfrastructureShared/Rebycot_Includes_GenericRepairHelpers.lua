@@ -1,0 +1,2 @@
+Infrastructure_ReportProductBulkExclusion(805306759)
+Infrastructure_CurrentThreatResourceScanFolder()

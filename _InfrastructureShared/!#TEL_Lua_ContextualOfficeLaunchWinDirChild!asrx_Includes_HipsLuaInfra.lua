@@ -1,23 +1,52 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/!#TEL_Lua_ContextualOfficeLaunchWinDirChild!asrx_Includes_HipsLuaInfra 
-
--- params : ...
--- function num : 0
-if (mp.get_contextdata)(mp.CONTEXT_DATA_SCANREASON) ~= mp.SCANREASON_ONOPEN then
-  return mp.CLEAN
+local L0_0, L1_1
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_SCANREASON
+L0_0 = L0_0(L1_1)
+L1_1 = mp
+L1_1 = L1_1.SCANREASON_ONOPEN
+if L0_0 ~= L1_1 then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if (mp.get_contextdata)(mp.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT) ~= true then
-  return mp.CLEAN
+L0_0 = mp
+L0_0 = L0_0.get_contextdata
+L1_1 = mp
+L1_1 = L1_1.CONTEXT_DATA_OPEN_CREATEPROCESS_HINT
+L0_0 = L0_0(L1_1)
+if L0_0 ~= true then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-if GetCtxOfficeProc() ~= "productivity2" then
-  return mp.CLEAN
+L0_0 = GetCtxOfficeProc
+L0_0 = L0_0()
+if L0_0 ~= "productivity2" then
+  L0_0 = mp
+  L0_0 = L0_0.CLEAN
+  return L0_0
 end
-local l_0_0 = (MpCommon.PathToWin32Path)((mp.get_contextdata)(mp.CONTEXT_DATA_FILEPATH))
-l_0_0 = (l_0_0 == nil and "" or l_0_0):lower()
-local l_0_1 = (mp.ContextualExpandEnvironmentVariables)("%windir%")
-l_0_1 = (l_0_1 == nil and "" or l_0_1):lower()
-if l_0_0 ~= l_0_1 then
+L0_0 = MpCommon
+L0_0 = L0_0.PathToWin32Path
+L1_1 = mp
+L1_1 = L1_1.get_contextdata
+L1_1 = L1_1(mp.CONTEXT_DATA_FILEPATH)
+L0_0 = L0_0(L1_1, L1_1(mp.CONTEXT_DATA_FILEPATH))
+if L0_0 == nil then
+  L1_1 = ""
+else
+  L1_1 = L1_1 or L0_0
+end
+L1_1 = L1_1.lower
+L1_1 = L1_1(L1_1)
+L0_0 = L1_1
+L1_1 = MpCommon
+L1_1 = L1_1.ExpandEnvironmentVariables
+L1_1 = L1_1("%windir%")
+L1_1 = (L1_1 == nil and "" or L1_1):lower()
+if L0_0 ~= L1_1 then
   return mp.CLEAN
 end
 return mp.INFECTED
-

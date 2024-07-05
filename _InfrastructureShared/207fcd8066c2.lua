@@ -1,13 +1,19 @@
--- Decompiled using luadec 2.2 rev: 895d923 for Lua 5.1 from https://github.com/viruscamp/luadec
--- Command line: /mnt/d/out/_InfrastructureShared/207fcd8066c2 
-
--- params : ...
--- function num : 0
-if pehdr.NumberOfSections ~= 3 then
-  return mp.LOWFI
+local L0_0, L1_1
+L0_0 = pehdr
+L0_0 = L0_0.NumberOfSections
+if L0_0 ~= 3 then
+  L0_0 = mp
+  L0_0 = L0_0.LOWFI
+  return L0_0
 end
-if (pesecs[2]).Name ~= ".scot" then
-  return mp.LOWFI
+L0_0 = pesecs
+L0_0 = L0_0[2]
+L0_0 = L0_0.Name
+if L0_0 ~= ".scot" then
+  L0_0 = mp
+  L0_0 = L0_0.LOWFI
+  return L0_0
 end
-return mp.SUSPICIOUS
-
+L0_0 = mp
+L0_0 = L0_0.SUSPICIOUS
+return L0_0
